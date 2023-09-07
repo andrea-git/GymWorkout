@@ -1,1 +1,0 @@
-tasklist >.\Archivi\task.txt

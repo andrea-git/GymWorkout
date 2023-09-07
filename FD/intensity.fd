@@ -1,0 +1,15 @@
+       FD  intensity.
+       01 int-rec.
+           05 int-key.
+               10 int-code         PIC  99.
+           05 int-data.
+               10 int-desc         PIC  x(100).
+               10 int-rest         PIC  9(3).
+               10 int-series       PIC  99.
+               10 int-duration     PIC  9(3).
+               10 int-setting      PIC  9(4).
+               10 int-filler       PIC  x(1000).
+               10 int-filler-n1    PIC  9(18).
+               10 int-filler-n2    PIC  9(18).
+               10 int-filler-n3    PIC  9(18).
+               10 int-filler-n4    PIC  9(18).

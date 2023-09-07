@@ -1,0 +1,16 @@
+       FD  exercises.
+       01 exe-rec.
+           05 exe-key.
+               10 exe-code         PIC  x(5).
+           05 exe-data.
+               10 exe-desc         PIC  x(100).
+               10 exe-group        PIC  x(5).
+               10 exe-intensity    PIC  99.
+               10 exe-isMulti      PIC  9.
+                   88 exe-isMulti-no VALUE IS 0. 
+                   88 exe-isMulti-yes VALUE IS 1. 
+               10 exe-filler       PIC  x(1000).
+               10 exe-filler-n1    PIC  9(18).
+               10 exe-filler-n2    PIC  9(18).
+               10 exe-filler-n3    PIC  9(18).
+               10 exe-filler-n4    PIC  9(18).

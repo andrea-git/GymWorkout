@@ -6,8 +6,8 @@
        IDENTIFICATION       DIVISION.
       *{TOTEM}PRGID
        PROGRAM-ID.          "menu".
-       AUTHOR.              ANDREA EVENTI.
-       DATE-WRITTEN.        giovedì 27 dicembre 2018 12:15:31.
+       AUTHOR.              andre.
+       DATE-WRITTEN.        giovedì 7 settembre 2023 23:45:32.
        REMARKS.
       *{TOTEM}END
 
@@ -27,14 +27,10 @@
        INPUT-OUTPUT         SECTION.
        FILE-CONTROL.
       *{TOTEM}FILE-CONTROL
-           COPY "param.sl".
-           COPY "lineseq.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
       *{TOTEM}FILE
-           COPY "param.fd".
-           COPY "lineseq.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -88,7 +84,7 @@
        77 comando          PIC  x(200).
        77 STATUS-param     PIC  X(2).
            88 Valid-STATUS-param VALUE IS "00" THRU "09". 
-           COPY  "BLOCKPGM.LKS".
+           COPY  "F:\STUDIOPOSTURA\COPYLIB\BLOCKPGM.LKS".
        77 wstampa          PIC  X(256).
        77 STATUS-lineseq   PIC  X(2).
            88 Valid-STATUS-lineseq VALUE IS "00" THRU "09". 
@@ -98,25 +94,6 @@
       ***********************************************************
        77 STATUS-Screen1-FLAG-REFRESH PIC  9.
           88 Screen1-FLAG-REFRESH  VALUE 1 FALSE 0. 
-       77 TMP-DataSet1-param-BUF     PIC X(1125).
-       77 TMP-DataSet1-lineseq-BUF     PIC X(900).
-      * VARIABLES FOR RECORD LENGTH.
-       77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
-       77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
-      * FILE'S LOCK MODE FLAG
-       77 DataSet1-param-LOCK-FLAG   PIC X VALUE SPACE.
-           88 DataSet1-param-LOCK  VALUE "Y".
-       77 DataSet1-KEYIS   PIC 9(3) VALUE 1.
-       77 DataSet1-param-KEY1-ORDER  PIC X VALUE "A".
-          88 DataSet1-param-KEY1-Asc  VALUE "A".
-          88 DataSet1-param-KEY1-Desc VALUE "D".
-       77 DataSet1-lineseq-LOCK-FLAG   PIC X VALUE SPACE.
-           88 DataSet1-lineseq-LOCK  VALUE "Y".
-       77 DataSet1-lineseq-KEY-ORDER  PIC X VALUE "A".
-          88 DataSet1-lineseq-KEY-Asc  VALUE "A".
-          88 DataSet1-lineseq-KEY-Desc VALUE "D".
-
-
       *{TOTEM}END
 
       *{TOTEM}ID-LOGICI
@@ -364,26 +341,6 @@
       *{TOTEM}END
 
       *{TOTEM}DECLARATIVE
-       DECLARATIVES.
-      * <TOTEM:EPT. INIT:menu, INIT:menu, BeforeDeclarative>
-      * <TOTEM:END>
-       INPUT-ERROR SECTION.
-           USE AFTER STANDARD ERROR PROCEDURE ON INPUT.
-       0100-DECL.
-           EXIT.
-       I-O-ERROR SECTION.
-           USE AFTER STANDARD ERROR PROCEDURE ON I-O.
-       0200-DECL.
-           EXIT.
-       OUTPUT-ERROR SECTION.
-           USE AFTER STANDARD ERROR PROCEDURE ON OUTPUT.
-       0300-DECL.
-           EXIT.
-       TRANSACTION-ERROR SECTION.
-           USE AFTER STANDARD ERROR PROCEDURE ON TRANSACTION.
-       0400-DECL.
-           EXIT.
-       END DECLARATIVES.
       *{TOTEM}END
 
        MAIN-LOGIC.
@@ -399,7 +356,6 @@
 
       *{TOTEM}COPY-PROCEDURE
        EXIT-STOP-ROUTINE.
-           PERFORM CLOSE-FILE-RTN
       * <TOTEM:EPT. INIT:menu, INIT:menu, BeforeDestroyResource>
       * <TOTEM:END>
            DESTROY Calibri20-Occidentale
@@ -424,8 +380,6 @@
            PERFORM INIT-RES.
       * create pop-up menu
            PERFORM INIT-POPUP.
-      * open files
-           PERFORM OPEN-FILE-RTN.
       *    After Init
            .
     
@@ -458,368 +412,6 @@
        INIT-POPUP.
            .
 
-       OPEN-FILE-RTN.
-      *    Before Open
-           PERFORM OPEN-param
-      *    lineseq OPEN MODE IS FALSE
-      *    PERFORM OPEN-lineseq
-      *    After Open
-           .
-
-       OPEN-param.
-      * <TOTEM:EPT. INIT:menu, FD:param, BeforeOpen>
-      * <TOTEM:END>
-           OPEN  INPUT param
-           IF NOT Valid-STATUS-param
-              PERFORM  Screen1-EXTENDED-FILE-STATUS
-              GO TO EXIT-STOP-ROUTINE
-           END-IF
-      * <TOTEM:EPT. INIT:menu, FD:param, AfterOpen>
-      * <TOTEM:END>
-           .
-
-       OPEN-lineseq.
-      * <TOTEM:EPT. INIT:menu, FD:lineseq, BeforeOpen>
-      * <TOTEM:END>
-           OPEN  INPUT lineseq
-           IF NOT Valid-STATUS-lineseq
-              PERFORM  Screen1-EXTENDED-FILE-STATUS
-              GO TO EXIT-STOP-ROUTINE
-           END-IF
-      * <TOTEM:EPT. INIT:menu, FD:lineseq, AfterOpen>
-      * <TOTEM:END>
-           .
-
-       CLOSE-FILE-RTN.
-      *    Before Close
-           PERFORM CLOSE-param
-      *    lineseq CLOSE MODE IS FALSE
-      *    PERFORM CLOSE-lineseq
-      *    After Close
-           .
-
-       CLOSE-param.
-      * <TOTEM:EPT. INIT:menu, FD:param, BeforeClose>
-      * <TOTEM:END>
-           CLOSE param
-           .
-
-       CLOSE-lineseq.
-      * <TOTEM:EPT. INIT:menu, FD:lineseq, BeforeClose>
-      * <TOTEM:END>
-           .
-
-       DataSet1-param-INITSTART.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-param-KEY1-Asc
-                 MOVE Low-Value TO prm-chiave
-              ELSE
-                 MOVE High-Value TO prm-chiave
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-param-INITEND.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-param-KEY1-Asc
-                 MOVE High-Value TO prm-chiave
-              ELSE
-                 MOVE Low-Value TO prm-chiave
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-CHANGETO-KEY1.
-           MOVE 1 TO DataSet1-KEYIS
-           .   
-
-       DataSet1-Change-CurrentKey-Asc.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              MOVE "A" TO DataSet1-param-KEY1-ORDER
-           END-EVALUATE
-           .
-
-       DataSet1-Change-CurrentKey-Desc.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              MOVE "D" TO DataSet1-param-KEY1-ORDER
-           END-EVALUATE
-           .
-
-      * param
-       DataSet1-param-START.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-param-KEY1-Asc
-                 START param KEY >= prm-chiave
-              ELSE
-                 START param KEY <= prm-chiave
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-param-START-NOTGREATER.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-param-KEY1-Asc
-                 START param KEY <= prm-chiave
-              ELSE
-                 START param KEY >= prm-chiave
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-param-START-GREATER.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-param-KEY1-Asc
-                 START param KEY > prm-chiave
-              ELSE
-                 START param KEY < prm-chiave
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-param-START-LESS.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-param-KEY1-Asc
-                 START param KEY < prm-chiave
-              ELSE
-                 START param KEY > prm-chiave
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-param-Read.
-      * <TOTEM:EPT. FD:DataSet1, FD:param, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:param, BeforeReadRecord>
-      * <TOTEM:END>
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-param-LOCK
-                 READ param WITH LOCK 
-                 KEY prm-chiave
-              ELSE
-                 READ param WITH NO LOCK 
-                 KEY prm-chiave
-              END-IF
-           END-EVALUATE
-           MOVE STATUS-param TO TOTEM-ERR-STAT 
-           MOVE "param" TO TOTEM-ERR-FILE
-           MOVE "READ" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:param, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:param, AfterReadRecord>
-      * <TOTEM:END>
-           .
-
-       DataSet1-param-Read-Next.
-      * <TOTEM:EPT. FD:DataSet1, FD:param, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:param, BeforeReadNext>
-      * <TOTEM:END>
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-param-KEY1-Asc
-                 IF DataSet1-param-LOCK
-                    READ param NEXT WITH LOCK
-                 ELSE
-                    READ param NEXT WITH NO LOCK
-                 END-IF
-              ELSE
-                 IF DataSet1-param-LOCK
-                    READ param PREVIOUS WITH LOCK
-                 ELSE
-                    READ param PREVIOUS WITH NO LOCK
-                 END-IF
-              END-IF
-           END-EVALUATE
-           MOVE STATUS-param TO TOTEM-ERR-STAT
-           MOVE "param" TO TOTEM-ERR-FILE
-           MOVE "READ NEXT" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:param, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:param, AfterReadNext>
-      * <TOTEM:END>
-           .
-
-       DataSet1-param-Read-Prev.
-      * <TOTEM:EPT. FD:DataSet1, FD:param, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:param, BeforeReadPrev>
-      * <TOTEM:END>
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-param-KEY1-Asc
-                 IF DataSet1-param-LOCK
-                    READ param PREVIOUS WITH LOCK
-                 ELSE
-                    READ param PREVIOUS WITH NO LOCK
-                 END-IF
-              ELSE
-                 IF DataSet1-param-LOCK
-                    READ param NEXT WITH LOCK
-                 ELSE
-                    READ param NEXT WITH NO LOCK
-                 END-IF
-              END-IF
-           END-EVALUATE
-           MOVE STATUS-param TO TOTEM-ERR-STAT
-           MOVE "param" TO TOTEM-ERR-FILE
-           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:param, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:param, AfterReadPrev>
-      * <TOTEM:END>
-           .
-
-       DataSet1-param-Rec-Write.
-      * <TOTEM:EPT. FD:DataSet1, FD:param, BeforeWrite>
-      * <TOTEM:END>
-           MOVE STATUS-param TO TOTEM-ERR-STAT
-           MOVE "param" TO TOTEM-ERR-FILE
-           MOVE "WRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:param, AfterWrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-param-Rec-Rewrite.
-      * <TOTEM:EPT. FD:DataSet1, FD:param, BeforeRewrite>
-      * <TOTEM:END>
-           MOVE STATUS-param TO TOTEM-ERR-STAT
-           MOVE "param" TO TOTEM-ERR-FILE
-           MOVE "REWRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:param, AfterRewrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-param-Rec-Delete.
-      * <TOTEM:EPT. FD:DataSet1, FD:param, BeforeDelete>
-      * <TOTEM:END>
-           MOVE STATUS-param TO TOTEM-ERR-STAT
-           MOVE "param" TO TOTEM-ERR-FILE
-           MOVE "DELETE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:param, AfterDelete>
-      * <TOTEM:END>
-           .
-
-       DataSet1-lineseq-INITSTART.
-           .
-
-       DataSet1-lineseq-INITEND.
-           .
-
-       DataSet1-lineseq-Read.
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, BeforeReadRecord>
-      * <TOTEM:END>
-           IF DataSet1-lineseq-LOCK
-              READ lineseq WITH LOCK 
-           ELSE
-              READ lineseq WITH NO LOCK 
-           END-IF
-           MOVE STATUS-lineseq TO TOTEM-ERR-STAT 
-           MOVE "lineseq" TO TOTEM-ERR-FILE
-           MOVE "READ" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, AfterReadRecord>
-      * <TOTEM:END>
-           .
-
-       DataSet1-lineseq-Read-Next.
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, BeforeReadNext>
-      * <TOTEM:END>
-           IF DataSet1-lineseq-KEY-Asc
-              IF DataSet1-lineseq-LOCK
-                 READ lineseq NEXT WITH LOCK
-              ELSE
-                 READ lineseq NEXT WITH NO LOCK
-              END-IF
-           END-IF
-           MOVE STATUS-lineseq TO TOTEM-ERR-STAT
-           MOVE "lineseq" TO TOTEM-ERR-FILE
-           MOVE "READ NEXT" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, AfterReadNext>
-      * <TOTEM:END>
-           .
-
-       DataSet1-lineseq-Read-Prev.
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, BeforeReadPrev>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, AfterReadPrev>
-      * <TOTEM:END>
-           .
-
-       DataSet1-lineseq-Rec-Write.
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, BeforeWrite>
-      * <TOTEM:END>
-           MOVE STATUS-lineseq TO TOTEM-ERR-STAT
-           MOVE "lineseq" TO TOTEM-ERR-FILE
-           MOVE "WRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, AfterWrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-lineseq-Rec-Rewrite.
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, BeforeRewrite>
-      * <TOTEM:END>
-           MOVE STATUS-lineseq TO TOTEM-ERR-STAT
-           MOVE "lineseq" TO TOTEM-ERR-FILE
-           MOVE "REWRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, AfterRewrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-lineseq-Rec-Delete.
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, BeforeDelete>
-      * <TOTEM:END>
-           MOVE STATUS-lineseq TO TOTEM-ERR-STAT
-           MOVE "lineseq" TO TOTEM-ERR-FILE
-           MOVE "DELETE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:lineseq, AfterDelete>
-      * <TOTEM:END>
-           .
-
-       DataSet1-INIT-RECORD.
-           INITIALIZE prm-rec OF param
-           INITIALIZE line-riga OF lineseq
-           .
-
-
-      * FD's Initialize Paragraph
-       DataSet1-param-INITREC.
-           INITIALIZE prm-rec OF param
-               REPLACING NUMERIC       DATA BY ZEROS
-                         ALPHANUMERIC  DATA BY SPACES
-                         ALPHABETIC    DATA BY SPACES
-           .
-
-      * FD's Initialize Paragraph
-       DataSet1-lineseq-INITREC.
-           INITIALIZE line-riga OF lineseq
-               REPLACING NUMERIC       DATA BY ZEROS
-                         ALPHANUMERIC  DATA BY SPACES
-                         ALPHABETIC    DATA BY SPACES
-           .
-
-      *
-       DataSet1-DISPATCH-BUFTOFLD.
-           .
 
        Screen1-Open-Routine.
            PERFORM Screen1-Scrn
@@ -867,12 +459,6 @@
 
        Screen1-PROC.
       * <TOTEM:EPT. FORM:Screen1, FORM:Screen1, BeforeAccept>
-           move spaces to prm-chiave.
-           read param no lock invalid continue end-read.
-           move prm-ragsoc to tit-frame.
-           modify frame-menu, title tit-frame.
-
-           .
       * <TOTEM:END>
            PERFORM UNTIL Exit-Pushed
               ACCEPT Screen1
@@ -1081,36 +667,6 @@
       * <TOTEM:END>
        menu-Ev-Before-Program.
       * <TOTEM:PARA. menu-Ev-Before-Program>
-           initialize comando.
-           accept comando from environment "BAT_PROCESSI".
-           call "C$SYSTEM"   using comando, 32
-                            giving link-status.
-           move "task.txt" to wstampa.
-           call "C$SLEEP" using 1.
-           open input lineseq.  
-           set trovato to false.
-           move 0 to sessioni.
-           perform until 1 = 2
-              read lineseq next at end exit perform end-read
-              if line-riga(1:10) = "wrun32.exe"
-                 add 1 to sessioni
-                 |Una volta è quella in esecuzione
-                 if sessioni > 1
-                    display message "Studio già in esecuzione!"
-                              title titolo
-                               icon 2
-                    set trovato to true
-                    exit perform
-                 end-if
-              end-if
-           end-perform.
-           close       lineseq.
-           delete file lineseq.
-
-           if trovato
-              goback
-           end-if.
-
            call   "genfiles" using link-status
            cancel "genfiles".
 
@@ -1124,7 +680,7 @@
       * <TOTEM:END>
        pb-iva-LinkTo.
       * <TOTEM:PARA. pb-iva-LinkTo>
-           move "tcodiva" to NomeProgramma.
+           move "texercises" to NomeProgramma.
            perform CALL-PROGRAM 
            .
       * <TOTEM:END>

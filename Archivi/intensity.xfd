@@ -7,8 +7,8 @@
     <xfd:select-name>INTENSITY</xfd:select-name>
     <xfd:table-name>INTENSITY</xfd:table-name>
     <xfd:file-organization>Indexed</xfd:file-organization>
-    <xfd:maximum-record-size>1182</xfd:maximum-record-size>
-    <xfd:minimum-record-size>1182</xfd:minimum-record-size>
+    <xfd:maximum-record-size>1186</xfd:maximum-record-size>
+    <xfd:minimum-record-size>1186</xfd:minimum-record-size>
     <xfd:number-of-keys>2</xfd:number-of-keys>
     <xfd:sign-compatibility>0</xfd:sign-compatibility>
     <xfd:maximum-numeric-digits>18</xfd:maximum-numeric-digits>
@@ -55,15 +55,15 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="10"
-       xfd:elementary-items-with-occurs="10"
-       xfd:total-items="13"
-       xfd:total-items-with-occurs="13">
+       xfd:elementary-items="12"
+       xfd:elementary-items-with-occurs="12"
+       xfd:total-items="16"
+       xfd:total-items-with-occurs="16">
     <xfd:field
          xfd:field-offset="0"
-         xfd:field-bytes="1182"
+         xfd:field-bytes="1186"
          xfd:field-type="16"
-         xfd:field-length="1182"
+         xfd:field-length="1186"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -91,9 +91,9 @@
          xfd:field-name="INT-CODE"/>
     <xfd:field
          xfd:field-offset="2"
-         xfd:field-bytes="1180"
+         xfd:field-bytes="1184"
          xfd:field-type="16"
-         xfd:field-length="1180"
+         xfd:field-length="1184"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -141,6 +141,36 @@
          xfd:field-name="INT-DURATION"/>
     <xfd:field
          xfd:field-offset="110"
+         xfd:field-bytes="4"
+         xfd:field-type="16"
+         xfd:field-length="4"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="999"
+         xfd:field-level="10"
+         xfd:field-name="INT-RANGE"/>
+    <xfd:field
+         xfd:field-offset="110"
+         xfd:field-bytes="2"
+         xfd:field-type="1"
+         xfd:field-length="2"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="15"
+         xfd:field-name="INT-RANGE-FROM"/>
+    <xfd:field
+         xfd:field-offset="112"
+         xfd:field-bytes="2"
+         xfd:field-type="1"
+         xfd:field-length="2"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="15"
+         xfd:field-name="INT-RANGE-TO"/>
+    <xfd:field
+         xfd:field-offset="114"
          xfd:field-bytes="1000"
          xfd:field-type="16"
          xfd:field-length="1000"
@@ -150,7 +180,7 @@
          xfd:field-level="10"
          xfd:field-name="INT-FILLER"/>
     <xfd:field
-         xfd:field-offset="1110"
+         xfd:field-offset="1114"
          xfd:field-bytes="18"
          xfd:field-type="1"
          xfd:field-length="18"
@@ -160,7 +190,7 @@
          xfd:field-level="10"
          xfd:field-name="INT-FILLER-N1"/>
     <xfd:field
-         xfd:field-offset="1128"
+         xfd:field-offset="1132"
          xfd:field-bytes="18"
          xfd:field-type="1"
          xfd:field-length="18"
@@ -170,7 +200,7 @@
          xfd:field-level="10"
          xfd:field-name="INT-FILLER-N2"/>
     <xfd:field
-         xfd:field-offset="1146"
+         xfd:field-offset="1150"
          xfd:field-bytes="18"
          xfd:field-type="1"
          xfd:field-length="18"
@@ -180,7 +210,7 @@
          xfd:field-level="10"
          xfd:field-name="INT-FILLER-N3"/>
     <xfd:field
-         xfd:field-offset="1164"
+         xfd:field-offset="1168"
          xfd:field-bytes="18"
          xfd:field-type="1"
          xfd:field-length="18"

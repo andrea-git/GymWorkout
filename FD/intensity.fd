@@ -7,6 +7,9 @@
                10 int-rest         PIC  9(3).
                10 int-series       PIC  99.
                10 int-duration     PIC  9(3).
+               10 int-range.
+                   15 int-range-from   PIC  99.
+                   15 int-range-to     PIC  99.
                10 int-filler       PIC  x(1000).
                10 int-filler-n1    PIC  9(18).
                10 int-filler-n2    PIC  9(18).

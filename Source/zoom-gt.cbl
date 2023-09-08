@@ -587,7 +587,7 @@
        PREPARA-INTENSITY.
            initialize xzoom-linkage xzoom-ext-info(1).
       
-           move  1   to xzoom-file-key.
+           move  0   to xzoom-file-key.
       *
            move  0                       to idx.
            move  0                       to xzoom-row.

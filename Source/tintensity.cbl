@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tintensity.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 10:39:57.
+       DATE-WRITTEN.        venerdì 8 settembre 2023 11:54:06.
        REMARKS.
       *{TOTEM}END
 
@@ -93,6 +93,8 @@
            05 col-rest         PIC  zz9.
            05 col-series       PIC  z9.
            05 col-duration     PIC  zz9.
+           05 col-range-from   PIC  z9.
+           05 col-range-to     PIC  z9.
        77 Screen1-Handle
                   USAGE IS HANDLE OF WINDOW.
        01 FILLER           PIC  9.
@@ -118,10 +120,10 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-intensity-RESTOREBUF  PIC X(1182).
+       77 TMP-Form1-intensity-RESTOREBUF  PIC X(1186).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(1182).
-       77 TMP-DataSet1-intensity-BUF     PIC X(1182).
+       77 Form1-MULKEY-TMPBUF   PIC X(1186).
+       77 TMP-DataSet1-intensity-BUF     PIC X(1186).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -188,16 +190,16 @@
        05
            form1-gd-1, 
            Grid, 
-           COL 2,00, 
+           COL 1,90, 
            LINE 1,74,
            LINES 22,70 ,
-           SIZE 71,80 ,
+           SIZE 91,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           DATA-COLUMNS (1, 3, 53, 56, 58),
-           ALIGNMENT ("R", "U", "R", "R", "R"),
-           SEPARATION (5, 5, 5, 5, 5),
-           DATA-TYPES ("z9", "X(50)", "zz9", "z9", "zz9"),
+           DATA-COLUMNS (1, 3, 53, 56, 58, 61, 63),
+           ALIGNMENT ("R", "U", "R", "R", "R", "R", "R"),
+           SEPARATION (5, 5, 5, 5, 5, 5, 5),
+           DATA-TYPES ("z9", "X(50)", "zz9", "z9", "zz9", "z9", "z9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
@@ -210,7 +212,7 @@
            RECORD-DATA rec-grid,
            TILED-HEADINGS,
            USE-TAB,
-           VIRTUAL-WIDTH 70,
+           VIRTUAL-WIDTH 90,
            VPADDING 10,
            VSCROLL,
            EVENT PROCEDURE Form1-Gd-1-Event-Proc,
@@ -348,7 +350,7 @@
        05
            Form1-Bt-1, 
            Bitmap, 
-           COL 69,90, 
+           COL 89,90, 
            LINE 1,00,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -763,6 +765,12 @@
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 5, Y = 1,
                 CELL-DATA = 'Time (")',
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 6, Y = 1,
+                CELL-DATA = "Min rep",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 7, Y = 1,
+                CELL-DATA = "Max rep",
            .
 
       * FD's Initialize Paragraph
@@ -801,7 +809,7 @@
               SCREEN LINE 1,
               SCREEN COLUMN 0,
               LINES 24,30,
-              SIZE 73,80,
+              SIZE 93,80,
               COLOR 131329,
               CONTROL FONT Calibri14-Occidentale,
               LINK TO THREAD,
@@ -829,7 +837,8 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 41, 51, 61)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 41, 51, 61, 
+           71, 81)
            .
 
        Form1-PROC.
@@ -1433,7 +1442,7 @@
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x     = 5,
+           modify form1-gd-1, start-x = 1, x     = 7,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,
@@ -1489,13 +1498,34 @@
                    display message "Valore obbligatorio"
                            title = tit-err
                            icon mb-warning-icon
-                end-if
+                end-if   
            when 5
                 if int-duration = spaces
                    set errori to true   
                    display message "Valore obbligatorio"
                            title = tit-err
                            icon mb-warning-icon
+                end-if
+           when 6
+                if int-range-from = 0
+                   set errori to true   
+                   display message "Valore obbligatorio"
+                           title = tit-err
+                           icon mb-warning-icon
+                end-if
+           when 7
+                if int-range-to = 0
+                   set errori to true   
+                   display message "Valore obbligatorio"
+                           title = tit-err
+                           icon mb-warning-icon
+                else
+                   if int-range-to < int-range-from
+                      set errori to true   
+                      display message "Range errato"
+                              title = tit-err
+                              icon mb-warning-icon
+                   end-if
                 end-if
 
            end-evaluate.
@@ -1533,11 +1563,13 @@
                      read intensity next
                           at end exit perform
                       not at end
-                          move int-code     to col-codice
-                          move int-desc     to col-des  
-                          move int-rest     to col-rest
-                          move int-series   to col-series 
-                          move int-duration to col-duration
+                          move int-code       to col-codice
+                          move int-desc       to col-des  
+                          move int-rest       to col-rest
+                          move int-series     to col-series 
+                          move int-duration   to col-duration
+                          move int-range-from to col-range-from
+                          move int-range-to   to col-range-to
                           modify form1-gd-1(riga, 1), cell-data 
            col-codice
                           modify form1-gd-1(riga, 2), cell-data col-des 
@@ -1548,6 +1580,10 @@
            col-series  
                           modify form1-gd-1(riga, 5), cell-data 
            col-duration  
+                          modify form1-gd-1(riga, 6), cell-data 
+           col-range-from
+                          modify form1-gd-1(riga, 7), cell-data 
+           col-range-to
                      end-read                                           
                   end-perform
            end-start.
@@ -1746,7 +1782,9 @@
            inquire form1-gd-1(riga, 2), cell-data int-desc.  
            inquire form1-gd-1(riga, 3), cell-data int-rest.  
            inquire form1-gd-1(riga, 4), cell-data int-series.  
-           inquire form1-gd-1(riga, 5), cell-data int-duration    
+           inquire form1-gd-1(riga, 5), cell-data int-duration.
+           inquire form1-gd-1(riga, 6), cell-data int-range-from.
+           inquire form1-gd-1(riga, 7), cell-data int-range-to    
            .
       * <TOTEM:END>
 

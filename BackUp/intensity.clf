@@ -2,8 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DIRTY_AFTER_GEN=1
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E79721526-975-20618564
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E79881840-380-1365311348
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -89,9 +88,9 @@ m_bFixed=1
 
 @}}
 [FDITEM8_]
-m_strName=int-setting
-m_strRawPic=9(4)
-m_strPic=9(4)
+m_strName=int-filler
+m_strRawPic=x(1000)
+m_strPic=x(1000)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -99,9 +98,9 @@ m_bFixed=1
 
 @}}
 [FDITEM9_]
-m_strName=int-filler
-m_strRawPic=x(1000)
-m_strPic=x(1000)
+m_strName=int-filler-n1
+m_strRawPic=9(18)
+m_strPic=9(18)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -109,7 +108,7 @@ m_bFixed=1
 
 @}}
 [FDITEM10_]
-m_strName=int-filler-n1
+m_strName=int-filler-n2
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
@@ -119,7 +118,7 @@ m_bFixed=1
 
 @}}
 [FDITEM11_]
-m_strName=int-filler-n2
+m_strName=int-filler-n3
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
@@ -129,7 +128,7 @@ m_bFixed=1
 
 @}}
 [FDITEM12_]
-m_strName=int-filler-n3
+m_strName=int-filler-n4
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
@@ -138,19 +137,9 @@ m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM12_
 
 @}}
-[FDITEM13_]
-m_strName=int-filler-n4
-m_strRawPic=9(18)
-m_strPic=9(18)
-m_nItemLevel=10
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM13_
-
-@}}
 [CStoAcucobolSL_]
 m_nType=1
-m_strAssignToName="inetnsity"
+m_strAssignToName="intensity"
 m_nFormat=3
 m_nAccessMode=3
 m_strFileStatus=STATUS-intensity
@@ -167,3 +156,12 @@ m_bUnique=1
 @}}
 [SLKEYATOM0_]
 m_strName=int-key
+[SLINDEX0_]
+m_strName=int-k-desc
+{{@Key_m_strDescriptionSLINDEX0_
+
+@}}
+[SLKEYATOM0_SLINDEX0_]
+m_strName=int-desc
+[SLKEYATOM1_SLINDEX0_]
+m_strName=int-code

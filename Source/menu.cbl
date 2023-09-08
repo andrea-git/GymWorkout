@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          "menu".
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 7 settembre 2023 23:45:32.
+       DATE-WRITTEN.        venerdì 8 settembre 2023 10:04:40.
        REMARKS.
       *{TOTEM}END
 
@@ -680,25 +680,25 @@
       * <TOTEM:END>
        pb-iva-LinkTo.
       * <TOTEM:PARA. pb-iva-LinkTo>
-           move "texercises" to NomeProgramma.
+           move "tmgroups" to NomeProgramma.
            perform CALL-PROGRAM 
            .
       * <TOTEM:END>
        pb-catcli-LinkTo.
       * <TOTEM:PARA. pb-catcli-LinkTo>
-           move "ttipocli" to NomeProgramma.
+           move "tintensity" to NomeProgramma.
            perform CALL-PROGRAM 
            .
       * <TOTEM:END>
        pb-clienti-LinkTo.
       * <TOTEM:PARA. pb-clienti-LinkTo>
-           move "gclienti" to NomeProgramma.
+           move "texercises" to NomeProgramma.
            perform CALL-PROGRAM 
            .
       * <TOTEM:END>
        pb-articoli-LinkTo.
       * <TOTEM:PARA. pb-articoli-LinkTo>
-           move "garticoli" to NomeProgramma.
+           move "tgroups" to NomeProgramma.
            perform CALL-PROGRAM 
            .
       * <TOTEM:END>

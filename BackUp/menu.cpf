@@ -6,7 +6,7 @@ QUIT_CONFIRM=0
 ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Screen1
 BEFORE_PROGRAM=menu-Ev-Before-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E79721440-183-2658524247
+PROGRAM_UNIQUE_CODE=TOTEM-7E79871541-415-2046714725
 
 {{@DESCRIPTION:
 
@@ -1074,7 +1074,7 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = pb-iva-LinkTo
 BEGIN-TEXT
-           move "texercises" to NomeProgramma.
+           move "tmgroups" to NomeProgramma.
            perform CALL-PROGRAM.
 END-TEXT
 END-DATA
@@ -1082,7 +1082,7 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = pb-catcli-LinkTo
 BEGIN-TEXT
-           move "ttipocli" to NomeProgramma.
+           move "tintensity" to NomeProgramma.
            perform CALL-PROGRAM.
 END-TEXT
 END-DATA
@@ -1090,7 +1090,7 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = pb-clienti-LinkTo
 BEGIN-TEXT
-           move "gclienti" to NomeProgramma.
+           move "texercises" to NomeProgramma.
            perform CALL-PROGRAM.
 END-TEXT
 END-DATA
@@ -1098,7 +1098,7 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = pb-articoli-LinkTo
 BEGIN-TEXT
-           move "garticoli" to NomeProgramma.
+           move "tgroups" to NomeProgramma.
            perform CALL-PROGRAM.
 END-TEXT
 END-DATA

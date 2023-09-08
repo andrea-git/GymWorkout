@@ -1,6 +1,8 @@
        SELECT intensity
-           ASSIGN       TO  "inetnsity"
+           ASSIGN       TO  "intensity"
            ORGANIZATION IS INDEXED
            ACCESS MODE  IS DYNAMIC
            FILE STATUS  IS STATUS-intensity
-           RECORD KEY   IS int-key.
+           RECORD KEY   IS int-key
+           ALTERNATE RECORD KEY IS int-k-desc = int-desc, int-code
+           WITH DUPLICATES .

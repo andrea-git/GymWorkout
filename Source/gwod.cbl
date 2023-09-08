@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 14:07:43.
+       DATE-WRITTEN.        venerdì 8 settembre 2023 15:46:43.
        REMARKS.
       *{TOTEM}END
 
@@ -120,36 +120,18 @@
                   USAGE IS HANDLE OF WINDOW.
        77 RigheIniziali    PIC  9(3).
        77 como-x           PIC  x.
+       77 tot-gruppi       PIC  999.
+       77 idx-gruppi       PIC  999.
+       01 tab-mgroups.
+           05 el-mgroups
+                      OCCURS 10 TIMES.
+               10 el-mgroup        PIC  x(100).
+               10 el-exercises     PIC  9(3).
        01 rec-grid.
-           05 col-data         PIC  99/99/9999.
-           05 col-art          PIC  x(6).
-           05 col-des          PIC  x(50).
-           05 col-qta          PIC  zzz.zz9
-                      BLANK WHEN ZERO.
-           05 col-prz          PIC  zzz.zz9,99
-                      BLANK WHEN ZERO.
-           05 col-sc1          PIC  zz9,99
-                      BLANK WHEN ZERO.
-           05 col-netto        PIC  zzz.zz9,99
-                      BLANK WHEN ZERO.
-           05 col-note         PIC  x(150).
-           05 col-numdoc       PIC  z(6).
-           05 col-datadoc      PIC  zz/zz/zzzz.
-       01 old-rec-grid.
-           05 old-col-data     PIC  99/99/9999.
-           05 old-col-art      PIC  x(6).
-           05 old-col-des      PIC  x(50).
-           05 old-col-qta      PIC  zzz.zz9
-                      BLANK WHEN ZERO.
-           05 old-col-prz      PIC  zzz.zz9,99
-                      BLANK WHEN ZERO.
-           05 old-col-sc1      PIC  zz9,99
-                      BLANK WHEN ZERO.
-           05 old-col-netto    PIC  zzz.zz9,99
-                      BLANK WHEN ZERO.
-           05 old-col-note     PIC  x(150).
-           05 old-col-numdoc   PIC  z(6).
-           05 old-col-datadoc  PIC  zz/zz/zzzz.
+           05 col-exercise     PIC  x(5).
+           05 col-exe-desc     PIC  x(100).
+           05 col-series       PIC  z9.
+           05 col-reps         PIC  z9.
        77 Calibri14-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 Calibri14B-Occidentale
@@ -212,6 +194,9 @@
        77 cb-dur-buf       PIC  X(100).
        77 STATUS-duration  PIC  X(2).
            88 Valid-STATUS-duration VALUE IS "00" THRU "09". 
+       77 cb-rnd-buf       PIC  X(100).
+       77 Default-Font
+                  USAGE IS HANDLE OF FONT DEFAULT-FONT.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -224,7 +209,7 @@
        77 Form1-MULKEY-TMPBUF   PIC X(1189).
        77 TMP-DataSet1-exercises-BUF     PIC X(1189).
        77 TMP-DataSet1-groups-BUF     PIC X(1182).
-       77 TMP-DataSet1-intensity-BUF     PIC X(1186).
+       77 TMP-DataSet1-intensity-BUF     PIC X(1188).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
        77 TMP-DataSet1-duration-BUF     PIC X(1159).
@@ -268,6 +253,7 @@
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
        77 groups-grp-k-desc-SPLITBUF  PIC X(106).
        77 intensity-int-k-desc-SPLITBUF  PIC X(103).
+       77 intensity-int-kj-effort-SPLITBUF  PIC X(5).
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(106).
        77 duration-dur-k-desc-SPLITBUF  PIC X(103).
 
@@ -360,22 +346,19 @@
            gd1, 
            Grid, 
            COL 2,00, 
-           LINE 16,78,
+           LINE 16,61,
            LINES 9,74 ,
-           SIZE 111,30 ,
+           SIZE 61,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           CENTERED-HEADINGS,
-           DATA-COLUMNS (1, 11, 17, 67, 74, 84, 90, 100, 250, 256),
-           ALIGNMENT ("C", "U", "U", "R", "R", "R", "R", "U", "R", "C"),
-           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
-           DATA-TYPES ("D(10)", "X(6)", "x(50)", "zzz.zz9", "zzz.zz9,99"
-           , "zz9,99", "zzz.zz9,99", "X(150)", "9(6)", "D(10)"),
+           DATA-COLUMNS (1, 6, 106, 108),
+           ALIGNMENT ("U", "U", "R", "R"),
+           SEPARATION (5, 5, 5, 5),
+           DATA-TYPES ("U(5)", "X(100)", "z9", "z9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
            DIVIDER-COLOR 1,
-           FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
            ID IS 78-ID-gd1,                
@@ -647,11 +630,11 @@
        05
            Screen1-La-2a, 
            Label, 
-           COL 3,00, 
-           LINE 11,78,
+           COL 44,00, 
+           LINE 1,78,
            LINES 1,30 ,
-           SIZE 13,00 ,
-           ID IS 14,
+           SIZE 8,00 ,
+           ID IS 16,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -662,13 +645,13 @@
        05
            cb-int, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 11,78,
+           COL 53,00, 
+           LINE 1,78,
            LINES 6,00 ,
            SIZE 25,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 15,
+           ID IS 17,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
@@ -676,18 +659,18 @@
            DROP-LIST,
            UNSORTED,
            VALUE cb-int-buf,
-           AFTER PROCEDURE cb-mgtb-AfterProcedure, 
-           BEFORE PROCEDURE cb-mgtb-BeforeProcedure, 
+           AFTER PROCEDURE cb-int-AfterProcedure, 
+           BEFORE PROCEDURE cb-int-BeforeProcedure, 
            .
       * LABEL
        05
            Screen1-La-2aa, 
            Label, 
-           COL 3,00, 
-           LINE 13,96,
+           COL 44,00, 
+           LINE 3,13,
            LINES 1,30 ,
-           SIZE 13,00 ,
-           ID IS 14,
+           SIZE 8,00 ,
+           ID IS 18,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -698,13 +681,13 @@
        05
            cb-dur, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 13,96,
+           COL 53,00, 
+           LINE 3,13,
            LINES 6,00 ,
            SIZE 25,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 15,
+           ID IS 19,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
@@ -712,9 +695,61 @@
            DROP-LIST,
            UNSORTED,
            VALUE cb-dur-buf,
-           AFTER PROCEDURE cb-mgtb-AfterProcedure, 
-           BEFORE PROCEDURE cb-mgtb-BeforeProcedure, 
+           AFTER PROCEDURE cb-dur-AfterProcedure, 
+           BEFORE PROCEDURE cb-dur-BeforeProcedure, 
            .
+      * LABEL
+       05
+           Screen1-La-2b, 
+           Label, 
+           COL 3,00, 
+           LINE 11,61,
+           LINES 1,30 ,
+           SIZE 13,00 ,
+           ID IS 20,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Random",
+           .
+
+      * COMBO-BOX
+       05
+           cb-rnd, 
+           Combo-Box, 
+           COL 17,00, 
+           LINE 11,61,
+           LINES 4,00 ,
+           SIZE 25,00 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 21,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           NOTIFY-SELCHANGE,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-rnd-buf,
+           AFTER PROCEDURE cb-rnd-AfterProcedure, 
+           BEFORE PROCEDURE cb-rnd-BeforeProcedure, 
+           .
+      * PUSH BUTTON
+       05
+           pb-genera, 
+           Push-Button, 
+           COL 80,00, 
+           LINE 10,09,
+           LINES 3,30 ,
+           SIZE 26,40 ,
+           EXCEPTION-VALUE 1000,
+           FONT IS Small-Font,
+           ID IS 1,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "GENERA",
+           .
+
       * TOOLBAR
        01
            Form1-Tb-1,
@@ -911,19 +946,6 @@
            TITLE "Seleziona (F9)",
            .
 
-      * BITMAP
-       05
-           Form1-Bt-1, 
-           Bitmap, 
-           COL 109,70, 
-           LINE 1,09,
-           LINES 64,00 ,
-           SIZE 48,00 ,
-           BITMAP-HANDLE LOGO_PICCOLO-BMP,
-           BITMAP-NUMBER 1,
-           ID IS 123,
-           .
-
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
@@ -1032,12 +1054,8 @@
            PERFORM CLOSE-FILE-RTN
       * <TOTEM:EPT. INIT:gwod, INIT:gwod, BeforeDestroyResource>
       * <TOTEM:END>
-           DESTROY Calibri12-Occidentale
-           DESTROY Calibri12BI-Occidentale
-           DESTROY Calibri12B-Occidentale
            DESTROY Calibri14-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
-           CALL "w$bitmap" USING WBITMAP-DESTROY, LOGO_PICCOLO-BMP
       *    After-Program
            PERFORM ginqui-Ev-After-Program
            EXIT PROGRAM TOTEM-PgmStatus
@@ -1065,45 +1083,6 @@
            .
     
        INIT-FONT.
-      * Calibri12-Occidentale
-           INITIALIZE WFONT-DATA Calibri12-Occidentale
-           MOVE 12 TO WFONT-SIZE
-           MOVE "Calibri" TO WFONT-NAME
-           SET WFCHARSET-DONT-CARE TO TRUE
-           SET WFONT-BOLD TO FALSE
-           SET WFONT-ITALIC TO FALSE
-           SET WFONT-UNDERLINE TO FALSE
-           SET WFONT-STRIKEOUT TO FALSE
-           SET WFONT-FIXED-PITCH TO FALSE
-           MOVE 0 TO WFONT-CHAR-SET
-           CALL "W$FONT" USING WFONT-GET-FONT, 
-                     Calibri12-Occidentale, WFONT-DATA
-      * Calibri12BI-Occidentale
-           INITIALIZE WFONT-DATA Calibri12BI-Occidentale
-           MOVE 12 TO WFONT-SIZE
-           MOVE "Calibri" TO WFONT-NAME
-           SET WFCHARSET-DONT-CARE TO TRUE
-           SET WFONT-BOLD TO TRUE
-           SET WFONT-ITALIC TO FALSE
-           SET WFONT-UNDERLINE TO FALSE
-           SET WFONT-STRIKEOUT TO FALSE
-           SET WFONT-FIXED-PITCH TO FALSE
-           MOVE 0 TO WFONT-CHAR-SET
-           CALL "W$FONT" USING WFONT-GET-FONT, 
-                     Calibri12BI-Occidentale, WFONT-DATA
-      * Calibri12B-Occidentale
-           INITIALIZE WFONT-DATA Calibri12B-Occidentale
-           MOVE 12 TO WFONT-SIZE
-           MOVE "Calibri" TO WFONT-NAME
-           SET WFCHARSET-DONT-CARE TO TRUE
-           SET WFONT-BOLD TO TRUE
-           SET WFONT-ITALIC TO FALSE
-           SET WFONT-UNDERLINE TO FALSE
-           SET WFONT-STRIKEOUT TO FALSE
-           SET WFONT-FIXED-PITCH TO FALSE
-           MOVE 0 TO WFONT-CHAR-SET
-           CALL "W$FONT" USING WFONT-GET-FONT, 
-                     Calibri12B-Occidentale, WFONT-DATA
       * Calibri14-Occidentale
            INITIALIZE WFONT-DATA Calibri14-Occidentale
            MOVE 14 TO WFONT-SIZE
@@ -1124,10 +1103,6 @@
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
                    GIVING toolbar-bmp.
-      * Form1-Bt-1
-           COPY RESOURCE "LOGO_PICCOLO.BMP".
-           CALL "w$bitmap" USING WBITMAP-LOAD "LOGO_PICCOLO.BMP", 
-                   GIVING LOGO_PICCOLO-BMP.
            .
 
        INIT-RES.
@@ -1659,6 +1634,12 @@
            MOVE int-code(1:2) TO intensity-int-k-desc-SPLITBUF(101:2)
            .
 
+       intensity-int-kj-effort-MERGE-SPLITBUF.
+           INITIALIZE intensity-int-kj-effort-SPLITBUF
+           MOVE int-effort(1:2) TO intensity-int-kj-effort-SPLITBUF(1:2)
+           MOVE int-key(1:2) TO intensity-int-kj-effort-SPLITBUF(3:2)
+           .
+
        DataSet1-intensity-INITSTART.
            IF DataSet1-intensity-KEY-Asc
               MOVE Low-Value TO int-key
@@ -1721,6 +1702,7 @@
               KEY int-key
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
+           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT 
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -1749,6 +1731,7 @@
               END-IF
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
+           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -1777,6 +1760,7 @@
               END-IF
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
+           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -2315,59 +2299,19 @@
       * CELLS' SETTING
               MODIFY gd1, X = 1, Y = 1,
                 CELL-COLOR = 299,
-                CELL-FONT Calibri12BI-Occidentale,
-                CELL-DATA = "Data",
+                CELL-DATA = "Esercizio",
       * CELLS' SETTING
               MODIFY gd1, X = 2, Y = 1,
                 CELL-COLOR = 299,
-                CELL-FONT Calibri12B-Occidentale,
-                CELL-DATA = "Articolo",
+                CELL-DATA = "Descrizione",
       * CELLS' SETTING
               MODIFY gd1, X = 3, Y = 1,
                 CELL-COLOR = 299,
-                CELL-FONT Calibri12B-Occidentale,
-                CELL-DATA = "Descrizione",
+                CELL-DATA = "Serie",
       * CELLS' SETTING
               MODIFY gd1, X = 4, Y = 1,
                 CELL-COLOR = 299,
-                CELL-FONT Calibri12B-Occidentale,
-                CELL-DATA = "Qta",
-      * CELLS' SETTING
-              MODIFY gd1, X = 5, Y = 1,
-                CELL-COLOR = 299,
-                CELL-FONT Calibri12B-Occidentale,
-                CELL-DATA = "Prezzo",
-      * CELLS' SETTING
-              MODIFY gd1, X = 6, Y = 1,
-                CELL-COLOR = 299,
-                CELL-FONT Calibri12B-Occidentale,
-                CELL-DATA = "Sconto",
-      * CELLS' SETTING
-              MODIFY gd1, X = 7, Y = 1,
-                CELL-COLOR = 299,
-                CELL-FONT Calibri12B-Occidentale,
-                CELL-DATA = "Netto",
-      * CELLS' SETTING
-              MODIFY gd1, X = 8, Y = 1,
-                CELL-COLOR = 299,
-                CELL-FONT Calibri12B-Occidentale,
-                CELL-DATA = "Note",
-      * CELLS' SETTING
-              MODIFY gd1, X = 9, Y = 1,
-                CELL-COLOR = 299,
-                CELL-FONT Calibri12B-Occidentale,
-                CELL-DATA = "Num. F/C",
-      * CELLS' SETTING
-              MODIFY gd1, X = 10, Y = 1,
-                CELL-COLOR = 299,
-                CELL-FONT Calibri12B-Occidentale,
-                CELL-DATA = "Data F/C",
-      * COLUMNS' SETTING
-              MODIFY gd1, X = 9  
-                COLUMN-COLOR = 257,
-      * COLUMNS' SETTING
-              MODIFY gd1, X = 10  
-                COLUMN-COLOR = 257,
+                CELL-DATA = "Reps",
            .
 
       * COMBO-BOX
@@ -2400,6 +2344,10 @@
 
       * COMBO-BOX
        cb-dur-Content.
+           .
+
+      * COMBO-BOX
+       cb-rnd-Content.
            .
 
       * FD's Initialize Paragraph
@@ -2528,8 +2476,7 @@
               HANDLE IS Form1-St-1-Handle
            DISPLAY Form1 UPON form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY gd1, DISPLAY-COLUMNS (1, 11, 22, 60, 66, 76, 82, 
-           92, 116, 125)
+              MODIFY gd1, DISPLAY-COLUMNS (1, 11, 41, 51)
            .
 
        Form1-PROC.
@@ -2546,9 +2493,12 @@
            modify cb-mg4, item-to-add = "Nessuno". 
            modify cb-mg5, item-to-add = "Nessuno".
            modify cb-int, item-to-add = "Nessuno".
-           
+                                                 
            modify cb-mgtb, item-to-add = "No".
-           modify cb-mgtb, item-to-add = "Si".     
+           modify cb-mgtb, item-to-add = "Si".   
+
+           modify cb-rnd, item-to-add = "No".
+           modify cb-rnd, item-to-add = "Si".     
 
            modify cb-dur, item-to-add = "Nessuno".
                         
@@ -2590,8 +2540,10 @@
            modify cb-mg4, value "Nessuno".
            modify cb-mg5, value "Nessuno".
            modify cb-int, value "Nessuno".
-
+                        
            modify cb-mgtb, value "No".    
+
+           modify cb-rnd,  value "No".    
 
            modify cb-dur, value "Nessuno".
 
@@ -2637,6 +2589,8 @@
                  IF Event-Type = Cmd-Close
                     PERFORM Form1-Exit
                  END-IF
+              WHEN Key-Status = 1000
+                 PERFORM pb-genera-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 4
@@ -2715,6 +2669,8 @@
            PERFORM cb-int-Content
       * COMBO-BOX
            PERFORM cb-dur-Content
+      * COMBO-BOX
+           PERFORM cb-rnd-Content
            .
 
        Form1-DataSet1-CHANGETO-KEY1.
@@ -4646,6 +4602,113 @@
        cb-mg5-AfterProcedure.
       * <TOTEM:PARA. cb-mg5-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       cb-int-BeforeProcedure.
+      * <TOTEM:PARA. cb-int-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       cb-dur-BeforeProcedure.
+      * <TOTEM:PARA. cb-dur-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       cb-rnd-BeforeProcedure.
+      * <TOTEM:PARA. cb-rnd-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       cb-int-AfterProcedure.
+      * <TOTEM:PARA. cb-int-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       cb-dur-AfterProcedure.
+      * <TOTEM:PARA. cb-dur-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       cb-rnd-AfterProcedure.
+      * <TOTEM:PARA. cb-rnd-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           inquire cb-rnd, value in cb-rnd-buf.
+           if cb-rnd-buf = "Si"                             
+              modify cb-mg1,  value "Nessuno", enabled = false
+              modify cb-mg2,  value "Nessuno", enabled = false
+              modify cb-mg3,  value "Nessuno", enabled = false
+              modify cb-mg4,  value "Nessuno", enabled = false
+              modify cb-mg5,  value "Nessuno", enabled = false
+              modify cb-mgtb, value "No",      enabled = false
+           else                                              
+              modify cb-mg1,  enabled = true
+              modify cb-mg2,  enabled = true
+              modify cb-mg3,  enabled = true
+              modify cb-mg4,  enabled = true
+              modify cb-mg5,  enabled = true
+              modify cb-mgtb, enabled = true
+           end-if 
+           .
+      * <TOTEM:END>
+       pb-genera-LinkTo.
+      * <TOTEM:PARA. pb-genera-LinkTo>
+           initialize tab-mgroups replacing numeric data by zeroes
+                                      alphanumeric data by spaces.
+
+           move 0 to idx-gruppi.
+           inquire cb-mg1, value in mcg-desc.
+           read macrogroups key  mcg-k-desc 
+                invalid continue
+            not invalid 
+                add 1 to idx-gruppi
+                move mcg-desc to el-mgroup(idx-gruppi)
+           end-read.
+ 
+           inquire cb-mg2, value in mcg-desc.
+           read macrogroups key mcg-k-desc 
+                invalid continue
+            not invalid 
+                add 1 to idx-gruppi
+                move mcg-desc to el-mgroup(idx-gruppi)
+           end-read.
+
+           inquire cb-mg3, value in mcg-desc.
+           read macrogroups key mcg-k-desc 
+                invalid continue
+            not invalid 
+                add 1 to idx-gruppi
+                move mcg-desc to el-mgroup(idx-gruppi)
+           end-read.
+
+           inquire cb-mg4, value in mcg-desc.
+           read macrogroups key mcg-k-desc 
+                invalid continue
+            not invalid 
+                add 1 to idx-gruppi
+                move mcg-desc to el-mgroup(idx-gruppi)
+           end-read.
+
+           inquire cb-mg5, value in mcg-desc.
+           read macrogroups key mcg-k-desc 
+                invalid continue
+            not invalid 
+                add 1 to idx-gruppi
+                move mcg-desc to el-mgroup(idx-gruppi)
+           end-read.
+           move idx-gruppi to tot-gruppi.
+
+           inquire cb-dur, value in dur-desc.
+           read duration key dur-k-desc invalid move 0 to dur-exercises 
+           end-read.
+
+           if dur-exercises <= tot-gruppi
+              perform varying idx-gruppi from 1 by 1 
+                        until idx-gruppi > dur-exercises
+                 move 1 to el-exercises(idx-gruppi)
+              end-perform
+           else
+              
+           end-if 
            .
       * <TOTEM:END>
 

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 15:46:43.
+       DATE-WRITTEN.        sabato 9 settembre 2023 00:27:47.
        REMARKS.
       *{TOTEM}END
 
@@ -33,6 +33,7 @@
            COPY "macrogroups.sl".
            COPY "wodbook.sl".
            COPY "duration.sl".
+           COPY "tmp-exe-effort.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
@@ -43,6 +44,7 @@
            COPY "macrogroups.fd".
            COPY "wodbook.fd".
            COPY "duration.fd".
+           COPY "tmp-exe-effort.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -126,7 +128,9 @@
            05 el-mgroups
                       OCCURS 10 TIMES.
                10 el-mgroup        PIC  x(100).
+               10 el-mcg-code      PIC  x(5).
                10 el-exercises     PIC  9(3).
+               10 el-exercises-ok  PIC  9(3).
        01 rec-grid.
            05 col-exercise     PIC  x(5).
            05 col-exe-desc     PIC  x(100).
@@ -181,7 +185,7 @@
            88 Valid-STATUS-macrogroups VALUE IS "00" THRU "09". 
        77 STATUS-wodbook   PIC  X(2).
            88 Valid-STATUS-wodbook VALUE IS "00" THRU "09". 
-       77 LOGO_PICCOLO-BMP PIC  S9(9)
+       77 LOGO-PICCOLO-BMP PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
        77 cb-mg1-buf       PIC  X(100).
@@ -191,12 +195,24 @@
        77 cb-mg5-buf       PIC  X(100).
        77 cb-mgtb-buf      PIC  X(100).
        77 cb-int-buf       PIC  X(100).
-       77 cb-dur-buf       PIC  X(100).
+       77 old-cb-dur-buf   PIC  X(100).
        77 STATUS-duration  PIC  X(2).
            88 Valid-STATUS-duration VALUE IS "00" THRU "09". 
        77 cb-rnd-buf       PIC  X(100).
        77 Default-Font
                   USAGE IS HANDLE OF FONT DEFAULT-FONT.
+       77 ef-ex-1-buf      PIC  z9.
+       77 ef-ex-2-buf      PIC  z9.
+       77 ef-ex-3-buf      PIC  z9.
+       77 cb-dur-buf       PIC  X(100).
+       77 ef-ex-4-buf      PIC  z9.
+       77 ef-ex-5-buf      PIC  z9.
+       77 ef-ex-tb-buf     PIC  z9.
+       77 ex-remain        PIC  99.
+       77 wod-effort       PIC  99.
+       77 path-tmp-exe-effort          PIC  X(256).
+       77 STATUS-tmp-exe-effort        PIC  X(2).
+           88 Valid-STATUS-tmp-exe-effort VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -213,6 +229,7 @@
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
        77 TMP-DataSet1-duration-BUF     PIC X(1159).
+       77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(118).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -248,14 +265,20 @@
        77 DataSet1-duration-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-duration-KEY-Asc  VALUE "A".
           88 DataSet1-duration-KEY-Desc VALUE "D".
+       77 DataSet1-tmp-exe-effort-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-tmp-exe-effort-LOCK  VALUE "Y".
+       77 DataSet1-tmp-exe-effort-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-tmp-exe-effort-KEY-Asc  VALUE "A".
+          88 DataSet1-tmp-exe-effort-KEY-Desc VALUE "D".
 
-       77 exercises-exe-k-desc-SPLITBUF  PIC X(106).
+       77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
-       77 groups-grp-k-desc-SPLITBUF  PIC X(106).
-       77 intensity-int-k-desc-SPLITBUF  PIC X(103).
+       77 groups-grp-k-desc-SPLITBUF  PIC X(101).
+       77 intensity-int-k-desc-SPLITBUF  PIC X(101).
        77 intensity-int-kj-effort-SPLITBUF  PIC X(5).
-       77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(106).
-       77 duration-dur-k-desc-SPLITBUF  PIC X(103).
+       77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
+       77 duration-dur-k-desc-SPLITBUF  PIC X(101).
+       77 tmp-exe-effort-tee-k-mcg-eff-SPLITBUF  PIC X(8).
 
        78  78-col-data       value 1. 
        78  78-col-art        value 2. 
@@ -365,7 +388,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 134,
+           VIRTUAL-WIDTH 60,
            VPADDING 5,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -630,8 +653,8 @@
        05
            Screen1-La-2a, 
            Label, 
-           COL 44,00, 
-           LINE 1,78,
+           COL 65,00, 
+           LINE 1,65,
            LINES 1,30 ,
            SIZE 8,00 ,
            ID IS 16,
@@ -645,8 +668,8 @@
        05
            cb-int, 
            Combo-Box, 
-           COL 53,00, 
-           LINE 1,78,
+           COL 74,00, 
+           LINE 1,65,
            LINES 6,00 ,
            SIZE 25,00 ,
            BOXED,
@@ -666,7 +689,7 @@
        05
            Screen1-La-2aa, 
            Label, 
-           COL 44,00, 
+           COL 65,00, 
            LINE 3,13,
            LINES 1,30 ,
            SIZE 8,00 ,
@@ -681,7 +704,7 @@
        05
            cb-dur, 
            Combo-Box, 
-           COL 53,00, 
+           COL 74,00, 
            LINE 3,13,
            LINES 6,00 ,
            SIZE 25,00 ,
@@ -748,6 +771,138 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "GENERA",
+           .
+
+      * ENTRY FIELD
+       05
+           ef-ex-1, 
+           Entry-Field, 
+           COL 43,60, 
+           LINE 1,65,
+           LINES 1,30 ,
+           SIZE 6,00 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 23,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           RIGHT,
+           MAX-TEXT 2,
+           NUMERIC,
+           SPINNER,
+           VALUE ef-ex-1-buf,
+           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-ex-2, 
+           Entry-Field, 
+           COL 43,60, 
+           LINE 3,13,
+           LINES 1,30 ,
+           SIZE 6,00 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 24,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           RIGHT,
+           MAX-TEXT 2,
+           NUMERIC,
+           SPINNER,
+           VALUE ef-ex-2-buf,
+           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-ex-3, 
+           Entry-Field, 
+           COL 43,60, 
+           LINE 4,65,
+           LINES 1,30 ,
+           SIZE 6,00 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 25,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           RIGHT,
+           MAX-TEXT 2,
+           NUMERIC,
+           SPINNER,
+           VALUE ef-ex-3-buf,
+           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-ex-4, 
+           Entry-Field, 
+           COL 43,60, 
+           LINE 6,13,
+           LINES 1,30 ,
+           SIZE 6,00 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 27,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           RIGHT,
+           MAX-TEXT 2,
+           NUMERIC,
+           SPINNER,
+           VALUE ef-ex-4-buf,
+           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-ex-5, 
+           Entry-Field, 
+           COL 43,60, 
+           LINE 7,65,
+           LINES 1,30 ,
+           SIZE 6,00 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 28,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           RIGHT,
+           MAX-TEXT 2,
+           NUMERIC,
+           SPINNER,
+           VALUE ef-ex-5-buf,
+           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-ex-tb, 
+           Entry-Field, 
+           COL 43,60, 
+           LINE 9,61,
+           LINES 1,30 ,
+           SIZE 6,00 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 29,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           RIGHT,
+           MAX-TEXT 2,
+           NUMERIC,
+           SPINNER,
+           VALUE ef-ex-tb-buf,
+           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
            .
 
       * TOOLBAR
@@ -1119,6 +1274,8 @@
            PERFORM OPEN-macrogroups
            PERFORM OPEN-wodbook
            PERFORM OPEN-duration
+      *    tmp-exe-effort OPEN MODE IS FALSE
+      *    PERFORM OPEN-tmp-exe-effort
       *    After Open
            .
 
@@ -1201,6 +1358,18 @@
       * <TOTEM:END>
            .
 
+       OPEN-tmp-exe-effort.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-exe-effort, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  OUTPUT tmp-exe-effort
+           IF NOT Valid-STATUS-tmp-exe-effort
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-exe-effort, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-exercises
@@ -1209,6 +1378,8 @@
            PERFORM CLOSE-macrogroups
            PERFORM CLOSE-wodbook
            PERFORM CLOSE-duration
+      *    tmp-exe-effort CLOSE MODE IS FALSE
+      *    PERFORM CLOSE-tmp-exe-effort
       *    After Close
            .
 
@@ -1248,15 +1419,19 @@
            CLOSE duration
            .
 
+       CLOSE-tmp-exe-effort.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-exe-effort, BeforeClose>
+      * <TOTEM:END>
+           .
+
        exercises-exe-k-desc-MERGE-SPLITBUF.
            INITIALIZE exercises-exe-k-desc-SPLITBUF
            MOVE exe-desc(1:100) TO exercises-exe-k-desc-SPLITBUF(1:100)
-           MOVE exe-key(1:5) TO exercises-exe-k-desc-SPLITBUF(101:5)
            .
 
        exercises-exe-k-group-MERGE-SPLITBUF.
            INITIALIZE exercises-exe-k-group-SPLITBUF
-           MOVE exe-group(1:5) TO exercises-exe-k-group-SPLITBUF(1:5)
+           MOVE exe-grp-code(1:5) TO exercises-exe-k-group-SPLITBUF(1:5)
            MOVE exe-key(1:5) TO exercises-exe-k-group-SPLITBUF(6:5)
            .
 
@@ -1468,7 +1643,6 @@
        groups-grp-k-desc-MERGE-SPLITBUF.
            INITIALIZE groups-grp-k-desc-SPLITBUF
            MOVE grp-desc(1:100) TO groups-grp-k-desc-SPLITBUF(1:100)
-           MOVE grp-key(1:5) TO groups-grp-k-desc-SPLITBUF(101:5)
            .
 
        DataSet1-groups-INITSTART.
@@ -1631,7 +1805,6 @@
        intensity-int-k-desc-MERGE-SPLITBUF.
            INITIALIZE intensity-int-k-desc-SPLITBUF
            MOVE int-desc(1:100) TO intensity-int-k-desc-SPLITBUF(1:100)
-           MOVE int-code(1:2) TO intensity-int-k-desc-SPLITBUF(101:2)
            .
 
        intensity-int-kj-effort-MERGE-SPLITBUF.
@@ -1804,7 +1977,6 @@
            INITIALIZE macrogroups-mcg-k-desc-SPLITBUF
            MOVE mcg-desc(1:100) TO 
            macrogroups-mcg-k-desc-SPLITBUF(1:100)
-           MOVE mcg-code(1:5) TO macrogroups-mcg-k-desc-SPLITBUF(101:5)
            .
 
        DataSet1-macrogroups-INITSTART.
@@ -2124,7 +2296,6 @@
        duration-dur-k-desc-MERGE-SPLITBUF.
            INITIALIZE duration-dur-k-desc-SPLITBUF
            MOVE dur-desc(1:100) TO duration-dur-k-desc-SPLITBUF(1:100)
-           MOVE dur-key(1:2) TO duration-dur-k-desc-SPLITBUF(101:2)
            .
 
        DataSet1-duration-INITSTART.
@@ -2284,6 +2455,127 @@
       * <TOTEM:END>
            .
 
+       tmp-exe-effort-tee-k-mcg-eff-MERGE-SPLITBUF.
+           INITIALIZE tmp-exe-effort-tee-k-mcg-eff-SPLITBUF
+           MOVE tee-mcg-code(1:5) TO 
+           tmp-exe-effort-tee-k-mcg-eff-SPLITBUF(1:5)
+           MOVE tee-int-effort(1:2) TO 
+           tmp-exe-effort-tee-k-mcg-eff-SPLITBUF(6:2)
+           .
+
+       DataSet1-tmp-exe-effort-INITSTART.
+           IF DataSet1-tmp-exe-effort-KEY-Asc
+              MOVE Low-Value TO tee-key
+           ELSE
+              MOVE High-Value TO tee-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-effort-INITEND.
+           IF DataSet1-tmp-exe-effort-KEY-Asc
+              MOVE High-Value TO tee-key
+           ELSE
+              MOVE Low-Value TO tee-key
+           END-IF
+           .
+
+      * tmp-exe-effort
+       DataSet1-tmp-exe-effort-START.
+           IF DataSet1-tmp-exe-effort-KEY-Asc
+              START tmp-exe-effort KEY >= tee-key
+           ELSE
+              START tmp-exe-effort KEY <= tee-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-effort-START-NOTGREATER.
+           IF DataSet1-tmp-exe-effort-KEY-Asc
+              START tmp-exe-effort KEY <= tee-key
+           ELSE
+              START tmp-exe-effort KEY >= tee-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-effort-START-GREATER.
+           IF DataSet1-tmp-exe-effort-KEY-Asc
+              START tmp-exe-effort KEY > tee-key
+           ELSE
+              START tmp-exe-effort KEY < tee-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-effort-START-LESS.
+           IF DataSet1-tmp-exe-effort-KEY-Asc
+              START tmp-exe-effort KEY < tee-key
+           ELSE
+              START tmp-exe-effort KEY > tee-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-effort-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, BeforeReadRecord>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-effort-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, BeforeReadNext>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-effort-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, BeforeReadPrev>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-effort-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, BeforeWrite>
+      * <TOTEM:END>
+           WRITE tee-rec OF tmp-exe-effort.
+           MOVE STATUS-tmp-exe-effort TO TOTEM-ERR-STAT
+           MOVE "tmp-exe-effort" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-effort-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-exe-effort TO TOTEM-ERR-STAT
+           MOVE "tmp-exe-effort" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-effort-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-exe-effort TO TOTEM-ERR-STAT
+           MOVE "tmp-exe-effort" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-effort, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE grp-rec OF groups
@@ -2291,6 +2583,7 @@
            INITIALIZE mcg-rec OF macrogroups
            INITIALIZE wod-rec OF wodbook
            INITIALIZE dur-rec OF duration
+           INITIALIZE tee-rec OF tmp-exe-effort
            .
 
 
@@ -2393,6 +2686,14 @@
       * FD's Initialize Paragraph
        DataSet1-duration-INITREC.
            INITIALIZE dur-rec OF duration
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-tmp-exe-effort-INITREC.
+           INITIALIZE tee-rec OF tmp-exe-effort
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -3380,6 +3681,64 @@
            .
       * <TOTEM:END>
 
+       CREA-OCCURS-GRUPPI.
+      * <TOTEM:PARA. CREA-OCCURS-GRUPPI>
+           initialize tab-mgroups replacing numeric data by zeroes
+                                       alphanumeric data by spaces.
+
+           move 0 to idx-gruppi.
+           inquire cb-mg1, value in mcg-desc.
+           read macrogroups key  mcg-k-desc 
+                invalid continue
+            not invalid 
+                add 1 to idx-gruppi                   
+                move mcg-desc to el-mgroup(idx-gruppi)
+                move mcg-code to el-mcg-code(idx-gruppi)
+           end-read.
+ 
+           inquire cb-mg2, value in mcg-desc.
+           read macrogroups key mcg-k-desc 
+                invalid continue
+            not invalid 
+                add 1 to idx-gruppi
+                move mcg-desc to el-mgroup(idx-gruppi)  
+                move mcg-desc to el-mgroup(idx-gruppi)
+                move mcg-code to el-mcg-code(idx-gruppi)
+           end-read.
+
+           inquire cb-mg3, value in mcg-desc.
+           read macrogroups key mcg-k-desc 
+                invalid continue
+            not invalid 
+                add 1 to idx-gruppi
+                move mcg-desc to el-mgroup(idx-gruppi)  
+                move mcg-desc to el-mgroup(idx-gruppi)
+                move mcg-code to el-mcg-code(idx-gruppi)
+           end-read.
+
+           inquire cb-mg4, value in mcg-desc.
+           read macrogroups key mcg-k-desc 
+                invalid continue
+            not invalid 
+                add 1 to idx-gruppi
+                move mcg-desc to el-mgroup(idx-gruppi)  
+                move mcg-desc to el-mgroup(idx-gruppi)
+                move mcg-code to el-mcg-code(idx-gruppi)
+           end-read.
+
+           inquire cb-mg5, value in mcg-desc.
+           read macrogroups key mcg-k-desc 
+                invalid continue
+            not invalid 
+                add 1 to idx-gruppi
+                move mcg-desc to el-mgroup(idx-gruppi)  
+                move mcg-desc to el-mgroup(idx-gruppi)
+                move mcg-code to el-mcg-code(idx-gruppi)
+           end-read.
+           move idx-gruppi to tot-gruppi 
+           .
+      * <TOTEM:END>
+
        CURRENT-RECORD.
       * <TOTEM:PARA. CURRENT-RECORD>
       *     perform RIEMPI-CHIAVE.
@@ -4165,6 +4524,38 @@
            .
       * <TOTEM:END>
 
+       VALORIZZA-EXERCISES.
+      * <TOTEM:PARA. VALORIZZA-EXERCISES>
+           if tot-gruppi > 0
+              move 0 to ef-ex-tb-buf
+              move dur-exercises to ex-remain
+              perform varying idx-gruppi from 1 by 1 until 1 = 2
+                 if idx-gruppi > 5
+                    move 1 to idx-gruppi
+                 end-if
+                 if el-mgroup(idx-gruppi) not = spaces
+                    add 1 to el-exercises(idx-gruppi)
+                    subtract 1 from ex-remain
+                    if ex-remain = 0
+                       exit perform
+                    end-if
+                 end-if
+              end-perform
+           else
+              inquire cb-mgtb, value in cb-mgtb-buf  
+              if cb-mgtb-buf = "Si"
+                 move dur-exercises to ef-ex-tb-buf
+              end-if
+           end-if.                              
+           modify ef-ex-1,  value el-exercises(1).
+           modify ef-ex-2,  value el-exercises(2).
+           modify ef-ex-3,  value el-exercises(3).
+           modify ef-ex-4,  value el-exercises(4).
+           modify ef-ex-5,  value el-exercises(5).
+           modify ef-ex-tb, value ef-ex-tb-buf 
+           .
+      * <TOTEM:END>
+
        VALORIZZA-OLD.
       * <TOTEM:PARA. VALORIZZA-OLD>
       *     move tsc-rec to old-tsc-rec.
@@ -4198,16 +4589,6 @@
            inquire gd1, cursor-y in riga,
                         cursor-x in colonna,
                         last-row in tot-righe 
-           .
-      * <TOTEM:END>
-
-       Screen1-Cm-1-BeforeProcedure.
-      * <TOTEM:PARA. Screen1-Cm-1-BeforeProcedure>
-           .
-      * <TOTEM:END>
-
-       Screen1-Cm-1-AfterProcedure.
-      * <TOTEM:PARA. Screen1-Cm-1-AfterProcedure>
            .
       * <TOTEM:END>
 
@@ -4627,6 +5008,14 @@
        cb-dur-AfterProcedure.
       * <TOTEM:PARA. cb-dur-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           inquire cb-dur, value in cb-dur-buf.
+           if cb-dur-buf not = old-cb-dur-buf
+              move cb-dur-buf to old-cb-dur-buf
+              move cb-dur-buf to dur-desc
+              read duration key dur-k-desc     
+              perform CREA-OCCURS-GRUPPI
+              perform VALORIZZA-EXERCISES
+           end-if 
            .
       * <TOTEM:END>
        cb-rnd-AfterProcedure.
@@ -4652,63 +5041,94 @@
       * <TOTEM:END>
        pb-genera-LinkTo.
       * <TOTEM:PARA. pb-genera-LinkTo>
-           initialize tab-mgroups replacing numeric data by zeroes
-                                      alphanumeric data by spaces.
+           perform CREA-OCCURS-GRUPPI.
+           perform VALORIZZA-EXERCISES.
+           move 0 to int-effort.
+           inquire cb-int, value in int-desc.
+           read intensity key int-k-desc.
+           move int-effort to wod-effort.
 
-           move 0 to idx-gruppi.
-           inquire cb-mg1, value in mcg-desc.
-           read macrogroups key  mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)
-           end-read.
- 
-           inquire cb-mg2, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)
-           end-read.
+           accept  como-data from century-date.
+           accept  como-ora  from time.
+           accept  path-tmp-exe-effort from environment "PATH_ST".
+           inspect path-tmp-exe-effort replacing trailing spaces by 
+           low-value.
+           string  path-tmp-exe-effort delimited low-value
+                   "tmp-exe-effort_"   delimited size
+                   como-data           delimited size
+                   "_"                 delimited size
+                   como-ora            delimited size
+              into path-tmp-exe-effort
+           end-string.                                                  
+                 
+           inspect path-tmp-exe-effort replacing trailing low-value by 
+           spaces.
+           open output tmp-exe-effort.    
+           close       tmp-exe-effort.
+           open i-o    tmp-exe-effort.              
+           modify gd1, reset-grid = 1.
+           perform GD1-CONTENT.
+           move low-value to exe-key.
+           move 0 to tee-prg.
+           start exercises key >= exe-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read exercises next at end exit perform end-read
+                    move exe-int-code to int-code
+                    read intensity no lock
+                    move exe-grp-code to grp-code
+                    read groups no lock
+                    if int-effort <= wod-effort
+                       perform varying idx-gruppi from 1 by 1 
+                                 until idx-gruppi > 5
+                          if el-mcg-code(idx-gruppi) = grp-mcg-code
+                             add 1 to tee-prg
+                             move exe-desc     to tee-exe-desc
+                             move grp-mcg-code to tee-mcg-code
+                             move int-effort   to tee-int-effort
+                             move exe-isMulti  to tee-exe-isMulti
+                             write tee-rec
+                          end-if
+                       end-perform
+                    end-if
+                 end-perform
+           end-start.                
+           perform varying idx-gruppi from 1 by 1 
+                     until idx-gruppi > tot-gruppi
+              move el-mcg-code(idx-gruppi) to tee-mcg-code
+              move high-value to tee-int-effort
+              start tmp-exe-effort key <= tee-k-mcg-eff
+                    invalid continue
+                not invalid
+                    perform until 1 = 2
+                       read tmp-exe-effort previous 
+                         at end exit perform 
+                       end-read
+                       if tee-mcg-code not = el-mcg-code(idx-gruppi)
+                          exit perform
+                       end-if                
+                       add 1 to riga
+                       modify gd1(riga, 1), cell-data tee-exe-desc
+                       delete tmp-exe-effort record
+                    end-perform
+               end-start
+           end-perform.
 
-           inquire cb-mg3, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)
-           end-read.
 
-           inquire cb-mg4, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)
-           end-read.
-
-           inquire cb-mg5, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)
-           end-read.
-           move idx-gruppi to tot-gruppi.
-
-           inquire cb-dur, value in dur-desc.
-           read duration key dur-k-desc invalid move 0 to dur-exercises 
-           end-read.
-
-           if dur-exercises <= tot-gruppi
-              perform varying idx-gruppi from 1 by 1 
-                        until idx-gruppi > dur-exercises
-                 move 1 to el-exercises(idx-gruppi)
-              end-perform
-           else
-              
-           end-if 
+           close       tmp-exe-effort.
+           delete file tmp-exe-effort
+                       
+           .
+      * <TOTEM:END>
+       Screen1-Ef-1-BeforeProcedure.
+      * <TOTEM:PARA. Screen1-Ef-1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       Screen1-Ef-1-AfterProcedure.
+      * <TOTEM:PARA. Screen1-Ef-1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
            .
       * <TOTEM:END>
 

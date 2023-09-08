@@ -4,8 +4,8 @@
                10 exe-code         PIC  x(5).
            05 exe-data.
                10 exe-desc         PIC  x(100).
-               10 exe-group        PIC  x(5).
-               10 exe-intensity    PIC  99.
+               10 exe-grp-code     PIC  x(5).
+               10 exe-int-code     PIC  99.
                10 exe-isMulti      PIC  9.
                    88 exe-isMulti-no VALUE IS 0. 
                    88 exe-isMulti-yes VALUE IS 1. 

@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E79812848-175-234026351
+PROGRAM_UNIQUE_CODE=TOTEM-7E798204349-521-76954029
 
 {{@DESCRIPTION:
 
@@ -1485,7 +1485,7 @@ BEGIN-TEXT
                           modify form1-gd-1(riga, 5), cell-data col-duration  
                           modify form1-gd-1(riga, 6), cell-data col-range-from
                           modify form1-gd-1(riga, 7), cell-data col-range-to
-                          modify form1-gd-1(riga, 7), cell-data col-effort
+                          modify form1-gd-1(riga, 8), cell-data col-effort
                      end-read                                           
                   end-perform
            end-start.

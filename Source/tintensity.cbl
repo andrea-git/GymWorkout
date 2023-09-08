@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tintensity.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 14:17:55.
+       DATE-WRITTEN.        venerdì 8 settembre 2023 22:22:25.
        REMARKS.
       *{TOTEM}END
 
@@ -136,7 +136,7 @@
           88 DataSet1-intensity-KEY1-Asc  VALUE "A".
           88 DataSet1-intensity-KEY1-Desc VALUE "D".
 
-       77 intensity-int-k-desc-SPLITBUF  PIC X(103).
+       77 intensity-int-k-desc-SPLITBUF  PIC X(101).
        77 intensity-int-kj-effort-SPLITBUF  PIC X(5).
 
        01 old-int-rec.
@@ -538,7 +538,6 @@
        intensity-int-k-desc-MERGE-SPLITBUF.
            INITIALIZE intensity-int-k-desc-SPLITBUF
            MOVE int-desc(1:100) TO intensity-int-k-desc-SPLITBUF(1:100)
-           MOVE int-code(1:2) TO intensity-int-k-desc-SPLITBUF(101:2)
            .
 
        intensity-int-kj-effort-MERGE-SPLITBUF.
@@ -1607,7 +1606,7 @@
            col-range-from
                           modify form1-gd-1(riga, 7), cell-data 
            col-range-to
-                          modify form1-gd-1(riga, 7), cell-data 
+                          modify form1-gd-1(riga, 8), cell-data 
            col-effort
                      end-read                                           
                   end-perform

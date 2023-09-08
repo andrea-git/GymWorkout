@@ -5,7 +5,7 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E798114214-411-2859819809
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E798204349-379-3203525107
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -61,7 +61,7 @@ m_bFixed=1
 
 @}}
 [FDITEM5_]
-m_strName=exe-group
+m_strName=exe-grp-code
 m_strRawPic=x(5)
 m_strPic=x(5)
 m_nItemLevel=10
@@ -71,7 +71,7 @@ m_bFixed=1
 
 @}}
 [FDITEM6_]
-m_strName=exe-intensity
+m_strName=exe-int-code
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=10
@@ -194,14 +194,12 @@ m_strName=exe-k-desc
 @}}
 [SLKEYATOM0_SLINDEX0_]
 m_strName=exe-desc
-[SLKEYATOM1_SLINDEX0_]
-m_strName=exe-key
 [SLINDEX1_]
 m_strName=exe-k-group
 {{@Key_m_strDescriptionSLINDEX1_
 
 @}}
 [SLKEYATOM0_SLINDEX1_]
-m_strName=exe-group
+m_strName=exe-grp-code
 [SLKEYATOM1_SLINDEX1_]
 m_strName=exe-key

@@ -1,0 +1,13 @@
+      *(( XFD FILE = tmp-exe-effort ))
+       FD  tmp-exe-effort.
+       01 tee-rec.
+           05 tee-key.
+               10 tee-prg          PIC  9(5).
+           05 exe-data.
+               10 tee-exe-code     PIC  x(5).
+               10 tee-exe-desc     PIC  x(100).
+               10 tee-mcg-code     PIC  x(5).
+               10 tee-int-effort   PIC  99.
+               10 tee-exe-isMulti  PIC  9.
+                   88 tee-exe-isMulti-no VALUE IS 0. 
+                   88 tee-exe-isMulti-yes VALUE IS 1. 

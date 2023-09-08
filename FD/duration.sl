@@ -4,5 +4,5 @@
            ACCESS MODE  IS DYNAMIC
            FILE STATUS  IS STATUS-duration
            RECORD KEY   IS dur-key
-           ALTERNATE RECORD KEY IS dur-k-desc = dur-desc, dur-key
+           ALTERNATE RECORD KEY IS dur-k-desc = dur-desc
            WITH DUPLICATES .

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tmgroups.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 13:55:37.
+       DATE-WRITTEN.        venerdì 8 settembre 2023 22:10:22.
        REMARKS.
       *{TOTEM}END
 
@@ -63,7 +63,7 @@
                   VALUE IS 0.
        77 Form1-Tb-1-Handle
                   USAGE IS HANDLE OF WINDOW.
-       78 titolo VALUE IS "Tabella gruppi". 
+       78 titolo VALUE IS "Tabella macrogruppi". 
        77 E-ESCI           PIC  9
                   VALUE IS 1.
        77 E-NUOVO          PIC  9
@@ -130,7 +130,7 @@
           88 DataSet1-macrogroups-KEY1-Asc  VALUE "A".
           88 DataSet1-macrogroups-KEY1-Desc VALUE "D".
 
-       77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(106).
+       77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
 
        01 old-mcg-rec.
            05 old-mcg-key.
@@ -527,7 +527,6 @@
            INITIALIZE macrogroups-mcg-k-desc-SPLITBUF
            MOVE mcg-desc(1:100) TO 
            macrogroups-mcg-k-desc-SPLITBUF(1:100)
-           MOVE mcg-code(1:5) TO macrogroups-mcg-k-desc-SPLITBUF(101:5)
            .
 
        DataSet1-macrogroups-INITSTART.

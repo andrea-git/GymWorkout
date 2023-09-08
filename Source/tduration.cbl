@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tduration.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 14:07:22.
+       DATE-WRITTEN.        venerdì 8 settembre 2023 22:07:57.
        REMARKS.
       *{TOTEM}END
 
@@ -63,7 +63,7 @@
                   VALUE IS 0.
        77 Form1-Tb-1-Handle
                   USAGE IS HANDLE OF WINDOW.
-       78 titolo VALUE IS "Tabella gruppi". 
+       78 titolo VALUE IS "Tabella durata". 
        77 E-ESCI           PIC  9
                   VALUE IS 1.
        77 E-NUOVO          PIC  9
@@ -131,7 +131,7 @@
           88 DataSet1-duration-KEY1-Asc  VALUE "A".
           88 DataSet1-duration-KEY1-Desc VALUE "D".
 
-       77 duration-dur-k-desc-SPLITBUF  PIC X(103).
+       77 duration-dur-k-desc-SPLITBUF  PIC X(101).
 
        01 old-dur-rec.
            05 old-dur-key.
@@ -529,7 +529,6 @@
        duration-dur-k-desc-MERGE-SPLITBUF.
            INITIALIZE duration-dur-k-desc-SPLITBUF
            MOVE dur-desc(1:100) TO duration-dur-k-desc-SPLITBUF(1:100)
-           MOVE dur-key(1:2) TO duration-dur-k-desc-SPLITBUF(101:2)
            .
 
        DataSet1-duration-INITSTART.

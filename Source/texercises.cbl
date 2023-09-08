@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 11:07:09.
+       DATE-WRITTEN.        venerdì 8 settembre 2023 23:08:48.
        REMARKS.
       *{TOTEM}END
 
@@ -140,7 +140,7 @@
        77 Form1-MULKEY-TMPBUF   PIC X(1189).
        77 TMP-DataSet1-exercises-BUF     PIC X(1189).
        77 TMP-DataSet1-groups-BUF     PIC X(1182).
-       77 TMP-DataSet1-intensity-BUF     PIC X(1182).
+       77 TMP-DataSet1-intensity-BUF     PIC X(1188).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
@@ -168,11 +168,12 @@
           88 DataSet1-macrogroups-KEY-Asc  VALUE "A".
           88 DataSet1-macrogroups-KEY-Desc VALUE "D".
 
-       77 exercises-exe-k-desc-SPLITBUF  PIC X(106).
+       77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
-       77 groups-grp-k-desc-SPLITBUF  PIC X(106).
-       77 intensity-int-k-desc-SPLITBUF  PIC X(103).
-       77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(106).
+       77 groups-grp-k-desc-SPLITBUF  PIC X(101).
+       77 intensity-int-k-desc-SPLITBUF  PIC X(101).
+       77 intensity-int-kj-effort-SPLITBUF  PIC X(5).
+       77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
 
        01 old-exe-rec.
            05 old-exe-key.
@@ -232,7 +233,7 @@
            Grid, 
            COL 2,20, 
            LINE 1,70,
-           LINES 22,70 ,
+           LINES 35,74 ,
            SIZE 151,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
@@ -637,12 +638,11 @@
        exercises-exe-k-desc-MERGE-SPLITBUF.
            INITIALIZE exercises-exe-k-desc-SPLITBUF
            MOVE exe-desc(1:100) TO exercises-exe-k-desc-SPLITBUF(1:100)
-           MOVE exe-key(1:5) TO exercises-exe-k-desc-SPLITBUF(101:5)
            .
 
        exercises-exe-k-group-MERGE-SPLITBUF.
            INITIALIZE exercises-exe-k-group-SPLITBUF
-           MOVE exe-group(1:5) TO exercises-exe-k-group-SPLITBUF(1:5)
+           MOVE exe-grp-code(1:5) TO exercises-exe-k-group-SPLITBUF(1:5)
            MOVE exe-key(1:5) TO exercises-exe-k-group-SPLITBUF(6:5)
            .
 
@@ -857,7 +857,6 @@
        groups-grp-k-desc-MERGE-SPLITBUF.
            INITIALIZE groups-grp-k-desc-SPLITBUF
            MOVE grp-desc(1:100) TO groups-grp-k-desc-SPLITBUF(1:100)
-           MOVE grp-key(1:5) TO groups-grp-k-desc-SPLITBUF(101:5)
            .
 
        DataSet1-groups-INITSTART.
@@ -1020,7 +1019,12 @@
        intensity-int-k-desc-MERGE-SPLITBUF.
            INITIALIZE intensity-int-k-desc-SPLITBUF
            MOVE int-desc(1:100) TO intensity-int-k-desc-SPLITBUF(1:100)
-           MOVE int-code(1:2) TO intensity-int-k-desc-SPLITBUF(101:2)
+           .
+
+       intensity-int-kj-effort-MERGE-SPLITBUF.
+           INITIALIZE intensity-int-kj-effort-SPLITBUF
+           MOVE int-effort(1:2) TO intensity-int-kj-effort-SPLITBUF(1:2)
+           MOVE int-key(1:2) TO intensity-int-kj-effort-SPLITBUF(3:2)
            .
 
        DataSet1-intensity-INITSTART.
@@ -1085,6 +1089,7 @@
               KEY int-key
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
+           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT 
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -1113,6 +1118,7 @@
               END-IF
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
+           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -1141,6 +1147,7 @@
               END-IF
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
+           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -1184,7 +1191,6 @@
            INITIALIZE macrogroups-mcg-k-desc-SPLITBUF
            MOVE mcg-desc(1:100) TO 
            macrogroups-mcg-k-desc-SPLITBUF(1:100)
-           MOVE mcg-code(1:5) TO macrogroups-mcg-k-desc-SPLITBUF(101:5)
            .
 
        DataSet1-macrogroups-INITSTART.
@@ -1442,7 +1448,7 @@
            Display Independent GRAPHICAL WINDOW
               SCREEN LINE 1,
               SCREEN COLUMN 0,
-              LINES 24,30,
+              LINES 37,22,
               SIZE 154,40,
               COLOR 131329,
               CONTROL FONT Calibri14-Occidentale,
@@ -2148,7 +2154,7 @@
                            icon mb-warning-icon
                 end-if
            when 3
-                move exe-group to grp-code
+                move exe-grp-code to grp-code
                 read groups no lock 
                      invalid 
                      move spaces to grp-desc mcg-desc
@@ -2157,14 +2163,14 @@
                            title = tit-err
                            icon mb-warning-icon
                  not invalid
-                     move grp-macro to mcg-code
+                     move grp-mcg-code to mcg-code
                      read macrogroups no lock invalid move spaces to 
            mcg-desc end-read
                 end-read                                      
                 modify form1-gd-1(riga, 4), cell-data grp-desc
                 modify form1-gd-1(riga, 5), cell-data mcg-desc  
            when 6
-                move exe-intensity to int-code
+                move exe-int-code to int-code
                 read intensity no lock 
                      invalid 
                      move spaces to int-desc 
@@ -2228,16 +2234,16 @@
                       not at end
                           move exe-code        to col-codice
                           move exe-desc        to col-des
-                          move exe-group       to col-group grp-code
+                          move exe-grp-code    to col-group grp-code
                           read groups no lock invalid move spaces to 
            grp-desc end-read
-                          move grp-macro to mcg-code                    
-                         
+                          move grp-mcg-code to mcg-code                 
+                            
                           read macrogroups no lock invalid move spaces 
            to mcg-desc end-read
                           move grp-desc to col-grp-desc
                           move mcg-desc to col-mcg-desc
-                          move exe-intensity to col-intensity int-code
+                          move exe-int-code to col-intensity int-code
                           read intensity no lock invalid move spaces to 
            int-desc end-read
                           move int-desc    to col-int-desc
@@ -2465,12 +2471,10 @@
       * <TOTEM:PARA. VALORE-RIGA>
            inquire form1-gd-1(riga, 1), cell-data exe-code.
            inquire form1-gd-1(riga, 2), cell-data exe-desc.
-           inquire form1-gd-1(riga, 3), cell-data exe-group.
-           inquire form1-gd-1(riga, 6), cell-data exe-intensity.
+           inquire form1-gd-1(riga, 3), cell-data exe-grp-code.
+           inquire form1-gd-1(riga, 6), cell-data exe-int-code.
            inquire form1-gd-1(riga, 8), cell-data exe-isMulti.
-           inquire form1-gd-1(riga, 9), cell-data exe-setting. 
-
-      *     inquire form1-gd-1(riga, 3), cell-data iva-aliquota  
+           inquire form1-gd-1(riga, 9), cell-data exe-setting  
            .
       * <TOTEM:END>
 

@@ -5,7 +5,7 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E798131427-390-1464215243
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E798204349-363-267618473
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -204,8 +204,6 @@ m_strName=int-k-desc
 @}}
 [SLKEYATOM0_SLINDEX0_]
 m_strName=int-desc
-[SLKEYATOM1_SLINDEX0_]
-m_strName=int-code
 [SLINDEX1_]
 m_strName=int-kj-effort
 {{@Key_m_strDescriptionSLINDEX1_

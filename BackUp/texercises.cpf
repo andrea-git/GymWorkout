@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E79884040-932-251813928
+PROGRAM_UNIQUE_CODE=TOTEM-7E79821651-76-620119825
 
 {{@DESCRIPTION:
 
@@ -628,7 +628,7 @@ GRAPHICAL-SCREEN
 Begin Screen Form1
    PREFIX            = Form1
    IMPORTED-SCREEN   = FALSE
-   LOCK-CONTROL      = TRUE
+   LOCK-CONTROL      = FALSE
    LEVEL             = 1
    (Name)            = Form1
    Absolute Column   = 0
@@ -654,7 +654,7 @@ Begin Screen Form1
    Height in Cells   = FALSE
    Help ID           = 0
    Label Offset      = 20
-   Lines             = 24,30
+   Lines             = 37,22
    Link To Thread    = TRUE
    Max Lines         = 0,00
    Max Size          = 0,00
@@ -781,7 +781,7 @@ Begin Screen Form1
       ID                = 1
       Last Row          = 0
       Line              = 1,70
-      Lines             = 22,70
+      Lines             = 35,74
       Lines Unit        = Default
       No Tab            = FALSE
       Num Col Headings  = 1
@@ -1492,7 +1492,7 @@ BEGIN-TEXT
                            icon mb-warning-icon
                 end-if
            when 3
-                move exe-group to grp-code
+                move exe-grp-code to grp-code
                 read groups no lock 
                      invalid 
                      move spaces to grp-desc mcg-desc
@@ -1501,13 +1501,13 @@ BEGIN-TEXT
                            title = tit-err
                            icon mb-warning-icon
                  not invalid
-                     move grp-macro to mcg-code
+                     move grp-mcg-code to mcg-code
                      read macrogroups no lock invalid move spaces to mcg-desc end-read
                 end-read                                      
                 modify form1-gd-1(riga, 4), cell-data grp-desc
                 modify form1-gd-1(riga, 5), cell-data mcg-desc  
            when 6
-                move exe-intensity to int-code
+                move exe-int-code to int-code
                 read intensity no lock 
                      invalid 
                      move spaces to int-desc 
@@ -1574,13 +1574,13 @@ BEGIN-TEXT
                       not at end
                           move exe-code        to col-codice
                           move exe-desc        to col-des
-                          move exe-group       to col-group grp-code
+                          move exe-grp-code    to col-group grp-code
                           read groups no lock invalid move spaces to grp-desc end-read
-                          move grp-macro to mcg-code                                  
+                          move grp-mcg-code to mcg-code                                  
                           read macrogroups no lock invalid move spaces to mcg-desc end-read
                           move grp-desc to col-grp-desc
                           move mcg-desc to col-mcg-desc
-                          move exe-intensity to col-intensity int-code
+                          move exe-int-code to col-intensity int-code
                           read intensity no lock invalid move spaces to int-desc end-read
                           move int-desc    to col-int-desc
                           move exe-isMulti to col-isMulti
@@ -1808,12 +1808,11 @@ BEGIN-DATA
 BEGIN-TEXT
            inquire form1-gd-1(riga, 1), cell-data exe-code.
            inquire form1-gd-1(riga, 2), cell-data exe-desc.
-           inquire form1-gd-1(riga, 3), cell-data exe-group.
-           inquire form1-gd-1(riga, 6), cell-data exe-intensity.
+           inquire form1-gd-1(riga, 3), cell-data exe-grp-code.
+           inquire form1-gd-1(riga, 6), cell-data exe-int-code.
            inquire form1-gd-1(riga, 8), cell-data exe-isMulti.
            inquire form1-gd-1(riga, 9), cell-data exe-setting. 
 
-      *     inquire form1-gd-1(riga, 3), cell-data iva-aliquota. 
 END-TEXT
 END-DATA
 BEGIN-DATA

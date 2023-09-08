@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E798115526-641-880430658
+PROGRAM_UNIQUE_CODE=TOTEM-7E798204349-473-33019998
 
 {{@DESCRIPTION:
 
@@ -57,7 +57,7 @@ m_bFixed=1
 @}}
 [FDITEM3_WK]
 m_strName=titolo
-m_strDefaultValue="Tabella gruppi"
+m_strDefaultValue="Tabella macrogruppi"
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tgroups.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 10:33:48.
+       DATE-WRITTEN.        venerdì 8 settembre 2023 14:12:34.
        REMARKS.
       *{TOTEM}END
 
@@ -1873,7 +1873,7 @@
                                cursor-y in riga.
 
            perform varying colonna from 1 by 1
-                     until colonna > 2
+                     until colonna > 3
               perform CONTROLLO
               if errori exit perform end-if
            end-perform.

@@ -8,8 +8,9 @@
            copy "exercises.sl".
            copy "groups.sl".
            copy "macrogroups.sl". 
-           copy "wodbook.sl".    
-           copy "intensity.sl".    
+           copy "wodbook.sl".     
+           copy "intensity.sl".   
+           copy "duration.sl".    
       *
        SELECT FBLOCK
            ASSIGN       TO DISK "FBLOCK"
@@ -28,6 +29,7 @@
            copy "macrogroups.fd".
            copy "wodbook.fd".      
            copy "intensity.fd".    
+           copy "duration.fd".   
       *                               
        FD  FBLOCK
            LABEL RECORD IS STANDARD.
@@ -46,6 +48,7 @@
        77  status-macrogroups    pic xx.
        77  status-wodbook        pic xx. 
        77  status-intensity      pic xx.
+       77  status-duration       pic xx.
        77  stato-io              pic xx.  
 
        78  titolo            value "Generazione files".
@@ -141,6 +144,23 @@
                 
            end-evaluate.    
 
+      ***---
+       DURATION-ERR SECTION.
+           use after error procedure on DURATION.
+           evaluate status-DURATION
+           when "35" continue
+           when "39"
+                display message "File [DURATION] Mismatch size!"
+                           title titolo
+                            icon 3
+                
+           when "98"
+                display message "[DURATION] Indexed file corrupt!"
+                           title titolo
+                            icon 3
+                
+           end-evaluate.    
+
        END DECLARATIVES.
 
        MAIN-PRG.
@@ -191,6 +211,15 @@
               end-if
            end-if.
            close intensity.
+
+           open input duration.
+           if status-duration = "35"
+              open output duration
+              if status-duration not = "00"
+                 move -1 to link-status
+              end-if
+           end-if.
+           close duration.
 
            delete file fblock.
            open output fblock.

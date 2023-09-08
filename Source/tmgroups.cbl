@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tmgroups.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 10:25:00.
+       DATE-WRITTEN.        venerdì 8 settembre 2023 13:55:37.
        REMARKS.
       *{TOTEM}END
 
@@ -1418,7 +1418,7 @@
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x     = 4,
+           modify form1-gd-1, start-x = 1, x     = 2,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,

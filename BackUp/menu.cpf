@@ -6,7 +6,7 @@ QUIT_CONFIRM=0
 ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Screen1
 BEFORE_PROGRAM=menu-Ev-Before-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E79894711-596-593914103
+PROGRAM_UNIQUE_CODE=TOTEM-7E798112838-117-708327536
 
 {{@DESCRIPTION:
 
@@ -1051,7 +1051,7 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = pb-param-LinkTo
 BEGIN-TEXT
-           move "gparam" to NomeProgramma.
+           move "tduration" to NomeProgramma.
            perform CALL-PROGRAM.
 END-TEXT
 END-DATA
@@ -1106,7 +1106,7 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = pb-listini-LinkTo
 BEGIN-TEXT
-           move "glistini" to NomeProgramma.
+           move "gwod" to NomeProgramma.
            perform CALL-PROGRAM.
 END-TEXT
 END-DATA

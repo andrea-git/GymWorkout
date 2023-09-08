@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E79812848-175-234026351
+PROGRAM_UNIQUE_CODE=TOTEM-7E798115247-677-2730611057
 
 {{@DESCRIPTION:
 
@@ -57,7 +57,7 @@ m_bFixed=1
 @}}
 [FDITEM3_WK]
 m_strName=titolo
-m_strDefaultValue="Tabella intensità"
+m_strDefaultValue="Tabella gruppi"
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -213,7 +213,7 @@ m_bFixed=1
 
 @}}
 [FDITEM18_WK]
-m_strName=col-rest
+m_strName=col-exercises
 m_strRawPic=zz9
 m_strPic=zz9
 m_nItemLevel=5
@@ -223,58 +223,59 @@ m_bFixed=1
 
 @}}
 [FDITEM19_WK]
-m_strName=col-series
-m_strRawPic=z9
-m_strPic=z9
-m_nItemLevel=5
+m_strName=Screen1-Handle
+m_nUsage=24
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM19_WK
 
 @}}
 [FDITEM20_WK]
-m_strName=col-duration
-m_strRawPic=zz9
-m_strPic=zz9
-m_nItemLevel=5
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM20_WK
 
 @}}
 [FDITEM21_WK]
-m_strName=col-range-from
-m_strRawPic=z9
-m_strPic=z9
-m_nItemLevel=5
+m_strName=ricarica
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue=1
+m_strFalse=0
 {{@DataItem_m_strDescriptionFDITEM21_WK
 
 @}}
 [FDITEM22_WK]
-m_strName=col-range-to
-m_strRawPic=z9
-m_strPic=z9
-m_nItemLevel=5
+m_strName=esegui-73x21-bmp
+m_strRawPic=S9(9)
+m_strPic=S9(9)
+m_nUsage=5
+m_strDefaultValue=0
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM22_WK
 
 @}}
 [FDITEM23_WK]
-m_strName=col-effort
-m_strRawPic=z9
-m_strPic=z9
-m_nItemLevel=5
+m_strName=Default-Font
+m_nUsage=38
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM23_WK
 
 @}}
 [FDITEM24_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
+m_strName=STATUS-duration
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -282,27 +283,25 @@ m_bFixed=1
 
 @}}
 [FDITEM25_WK]
-m_strName=FILLER
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=1
+m_strName=Valid-STATUS-duration
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM25_WK
 
 @}}
 [FDITEM26_WK]
-m_strName=ricarica
-m_nItemLevel=88
+m_strName=Calibri14-Occidentale
+m_nUsage=26
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue=1
-m_strFalse=0
 {{@DataItem_m_strDescriptionFDITEM26_WK
 
 @}}
 [FDITEM27_WK]
-m_strName=esegui-73x21-bmp
+m_strName=LOGO_PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
 m_nUsage=5
@@ -314,8 +313,9 @@ m_bFixed=1
 
 @}}
 [FDITEM28_WK]
-m_strName=Default-Font
-m_nUsage=38
+m_strName=STATUS-macroduration
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -323,62 +323,12 @@ m_bFixed=1
 
 @}}
 [FDITEM29_WK]
-m_strName=STATUS-intensity
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
+m_strName=Valid-STATUS-macroduration
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM29_WK
-
-@}}
-[FDITEM30_WK]
-m_strName=Valid-STATUS-intensity
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM30_WK
-
-@}}
-[FDITEM31_WK]
-m_strName=Calibri14-Occidentale
-m_nUsage=26
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM31_WK
-
-@}}
-[FDITEM32_WK]
-m_strName=LOGO_PICCOLO-BMP
-m_strRawPic=S9(9)
-m_strPic=S9(9)
-m_nUsage=5
-m_strDefaultValue=0
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM32_WK
-
-@}}
-[FDITEM33_WK]
-m_strName=STATUS-macrointensity
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM33_WK
-
-@}}
-[FDITEM34_WK]
-m_strName=Valid-STATUS-macrointensity
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM34_WK
 
 @}}
 
@@ -554,7 +504,7 @@ GRAPHICAL-SCREEN
 Begin Screen Form1
    PREFIX            = Form1
    IMPORTED-SCREEN   = FALSE
-   LOCK-CONTROL      = FALSE
+   LOCK-CONTROL      = TRUE
    LEVEL             = 1
    (Name)            = Form1
    Absolute Column   = 0
@@ -591,7 +541,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 93,80
+   Size              = 54,20
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -640,8 +590,8 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Grid form1-gd-1
-      SCREEN-COL        = 1,90
-      SCREEN-LINE       = 1,74
+      SCREEN-COL        = 2,10
+      SCREEN-LINE       = 1,78
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = form1-gd-1
@@ -650,39 +600,19 @@ Begin Screen Form1
       Border            = Boxed
       Cells' Setting    = ( X = 1, Y = 1, Data = "Codice" )
       Cells' Setting    = ( X = 2, Y = 1, Data = "Descrizione" )
-      Cells' Setting    = ( X = 3, Y = 1, Data = "Rest ("")" )
-      Cells' Setting    = ( X = 4, Y = 1, Data = "Series ("")" )
-      Cells' Setting    = ( X = 5, Y = 1, Data = "Time ("")" )
-      Cells' Setting    = ( X = 6, Y = 1, Data = "Min rep" )
-      Cells' Setting    = ( X = 7, Y = 1, Data = "Max rep" )
-      Cells' Setting    = ( X = 8, Y = 1, Data = "Effort" )
+      Cells' Setting    = ( X = 3, Y = 1, Data = "Exercises" )
       Centered Headings = FALSE
       Color             = 0
-      Column            = 1,90
+      Column            = 2,10
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-codice, READONLY = 0 )
-      Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+      Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
       Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 2, Name = col-des, READONLY = 0 )
       Columns' Setting  = ( PIC = "X(50)", TYPE = "X(50)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 20, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 3, Name = col-rest, READONLY = 0 )
+      Columns' Setting  = ( DISP = 30, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 3, Name = col-exercises, READONLY = 0 )
       Columns' Setting  = ( PIC = "zz9", TYPE = "zz9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 4, Name = col-series, READONLY = 0 )
-      Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 5, Name = col-duration, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "zz9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 6, Name = col-range-from, READONLY = 0 )
-      Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 7, Name = col-range-to, READONLY = 0 )
-      Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 8, Name = col-effort, READONLY = 0 )
-      Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 2
@@ -702,24 +632,24 @@ Begin Screen Form1
       Hscroll           = FALSE
       ID                = 1
       Last Row          = 0
-      Line              = 1,74
+      Line              = 1,78
       Lines             = 22,70
       Lines Unit        = Default
       No Tab            = FALSE
       Num Col Headings  = 1
-      Num Columns       = 8
+      Num Columns       = 3
       Num Rows          = 0
       Occurs            = 0
       Paged             = FALSE
       Record Data       = rec-grid
       Row Dividers      = 1
       Row Headings      = FALSE
-      Size              = 91,90
+      Size              = 51,90
       Size Unit         = Default
       Tab Order         = 2
       Tiled Headings    = TRUE
       Use Tab           = TRUE
-      Virtual Width     = 90
+      Virtual Width     = 50
       Visible           = NONE
       Vpadding          = 10
       Vscroll           = TRUE
@@ -1036,9 +966,9 @@ Begin Screen Form1
          Link To           = TOOL-CERCA-LinkTo
       End
       Begin Bitmap Form1-Bt-1
-         SCREEN-COL        = 89,90
+         SCREEN-COL        = 50,40
          SCREEN-LINE       = 1,00
-         LOCK-CONTROL      = TRUE
+         LOCK-CONTROL      = FALSE
          LEVEL             = 5
          (Name)            = Form1-Bt-1
          Bitmap            = "..\RESOURCE\LOGO_PICCOLO.BMP"
@@ -1047,7 +977,7 @@ Begin Screen Form1
          Bitmap Number     = 1
          Bitmap Start      = 0
          Bitmap Timer      = 0
-         Column            = 89,90
+         Column            = 50,40
          Copy Resource     = TRUE
          Destroy Type      = Automatic
          Font              = Default Font
@@ -1090,19 +1020,17 @@ BEGIN-DATA
    NODESTYLE         = 13
    PARAGRAPH         = Other Working
 BEGIN-TEXT
-       01 old-int-rec.
-           05 old-int-key.
-               10 old-int-code         PIC  99.
-           05 old-int-data.
-               10 old-int-desc         PIC  x(100).
-               10 old-int-rest         PIC  9(3).
-               10 old-int-series       PIC  99.
-               10 old-int-duration     PIC  9(3).
-               10 old-int-filler       PIC  x(1000).
-               10 old-int-filler-n1    PIC  9(18).
-               10 old-int-filler-n2    PIC  9(18).
-               10 old-int-filler-n3    PIC  9(18).
-               10 old-int-filler-n4    PIC  9(18).
+       01 old-dur-rec.
+           05 old-dur-key.
+               10 old-dur-code         PIC  99.
+           05 old-dur-data.
+               10 old-dur-desc         PIC  x(100).  
+               10 old-dur-exercises    PIC  9(3).
+               10 old-dur-filler       PIC  x(1000).
+               10 old-dur-filler-n1    PIC  9(18).
+               10 old-dur-filler-n2    PIC  9(18).
+               10 old-dur-filler-n3    PIC  9(18).
+               10 old-dur-filler-n4    PIC  9(18).
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1164,25 +1092,25 @@ END-DATA
 BEGIN-DATA
    BASETYPE          = 1
    NODESTYLE         = 0
-   PARENT            = tintensity
-   ACTOBJ            = tintensity
+   PARENT            = tduration
+   ACTOBJ            = tduration
    ENTRYPOINT        = BeforeDeclarative
 BEGIN-TEXT
-       codint-ERR SECTION.
-           use after error procedure on intensity.
-           evaluate status-intensity
+       coddur-ERR SECTION.
+           use after error procedure on duration.
+           evaluate status-duration
            when "35"
-                display message "File [intensity] not found!"
+                display message "File [duration] not found!"
                            title titolo
                             icon 3
                 set errori to true
            when "39"
-                display message "File [intensity] Mismatch size!"
+                display message "File [duration] Mismatch size!"
                            title titolo
                             icon 3
                 set errori to true
            when "98"
-                display message "[intensity] Indexed file corrupt!"
+                display message "[duration] Indexed file corrupt!"
                            title titolo
                             icon 3
                 set errori to true 
@@ -1190,7 +1118,7 @@ BEGIN-TEXT
                 move 0 to mod
                 modify tool-modifica, value = mod  
                 set StatusVisua to true
-                open input intensity
+                open input duration
                 display message box MSG-Gia-in-uso-su-altro-terminale
                             x"0d0a" MSG-SOLA-VISUA
                         title = tit-err
@@ -1308,7 +1236,7 @@ BEGIN-TEXT
               inquire form1-gd-1, cursor-y in riga
               perform VALORE-RIGA
 
-              delete intensity record invalid continue end-delete
+              delete duration record invalid continue end-delete
 
               modify  form1-gd-1, record-to-delete = riga
               inquire form1-gd-1, last-row in tot-righe
@@ -1337,7 +1265,7 @@ BEGIN-TEXT
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x     = 8,
+           modify form1-gd-1, start-x = 1, x     = 3,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,
@@ -1358,14 +1286,14 @@ BEGIN-TEXT
            evaluate colonna
            when 1
                 if nuovo
-                   if int-code = zero or spaces 
+                   if dur-code = zero or spaces 
                       set errori to true
                       move 1     to colonna
                       display message box MSG-Codice-obbligatorio
                               title = tit-err
                               icon mb-warning-icon
                    else  
-                      read intensity
+                      read duration
                            not invalid
                                set errori to true
                                display message MGS-codice-gia-inserito|"Codice già inserito!"
@@ -1373,9 +1301,9 @@ BEGIN-TEXT
                                        icon mb-warning-icon
                       end-read
                    end-if
-                end-if
+                end-if 
            when 2
-                if int-desc = spaces
+                if dur-desc = spaces
                    set errori to true
                    move 2 to colonna
                    display message box MSG-Descrizione-mancante|"Descrizione mancante"
@@ -1383,50 +1311,9 @@ BEGIN-TEXT
                            icon mb-warning-icon
                 end-if
            when 3
-                if int-rest = 0
+                if dur-exercises = 0
                    set errori to true
-                   display message "Valore obbligatorio"
-                           title = tit-err
-                           icon mb-warning-icon
-                end-if
-           when 4
-                if int-series = 0
-                   set errori to true
-                   display message "Valore obbligatorio"
-                           title = tit-err
-                           icon mb-warning-icon
-                end-if   
-           when 5
-                if int-duration = spaces
-                   set errori to true   
-                   display message "Valore obbligatorio"
-                           title = tit-err
-                           icon mb-warning-icon
-                end-if
-           when 6
-                if int-range-from = 0
-                   set errori to true   
-                   display message "Valore obbligatorio"
-                           title = tit-err
-                           icon mb-warning-icon
-                end-if
-           when 7
-                if int-range-to = 0
-                   set errori to true   
-                   display message "Valore obbligatorio"
-                           title = tit-err
-                           icon mb-warning-icon
-                else
-                   if int-range-to < int-range-from
-                      set errori to true   
-                      display message "Range errato"
-                              title = tit-err
-                              icon mb-warning-icon
-                   end-if
-                end-if  
-           when 8
-                if int-effort = 0
-                   set errori to true   
+                   move 3 to colonna
                    display message "Valore obbligatorio"
                            title = tit-err
                            icon mb-warning-icon
@@ -1461,31 +1348,21 @@ BEGIN-DATA
    PARAGRAPH         = LOAD-RECORD
 BEGIN-TEXT
            modify form1-gd-1, mass-update = 1.
-           move low-value to int-code.
-           start intensity key is >= int-key
+           move low-value to dur-code.
+           start duration key is >= dur-key
                   invalid continue
               not invalid
                   perform varying riga from 2 by 1
                           until 1 = 2
-                     read intensity next
+                     read duration next
                           at end exit perform
                       not at end
-                          move int-code       to col-codice
-                          move int-desc       to col-des  
-                          move int-rest       to col-rest
-                          move int-series     to col-series 
-                          move int-duration   to col-duration
-                          move int-range-from to col-range-from
-                          move int-range-to   to col-range-to
-                          move int-effort     to col-effort
+                          move dur-code      to col-codice
+                          move dur-desc      to col-des  
+                          move dur-exercises to col-exercises
                           modify form1-gd-1(riga, 1), cell-data col-codice
                           modify form1-gd-1(riga, 2), cell-data col-des  
-                          modify form1-gd-1(riga, 3), cell-data col-rest  
-                          modify form1-gd-1(riga, 4), cell-data col-series  
-                          modify form1-gd-1(riga, 5), cell-data col-duration  
-                          modify form1-gd-1(riga, 6), cell-data col-range-from
-                          modify form1-gd-1(riga, 7), cell-data col-range-to
-                          modify form1-gd-1(riga, 7), cell-data col-effort
+                          modify form1-gd-1(riga, 3), cell-data col-exercises
                      end-read                                           
                   end-perform
            end-start.
@@ -1504,8 +1381,8 @@ BEGIN-TEXT
            else
               |specifico per i pgm. con grid-control
               if mod = 1
-                 close intensity
-                 open i-o intensity allowing readers
+                 close duration
+                 open i-o duration allowing readers
               else
                  set tutto-ok to true
                  if NoSalvato
@@ -1514,8 +1391,8 @@ BEGIN-TEXT
                  end-if   
                  if tutto-ok
                     move 0 to mod
-                    close intensity
-                    open input intensity
+                    close duration
+                    open input duration
 
       *             | specifico x le tabelle.
                     | fa in modo che resto sulla cella in cui ero
@@ -1545,7 +1422,7 @@ BEGIN-TEXT
 
            if nuovo
               perform VALORE-RIGA
-              if int-code not = SPACES
+              if dur-code not = SPACES
                  perform SALVA
               else
                  set errori to true
@@ -1565,7 +1442,7 @@ BEGIN-TEXT
 
               perform ABILITAZIONI
 
-              initialize old-int-rec replacing numeric data by zeroes
+              initialize old-dur-rec replacing numeric data by zeroes
                                           alphanumeric data by spaces
               add 1 to tot-righe giving event-data-2
               perform COLORE-RIGA
@@ -1587,7 +1464,7 @@ BEGIN-DATA
 BEGIN-TEXT
            if nuovo
               perform VALORE-RIGA
-              if int-rec not = old-int-rec
+              if dur-rec not = old-dur-rec
                  set NoSalvato to true
               else
                  set SiSalvato to true
@@ -1622,14 +1499,14 @@ BEGIN-TEXT
                                cursor-y in riga.
 
            perform varying colonna from 1 by 1
-                     until colonna > 8
+                     until colonna > 2
               perform CONTROLLO
               if errori exit perform end-if
            end-perform.
 
            if tutto-ok
-              write int-rec
-                    invalid rewrite int-rec
+              write dur-rec
+                    invalid rewrite dur-rec
               end-write
 
               set sisalvato to true
@@ -1649,7 +1526,7 @@ BEGIN-TEXT
 
            if event-data-2 not = riga
               perform VALORE-RIGA
-              if int-code = spaces or zero
+              if dur-code = spaces or zero
                  modify form1-gd-1, record-to-delete riga
                  set vecchio to true
               else  
@@ -1691,14 +1568,9 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = VALORE-RIGA
 BEGIN-TEXT
-           inquire form1-gd-1(riga, 1), cell-data int-code.  
-           inquire form1-gd-1(riga, 2), cell-data int-desc.  
-           inquire form1-gd-1(riga, 3), cell-data int-rest.  
-           inquire form1-gd-1(riga, 4), cell-data int-series.  
-           inquire form1-gd-1(riga, 5), cell-data int-duration.
-           inquire form1-gd-1(riga, 6), cell-data int-range-from.
-           inquire form1-gd-1(riga, 7), cell-data int-range-to.  
-           inquire form1-gd-1(riga, 8), cell-data int-effort.
+           inquire form1-gd-1(riga, 1), cell-data dur-code.  
+           inquire form1-gd-1(riga, 2), cell-data dur-desc.  
+           inquire form1-gd-1(riga, 3), cell-data dur-exercises.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1706,12 +1578,12 @@ BEGIN-DATA
    PARAGRAPH         = VALORE-OLD-RIGA
 BEGIN-TEXT
            if vecchio
-              inquire form1-gd-1(riga, 1) cell-data old-int-code
-              move old-int-code           to int-code
-              read intensity                 no lock
-              move int-rec                to old-int-rec
+              inquire form1-gd-1(riga, 1) cell-data old-dur-code
+              move old-dur-code           to dur-code
+              read duration                 no lock
+              move dur-rec                to old-dur-rec
            else
-              initialize old-int-rec replacing numeric data by zeroes
+              initialize old-dur-rec replacing numeric data by zeroes
                                           alphanumeric data by spaces
            end-if.
 
@@ -1795,7 +1667,7 @@ BEGIN-TEXT
               perform VALORE-RIGA
            end-if.
 
-           if int-rec not = old-int-rec
+           if dur-rec not = old-dur-rec
               set NoSalvato to true                            
            else 
               set SiSalvato to true
@@ -1812,16 +1684,20 @@ BEGIN-TEXT
            perform VALORE-RIGA.
 
            if colonna = 1
-              if int-code not = zero and int-code not = spaces
+              if dur-code not = zero and dur-code not = spaces
                  set event-action to event-action-fail
               end-if
            else 
               if mod = 0
                  set event-action to event-action-fail
               else
-                 if int-code = zero or spaces
+                 if dur-code = zero or spaces
                     set event-action to event-action-fail
                     modify form1-gd-1, cursor-y = riga, cursor-x = 1
+                 else
+                    if colonna = 4
+                       set event-action to event-action-fail
+                    end-if
                  end-if   
               end-if
            end-if.
@@ -1920,7 +1796,7 @@ OBJ_ID_0=2113416747
 
 [MULTIPLE_KEY_0]
 COUNT=1
-KEY_0=int-key
+KEY_0=dur-key
 
 [DRAW_DOCUMENT_8001_2113416747]
 OBJ_NAME=8001
@@ -1974,7 +1850,7 @@ OBJ_NAME=2301
 OBJ_ID=1387394544
 KIND=1
 {{@LABEL_2301_1387394544
-intensity
+duration
 @}}
 WK_STEP=0
 BK_POINT=0
@@ -2036,7 +1912,7 @@ FILE_SHOW_MINIZE=0
 OBJ_NAME=0
 OBJ_ID=1387394544
 REL_M_OBJ_ID=0
-ENTITY=intensity
+ENTITY=duration
 LINK=0
 LINK_NAME=
 DSN_SIZE=39
@@ -2044,7 +1920,7 @@ FD_SIZE=0
 SL_SIZE=0
 DSN_INFO_OPEN_MODE=2
 DSN_INFO_LOCK_OPTION=0
-DSN_INFO_KEY_IS=int-key
+DSN_INFO_KEY_IS=dur-key
 DSN_INFO_DATA_ORDER=0
 DSN_INFO_START_VALUE=
 DSN_INFO_END_VALUE=

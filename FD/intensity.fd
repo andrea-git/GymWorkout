@@ -10,6 +10,7 @@
                10 int-range.
                    15 int-range-from   PIC  99.
                    15 int-range-to     PIC  99.
+               10 int-effort       PIC  99.
                10 int-filler       PIC  x(1000).
                10 int-filler-n1    PIC  9(18).
                10 int-filler-n2    PIC  9(18).

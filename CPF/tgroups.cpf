@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E79894712-518-1338025328
+PROGRAM_UNIQUE_CODE=TOTEM-7E79812848-111-76819298
 
 {{@DESCRIPTION:
 
@@ -1521,7 +1521,7 @@ BEGIN-TEXT
                                cursor-y in riga.
 
            perform varying colonna from 1 by 1
-                     until colonna > 2
+                     until colonna > 3
               perform CONTROLLO
               if errori exit perform end-if
            end-perform.

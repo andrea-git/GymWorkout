@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          "menu".
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 12:11:11.
+       DATE-WRITTEN.        venerdì 8 settembre 2023 13:59:33.
        REMARKS.
       *{TOTEM}END
 
@@ -661,7 +661,7 @@
       * EVENT PARAGRAPH
        pb-param-LinkTo.
       * <TOTEM:PARA. pb-param-LinkTo>
-           move "gparam" to NomeProgramma.
+           move "tduration" to NomeProgramma.
            perform CALL-PROGRAM 
            .
       * <TOTEM:END>
@@ -704,7 +704,7 @@
       * <TOTEM:END>
        pb-listini-LinkTo.
       * <TOTEM:PARA. pb-listini-LinkTo>
-           move "glistini" to NomeProgramma.
+           move "gwod" to NomeProgramma.
            perform CALL-PROGRAM 
            .
       * <TOTEM:END>

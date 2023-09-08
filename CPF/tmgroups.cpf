@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7988196-187-2677529974
+PROGRAM_UNIQUE_CODE=TOTEM-7E798115526-641-880430658
 
 {{@DESCRIPTION:
 
@@ -1250,7 +1250,7 @@ BEGIN-TEXT
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x     = 4,
+           modify form1-gd-1, start-x = 1, x     = 2,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,

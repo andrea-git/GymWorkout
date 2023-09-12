@@ -4,7 +4,12 @@
                10 dur-code         PIC  99.
            05 dur-data.
                10 dur-desc         PIC  x(100).
-               10 dur-exercises    PIC  9(3).
+               10 dur-exercises    PIC  99.
+               10 dur-exercises1   PIC  9.
+               10 dur-exercises2   PIC  9.
+               10 dur-exercises3   PIC  9.
+               10 dur-exercises4   PIC  9.
+               10 dur-exercises5   PIC  9.
                10 dur-filler       PIC  x(1000).
                10 dur-filler-n1    PIC  9(18).
                10 dur-filler-n2    PIC  9(18).

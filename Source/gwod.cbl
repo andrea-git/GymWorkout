@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        sabato 9 settembre 2023 00:27:47.
+       DATE-WRITTEN.        martedì 12 settembre 2023 18:34:00.
        REMARKS.
       *{TOTEM}END
 
@@ -170,8 +170,6 @@
        77 STATUS-tlistini  PIC  X(2).
            88 Valid-STATUS-tlistini VALUE IS "00" THRU "09". 
        77 lab-art-buf      PIC  x(100).
-       77 v-prezzi         PIC  9
-                  VALUE IS 0.
        77 Calibri12BI-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 tsc-cliente      PIC  x(6).
@@ -199,20 +197,16 @@
        77 STATUS-duration  PIC  X(2).
            88 Valid-STATUS-duration VALUE IS "00" THRU "09". 
        77 cb-rnd-buf       PIC  X(100).
+       77 cb-dur-buf       PIC  X(100).
        77 Default-Font
                   USAGE IS HANDLE OF FONT DEFAULT-FONT.
-       77 ef-ex-1-buf      PIC  z9.
-       77 ef-ex-2-buf      PIC  z9.
-       77 ef-ex-3-buf      PIC  z9.
-       77 cb-dur-buf       PIC  X(100).
-       77 ef-ex-4-buf      PIC  z9.
-       77 ef-ex-5-buf      PIC  z9.
-       77 ef-ex-tb-buf     PIC  z9.
        77 ex-remain        PIC  99.
        77 wod-effort       PIC  99.
        77 path-tmp-exe-effort          PIC  X(256).
        77 STATUS-tmp-exe-effort        PIC  X(2).
            88 Valid-STATUS-tmp-exe-effort VALUE IS "00" THRU "09". 
+       77 cb-gio-buf       PIC  9.
+       77 cb-mul-buf       PIC  X(100).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -228,7 +222,7 @@
        77 TMP-DataSet1-intensity-BUF     PIC X(1188).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
-       77 TMP-DataSet1-duration-BUF     PIC X(1159).
+       77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(118).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
@@ -762,7 +756,7 @@
            pb-genera, 
            Push-Button, 
            COL 80,00, 
-           LINE 10,09,
+           LINE 10,04,
            LINES 3,30 ,
            SIZE 26,40 ,
            EXCEPTION-VALUE 1000,
@@ -773,138 +767,94 @@
            TITLE "GENERA",
            .
 
-      * ENTRY FIELD
+      * LABEL
        05
-           ef-ex-1, 
-           Entry-Field, 
-           COL 43,60, 
-           LINE 1,65,
+           Screen1-La-2aaa, 
+           Label, 
+           COL 65,00, 
+           LINE 4,87,
            LINES 1,30 ,
-           SIZE 6,00 ,
-           BOXED,
-           COLOR IS 513,
-           ID IS 23,
+           SIZE 8,00 ,
+           ID IS 18,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           NUMERIC,
-           SPINNER,
-           VALUE ef-ex-1-buf,
-           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
+           TRANSPARENT,
+           TITLE "Giorni",
            .
 
-      * ENTRY FIELD
+      * COMBO-BOX
        05
-           ef-ex-2, 
-           Entry-Field, 
-           COL 43,60, 
-           LINE 3,13,
-           LINES 1,30 ,
-           SIZE 6,00 ,
+           cb-gio, 
+           Combo-Box, 
+           COL 74,00, 
+           LINE 4,87,
+           LINES 6,00 ,
+           SIZE 25,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 24,
+           ID IS 19,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           NUMERIC,
-           SPINNER,
-           VALUE ef-ex-2-buf,
-           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
+           MASS-UPDATE 0,
+           NOTIFY-SELCHANGE,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-gio-buf,
+           AFTER PROCEDURE cb-dur-AfterProcedure, 
+           BEFORE PROCEDURE cb-dur-BeforeProcedure, 
+           .
+      * PUSH BUTTON
+       05
+           Screen1-Pb-1, 
+           Push-Button, 
+           COL 60,50, 
+           LINE 8,13,
+           LINES 1,48 ,
+           SIZE 3,80 ,
+           EXCEPTION-VALUE 1001,
+           FONT IS Small-Font,
+           ID IS 30,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Push Button",
            .
 
-      * ENTRY FIELD
+      * LABEL
        05
-           ef-ex-3, 
-           Entry-Field, 
-           COL 43,60, 
-           LINE 4,65,
+           Screen1-La-2ba, 
+           Label, 
+           COL 3,00, 
+           LINE 13,78,
            LINES 1,30 ,
-           SIZE 6,00 ,
+           SIZE 13,00 ,
+           ID IS 20,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Multiarticolari",
+           .
+
+      * COMBO-BOX
+       05
+           cb-mul, 
+           Combo-Box, 
+           COL 17,00, 
+           LINE 13,78,
+           LINES 4,00 ,
+           SIZE 25,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 25,
+           ID IS 21,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           NUMERIC,
-           SPINNER,
-           VALUE ef-ex-3-buf,
-           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
+           MASS-UPDATE 0,
+           NOTIFY-SELCHANGE,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mul-buf,
+           AFTER PROCEDURE cb-rnd-AfterProcedure, 
+           BEFORE PROCEDURE cb-rnd-BeforeProcedure, 
            .
-
-      * ENTRY FIELD
-       05
-           ef-ex-4, 
-           Entry-Field, 
-           COL 43,60, 
-           LINE 6,13,
-           LINES 1,30 ,
-           SIZE 6,00 ,
-           BOXED,
-           COLOR IS 513,
-           ID IS 27,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           NUMERIC,
-           SPINNER,
-           VALUE ef-ex-4-buf,
-           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
-           .
-
-      * ENTRY FIELD
-       05
-           ef-ex-5, 
-           Entry-Field, 
-           COL 43,60, 
-           LINE 7,65,
-           LINES 1,30 ,
-           SIZE 6,00 ,
-           BOXED,
-           COLOR IS 513,
-           ID IS 28,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           NUMERIC,
-           SPINNER,
-           VALUE ef-ex-5-buf,
-           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
-           .
-
-      * ENTRY FIELD
-       05
-           ef-ex-tb, 
-           Entry-Field, 
-           COL 43,60, 
-           LINE 9,61,
-           LINES 1,30 ,
-           SIZE 6,00 ,
-           BOXED,
-           COLOR IS 513,
-           ID IS 29,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           NUMERIC,
-           SPINNER,
-           VALUE ef-ex-tb-buf,
-           AFTER PROCEDURE Screen1-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Ef-1-BeforeProcedure, 
-           .
-
       * TOOLBAR
        01
            Form1-Tb-1,
@@ -2643,6 +2593,14 @@
        cb-rnd-Content.
            .
 
+      * COMBO-BOX
+       cb-gio-Content.
+           .
+
+      * COMBO-BOX
+       cb-mul-Content.
+           .
+
       * FD's Initialize Paragraph
        DataSet1-exercises-INITREC.
            INITIALIZE exe-rec OF exercises
@@ -2797,11 +2755,20 @@
                                                  
            modify cb-mgtb, item-to-add = "No".
            modify cb-mgtb, item-to-add = "Si".   
-
+                                             
            modify cb-rnd, item-to-add = "No".
-           modify cb-rnd, item-to-add = "Si".     
-
+           modify cb-rnd, item-to-add = "Si".
+ 
+           modify cb-mul, item-to-add = "No".
+           modify cb-mul, item-to-add = "Si".     
+                                          
            modify cb-dur, item-to-add = "Nessuno".
+
+           modify cb-gio, item-to-add = 1.
+           modify cb-gio, item-to-add = 2.
+           modify cb-gio, item-to-add = 3.
+           modify cb-gio, item-to-add = 4.
+           modify cb-gio, item-to-add = 5.
                         
            move low-value to mcg-key.
            start macrogroups key >= mcg-key
@@ -2843,10 +2810,14 @@
            modify cb-int, value "Nessuno".
                         
            modify cb-mgtb, value "No".    
-
+                                  
            modify cb-rnd,  value "No".    
 
+           modify cb-mul,  value "Si".
+                                         
            modify cb-dur, value "Nessuno".
+
+           modify cb-gio, value 1.
 
            .
       * <TOTEM:END>
@@ -2892,6 +2863,8 @@
                  END-IF
               WHEN Key-Status = 1000
                  PERFORM pb-genera-LinkTo
+              WHEN Key-Status = 1001
+                 PERFORM Screen1-Pb-1-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 4
@@ -2972,6 +2945,10 @@
            PERFORM cb-dur-Content
       * COMBO-BOX
            PERFORM cb-rnd-Content
+      * COMBO-BOX
+           PERFORM cb-gio-Content
+      * COMBO-BOX
+           PERFORM cb-mul-Content
            .
 
        Form1-DataSet1-CHANGETO-KEY1.
@@ -3687,53 +3664,48 @@
                                        alphanumeric data by spaces.
 
            move 0 to idx-gruppi.
+                        
+           inquire cb-gio, value in cb-gio-buf.
+           inquire cb-dur, value in dur-desc.
+           read duration key dur-k-desc.
+                                             
            inquire cb-mg1, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.                                  
+           inquire cb-mg2, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.                                  
+           inquire cb-mg3, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.                                  
+           inquire cb-mg4, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.                                  
+           inquire cb-mg5, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.
+
+      ***---
+       ADD-ELEM-GRUPPO.
            read macrogroups key  mcg-k-desc 
                 invalid continue
             not invalid 
                 add 1 to idx-gruppi                   
                 move mcg-desc to el-mgroup(idx-gruppi)
                 move mcg-code to el-mcg-code(idx-gruppi)
-           end-read.
- 
-           inquire cb-mg2, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)  
-                move mcg-desc to el-mgroup(idx-gruppi)
-                move mcg-code to el-mcg-code(idx-gruppi)
-           end-read.
 
-           inquire cb-mg3, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)  
-                move mcg-desc to el-mgroup(idx-gruppi)
-                move mcg-code to el-mcg-code(idx-gruppi)
-           end-read.
-
-           inquire cb-mg4, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)  
-                move mcg-desc to el-mgroup(idx-gruppi)
-                move mcg-code to el-mcg-code(idx-gruppi)
-           end-read.
-
-           inquire cb-mg5, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)  
-                move mcg-desc to el-mgroup(idx-gruppi)
-                move mcg-code to el-mcg-code(idx-gruppi)
+                evaluate idx-gruppi                        
+                when 1
+                     compute el-exercises(idx-gruppi) =
+                             cb-gio-buf * dur-exercises1
+                when 2
+                     compute el-exercises(idx-gruppi) =
+                             cb-gio-buf * dur-exercises2
+                when 3
+                     compute el-exercises(idx-gruppi) =
+                             cb-gio-buf * dur-exercises3
+                when 4
+                     compute el-exercises(idx-gruppi) =
+                             cb-gio-buf * dur-exercises4
+                when 5
+                     compute el-exercises(idx-gruppi) =
+                             cb-gio-buf * dur-exercises5
+                end-evaluate
            end-read.
            move idx-gruppi to tot-gruppi 
            .
@@ -4524,38 +4496,6 @@
            .
       * <TOTEM:END>
 
-       VALORIZZA-EXERCISES.
-      * <TOTEM:PARA. VALORIZZA-EXERCISES>
-           if tot-gruppi > 0
-              move 0 to ef-ex-tb-buf
-              move dur-exercises to ex-remain
-              perform varying idx-gruppi from 1 by 1 until 1 = 2
-                 if idx-gruppi > 5
-                    move 1 to idx-gruppi
-                 end-if
-                 if el-mgroup(idx-gruppi) not = spaces
-                    add 1 to el-exercises(idx-gruppi)
-                    subtract 1 from ex-remain
-                    if ex-remain = 0
-                       exit perform
-                    end-if
-                 end-if
-              end-perform
-           else
-              inquire cb-mgtb, value in cb-mgtb-buf  
-              if cb-mgtb-buf = "Si"
-                 move dur-exercises to ef-ex-tb-buf
-              end-if
-           end-if.                              
-           modify ef-ex-1,  value el-exercises(1).
-           modify ef-ex-2,  value el-exercises(2).
-           modify ef-ex-3,  value el-exercises(3).
-           modify ef-ex-4,  value el-exercises(4).
-           modify ef-ex-5,  value el-exercises(5).
-           modify ef-ex-tb, value ef-ex-tb-buf 
-           .
-      * <TOTEM:END>
-
        VALORIZZA-OLD.
       * <TOTEM:PARA. VALORIZZA-OLD>
       *     move tsc-rec to old-tsc-rec.
@@ -5008,14 +4948,6 @@
        cb-dur-AfterProcedure.
       * <TOTEM:PARA. cb-dur-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-           inquire cb-dur, value in cb-dur-buf.
-           if cb-dur-buf not = old-cb-dur-buf
-              move cb-dur-buf to old-cb-dur-buf
-              move cb-dur-buf to dur-desc
-              read duration key dur-k-desc     
-              perform CREA-OCCURS-GRUPPI
-              perform VALORIZZA-EXERCISES
-           end-if 
            .
       * <TOTEM:END>
        cb-rnd-AfterProcedure.
@@ -5042,12 +4974,14 @@
        pb-genera-LinkTo.
       * <TOTEM:PARA. pb-genera-LinkTo>
            perform CREA-OCCURS-GRUPPI.
-           perform VALORIZZA-EXERCISES.
+           modify gd1, reset-grid = 1,
+           perform GD1-CONTENT.
+
            move 0 to int-effort.
            inquire cb-int, value in int-desc.
            read intensity key int-k-desc.
            move int-effort to wod-effort.
-
+                 
            accept  como-data from century-date.
            accept  como-ora  from time.
            accept  path-tmp-exe-effort from environment "PATH_ST".
@@ -5093,7 +5027,8 @@
                        end-perform
                     end-if
                  end-perform
-           end-start.                
+           end-start.       
+           move 1 to riga.
            perform varying idx-gruppi from 1 by 1 
                      until idx-gruppi > tot-gruppi
               move el-mcg-code(idx-gruppi) to tee-mcg-code
@@ -5102,13 +5037,17 @@
                     invalid continue
                 not invalid
                     perform until 1 = 2
+                       if el-exercises-ok(idx-gruppi) = 
+           el-exercises(idx-gruppi)
+                          exit perform
+                       end-if
                        read tmp-exe-effort previous 
                          at end exit perform 
                        end-read
                        if tee-mcg-code not = el-mcg-code(idx-gruppi)
                           exit perform
                        end-if                
-                       add 1 to riga
+                       add 1 to riga el-exercises-ok(idx-gruppi)
                        modify gd1(riga, 1), cell-data tee-exe-desc
                        delete tmp-exe-effort record
                     end-perform
@@ -5121,14 +5060,14 @@
                        
            .
       * <TOTEM:END>
-       Screen1-Ef-1-BeforeProcedure.
-      * <TOTEM:PARA. Screen1-Ef-1-BeforeProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
-           .
-      * <TOTEM:END>
-       Screen1-Ef-1-AfterProcedure.
-      * <TOTEM:PARA. Screen1-Ef-1-AfterProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+       Screen1-Pb-1-LinkTo.
+      * <TOTEM:PARA. Screen1-Pb-1-LinkTo>
+           modify cb-mg1, value "Back".
+           modify cb-mg2, value "Legs".
+           modify cb-mg3, value "Pectoral".
+                                 
+           modify cb-int, value = "Hard".
+           modify cb-dur, value = "Medium" 
            .
       * <TOTEM:END>
 

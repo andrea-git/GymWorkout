@@ -5,7 +5,7 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E798204349-300-203223257
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E79C163517-148-119441067
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -62,8 +62,8 @@ m_bFixed=1
 @}}
 [FDITEM5_]
 m_strName=dur-exercises
-m_strRawPic=9(3)
-m_strPic=9(3)
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -71,9 +71,9 @@ m_bFixed=1
 
 @}}
 [FDITEM6_]
-m_strName=dur-filler
-m_strRawPic=x(1000)
-m_strPic=x(1000)
+m_strName=dur-exercises1
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -81,9 +81,9 @@ m_bFixed=1
 
 @}}
 [FDITEM7_]
-m_strName=dur-filler-n1
-m_strRawPic=9(18)
-m_strPic=9(18)
+m_strName=dur-exercises2
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -91,9 +91,9 @@ m_bFixed=1
 
 @}}
 [FDITEM8_]
-m_strName=dur-filler-n2
-m_strRawPic=9(18)
-m_strPic=9(18)
+m_strName=dur-exercises3
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -101,13 +101,63 @@ m_bFixed=1
 
 @}}
 [FDITEM9_]
+m_strName=dur-exercises4
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM9_
+
+@}}
+[FDITEM10_]
+m_strName=dur-exercises5
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM10_
+
+@}}
+[FDITEM11_]
+m_strName=dur-filler
+m_strRawPic=x(1000)
+m_strPic=x(1000)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM11_
+
+@}}
+[FDITEM12_]
+m_strName=dur-filler-n1
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM12_
+
+@}}
+[FDITEM13_]
+m_strName=dur-filler-n2
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM13_
+
+@}}
+[FDITEM14_]
 m_strName=dur-filler-n3
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM9_
+{{@DataItem_m_strDescriptionFDITEM14_
 
 @}}
 [CStoAcucobolSL_]

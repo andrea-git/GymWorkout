@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E79820641-236-134761983
+PROGRAM_UNIQUE_CODE=TOTEM-7E79C151659-579-2637628475
 
 {{@DESCRIPTION:
 
@@ -211,8 +211,8 @@ m_bFixed=1
 @}}
 [FDITEM18_WK]
 m_strName=col-exercises
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=z9
+m_strPic=z9
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -220,59 +220,58 @@ m_bFixed=1
 
 @}}
 [FDITEM19_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
-m_nItemLevel=77
+m_strName=col-exercises1
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM19_WK
 
 @}}
 [FDITEM20_WK]
-m_strName=FILLER
+m_strName=col-exercises2
 m_strRawPic=9
 m_strPic=9
-m_nItemLevel=1
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM20_WK
 
 @}}
 [FDITEM21_WK]
-m_strName=ricarica
-m_nItemLevel=88
+m_strName=col-exercises3
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-m_strTrue=1
-m_strFalse=0
 {{@DataItem_m_strDescriptionFDITEM21_WK
 
 @}}
 [FDITEM22_WK]
-m_strName=esegui-73x21-bmp
-m_strRawPic=S9(9)
-m_strPic=S9(9)
-m_nUsage=5
-m_strDefaultValue=0
-m_nItemLevel=77
+m_strName=col-exercises4
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM22_WK
 
 @}}
 [FDITEM23_WK]
-m_strName=Default-Font
-m_nUsage=38
-m_nItemLevel=77
+m_strName=col-exercises5
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM23_WK
 
 @}}
 [FDITEM24_WK]
-m_strName=STATUS-duration
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=Screen1-Handle
+m_nUsage=24
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -280,25 +279,27 @@ m_bFixed=1
 
 @}}
 [FDITEM25_WK]
-m_strName=Valid-STATUS-duration
-m_nItemLevel=88
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM25_WK
 
 @}}
 [FDITEM26_WK]
-m_strName=Calibri14-Occidentale
-m_nUsage=26
-m_nItemLevel=77
+m_strName=ricarica
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue=1
+m_strFalse=0
 {{@DataItem_m_strDescriptionFDITEM26_WK
 
 @}}
 [FDITEM27_WK]
-m_strName=LOGO_PICCOLO-BMP
+m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
 m_nUsage=5
@@ -310,9 +311,8 @@ m_bFixed=1
 
 @}}
 [FDITEM28_WK]
-m_strName=STATUS-macroduration
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=Default-Font
+m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -320,12 +320,62 @@ m_bFixed=1
 
 @}}
 [FDITEM29_WK]
+m_strName=STATUS-duration
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM29_WK
+
+@}}
+[FDITEM30_WK]
+m_strName=Valid-STATUS-duration
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM30_WK
+
+@}}
+[FDITEM31_WK]
+m_strName=Calibri14-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM31_WK
+
+@}}
+[FDITEM32_WK]
+m_strName=LOGO_PICCOLO-BMP
+m_strRawPic=S9(9)
+m_strPic=S9(9)
+m_nUsage=5
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM32_WK
+
+@}}
+[FDITEM33_WK]
+m_strName=STATUS-macroduration
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM33_WK
+
+@}}
+[FDITEM34_WK]
 m_strName=Valid-STATUS-macroduration
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM29_WK
+{{@DataItem_m_strDescriptionFDITEM34_WK
 
 @}}
 
@@ -538,7 +588,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 54,20
+   Size              = 104,00
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -587,8 +637,8 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Grid form1-gd-1
-      SCREEN-COL        = 2,10
-      SCREEN-LINE       = 1,78
+      SCREEN-COL        = 2,00
+      SCREEN-LINE       = 1,74
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = form1-gd-1
@@ -597,10 +647,15 @@ Begin Screen Form1
       Border            = Boxed
       Cells' Setting    = ( X = 1, Y = 1, Data = "Codice" )
       Cells' Setting    = ( X = 2, Y = 1, Data = "Descrizione" )
-      Cells' Setting    = ( X = 3, Y = 1, Data = "Exercises" )
+      Cells' Setting    = ( X = 3, Y = 1, Data = "Totale" )
+      Cells' Setting    = ( X = 4, Y = 1, Data = "Serie 1" )
+      Cells' Setting    = ( X = 5, Y = 1, Data = "Serie 2" )
+      Cells' Setting    = ( X = 6, Y = 1, Data = "Serie 3" )
+      Cells' Setting    = ( X = 7, Y = 1, Data = "Serie 4" )
+      Cells' Setting    = ( X = 8, Y = 1, Data = "Serie 5" )
       Centered Headings = FALSE
       Color             = 0
-      Column            = 2,10
+      Column            = 2,00
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-codice, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
@@ -609,7 +664,22 @@ Begin Screen Form1
       Columns' Setting  = ( PIC = "X(50)", TYPE = "X(50)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
       Columns' Setting  = ( DISP = 30, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 3, Name = col-exercises, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "zz9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+      Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 4, Name = col-exercises1, READONLY = 0 )
+      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 5, Name = col-exercises2, READONLY = 0 )
+      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 6, Name = col-exercises3, READONLY = 0 )
+      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 7, Name = col-exercises4, READONLY = 0 )
+      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 8, Name = col-exercises5, READONLY = 0 )
+      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 2
@@ -626,27 +696,27 @@ Begin Screen Form1
       Heading Font      = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      Hscroll           = FALSE
+      Hscroll           = TRUE
       ID                = 1
       Last Row          = 0
-      Line              = 1,78
+      Line              = 1,74
       Lines             = 22,70
       Lines Unit        = Default
       No Tab            = FALSE
       Num Col Headings  = 1
-      Num Columns       = 3
+      Num Columns       = 8
       Num Rows          = 0
       Occurs            = 0
       Paged             = FALSE
       Record Data       = rec-grid
       Row Dividers      = 1
       Row Headings      = FALSE
-      Size              = 51,90
+      Size              = 101,90
       Size Unit         = Default
       Tab Order         = 2
       Tiled Headings    = TRUE
       Use Tab           = TRUE
-      Virtual Width     = 50
+      Virtual Width     = 100
       Visible           = NONE
       Vpadding          = 10
       Vscroll           = TRUE
@@ -962,38 +1032,6 @@ Begin Screen Form1
          Additional Properties = "BITMAP-NUMBER BitmapNumZoom"
          Link To           = TOOL-CERCA-LinkTo
       End
-      Begin Bitmap Form1-Bt-1
-         SCREEN-COL        = 50,40
-         SCREEN-LINE       = 1,00
-         LOCK-CONTROL      = FALSE
-         LEVEL             = 5
-         (Name)            = Form1-Bt-1
-         Bitmap            = "..\RESOURCE\LOGO_PICCOLO.BMP"
-         Bitmap End        = 0
-         Bitmap Handle     = LOGO_PICCOLO-BMP
-         Bitmap Number     = 1
-         Bitmap Start      = 0
-         Bitmap Timer      = 0
-         Column            = 50,40
-         Copy Resource     = TRUE
-         Destroy Type      = Automatic
-         Font              = Default Font
-         Height in Cells   = FALSE
-         Help ID           = 0
-         ID                = 13
-         Line              = 1,00
-         Lines             = 2,78
-         Lines in Pixels   = 64
-         Lines Unit        = Default
-         Occurs            = 0
-         Size              = 4,80
-         Size in Pixels    = 48
-         Size Unit         = Default
-         Tab Order         = 7
-         Transparent Color = 0
-         Visible           = NONE
-         Width in Cells    = FALSE
-      End
    End
 End
 
@@ -1022,7 +1060,12 @@ BEGIN-TEXT
                10 old-dur-code         PIC  99.
            05 old-dur-data.
                10 old-dur-desc         PIC  x(100).  
-               10 old-dur-exercises    PIC  9(3).
+               10 old-dur-exercises    PIC  99.
+               10 old-dur-exercises1   PIC  9.
+               10 old-dur-exercises2   PIC  9.
+               10 old-dur-exercises3   PIC  9.
+               10 old-dur-exercises4   PIC  9.
+               10 old-dur-exercises5   PIC  9.
                10 old-dur-filler       PIC  x(1000).
                10 old-dur-filler-n1    PIC  9(18).
                10 old-dur-filler-n2    PIC  9(18).
@@ -1262,7 +1305,7 @@ BEGIN-TEXT
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x     = 3,
+           modify form1-gd-1, start-x = 1, x     = 8,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,
@@ -1354,12 +1397,22 @@ BEGIN-TEXT
                      read duration next
                           at end exit perform
                       not at end
-                          move dur-code      to col-codice
-                          move dur-desc      to col-des  
-                          move dur-exercises to col-exercises
+                          move dur-code       to col-codice
+                          move dur-desc       to col-des      
+                          move dur-exercises  to col-exercises
+                          move dur-exercises1 to col-exercises1
+                          move dur-exercises2 to col-exercises2
+                          move dur-exercises3 to col-exercises3
+                          move dur-exercises4 to col-exercises4
+                          move dur-exercises5 to col-exercises5
                           modify form1-gd-1(riga, 1), cell-data col-codice
                           modify form1-gd-1(riga, 2), cell-data col-des  
                           modify form1-gd-1(riga, 3), cell-data col-exercises
+                          modify form1-gd-1(riga, 4), cell-data col-exercises1
+                          modify form1-gd-1(riga, 5), cell-data col-exercises2
+                          modify form1-gd-1(riga, 6), cell-data col-exercises3
+                          modify form1-gd-1(riga, 7), cell-data col-exercises4
+                          modify form1-gd-1(riga, 8), cell-data col-exercises5
                      end-read                                           
                   end-perform
            end-start.
@@ -1566,8 +1619,13 @@ BEGIN-DATA
    PARAGRAPH         = VALORE-RIGA
 BEGIN-TEXT
            inquire form1-gd-1(riga, 1), cell-data dur-code.  
-           inquire form1-gd-1(riga, 2), cell-data dur-desc.  
+           inquire form1-gd-1(riga, 2), cell-data dur-desc.    
            inquire form1-gd-1(riga, 3), cell-data dur-exercises.
+           inquire form1-gd-1(riga, 4), cell-data dur-exercises1.
+           inquire form1-gd-1(riga, 5), cell-data dur-exercises2.
+           inquire form1-gd-1(riga, 6), cell-data dur-exercises3.
+           inquire form1-gd-1(riga, 7), cell-data dur-exercises4.
+           inquire form1-gd-1(riga, 8), cell-data dur-exercises5.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1691,10 +1749,6 @@ BEGIN-TEXT
                  if dur-code = zero or spaces
                     set event-action to event-action-fail
                     modify form1-gd-1, cursor-y = riga, cursor-x = 1
-                 else
-                    if colonna = 4
-                       set event-action to event-action-fail
-                    end-if
                  end-if   
               end-if
            end-if.

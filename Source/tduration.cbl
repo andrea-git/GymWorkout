@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tduration.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 22:07:57.
+       DATE-WRITTEN.        martedì 12 settembre 2023 17:58:47.
        REMARKS.
       *{TOTEM}END
 
@@ -90,7 +90,12 @@
        01 rec-grid.
            05 col-codice       PIC  z9.
            05 col-des          PIC  X(50).
-           05 col-exercises    PIC  zz9.
+           05 col-exercises    PIC  z9.
+           05 col-exercises1   PIC  9.
+           05 col-exercises2   PIC  9.
+           05 col-exercises3   PIC  9.
+           05 col-exercises4   PIC  9.
+           05 col-exercises5   PIC  9.
        77 Screen1-Handle
                   USAGE IS HANDLE OF WINDOW.
        01 FILLER           PIC  9.
@@ -116,10 +121,10 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-duration-RESTOREBUF  PIC X(1159).
+       77 TMP-Form1-duration-RESTOREBUF  PIC X(1162).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(1159).
-       77 TMP-DataSet1-duration-BUF     PIC X(1159).
+       77 Form1-MULKEY-TMPBUF   PIC X(1162).
+       77 TMP-DataSet1-duration-BUF     PIC X(1162).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -138,7 +143,12 @@
                10 old-dur-code         PIC  99.
            05 old-dur-data.
                10 old-dur-desc         PIC  x(100).  
-               10 old-dur-exercises    PIC  9(3).
+               10 old-dur-exercises    PIC  99.
+               10 old-dur-exercises1   PIC  9.
+               10 old-dur-exercises2   PIC  9.
+               10 old-dur-exercises3   PIC  9.
+               10 old-dur-exercises4   PIC  9.
+               10 old-dur-exercises5   PIC  9.
                10 old-dur-filler       PIC  x(1000).
                10 old-dur-filler-n1    PIC  9(18).
                10 old-dur-filler-n2    PIC  9(18).
@@ -184,29 +194,30 @@
        05
            form1-gd-1, 
            Grid, 
-           COL 2,10, 
-           LINE 1,78,
+           COL 2,00, 
+           LINE 1,74,
            LINES 22,70 ,
-           SIZE 51,90 ,
+           SIZE 101,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           DATA-COLUMNS (1, 3, 53),
-           ALIGNMENT ("U", "U", "R"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("z9", "X(50)", "zz9"),
+           DATA-COLUMNS (1, 3, 53, 55, 56, 57, 58, 59),
+           ALIGNMENT ("U", "U", "R", "R", "R", "R", "R", "R"),
+           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5),
+           DATA-TYPES ("z9", "X(50)", "z9", "9", "9", "9", "9", "9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
            DIVIDER-COLOR 1,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 1,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            RECORD-DATA rec-grid,
            TILED-HEADINGS,
            USE-TAB,
-           VIRTUAL-WIDTH 50,
+           VIRTUAL-WIDTH 100,
            VPADDING 10,
            VSCROLL,
            EVENT PROCEDURE Form1-Gd-1-Event-Proc,
@@ -340,19 +351,6 @@
            BITMAP-NUMBER BitmapNumZoom
            .
 
-      * BITMAP
-       05
-           Form1-Bt-1, 
-           Bitmap, 
-           COL 50,40, 
-           LINE 1,00,
-           LINES 64,00 ,
-           SIZE 48,00 ,
-           BITMAP-HANDLE LOGO_PICCOLO-BMP,
-           BITMAP-NUMBER 1,
-           ID IS 13,
-           .
-
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
@@ -429,7 +427,6 @@
       * <TOTEM:END>
            DESTROY Calibri14-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
-           CALL "w$bitmap" USING WBITMAP-DESTROY, LOGO_PICCOLO-BMP
       *    After-Program
            PERFORM I-O-BLOCCO
            EXIT PROGRAM TOTEM-PgmStatus
@@ -477,10 +474,6 @@
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
                    GIVING toolbar-bmp.
-      * Form1-Bt-1
-           COPY RESOURCE "LOGO_PICCOLO.BMP".
-           CALL "w$bitmap" USING WBITMAP-LOAD "LOGO_PICCOLO.BMP", 
-                   GIVING LOGO_PICCOLO-BMP.
            .
 
        INIT-RES.
@@ -751,7 +744,22 @@
                 CELL-DATA = "Descrizione",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 3, Y = 1,
-                CELL-DATA = "Exercises",
+                CELL-DATA = "Totale",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 4, Y = 1,
+                CELL-DATA = "Serie 1",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 5, Y = 1,
+                CELL-DATA = "Serie 2",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 6, Y = 1,
+                CELL-DATA = "Serie 3",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 7, Y = 1,
+                CELL-DATA = "Serie 4",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 8, Y = 1,
+                CELL-DATA = "Serie 5",
            .
 
       * FD's Initialize Paragraph
@@ -790,7 +798,7 @@
               SCREEN LINE 1,
               SCREEN COLUMN 0,
               LINES 24,30,
-              SIZE 54,20,
+              SIZE 104,00,
               COLOR 131329,
               CONTROL FONT Calibri14-Occidentale,
               LINK TO THREAD,
@@ -818,7 +826,8 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 41)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 41, 51, 61, 
+           71, 81, 91)
            .
 
        Form1-PROC.
@@ -1422,7 +1431,7 @@
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x     = 3,
+           modify form1-gd-1, start-x = 1, x     = 8,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,
@@ -1509,15 +1518,30 @@
                      read duration next
                           at end exit perform
                       not at end
-                          move dur-code      to col-codice
-                          move dur-desc      to col-des  
-                          move dur-exercises to col-exercises
+                          move dur-code       to col-codice
+                          move dur-desc       to col-des      
+                          move dur-exercises  to col-exercises
+                          move dur-exercises1 to col-exercises1
+                          move dur-exercises2 to col-exercises2
+                          move dur-exercises3 to col-exercises3
+                          move dur-exercises4 to col-exercises4
+                          move dur-exercises5 to col-exercises5
                           modify form1-gd-1(riga, 1), cell-data 
            col-codice
                           modify form1-gd-1(riga, 2), cell-data col-des 
             
                           modify form1-gd-1(riga, 3), cell-data 
            col-exercises
+                          modify form1-gd-1(riga, 4), cell-data 
+           col-exercises1
+                          modify form1-gd-1(riga, 5), cell-data 
+           col-exercises2
+                          modify form1-gd-1(riga, 6), cell-data 
+           col-exercises3
+                          modify form1-gd-1(riga, 7), cell-data 
+           col-exercises4
+                          modify form1-gd-1(riga, 8), cell-data 
+           col-exercises5
                      end-read                                           
                   end-perform
            end-start.
@@ -1713,8 +1737,13 @@
        VALORE-RIGA.
       * <TOTEM:PARA. VALORE-RIGA>
            inquire form1-gd-1(riga, 1), cell-data dur-code.  
-           inquire form1-gd-1(riga, 2), cell-data dur-desc.  
-           inquire form1-gd-1(riga, 3), cell-data dur-exercises 
+           inquire form1-gd-1(riga, 2), cell-data dur-desc.    
+           inquire form1-gd-1(riga, 3), cell-data dur-exercises.
+           inquire form1-gd-1(riga, 4), cell-data dur-exercises1.
+           inquire form1-gd-1(riga, 5), cell-data dur-exercises2.
+           inquire form1-gd-1(riga, 6), cell-data dur-exercises3.
+           inquire form1-gd-1(riga, 7), cell-data dur-exercises4.
+           inquire form1-gd-1(riga, 8), cell-data dur-exercises5 
            .
       * <TOTEM:END>
 
@@ -1819,10 +1848,6 @@
                  if dur-code = zero or spaces
                     set event-action to event-action-fail
                     modify form1-gd-1, cursor-y = riga, cursor-x = 1
-                 else
-                    if colonna = 4
-                       set event-action to event-action-fail
-                    end-if
                  end-if   
               end-if
            end-if 

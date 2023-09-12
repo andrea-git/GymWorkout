@@ -8,7 +8,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E798204349-426-79273545
+PROGRAM_UNIQUE_CODE=TOTEM-7E79C151659-414-230916918
 
 {{@DESCRIPTION:
 
@@ -673,10 +673,8 @@ m_bFixed=1
 
 @}}
 [FDITEM65_WK]
-m_strName=v-prezzi
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
+m_strName=Calibri12BI-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -684,8 +682,9 @@ m_bFixed=1
 
 @}}
 [FDITEM66_WK]
-m_strName=Calibri12BI-Occidentale
-m_nUsage=26
+m_strName=tsc-cliente
+m_strRawPic=x(6)
+m_strPic=x(6)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -693,9 +692,9 @@ m_bFixed=1
 
 @}}
 [FDITEM67_WK]
-m_strName=tsc-cliente
-m_strRawPic=x(6)
-m_strPic=x(6)
+m_strName=STATUS-exercises
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -703,101 +702,91 @@ m_bFixed=1
 
 @}}
 [FDITEM68_WK]
-m_strName=STATUS-exercises
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM68_WK
-
-@}}
-[FDITEM69_WK]
 m_strName=Valid-STATUS-exercises
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM69_WK
+{{@DataItem_m_strDescriptionFDITEM68_WK
 
 @}}
-[FDITEM70_WK]
+[FDITEM69_WK]
 m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM70_WK
+{{@DataItem_m_strDescriptionFDITEM69_WK
 
 @}}
-[FDITEM71_WK]
+[FDITEM70_WK]
 m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM71_WK
+{{@DataItem_m_strDescriptionFDITEM70_WK
 
 @}}
-[FDITEM72_WK]
+[FDITEM71_WK]
 m_strName=STATUS-intensity
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM72_WK
+{{@DataItem_m_strDescriptionFDITEM71_WK
 
 @}}
-[FDITEM73_WK]
+[FDITEM72_WK]
 m_strName=Valid-STATUS-intensity
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM73_WK
+{{@DataItem_m_strDescriptionFDITEM72_WK
 
 @}}
-[FDITEM74_WK]
+[FDITEM73_WK]
 m_strName=STATUS-macrogroups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM74_WK
+{{@DataItem_m_strDescriptionFDITEM73_WK
 
 @}}
-[FDITEM75_WK]
+[FDITEM74_WK]
 m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM75_WK
+{{@DataItem_m_strDescriptionFDITEM74_WK
 
 @}}
-[FDITEM76_WK]
+[FDITEM75_WK]
 m_strName=STATUS-wodbook
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM76_WK
+{{@DataItem_m_strDescriptionFDITEM75_WK
 
 @}}
-[FDITEM77_WK]
+[FDITEM76_WK]
 m_strName=Valid-STATUS-wodbook
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM77_WK
+{{@DataItem_m_strDescriptionFDITEM76_WK
 
 @}}
-[FDITEM78_WK]
+[FDITEM77_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -806,11 +795,21 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM77_WK
+
+@}}
+[FDITEM78_WK]
+m_strName=cb-mg1-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM78_WK
 
 @}}
 [FDITEM79_WK]
-m_strName=cb-mg1-buf
+m_strName=cb-mg2-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -820,7 +819,7 @@ m_bFixed=1
 
 @}}
 [FDITEM80_WK]
-m_strName=cb-mg2-buf
+m_strName=cb-mg3-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -830,7 +829,7 @@ m_bFixed=1
 
 @}}
 [FDITEM81_WK]
-m_strName=cb-mg3-buf
+m_strName=cb-mg4-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -840,7 +839,7 @@ m_bFixed=1
 
 @}}
 [FDITEM82_WK]
-m_strName=cb-mg4-buf
+m_strName=cb-mg5-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -850,7 +849,7 @@ m_bFixed=1
 
 @}}
 [FDITEM83_WK]
-m_strName=cb-mg5-buf
+m_strName=cb-mgtb-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -860,7 +859,7 @@ m_bFixed=1
 
 @}}
 [FDITEM84_WK]
-m_strName=cb-mgtb-buf
+m_strName=cb-int-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -870,7 +869,7 @@ m_bFixed=1
 
 @}}
 [FDITEM85_WK]
-m_strName=cb-int-buf
+m_strName=old-cb-dur-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -880,9 +879,9 @@ m_bFixed=1
 
 @}}
 [FDITEM86_WK]
-m_strName=old-cb-dur-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=STATUS-duration
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -890,26 +889,26 @@ m_bFixed=1
 
 @}}
 [FDITEM87_WK]
-m_strName=STATUS-duration
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM87_WK
-
-@}}
-[FDITEM88_WK]
 m_strName=Valid-STATUS-duration
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM87_WK
+
+@}}
+[FDITEM88_WK]
+m_strName=cb-rnd-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM88_WK
 
 @}}
 [FDITEM89_WK]
-m_strName=cb-rnd-buf
+m_strName=cb-dur-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -928,9 +927,9 @@ m_bFixed=1
 
 @}}
 [FDITEM91_WK]
-m_strName=ef-ex-1-buf
-m_strRawPic=z9
-m_strPic=z9
+m_strName=ex-remain
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -938,9 +937,9 @@ m_bFixed=1
 
 @}}
 [FDITEM92_WK]
-m_strName=ef-ex-2-buf
-m_strRawPic=z9
-m_strPic=z9
+m_strName=wod-effort
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -948,9 +947,9 @@ m_bFixed=1
 
 @}}
 [FDITEM93_WK]
-m_strName=ef-ex-3-buf
-m_strRawPic=z9
-m_strPic=z9
+m_strName=path-tmp-exe-effort
+m_strRawPic=X(256)
+m_strPic=X(256)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -958,9 +957,9 @@ m_bFixed=1
 
 @}}
 [FDITEM94_WK]
-m_strName=cb-dur-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=STATUS-tmp-exe-effort
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -968,19 +967,18 @@ m_bFixed=1
 
 @}}
 [FDITEM95_WK]
-m_strName=ef-ex-4-buf
-m_strRawPic=z9
-m_strPic=z9
-m_nItemLevel=77
+m_strName=Valid-STATUS-tmp-exe-effort
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM95_WK
 
 @}}
 [FDITEM96_WK]
-m_strName=ef-ex-5-buf
-m_strRawPic=z9
-m_strPic=z9
+m_strName=cb-gio-buf
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -988,62 +986,13 @@ m_bFixed=1
 
 @}}
 [FDITEM97_WK]
-m_strName=ef-ex-tb-buf
-m_strRawPic=z9
-m_strPic=z9
+m_strName=cb-mul-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM97_WK
-
-@}}
-[FDITEM98_WK]
-m_strName=ex-remain
-m_strRawPic=99
-m_strPic=99
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM98_WK
-
-@}}
-[FDITEM99_WK]
-m_strName=wod-effort
-m_strRawPic=99
-m_strPic=99
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM99_WK
-
-@}}
-[FDITEM100_WK]
-m_strName=path-tmp-exe-effort
-m_strRawPic=X(256)
-m_strPic=X(256)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM100_WK
-
-@}}
-[FDITEM101_WK]
-m_strName=STATUS-tmp-exe-effort
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM101_WK
-
-@}}
-[FDITEM102_WK]
-m_strName=Valid-STATUS-tmp-exe-effort
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM102_WK
 
 @}}
 
@@ -2150,7 +2099,7 @@ Begin Screen Form1
    End
    Begin Push-Button pb-genera
       SCREEN-COL        = 80,00
-      SCREEN-LINE       = 10,09
+      SCREEN-LINE       = 10,04
       LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = pb-genera
@@ -2172,7 +2121,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 1
-      Line              = 10,09
+      Line              = 10,04
       Lines             = 3,30
       Lines Unit        = Default
       No Auto Default   = FALSE
@@ -2189,335 +2138,198 @@ Begin Screen Form1
       Width in Cells    = TRUE
       Link To           = pb-genera-LinkTo
    End
-   Begin Entry-Field ef-ex-1
-      SCREEN-COL        = 43,60
-      SCREEN-LINE       = 1,65
+   Begin Label Screen1-La-2aaa
+      SCREEN-COL        = 65,00
+      SCREEN-LINE       = 4,87
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
-      (Name)            = ef-ex-1
-      Auto              = FALSE
-      Auto Decimal      = 0
-      Border            = Boxed
-      Case              = Mixed
+      (Name)            = Screen1-La-2aaa
       Clines            = 0
       Clines Unit       = Default
-      Color             = 513
-      Column            = 43,60
+      Color             = 0
+      Column            = 65,00
       Csize             = 0
       Csize Unit        = Default
-      Cursor            = 0
-      Cursor Col        = 0
-      Cursor Row        = 0
       Destroy Type      = Automatic
       Enable            = NONE
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 23
-      Justification     = Right
-      Line              = 1,65
+      ID                = 18
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 4,87
       Lines             = 1,30
       Lines Unit        = Default
-      Max Lines         = 0
-      Max Text          = 2
-      Max Value         = 0
-      Min Value         = 0
-      No AutoSel        = FALSE
-      No Tab            = FALSE
-      Notify Change     = FALSE
-      Numeric           = TRUE
+      No Key Letter     = FALSE
       Occurs            = 0
-      Read Only         = FALSE
-      Required          = FALSE
-      Secure            = FALSE
-      Size              = 6,00
+      Size              = 8,00
       Size Unit         = Default
-      Style             = Spinner
       Tab Order         = 24
-      Use Return        = FALSE
-      Use Tab           = FALSE
-      Value Multiple    = FALSE
-      Value Picture     = z9
-      Value Variable    = ef-ex-1-buf
+      Title             = "Giorni"
+      Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Ef-1-BeforeProcedure
-      After Procedure   = Screen1-Ef-1-AfterProcedure
    End
-   Begin Entry-Field ef-ex-2
-      SCREEN-COL        = 43,60
-      SCREEN-LINE       = 3,13
+   Begin Combo-Box cb-gio
+      SCREEN-COL        = 74,00
+      SCREEN-LINE       = 4,87
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
-      (Name)            = ef-ex-2
-      Auto              = FALSE
-      Auto Decimal      = 0
+      (Name)            = cb-gio
       Border            = Boxed
       Case              = Mixed
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 43,60
+      Column            = 74,00
       Csize             = 0
       Csize Unit        = Default
-      Cursor            = 0
-      Cursor Col        = 0
-      Cursor Row        = 0
       Destroy Type      = Automatic
       Enable            = NONE
+      Exception Value   = 0
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 24
-      Justification     = Right
-      Line              = 3,13
-      Lines             = 1,30
+      ID                = 19
+      Line              = 4,87
+      Lines             = 6,00
       Lines Unit        = Default
-      Max Lines         = 0
-      Max Text          = 2
-      Max Value         = 0
-      Min Value         = 0
-      No AutoSel        = FALSE
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
       No Tab            = FALSE
-      Notify Change     = FALSE
-      Numeric           = TRUE
+      Notify DblClick   = FALSE
+      Notify SelChange  = TRUE
       Occurs            = 0
-      Read Only         = FALSE
-      Required          = FALSE
-      Secure            = FALSE
-      Size              = 6,00
+      Size              = 25,00
       Size Unit         = Default
-      Style             = Spinner
+      Style             = Drop List
       Tab Order         = 25
-      Use Return        = FALSE
-      Use Tab           = FALSE
-      Value Multiple    = FALSE
-      Value Picture     = z9
-      Value Variable    = ef-ex-2-buf
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = 9
+      Value Variable    = cb-gio-buf
       Visible           = NONE
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Ef-1-BeforeProcedure
-      After Procedure   = Screen1-Ef-1-AfterProcedure
+      Before Procedure  = cb-dur-BeforeProcedure
+      After Procedure   = cb-dur-AfterProcedure
    End
-   Begin Entry-Field ef-ex-3
-      SCREEN-COL        = 43,60
-      SCREEN-LINE       = 4,65
-      LOCK-CONTROL      = TRUE
+   Begin Push-Button Screen1-Pb-1
+      SCREEN-COL        = 60,50
+      SCREEN-LINE       = 8,13
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
-      (Name)            = ef-ex-3
-      Auto              = FALSE
-      Auto Decimal      = 0
-      Border            = Boxed
-      Case              = Mixed
+      (Name)            = Screen1-Pb-1
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Color             = 513
-      Column            = 43,60
+      Column            = 60,50
+      Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
-      Cursor            = 0
-      Cursor Col        = 0
-      Cursor Row        = 0
       Destroy Type      = Automatic
       Enable            = NONE
-      Font              = Default Font
+      Exception Value   = 1001
+      Flat              = FALSE
+      Font              = Small Font
+      Font Variable     = Small-Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 25
-      Justification     = Right
-      Line              = 4,65
-      Lines             = 1,30
+      ID                = 30
+      Line              = 8,13
+      Lines             = 1,48
       Lines Unit        = Default
-      Max Lines         = 0
-      Max Text          = 2
-      Max Value         = 0
-      Min Value         = 0
-      No AutoSel        = FALSE
+      No Auto Default   = FALSE
       No Tab            = FALSE
-      Notify Change     = FALSE
-      Numeric           = TRUE
       Occurs            = 0
-      Read Only         = FALSE
-      Required          = FALSE
-      Secure            = FALSE
-      Size              = 6,00
+      Self Act          = FALSE
+      Size              = 3,80
       Size Unit         = Default
-      Style             = Spinner
+      Style             = Other
       Tab Order         = 26
-      Use Return        = FALSE
-      Use Tab           = FALSE
-      Value Multiple    = FALSE
-      Value Picture     = z9
-      Value Variable    = ef-ex-3-buf
+      Termination Value = 0
+      Title             = "Push Button"
       Visible           = NONE
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Ef-1-BeforeProcedure
-      After Procedure   = Screen1-Ef-1-AfterProcedure
+      Link To           = Screen1-Pb-1-LinkTo
    End
-   Begin Entry-Field ef-ex-4
-      SCREEN-COL        = 43,60
-      SCREEN-LINE       = 6,13
+   Begin Label Screen1-La-2ba
+      SCREEN-COL        = 3,00
+      SCREEN-LINE       = 13,78
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
-      (Name)            = ef-ex-4
-      Auto              = FALSE
-      Auto Decimal      = 0
-      Border            = Boxed
-      Case              = Mixed
+      (Name)            = Screen1-La-2ba
       Clines            = 0
       Clines Unit       = Default
-      Color             = 513
-      Column            = 43,60
+      Color             = 0
+      Column            = 3,00
       Csize             = 0
       Csize Unit        = Default
-      Cursor            = 0
-      Cursor Col        = 0
-      Cursor Row        = 0
       Destroy Type      = Automatic
       Enable            = NONE
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 27
-      Justification     = Right
-      Line              = 6,13
+      ID                = 20
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 13,78
       Lines             = 1,30
       Lines Unit        = Default
-      Max Lines         = 0
-      Max Text          = 2
-      Max Value         = 0
-      Min Value         = 0
-      No AutoSel        = FALSE
-      No Tab            = FALSE
-      Notify Change     = FALSE
-      Numeric           = TRUE
+      No Key Letter     = FALSE
       Occurs            = 0
-      Read Only         = FALSE
-      Required          = FALSE
-      Secure            = FALSE
-      Size              = 6,00
+      Size              = 13,00
       Size Unit         = Default
-      Style             = Spinner
       Tab Order         = 27
-      Use Return        = FALSE
-      Use Tab           = FALSE
-      Value Multiple    = FALSE
-      Value Picture     = z9
-      Value Variable    = ef-ex-4-buf
+      Title             = "Multiarticolari"
+      Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Ef-1-BeforeProcedure
-      After Procedure   = Screen1-Ef-1-AfterProcedure
    End
-   Begin Entry-Field ef-ex-5
-      SCREEN-COL        = 43,60
-      SCREEN-LINE       = 7,65
+   Begin Combo-Box cb-mul
+      SCREEN-COL        = 17,00
+      SCREEN-LINE       = 13,78
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
-      (Name)            = ef-ex-5
-      Auto              = FALSE
-      Auto Decimal      = 0
+      (Name)            = cb-mul
       Border            = Boxed
       Case              = Mixed
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 43,60
+      Column            = 17,00
       Csize             = 0
       Csize Unit        = Default
-      Cursor            = 0
-      Cursor Col        = 0
-      Cursor Row        = 0
       Destroy Type      = Automatic
       Enable            = NONE
+      Exception Value   = 0
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 28
-      Justification     = Right
-      Line              = 7,65
-      Lines             = 1,30
+      ID                = 21
+      Line              = 13,78
+      Lines             = 4,00
       Lines Unit        = Default
-      Max Lines         = 0
-      Max Text          = 2
-      Max Value         = 0
-      Min Value         = 0
-      No AutoSel        = FALSE
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
       No Tab            = FALSE
-      Notify Change     = FALSE
-      Numeric           = TRUE
+      Notify DblClick   = FALSE
+      Notify SelChange  = TRUE
       Occurs            = 0
-      Read Only         = FALSE
-      Required          = FALSE
-      Secure            = FALSE
-      Size              = 6,00
+      Size              = 25,00
       Size Unit         = Default
-      Style             = Spinner
+      Style             = Drop List
       Tab Order         = 28
-      Use Return        = FALSE
-      Use Tab           = FALSE
-      Value Multiple    = FALSE
-      Value Picture     = z9
-      Value Variable    = ef-ex-5-buf
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(100)
+      Value Variable    = cb-mul-buf
       Visible           = NONE
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Ef-1-BeforeProcedure
-      After Procedure   = Screen1-Ef-1-AfterProcedure
-   End
-   Begin Entry-Field ef-ex-tb
-      SCREEN-COL        = 43,60
-      SCREEN-LINE       = 9,61
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = ef-ex-tb
-      Auto              = FALSE
-      Auto Decimal      = 0
-      Border            = Boxed
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 43,60
-      Csize             = 0
-      Csize Unit        = Default
-      Cursor            = 0
-      Cursor Col        = 0
-      Cursor Row        = 0
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 29
-      Justification     = Right
-      Line              = 9,61
-      Lines             = 1,30
-      Lines Unit        = Default
-      Max Lines         = 0
-      Max Text          = 2
-      Max Value         = 0
-      Min Value         = 0
-      No AutoSel        = FALSE
-      No Tab            = FALSE
-      Notify Change     = FALSE
-      Numeric           = TRUE
-      Occurs            = 0
-      Read Only         = FALSE
-      Required          = FALSE
-      Secure            = FALSE
-      Size              = 6,00
-      Size Unit         = Default
-      Style             = Spinner
-      Tab Order         = 29
-      Use Return        = FALSE
-      Use Tab           = FALSE
-      Value Multiple    = FALSE
-      Value Picture     = z9
-      Value Variable    = ef-ex-tb-buf
-      Visible           = NONE
-      Width in Cells    = TRUE
-      Before Procedure  = Screen1-Ef-1-BeforeProcedure
-      After Procedure   = Screen1-Ef-1-AfterProcedure
+      Before Procedure  = cb-rnd-BeforeProcedure
+      After Procedure   = cb-rnd-AfterProcedure
    End
    Begin Toolbar Form1-Tb-1
       SCREEN-LINE       = 1,00
@@ -2531,7 +2343,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 30
+      Tab Order         = 29
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -2982,7 +2794,7 @@ Begin Screen Form1
       Handle Variable   = Form1-St-1-Handle
       PANEL-WIDTHS      = ( 65, 28, 999 )
       PANEL-STYLE       = ( 1, 1, 1 )
-      Tab Order         = 31
+      Tab Order         = 30
    End
 End
 
@@ -3112,11 +2924,20 @@ BEGIN-TEXT
                                                  
            modify cb-mgtb, item-to-add = "No".
            modify cb-mgtb, item-to-add = "Si".   
-
+                                             
            modify cb-rnd, item-to-add = "No".
-           modify cb-rnd, item-to-add = "Si".     
-
+           modify cb-rnd, item-to-add = "Si".
+ 
+           modify cb-mul, item-to-add = "No".
+           modify cb-mul, item-to-add = "Si".     
+                                          
            modify cb-dur, item-to-add = "Nessuno".
+
+           modify cb-gio, item-to-add = 1.
+           modify cb-gio, item-to-add = 2.
+           modify cb-gio, item-to-add = 3.
+           modify cb-gio, item-to-add = 4.
+           modify cb-gio, item-to-add = 5.
                         
            move low-value to mcg-key.
            start macrogroups key >= mcg-key
@@ -3158,10 +2979,14 @@ BEGIN-TEXT
            modify cb-int, value "Nessuno".
                         
            modify cb-mgtb, value "No".    
-
+                                  
            modify cb-rnd,  value "No".    
 
+           modify cb-mul,  value "Si".
+                                         
            modify cb-dur, value "Nessuno".
+
+           modify cb-gio, value 1.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -3612,53 +3437,48 @@ BEGIN-TEXT
                                        alphanumeric data by spaces.
 
            move 0 to idx-gruppi.
+                        
+           inquire cb-gio, value in cb-gio-buf.
+           inquire cb-dur, value in dur-desc.
+           read duration key dur-k-desc.
+                                             
            inquire cb-mg1, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.                                  
+           inquire cb-mg2, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.                                  
+           inquire cb-mg3, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.                                  
+           inquire cb-mg4, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.                                  
+           inquire cb-mg5, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.
+
+      ***---
+       ADD-ELEM-GRUPPO.
            read macrogroups key  mcg-k-desc 
                 invalid continue
             not invalid 
                 add 1 to idx-gruppi                   
                 move mcg-desc to el-mgroup(idx-gruppi)
                 move mcg-code to el-mcg-code(idx-gruppi)
-           end-read.
- 
-           inquire cb-mg2, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)  
-                move mcg-desc to el-mgroup(idx-gruppi)
-                move mcg-code to el-mcg-code(idx-gruppi)
-           end-read.
 
-           inquire cb-mg3, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)  
-                move mcg-desc to el-mgroup(idx-gruppi)
-                move mcg-code to el-mcg-code(idx-gruppi)
-           end-read.
-
-           inquire cb-mg4, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)  
-                move mcg-desc to el-mgroup(idx-gruppi)
-                move mcg-code to el-mcg-code(idx-gruppi)
-           end-read.
-
-           inquire cb-mg5, value in mcg-desc.
-           read macrogroups key mcg-k-desc 
-                invalid continue
-            not invalid 
-                add 1 to idx-gruppi
-                move mcg-desc to el-mgroup(idx-gruppi)  
-                move mcg-desc to el-mgroup(idx-gruppi)
-                move mcg-code to el-mcg-code(idx-gruppi)
+                evaluate idx-gruppi                        
+                when 1
+                     compute el-exercises(idx-gruppi) =
+                             cb-gio-buf * dur-exercises1
+                when 2
+                     compute el-exercises(idx-gruppi) =
+                             cb-gio-buf * dur-exercises2
+                when 3
+                     compute el-exercises(idx-gruppi) =
+                             cb-gio-buf * dur-exercises3
+                when 4
+                     compute el-exercises(idx-gruppi) =
+                             cb-gio-buf * dur-exercises4
+                when 5
+                     compute el-exercises(idx-gruppi) =
+                             cb-gio-buf * dur-exercises5
+                end-evaluate
            end-read.
            move idx-gruppi to tot-gruppi.
 END-TEXT
@@ -4471,40 +4291,6 @@ END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 3
-   PARAGRAPH         = VALORIZZA-EXERCISES
-BEGIN-TEXT
-           if tot-gruppi > 0
-              move 0 to ef-ex-tb-buf
-              move dur-exercises to ex-remain
-              perform varying idx-gruppi from 1 by 1 until 1 = 2
-                 if idx-gruppi > 5
-                    move 1 to idx-gruppi
-                 end-if
-                 if el-mgroup(idx-gruppi) not = spaces
-                    add 1 to el-exercises(idx-gruppi)
-                    subtract 1 from ex-remain
-                    if ex-remain = 0
-                       exit perform
-                    end-if
-                 end-if
-              end-perform
-           else
-              inquire cb-mgtb, value in cb-mgtb-buf  
-              if cb-mgtb-buf = "Si"
-                 move dur-exercises to ef-ex-tb-buf
-              end-if
-           end-if.                              
-           modify ef-ex-1,  value el-exercises(1).
-           modify ef-ex-2,  value el-exercises(2).
-           modify ef-ex-3,  value el-exercises(3).
-           modify ef-ex-4,  value el-exercises(4).
-           modify ef-ex-5,  value el-exercises(5).
-           modify ef-ex-tb, value ef-ex-tb-buf.
-
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 3
    PARAGRAPH         = VALORIZZA-OLD
 BEGIN-TEXT
       *     move tsc-rec to old-tsc-rec.
@@ -5027,14 +4813,6 @@ BEGIN-DATA
    PARAGRAPH         = cb-dur-AfterProcedure
 BEGIN-TEXT
       *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
-           inquire cb-dur, value in cb-dur-buf.
-           if cb-dur-buf not = old-cb-dur-buf
-              move cb-dur-buf to old-cb-dur-buf
-              move cb-dur-buf to dur-desc
-              read duration key dur-k-desc     
-              perform CREA-OCCURS-GRUPPI
-              perform VALORIZZA-EXERCISES
-           end-if.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -5065,12 +4843,14 @@ BEGIN-DATA
    PARAGRAPH         = pb-genera-LinkTo
 BEGIN-TEXT
            perform CREA-OCCURS-GRUPPI.
-           perform VALORIZZA-EXERCISES.
+           modify gd1, reset-grid = 1,
+           perform GD1-CONTENT.
+
            move 0 to int-effort.
            inquire cb-int, value in int-desc.
            read intensity key int-k-desc.
            move int-effort to wod-effort.
-
+                 
            accept  como-data from century-date.
            accept  como-ora  from time.
            accept  path-tmp-exe-effort from environment "PATH_ST".
@@ -5113,7 +4893,8 @@ BEGIN-TEXT
                        end-perform
                     end-if
                  end-perform
-           end-start.                
+           end-start.       
+           move 1 to riga.
            perform varying idx-gruppi from 1 by 1 
                      until idx-gruppi > tot-gruppi
               move el-mcg-code(idx-gruppi) to tee-mcg-code
@@ -5122,13 +4903,16 @@ BEGIN-TEXT
                     invalid continue
                 not invalid
                     perform until 1 = 2
+                       if el-exercises-ok(idx-gruppi) = el-exercises(idx-gruppi)
+                          exit perform
+                       end-if
                        read tmp-exe-effort previous 
                          at end exit perform 
                        end-read
                        if tee-mcg-code not = el-mcg-code(idx-gruppi)
                           exit perform
                        end-if                
-                       add 1 to riga
+                       add 1 to riga el-exercises-ok(idx-gruppi)
                        modify gd1(riga, 1), cell-data tee-exe-desc
                        delete tmp-exe-effort record
                     end-perform
@@ -5143,16 +4927,14 @@ END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
-   PARAGRAPH         = Screen1-Ef-1-BeforeProcedure
+   PARAGRAPH         = Screen1-Pb-1-LinkTo
 BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 2
-   PARAGRAPH         = Screen1-Ef-1-AfterProcedure
-BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+           modify cb-mg1, value "Back".
+           modify cb-mg2, value "Legs".
+           modify cb-mg3, value "Pectoral".
+                                 
+           modify cb-int, value = "Hard".
+           modify cb-dur, value = "Medium".
 END-TEXT
 END-DATA
 

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 13 settembre 2023 16:45:37.
+       DATE-WRITTEN.        mercoledì 13 settembre 2023 17:40:41.
        REMARKS.
       *{TOTEM}END
 
@@ -122,7 +122,15 @@
                   VALUE IS 0.
        77 Form1-Tb-1-Handlea
                   USAGE IS HANDLE OF WINDOW.
+       01 tab-wod-exe.
+           05 el-wod-day
+                      OCCURS 7 TIMES.
+               10 el-wod-mcg       PIC  x(5)
+                          OCCURS 20 TIMES.
        77 RigheIniziali    PIC  9(3).
+       77 lastIdx          PIC  9(3).
+       77 idx-days         PIC  9(3).
+       77 idx-split        PIC  9(3).
        77 como-x           PIC  x.
        01 tot-mcg          PIC  99.
        01 tot-exe          PIC  99.
@@ -226,6 +234,7 @@
        77 cb-wod-buf       PIC  x(100).
        77 STATUS-wodmap    PIC  X(2).
            88 Valid-STATUS-wodmap VALUE IS "00" THRU "09". 
+       77 cb-mg6-buf       PIC  X(100).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -639,7 +648,7 @@
            Screen1-La-2, 
            Label, 
            COL 3,00, 
-           LINE 9,61,
+           LINE 10,91,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 14,
@@ -654,7 +663,7 @@
            cb-mgtb, 
            Combo-Box, 
            COL 17,00, 
-           LINE 9,61,
+           LINE 10,91,
            LINES 4,00 ,
            SIZE 25,00 ,
            BOXED,
@@ -747,7 +756,7 @@
            Screen1-La-2b, 
            Label, 
            COL 3,00, 
-           LINE 11,61,
+           LINE 12,48,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 20,
@@ -762,7 +771,7 @@
            cb-rnd, 
            Combo-Box, 
            COL 17,00, 
-           LINE 11,61,
+           LINE 12,48,
            LINES 4,00 ,
            SIZE 25,00 ,
            BOXED,
@@ -851,7 +860,7 @@
            Screen1-La-2ba, 
            Label, 
            COL 3,00, 
-           LINE 13,78,
+           LINE 14,22,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 31,
@@ -866,7 +875,7 @@
            cb-mul, 
            Combo-Box, 
            COL 17,00, 
-           LINE 13,78,
+           LINE 14,22,
            LINES 4,00 ,
            SIZE 25,00 ,
            BOXED,
@@ -934,6 +943,41 @@
            TITLE "RANDOM",
            .
 
+      * LABEL
+       05
+           Screen1-La-1ada, 
+           Label, 
+           COL 3,00, 
+           LINE 9,39,
+           LINES 1,30 ,
+           SIZE 13,00 ,
+           ID IS 6,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Macrogruppo 6",
+           .
+
+      * COMBO-BOX
+       05
+           cb-mg6, 
+           Combo-Box, 
+           COL 17,00, 
+           LINE 9,39,
+           LINES 6,00 ,
+           SIZE 25,00 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 13,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mg6-buf,
+           AFTER PROCEDURE cb-mg5-AfterProcedure, 
+           BEFORE PROCEDURE cb-mg5-BeforeProcedure, 
+           .
       * TOOLBAR
        01
            Form1-Tb-1,
@@ -2875,6 +2919,10 @@
        cb-wod-Content.
            .
 
+      * COMBO-BOX
+       cb-mg6-Content.
+           .
+
       * FD's Initialize Paragraph
        DataSet1-exercises-INITREC.
            INITIALIZE exe-rec OF exercises
@@ -3027,12 +3075,13 @@
            perform ABILITAZIONI.
            perform STATUS-BAR-MSG.
            display form1.
-           
+                                                  
            modify cb-mg1, item-to-add = "Nessuno".
            modify cb-mg2, item-to-add = "Nessuno".
            modify cb-mg3, item-to-add = "Nessuno".
            modify cb-mg4, item-to-add = "Nessuno". 
            modify cb-mg5, item-to-add = "Nessuno".
+           modify cb-mg6, item-to-add = "Nessuno".
            modify cb-int, item-to-add = "Nessuno".
                                                  
            modify cb-mgtb, item-to-add = "No".
@@ -3074,12 +3123,12 @@
                     add 1 to tot-mcg 
                     move mcg-desc to el-mcg-desc(tot-mcg)
 
-                    move mcg-desc to cb-mg1-buf    
-                    modify cb-mg1, item-to-add = cb-mg1-buf
-                    modify cb-mg2, item-to-add = cb-mg1-buf
-                    modify cb-mg3, item-to-add = cb-mg1-buf
-                    modify cb-mg4, item-to-add = cb-mg1-buf
-                    modify cb-mg5, item-to-add = cb-mg1-buf
+                    modify cb-mg1, item-to-add = mcg-desc
+                    modify cb-mg2, item-to-add = mcg-desc
+                    modify cb-mg3, item-to-add = mcg-desc
+                    modify cb-mg4, item-to-add = mcg-desc
+                    modify cb-mg5, item-to-add = mcg-desc
+                    modify cb-mg6, item-to-add = mcg-desc
                  end-perform
            end-start.
            move low-value to int-key.
@@ -3105,6 +3154,7 @@
            modify cb-mg3, value "Nessuno".
            modify cb-mg4, value "Nessuno".
            modify cb-mg5, value "Nessuno".
+           modify cb-mg6, value "Nessuno".
            modify cb-int, value "Nessuno".
                         
            modify cb-mgtb, value "No".    
@@ -3251,6 +3301,8 @@
            PERFORM cb-mul-Content
       * COMBO-BOX
            PERFORM cb-wod-Content
+      * COMBO-BOX
+           PERFORM cb-mg6-Content
            .
 
        Form1-DataSet1-CHANGETO-KEY1.
@@ -3981,6 +4033,8 @@
            perform ADD-ELEM-GRUPPO.                                  
            inquire cb-mg5, value in mcg-desc.
            perform ADD-ELEM-GRUPPO.
+           inquire cb-mg6, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.
 
       ***---
        ADD-ELEM-GRUPPO.
@@ -3990,24 +4044,6 @@
                 add 1 to idx-gruppi                   
                 move mcg-desc to el-mgroup(idx-gruppi)
                 move mcg-code to el-mcg-code(idx-gruppi)
-
-                evaluate idx-gruppi                        
-                when 1
-                     compute el-exercises(idx-gruppi) =
-                             cb-gio-buf * dur-exercises1
-                when 2
-                     compute el-exercises(idx-gruppi) =
-                             cb-gio-buf * dur-exercises2
-                when 3
-                     compute el-exercises(idx-gruppi) =
-                             cb-gio-buf * dur-exercises3
-                when 4
-                     compute el-exercises(idx-gruppi) =
-                             cb-gio-buf * dur-exercises4
-                when 5
-                     compute el-exercises(idx-gruppi) =
-                             cb-gio-buf * dur-exercises5
-                end-evaluate
            end-read.
            move idx-gruppi to tot-gruppi 
            .
@@ -5168,12 +5204,14 @@
               modify cb-mg3, value "Nessuno", enabled = false
               modify cb-mg4, value "Nessuno", enabled = false
               modify cb-mg5, value "Nessuno", enabled = false
+              modify cb-mg6, value "Nessuno", enabled = false
            else                                              
               modify cb-mg1, enabled = true
               modify cb-mg2, enabled = true
               modify cb-mg3, enabled = true
               modify cb-mg4, enabled = true
               modify cb-mg5, enabled = true
+              modify cb-mg6, enabled = true
            end-if 
            .
       * <TOTEM:END>
@@ -5262,6 +5300,7 @@
               modify cb-mg3,  value "Nessuno", enabled = false
               modify cb-mg4,  value "Nessuno", enabled = false
               modify cb-mg5,  value "Nessuno", enabled = false
+              modify cb-mg6,  value "Nessuno", enabled = false
               modify cb-mgtb, value "No",      enabled = false
            else                                              
               modify cb-mg1,  enabled = true
@@ -5269,6 +5308,7 @@
               modify cb-mg3,  enabled = true
               modify cb-mg4,  enabled = true
               modify cb-mg5,  enabled = true
+              modify cb-mg6,  enabled = true
               modify cb-mgtb, enabled = true
            end-if 
            .
@@ -5283,6 +5323,9 @@
            inquire cb-int, value in int-desc.
            read intensity key int-k-desc.
            move int-effort to effort-wod.
+           
+           inquire cb-dur, value in dur-desc.
+           read duration key dur-k-desc.
                  
            accept  como-data from century-date.
            accept  como-ora  from time.
@@ -5315,7 +5358,8 @@
                     read intensity no lock
                     move exe-grp-code to grp-code
                     read groups no lock
-                    if int-effort <= effort-wod
+                    if int-effort <= effort-wod or 
+                       exe-isMulti-yes and cb-mul-buf = "Si"
                        perform varying idx-gruppi from 1 by 1 
                                  until idx-gruppi > 5
                           if el-mcg-code(idx-gruppi) = grp-mcg-code
@@ -5341,6 +5385,65 @@
       *****       not invalid read wodbook previous
       *****     end-start.
       *****     add 1 to wod-code.
+           
+           perform varying idx-days from 1 by 1 
+                     until idx-days > 7
+              move 0 to LastIdx
+              perform varying idx-split from 1 by 1 
+                        until idx-split > 9
+                 if wom-split-el-split-sigla(idx-days, idx-split) = 0
+                    exit perform
+                 end-if
+                 evaluate idx-split
+                 when 1 move dur-exercises1 to tot-righe
+                 when 2 move dur-exercises2 to tot-righe
+                 when 3 move dur-exercises3 to tot-righe
+                 when 4 move dur-exercises4 to tot-righe
+                 when 5 move dur-exercises5 to tot-righe
+                 end-evaluate
+                 perform tot-righe times
+                    add 1 to lastIdx
+                    evaluate wom-split-el-split-sigla(idx-days, 
+           idx-split)
+                    when "A" move el-mcg-code(1) to 
+           el-wod-mcg(idx-days, lastIdx)
+                    when "B" move el-mcg-code(2) to 
+           el-wod-mcg(idx-days, lastIdx)
+                    when "C" move el-mcg-code(3) to 
+           el-wod-mcg(idx-days, lastIdx)
+                    when "D" move el-mcg-code(4) to 
+           el-wod-mcg(idx-days, lastIdx)
+                    when "E" move el-mcg-code(5) to 
+           el-wod-mcg(idx-days, lastIdx)
+                    when "F" move el-mcg-code(6) to 
+           el-wod-mcg(idx-days, lastIdx)
+                    end-evaluate
+                 end-perform
+              end-perform
+           end-perform.        
+           
+           move 1 to riga
+           perform varying idx-days from 1 by 1 
+                     until idx-days > wom-days
+              if idx-days > 1
+                 add 1 to riga                           
+                 modify gd1(riga, 1), cell-data = "-----"
+                 modify gd1(riga, 2), cell-data = "-----"
+              end-if   
+              perform varying idx-split from 1 by 1 
+                        until idx-split > 9
+                 if el-wod-mcg(idx-days, idx-split) = spaces
+                    exit perform
+                 end-if         
+                 add 1 to riga                           
+                 modify gd1(riga, 1), cell-data = el-wod-mcg(idx-days, 
+           idx-split)
+                 modify gd1(riga, 2), cell-data = el-wod-mcg(idx-days, 
+           idx-split)
+              end-perform
+           end-perform.        
+
+           exit paragraph
                      
            |CARICO ESERCIZI MULTIARTICOLARI
            if cb-mul-buf = "Si"
@@ -5392,7 +5495,7 @@
                     end-perform
                  end-if
               end-perform
-           end-if.     
+           end-if.                
 
       *****     move 1 to riga.
       *****     perform varying idx-gruppi from 1 by 1 
@@ -5427,9 +5530,12 @@
       * <TOTEM:END>
        Screen1-Pb-1-LinkTo.
       * <TOTEM:PARA. Screen1-Pb-1-LinkTo>
-           modify cb-mg1, value "Back".
-           modify cb-mg2, value "Legs".
-           modify cb-mg3, value "Pectoral".
+           modify cb-mg1, value "Legs".
+           modify cb-mg2, value "Shoulder".
+           modify cb-mg3, value "Arms".
+           modify cb-mg4, value "Pectoral".
+           modify cb-mg5, value "Back".
+           modify cb-mg6, value "Abs".
                                  
            modify cb-int, value = "Hard".
            modify cb-dur, value = "Medium" 
@@ -5457,6 +5563,7 @@
                  when 3 modify cb-mg3, value = como-el-mcg-desc(idx)
                  when 4 modify cb-mg4, value = como-el-mcg-desc(idx)
                  when 5 modify cb-mg5, value = como-el-mcg-desc(idx)
+                 when 6 modify cb-mg6, value = como-el-mcg-desc(idx)
                  end-evaluate
                  move spaces to como-el-mcg-desc(idx) 
               end-if

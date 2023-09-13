@@ -6,7 +6,7 @@ QUIT_CONFIRM=0
 ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Screen1
 BEFORE_PROGRAM=menu-Ev-Before-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E798112838-117-708327536
+PROGRAM_UNIQUE_CODE=TOTEM-7E79D102152-94-1684631437
 
 {{@DESCRIPTION:
 
@@ -767,7 +767,7 @@ Begin Screen Screen1
          Style             = Other
          Tab Order         = 7
          Termination Value = 0
-         Title             = "Schede Clienti (F7)"
+         Title             = "Mappatura allenamenti"
          Visible           = NONE
          Width in Cells    = FALSE
          Link To           = pb-schede-LinkTo
@@ -1114,7 +1114,7 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = pb-schede-LinkTo
 BEGIN-TEXT
-           move "schedacli" to NomeProgramma.
+           move "gwodmap" to NomeProgramma.
            perform CALL-PROGRAM.
 END-TEXT
 END-DATA

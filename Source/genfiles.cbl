@@ -11,6 +11,7 @@
            copy "wodbook.sl".     
            copy "intensity.sl".   
            copy "duration.sl".    
+           copy "wodmap.sl".    
       *
        SELECT FBLOCK
            ASSIGN       TO DISK "FBLOCK"
@@ -29,7 +30,8 @@
            copy "macrogroups.fd".
            copy "wodbook.fd".      
            copy "intensity.fd".    
-           copy "duration.fd".   
+           copy "duration.fd".    
+           copy "wodmap.fd".    
       *                               
        FD  FBLOCK
            LABEL RECORD IS STANDARD.
@@ -49,6 +51,7 @@
        77  status-wodbook        pic xx. 
        77  status-intensity      pic xx.
        77  status-duration       pic xx.
+       77  status-wodmap         pic xx.
        77  stato-io              pic xx.  
 
        78  titolo            value "Generazione files".
@@ -161,6 +164,23 @@
                 
            end-evaluate.    
 
+      ***---
+       WODMAP-ERR SECTION.
+           use after error procedure on wodmap.
+           evaluate status-wodmap
+           when "35" continue
+           when "39"
+                display message "File [WODMAP] Mismatch size!"
+                           title titolo
+                            icon 3
+                
+           when "98"
+                display message "[WODMAP] Indexed file corrupt!"
+                           title titolo
+                            icon 3
+                
+           end-evaluate.    
+
        END DECLARATIVES.
 
        MAIN-PRG.
@@ -220,6 +240,15 @@
               end-if
            end-if.
            close duration.
+
+           open input wodmap.
+           if status-wodmap = "35"
+              open output wodmap
+              if status-wodmap not = "00"
+                 move -1 to link-status
+              end-if
+           end-if.
+           close wodmap.
 
            delete file fblock.
            open output fblock.

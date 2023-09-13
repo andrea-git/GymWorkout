@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          "menu".
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 13:59:33.
+       DATE-WRITTEN.        mercoledì 13 settembre 2023 12:25:38.
        REMARKS.
       *{TOTEM}END
 
@@ -245,7 +245,7 @@
            SQUARE,
            EXCEPTION-VALUE 7,
            ID IS 9,
-           TITLE "Schede Clienti (F7)",
+           TITLE "Mappatura allenamenti",
            .
 
       * PUSH BUTTON
@@ -710,7 +710,7 @@
       * <TOTEM:END>
        pb-schede-LinkTo.
       * <TOTEM:PARA. pb-schede-LinkTo>
-           move "schedacli" to NomeProgramma.
+           move "gwodmap" to NomeProgramma.
            perform CALL-PROGRAM 
            .
       * <TOTEM:END>

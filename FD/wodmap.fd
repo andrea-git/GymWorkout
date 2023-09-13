@@ -1,0 +1,18 @@
+       FD  wodmap.
+       01 wom-rec.
+           05 wom-key.
+               10 wom-code         PIC  9(3).
+           05 wom-data.
+               10 wom-desc         PIC  x(100).
+               10 wom-days         PIC  9.
+               10 wom-macrogroups  PIC  99.
+               10 wom-split-tab.
+                   15 wom-split-el-days
+                              OCCURS 7 TIMES.
+                       20 wom-split-el-days-split
+                                  OCCURS 9 TIMES.
+                           25 wom-split-el-split-sigla     PIC  x.
+               10 wom-filler       PIC  x(1000).
+               10 wom-filler-n1    PIC  9(18).
+               10 wom-filler-n2    PIC  9(18).
+               10 wom-filler-n3    PIC  9(18).

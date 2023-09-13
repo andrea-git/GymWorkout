@@ -2,8 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DIRTY_AFTER_GEN=1
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E798204349-316-1896932341
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E79D142149-102-3148518521
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -144,3 +143,12 @@ m_strName=tee-k-mcg-eff
 m_strName=tee-mcg-code
 [SLKEYATOM1_SLINDEX0_]
 m_strName=tee-int-effort
+[SLINDEX1_]
+m_strName=tee-k-exe-multi
+{{@Key_m_strDescriptionSLINDEX1_
+
+@}}
+[SLKEYATOM0_SLINDEX1_]
+m_strName=tee-exe-isMulti
+[SLKEYATOM1_SLINDEX1_]
+m_strName=tee-mcg-code

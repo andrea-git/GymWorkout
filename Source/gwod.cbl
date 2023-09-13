@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 12 settembre 2023 18:34:00.
+       DATE-WRITTEN.        mercoledì 13 settembre 2023 16:45:37.
        REMARKS.
       *{TOTEM}END
 
@@ -31,9 +31,10 @@
            COPY "groups.sl".
            COPY "intensity.sl".
            COPY "macrogroups.sl".
-           COPY "wodbook.sl".
            COPY "duration.sl".
            COPY "tmp-exe-effort.sl".
+           COPY "wodbook.sl".
+           COPY "wodmap.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
@@ -42,9 +43,10 @@
            COPY "groups.fd".
            COPY "intensity.fd".
            COPY "macrogroups.fd".
-           COPY "wodbook.fd".
            COPY "duration.fd".
            COPY "tmp-exe-effort.fd".
+           COPY "wodbook.fd".
+           COPY "wodmap.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -122,6 +124,19 @@
                   USAGE IS HANDLE OF WINDOW.
        77 RigheIniziali    PIC  9(3).
        77 como-x           PIC  x.
+       01 tot-mcg          PIC  99.
+       01 tot-exe          PIC  99.
+       01 como-tab-mcg.
+           05 como-el-mcg-desc PIC  x(100)
+                      OCCURS 10 TIMES.
+       01 tab-mcg.
+           05 el-mcg-desc      PIC  x(100)
+                      OCCURS 10 TIMES.
+       01 tab-exercises.
+           05 el-tab-exercises
+                      OCCURS 20 TIMES.
+               10 el-exe-code      PIC  x(5).
+               10 el-exe-desc      PIC  x(100).
        77 tot-gruppi       PIC  999.
        77 idx-gruppi       PIC  999.
        01 tab-mgroups.
@@ -131,6 +146,7 @@
                10 el-mcg-code      PIC  x(5).
                10 el-exercises     PIC  9(3).
                10 el-exercises-ok  PIC  9(3).
+               10 el-times         PIC  9.
        01 rec-grid.
            05 col-exercise     PIC  x(5).
            05 col-exe-desc     PIC  x(100).
@@ -201,12 +217,15 @@
        77 Default-Font
                   USAGE IS HANDLE OF FONT DEFAULT-FONT.
        77 ex-remain        PIC  99.
-       77 wod-effort       PIC  99.
+       77 effort-wod       PIC  99.
        77 path-tmp-exe-effort          PIC  X(256).
        77 STATUS-tmp-exe-effort        PIC  X(2).
            88 Valid-STATUS-tmp-exe-effort VALUE IS "00" THRU "09". 
        77 cb-gio-buf       PIC  9.
        77 cb-mul-buf       PIC  X(100).
+       77 cb-wod-buf       PIC  x(100).
+       77 STATUS-wodmap    PIC  X(2).
+           88 Valid-STATUS-wodmap VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -214,26 +233,26 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-exercises-RESTOREBUF  PIC X(1189).
+       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(2447).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(1189).
+       77 Form1-MULKEY-TMPBUF   PIC X(2447).
        77 TMP-DataSet1-exercises-BUF     PIC X(1189).
        77 TMP-DataSet1-groups-BUF     PIC X(1182).
        77 TMP-DataSet1-intensity-BUF     PIC X(1188).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
-       77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(118).
+       77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
+       77 TMP-DataSet1-wodmap-BUF     PIC X(1223).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
       * FILE'S LOCK MODE FLAG
        77 DataSet1-exercises-LOCK-FLAG   PIC X VALUE SPACE.
            88 DataSet1-exercises-LOCK  VALUE "Y".
-       77 DataSet1-KEYIS   PIC 9(3) VALUE 1.
-       77 DataSet1-exercises-KEY1-ORDER  PIC X VALUE "A".
-          88 DataSet1-exercises-KEY1-Asc  VALUE "A".
-          88 DataSet1-exercises-KEY1-Desc VALUE "D".
+       77 DataSet1-exercises-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-exercises-KEY-Asc  VALUE "A".
+          88 DataSet1-exercises-KEY-Desc VALUE "D".
        77 DataSet1-groups-LOCK-FLAG   PIC X VALUE SPACE.
            88 DataSet1-groups-LOCK  VALUE "Y".
        77 DataSet1-groups-KEY-ORDER  PIC X VALUE "A".
@@ -249,11 +268,6 @@
        77 DataSet1-macrogroups-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-macrogroups-KEY-Asc  VALUE "A".
           88 DataSet1-macrogroups-KEY-Desc VALUE "D".
-       77 DataSet1-wodbook-LOCK-FLAG   PIC X VALUE SPACE.
-           88 DataSet1-wodbook-LOCK  VALUE "Y".
-       77 DataSet1-wodbook-KEY-ORDER  PIC X VALUE "A".
-          88 DataSet1-wodbook-KEY-Asc  VALUE "A".
-          88 DataSet1-wodbook-KEY-Desc VALUE "D".
        77 DataSet1-duration-LOCK-FLAG   PIC X VALUE SPACE.
            88 DataSet1-duration-LOCK  VALUE "Y".
        77 DataSet1-duration-KEY-ORDER  PIC X VALUE "A".
@@ -264,6 +278,17 @@
        77 DataSet1-tmp-exe-effort-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-tmp-exe-effort-KEY-Asc  VALUE "A".
           88 DataSet1-tmp-exe-effort-KEY-Desc VALUE "D".
+       77 DataSet1-wodbook-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-wodbook-LOCK  VALUE "Y".
+       77 DataSet1-KEYIS   PIC 9(3) VALUE 1.
+       77 DataSet1-wodbook-KEY1-ORDER  PIC X VALUE "A".
+          88 DataSet1-wodbook-KEY1-Asc  VALUE "A".
+          88 DataSet1-wodbook-KEY1-Desc VALUE "D".
+       77 DataSet1-wodmap-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-wodmap-LOCK  VALUE "Y".
+       77 DataSet1-wodmap-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-wodmap-KEY-Asc  VALUE "A".
+          88 DataSet1-wodmap-KEY-Desc VALUE "D".
 
        77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
@@ -273,6 +298,8 @@
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 tmp-exe-effort-tee-k-mcg-eff-SPLITBUF  PIC X(8).
+       77 tmp-exe-effort-tee-k-exe-multi-SPLITBUF  PIC X(7).
+       77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
 
        78  78-col-data       value 1. 
        78  78-col-art        value 2. 
@@ -756,7 +783,7 @@
            pb-genera, 
            Push-Button, 
            COL 80,00, 
-           LINE 10,04,
+           LINE 10,00,
            LINES 3,30 ,
            SIZE 26,40 ,
            EXCEPTION-VALUE 1000,
@@ -775,7 +802,7 @@
            LINE 4,87,
            LINES 1,30 ,
            SIZE 8,00 ,
-           ID IS 18,
+           ID IS 23,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -792,7 +819,7 @@
            SIZE 25,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 19,
+           ID IS 24,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
@@ -807,8 +834,8 @@
        05
            Screen1-Pb-1, 
            Push-Button, 
-           COL 60,50, 
-           LINE 8,13,
+           COL 51,30, 
+           LINE 2,91,
            LINES 1,48 ,
            SIZE 3,80 ,
            EXCEPTION-VALUE 1001,
@@ -827,7 +854,7 @@
            LINE 13,78,
            LINES 1,30 ,
            SIZE 13,00 ,
-           ID IS 20,
+           ID IS 31,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -844,7 +871,7 @@
            SIZE 25,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 21,
+           ID IS 32,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
@@ -855,6 +882,58 @@
            AFTER PROCEDURE cb-rnd-AfterProcedure, 
            BEFORE PROCEDURE cb-rnd-BeforeProcedure, 
            .
+      * LABEL
+       05
+           Screen1-La-2aaaa, 
+           Label, 
+           COL 65,00, 
+           LINE 7,04,
+           LINES 1,30 ,
+           SIZE 8,00 ,
+           ID IS 33,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Mappa",
+           .
+
+      * COMBO-BOX
+       05
+           cb-wod, 
+           Combo-Box, 
+           COL 74,00, 
+           LINE 7,04,
+           LINES 6,00 ,
+           SIZE 25,00 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 34,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           NOTIFY-SELCHANGE,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-wod-buf,
+           AFTER PROCEDURE cb-dur-AfterProcedure, 
+           BEFORE PROCEDURE cb-dur-BeforeProcedure, 
+           .
+      * PUSH BUTTON
+       05
+           pb-random, 
+           Push-Button, 
+           COL 50,30, 
+           LINE 10,00,
+           LINES 2,78 ,
+           SIZE 7,60 ,
+           EXCEPTION-VALUE 1002,
+           FONT IS Small-Font,
+           ID IS 25,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "RANDOM",
+           .
+
       * TOOLBAR
        01
            Form1-Tb-1,
@@ -1222,10 +1301,11 @@
            PERFORM OPEN-groups
            PERFORM OPEN-intensity
            PERFORM OPEN-macrogroups
-           PERFORM OPEN-wodbook
            PERFORM OPEN-duration
       *    tmp-exe-effort OPEN MODE IS FALSE
       *    PERFORM OPEN-tmp-exe-effort
+           PERFORM OPEN-wodbook
+           PERFORM OPEN-wodmap
       *    After Open
            .
 
@@ -1277,25 +1357,6 @@
       * <TOTEM:END>
            .
 
-       OPEN-wodbook.
-      * <TOTEM:EPT. INIT:gwod, FD:wodbook, BeforeOpen>
-      * <TOTEM:END>
-           OPEN  I-O wodbook
-           IF STATUS-wodbook = "35"
-              OPEN OUTPUT wodbook
-                IF Valid-STATUS-wodbook
-                   CLOSE wodbook
-                   OPEN I-O wodbook
-                END-IF
-           END-IF
-           IF NOT Valid-STATUS-wodbook
-              PERFORM  Form1-EXTENDED-FILE-STATUS
-              GO TO EXIT-STOP-ROUTINE
-           END-IF
-      * <TOTEM:EPT. INIT:gwod, FD:wodbook, AfterOpen>
-      * <TOTEM:END>
-           .
-
        OPEN-duration.
       * <TOTEM:EPT. INIT:gwod, FD:duration, BeforeOpen>
       * <TOTEM:END>
@@ -1320,16 +1381,48 @@
       * <TOTEM:END>
            .
 
+       OPEN-wodbook.
+      * <TOTEM:EPT. INIT:gwod, FD:wodbook, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  I-O wodbook
+           IF STATUS-wodbook = "35"
+              OPEN OUTPUT wodbook
+                IF Valid-STATUS-wodbook
+                   CLOSE wodbook
+                   OPEN I-O wodbook
+                END-IF
+           END-IF
+           IF NOT Valid-STATUS-wodbook
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:wodbook, AfterOpen>
+      * <TOTEM:END>
+           .
+
+       OPEN-wodmap.
+      * <TOTEM:EPT. INIT:gwod, FD:wodmap, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  INPUT wodmap
+           IF NOT Valid-STATUS-wodmap
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:wodmap, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-exercises
            PERFORM CLOSE-groups
            PERFORM CLOSE-intensity
            PERFORM CLOSE-macrogroups
-           PERFORM CLOSE-wodbook
            PERFORM CLOSE-duration
       *    tmp-exe-effort CLOSE MODE IS FALSE
       *    PERFORM CLOSE-tmp-exe-effort
+           PERFORM CLOSE-wodbook
+           PERFORM CLOSE-wodmap
       *    After Close
            .
 
@@ -1357,12 +1450,6 @@
            CLOSE macrogroups
            .
 
-       CLOSE-wodbook.
-      * <TOTEM:EPT. INIT:gwod, FD:wodbook, BeforeClose>
-      * <TOTEM:END>
-           CLOSE wodbook
-           .
-
        CLOSE-duration.
       * <TOTEM:EPT. INIT:gwod, FD:duration, BeforeClose>
       * <TOTEM:END>
@@ -1372,6 +1459,18 @@
        CLOSE-tmp-exe-effort.
       * <TOTEM:EPT. INIT:gwod, FD:tmp-exe-effort, BeforeClose>
       * <TOTEM:END>
+           .
+
+       CLOSE-wodbook.
+      * <TOTEM:EPT. INIT:gwod, FD:wodbook, BeforeClose>
+      * <TOTEM:END>
+           CLOSE wodbook
+           .
+
+       CLOSE-wodmap.
+      * <TOTEM:EPT. INIT:gwod, FD:wodmap, BeforeClose>
+      * <TOTEM:END>
+           CLOSE wodmap
            .
 
        exercises-exe-k-desc-MERGE-SPLITBUF.
@@ -1386,88 +1485,52 @@
            .
 
        DataSet1-exercises-INITSTART.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-exercises-KEY1-Asc
-                 MOVE Low-Value TO exe-key
-              ELSE
-                 MOVE High-Value TO exe-key
-              END-IF
-           END-EVALUATE
+           IF DataSet1-exercises-KEY-Asc
+              MOVE Low-Value TO exe-key
+           ELSE
+              MOVE High-Value TO exe-key
+           END-IF
            .
 
        DataSet1-exercises-INITEND.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-exercises-KEY1-Asc
-                 MOVE High-Value TO exe-key
-              ELSE
-                 MOVE Low-Value TO exe-key
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-CHANGETO-KEY1.
-           MOVE 1 TO DataSet1-KEYIS
-           .   
-
-       DataSet1-Change-CurrentKey-Asc.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              MOVE "A" TO DataSet1-exercises-KEY1-ORDER
-           END-EVALUATE
-           .
-
-       DataSet1-Change-CurrentKey-Desc.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              MOVE "D" TO DataSet1-exercises-KEY1-ORDER
-           END-EVALUATE
+           IF DataSet1-exercises-KEY-Asc
+              MOVE High-Value TO exe-key
+           ELSE
+              MOVE Low-Value TO exe-key
+           END-IF
            .
 
       * exercises
        DataSet1-exercises-START.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-exercises-KEY1-Asc
-                 START exercises KEY >= exe-key
-              ELSE
-                 START exercises KEY <= exe-key
-              END-IF
-           END-EVALUATE
+           IF DataSet1-exercises-KEY-Asc
+              START exercises KEY >= exe-key
+           ELSE
+              START exercises KEY <= exe-key
+           END-IF
            .
 
        DataSet1-exercises-START-NOTGREATER.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-exercises-KEY1-Asc
-                 START exercises KEY <= exe-key
-              ELSE
-                 START exercises KEY >= exe-key
-              END-IF
-           END-EVALUATE
+           IF DataSet1-exercises-KEY-Asc
+              START exercises KEY <= exe-key
+           ELSE
+              START exercises KEY >= exe-key
+           END-IF
            .
 
        DataSet1-exercises-START-GREATER.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-exercises-KEY1-Asc
-                 START exercises KEY > exe-key
-              ELSE
-                 START exercises KEY < exe-key
-              END-IF
-           END-EVALUATE
+           IF DataSet1-exercises-KEY-Asc
+              START exercises KEY > exe-key
+           ELSE
+              START exercises KEY < exe-key
+           END-IF
            .
 
        DataSet1-exercises-START-LESS.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-exercises-KEY1-Asc
-                 START exercises KEY < exe-key
-              ELSE
-                 START exercises KEY > exe-key
-              END-IF
-           END-EVALUATE
+           IF DataSet1-exercises-KEY-Asc
+              START exercises KEY < exe-key
+           ELSE
+              START exercises KEY > exe-key
+           END-IF
            .
 
        DataSet1-exercises-Read.
@@ -1475,16 +1538,13 @@
       * <TOTEM:END>
       * <TOTEM:EPT. FD:DataSet1, FD:exercises, BeforeReadRecord>
       * <TOTEM:END>
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-exercises-LOCK
-                 READ exercises WITH LOCK 
-                 KEY exe-key
-              ELSE
-                 READ exercises WITH NO LOCK 
-                 KEY exe-key
-              END-IF
-           END-EVALUATE
+           IF DataSet1-exercises-LOCK
+              READ exercises WITH LOCK 
+              KEY exe-key
+           ELSE
+              READ exercises WITH NO LOCK 
+              KEY exe-key
+           END-IF
            PERFORM exercises-exe-k-desc-MERGE-SPLITBUF
            PERFORM exercises-exe-k-group-MERGE-SPLITBUF
            MOVE STATUS-exercises TO TOTEM-ERR-STAT 
@@ -1501,22 +1561,19 @@
       * <TOTEM:END>
       * <TOTEM:EPT. FD:DataSet1, FD:exercises, BeforeReadNext>
       * <TOTEM:END>
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-exercises-KEY1-Asc
-                 IF DataSet1-exercises-LOCK
-                    READ exercises NEXT WITH LOCK
-                 ELSE
-                    READ exercises NEXT WITH NO LOCK
-                 END-IF
+           IF DataSet1-exercises-KEY-Asc
+              IF DataSet1-exercises-LOCK
+                 READ exercises NEXT WITH LOCK
               ELSE
-                 IF DataSet1-exercises-LOCK
-                    READ exercises PREVIOUS WITH LOCK
-                 ELSE
-                    READ exercises PREVIOUS WITH NO LOCK
-                 END-IF
+                 READ exercises NEXT WITH NO LOCK
               END-IF
-           END-EVALUATE
+           ELSE
+              IF DataSet1-exercises-LOCK
+                 READ exercises PREVIOUS WITH LOCK
+              ELSE
+                 READ exercises PREVIOUS WITH NO LOCK
+              END-IF
+           END-IF
            PERFORM exercises-exe-k-desc-MERGE-SPLITBUF
            PERFORM exercises-exe-k-group-MERGE-SPLITBUF
            MOVE STATUS-exercises TO TOTEM-ERR-STAT
@@ -1533,22 +1590,19 @@
       * <TOTEM:END>
       * <TOTEM:EPT. FD:DataSet1, FD:exercises, BeforeReadPrev>
       * <TOTEM:END>
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-exercises-KEY1-Asc
-                 IF DataSet1-exercises-LOCK
-                    READ exercises PREVIOUS WITH LOCK
-                 ELSE
-                    READ exercises PREVIOUS WITH NO LOCK
-                 END-IF
+           IF DataSet1-exercises-KEY-Asc
+              IF DataSet1-exercises-LOCK
+                 READ exercises PREVIOUS WITH LOCK
               ELSE
-                 IF DataSet1-exercises-LOCK
-                    READ exercises NEXT WITH LOCK
-                 ELSE
-                    READ exercises NEXT WITH NO LOCK
-                 END-IF
+                 READ exercises PREVIOUS WITH NO LOCK
               END-IF
-           END-EVALUATE
+           ELSE
+              IF DataSet1-exercises-LOCK
+                 READ exercises NEXT WITH LOCK
+              ELSE
+                 READ exercises NEXT WITH NO LOCK
+              END-IF
+           END-IF
            PERFORM exercises-exe-k-desc-MERGE-SPLITBUF
            PERFORM exercises-exe-k-group-MERGE-SPLITBUF
            MOVE STATUS-exercises TO TOTEM-ERR-STAT
@@ -2086,163 +2140,6 @@
       * <TOTEM:END>
            .
 
-       DataSet1-wodbook-INITSTART.
-           IF DataSet1-wodbook-KEY-Asc
-              MOVE Low-Value TO wod-key
-           ELSE
-              MOVE High-Value TO wod-key
-           END-IF
-           .
-
-       DataSet1-wodbook-INITEND.
-           IF DataSet1-wodbook-KEY-Asc
-              MOVE High-Value TO wod-key
-           ELSE
-              MOVE Low-Value TO wod-key
-           END-IF
-           .
-
-      * wodbook
-       DataSet1-wodbook-START.
-           IF DataSet1-wodbook-KEY-Asc
-              START wodbook KEY >= wod-key
-           ELSE
-              START wodbook KEY <= wod-key
-           END-IF
-           .
-
-       DataSet1-wodbook-START-NOTGREATER.
-           IF DataSet1-wodbook-KEY-Asc
-              START wodbook KEY <= wod-key
-           ELSE
-              START wodbook KEY >= wod-key
-           END-IF
-           .
-
-       DataSet1-wodbook-START-GREATER.
-           IF DataSet1-wodbook-KEY-Asc
-              START wodbook KEY > wod-key
-           ELSE
-              START wodbook KEY < wod-key
-           END-IF
-           .
-
-       DataSet1-wodbook-START-LESS.
-           IF DataSet1-wodbook-KEY-Asc
-              START wodbook KEY < wod-key
-           ELSE
-              START wodbook KEY > wod-key
-           END-IF
-           .
-
-       DataSet1-wodbook-Read.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeReadRecord>
-      * <TOTEM:END>
-           IF DataSet1-wodbook-LOCK
-              READ wodbook WITH LOCK 
-              KEY wod-key
-           ELSE
-              READ wodbook WITH NO LOCK 
-              KEY wod-key
-           END-IF
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT 
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "READ" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterReadRecord>
-      * <TOTEM:END>
-           .
-
-       DataSet1-wodbook-Read-Next.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeReadNext>
-      * <TOTEM:END>
-           IF DataSet1-wodbook-KEY-Asc
-              IF DataSet1-wodbook-LOCK
-                 READ wodbook NEXT WITH LOCK
-              ELSE
-                 READ wodbook NEXT WITH NO LOCK
-              END-IF
-           ELSE
-              IF DataSet1-wodbook-LOCK
-                 READ wodbook PREVIOUS WITH LOCK
-              ELSE
-                 READ wodbook PREVIOUS WITH NO LOCK
-              END-IF
-           END-IF
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "READ NEXT" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterReadNext>
-      * <TOTEM:END>
-           .
-
-       DataSet1-wodbook-Read-Prev.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeReadPrev>
-      * <TOTEM:END>
-           IF DataSet1-wodbook-KEY-Asc
-              IF DataSet1-wodbook-LOCK
-                 READ wodbook PREVIOUS WITH LOCK
-              ELSE
-                 READ wodbook PREVIOUS WITH NO LOCK
-              END-IF
-           ELSE
-              IF DataSet1-wodbook-LOCK
-                 READ wodbook NEXT WITH LOCK
-              ELSE
-                 READ wodbook NEXT WITH NO LOCK
-              END-IF
-           END-IF
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterReadPrev>
-      * <TOTEM:END>
-           .
-
-       DataSet1-wodbook-Rec-Write.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeWrite>
-      * <TOTEM:END>
-           WRITE wod-rec OF wodbook.
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "WRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterWrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-wodbook-Rec-Rewrite.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRewrite>
-      * <TOTEM:END>
-           REWRITE wod-rec OF wodbook.
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "REWRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRewrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-wodbook-Rec-Delete.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeDelete>
-      * <TOTEM:END>
-           DELETE wodbook.
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "DELETE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterDelete>
-      * <TOTEM:END>
-           .
-
        duration-dur-k-desc-MERGE-SPLITBUF.
            INITIALIZE duration-dur-k-desc-SPLITBUF
            MOVE dur-desc(1:100) TO duration-dur-k-desc-SPLITBUF(1:100)
@@ -2413,6 +2310,14 @@
            tmp-exe-effort-tee-k-mcg-eff-SPLITBUF(6:2)
            .
 
+       tmp-exe-effort-tee-k-exe-multi-MERGE-SPLITBUF.
+           INITIALIZE tmp-exe-effort-tee-k-exe-multi-SPLITBUF
+           MOVE tee-exe-isMulti(1:1) TO 
+           tmp-exe-effort-tee-k-exe-multi-SPLITBUF(1:1)
+           MOVE tee-mcg-code(1:5) TO 
+           tmp-exe-effort-tee-k-exe-multi-SPLITBUF(2:5)
+           .
+
        DataSet1-tmp-exe-effort-INITSTART.
            IF DataSet1-tmp-exe-effort-KEY-Asc
               MOVE Low-Value TO tee-key
@@ -2526,14 +2431,379 @@
       * <TOTEM:END>
            .
 
+       DataSet1-wodbook-INITSTART.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-wodbook-KEY1-Asc
+                 MOVE Low-Value TO wod-key
+              ELSE
+                 MOVE High-Value TO wod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-wodbook-INITEND.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-wodbook-KEY1-Asc
+                 MOVE High-Value TO wod-key
+              ELSE
+                 MOVE Low-Value TO wod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-CHANGETO-KEY1.
+           MOVE 1 TO DataSet1-KEYIS
+           .   
+
+       DataSet1-Change-CurrentKey-Asc.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              MOVE "A" TO DataSet1-wodbook-KEY1-ORDER
+           END-EVALUATE
+           .
+
+       DataSet1-Change-CurrentKey-Desc.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              MOVE "D" TO DataSet1-wodbook-KEY1-ORDER
+           END-EVALUATE
+           .
+
+      * wodbook
+       DataSet1-wodbook-START.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-wodbook-KEY1-Asc
+                 START wodbook KEY >= wod-key
+              ELSE
+                 START wodbook KEY <= wod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-wodbook-START-NOTGREATER.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-wodbook-KEY1-Asc
+                 START wodbook KEY <= wod-key
+              ELSE
+                 START wodbook KEY >= wod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-wodbook-START-GREATER.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-wodbook-KEY1-Asc
+                 START wodbook KEY > wod-key
+              ELSE
+                 START wodbook KEY < wod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-wodbook-START-LESS.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-wodbook-KEY1-Asc
+                 START wodbook KEY < wod-key
+              ELSE
+                 START wodbook KEY > wod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-wodbook-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeReadRecord>
+      * <TOTEM:END>
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-wodbook-LOCK
+                 READ wodbook WITH LOCK 
+                 KEY wod-key
+              ELSE
+                 READ wodbook WITH NO LOCK 
+                 KEY wod-key
+              END-IF
+           END-EVALUATE
+           MOVE STATUS-wodbook TO TOTEM-ERR-STAT 
+           MOVE "wodbook" TO TOTEM-ERR-FILE
+           MOVE "READ" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-wodbook-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeReadNext>
+      * <TOTEM:END>
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-wodbook-KEY1-Asc
+                 IF DataSet1-wodbook-LOCK
+                    READ wodbook NEXT WITH LOCK
+                 ELSE
+                    READ wodbook NEXT WITH NO LOCK
+                 END-IF
+              ELSE
+                 IF DataSet1-wodbook-LOCK
+                    READ wodbook PREVIOUS WITH LOCK
+                 ELSE
+                    READ wodbook PREVIOUS WITH NO LOCK
+                 END-IF
+              END-IF
+           END-EVALUATE
+           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
+           MOVE "wodbook" TO TOTEM-ERR-FILE
+           MOVE "READ NEXT" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-wodbook-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeReadPrev>
+      * <TOTEM:END>
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-wodbook-KEY1-Asc
+                 IF DataSet1-wodbook-LOCK
+                    READ wodbook PREVIOUS WITH LOCK
+                 ELSE
+                    READ wodbook PREVIOUS WITH NO LOCK
+                 END-IF
+              ELSE
+                 IF DataSet1-wodbook-LOCK
+                    READ wodbook NEXT WITH LOCK
+                 ELSE
+                    READ wodbook NEXT WITH NO LOCK
+                 END-IF
+              END-IF
+           END-EVALUATE
+           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
+           MOVE "wodbook" TO TOTEM-ERR-FILE
+           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-wodbook-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeWrite>
+      * <TOTEM:END>
+           WRITE wod-rec OF wodbook.
+           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
+           MOVE "wodbook" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-wodbook-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRewrite>
+      * <TOTEM:END>
+           REWRITE wod-rec OF wodbook.
+           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
+           MOVE "wodbook" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-wodbook-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeDelete>
+      * <TOTEM:END>
+           DELETE wodbook.
+           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
+           MOVE "wodbook" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterDelete>
+      * <TOTEM:END>
+           .
+
+       wodmap-wom-k-desc-MERGE-SPLITBUF.
+           INITIALIZE wodmap-wom-k-desc-SPLITBUF
+           MOVE wom-desc(1:100) TO wodmap-wom-k-desc-SPLITBUF(1:100)
+           .
+
+       DataSet1-wodmap-INITSTART.
+           IF DataSet1-wodmap-KEY-Asc
+              MOVE Low-Value TO wom-key
+           ELSE
+              MOVE High-Value TO wom-key
+           END-IF
+           .
+
+       DataSet1-wodmap-INITEND.
+           IF DataSet1-wodmap-KEY-Asc
+              MOVE High-Value TO wom-key
+           ELSE
+              MOVE Low-Value TO wom-key
+           END-IF
+           .
+
+      * wodmap
+       DataSet1-wodmap-START.
+           IF DataSet1-wodmap-KEY-Asc
+              START wodmap KEY >= wom-key
+           ELSE
+              START wodmap KEY <= wom-key
+           END-IF
+           .
+
+       DataSet1-wodmap-START-NOTGREATER.
+           IF DataSet1-wodmap-KEY-Asc
+              START wodmap KEY <= wom-key
+           ELSE
+              START wodmap KEY >= wom-key
+           END-IF
+           .
+
+       DataSet1-wodmap-START-GREATER.
+           IF DataSet1-wodmap-KEY-Asc
+              START wodmap KEY > wom-key
+           ELSE
+              START wodmap KEY < wom-key
+           END-IF
+           .
+
+       DataSet1-wodmap-START-LESS.
+           IF DataSet1-wodmap-KEY-Asc
+              START wodmap KEY < wom-key
+           ELSE
+              START wodmap KEY > wom-key
+           END-IF
+           .
+
+       DataSet1-wodmap-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, BeforeReadRecord>
+      * <TOTEM:END>
+           IF DataSet1-wodmap-LOCK
+              READ wodmap WITH LOCK 
+              KEY wom-key
+           ELSE
+              READ wodmap WITH NO LOCK 
+              KEY wom-key
+           END-IF
+           PERFORM wodmap-wom-k-desc-MERGE-SPLITBUF
+           MOVE STATUS-wodmap TO TOTEM-ERR-STAT 
+           MOVE "wodmap" TO TOTEM-ERR-FILE
+           MOVE "READ" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-wodmap-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, BeforeReadNext>
+      * <TOTEM:END>
+           IF DataSet1-wodmap-KEY-Asc
+              IF DataSet1-wodmap-LOCK
+                 READ wodmap NEXT WITH LOCK
+              ELSE
+                 READ wodmap NEXT WITH NO LOCK
+              END-IF
+           ELSE
+              IF DataSet1-wodmap-LOCK
+                 READ wodmap PREVIOUS WITH LOCK
+              ELSE
+                 READ wodmap PREVIOUS WITH NO LOCK
+              END-IF
+           END-IF
+           PERFORM wodmap-wom-k-desc-MERGE-SPLITBUF
+           MOVE STATUS-wodmap TO TOTEM-ERR-STAT
+           MOVE "wodmap" TO TOTEM-ERR-FILE
+           MOVE "READ NEXT" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-wodmap-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, BeforeReadPrev>
+      * <TOTEM:END>
+           IF DataSet1-wodmap-KEY-Asc
+              IF DataSet1-wodmap-LOCK
+                 READ wodmap PREVIOUS WITH LOCK
+              ELSE
+                 READ wodmap PREVIOUS WITH NO LOCK
+              END-IF
+           ELSE
+              IF DataSet1-wodmap-LOCK
+                 READ wodmap NEXT WITH LOCK
+              ELSE
+                 READ wodmap NEXT WITH NO LOCK
+              END-IF
+           END-IF
+           PERFORM wodmap-wom-k-desc-MERGE-SPLITBUF
+           MOVE STATUS-wodmap TO TOTEM-ERR-STAT
+           MOVE "wodmap" TO TOTEM-ERR-FILE
+           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-wodmap-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, BeforeWrite>
+      * <TOTEM:END>
+           MOVE STATUS-wodmap TO TOTEM-ERR-STAT
+           MOVE "wodmap" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-wodmap-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-wodmap TO TOTEM-ERR-STAT
+           MOVE "wodmap" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-wodmap-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-wodmap TO TOTEM-ERR-STAT
+           MOVE "wodmap" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:wodmap, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE grp-rec OF groups
            INITIALIZE int-rec OF intensity
            INITIALIZE mcg-rec OF macrogroups
-           INITIALIZE wod-rec OF wodbook
            INITIALIZE dur-rec OF duration
            INITIALIZE tee-rec OF tmp-exe-effort
+           INITIALIZE wod-rec OF wodbook
+           INITIALIZE wom-rec OF wodmap
            .
 
 
@@ -2601,6 +2871,10 @@
        cb-mul-Content.
            .
 
+      * COMBO-BOX
+       cb-wod-Content.
+           .
+
       * FD's Initialize Paragraph
        DataSet1-exercises-INITREC.
            INITIALIZE exe-rec OF exercises
@@ -2634,14 +2908,6 @@
            .
 
       * FD's Initialize Paragraph
-       DataSet1-wodbook-INITREC.
-           INITIALIZE wod-rec OF wodbook
-               REPLACING NUMERIC       DATA BY ZEROS
-                         ALPHANUMERIC  DATA BY SPACES
-                         ALPHABETIC    DATA BY SPACES
-           .
-
-      * FD's Initialize Paragraph
        DataSet1-duration-INITREC.
            INITIALIZE dur-rec OF duration
                REPLACING NUMERIC       DATA BY ZEROS
@@ -2652,6 +2918,22 @@
       * FD's Initialize Paragraph
        DataSet1-tmp-exe-effort-INITREC.
            INITIALIZE tee-rec OF tmp-exe-effort
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-wodbook-INITREC.
+           INITIALIZE wod-rec OF wodbook
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-wodmap-INITREC.
+           INITIALIZE wom-rec OF wodmap
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -2770,12 +3052,28 @@
            modify cb-gio, item-to-add = 4.
            modify cb-gio, item-to-add = 5.
                         
-           move low-value to mcg-key.
-           start macrogroups key >= mcg-key
+           move low-value to wom-desc.
+           start wodmap key >= wom-k-desc
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read wodmap next at end exit perform end-read
+                    move wom-desc to cb-wod-buf          
+                    modify cb-wod, item-to-add = wom-desc
+                    modify cb-wod, value = wom-desc
+                 end-perform
+           end-start.
+                        
+           move low-value to mcg-desc.
+           start macrogroups key >= mcg-k-desc
                  invalid continue
              not invalid
                  perform until 1 = 2
                     read macrogroups next at end exit perform end-read
+
+                    add 1 to tot-mcg 
+                    move mcg-desc to el-mcg-desc(tot-mcg)
+
                     move mcg-desc to cb-mg1-buf    
                     modify cb-mg1, item-to-add = cb-mg1-buf
                     modify cb-mg2, item-to-add = cb-mg1-buf
@@ -2865,6 +3163,8 @@
                  PERFORM pb-genera-LinkTo
               WHEN Key-Status = 1001
                  PERFORM Screen1-Pb-1-LinkTo
+              WHEN Key-Status = 1002
+                 PERFORM pb-random-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 4
@@ -2949,6 +3249,8 @@
            PERFORM cb-gio-Content
       * COMBO-BOX
            PERFORM cb-mul-Content
+      * COMBO-BOX
+           PERFORM cb-wod-Content
            .
 
        Form1-DataSet1-CHANGETO-KEY1.
@@ -2959,7 +3261,7 @@
        Form1-DataSet1-Change-CurrentKey-Asc.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              MOVE "A" TO DataSet1-exercises-KEY1-ORDER
+              MOVE "A" TO DataSet1-wodbook-KEY1-ORDER
            END-EVALUATE
            PERFORM Form1-DataSet1-Update-Key
            .
@@ -2967,19 +3269,19 @@
        Form1-DataSet1-Change-CurrentKey-Desc.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              MOVE "D" TO DataSet1-exercises-KEY1-ORDER
+              MOVE "D" TO DataSet1-wodbook-KEY1-ORDER
            END-EVALUATE
            PERFORM Form1-DataSet1-Update-Key
            .
 
        Form1-DataSet1-Update-Key.
-           MOVE exe-rec OF exercises TO
+           MOVE wod-rec OF wodbook TO
                      Form1-MULKEY-TMPBUF
            PERFORM Form1-CLEAR
            PERFORM Form1-INIT-DATA
            MOVE Form1-MULKEY-TMPBUF TO
-                     exe-rec OF exercises
-           PERFORM DataSet1-exercises-Read
+                     wod-rec OF wodbook
+           PERFORM DataSet1-wodbook-Read
            PERFORM Form1-DUPLICATE-MOVEKEY
            PERFORM Form1-DUMMY-CURR
            PERFORM Form1-IUD-Display
@@ -2990,16 +3292,16 @@
 
        Form1-First.
            PERFORM Form1-DUMMY-FIRST
-           PERFORM DataSet1-exercises-INITSTART
-           PERFORM DataSet1-exercises-START
-           IF NOT Valid-STATUS-exercises
+           PERFORM DataSet1-wodbook-INITSTART
+           PERFORM DataSet1-wodbook-START
+           IF NOT Valid-STATUS-wodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeFirst>
       * <TOTEM:END>
-           PERFORM DataSet1-exercises-Read-Next
-           IF NOT Valid-STATUS-exercises
+           PERFORM DataSet1-wodbook-Read-Next
+           IF NOT Valid-STATUS-wodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -3011,15 +3313,15 @@
 
        Form1-Previous.
               PERFORM Form1-Buf-To-Fld
-              PERFORM DataSet1-exercises-START-LESS
-           IF NOT Valid-STATUS-exercises
+              PERFORM DataSet1-wodbook-START-LESS
+           IF NOT Valid-STATUS-wodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforePrevious>
       * <TOTEM:END>
-           PERFORM DataSet1-exercises-Read-Prev
-           IF NOT Valid-STATUS-exercises
+           PERFORM DataSet1-wodbook-Read-Prev
+           IF NOT Valid-STATUS-wodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -3032,15 +3334,15 @@
 
        Form1-Next.
               PERFORM Form1-Buf-To-Fld
-              PERFORM DataSet1-exercises-START-GREATER
-           IF NOT Valid-STATUS-exercises
+              PERFORM DataSet1-wodbook-START-GREATER
+           IF NOT Valid-STATUS-wodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeNext>
       * <TOTEM:END>
-           PERFORM DataSet1-exercises-Read-Next
-           IF NOT Valid-STATUS-exercises
+           PERFORM DataSet1-wodbook-Read-Next
+           IF NOT Valid-STATUS-wodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -3053,16 +3355,16 @@
       
        Form1-Last.
            PERFORM Form1-DUMMY-LAST
-           PERFORM DataSet1-exercises-INITEND
-           PERFORM DataSet1-exercises-START-NOTGREATER
-           IF NOT Valid-STATUS-exercises
+           PERFORM DataSet1-wodbook-INITEND
+           PERFORM DataSet1-wodbook-START-NOTGREATER
+           IF NOT Valid-STATUS-wodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeLast>
       * <TOTEM:END>
-           PERFORM DataSet1-exercises-Read-Prev
-           IF NOT Valid-STATUS-exercises
+           PERFORM DataSet1-wodbook-Read-Prev
+           IF NOT Valid-STATUS-wodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -3076,7 +3378,7 @@
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeCurrent>
       * <TOTEM:END>
            PERFORM Form1-Buf-To-Fld
-           PERFORM DataSet1-exercises-Read
+           PERFORM DataSet1-wodbook-Read
            PERFORM Form1-DUPLICATE-MOVEKEY
            PERFORM Form1-DUMMY-CURR
            PERFORM Form1-IUD-Display
@@ -3085,7 +3387,7 @@
            .
 
        Form1-IUD-Display.
-           IF Valid-STATUS-exercises
+           IF Valid-STATUS-wodbook
               PERFORM Form1-ALLGRID-RESET
               PERFORM Form1-Fld-To-Buf
               PERFORM Form1-NAVI-FOR-MASTERGRID
@@ -3106,14 +3408,14 @@
                EXIT PARAGRAPH
            END-IF
            PERFORM Form1-DUMMY-ADD
-           PERFORM DataSet1-exercises-INITREC
+           PERFORM DataSet1-wodbook-INITREC
            PERFORM Form1-Buf-To-Fld
            MOVE SPACES TO TOTEM-TRANSACTION-FLAG
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAdd>
       * <TOTEM:END>
       * write
-           PERFORM DataSet1-exercises-Rec-Write
-           IF Valid-STATUS-exercises
+           PERFORM DataSet1-wodbook-Rec-Write
+           IF Valid-STATUS-wodbook
               PERFORM Form1-RESUMMARY-INS
               PERFORM Form1-DUMMY-UPDATE-INIT
               MOVE "301" TO TOTEM-MSG-ID
@@ -3126,12 +3428,12 @@
      
        Form1-Update.
            PERFORM Form1-Buf-To-Fld
-           PERFORM DataSet1-exercises-START              
-           IF NOT Valid-STATUS-exercises
+           PERFORM DataSet1-wodbook-START              
+           IF NOT Valid-STATUS-wodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
-           PERFORM DataSet1-exercises-Read
+           PERFORM DataSet1-wodbook-Read
            PERFORM Form1-Buf-To-Fld
            PERFORM Form1-VALIDATION-ROUTINE
            IF NOT TOTEM-CHECK-OK
@@ -3143,8 +3445,8 @@
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeUpdate>
       * <TOTEM:END>
       * write
-           PERFORM DataSet1-exercises-Rec-Rewrite
-           IF Valid-STATUS-exercises
+           PERFORM DataSet1-wodbook-Rec-Rewrite
+           IF Valid-STATUS-wodbook
               PERFORM Form1-RESUMMARY-DEL
               PERFORM Form1-DUMMY-UPDATE-INIT
               MOVE "302" TO TOTEM-MSG-ID
@@ -3168,12 +3470,12 @@
            PERFORM Form1-DUMMY-DELETE
       * delete
            PERFORM Form1-Buf-To-Fld
-           PERFORM DataSet1-exercises-Rec-Delete
-           IF Valid-STATUS-exercises
+           PERFORM DataSet1-wodbook-Rec-Delete
+           IF Valid-STATUS-wodbook
               PERFORM Form1-CLEAR
               PERFORM Form1-DUMMY-DELETE-INIT
               MOVE "303" TO TOTEM-MSG-ID
-              MOVE "00" to STATUS-exercises
+              MOVE "00" to STATUS-wodbook
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterDelete>
       * <TOTEM:END>
@@ -3184,7 +3486,7 @@
            .
 
        Form1-ERR-CHECKING.
-           IF Valid-STATUS-exercises
+           IF Valid-STATUS-wodbook
               PERFORM Form1-SHOW-MSG-ROUTINE
            ELSE
               PERFORM Form1-Extended-File-Status
@@ -3293,28 +3595,28 @@
            .
 
        Form1-Save-Status.
-           MOVE DataSet1-exercises-KEY1-ORDER TO TMP-Form1-KEY1-ORDER
+           MOVE DataSet1-wodbook-KEY1-ORDER TO TMP-Form1-KEY1-ORDER
            MOVE DataSet1-KEYIS TO TMP-Form1-KEYIS
-           MOVE exe-rec OF exercises TO 
-              TMP-Form1-exercises-RESTOREBUF
+           MOVE wod-rec OF wodbook TO 
+              TMP-Form1-wodbook-RESTOREBUF
            .             
 
        Form1-Restore-Status.
-           MOVE TMP-Form1-KEY1-ORDER TO DataSet1-exercises-KEY1-ORDER
+           MOVE TMP-Form1-KEY1-ORDER TO DataSet1-wodbook-KEY1-ORDER
            MOVE TMP-Form1-KEYIS TO DataSet1-KEYIS
-           MOVE TMP-Form1-exercises-RESTOREBUF TO
-              exe-rec OF exercises
-           PERFORM DataSet1-exercises-START
-           IF Valid-STATUS-exercises
-              PERFORM DataSet1-exercises-Read-Next
+           MOVE TMP-Form1-wodbook-RESTOREBUF TO
+              wod-rec OF wodbook
+           PERFORM DataSet1-wodbook-START
+           IF Valid-STATUS-wodbook
+              PERFORM DataSet1-wodbook-Read-Next
            ELSE
-              PERFORM DataSet1-exercises-INITREC
+              PERFORM DataSet1-wodbook-INITREC
            END-IF
-           PERFORM UNTIL NOT Valid-STATUS-exercises OR
-              (Valid-STATUS-exercises AND
-                 exe-rec OF exercises = 
-                   TMP-Form1-exercises-RESTOREBUF)
-              PERFORM DataSet1-exercises-Read-Next
+           PERFORM UNTIL NOT Valid-STATUS-wodbook OR
+              (Valid-STATUS-wodbook AND
+                 wod-rec OF wodbook = 
+                   TMP-Form1-wodbook-RESTOREBUF)
+              PERFORM DataSet1-wodbook-Read-Next
            END-PERFORM
            .
 
@@ -4980,7 +5282,7 @@
            move 0 to int-effort.
            inquire cb-int, value in int-desc.
            read intensity key int-k-desc.
-           move int-effort to wod-effort.
+           move int-effort to effort-wod.
                  
            accept  como-data from century-date.
            accept  como-ora  from time.
@@ -5013,11 +5315,15 @@
                     read intensity no lock
                     move exe-grp-code to grp-code
                     read groups no lock
-                    if int-effort <= wod-effort
+                    if int-effort <= effort-wod
                        perform varying idx-gruppi from 1 by 1 
                                  until idx-gruppi > 5
                           if el-mcg-code(idx-gruppi) = grp-mcg-code
-                             add 1 to tee-prg
+                             if exe-isMulti-yes and cb-mul-buf = "No"
+                                exit perform cycle
+                             end-if
+                             add 1 to tee-prg                  
+                             move exe-code     to tee-exe-code
                              move exe-desc     to tee-exe-desc
                              move grp-mcg-code to tee-mcg-code
                              move int-effort   to tee-int-effort
@@ -5027,33 +5333,92 @@
                        end-perform
                     end-if
                  end-perform
-           end-start.       
-           move 1 to riga.
-           perform varying idx-gruppi from 1 by 1 
-                     until idx-gruppi > tot-gruppi
-              move el-mcg-code(idx-gruppi) to tee-mcg-code
-              move high-value to tee-int-effort
-              start tmp-exe-effort key <= tee-k-mcg-eff
-                    invalid continue
-                not invalid
-                    perform until 1 = 2
-                       if el-exercises-ok(idx-gruppi) = 
-           el-exercises(idx-gruppi)
-                          exit perform
-                       end-if
-                       read tmp-exe-effort previous 
-                         at end exit perform 
-                       end-read
-                       if tee-mcg-code not = el-mcg-code(idx-gruppi)
-                          exit perform
-                       end-if                
-                       add 1 to riga el-exercises-ok(idx-gruppi)
-                       modify gd1(riga, 1), cell-data tee-exe-desc
-                       delete tmp-exe-effort record
-                    end-perform
-               end-start
-           end-perform.
+           end-start.                   
+   
+      *****     move high-value to wod-code wod-dayPrg.
+      *****     start wodbook key <= wod-key
+      *****           invalid move 0 to wod-code
+      *****       not invalid read wodbook previous
+      *****     end-start.
+      *****     add 1 to wod-code.
+                     
+           |CARICO ESERCIZI MULTIARTICOLARI
+           if cb-mul-buf = "Si"
+              move 1 to riga
+              initialize tab-exercises replacing numeric data by zeroes 
+                                            alphanumeric data by spaces
+              perform varying idx-gruppi from 1 by 1 
+                        until idx-gruppi > tot-gruppi
+                 move el-mcg-code(idx-gruppi) to tee-mcg-code
+                 set  tee-exe-isMulti-yes to true            
+                 move 0 to idx
 
+                 start tmp-exe-effort key >= tee-k-exe-multi
+                       invalid continue
+                   not invalid
+                       perform until 1 = 2        
+                          read tmp-exe-effort next
+                            at end exit perform 
+                          end-read        
+                          if tee-mcg-code not = el-mcg-code(idx-gruppi) 
+           or
+                             tee-exe-isMulti-no
+                             exit perform
+                          end-if                
+                          add 1 to idx
+                          move tee-exe-code to el-exe-code(idx)
+                          move tee-exe-desc to el-exe-desc(idx)
+                          delete tmp-exe-effort record
+                       end-perform
+                 end-start
+                 if idx > 0
+                    move idx to tot-exe tot-righe
+                    perform until 1 = 2
+                       if tot-righe = 0
+                          exit perform 
+                       end-if
+                       compute idx = function random * (tot-exe)
+                       add 1 to idx
+                       if el-exe-code(idx) not = spaces
+                          add 1 to riga                                 
+               
+                          modify gd1 (riga, 1), cell-data = 
+           el-exe-code(idx)
+                          modify gd1 (riga, 2), cell-data = 
+           el-exe-desc(idx)
+                          move spaces to el-exe-code(idx)
+                          subtract 1 from tot-righe
+                       end-if
+                    end-perform
+                 end-if
+              end-perform
+           end-if.     
+
+      *****     move 1 to riga.
+      *****     perform varying idx-gruppi from 1 by 1 
+      *****               until idx-gruppi > tot-gruppi
+      *****        move el-mcg-code(idx-gruppi) to tee-mcg-code
+      *****        move high-value to tee-int-effort
+      *****        start tmp-exe-effort key <= tee-k-mcg-eff
+      *****              invalid continue
+      *****          not invalid
+      *****              perform until 1 = 2
+      *****                 if el-exercises-ok(idx-gruppi) = el-exercises(idx-gruppi)
+      *****                    exit perform
+      *****                 end-if
+      *****                 if tee-exe-isMulti-no
+      *****                 read tmp-exe-effort previous 
+      *****                   at end exit perform 
+      *****                 end-read
+      *****                 if tee-mcg-code not = el-mcg-code(idx-gruppi)
+      *****                    exit perform
+      *****                 end-if                
+      *****                 add 1 to riga el-exercises-ok(idx-gruppi)
+      *****                 modify gd1(riga, 1), cell-data tee-exe-desc
+      *****                 delete tmp-exe-effort record
+      *****              end-perform
+      *****         end-start
+      *****     end-perform.  
 
            close       tmp-exe-effort.
            delete file tmp-exe-effort
@@ -5068,6 +5433,34 @@
                                  
            modify cb-int, value = "Hard".
            modify cb-dur, value = "Medium" 
+           .
+      * <TOTEM:END>
+       pb-random-LinkTo.
+      * <TOTEM:PARA. pb-random-LinkTo>
+           inquire cb-wod, value in wom-desc.
+           read wodmap key wom-k-desc.
+
+           move tab-mcg to como-tab-mcg.
+           
+           move 0 to riga.
+           perform until 1 = 2
+              if riga = wom-macrogroups
+                 exit perform
+              end-if
+              compute idx = function random * (tot-mcg)
+              add 1 to idx
+              if como-el-mcg-desc(idx) not = spaces
+                 add 1 to riga
+                 evaluate riga
+                 when 1 modify cb-mg1, value = como-el-mcg-desc(idx)
+                 when 2 modify cb-mg2, value = como-el-mcg-desc(idx)
+                 when 3 modify cb-mg3, value = como-el-mcg-desc(idx)
+                 when 4 modify cb-mg4, value = como-el-mcg-desc(idx)
+                 when 5 modify cb-mg5, value = como-el-mcg-desc(idx)
+                 end-evaluate
+                 move spaces to como-el-mcg-desc(idx) 
+              end-if
+           end-perform 
            .
       * <TOTEM:END>
 

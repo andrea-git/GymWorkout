@@ -5,7 +5,7 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E79C163516-424-393823301
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E79D14475-594-1053011540
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -146,3 +146,12 @@ m_strName=tee-k-mcg-eff
 m_strName=tee-mcg-code
 [SLKEYATOM1_SLINDEX0_]
 m_strName=tee-int-effort
+[SLINDEX1_]
+m_strName=tee-k-exe-multi
+{{@Key_m_strDescriptionSLINDEX1_
+
+@}}
+[SLKEYATOM0_SLINDEX1_]
+m_strName=tee-exe-isMulti
+[SLKEYATOM1_SLINDEX1_]
+m_strName=tee-mcg-code

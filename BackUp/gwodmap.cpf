@@ -2,13 +2,12 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [PROGRAM_CONTENT]
-DIRTY_AFTER_GEN=1
 QUIT_CONFIRM=0
 ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E79D131621-177-2904222744
+PROGRAM_UNIQUE_CODE=TOTEM-7E79E12158-680-1017320821
 
 {{@DESCRIPTION:
 
@@ -352,6 +351,35 @@ m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM32_WK
+
+@}}
+[FDITEM33_WK]
+m_strName=STATUS-duration
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM33_WK
+
+@}}
+[FDITEM34_WK]
+m_strName=Valid-STATUS-duration
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM34_WK
+
+@}}
+[FDITEM35_WK]
+m_strName=lab-durata-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM35_WK
 
 @}}
 
@@ -874,7 +902,7 @@ Begin Screen Form1
    Begin Data.Entry-Field ef-days
       SCREEN-COL        = 14,00
       SCREEN-LINE       = 5,96
-      LOCK-CONTROL      = FALSE
+      LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = ef-days
       Auto              = FALSE
@@ -1031,6 +1059,7 @@ Begin Screen Form1
       Help ID           = 0
       Hint              = .
       ID                = 10
+      ID Variable       = AUTO-ID
       Justification     = Right
       Line              = 6,00
       Lines             = 1,30
@@ -1473,6 +1502,135 @@ Begin Screen Form1
       Event Procedure   = Screen1-Gd-1-Event-Proc
       Msg-Begin-Entry   = gd7-Ev-Msg-Begin-Entry
    End
+   Begin Label Screen1-La-2aaa
+      SCREEN-COL        = 43,90
+      SCREEN-LINE       = 6,00
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = Screen1-La-2aaa
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 43,90
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 12
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 6,00
+      Lines             = 1,30
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 6,00
+      Size Unit         = Default
+      Tab Order         = 19
+      Title             = "Durata"
+      Transparent       = TRUE
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
+   Begin Data.Entry-Field ef-durata
+      SCREEN-COL        = 51,00
+      SCREEN-LINE       = 6,00
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = ef-durata
+      Auto              = FALSE
+      Auto Decimal      = 0
+      Border            = Boxed
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 51,00
+      Csize             = 0
+      Csize Unit        = Default
+      Cursor            = 0
+      Cursor Col        = 0
+      Cursor Row        = 0
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Field Edited (Style) = 1
+      Field Edited Format = z9
+      Field Picture     = 99
+      Field Variable    = wom-dur-code
+      File              = wodmap
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      Hint              = .
+      ID                = 13
+      ID Variable       = AUTO-ID
+      Justification     = Right
+      Line              = 6,00
+      Lines             = 1,30
+      Lines Unit        = Default
+      Max Lines         = 0
+      Max Text          = 2
+      Max Value         = 0
+      Min Value         = 0
+      No AutoSel        = FALSE
+      No Tab            = FALSE
+      Notify Change     = FALSE
+      Numeric           = FALSE
+      Occurs            = 0
+      Read Only         = FALSE
+      Required          = FALSE
+      Secure            = FALSE
+      Size              = 3,00
+      Size Unit         = Default
+      Style             = Singleline
+      Tab Order         = 20
+      Use Return        = TRUE
+      Use Tab           = FALSE
+      Value Multiple    = FALSE
+      Visible           = NONE
+      Width in Cells    = TRUE
+      My Property       = "CONTROLLO=;CONTROLLO-OLD=;ZOOM="
+      Before Procedure  = ef-macro-BeforeProcedure
+      After Procedure   = ef-macro-AfterProcedure
+   End
+   Begin Label lab-durata
+      SCREEN-COL        = 55,30
+      SCREEN-LINE       = 6,00
+      LOCK-CONTROL      = FALSE
+      LEVEL             = 5
+      (Name)            = lab-durata
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 55,30
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 14
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 6,00
+      Lines             = 1,30
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 31,30
+      Size Unit         = Default
+      Tab Order         = 21
+      Title Picture     = X(100)
+      Title Variable    = lab-durata-buf
+      Transparent       = TRUE
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
    Begin Toolbar Form1-Tb-1
       SCREEN-LINE       = 1,00
       LOCK-CONTROL      = TRUE
@@ -1485,7 +1643,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 19
+      Tab Order         = 22
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -2163,38 +2321,6 @@ Begin Screen Form1
          After Procedure   = TOOL-ORD-AfterProcedure
          Link To           = TOOL-ORD-LinkTo
       End
-      Begin Bitmap Form1-Bt-1
-         SCREEN-COL        = 84,40
-         SCREEN-LINE       = 1,00
-         LOCK-CONTROL      = TRUE
-         LEVEL             = 5
-         (Name)            = Form1-Bt-1
-         Bitmap            = "..\RESOURCE\LOGO_PICCOLO.BMP"
-         Bitmap End        = 0
-         Bitmap Handle     = LOGO_PICCOLO-BMP
-         Bitmap Number     = 1
-         Bitmap Start      = 0
-         Bitmap Timer      = 0
-         Column            = 84,40
-         Copy Resource     = TRUE
-         Destroy Type      = Automatic
-         Font              = Default Font
-         Height in Cells   = FALSE
-         Help ID           = 0
-         ID                = 123
-         Line              = 1,00
-         Lines             = 2,78
-         Lines in Pixels   = 64
-         Lines Unit        = Default
-         Occurs            = 0
-         Size              = 4,80
-         Size in Pixels    = 48
-         Size Unit         = Default
-         Tab Order         = 15
-         Transparent Color = 0
-         Visible           = NONE
-         Width in Cells    = FALSE
-      End
    End
    Begin Status-Bar Form1-St-1
       LOCK-CONTROL      = TRUE
@@ -2205,7 +2331,7 @@ Begin Screen Form1
       Handle Variable   = Form1-St-1-Handle
       PANEL-WIDTHS      = ( 45, 23, 999 )
       PANEL-STYLE       = ( 1, 1, 1 )
-      Tab Order         = 20
+      Tab Order         = 23
    End
 End
 
@@ -2242,6 +2368,7 @@ BEGIN-TEXT
                        20 old-wom-split-el-days-split
                                   OCCURS 9 TIMES.
                            25 old-wom-split-el-split-sigla     PIC  x.
+               10 old-wom-dur-code     PIC  99.
                10 old-wom-filler       PIC  x(1000).
                10 old-wom-filler-n1    PIC  9(18).
                10 old-wom-filler-n2    PIC  9(18).
@@ -2374,6 +2501,9 @@ BEGIN-TEXT
            perform ABILITAZIONI. 
            perform LOAD-DAYS.
            perform ABILITA-GRID-DAYS.
+           move wom-dur-code to dur-code.
+           read duration no lock invalid move spaces to dur-desc end-read.
+           move dur-desc to lab-durata-buf.
            Perform VALORIZZA-OLD.
 END-TEXT
 END-DATA
@@ -2511,7 +2641,19 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = CERCA
 BEGIN-TEXT
-           continue.
+           evaluate control-id
+           when 78-ID-ef-durata
+                inquire ef-durata, value in dur-code
+                move "duration"   to Como-File
+                call   "zoom-gt" using como-file, dur-rec
+                                giving stato-zoom
+                cancel "zoom-gt"
+                if stato-zoom = 0
+                   move dur-code to ef-durata-buf
+                   move dur-desc to lab-durata-buf
+                   display ef-durata lab-durata
+                   move 4 to accept-control
+                end-if
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2572,31 +2714,55 @@ BEGIN-TEXT
                 inquire ef-descr value in wom-desc
                 if wom-desc = spaces
                    set errori to true
-                   display message box "Descrizione obbligatoria"
-                           title tit-err
-                           type  mb-ok
-                           icon  mb-warning-icon
-                end-if
+                   display message "Descrizione obbligatoria"
+                             title tit-err
+                              type  mb-ok
+                              icon  mb-warning-icon
+                end-if 
       
            when 78-ID-ef-days
                 inquire ef-days value in wom-days
                 if wom-days = 0
                    set errori to true
-                   display message box "Dato obbligatorio"
-                           title tit-err
-                           type  mb-ok
-                           icon  mb-warning-icon
+                   display message "Dato obbligatorio"
+                             title tit-err
+                              type  mb-ok
+                              icon  mb-warning-icon
                 else
                    if wom-days > 7              
                       set errori to true
-                      display message box "Massimo 7 giorni"
-                              title tit-err
-                              type  mb-ok
-                              icon  mb-warning-icon
+                      display message "Massimo 7 giorni"
+                                title tit-err
+                                 type  mb-ok
+                                 icon  mb-warning-icon
                    else              
                       perform ABILITA-GRID-DAYS
                    end-if
+                end-if                          
+      
+           when 78-ID-ef-macro
+                inquire ef-macro value in wom-macrogroups
+                if wom-macrogroups = 0
+                   set errori to true
+                   display message "Dato obbligatorio"
+                             title tit-err
+                              type  mb-ok
+                              icon  mb-warning-icon
                 end-if
+      
+           when 78-ID-ef-durata
+                inquire ef-durata value in wom-dur-code
+                read duration no lock
+                     invalid
+                     set errori to true
+                     move spaces to dur-desc    
+                     display message "Dato non valido"
+                               title tit-err
+                               type  mb-ok
+                               icon  mb-warning-icon
+                end-read
+                move dur-desc to lab-durata-buf
+                display lab-durata              
            end-evaluate.
       
            if errori
@@ -2854,7 +3020,7 @@ BEGIN-TEXT
            set tutto-ok to true.
 
            perform varying CONTROL-ID from 78-ID-ef-descr by 1
-                     until CONTROL-ID > 78-ID-ef-descr
+                     until CONTROL-ID > 78-ID-ef-durata
               perform CONTROLLO
               if errori 
                  exit perform 
@@ -3625,10 +3791,12 @@ PROP_DOCU_RULER_EBL=0
 PROP_DOCU_GRID_EBL=0
 PROP_DOCU_GRID=20
 PROP_DOCU_ALIGN=0
-REL_SYM_SIZE=10
-REL_SYM_INFO_L=1
+REL_SYM_SIZE=16
+REL_SYM_INFO_L=2
 REL_SYM_INFO_X0=2301
 REL_SYM_INFO_Y0=1146544667
+REL_SYM_INFO_X1=2301
+REL_SYM_INFO_Y1=2068016505
 
 [DRAW_BASESYMBOL_2301_1146544667]
 OBJ_NAME=2301
@@ -3645,6 +3813,54 @@ LEFT=303
 TOP=23
 RIGHT=703
 BOTTOM=245
+PROP_OBJ_TYPE=
+PROP_OBJ_TYPE2=
+PROP_FILL_PT=0
+PROP_FILL_FG=0
+PROP_FILL_BG=16777215
+PROP_FONT_HEIGHT=-35
+PROP_FONT_WIDTH=0
+PROP_FONT_ESCAPE=0
+PROP_FONT_ORIENT=0
+PROP_FONT_WEIGHT=400
+PROP_FONT_ITALIC=0
+PROP_FONT_UDLINE=0
+PROP_FONT_SKOUT=0
+PROP_FONT_CHARSET=0
+PROP_FONT_OUTPREC=3
+PROP_FONT_CLIPPREC=2
+PROP_FONT_QUALITY=1
+PROP_FONT_PCH_FAM=18
+PROP_FONT_FACE_NAME=Times New Roman
+PROP_FONT_CR=0
+PROP_LINE_PT=0
+PROP_LINE_WG=1
+PROP_LINE_CR=0
+PROP_SHAD_PT=0
+PROP_SHAD_FG=12632256
+PROP_SHAD_BG=12632256
+PROP_SHAD_EBL=0
+PROP_SHAD_POS=4
+PROP_SHAD_POINT=0
+PROP_TRACK_COLOR=12632256
+REL_SYM_SIZE=4
+REL_SYM_INFO_L=0
+
+[DRAW_BASESYMBOL_2301_2068016505]
+OBJ_NAME=2301
+OBJ_ID=2068016505
+KIND=1
+{{@LABEL_2301_2068016505
+duration
+@}}
+WK_STEP=0
+BK_POINT=0
+CENTER_X=0
+CENTER_Y=0
+LEFT=1182
+TOP=566
+RIGHT=1582
+BOTTOM=788
 PROP_OBJ_TYPE=
 PROP_OBJ_TYPE2=
 PROP_FILL_PT=0
@@ -3713,6 +3929,37 @@ DSN_INFO_END_VALUE=
 
 @}}
 DSN_INFO_PRIMARY=1
+DSN_INFO_OPEN=1
+DSN_INFO_CLOSE=1
+DSN_INFO_EXCLUSIVE=0
+DSN_INFO_IS_LOGICAL=0
+DSN_INFO_LOGICAL_FDNAME=
+DSN_INFO_ORIGINAL_FDNAME=
+DSN_INFO_REPLACEBY_FILESTATUS=
+DSN_INFO_REPLACEBY_RELATIVEKEY=
+DSN_INFO_REPLACEBY_FDDATA=
+DSN_INFO_REPLACEBY_SLDATA=
+
+[DMD_FILE_0_2068016505]
+OBJ_NAME=0
+OBJ_ID=2068016505
+REL_M_OBJ_ID=0
+ENTITY=duration
+LINK=0
+LINK_NAME=
+DSN_SIZE=39
+FD_SIZE=0
+SL_SIZE=0
+DSN_INFO_OPEN_MODE=0
+DSN_INFO_LOCK_OPTION=0
+DSN_INFO_KEY_IS=dur-key
+DSN_INFO_DATA_ORDER=0
+DSN_INFO_START_VALUE=
+DSN_INFO_END_VALUE=
+{{@DSN_INFO_CONDITION_2068016505
+
+@}}
+DSN_INFO_PRIMARY=0
 DSN_INFO_OPEN=1
 DSN_INFO_CLOSE=1
 DSN_INFO_EXCLUSIVE=0

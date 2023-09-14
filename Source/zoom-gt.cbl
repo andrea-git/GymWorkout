@@ -82,9 +82,11 @@
            when "macrogroups"
                 perform PREPARA-MACROGROUPS
            when "groups"
-                perform PREPARA-GROUPS
+                perform PREPARA-GROUPS    
            when "intensity"
                 perform PREPARA-INTENSITY
+           when "duration"
+                perform PREPARA-DURATION
            when "wodmap"
                 perform PREPARA-WODMAP
            when "wodmap-alfa"
@@ -576,7 +578,7 @@
            add 1 to idx.
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
-           move  40                      to xzoom-field-length(idx).
+           move  100                     to xzoom-field-length(idx).
            move   5                      to xzoom-field-offset(idx).
            move  100                     to xzoom-field-column(idx).
            move "Descrizione"            to xzoom-field-name(idx).  
@@ -587,6 +589,135 @@
            move "000"                    to xzoom-from-value.
            move "000"                    to xzoom-to-value.
 
+      ***---
+       PREPARA-DURATION.     
+           initialize xzoom-linkage xzoom-ext-info(1).
+      
+           move  0   to xzoom-file-key.
+      *
+           move  0                       to idx.
+           move  0                       to xzoom-row.
+           move  0                       to xzoom-cln.
+           move  10                      to xzoom-lw.
+           move  80                      to xzoom-sw.
+           move "duration"               to xzoom-file-name(1).
+
+      * CAMPO 1
+           add 1 to idx
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  2                       to xzoom-field-length(idx).
+           move  0                       to xzoom-field-offset(idx).
+           move  5                       to xzoom-field-column(idx).
+           move "Codice"                 to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true.             
+      
+      * CAMPO 2
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  100                     to xzoom-field-length(idx).
+           move   2                      to xzoom-field-offset(idx).
+           move  22                      to xzoom-field-column(idx).
+           move "Descrizione"            to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true.     
+      
+      * CAMPO 3
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  2                       to xzoom-field-length(idx).
+           move  102                     to xzoom-field-offset(idx).
+           move  5                       to xzoom-field-column(idx).
+           move "Esercizi"               to xzoom-field-name(idx).  
+           set xzoom-al-right(idx)       to true.
+           set xzoom-field-unsigned(idx) to true.
+           set xzoom-ft-display(idx)     to true.
+           move 2                        to xzoom-field-digits(idx).
+           move 0                        to xzoom-field-dec(idx).
+           move "#0"                     to xzoom-field-fmt(idx). 
+      
+      * CAMPO 4
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  1                       to xzoom-field-length(idx).
+           move  104                     to xzoom-field-offset(idx).
+           move  5                       to xzoom-field-column(idx).
+           move "Serie 1"                to xzoom-field-name(idx).  
+           set xzoom-al-right(idx)       to true.
+           set xzoom-field-unsigned(idx) to true.
+           set xzoom-ft-display(idx)     to true.
+           move 1                        to xzoom-field-digits(idx).
+           move 0                        to xzoom-field-dec(idx).
+           move "0"                      to xzoom-field-fmt(idx).
+      
+      * CAMPO 5
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  1                       to xzoom-field-length(idx).
+           move  105                     to xzoom-field-offset(idx).
+           move  5                       to xzoom-field-column(idx).
+           move "Serie 2"                to xzoom-field-name(idx).  
+           set xzoom-al-right(idx)       to true.
+           set xzoom-field-unsigned(idx) to true.
+           set xzoom-ft-display(idx)     to true.
+           move 1                        to xzoom-field-digits(idx).
+           move 0                        to xzoom-field-dec(idx).
+           move "0"                      to xzoom-field-fmt(idx).
+      
+      * CAMPO 6
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  1                       to xzoom-field-length(idx).
+           move  106                     to xzoom-field-offset(idx).
+           move  5                       to xzoom-field-column(idx).
+           move "Serie 3"                to xzoom-field-name(idx).  
+           set xzoom-al-right(idx)       to true.
+           set xzoom-field-unsigned(idx) to true.
+           set xzoom-ft-display(idx)     to true.
+           move 1                        to xzoom-field-digits(idx).
+           move 0                        to xzoom-field-dec(idx).
+           move "0"                      to xzoom-field-fmt(idx).
+      
+      * CAMPO 7
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  1                       to xzoom-field-length(idx).
+           move  107                     to xzoom-field-offset(idx).
+           move  5                       to xzoom-field-column(idx).
+           move "Serie 4"                to xzoom-field-name(idx).  
+           set xzoom-al-right(idx)       to true.
+           set xzoom-field-unsigned(idx) to true.
+           set xzoom-ft-display(idx)     to true.
+           move 1                        to xzoom-field-digits(idx).
+           move 0                        to xzoom-field-dec(idx).
+           move "0"                      to xzoom-field-fmt(idx).
+      
+      * CAMPO 8
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  1                       to xzoom-field-length(idx).
+           move  108                     to xzoom-field-offset(idx).
+           move  5                       to xzoom-field-column(idx).
+           move "Serie 5"                to xzoom-field-name(idx).  
+           set xzoom-al-right(idx)       to true.
+           set xzoom-field-unsigned(idx) to true.
+           set xzoom-ft-display(idx)     to true.
+           move 1                        to xzoom-field-digits(idx).
+           move 0                        to xzoom-field-dec(idx).
+           move "0"                      to xzoom-field-fmt(idx).
+                                                               
+           move  idx                     to xzoom-fields.
+           move  -1                      to xzoom-delimiter-offset.
+           move  5                       to xzoom-delimiter-length.
+           move "000"                    to xzoom-from-value.
+           move "000"                    to xzoom-to-value.
+                        
       ***---
        PREPARA-INTENSITY.
            initialize xzoom-linkage xzoom-ext-info(1).

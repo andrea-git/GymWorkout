@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E79D144854-92-1532322830
+PROGRAM_UNIQUE_CODE=TOTEM-7E79E82429-686-1791212808
 
 {{@DESCRIPTION:
 
@@ -327,9 +327,7 @@ m_nSize=7
 
 @}}
 [FDITEM29_WK]
-m_strName=el-wod-mcg
-m_strRawPic=x(5)
-m_strPic=x(5)
+m_strName=el-wod-mcg-exe
 m_nItemLevel=10
 m_nSync=-1
 m_bOccurs=1
@@ -340,49 +338,57 @@ m_nSize=20
 
 @}}
 [FDITEM30_WK]
-m_strName=RigheIniziali
-m_strRawPic=9(3)
-m_strPic=9(3)
-m_nItemLevel=77
+m_strName=el-wod-mcg
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=15
 m_nSync=-1
 m_bFixed=1
+m_strRawSize=20
+m_nSize=20
 {{@DataItem_m_strDescriptionFDITEM30_WK
 
 @}}
 [FDITEM31_WK]
-m_strName=lastIdx
-m_strRawPic=9(3)
-m_strPic=9(3)
-m_nItemLevel=77
+m_strName=el-wod-exe-code
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=15
 m_nSync=-1
 m_bFixed=1
+m_strRawSize=20
+m_nSize=20
 {{@DataItem_m_strDescriptionFDITEM31_WK
 
 @}}
 [FDITEM32_WK]
-m_strName=idx-days
-m_strRawPic=9(3)
-m_strPic=9(3)
-m_nItemLevel=77
+m_strName=el-wod-exe-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=15
 m_nSync=-1
 m_bFixed=1
+m_strRawSize=20
+m_nSize=20
 {{@DataItem_m_strDescriptionFDITEM32_WK
 
 @}}
 [FDITEM33_WK]
-m_strName=idx-split
-m_strRawPic=9(3)
-m_strPic=9(3)
-m_nItemLevel=77
+m_strName=el-wod-exe-effort
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=15
 m_nSync=-1
 m_bFixed=1
+m_strRawSize=20
+m_nSize=20
 {{@DataItem_m_strDescriptionFDITEM33_WK
 
 @}}
 [FDITEM34_WK]
-m_strName=como-x
-m_strRawPic=x
-m_strPic=x
+m_strName=RigheIniziali
+m_strRawPic=9(3)
+m_strPic=9(3)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -390,34 +396,74 @@ m_bFixed=1
 
 @}}
 [FDITEM35_WK]
-m_strName=tot-mcg
-m_strRawPic=99
-m_strPic=99
-m_nItemLevel=1
+m_strName=lastIdx
+m_strRawPic=9(3)
+m_strPic=9(3)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM35_WK
 
 @}}
 [FDITEM36_WK]
-m_strName=tot-exe
-m_strRawPic=99
-m_strPic=99
-m_nItemLevel=1
+m_strName=idx-days
+m_strRawPic=9(3)
+m_strPic=9(3)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM36_WK
 
 @}}
 [FDITEM37_WK]
-m_strName=como-tab-mcg
-m_nItemLevel=1
+m_strName=idx-split
+m_strRawPic=9(3)
+m_strPic=9(3)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM37_WK
 
 @}}
 [FDITEM38_WK]
+m_strName=como-x
+m_strRawPic=x
+m_strPic=x
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM38_WK
+
+@}}
+[FDITEM39_WK]
+m_strName=tot-mcg
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM39_WK
+
+@}}
+[FDITEM40_WK]
+m_strName=tot-exe
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM40_WK
+
+@}}
+[FDITEM41_WK]
+m_strName=como-tab-mcg
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM41_WK
+
+@}}
+[FDITEM42_WK]
 m_strName=como-el-mcg-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
@@ -427,18 +473,18 @@ m_bOccurs=1
 m_bFixed=1
 m_strRawSize=10
 m_nSize=10
-{{@DataItem_m_strDescriptionFDITEM38_WK
+{{@DataItem_m_strDescriptionFDITEM42_WK
 
 @}}
-[FDITEM39_WK]
+[FDITEM43_WK]
 m_strName=tab-mcg
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM39_WK
+{{@DataItem_m_strDescriptionFDITEM43_WK
 
 @}}
-[FDITEM40_WK]
+[FDITEM44_WK]
 m_strName=el-mcg-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
@@ -448,18 +494,18 @@ m_bOccurs=1
 m_bFixed=1
 m_strRawSize=10
 m_nSize=10
-{{@DataItem_m_strDescriptionFDITEM40_WK
+{{@DataItem_m_strDescriptionFDITEM44_WK
 
 @}}
-[FDITEM41_WK]
+[FDITEM45_WK]
 m_strName=tab-exercises
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM41_WK
+{{@DataItem_m_strDescriptionFDITEM45_WK
 
 @}}
-[FDITEM42_WK]
+[FDITEM46_WK]
 m_strName=el-tab-exercises
 m_nItemLevel=5
 m_nSync=-1
@@ -467,72 +513,33 @@ m_bOccurs=1
 m_bFixed=1
 m_strRawSize=20
 m_nSize=20
-{{@DataItem_m_strDescriptionFDITEM42_WK
+{{@DataItem_m_strDescriptionFDITEM46_WK
 
 @}}
-[FDITEM43_WK]
+[FDITEM47_WK]
 m_strName=el-exe-code
 m_strRawPic=x(5)
 m_strPic=x(5)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM43_WK
+{{@DataItem_m_strDescriptionFDITEM47_WK
 
 @}}
-[FDITEM44_WK]
+[FDITEM48_WK]
 m_strName=el-exe-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM44_WK
-
-@}}
-[FDITEM45_WK]
-m_strName=tot-gruppi
-m_strRawPic=999
-m_strPic=999
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM45_WK
-
-@}}
-[FDITEM46_WK]
-m_strName=idx-gruppi
-m_strRawPic=999
-m_strPic=999
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM46_WK
-
-@}}
-[FDITEM47_WK]
-m_strName=tab-mgroups
-m_nItemLevel=1
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM47_WK
-
-@}}
-[FDITEM48_WK]
-m_strName=el-mgroups
-m_nItemLevel=5
-m_nSync=-1
-m_bOccurs=1
-m_bFixed=1
-m_strRawSize=10
-m_nSize=10
 {{@DataItem_m_strDescriptionFDITEM48_WK
 
 @}}
 [FDITEM49_WK]
-m_strName=el-mgroup
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=el-exe-used
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -540,77 +547,76 @@ m_bFixed=1
 
 @}}
 [FDITEM50_WK]
-m_strName=el-mcg-code
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=10
+m_strName=tot-gruppi
+m_strRawPic=999
+m_strPic=999
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM50_WK
 
 @}}
 [FDITEM51_WK]
-m_strName=el-exercises
-m_strRawPic=9(3)
-m_strPic=9(3)
-m_nItemLevel=10
+m_strName=idx-gruppi
+m_strRawPic=999
+m_strPic=999
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM51_WK
 
 @}}
 [FDITEM52_WK]
-m_strName=el-exercises-ok
-m_strRawPic=9(3)
-m_strPic=9(3)
-m_nItemLevel=10
+m_strName=tab-mgroups
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM52_WK
 
 @}}
 [FDITEM53_WK]
-m_strName=el-times
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=10
+m_strName=el-mgroups
+m_nItemLevel=5
 m_nSync=-1
+m_bOccurs=1
 m_bFixed=1
+m_strRawSize=10
+m_nSize=10
 {{@DataItem_m_strDescriptionFDITEM53_WK
 
 @}}
 [FDITEM54_WK]
-m_strName=rec-grid
-m_nItemLevel=1
+m_strName=el-mgroup
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM54_WK
 
 @}}
 [FDITEM55_WK]
-m_strName=col-exercise
+m_strName=el-mcg-code
 m_strRawPic=x(5)
 m_strPic=x(5)
-m_nItemLevel=5
+m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM55_WK
 
 @}}
 [FDITEM56_WK]
-m_strName=col-exe-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
-m_nItemLevel=5
+m_strName=rec-grid
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM56_WK
 
 @}}
 [FDITEM57_WK]
-m_strName=col-series
-m_strRawPic=z9
-m_strPic=z9
+m_strName=col-exercise
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -618,9 +624,9 @@ m_bFixed=1
 
 @}}
 [FDITEM58_WK]
-m_strName=col-reps
-m_strRawPic=z9
-m_strPic=z9
+m_strName=col-exe-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -628,29 +634,28 @@ m_bFixed=1
 
 @}}
 [FDITEM59_WK]
-m_strName=Calibri14-Occidentale
-m_nUsage=26
-m_nItemLevel=77
+m_strName=col-series
+m_strRawPic=z9
+m_strPic=z9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM59_WK
 
 @}}
 [FDITEM60_WK]
-m_strName=Calibri14B-Occidentale
-m_nUsage=26
-m_nItemLevel=77
+m_strName=col-reps
+m_strRawPic=z9
+m_strPic=z9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM60_WK
 
 @}}
 [FDITEM61_WK]
-m_strName=cambia-cliente-bmp
-m_strRawPic=S9(9)
-m_strPic=S9(9)
-m_nUsage=5
-m_strDefaultValue=0
+m_strName=Calibri14-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -658,7 +663,7 @@ m_bFixed=1
 
 @}}
 [FDITEM62_WK]
-m_strName=Calibri12-Occidentale
+m_strName=Calibri14B-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
@@ -667,8 +672,11 @@ m_bFixed=1
 
 @}}
 [FDITEM63_WK]
-m_strName=Calibri12B-Occidentale
-m_nUsage=26
+m_strName=cambia-cliente-bmp
+m_strRawPic=S9(9)
+m_strPic=S9(9)
+m_nUsage=5
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -676,8 +684,8 @@ m_bFixed=1
 
 @}}
 [FDITEM64_WK]
-m_strName=contact-bmp
-m_nUsage=45
+m_strName=Calibri12-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -685,7 +693,7 @@ m_bFixed=1
 
 @}}
 [FDITEM65_WK]
-m_strName=Calibri18B-Occidentale
+m_strName=Calibri12B-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
@@ -694,9 +702,8 @@ m_bFixed=1
 
 @}}
 [FDITEM66_WK]
-m_strName=lab-scontoa-buf
-m_strRawPic=X(8)
-m_strPic=X(8)
+m_strName=contact-bmp
+m_nUsage=45
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -704,8 +711,8 @@ m_bFixed=1
 
 @}}
 [FDITEM67_WK]
-m_strName=default-bmp
-m_nUsage=45
+m_strName=Calibri18B-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -713,9 +720,9 @@ m_bFixed=1
 
 @}}
 [FDITEM68_WK]
-m_strName=lab-scont-buf
-m_strRawPic=x
-m_strPic=x
+m_strName=lab-scontoa-buf
+m_strRawPic=X(8)
+m_strPic=X(8)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -723,8 +730,8 @@ m_bFixed=1
 
 @}}
 [FDITEM69_WK]
-m_strName=Calibri16B-Occidentale
-m_nUsage=26
+m_strName=default-bmp
+m_nUsage=45
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -732,8 +739,9 @@ m_bFixed=1
 
 @}}
 [FDITEM70_WK]
-m_strName=form-prezz-SF-HANDLE
-m_nUsage=24
+m_strName=lab-scont-buf
+m_strRawPic=x
+m_strPic=x
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -741,37 +749,35 @@ m_bFixed=1
 
 @}}
 [FDITEM71_WK]
-m_strName=rec-prezzi
-m_nItemLevel=1
+m_strName=Calibri16B-Occidentale
+m_nUsage=26
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM71_WK
 
 @}}
 [FDITEM72_WK]
-m_strName=col-listino
-m_strRawPic=9(5)
-m_strPic=9(5)
-m_nItemLevel=5
+m_strName=form-prezz-SF-HANDLE
+m_nUsage=24
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM72_WK
 
 @}}
 [FDITEM73_WK]
-m_strName=col-descriz
-m_strRawPic=x(50)
-m_strPic=x(50)
-m_nItemLevel=5
+m_strName=rec-prezzi
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM73_WK
 
 @}}
 [FDITEM74_WK]
-m_strName=col-valido
-m_strRawPic=99/99/9999
-m_strPic=99/99/9999
+m_strName=col-listino
+m_strRawPic=9(5)
+m_strPic=9(5)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -779,9 +785,9 @@ m_bFixed=1
 
 @}}
 [FDITEM75_WK]
-m_strName=col-per
-m_strRawPic=X(50)
-m_strPic=X(50)
+m_strName=col-descriz
+m_strRawPic=x(50)
+m_strPic=x(50)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -789,9 +795,9 @@ m_bFixed=1
 
 @}}
 [FDITEM76_WK]
-m_strName=col-prz1
-m_strRawPic=zzz.zz9,99
-m_strPic=zzz.zz9,99
+m_strName=col-valido
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -799,9 +805,9 @@ m_bFixed=1
 
 @}}
 [FDITEM77_WK]
-m_strName=col-prz2
-m_strRawPic=zzz.zz9,99
-m_strPic=zzz.zz9,99
+m_strName=col-per
+m_strRawPic=X(50)
+m_strPic=X(50)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -809,7 +815,7 @@ m_bFixed=1
 
 @}}
 [FDITEM78_WK]
-m_strName=col-prz3
+m_strName=col-prz1
 m_strRawPic=zzz.zz9,99
 m_strPic=zzz.zz9,99
 m_nItemLevel=5
@@ -819,28 +825,29 @@ m_bFixed=1
 
 @}}
 [FDITEM79_WK]
-m_strName=STATUS-tlistini
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
+m_strName=col-prz2
+m_strRawPic=zzz.zz9,99
+m_strPic=zzz.zz9,99
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM79_WK
 
 @}}
 [FDITEM80_WK]
-m_strName=Valid-STATUS-tlistini
-m_nItemLevel=88
+m_strName=col-prz3
+m_strRawPic=zzz.zz9,99
+m_strPic=zzz.zz9,99
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM80_WK
 
 @}}
 [FDITEM81_WK]
-m_strName=lab-art-buf
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=STATUS-tlistini
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -848,18 +855,18 @@ m_bFixed=1
 
 @}}
 [FDITEM82_WK]
-m_strName=Calibri12BI-Occidentale
-m_nUsage=26
-m_nItemLevel=77
+m_strName=Valid-STATUS-tlistini
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM82_WK
 
 @}}
 [FDITEM83_WK]
-m_strName=tsc-cliente
-m_strRawPic=x(6)
-m_strPic=x(6)
+m_strName=lab-art-buf
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -867,9 +874,8 @@ m_bFixed=1
 
 @}}
 [FDITEM84_WK]
-m_strName=STATUS-exercises
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=Calibri12BI-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -877,16 +883,17 @@ m_bFixed=1
 
 @}}
 [FDITEM85_WK]
-m_strName=Valid-STATUS-exercises
-m_nItemLevel=88
+m_strName=tsc-cliente
+m_strRawPic=x(6)
+m_strPic=x(6)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM85_WK
 
 @}}
 [FDITEM86_WK]
-m_strName=STATUS-groups
+m_strName=STATUS-exercises
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -896,7 +903,7 @@ m_bFixed=1
 
 @}}
 [FDITEM87_WK]
-m_strName=Valid-STATUS-groups
+m_strName=Valid-STATUS-exercises
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -905,7 +912,7 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM88_WK]
-m_strName=STATUS-intensity
+m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -915,7 +922,7 @@ m_bFixed=1
 
 @}}
 [FDITEM89_WK]
-m_strName=Valid-STATUS-intensity
+m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -924,7 +931,7 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM90_WK]
-m_strName=STATUS-macrogroups
+m_strName=STATUS-intensity
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -934,7 +941,7 @@ m_bFixed=1
 
 @}}
 [FDITEM91_WK]
-m_strName=Valid-STATUS-macrogroups
+m_strName=Valid-STATUS-intensity
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -943,7 +950,7 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM92_WK]
-m_strName=STATUS-wodbook
+m_strName=STATUS-macrogroups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -953,7 +960,7 @@ m_bFixed=1
 
 @}}
 [FDITEM93_WK]
-m_strName=Valid-STATUS-wodbook
+m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -962,6 +969,25 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM94_WK]
+m_strName=STATUS-wodbook
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM94_WK
+
+@}}
+[FDITEM95_WK]
+m_strName=Valid-STATUS-wodbook
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM95_WK
+
+@}}
+[FDITEM96_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -970,31 +996,11 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM94_WK
-
-@}}
-[FDITEM95_WK]
-m_strName=cb-mg1-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM95_WK
-
-@}}
-[FDITEM96_WK]
-m_strName=cb-mg2-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM96_WK
 
 @}}
 [FDITEM97_WK]
-m_strName=cb-mg3-buf
+m_strName=cb-mg1-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -1004,7 +1010,7 @@ m_bFixed=1
 
 @}}
 [FDITEM98_WK]
-m_strName=cb-mg4-buf
+m_strName=cb-mg2-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -1014,7 +1020,7 @@ m_bFixed=1
 
 @}}
 [FDITEM99_WK]
-m_strName=cb-mg5-buf
+m_strName=cb-mg3-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -1024,7 +1030,7 @@ m_bFixed=1
 
 @}}
 [FDITEM100_WK]
-m_strName=cb-mgtb-buf
+m_strName=cb-mg4-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -1034,7 +1040,7 @@ m_bFixed=1
 
 @}}
 [FDITEM101_WK]
-m_strName=cb-int-buf
+m_strName=cb-mg5-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -1044,7 +1050,7 @@ m_bFixed=1
 
 @}}
 [FDITEM102_WK]
-m_strName=old-cb-dur-buf
+m_strName=cb-mgtb-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -1054,9 +1060,9 @@ m_bFixed=1
 
 @}}
 [FDITEM103_WK]
-m_strName=STATUS-duration
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=cb-int-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1064,18 +1070,19 @@ m_bFixed=1
 
 @}}
 [FDITEM104_WK]
-m_strName=Valid-STATUS-duration
-m_nItemLevel=88
+m_strName=old-cb-dur-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM104_WK
 
 @}}
 [FDITEM105_WK]
-m_strName=cb-rnd-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=STATUS-duration
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1083,18 +1090,18 @@ m_bFixed=1
 
 @}}
 [FDITEM106_WK]
-m_strName=cb-dur-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
+m_strName=Valid-STATUS-duration
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM106_WK
 
 @}}
 [FDITEM107_WK]
-m_strName=Default-Font
-m_nUsage=38
+m_strName=cb-rnd-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1102,9 +1109,9 @@ m_bFixed=1
 
 @}}
 [FDITEM108_WK]
-m_strName=ex-remain
-m_strRawPic=99
-m_strPic=99
+m_strName=cb-dur-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1112,9 +1119,8 @@ m_bFixed=1
 
 @}}
 [FDITEM109_WK]
-m_strName=effort-wod
-m_strRawPic=99
-m_strPic=99
+m_strName=Default-Font
+m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1122,9 +1128,9 @@ m_bFixed=1
 
 @}}
 [FDITEM110_WK]
-m_strName=path-tmp-exe-effort
-m_strRawPic=X(256)
-m_strPic=X(256)
+m_strName=ex-remain
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1132,9 +1138,9 @@ m_bFixed=1
 
 @}}
 [FDITEM111_WK]
-m_strName=STATUS-tmp-exe-effort
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=effort-wod
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1142,18 +1148,19 @@ m_bFixed=1
 
 @}}
 [FDITEM112_WK]
-m_strName=Valid-STATUS-tmp-exe-effort
-m_nItemLevel=88
+m_strName=path-tmp-exe-effort
+m_strRawPic=X(256)
+m_strPic=X(256)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM112_WK
 
 @}}
 [FDITEM113_WK]
-m_strName=cb-gio-buf
-m_strRawPic=9
-m_strPic=9
+m_strName=STATUS-tmp-exe-effort
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1161,19 +1168,18 @@ m_bFixed=1
 
 @}}
 [FDITEM114_WK]
-m_strName=cb-mul-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
+m_strName=Valid-STATUS-tmp-exe-effort
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM114_WK
 
 @}}
 [FDITEM115_WK]
-m_strName=cb-wod-buf
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=cb-gio-buf
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1181,9 +1187,9 @@ m_bFixed=1
 
 @}}
 [FDITEM116_WK]
-m_strName=STATUS-wodmap
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=cb-mul-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1191,22 +1197,42 @@ m_bFixed=1
 
 @}}
 [FDITEM117_WK]
+m_strName=cb-wod-buf
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM117_WK
+
+@}}
+[FDITEM118_WK]
+m_strName=STATUS-wodmap
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM118_WK
+
+@}}
+[FDITEM119_WK]
 m_strName=Valid-STATUS-wodmap
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM117_WK
+{{@DataItem_m_strDescriptionFDITEM119_WK
 
 @}}
-[FDITEM118_WK]
+[FDITEM120_WK]
 m_strName=cb-mg6-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM118_WK
+{{@DataItem_m_strDescriptionFDITEM120_WK
 
 @}}
 
@@ -2679,7 +2705,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 6
+      ID                = 27
       Justification     = Unaligned
       Label Offset      = 20
       Line              = 9,39
@@ -2715,7 +2741,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 13
+      ID                = 28
       Line              = 9,39
       Lines             = 6,00
       Lines Unit        = Default
@@ -5284,73 +5310,10 @@ BEGIN-TEXT
            open i-o    tmp-exe-effort.              
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
-           move low-value to exe-key.
-           move 0 to tee-prg.
-           start exercises key >= exe-key
-                 invalid continue
-             not invalid
-                 perform until 1 = 2
-                    read exercises next at end exit perform end-read
-                    move exe-int-code to int-code
-                    read intensity no lock
-                    move exe-grp-code to grp-code
-                    read groups no lock
-                    if int-effort <= effort-wod or 
-                       exe-isMulti-yes and cb-mul-buf = "Si"
-                       perform varying idx-gruppi from 1 by 1 
-                                 until idx-gruppi > 5
-                          if el-mcg-code(idx-gruppi) = grp-mcg-code
-                             if exe-isMulti-yes and cb-mul-buf = "No"
-                                exit perform cycle
-                             end-if
-                             add 1 to tee-prg                  
-                             move exe-code     to tee-exe-code
-                             move exe-desc     to tee-exe-desc
-                             move grp-mcg-code to tee-mcg-code
-                             move int-effort   to tee-int-effort
-                             move exe-isMulti  to tee-exe-isMulti
-                             write tee-rec
-                          end-if
-                       end-perform
-                    end-if
-                 end-perform
-           end-start.                   
-   
-      *****     move high-value to wod-code wod-dayPrg.
-      *****     start wodbook key <= wod-key
-      *****           invalid move 0 to wod-code
-      *****       not invalid read wodbook previous
-      *****     end-start.
-      *****     add 1 to wod-code.
-           
-           perform varying idx-days from 1 by 1 
-                     until idx-days > 7
-              move 0 to LastIdx
-              perform varying idx-split from 1 by 1 
-                        until idx-split > 9
-                 if wom-split-el-split-sigla(idx-days, idx-split) = 0
-                    exit perform
-                 end-if
-                 evaluate idx-split
-                 when 1 move dur-exercises1 to tot-righe
-                 when 2 move dur-exercises2 to tot-righe
-                 when 3 move dur-exercises3 to tot-righe
-                 when 4 move dur-exercises4 to tot-righe
-                 when 5 move dur-exercises5 to tot-righe
-                 end-evaluate
-                 perform tot-righe times
-                    add 1 to lastIdx
-                    evaluate wom-split-el-split-sigla(idx-days, idx-split)
-                    when "A" move el-mcg-code(1) to el-wod-mcg(idx-days, lastIdx)
-                    when "B" move el-mcg-code(2) to el-wod-mcg(idx-days, lastIdx)
-                    when "C" move el-mcg-code(3) to el-wod-mcg(idx-days, lastIdx)
-                    when "D" move el-mcg-code(4) to el-wod-mcg(idx-days, lastIdx)
-                    when "E" move el-mcg-code(5) to el-wod-mcg(idx-days, lastIdx)
-                    when "F" move el-mcg-code(6) to el-wod-mcg(idx-days, lastIdx)
-                    end-evaluate
-                 end-perform
-              end-perform
-           end-perform.        
+
+           perform LOAD-EXERCISES-ALLOWED-BY-EFFORT.
+           perform LOAD-EXERCISES-MACROGROUPS-MAP.
+           perform LOAD-EXERCISES-MULTIJOINT.
            
            move 1 to riga
            perform varying idx-days from 1 by 1 
@@ -5366,60 +5329,59 @@ BEGIN-TEXT
                     exit perform
                  end-if         
                  add 1 to riga                           
-                 modify gd1(riga, 1), cell-data = el-wod-mcg(idx-days, idx-split)
-                 modify gd1(riga, 2), cell-data = el-wod-mcg(idx-days, idx-split)
+                 modify gd1(riga, 1), cell-data = el-wod-mcg(idx-days, idx-split)     
+                 modify gd1(riga, 2), cell-data = el-wod-exe-code(idx-days, idx-split)
+                 modify gd1(riga, 3), cell-data = el-wod-exe-desc(idx-days, idx-split)
               end-perform
-           end-perform.        
-
-           exit paragraph
-                     
-           |CARICO ESERCIZI MULTIARTICOLARI
-           if cb-mul-buf = "Si"
-              move 1 to riga
-              initialize tab-exercises replacing numeric data by zeroes 
-                                            alphanumeric data by spaces
-              perform varying idx-gruppi from 1 by 1 
-                        until idx-gruppi > tot-gruppi
-                 move el-mcg-code(idx-gruppi) to tee-mcg-code
-                 set  tee-exe-isMulti-yes to true            
-                 move 0 to idx
-
-                 start tmp-exe-effort key >= tee-k-exe-multi
-                       invalid continue
-                   not invalid
-                       perform until 1 = 2        
-                          read tmp-exe-effort next
-                            at end exit perform 
-                          end-read        
-                          if tee-mcg-code not = el-mcg-code(idx-gruppi) or
-                             tee-exe-isMulti-no
-                             exit perform
-                          end-if                
-                          add 1 to idx
-                          move tee-exe-code to el-exe-code(idx)
-                          move tee-exe-desc to el-exe-desc(idx)
-                          delete tmp-exe-effort record
-                       end-perform
-                 end-start
-                 if idx > 0
-                    move idx to tot-exe tot-righe
-                    perform until 1 = 2
-                       if tot-righe = 0
-                          exit perform 
-                       end-if
-                       compute idx = function random * (tot-exe)
-                       add 1 to idx
-                       if el-exe-code(idx) not = spaces
-                          add 1 to riga                                     
-                          modify gd1 (riga, 1), cell-data = el-exe-code(idx)
-                          modify gd1 (riga, 2), cell-data = el-exe-desc(idx)
-                          move spaces to el-exe-code(idx)
-                          subtract 1 from tot-righe
-                       end-if
-                    end-perform
-                 end-if
-              end-perform
-           end-if.                
+           end-perform.                              
+     
+      *****     |CARICO ESERCIZI MULTIARTICOLARI
+      *****     if cb-mul-buf = "Si"
+      *****        move 1 to riga
+      *****        initialize tab-exercises replacing numeric data by zeroes 
+      *****                                      alphanumeric data by spaces
+      *****        perform varying idx-gruppi from 1 by 1 
+      *****                  until idx-gruppi > tot-gruppi
+      *****           move el-mcg-code(idx-gruppi) to tee-mcg-code
+      *****           set  tee-exe-isMulti-yes to true            
+      *****           move 0 to idx
+      *****
+      *****           start tmp-exe-effort key >= tee-k-exe-multi
+      *****                 invalid continue
+      *****             not invalid
+      *****                 perform until 1 = 2        
+      *****                    read tmp-exe-effort next
+      *****                      at end exit perform 
+      *****                    end-read        
+      *****                    if tee-mcg-code not = el-mcg-code(idx-gruppi) or
+      *****                       tee-exe-isMulti-no
+      *****                       exit perform
+      *****                    end-if                
+      *****                    add 1 to idx
+      *****                    move tee-exe-code to el-exe-code(idx)
+      *****                    move tee-exe-desc to el-exe-desc(idx)
+      *****                    delete tmp-exe-effort record
+      *****                 end-perform
+      *****           end-start               
+      *****           if idx > 0                                    
+      *****              move idx to tot-exe tot-righe
+      *****              perform until 1 = 2
+      *****                 if tot-righe = 0
+      *****                    exit perform 
+      *****                 end-if
+      *****                 compute idx = function random * (tot-exe)
+      *****                 add 1 to idx
+      *****                 if el-exe-code(idx) not = spaces
+      *****                    add 1 to riga                                     
+      *****                    modify gd1 (riga, 1), cell-data = el-exe-code(idx)
+      *****                    modify gd1 (riga, 2), cell-data = el-exe-desc(idx)
+      *****                    move spaces to el-exe-code(idx)
+      *****                    subtract 1 from tot-righe
+      *****                 end-if
+      *****              end-perform
+      *****           end-if
+      *****        end-perform
+      *****     end-if.                
 
       *****     move 1 to riga.
       *****     perform varying idx-gruppi from 1 by 1 
@@ -5448,8 +5410,174 @@ BEGIN-TEXT
       *****     end-perform.  
 
            close       tmp-exe-effort.
-           delete file tmp-exe-effort
-                       
+           delete file tmp-exe-effort.
+                                                    
+      ***---     
+      * Load a temporary file that contains only valid exercises filtered
+      * by intensity. If choosen "Hard", valid exercise has and effort
+      * (intensity table = 3 ) minor/equal, like "Hard" (effort 3), 
+      * "Medium" (effort 2) or "Light" (effort 1)
+       LOAD-EXERCISES-ALLOWED-BY-EFFORT.
+           move low-value to exe-key.
+           move 0 to tee-prg.
+           start exercises key >= exe-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read exercises next at end exit perform end-read
+                    move exe-int-code to int-code
+                    read intensity no lock
+                    move exe-grp-code to grp-code
+                    read groups no lock
+                    if int-effort <= effort-wod or 
+                       exe-isMulti-yes and cb-mul-buf = "Si"
+                       perform varying idx-gruppi from 1 by 1 
+                                 until idx-gruppi > tot-gruppi
+                          if el-mcg-code(idx-gruppi) = grp-mcg-code
+                             if exe-isMulti-yes and cb-mul-buf = "No"
+                                exit perform cycle
+                             end-if
+                             add 1 to tee-prg                  
+                             move exe-code     to tee-exe-code
+                             move exe-desc     to tee-exe-desc
+                             move grp-mcg-code to tee-mcg-code
+                             move int-effort   to tee-int-effort
+                             move exe-isMulti  to tee-exe-isMulti
+                             write tee-rec
+                          end-if
+                       end-perform
+                    end-if
+                 end-perform
+           end-start.                             
+
+      ***---     
+      * Starting from wodmap, substitute sign "A" with first macrogroups 
+      * selected (and so on) and expands it by the number of exercises 
+      * (for the group) indicated (duration table)
+      * E.g. day 1 split (wodmap) A - B - C 
+      *                  duration 4 - 2 - 2 
+      *           selected groups PET - GMB - ARM 
+      * result (tab-wod-exe, bidimensional) = PET,PET,PET,PET | GMB,GMB | ARM, ARM
+       LOAD-EXERCISES-MACROGROUPS-MAP.
+           perform varying idx-days from 1 by 1 
+                     until idx-days > wom-days
+              move 0 to LastIdx
+              perform varying idx-split from 1 by 1 
+                        until idx-split > 9
+                 if wom-split-el-split-sigla(idx-days, idx-split) = 0
+                    exit perform
+                 end-if
+                 move 0 to idx 
+                 evaluate idx-split
+                 when 1 move dur-exercises1 to tot-righe
+                 when 2 move dur-exercises2 to tot-righe
+                 when 3 move dur-exercises3 to tot-righe
+                 when 4 move dur-exercises4 to tot-righe
+                 when 5 move dur-exercises5 to tot-righe
+                 end-evaluate
+                 perform tot-righe times
+                    add 1 to lastIdx
+                    evaluate wom-split-el-split-sigla(idx-days, idx-split)
+                    when "A" 
+                         move el-mcg-code(1) to el-wod-mcg(idx-days, lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    when "B" 
+                         move el-mcg-code(2) to el-wod-mcg(idx-days, lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    when "C" 
+                         move el-mcg-code(3) to el-wod-mcg(idx-days, lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    when "D" 
+                         move el-mcg-code(4) to el-wod-mcg(idx-days, lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    when "E" 
+                         move el-mcg-code(5) to el-wod-mcg(idx-days, lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    when "F" 
+                         move el-mcg-code(6) to el-wod-mcg(idx-days, lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    end-evaluate
+                 end-perform
+              end-perform                                 
+           end-perform.         
+
+      ***---
+       INTENSITY-PER-MACROGROUPS.
+           if idx not = 0 exit paragraph end-if.  
+       
+      ***---
+      * Starting from valid exercises (tmp table) fills the grid
+      * corresponding with multi exercise.
+      * Phase 1: Scroll occurs (tab-macrogroups), for every macgroups:
+      *    read tmp (filtered by macrogroups and multijoint active)
+      *    and add the exercise found (code/description) in the relative
+      *    occurs tab-exercises, monodimensional.    
+      *    The result will be
+      *    an occurs (tab-exercise, monodimensional) filled with only
+      *    multijoint exercises with selected macrogroups     
+      * Phase 2:  (only if exercises found). Scrolling the occurs tab-wod-exe 
+      *    searching corresponding macrogroups analyzed fo every day, 
+      *    select a random exercise from tab-exercises, then deletes the
+      *    value (to avoid duplicate) and subtracts 1 from tot-exe. 
+      *    When tot-exe is 0 exits, that menas the exercises are fully selected
+       LOAD-EXERCISES-MULTIJOINT.                  
+           if cb-mul-buf = "No" exit paragraph end-if.
+                                                                  
+           perform varying idx-gruppi from 1 by 1 
+                     until idx-gruppi > tot-gruppi
+              initialize tab-exercises replacing numeric data by zeroes 
+                                            alphanumeric data by spaces
+             |Phase 1
+              move el-mcg-code(idx-gruppi) to tee-mcg-code
+              set  tee-exe-isMulti-yes to true            
+              move 0 to tot-exe
+
+              start tmp-exe-effort key >= tee-k-exe-multi
+                    invalid continue
+                not invalid
+                    perform until 1 = 2        
+                       read tmp-exe-effort next
+                         at end exit perform 
+                       end-read        
+                       if tee-mcg-code not = el-mcg-code(idx-gruppi) or
+                          tee-exe-isMulti-no
+                          exit perform
+                       end-if                
+                       add 1 to tot-exe
+                       move tee-exe-code to el-exe-code(tot-exe)
+                       move tee-exe-desc to el-exe-desc(tot-exe)
+                    end-perform
+              end-start               
+             |Phase 2                                        
+              if tot-exe > 0    
+                 move tot-exe to ex-remain
+                 perform varying idx-days from 1 by 1 
+                           until idx-days > wom-days
+                    perform varying idx-split from 1 by 1 
+                              until idx-split > 9
+                       if el-wod-mcg(idx-days, idx-split) = spaces
+                          exit perform
+                       end-if         
+                       if el-wod-mcg(idx-days, idx-split) = 
+                          el-mcg-code(idx-gruppi)      
+                          perform until 1 = 2
+                             compute idx = function random * (tot-exe)
+                             add 1 to idx
+                             if el-exe-used(idx) = 0 or
+                                ex-remain = 0                                     
+                                move el-exe-code(idx) to el-wod-exe-code(idx-days, idx-split)
+                                move el-exe-desc(idx) to el-wod-exe-desc(idx-days, idx-split)
+                                move 1                to el-exe-used(idx)
+                                subtract 1 from ex-remain
+                                exit perform
+                             end-if
+                          end-perform
+                          exit perform
+                       end-if
+                    end-perform
+                 end-perform
+              end-if
+           end-perform.
 END-TEXT
 END-DATA
 BEGIN-DATA

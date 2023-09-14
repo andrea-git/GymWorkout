@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 13 settembre 2023 15:30:28.
+       DATE-WRITTEN.        giovedì 14 settembre 2023 16:54:17.
        REMARKS.
       *{TOTEM}END
 
@@ -28,11 +28,13 @@
        FILE-CONTROL.
       *{TOTEM}FILE-CONTROL
            COPY "wodmap.sl".
+           COPY "duration.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
       *{TOTEM}FILE
            COPY "wodmap.fd".
+           COPY "duration.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -114,6 +116,9 @@
                   USAGE IS COMP-4
                   VALUE IS 0.
        77 wom-note         PIC  x(200).
+       77 STATUS-duration  PIC  X(2).
+           88 Valid-STATUS-duration VALUE IS "00" THRU "09". 
+       77 lab-durata-buf   PIC  X(100).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -124,23 +129,26 @@
        01 Form1-BUF.
       * Data.Entry-Field
               05 ef-codice-BUF PIC zz9.
-              05 ef-codice-VALUEBUF PIC 9(3).
       * Data.Entry-Field
               05 ef-descr-BUF PIC x(100).
+              05 ef-descr-VALUEBUF PIC x(100).
       * Data.Entry-Field
               05 ef-days-BUF PIC 9.
       * Data.Entry-Field
               05 ef-macro-BUF PIC z9.
+      * Data.Entry-Field
+              05 ef-durata-BUF PIC z9.
 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
        77 TMP-Form1-KEY2-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-wodmap-RESTOREBUF  PIC X(1223).
+       77 TMP-Form1-wodmap-RESTOREBUF  PIC X(1225).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(1223).
-       77 Form1-KEYISTMP2   PIC X(3).
+       77 Form1-MULKEY-TMPBUF   PIC X(1225).
+       77 Form1-KEYISTMP2   PIC X(100).
       * Form1 : PKEY & AKEY'S TEMP BUFFER
        77 Form1-PKEYTMP   PIC X(3).
-       77 TMP-DataSet1-wodmap-BUF     PIC X(1223).
+       77 TMP-DataSet1-wodmap-BUF     PIC X(1225).
+       77 TMP-DataSet1-duration-BUF     PIC X(1163).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -154,10 +162,16 @@
        77 DataSet1-wodmap-KEY2-ORDER  PIC X VALUE "A".
           88 DataSet1-wodmap-KEY2-Asc  VALUE "A".
           88 DataSet1-wodmap-KEY2-Desc VALUE "D".
+       77 DataSet1-duration-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-duration-LOCK  VALUE "Y".
+       77 DataSet1-duration-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-duration-KEY-Asc  VALUE "A".
+          88 DataSet1-duration-KEY-Desc VALUE "D".
 
-       77 wodmap-wom-k-desc-SPLITBUF  PIC X(4).
+       77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
+       77 duration-dur-k-desc-SPLITBUF  PIC X(101).
       * FOR SPLIT KEY BUFFER
-       77 DataSet1-wodmap-SPLIT-BUF2   PIC X(4).
+       77 DataSet1-wodmap-SPLIT-BUF2   PIC X(101).
 
 
        01 old-wom-rec.
@@ -173,6 +187,7 @@
                        20 old-wom-split-el-days-split
                                   OCCURS 9 TIMES.
                            25 old-wom-split-el-split-sigla     PIC  x.
+               10 old-wom-dur-code     PIC  99.
                10 old-wom-filler       PIC  x(1000).
                10 old-wom-filler-n1    PIC  9(18).
                10 old-wom-filler-n2    PIC  9(18).
@@ -184,6 +199,8 @@
        78  78-ID-ef-codice VALUE 5001.
        78  78-ID-ef-descr VALUE 5002.
        78  78-ID-ef-days VALUE 5003.
+       78  78-ID-ef-macro VALUE 5004.
+       78  78-ID-ef-durata VALUE 5005.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -376,7 +393,7 @@
            BOXED,
            COLOR IS 513,
            ENABLED MOD,
-           ID IS 10,
+           ID IS 78-ID-ef-macro,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            RIGHT,
@@ -586,6 +603,56 @@
            VIRTUAL-WIDTH 10,
            VPADDING 50,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
+           .
+
+      * LABEL
+       05
+           Screen1-La-2aaa, 
+           Label, 
+           COL 43,90, 
+           LINE 6,00,
+           LINES 1,30 ,
+           SIZE 6,00 ,
+           ID IS 12,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Durata",
+           .
+
+      * ENTRY FIELD
+       05
+           ef-durata, 
+           Entry-Field, 
+           COL 51,00, 
+           LINE 6,00,
+           LINES 1,30 ,
+           SIZE 3,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 78-ID-ef-durata,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           RIGHT,
+           MAX-TEXT 2,
+           USE-RETURN,
+           VALUE ef-durata-BUF,
+           .
+
+      * LABEL
+       05
+           lab-durata, 
+           Label, 
+           COL 55,30, 
+           LINE 6,00,
+           LINES 1,30 ,
+           SIZE 31,30 ,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-durata-buf,
            .
 
       * TOOLBAR
@@ -888,19 +955,6 @@
            AFTER PROCEDURE TOOL-ORD-AfterProcedure,
            BEFORE PROCEDURE TOOL-ORD-BeforeProcedure, 
            .
-      * BITMAP
-       05
-           Form1-Bt-1, 
-           Bitmap, 
-           COL 84,40, 
-           LINE 1,00,
-           LINES 64,00 ,
-           SIZE 48,00 ,
-           BITMAP-HANDLE LOGO_PICCOLO-BMP,
-           BITMAP-NUMBER 1,
-           ID IS 123,
-           .
-
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
@@ -1010,7 +1064,6 @@
       * <TOTEM:END>
            DESTROY Calibri14-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
-           CALL "w$bitmap" USING WBITMAP-DESTROY, LOGO_PICCOLO-BMP
       *    After-Program
            PERFORM ginqui-Ev-After-Program
            EXIT PROGRAM TOTEM-PgmStatus
@@ -1058,10 +1111,6 @@
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
                    GIVING toolbar-bmp.
-      * Form1-Bt-1
-           COPY RESOURCE "LOGO_PICCOLO.BMP".
-           CALL "w$bitmap" USING WBITMAP-LOAD "LOGO_PICCOLO.BMP", 
-                   GIVING LOGO_PICCOLO-BMP.
            .
 
        INIT-RES.
@@ -1073,6 +1122,7 @@
        OPEN-FILE-RTN.
       *    Before Open
            PERFORM OPEN-wodmap
+           PERFORM OPEN-duration
       *    After Open
            .
 
@@ -1095,9 +1145,22 @@
       * <TOTEM:END>
            .
 
+       OPEN-duration.
+      * <TOTEM:EPT. INIT:gwodmap, FD:duration, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  INPUT duration
+           IF NOT Valid-STATUS-duration
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwodmap, FD:duration, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-wodmap
+           PERFORM CLOSE-duration
       *    After Close
            .
 
@@ -1107,9 +1170,15 @@
            CLOSE wodmap
            .
 
+       CLOSE-duration.
+      * <TOTEM:EPT. INIT:gwodmap, FD:duration, BeforeClose>
+      * <TOTEM:END>
+           CLOSE duration
+           .
+
        wodmap-wom-k-desc-MERGE-SPLITBUF.
            INITIALIZE wodmap-wom-k-desc-SPLITBUF
-           MOVE wom-code(1:3) TO wodmap-wom-k-desc-SPLITBUF(1:3)
+           MOVE wom-desc(1:100) TO wodmap-wom-k-desc-SPLITBUF(1:100)
            .
 
        DataSet1-wodmap-INITSTART.
@@ -1122,9 +1191,9 @@
               END-IF
            WHEN 2
               IF DataSet1-wodmap-KEY2-Asc
-                 MOVE Low-Value TO wom-code
+                 MOVE Low-Value TO wom-desc
               ELSE
-                 MOVE High-Value TO wom-code
+                 MOVE High-Value TO wom-desc
               END-IF
            END-EVALUATE
            .
@@ -1139,9 +1208,9 @@
               END-IF
            WHEN 2
               IF DataSet1-wodmap-KEY2-Asc
-                 MOVE High-Value to wom-code
+                 MOVE High-Value to wom-desc
               ELSE          
-                 MOVE Low-Value to wom-code
+                 MOVE Low-Value to wom-desc
               END-IF
            END-EVALUATE
            .
@@ -1149,16 +1218,16 @@
        DataSet1-wodmap-TMPBUF-TO-FLD.
            EVALUATE DataSet1-KEYIS
            WHEN 2
-              MOVE DataSet1-wodmap-SPLIT-BUF2(1:3) TO
-                   wom-code(1:3)
+              MOVE DataSet1-wodmap-SPLIT-BUF2(1:100) TO
+                   wom-desc(1:100)
            END-EVALUATE
            .
 
        DataSet1-wodmap-FLD-TO-TMPBUF.
            EVALUATE DataSet1-KEYIS
            WHEN 2
-              MOVE wom-code(1:3) TO
-                   DataSet1-wodmap-SPLIT-BUF2(1:3)
+              MOVE wom-desc(1:100) TO
+                   DataSet1-wodmap-SPLIT-BUF2(1:100)
            END-EVALUATE
            .
 
@@ -1420,8 +1489,171 @@
       * <TOTEM:END>
            .
 
+       duration-dur-k-desc-MERGE-SPLITBUF.
+           INITIALIZE duration-dur-k-desc-SPLITBUF
+           MOVE dur-desc(1:100) TO duration-dur-k-desc-SPLITBUF(1:100)
+           .
+
+       DataSet1-duration-INITSTART.
+           IF DataSet1-duration-KEY-Asc
+              MOVE Low-Value TO dur-key
+           ELSE
+              MOVE High-Value TO dur-key
+           END-IF
+           .
+
+       DataSet1-duration-INITEND.
+           IF DataSet1-duration-KEY-Asc
+              MOVE High-Value TO dur-key
+           ELSE
+              MOVE Low-Value TO dur-key
+           END-IF
+           .
+
+      * duration
+       DataSet1-duration-START.
+           IF DataSet1-duration-KEY-Asc
+              START duration KEY >= dur-key
+           ELSE
+              START duration KEY <= dur-key
+           END-IF
+           .
+
+       DataSet1-duration-START-NOTGREATER.
+           IF DataSet1-duration-KEY-Asc
+              START duration KEY <= dur-key
+           ELSE
+              START duration KEY >= dur-key
+           END-IF
+           .
+
+       DataSet1-duration-START-GREATER.
+           IF DataSet1-duration-KEY-Asc
+              START duration KEY > dur-key
+           ELSE
+              START duration KEY < dur-key
+           END-IF
+           .
+
+       DataSet1-duration-START-LESS.
+           IF DataSet1-duration-KEY-Asc
+              START duration KEY < dur-key
+           ELSE
+              START duration KEY > dur-key
+           END-IF
+           .
+
+       DataSet1-duration-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, BeforeReadRecord>
+      * <TOTEM:END>
+           IF DataSet1-duration-LOCK
+              READ duration WITH LOCK 
+              KEY dur-key
+           ELSE
+              READ duration WITH NO LOCK 
+              KEY dur-key
+           END-IF
+           PERFORM duration-dur-k-desc-MERGE-SPLITBUF
+           MOVE STATUS-duration TO TOTEM-ERR-STAT 
+           MOVE "duration" TO TOTEM-ERR-FILE
+           MOVE "READ" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-duration-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, BeforeReadNext>
+      * <TOTEM:END>
+           IF DataSet1-duration-KEY-Asc
+              IF DataSet1-duration-LOCK
+                 READ duration NEXT WITH LOCK
+              ELSE
+                 READ duration NEXT WITH NO LOCK
+              END-IF
+           ELSE
+              IF DataSet1-duration-LOCK
+                 READ duration PREVIOUS WITH LOCK
+              ELSE
+                 READ duration PREVIOUS WITH NO LOCK
+              END-IF
+           END-IF
+           PERFORM duration-dur-k-desc-MERGE-SPLITBUF
+           MOVE STATUS-duration TO TOTEM-ERR-STAT
+           MOVE "duration" TO TOTEM-ERR-FILE
+           MOVE "READ NEXT" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-duration-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, BeforeReadPrev>
+      * <TOTEM:END>
+           IF DataSet1-duration-KEY-Asc
+              IF DataSet1-duration-LOCK
+                 READ duration PREVIOUS WITH LOCK
+              ELSE
+                 READ duration PREVIOUS WITH NO LOCK
+              END-IF
+           ELSE
+              IF DataSet1-duration-LOCK
+                 READ duration NEXT WITH LOCK
+              ELSE
+                 READ duration NEXT WITH NO LOCK
+              END-IF
+           END-IF
+           PERFORM duration-dur-k-desc-MERGE-SPLITBUF
+           MOVE STATUS-duration TO TOTEM-ERR-STAT
+           MOVE "duration" TO TOTEM-ERR-FILE
+           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-duration-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, BeforeWrite>
+      * <TOTEM:END>
+           MOVE STATUS-duration TO TOTEM-ERR-STAT
+           MOVE "duration" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-duration-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-duration TO TOTEM-ERR-STAT
+           MOVE "duration" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-duration-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-duration TO TOTEM-ERR-STAT
+           MOVE "duration" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:duration, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE wom-rec OF wodmap
+           INITIALIZE dur-rec OF duration
            .
 
 
@@ -1477,6 +1709,14 @@
       * FD's Initialize Paragraph
        DataSet1-wodmap-INITREC.
            INITIALIZE wom-rec OF wodmap
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-duration-INITREC.
+           INITIALIZE dur-rec OF duration
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -2113,7 +2353,15 @@
            PERFORM ef-macro-VALIDATION
            IF NOT TOTEM-CHECK-OK
                MOVE 4 TO ACCEPT-CONTROL
-               MOVE 10 TO CONTROL-ID
+               MOVE 5004 TO CONTROL-ID
+               EXIT PARAGRAPH
+           END-IF
+      * ef-durata's Validation
+           SET TOTEM-CHECK-OK TO FALSE
+           PERFORM ef-durata-VALIDATION
+           IF NOT TOTEM-CHECK-OK
+               MOVE 4 TO ACCEPT-CONTROL
+               MOVE 5005 TO CONTROL-ID
                EXIT PARAGRAPH
            END-IF
            .
@@ -2186,6 +2434,23 @@
            PERFORM ef-macro-AFTER-VALIDATION
            .
 
+       ef-durata-BEFORE-VALIDATION.
+      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-durata, BeforeValidation>
+      * <TOTEM:END>
+           .
+
+       ef-durata-AFTER-VALIDATION.
+      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-durata, AfterValidation>
+      * <TOTEM:END>
+           .
+
+      * ef-durata's Validation
+       ef-durata-VALIDATION.
+           PERFORM ef-durata-BEFORE-VALIDATION
+           SET TOTEM-CHECK-OK TO TRUE
+           PERFORM ef-durata-AFTER-VALIDATION
+           .
+
 
        Form1-Buf-To-Fld.
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeBufToFld>
@@ -2198,6 +2463,8 @@
            MOVE ef-days-BUF TO wom-days
       * DB_Entry-Field : ef-macro
            MOVE ef-macro-BUF TO wom-macrogroups
+      * DB_Entry-Field : ef-durata
+           MOVE ef-durata-BUF TO wom-dur-code
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterBufToFld>
       * <TOTEM:END>
            .
@@ -2213,10 +2480,16 @@
            MOVE wom-days TO ef-days-BUF
       * DB_Entry-Field : ef-macro
            MOVE wom-macrogroups TO ef-macro-BUF
+      * DB_Entry-Field : ef-durata
+           MOVE wom-dur-code TO ef-durata-BUF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterFldToBuf>
            perform ABILITAZIONI. 
            perform LOAD-DAYS.
            perform ABILITA-GRID-DAYS.
+           move wom-dur-code to dur-code.
+           read duration no lock invalid move spaces to dur-desc 
+           end-read.
+           move dur-desc to lab-durata-buf.
            Perform VALORIZZA-OLD.
 
            .
@@ -2233,6 +2506,13 @@
               set NoSalvato to true
               |78-ID-ef-descr è l'ID del campo ef-descr
               move 78-ID-ef-descr to store-id 
+           end-if
+
+           if wom-dur-code not = old-wom-dur-code
+              and SiSalvato
+              set NoSalvato to true
+              |78-ID-ef-durata è l'ID del campo ef-durata
+              move 78-ID-ef-durata to store-id 
            end-if
 
            .
@@ -2286,9 +2566,38 @@
            .
 
 
+      * Paragrafo per la struttura del codice in BEFORE sulla screen Form1
+      ***---
+       Form1-BEFORE-SCREEN.
+           evaluate control-id
+           |78-ID-ef-durata è l'ID del campo ef-durata
+           when 78-ID-ef-durata
+                move 1 to StatusHelp
+                perform STATUS-HELP
+           |99999 è un valore fittizio, che non sarà MAI usato,
+           |ma mi serve per non riscontrare errori di compilazione
+           |in caso non avessi generato nulla nella BEFORE della screen
+           when 99999 continue
+           when other continue
+           end-evaluate.
+
+      * Generazione settaggio keyboard "." ---> ","
+
       * Paragrafo per la struttura del codice in AFTER sulla screen Form1
       ***---
        Form1-AFTER-SCREEN.
+           evaluate control-id
+           |78-ID-ef-durata è l'ID del campo ef-durata
+           when 78-ID-ef-durata
+                move 0 to StatusHelp
+                perform STATUS-HELP
+
+           |99999 è un valore fittizio, che non sarà MAI usato,
+           |ma mi serve per non riscontrare errori di compilazione
+           |in caso non avessi generato nulla nella AFTER della screen
+           when 99999 continue
+           when other continue
+           end-evaluate.
 
       * Generazione risettaggio keyboard "." ---> "."
 
@@ -2303,8 +2612,11 @@
            |78-ID-ef-days è l'ID del campo ef-days
            when 78-ID-ef-days
                 perform CONTROLLO
-           |10 è l'ID del campo ef-macro
-           when 10
+           |78-ID-ef-macro è l'ID del campo ef-macro
+           when 78-ID-ef-macro
+                perform CONTROLLO
+           |78-ID-ef-durata è l'ID del campo ef-durata
+           when 78-ID-ef-durata
                 perform CONTROLLO
            |99999 è un valore fittizio, che non sarà MAI usato,
            |ma mi serve per non riscontrare errori di compilazione
@@ -2320,16 +2632,19 @@
            WHEN 5001 MOVE "Digitare il Codice" to TOTEM-HINT-TEXT
            WHEN 5002 MOVE "." to TOTEM-HINT-TEXT
            WHEN 5003 MOVE "." to TOTEM-HINT-TEXT
-           WHEN 10 MOVE "." to TOTEM-HINT-TEXT
+           WHEN 5004 MOVE "." to TOTEM-HINT-TEXT
+           WHEN 5005 MOVE "." to TOTEM-HINT-TEXT
            WHEN OTHER MOVE SPACES TO TOTEM-HINT-TEXT
            END-EVALUATE
            EVALUATE Control-Id
            When 5001 PERFORM ef-codice-BeforeProcedure
            When 5002 PERFORM ef-descr-BeforeProcedure
            When 5003 PERFORM ef-days-BeforeProcedure
-           When 10 PERFORM ef-macro-BeforeProcedure
+           When 5004 PERFORM ef-macro-BeforeProcedure
+           When 5005 PERFORM ef-macro-BeforeProcedure
            END-EVALUATE
            PERFORM Form1-DISPLAY-STATUS-MSG
+           perform Form1-BEFORE-SCREEN
            .
 
        Form1-AfterProcedure.
@@ -2337,7 +2652,8 @@
            When 5001 PERFORM ef-codice-AfterProcedure
            When 5002 PERFORM ef-ragsoc-AfterProcedure
            When 5003 PERFORM ef-days-AfterProcedure
-           When 10 PERFORM ef-macro-AfterProcedure
+           When 5004 PERFORM ef-macro-AfterProcedure
+           When 5005 PERFORM ef-macro-AfterProcedure
            END-EVALUATE
            perform Form1-AFTER-SCREEN
            .
@@ -2445,7 +2761,19 @@
 
        CERCA.
       * <TOTEM:PARA. CERCA>
-           continue 
+           evaluate control-id
+           when 78-ID-ef-durata
+                inquire ef-durata, value in dur-code
+                move "duration"   to Como-File
+                call   "zoom-gt" using como-file, dur-rec
+                                giving stato-zoom
+                cancel "zoom-gt"
+                if stato-zoom = 0
+                   move dur-code to ef-durata-buf
+                   move dur-desc to lab-durata-buf
+                   display ef-durata lab-durata
+                   move 4 to accept-control
+                end-if
            .
       * <TOTEM:END>
 
@@ -2503,31 +2831,55 @@
                 inquire ef-descr value in wom-desc
                 if wom-desc = spaces
                    set errori to true
-                   display message box "Descrizione obbligatoria"
-                           title tit-err
-                           type  mb-ok
-                           icon  mb-warning-icon
-                end-if
+                   display message "Descrizione obbligatoria"
+                             title tit-err
+                              type  mb-ok
+                              icon  mb-warning-icon
+                end-if 
       
            when 78-ID-ef-days
                 inquire ef-days value in wom-days
                 if wom-days = 0
                    set errori to true
-                   display message box "Dato obbligatorio"
-                           title tit-err
-                           type  mb-ok
-                           icon  mb-warning-icon
+                   display message "Dato obbligatorio"
+                             title tit-err
+                              type  mb-ok
+                              icon  mb-warning-icon
                 else
                    if wom-days > 7              
                       set errori to true
-                      display message box "Massimo 7 giorni"
-                              title tit-err
-                              type  mb-ok
-                              icon  mb-warning-icon
+                      display message "Massimo 7 giorni"
+                                title tit-err
+                                 type  mb-ok
+                                 icon  mb-warning-icon
                    else              
                       perform ABILITA-GRID-DAYS
                    end-if
+                end-if                          
+      
+           when 78-ID-ef-macro
+                inquire ef-macro value in wom-macrogroups
+                if wom-macrogroups = 0
+                   set errori to true
+                   display message "Dato obbligatorio"
+                             title tit-err
+                              type  mb-ok
+                              icon  mb-warning-icon
                 end-if
+      
+           when 78-ID-ef-durata
+                inquire ef-durata value in wom-dur-code
+                read duration no lock
+                     invalid
+                     set errori to true
+                     move spaces to dur-desc    
+                     display message "Dato non valido"
+                               title tit-err
+                               type  mb-ok
+                               icon  mb-warning-icon
+                end-read
+                move dur-desc to lab-durata-buf
+                display lab-durata              
            end-evaluate.
       
            if errori
@@ -2774,7 +3126,7 @@
            set tutto-ok to true.
 
            perform varying CONTROL-ID from 78-ID-ef-descr by 1
-                     until CONTROL-ID > 78-ID-ef-descr
+                     until CONTROL-ID > 78-ID-ef-durata
               perform CONTROLLO
               if errori 
                  exit perform 
@@ -3361,6 +3713,12 @@
               INQUIRE ef-macro, VALUE IN wom-macrogroups
               SET TOTEM-CHECK-OK TO FALSE
               PERFORM ef-macro-VALIDATION
+              IF NOT TOTEM-CHECK-OK
+                 MOVE 1 TO ACCEPT-CONTROL
+              END-IF
+              INQUIRE ef-durata, VALUE IN wom-dur-code
+              SET TOTEM-CHECK-OK TO FALSE
+              PERFORM ef-durata-VALIDATION
               IF NOT TOTEM-CHECK-OK
                  MOVE 1 TO ACCEPT-CONTROL
               END-IF

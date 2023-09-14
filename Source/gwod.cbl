@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 13 settembre 2023 17:40:41.
+       DATE-WRITTEN.        giovedì 14 settembre 2023 16:47:50.
        REMARKS.
       *{TOTEM}END
 
@@ -125,8 +125,12 @@
        01 tab-wod-exe.
            05 el-wod-day
                       OCCURS 7 TIMES.
-               10 el-wod-mcg       PIC  x(5)
+               10 el-wod-mcg-exe
                           OCCURS 20 TIMES.
+                   15 el-wod-mcg       PIC  x(5).
+                   15 el-wod-exe-code  PIC  x(5).
+                   15 el-wod-exe-desc  PIC  x(100).
+                   15 el-wod-exe-effort            PIC  9.
        77 RigheIniziali    PIC  9(3).
        77 lastIdx          PIC  9(3).
        77 idx-days         PIC  9(3).
@@ -145,6 +149,7 @@
                       OCCURS 20 TIMES.
                10 el-exe-code      PIC  x(5).
                10 el-exe-desc      PIC  x(100).
+               10 el-exe-used      PIC  9.
        77 tot-gruppi       PIC  999.
        77 idx-gruppi       PIC  999.
        01 tab-mgroups.
@@ -152,9 +157,6 @@
                       OCCURS 10 TIMES.
                10 el-mgroup        PIC  x(100).
                10 el-mcg-code      PIC  x(5).
-               10 el-exercises     PIC  9(3).
-               10 el-exercises-ok  PIC  9(3).
-               10 el-times         PIC  9.
        01 rec-grid.
            05 col-exercise     PIC  x(5).
            05 col-exe-desc     PIC  x(100).
@@ -252,7 +254,7 @@
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(118).
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
-       77 TMP-DataSet1-wodmap-BUF     PIC X(1223).
+       77 TMP-DataSet1-wodmap-BUF     PIC X(1225).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -951,7 +953,7 @@
            LINE 9,39,
            LINES 1,30 ,
            SIZE 13,00 ,
-           ID IS 6,
+           ID IS 27,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -968,7 +970,7 @@
            SIZE 25,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 13,
+           ID IS 28,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
@@ -5347,80 +5349,10 @@
            open i-o    tmp-exe-effort.              
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
-           move low-value to exe-key.
-           move 0 to tee-prg.
-           start exercises key >= exe-key
-                 invalid continue
-             not invalid
-                 perform until 1 = 2
-                    read exercises next at end exit perform end-read
-                    move exe-int-code to int-code
-                    read intensity no lock
-                    move exe-grp-code to grp-code
-                    read groups no lock
-                    if int-effort <= effort-wod or 
-                       exe-isMulti-yes and cb-mul-buf = "Si"
-                       perform varying idx-gruppi from 1 by 1 
-                                 until idx-gruppi > 5
-                          if el-mcg-code(idx-gruppi) = grp-mcg-code
-                             if exe-isMulti-yes and cb-mul-buf = "No"
-                                exit perform cycle
-                             end-if
-                             add 1 to tee-prg                  
-                             move exe-code     to tee-exe-code
-                             move exe-desc     to tee-exe-desc
-                             move grp-mcg-code to tee-mcg-code
-                             move int-effort   to tee-int-effort
-                             move exe-isMulti  to tee-exe-isMulti
-                             write tee-rec
-                          end-if
-                       end-perform
-                    end-if
-                 end-perform
-           end-start.                   
-   
-      *****     move high-value to wod-code wod-dayPrg.
-      *****     start wodbook key <= wod-key
-      *****           invalid move 0 to wod-code
-      *****       not invalid read wodbook previous
-      *****     end-start.
-      *****     add 1 to wod-code.
-           
-           perform varying idx-days from 1 by 1 
-                     until idx-days > 7
-              move 0 to LastIdx
-              perform varying idx-split from 1 by 1 
-                        until idx-split > 9
-                 if wom-split-el-split-sigla(idx-days, idx-split) = 0
-                    exit perform
-                 end-if
-                 evaluate idx-split
-                 when 1 move dur-exercises1 to tot-righe
-                 when 2 move dur-exercises2 to tot-righe
-                 when 3 move dur-exercises3 to tot-righe
-                 when 4 move dur-exercises4 to tot-righe
-                 when 5 move dur-exercises5 to tot-righe
-                 end-evaluate
-                 perform tot-righe times
-                    add 1 to lastIdx
-                    evaluate wom-split-el-split-sigla(idx-days, 
-           idx-split)
-                    when "A" move el-mcg-code(1) to 
-           el-wod-mcg(idx-days, lastIdx)
-                    when "B" move el-mcg-code(2) to 
-           el-wod-mcg(idx-days, lastIdx)
-                    when "C" move el-mcg-code(3) to 
-           el-wod-mcg(idx-days, lastIdx)
-                    when "D" move el-mcg-code(4) to 
-           el-wod-mcg(idx-days, lastIdx)
-                    when "E" move el-mcg-code(5) to 
-           el-wod-mcg(idx-days, lastIdx)
-                    when "F" move el-mcg-code(6) to 
-           el-wod-mcg(idx-days, lastIdx)
-                    end-evaluate
-                 end-perform
-              end-perform
-           end-perform.        
+
+           perform LOAD-EXERCISES-ALLOWED-BY-EFFORT.
+           perform LOAD-EXERCISES-MACROGROUPS-MAP.
+           perform LOAD-EXERCISES-MULTIJOINT.
            
            move 1 to riga
            perform varying idx-days from 1 by 1 
@@ -5437,65 +5369,61 @@
                  end-if         
                  add 1 to riga                           
                  modify gd1(riga, 1), cell-data = el-wod-mcg(idx-days, 
-           idx-split)
-                 modify gd1(riga, 2), cell-data = el-wod-mcg(idx-days, 
-           idx-split)
+           idx-split)     
+                 modify gd1(riga, 2), cell-data = 
+           el-wod-exe-code(idx-days, idx-split)
+                 modify gd1(riga, 3), cell-data = 
+           el-wod-exe-desc(idx-days, idx-split)
               end-perform
-           end-perform.        
-
-           exit paragraph
-                     
-           |CARICO ESERCIZI MULTIARTICOLARI
-           if cb-mul-buf = "Si"
-              move 1 to riga
-              initialize tab-exercises replacing numeric data by zeroes 
-                                            alphanumeric data by spaces
-              perform varying idx-gruppi from 1 by 1 
-                        until idx-gruppi > tot-gruppi
-                 move el-mcg-code(idx-gruppi) to tee-mcg-code
-                 set  tee-exe-isMulti-yes to true            
-                 move 0 to idx
-
-                 start tmp-exe-effort key >= tee-k-exe-multi
-                       invalid continue
-                   not invalid
-                       perform until 1 = 2        
-                          read tmp-exe-effort next
-                            at end exit perform 
-                          end-read        
-                          if tee-mcg-code not = el-mcg-code(idx-gruppi) 
-           or
-                             tee-exe-isMulti-no
-                             exit perform
-                          end-if                
-                          add 1 to idx
-                          move tee-exe-code to el-exe-code(idx)
-                          move tee-exe-desc to el-exe-desc(idx)
-                          delete tmp-exe-effort record
-                       end-perform
-                 end-start
-                 if idx > 0
-                    move idx to tot-exe tot-righe
-                    perform until 1 = 2
-                       if tot-righe = 0
-                          exit perform 
-                       end-if
-                       compute idx = function random * (tot-exe)
-                       add 1 to idx
-                       if el-exe-code(idx) not = spaces
-                          add 1 to riga                                 
-               
-                          modify gd1 (riga, 1), cell-data = 
-           el-exe-code(idx)
-                          modify gd1 (riga, 2), cell-data = 
-           el-exe-desc(idx)
-                          move spaces to el-exe-code(idx)
-                          subtract 1 from tot-righe
-                       end-if
-                    end-perform
-                 end-if
-              end-perform
-           end-if.                
+           end-perform.                              
+     
+      *****     |CARICO ESERCIZI MULTIARTICOLARI
+      *****     if cb-mul-buf = "Si"
+      *****        move 1 to riga
+      *****        initialize tab-exercises replacing numeric data by zeroes 
+      *****                                      alphanumeric data by spaces
+      *****        perform varying idx-gruppi from 1 by 1 
+      *****                  until idx-gruppi > tot-gruppi
+      *****           move el-mcg-code(idx-gruppi) to tee-mcg-code
+      *****           set  tee-exe-isMulti-yes to true            
+      *****           move 0 to idx
+      *****
+      *****           start tmp-exe-effort key >= tee-k-exe-multi
+      *****                 invalid continue
+      *****             not invalid
+      *****                 perform until 1 = 2        
+      *****                    read tmp-exe-effort next
+      *****                      at end exit perform 
+      *****                    end-read        
+      *****                    if tee-mcg-code not = el-mcg-code(idx-gruppi) or
+      *****                       tee-exe-isMulti-no
+      *****                       exit perform
+      *****                    end-if                
+      *****                    add 1 to idx
+      *****                    move tee-exe-code to el-exe-code(idx)
+      *****                    move tee-exe-desc to el-exe-desc(idx)
+      *****                    delete tmp-exe-effort record
+      *****                 end-perform
+      *****           end-start               
+      *****           if idx > 0                                    
+      *****              move idx to tot-exe tot-righe
+      *****              perform until 1 = 2
+      *****                 if tot-righe = 0
+      *****                    exit perform 
+      *****                 end-if
+      *****                 compute idx = function random * (tot-exe)
+      *****                 add 1 to idx
+      *****                 if el-exe-code(idx) not = spaces
+      *****                    add 1 to riga                                     
+      *****                    modify gd1 (riga, 1), cell-data = el-exe-code(idx)
+      *****                    modify gd1 (riga, 2), cell-data = el-exe-desc(idx)
+      *****                    move spaces to el-exe-code(idx)
+      *****                    subtract 1 from tot-righe
+      *****                 end-if
+      *****              end-perform
+      *****           end-if
+      *****        end-perform
+      *****     end-if.                
 
       *****     move 1 to riga.
       *****     perform varying idx-gruppi from 1 by 1 
@@ -5524,8 +5452,185 @@
       *****     end-perform.  
 
            close       tmp-exe-effort.
-           delete file tmp-exe-effort
-                       
+           delete file tmp-exe-effort.
+                                                    
+      ***---     
+      * Load a temporary file that contains only valid exercises filtered
+      * by intensity. If choosen "Hard", valid exercise has and effort
+      * (intensity table = 3 ) minor/equal, like "Hard" (effort 3), 
+      * "Medium" (effort 2) or "Light" (effort 1)
+       LOAD-EXERCISES-ALLOWED-BY-EFFORT.
+           move low-value to exe-key.
+           move 0 to tee-prg.
+           start exercises key >= exe-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read exercises next at end exit perform end-read
+                    move exe-int-code to int-code
+                    read intensity no lock
+                    move exe-grp-code to grp-code
+                    read groups no lock
+                    if int-effort <= effort-wod or 
+                       exe-isMulti-yes and cb-mul-buf = "Si"
+                       perform varying idx-gruppi from 1 by 1 
+                                 until idx-gruppi > tot-gruppi
+                          if el-mcg-code(idx-gruppi) = grp-mcg-code
+                             if exe-isMulti-yes and cb-mul-buf = "No"
+                                exit perform cycle
+                             end-if
+                             add 1 to tee-prg                  
+                             move exe-code     to tee-exe-code
+                             move exe-desc     to tee-exe-desc
+                             move grp-mcg-code to tee-mcg-code
+                             move int-effort   to tee-int-effort
+                             move exe-isMulti  to tee-exe-isMulti
+                             write tee-rec
+                          end-if
+                       end-perform
+                    end-if
+                 end-perform
+           end-start.                             
+
+      ***---     
+      * Starting from wodmap, substitute sign "A" with first macrogroups 
+      * selected (and so on) and expands it by the number of exercises 
+      * (for the group) indicated (duration table)
+      * E.g. day 1 split (wodmap) A - B - C 
+      *                  duration 4 - 2 - 2 
+      *           selected groups PET - GMB - ARM 
+      * result (tab-wod-exe, bidimensional) = PET,PET,PET,PET | GMB,GMB | ARM, ARM
+       LOAD-EXERCISES-MACROGROUPS-MAP.
+           perform varying idx-days from 1 by 1 
+                     until idx-days > wom-days
+              move 0 to LastIdx
+              perform varying idx-split from 1 by 1 
+                        until idx-split > 9
+                 if wom-split-el-split-sigla(idx-days, idx-split) = 0
+                    exit perform
+                 end-if
+                 move 0 to idx 
+                 evaluate idx-split
+                 when 1 move dur-exercises1 to tot-righe
+                 when 2 move dur-exercises2 to tot-righe
+                 when 3 move dur-exercises3 to tot-righe
+                 when 4 move dur-exercises4 to tot-righe
+                 when 5 move dur-exercises5 to tot-righe
+                 end-evaluate
+                 perform tot-righe times
+                    add 1 to lastIdx
+                    evaluate wom-split-el-split-sigla(idx-days, 
+           idx-split)
+                    when "A" 
+                         move el-mcg-code(1) to el-wod-mcg(idx-days, 
+           lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    when "B" 
+                         move el-mcg-code(2) to el-wod-mcg(idx-days, 
+           lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    when "C" 
+                         move el-mcg-code(3) to el-wod-mcg(idx-days, 
+           lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    when "D" 
+                         move el-mcg-code(4) to el-wod-mcg(idx-days, 
+           lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    when "E" 
+                         move el-mcg-code(5) to el-wod-mcg(idx-days, 
+           lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    when "F" 
+                         move el-mcg-code(6) to el-wod-mcg(idx-days, 
+           lastIdx)
+                         perform INTENSITY-PER-MACROGROUPS
+                    end-evaluate
+                 end-perform
+              end-perform                                 
+           end-perform.         
+
+      ***---
+       INTENSITY-PER-MACROGROUPS.
+           if idx not = 0 exit paragraph end-if.  
+       
+      ***---
+      * Starting from valid exercises (tmp table) fills the grid
+      * corresponding with multi exercise.
+      * Phase 1: Scroll occurs (tab-macrogroups), for every macgroups:
+      *    read tmp (filtered by macrogroups and multijoint active)
+      *    and add the exercise found (code/description) in the relative
+      *    occurs tab-exercises, monodimensional.    
+      *    The result will be
+      *    an occurs (tab-exercise, monodimensional) filled with only
+      *    multijoint exercises with selected macrogroups     
+      * Phase 2:  (only if exercises found). Scrolling the occurs tab-wod-exe 
+      *    searching corresponding macrogroups analyzed fo every day, 
+      *    select a random exercise from tab-exercises, then deletes the
+      *    value (to avoid duplicate) and subtracts 1 from tot-exe. 
+      *    When tot-exe is 0 exits, that menas the exercises are fully selected
+       LOAD-EXERCISES-MULTIJOINT.                  
+           if cb-mul-buf = "No" exit paragraph end-if.
+                                                                  
+           perform varying idx-gruppi from 1 by 1 
+                     until idx-gruppi > tot-gruppi
+              initialize tab-exercises replacing numeric data by zeroes 
+                                            alphanumeric data by spaces
+             |Phase 1
+              move el-mcg-code(idx-gruppi) to tee-mcg-code
+              set  tee-exe-isMulti-yes to true            
+              move 0 to tot-exe
+
+              start tmp-exe-effort key >= tee-k-exe-multi
+                    invalid continue
+                not invalid
+                    perform until 1 = 2        
+                       read tmp-exe-effort next
+                         at end exit perform 
+                       end-read        
+                       if tee-mcg-code not = el-mcg-code(idx-gruppi) or
+                          tee-exe-isMulti-no
+                          exit perform
+                       end-if                
+                       add 1 to tot-exe
+                       move tee-exe-code to el-exe-code(tot-exe)
+                       move tee-exe-desc to el-exe-desc(tot-exe)
+                    end-perform
+              end-start               
+             |Phase 2                                        
+              if tot-exe > 0    
+                 move tot-exe to ex-remain
+                 perform varying idx-days from 1 by 1 
+                           until idx-days > wom-days
+                    perform varying idx-split from 1 by 1 
+                              until idx-split > 9
+                       if el-wod-mcg(idx-days, idx-split) = spaces
+                          exit perform
+                       end-if         
+                       if el-wod-mcg(idx-days, idx-split) = 
+                          el-mcg-code(idx-gruppi)      
+                          perform until 1 = 2
+                             compute idx = function random * (tot-exe)
+                             add 1 to idx
+                             if el-exe-used(idx) = 0 or
+                                ex-remain = 0                           
+                     
+                                move el-exe-code(idx) to 
+           el-wod-exe-code(idx-days, idx-split)
+                                move el-exe-desc(idx) to 
+           el-wod-exe-desc(idx-days, idx-split)
+                                move 1                to 
+           el-exe-used(idx)
+                                subtract 1 from ex-remain
+                                exit perform
+                             end-if
+                          end-perform
+                          exit perform
+                       end-if
+                    end-perform
+                 end-perform
+              end-if
+           end-perform 
            .
       * <TOTEM:END>
        Screen1-Pb-1-LinkTo.

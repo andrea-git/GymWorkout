@@ -12,9 +12,13 @@
            when 78-ID-ef-days
                 inquire ef-days, value in ef-days-buf
 
-           |10 è l'ID del control ef-macro
-           when 10
+           |78-ID-ef-macro è l'ID del control ef-macro
+           when 78-ID-ef-macro
                 inquire ef-macro, value in ef-macro-buf
+
+           |78-ID-ef-durata è l'ID del control ef-durata
+           when 78-ID-ef-durata
+                inquire ef-durata, value in ef-durata-buf
 
            end-evaluate.
 

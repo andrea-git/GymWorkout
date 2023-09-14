@@ -20,5 +20,9 @@
            when 78-ID-ef-durata
                 inquire ef-durata, value in ef-durata-buf
 
+           |78-ID-ef-int è l'ID del control ef-int
+           when 78-ID-ef-int
+                inquire ef-int, value in ef-int-buf
+
            end-evaluate.
 

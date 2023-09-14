@@ -797,45 +797,7 @@
            move "000"                    to xzoom-to-value.
 
       ***---
-       PREPARA-WODMAP-ALPHA.
-           initialize xzoom-linkage xzoom-ext-info(1).
-      
-           move  0   to xzoom-file-key.
-      *
-           move  0                       to idx.
-           move  0                       to xzoom-row.
-           move  0                       to xzoom-cln.
-           move  10                      to xzoom-lw.
-           move  60                      to xzoom-sw.
-           move "wodmap"                 to xzoom-file-name(1).
-           move  2                       to xzoom-fields.
-
-      * CAMPO 1
-           add 1 to idx
-           move  1                       to xzoom-field-file(Idx).
-           move  0                       to xzoom-field-rel(Idx).    
-           move  3                       to xzoom-field-length(idx).
-           move  0                       to xzoom-field-offset(idx).
-           move  10                      to xzoom-field-column(idx).
-           move "Codice"                 to xzoom-field-name(idx).  
-           set  xzoom-ft-alpha(idx)      to true. 
-      
-      * CAMPO 2
-           add 1 to idx.
-           move  1                       to xzoom-field-file(Idx).
-           move  0                       to xzoom-field-rel(Idx).    
-           move  100                     to xzoom-field-length(idx).
-           move   3                      to xzoom-field-offset(idx).
-           move  100                     to xzoom-field-column(idx).
-           move "Descrizione"            to xzoom-field-name(idx).  
-           set  xzoom-ft-alpha(idx)      to true.     
-
-           move  -1                      to xzoom-delimiter-offset.
-           move  5                       to xzoom-delimiter-length.
-           move "000"                    to xzoom-from-value.
-           move "000"                    to xzoom-to-value.
-
-      ***---
        PREPARA-WODMAP-ALFA.
-           perform PREPARA-WODMAP-ALPHA.
+           perform PREPARA-WODMAP.
            move  1   to xzoom-file-key.
+

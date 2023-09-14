@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E79E82429-628-1928812551
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E79E21456-824-24785760
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -78,7 +78,9 @@ m_bFixed=1
 
 @}}
 [FDITEM7_]
-m_strName=wom-split-tab
+m_strName=wom-int-code
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -86,6 +88,14 @@ m_bFixed=1
 
 @}}
 [FDITEM8_]
+m_strName=wom-split-tab
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM8_
+
+@}}
+[FDITEM9_]
 m_strName=wom-split-el-days
 m_nItemLevel=15
 m_nSync=-1
@@ -93,54 +103,45 @@ m_bOccurs=1
 m_bFixed=1
 m_strRawSize=7
 m_nSize=7
-{{@DataItem_m_strDescriptionFDITEM8_
+{{@DataItem_m_strDescriptionFDITEM9_
 
 @}}
-[FDITEM9_]
+[FDITEM10_]
 m_strName=wom-split-el-days-split
 m_nItemLevel=20
 m_nSync=-1
 m_bOccurs=1
 m_bFixed=1
-m_strRawSize=9
-m_nSize=9
-{{@DataItem_m_strDescriptionFDITEM9_
+m_strRawSize=20
+m_nSize=20
+{{@DataItem_m_strDescriptionFDITEM10_
 
 @}}
-[FDITEM10_]
+[FDITEM11_]
 m_strName=wom-split-el-split-sigla
 m_strRawPic=x
 m_strPic=x
 m_nItemLevel=25
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM10_
-
-@}}
-[FDITEM11_]
-m_strName=wom-dur-code
-m_strRawPic=99
-m_strPic=99
-m_nItemLevel=10
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM11_
 
 @}}
 [FDITEM12_]
-m_strName=wom-filler
-m_strRawPic=x(1000)
-m_strPic=x(1000)
-m_nItemLevel=10
+m_strName=wom-split-el-split-effort
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=25
 m_nSync=-1
 m_bFixed=1
+m_strName_Xfd=wom-split-el-split
 {{@DataItem_m_strDescriptionFDITEM12_
 
 @}}
 [FDITEM13_]
-m_strName=wom-filler-n1
-m_strRawPic=9(18)
-m_strPic=9(18)
+m_strName=wom-dur-code
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -148,9 +149,9 @@ m_bFixed=1
 
 @}}
 [FDITEM14_]
-m_strName=wom-filler-n2
-m_strRawPic=9(18)
-m_strPic=9(18)
+m_strName=wom-filler
+m_strRawPic=x(1000)
+m_strPic=x(1000)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -158,13 +159,33 @@ m_bFixed=1
 
 @}}
 [FDITEM15_]
-m_strName=wom-filler-n3
+m_strName=wom-filler-n1
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM15_
+
+@}}
+[FDITEM16_]
+m_strName=wom-filler-n2
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM16_
+
+@}}
+[FDITEM17_]
+m_strName=wom-filler-n3
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM17_
 
 @}}
 [CStoAcucobolSL_]

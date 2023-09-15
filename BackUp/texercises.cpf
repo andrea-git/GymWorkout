@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E79821651-76-620119825
+PROGRAM_UNIQUE_CODE=TOTEM-7E79E12156-732-2221116276
 
 {{@DESCRIPTION:
 
@@ -250,7 +250,7 @@ m_bFixed=1
 
 @}}
 [FDITEM22_WK]
-m_strName=col-intensity
+m_strName=col-regroup
 m_strRawPic=z9
 m_strPic=z9
 m_nItemLevel=5
@@ -260,7 +260,7 @@ m_bFixed=1
 
 @}}
 [FDITEM23_WK]
-m_strName=col-int-desc
+m_strName=col-abil
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=5
@@ -727,8 +727,8 @@ Begin Screen Form1
       Cells' Setting    = ( X = 3, Y = 1, Data = "Gruppo" )
       Cells' Setting    = ( X = 4, Y = 1, Data = "Descrizione" )
       Cells' Setting    = ( X = 5, Y = 1, Data = "Macrogruppo" )
-      Cells' Setting    = ( X = 6, Y = 1, Data = "Intensità" )
-      Cells' Setting    = ( X = 7, Y = 1, Data = "Descrizione" )
+      Cells' Setting    = ( X = 6, Y = 1, Data = "Raggruppamento" )
+      Cells' Setting    = ( X = 7, Y = 1, Data = "Abilitato" )
       Cells' Setting    = ( X = 8, Y = 1, Data = "Multi" )
       Cells' Setting    = ( X = 9, Y = 1, Data = "Setting ("")" )
       Centered Headings = FALSE
@@ -750,10 +750,10 @@ Begin Screen Form1
       Columns' Setting  = ( X = 5, Name = col-mgc-desc, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
       Columns' Setting  = ( DISP = 20, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 6, Name = col-intensity, READONLY = 0 )
-      Columns' Setting  = ( PIC = "99", TYPE = "zz", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( X = 6, Name = col-regroup, READONLY = 0 )
+      Columns' Setting  = ( PIC = "z9", TYPE = "zz", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 7, Name = col-int-desc, READONLY = 0 )
+      Columns' Setting  = ( X = 7, Name = col-abil, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
       Columns' Setting  = ( DISP = 15, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 8, Name = col-isMulti, READONLY = 0 )
@@ -1422,20 +1422,7 @@ BEGIN-TEXT
                    modify form1-gd-1(riga, 4), cell-data col-grp-desc
                    modify form1-gd-1(riga, 5), cell-data col-mcg-desc
                 end-if 
-           when 6
-                inquire form1-gd-1(riga, colonna), cell-data in int-code
-                move "intensity"    to Como-File
-                call   "zoom-gt" using como-file, int-rec
-                                giving stato-zoom
-                cancel "zoom-gt"
-                if stato-zoom = 0
-                   move int-code to col-intensity
-                   move int-desc to col-int-desc                     
-                   modify form1-gd-1(riga, 6), cell-data col-intensity
-                   modify form1-gd-1(riga, 7), cell-data col-int-desc
-                end-if 
            end-evaluate. 
-
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1506,17 +1493,14 @@ BEGIN-TEXT
                 end-read                                      
                 modify form1-gd-1(riga, 4), cell-data grp-desc
                 modify form1-gd-1(riga, 5), cell-data mcg-desc  
+
            when 6
-                move exe-int-code to int-code
-                read intensity no lock 
-                     invalid 
-                     move spaces to int-desc 
-                     set errori to true
-                     display message "Intensità non valida"
-                           title = tit-err
-                           icon mb-warning-icon
-                end-read                                      
-                modify form1-gd-1(riga, 7), cell-data int-desc  
+                if exe-regroup = 0
+                   move "Disabilitato" to col-abil
+                else
+                   move "Abilitato" to col-abil
+                end-if
+                modify form1-gd-1(riga, 7), cell-data col-abil
 
            when 8
                 if not (exe-isMulti = 0 or 1)
@@ -1580,9 +1564,12 @@ BEGIN-TEXT
                           read macrogroups no lock invalid move spaces to mcg-desc end-read
                           move grp-desc to col-grp-desc
                           move mcg-desc to col-mcg-desc
-                          move exe-int-code to col-intensity int-code
-                          read intensity no lock invalid move spaces to int-desc end-read
-                          move int-desc    to col-int-desc
+                          move exe-regroup to col-regroup
+                          if exe-regroup = 0
+                             move "Disabilitato" to col-abil
+                          else
+                             move "Abilitato"    to col-abil
+                          end-if
                           move exe-isMulti to col-isMulti
                           move exe-setting to col-setting
                           modify form1-gd-1(riga, 1), cell-data col-codice
@@ -1590,8 +1577,8 @@ BEGIN-TEXT
                           modify form1-gd-1(riga, 3), cell-data col-group   
                           modify form1-gd-1(riga, 4), cell-data col-grp-desc
                           modify form1-gd-1(riga, 5), cell-data col-mcg-desc
-                          modify form1-gd-1(riga, 6), cell-data col-intensity
-                          modify form1-gd-1(riga, 7), cell-data col-int-desc
+                          modify form1-gd-1(riga, 6), cell-data col-regroup
+                          modify form1-gd-1(riga, 7), cell-data col-abil
                           modify form1-gd-1(riga, 8), cell-data col-isMulti
                           modify form1-gd-1(riga, 9), cell-data col-setting
                      end-read                                           
@@ -1809,7 +1796,7 @@ BEGIN-TEXT
            inquire form1-gd-1(riga, 1), cell-data exe-code.
            inquire form1-gd-1(riga, 2), cell-data exe-desc.
            inquire form1-gd-1(riga, 3), cell-data exe-grp-code.
-           inquire form1-gd-1(riga, 6), cell-data exe-int-code.
+           inquire form1-gd-1(riga, 6), cell-data exe-regroup.
            inquire form1-gd-1(riga, 8), cell-data exe-isMulti.
            inquire form1-gd-1(riga, 9), cell-data exe-setting. 
 
@@ -2085,16 +2072,14 @@ PROP_DOCU_RULER_EBL=0
 PROP_DOCU_GRID_EBL=0
 PROP_DOCU_GRID=20
 PROP_DOCU_ALIGN=0
-REL_SYM_SIZE=28
-REL_SYM_INFO_L=4
+REL_SYM_SIZE=22
+REL_SYM_INFO_L=3
 REL_SYM_INFO_X0=2301
 REL_SYM_INFO_Y0=1196181958
 REL_SYM_INFO_X1=2301
 REL_SYM_INFO_Y1=684602188
 REL_SYM_INFO_X2=2301
-REL_SYM_INFO_Y2=1129547347
-REL_SYM_INFO_X3=2301
-REL_SYM_INFO_Y3=190478301
+REL_SYM_INFO_Y2=190478301
 
 [DRAW_BASESYMBOL_2301_1196181958]
 OBJ_NAME=2301
@@ -2159,54 +2144,6 @@ LEFT=3446
 TOP=566
 RIGHT=3846
 BOTTOM=788
-PROP_OBJ_TYPE=
-PROP_OBJ_TYPE2=
-PROP_FILL_PT=0
-PROP_FILL_FG=0
-PROP_FILL_BG=16777215
-PROP_FONT_HEIGHT=-35
-PROP_FONT_WIDTH=0
-PROP_FONT_ESCAPE=0
-PROP_FONT_ORIENT=0
-PROP_FONT_WEIGHT=400
-PROP_FONT_ITALIC=0
-PROP_FONT_UDLINE=0
-PROP_FONT_SKOUT=0
-PROP_FONT_CHARSET=0
-PROP_FONT_OUTPREC=3
-PROP_FONT_CLIPPREC=2
-PROP_FONT_QUALITY=1
-PROP_FONT_PCH_FAM=18
-PROP_FONT_FACE_NAME=Times New Roman
-PROP_FONT_CR=0
-PROP_LINE_PT=0
-PROP_LINE_WG=1
-PROP_LINE_CR=0
-PROP_SHAD_PT=0
-PROP_SHAD_FG=12632256
-PROP_SHAD_BG=12632256
-PROP_SHAD_EBL=0
-PROP_SHAD_POS=4
-PROP_SHAD_POINT=0
-PROP_TRACK_COLOR=12632256
-REL_SYM_SIZE=4
-REL_SYM_INFO_L=0
-
-[DRAW_BASESYMBOL_2301_1129547347]
-OBJ_NAME=2301
-OBJ_ID=1129547347
-KIND=1
-{{@LABEL_2301_1129547347
-intensity
-@}}
-WK_STEP=0
-BK_POINT=0
-CENTER_X=0
-CENTER_Y=0
-LEFT=3729
-TOP=1082
-RIGHT=4129
-BOTTOM=1304
 PROP_OBJ_TYPE=
 PROP_OBJ_TYPE2=
 PROP_FILL_PT=0
@@ -2351,37 +2288,6 @@ DSN_INFO_DATA_ORDER=0
 DSN_INFO_START_VALUE=
 DSN_INFO_END_VALUE=
 {{@DSN_INFO_CONDITION_684602188
-
-@}}
-DSN_INFO_PRIMARY=0
-DSN_INFO_OPEN=1
-DSN_INFO_CLOSE=1
-DSN_INFO_EXCLUSIVE=0
-DSN_INFO_IS_LOGICAL=0
-DSN_INFO_LOGICAL_FDNAME=
-DSN_INFO_ORIGINAL_FDNAME=
-DSN_INFO_REPLACEBY_FILESTATUS=
-DSN_INFO_REPLACEBY_RELATIVEKEY=
-DSN_INFO_REPLACEBY_FDDATA=
-DSN_INFO_REPLACEBY_SLDATA=
-
-[DMD_FILE_0_1129547347]
-OBJ_NAME=0
-OBJ_ID=1129547347
-REL_M_OBJ_ID=0
-ENTITY=intensity
-LINK=0
-LINK_NAME=
-DSN_SIZE=39
-FD_SIZE=0
-SL_SIZE=0
-DSN_INFO_OPEN_MODE=0
-DSN_INFO_LOCK_OPTION=0
-DSN_INFO_KEY_IS=int-key
-DSN_INFO_DATA_ORDER=0
-DSN_INFO_START_VALUE=
-DSN_INFO_END_VALUE=
-{{@DSN_INFO_CONDITION_1129547347
 
 @}}
 DSN_INFO_PRIMARY=0

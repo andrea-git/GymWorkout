@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 15 settembre 2023 16:04:27.
+       DATE-WRITTEN.        venerdì 15 settembre 2023 23:38:36.
        REMARKS.
       *{TOTEM}END
 
@@ -97,12 +97,10 @@
        77 idx-split        PIC  99.
        77 form1-Handle
                   USAGE IS HANDLE OF WINDOW.
-       77 como-effort      PIC  999.
        77 tot-exe          PIC  999.
-       77 tot-effort       PIC  999v999.
        01 gd-rec.
            05 col-split        PIC  x.
-           05 col-effort       PIC  9.
+           05 col-regroup      PIC  99.
        01 save-key.
            05 save-code        PIC  999.
        01 save-key-1.
@@ -148,20 +146,18 @@
               05 ef-macro-BUF PIC z9.
       * Data.Entry-Field
               05 ef-durata-BUF PIC z9.
-      * Data.Entry-Field
-              05 ef-int-BUF PIC z9.
 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
        77 TMP-Form1-KEY2-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-wodmap-RESTOREBUF  PIC X(1444).
+       77 TMP-Form1-wodmap-RESTOREBUF  PIC X(1582).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(1444).
+       77 Form1-MULKEY-TMPBUF   PIC X(1582).
        77 Form1-KEYISTMP2   PIC X(100).
       * Form1 : PKEY & AKEY'S TEMP BUFFER
        77 Form1-PKEYTMP   PIC X(3).
-       77 TMP-DataSet1-wodmap-BUF     PIC X(1444).
+       77 TMP-DataSet1-wodmap-BUF     PIC X(1582).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
-       77 TMP-DataSet1-intensity-BUF     PIC X(1188).
+       77 TMP-DataSet1-intensity-BUF     PIC X(1186).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -189,7 +185,6 @@
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 intensity-int-k-desc-SPLITBUF  PIC X(101).
-       77 intensity-int-k-effort-SPLITBUF  PIC X(3).
       * FOR SPLIT KEY BUFFER
        77 DataSet1-wodmap-SPLIT-BUF2   PIC X(101).
 
@@ -223,7 +218,6 @@
        78  78-ID-ef-days VALUE 5003.
        78  78-ID-ef-macro VALUE 5004.
        78  78-ID-ef-durata VALUE 5005.
-       78  78-ID-ef-int VALUE 5006.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -437,7 +431,7 @@
            DATA-COLUMNS (1, 2),
            ALIGNMENT ("C", "C"),
            SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-TYPES ("U(1)", "z9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -468,7 +462,7 @@
            DATA-COLUMNS (1, 2),
            ALIGNMENT ("C", "C"),
            SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-TYPES ("U(1)", "z9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -498,7 +492,7 @@
            DATA-COLUMNS (1, 2),
            ALIGNMENT ("C", "C"),
            SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-TYPES ("U(1)", "z9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -528,7 +522,7 @@
            DATA-COLUMNS (1, 2),
            ALIGNMENT ("C", "C"),
            SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-TYPES ("U(1)", "z9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -558,7 +552,7 @@
            DATA-COLUMNS (1, 2),
            ALIGNMENT ("C", "C"),
            SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-TYPES ("U(1)", "z9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -588,7 +582,7 @@
            DATA-COLUMNS (1, 2),
            ALIGNMENT ("C", "C"),
            SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-TYPES ("U(1)", "z9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -618,7 +612,7 @@
            DATA-COLUMNS (1, 2),
            ALIGNMENT ("C", "C"),
            SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-TYPES ("U(1)", "z9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -684,56 +678,6 @@
            WIDTH-IN-CELLS,
            TRANSPARENT,
            TITLE lab-durata-buf,
-           .
-
-      * LABEL
-       05
-           Screen1-La-2aaaa, 
-           Label, 
-           COL 43,90, 
-           LINE 7,74,
-           LINES 1,30 ,
-           SIZE 7,00 ,
-           ID IS 15,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE "Intensità",
-           .
-
-      * ENTRY FIELD
-       05
-           ef-int, 
-           Entry-Field, 
-           COL 52,00, 
-           LINE 7,74,
-           LINES 1,30 ,
-           SIZE 3,00 ,
-           BOXED,
-           COLOR IS 513,
-           ENABLED MOD,
-           ID IS 78-ID-ef-int,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           USE-RETURN,
-           VALUE ef-int-BUF,
-           .
-
-      * LABEL
-       05
-           lab-int, 
-           Label, 
-           COL 56,30, 
-           LINE 7,74,
-           LINES 1,30 ,
-           SIZE 31,30 ,
-           ID IS 17,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE lab-int-buf,
            .
 
       * LABEL
@@ -1884,11 +1828,6 @@
            MOVE int-desc(1:100) TO intensity-int-k-desc-SPLITBUF(1:100)
            .
 
-       intensity-int-k-effort-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-k-effort-SPLITBUF
-           MOVE int-effort(1:2) TO intensity-int-k-effort-SPLITBUF(1:2)
-           .
-
        DataSet1-intensity-INITSTART.
            IF DataSet1-intensity-KEY-Asc
               MOVE Low-Value TO int-key
@@ -1951,7 +1890,6 @@
               KEY int-key
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT 
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -1980,7 +1918,6 @@
               END-IF
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -2009,7 +1946,6 @@
               END-IF
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -2063,7 +1999,7 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd1, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Rgr",
            .
 
       * GRID
@@ -2073,7 +2009,7 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd2, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Rgr",
            .
 
       * GRID
@@ -2083,7 +2019,7 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd3, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Rgr",
            .
 
       * GRID
@@ -2093,7 +2029,7 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd4, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Rgr",
            .
 
       * GRID
@@ -2103,7 +2039,7 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd5, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Rgr",
            .
 
       * GRID
@@ -2113,7 +2049,7 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd6, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Rgr",
            .
 
       * GRID
@@ -2123,7 +2059,7 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd7, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Rgr",
            .
 
       * FD's Initialize Paragraph
@@ -2792,14 +2728,6 @@
                MOVE 5005 TO CONTROL-ID
                EXIT PARAGRAPH
            END-IF
-      * ef-int's Validation
-           SET TOTEM-CHECK-OK TO FALSE
-           PERFORM ef-int-VALIDATION
-           IF NOT TOTEM-CHECK-OK
-               MOVE 4 TO ACCEPT-CONTROL
-               MOVE 5006 TO CONTROL-ID
-               EXIT PARAGRAPH
-           END-IF
            .
 
        ef-codice-BEFORE-VALIDATION.
@@ -2887,23 +2815,6 @@
            PERFORM ef-durata-AFTER-VALIDATION
            .
 
-       ef-int-BEFORE-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-int, BeforeValidation>
-      * <TOTEM:END>
-           .
-
-       ef-int-AFTER-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-int, AfterValidation>
-      * <TOTEM:END>
-           .
-
-      * ef-int's Validation
-       ef-int-VALIDATION.
-           PERFORM ef-int-BEFORE-VALIDATION
-           SET TOTEM-CHECK-OK TO TRUE
-           PERFORM ef-int-AFTER-VALIDATION
-           .
-
 
        Form1-Buf-To-Fld.
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeBufToFld>
@@ -2918,8 +2829,6 @@
            MOVE ef-macro-BUF TO wom-macrogroups
       * DB_Entry-Field : ef-durata
            MOVE ef-durata-BUF TO wom-dur-code
-      * DB_Entry-Field : ef-int
-           MOVE ef-int-BUF TO wom-int-code
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterBufToFld>
       * <TOTEM:END>
            .
@@ -2937,8 +2846,6 @@
            MOVE wom-macrogroups TO ef-macro-BUF
       * DB_Entry-Field : ef-durata
            MOVE wom-dur-code TO ef-durata-BUF
-      * DB_Entry-Field : ef-int
-           MOVE wom-int-code TO ef-int-BUF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterFldToBuf>
            perform ABILITAZIONI. 
            perform LOAD-DAYS.
@@ -2947,10 +2854,6 @@
            read duration no lock invalid move spaces to dur-desc 
            end-read.
            move dur-desc to lab-durata-buf.
-           move wom-int-code to int-code.
-           read intensity no lock invalid move spaces to int-desc 
-           end-read.
-           move int-desc to lab-int-buf.
            Perform VALORIZZA-OLD.
 
            .
@@ -2974,13 +2877,6 @@
               set NoSalvato to true
               |78-ID-ef-durata è l'ID del campo ef-durata
               move 78-ID-ef-durata to store-id 
-           end-if
-
-           if wom-int-code not = old-wom-int-code
-              and SiSalvato
-              set NoSalvato to true
-              |78-ID-ef-int è l'ID del campo ef-int
-              move 78-ID-ef-int to store-id 
            end-if
 
            .
@@ -3042,10 +2938,6 @@
            when 78-ID-ef-durata
                 move 1 to StatusHelp
                 perform STATUS-HELP
-           |78-ID-ef-int è l'ID del campo ef-int
-           when 78-ID-ef-int
-                move 1 to StatusHelp
-                perform STATUS-HELP
            |99999 è un valore fittizio, che non sarà MAI usato,
            |ma mi serve per non riscontrare errori di compilazione
            |in caso non avessi generato nulla nella BEFORE della screen
@@ -3061,11 +2953,6 @@
            evaluate control-id
            |78-ID-ef-durata è l'ID del campo ef-durata
            when 78-ID-ef-durata
-                move 0 to StatusHelp
-                perform STATUS-HELP
-
-           |78-ID-ef-int è l'ID del campo ef-int
-           when 78-ID-ef-int
                 move 0 to StatusHelp
                 perform STATUS-HELP
 
@@ -3095,9 +2982,6 @@
            |78-ID-ef-durata è l'ID del campo ef-durata
            when 78-ID-ef-durata
                 perform CONTROLLO
-           |78-ID-ef-int è l'ID del campo ef-int
-           when 78-ID-ef-int
-                perform CONTROLLO
            |99999 è un valore fittizio, che non sarà MAI usato,
            |ma mi serve per non riscontrare errori di compilazione
            |in caso non avessi generato nulla nella AFTER CONTROLLO della screen
@@ -3114,7 +2998,6 @@
            WHEN 5003 MOVE "." to TOTEM-HINT-TEXT
            WHEN 5004 MOVE "." to TOTEM-HINT-TEXT
            WHEN 5005 MOVE "." to TOTEM-HINT-TEXT
-           WHEN 5006 MOVE "." to TOTEM-HINT-TEXT
            WHEN OTHER MOVE SPACES TO TOTEM-HINT-TEXT
            END-EVALUATE
            EVALUATE Control-Id
@@ -3123,7 +3006,6 @@
            When 5003 PERFORM ef-days-BeforeProcedure
            When 5004 PERFORM ef-macro-BeforeProcedure
            When 5005 PERFORM ef-macro-BeforeProcedure
-           When 5006 PERFORM ef-macro-BeforeProcedure
            END-EVALUATE
            PERFORM Form1-DISPLAY-STATUS-MSG
            perform Form1-BEFORE-SCREEN
@@ -3136,7 +3018,6 @@
            When 5003 PERFORM ef-days-AfterProcedure
            When 5004 PERFORM ef-macro-AfterProcedure
            When 5005 PERFORM ef-macro-AfterProcedure
-           When 5006 PERFORM ef-macro-AfterProcedure
            END-EVALUATE
            perform Form1-AFTER-SCREEN
            .
@@ -3256,19 +3137,7 @@
                    move dur-desc to lab-durata-buf
                    display ef-durata lab-durata
                    move 4 to accept-control
-                end-if
-           when 78-ID-ef-int
-                inquire ef-int, value in int-code
-                move "intensity"   to Como-File
-                call   "zoom-gt" using como-file, int-rec
-                                giving stato-zoom
-                cancel "zoom-gt"
-                if stato-zoom = 0
-                   move int-code to ef-int-buf
-                   move int-desc to lab-int-buf
-                   display ef-int lab-int
-                   move 4 to accept-control
-                end-if
+                end-if     
            end-evaluate 
            .
       * <TOTEM:END>
@@ -3636,7 +3505,7 @@
            set tutto-ok to true.
 
            perform varying CONTROL-ID from 78-ID-ef-descr by 1
-                     until CONTROL-ID > 78-ID-ef-int
+                     until CONTROL-ID > 78-ID-ef-durata
               perform CONTROLLO
               if errori 
                  exit perform 
@@ -3650,8 +3519,7 @@
            else                       
               perform FORM1-BUF-TO-FLD
               perform CANCELLA-COLORE 
-              perform WRITE-DAYS      
-              perform CALCOLA-INTENSITA  
+              perform WRITE-DAYS         
                                      
               accept como-data from century-date
               accept como-ora  from time
@@ -3910,31 +3778,31 @@
                  when 1 modify gd1(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd1(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-regroup(idx-day, idx-split)
                  when 2 modify gd2(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd2(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-regroup(idx-day, idx-split)
                  when 3 modify gd3(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd3(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-regroup(idx-day, idx-split)
                  when 4 modify gd4(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd4(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-regroup(idx-day, idx-split)
                  when 5 modify gd5(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd5(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-regroup(idx-day, idx-split)
                  when 6 modify gd6(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd6(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-regroup(idx-day, idx-split)
                  when 7 modify gd7(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd7(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-regroup(idx-day, idx-split)
                  end-evaluate
               end-perform
            end-perform            
@@ -3951,8 +3819,9 @@
                      until riga > tot-righe                           
               inquire gd1(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(1, riga - 1)
-              inquire gd1(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(1, riga - 1)
+              inquire gd1(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(1, riga - 
+           1)
            end-perform.
            
            inquire gd2, last-row in tot-righe.
@@ -3960,8 +3829,9 @@
                      until riga > tot-righe
               inquire gd2(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(2, riga - 1)  
-              inquire gd2(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(2, riga - 1)
+              inquire gd2(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(2, riga - 
+           1)
            end-perform.
            
            inquire gd3, last-row in tot-righe.
@@ -3969,8 +3839,9 @@
                      until riga > tot-righe
               inquire gd3(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(3, riga - 1)  
-              inquire gd3(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(3, riga - 1)
+              inquire gd3(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(3, riga - 
+           1)
            end-perform.
            
            inquire gd4, last-row in tot-righe.
@@ -3978,8 +3849,9 @@
                      until riga > tot-righe
               inquire gd4(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(4, riga - 1)
-              inquire gd4(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(4, riga - 1)
+              inquire gd4(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(4, riga - 
+           1)
            end-perform.
            
            inquire gd5, last-row in tot-righe.
@@ -3987,8 +3859,9 @@
                      until riga > tot-righe
               inquire gd5(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(5, riga - 1) 
-              inquire gd5(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(5, riga - 1)
+              inquire gd5(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(5, riga - 
+           1)
            end-perform.
            
            inquire gd6, last-row in tot-righe.
@@ -3996,8 +3869,9 @@
                      until riga > tot-righe
               inquire gd6(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(6, riga - 1) 
-              inquire gd6(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(6, riga - 1)
+              inquire gd6(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(6, riga - 
+           1)
            end-perform.
            
            inquire gd7, last-row in tot-righe.
@@ -4005,8 +3879,9 @@
                      until riga > tot-righe
               inquire gd7(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(7, riga - 1)  
-              inquire gd7(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(7, riga - 1)
+              inquire gd7(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(7, riga - 
+           1)
            end-perform 
            .
       * <TOTEM:END>
@@ -4049,41 +3924,6 @@
            when 6              
                 modify gd7, enabled false 
            end-evaluate 
-           .
-      * <TOTEM:END>
-
-       CALCOLA-INTENSITA.
-      * <TOTEM:PARA. CALCOLA-INTENSITA>
-           move 0 to como-effort.
-
-           perform varying idx-day from 1 by 1 
-                     until idx-day > wom-days
-               perform varying idx-split from 1 by 1 
-                         until idx-split> 20
-                  if wom-split-el-split-effort(idx-day, idx-split) = 0
-                     exit perform
-                  end-if
-                  add wom-split-el-split-effort(idx-day, idx-split) 
-                   to como-effort
-                  add 1 to tot-exe
-           end-perform.
-
-           compute tot-effort = como-effort / tot-exe.
-
-           if tot-effort < 1,5
-              move 1 to int-effort
-           else
-              if tot-effort < 2,5            
-                 move 2 to int-effort ef-int-buf
-              else                              
-                 move 3 to int-effort
-              end-if
-           end-if.
-           
-           read intensity key int-k-effort.
-           move int-desc to lab-int-buf.
-           move int-code to ef-int-buf wom-int-code.
-           display ef-int lab-int 
            .
       * <TOTEM:END>
 
@@ -4293,12 +4133,6 @@
               INQUIRE ef-durata, VALUE IN wom-dur-code
               SET TOTEM-CHECK-OK TO FALSE
               PERFORM ef-durata-VALIDATION
-              IF NOT TOTEM-CHECK-OK
-                 MOVE 1 TO ACCEPT-CONTROL
-              END-IF
-              INQUIRE ef-int, VALUE IN wom-int-code
-              SET TOTEM-CHECK-OK TO FALSE
-              PERFORM ef-int-VALIDATION
               IF NOT TOTEM-CHECK-OK
                  MOVE 1 TO ACCEPT-CONTROL
               END-IF

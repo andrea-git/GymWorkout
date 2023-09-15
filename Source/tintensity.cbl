@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tintensity.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 22:22:25.
+       DATE-WRITTEN.        venerdì 15 settembre 2023 23:28:53.
        REMARKS.
       *{TOTEM}END
 
@@ -95,7 +95,6 @@
            05 col-duration     PIC  zz9.
            05 col-range-from   PIC  z9.
            05 col-range-to     PIC  z9.
-           05 col-effort       PIC  z9.
        77 Screen1-Handle
                   USAGE IS HANDLE OF WINDOW.
        01 FILLER           PIC  9.
@@ -121,10 +120,10 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-intensity-RESTOREBUF  PIC X(1188).
+       77 TMP-Form1-intensity-RESTOREBUF  PIC X(1186).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(1188).
-       77 TMP-DataSet1-intensity-BUF     PIC X(1188).
+       77 Form1-MULKEY-TMPBUF   PIC X(1186).
+       77 TMP-DataSet1-intensity-BUF     PIC X(1186).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -137,7 +136,6 @@
           88 DataSet1-intensity-KEY1-Desc VALUE "D".
 
        77 intensity-int-k-desc-SPLITBUF  PIC X(101).
-       77 intensity-int-kj-effort-SPLITBUF  PIC X(5).
 
        01 old-int-rec.
            05 old-int-key.
@@ -192,30 +190,30 @@
        05
            form1-gd-1, 
            Grid, 
-           COL 1,90, 
+           COL 1,60, 
            LINE 1,74,
            LINES 22,70 ,
-           SIZE 91,90 ,
+           SIZE 81,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           DATA-COLUMNS (1, 3, 53, 56, 58, 61, 63, 65),
-           ALIGNMENT ("R", "U", "R", "R", "R", "R", "R", "R"),
-           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5),
-           DATA-TYPES ("z9", "X(50)", "zz9", "z9", "zz9", "z9", "z9", "z
-      -    "9"),
+           DATA-COLUMNS (1, 3, 53, 56, 58, 61, 63),
+           ALIGNMENT ("R", "U", "R", "R", "R", "R", "R"),
+           SEPARATION (5, 5, 5, 5, 5, 5, 5),
+           DATA-TYPES ("z9", "X(50)", "zz9", "z9", "zz9", "z9", "z9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
            DIVIDER-COLOR 1,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 1,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            RECORD-DATA rec-grid,
            TILED-HEADINGS,
            USE-TAB,
-           VIRTUAL-WIDTH 90,
+           VIRTUAL-WIDTH 80,
            VPADDING 10,
            VSCROLL,
            EVENT PROCEDURE Form1-Gd-1-Event-Proc,
@@ -349,19 +347,6 @@
            BITMAP-NUMBER BitmapNumZoom
            .
 
-      * BITMAP
-       05
-           Form1-Bt-1, 
-           Bitmap, 
-           COL 89,90, 
-           LINE 1,00,
-           LINES 64,00 ,
-           SIZE 48,00 ,
-           BITMAP-HANDLE LOGO_PICCOLO-BMP,
-           BITMAP-NUMBER 1,
-           ID IS 13,
-           .
-
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
@@ -438,7 +423,6 @@
       * <TOTEM:END>
            DESTROY Calibri14-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
-           CALL "w$bitmap" USING WBITMAP-DESTROY, LOGO_PICCOLO-BMP
       *    After-Program
            PERFORM I-O-BLOCCO
            EXIT PROGRAM TOTEM-PgmStatus
@@ -486,10 +470,6 @@
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
                    GIVING toolbar-bmp.
-      * Form1-Bt-1
-           COPY RESOURCE "LOGO_PICCOLO.BMP".
-           CALL "w$bitmap" USING WBITMAP-LOAD "LOGO_PICCOLO.BMP", 
-                   GIVING LOGO_PICCOLO-BMP.
            .
 
        INIT-RES.
@@ -538,12 +518,6 @@
        intensity-int-k-desc-MERGE-SPLITBUF.
            INITIALIZE intensity-int-k-desc-SPLITBUF
            MOVE int-desc(1:100) TO intensity-int-k-desc-SPLITBUF(1:100)
-           .
-
-       intensity-int-kj-effort-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-kj-effort-SPLITBUF
-           MOVE int-effort(1:2) TO intensity-int-kj-effort-SPLITBUF(1:2)
-           MOVE int-key(1:2) TO intensity-int-kj-effort-SPLITBUF(3:2)
            .
 
        DataSet1-intensity-INITSTART.
@@ -647,7 +621,6 @@
               END-IF
            END-EVALUATE
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT 
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -679,7 +652,6 @@
               END-IF
            END-EVALUATE
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -711,7 +683,6 @@
               END-IF
            END-EVALUATE
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -782,9 +753,6 @@
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 7, Y = 1,
                 CELL-DATA = "Max rep",
-      * CELLS' SETTING
-              MODIFY form1-gd-1, X = 8, Y = 1,
-                CELL-DATA = "Effort",
            .
 
       * FD's Initialize Paragraph
@@ -823,7 +791,7 @@
               SCREEN LINE 1,
               SCREEN COLUMN 0,
               LINES 24,30,
-              SIZE 93,80,
+              SIZE 83,10,
               COLOR 131329,
               CONTROL FONT Calibri14-Occidentale,
               LINK TO THREAD,
@@ -852,7 +820,7 @@
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
               MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 31, 41, 51, 
-           61, 71, 81)
+           61, 71)
            .
 
        Form1-PROC.
@@ -1540,14 +1508,7 @@
                               title = tit-err
                               icon mb-warning-icon
                    end-if
-                end-if  
-           when 8
-                if int-effort = 0
-                   set errori to true   
-                   display message "Valore obbligatorio"
-                           title = tit-err
-                           icon mb-warning-icon
-                end-if
+                end-if       
 
            end-evaluate.
 
@@ -1591,7 +1552,6 @@
                           move int-duration   to col-duration
                           move int-range-from to col-range-from
                           move int-range-to   to col-range-to
-                          move int-effort     to col-effort
                           modify form1-gd-1(riga, 1), cell-data 
            col-codice
                           modify form1-gd-1(riga, 2), cell-data col-des 
@@ -1606,8 +1566,6 @@
            col-range-from
                           modify form1-gd-1(riga, 7), cell-data 
            col-range-to
-                          modify form1-gd-1(riga, 8), cell-data 
-           col-effort
                      end-read                                           
                   end-perform
            end-start.
@@ -1808,8 +1766,7 @@
            inquire form1-gd-1(riga, 4), cell-data int-series.  
            inquire form1-gd-1(riga, 5), cell-data int-duration.
            inquire form1-gd-1(riga, 6), cell-data int-range-from.
-           inquire form1-gd-1(riga, 7), cell-data int-range-to.  
-           inquire form1-gd-1(riga, 8), cell-data int-effort 
+           inquire form1-gd-1(riga, 7), cell-data int-range-to    
            .
       * <TOTEM:END>
 

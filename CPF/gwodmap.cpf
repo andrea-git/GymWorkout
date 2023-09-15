@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+aNote-andre=192.168.56.1
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E79F13540-446-994025675
+PROGRAM_UNIQUE_CODE=TOTEM-7E79F212129-447-3188415104
 
 {{@DESCRIPTION:
 
@@ -221,7 +222,7 @@ m_bFixed=1
 
 @}}
 [FDITEM19_WK]
-m_strName=como-effort
+m_strName=tot-exe
 m_strRawPic=999
 m_strPic=999
 m_nItemLevel=77
@@ -231,47 +232,45 @@ m_bFixed=1
 
 @}}
 [FDITEM20_WK]
-m_strName=tot-exe
-m_strRawPic=999
-m_strPic=999
-m_nItemLevel=77
+m_strName=gd-rec
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM20_WK
 
 @}}
 [FDITEM21_WK]
-m_strName=tot-effort
-m_strRawPic=999v999
-m_strPic=999v999
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM21_WK
-
-@}}
-[FDITEM22_WK]
-m_strName=gd-rec
-m_nItemLevel=1
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM22_WK
-
-@}}
-[FDITEM23_WK]
 m_strName=col-split
 m_strRawPic=x
 m_strPic=x
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM21_WK
+
+@}}
+[FDITEM22_WK]
+m_strName=col-regroup
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM22_WK
+
+@}}
+[FDITEM23_WK]
+m_strName=save-key
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM23_WK
 
 @}}
 [FDITEM24_WK]
-m_strName=col-effort
-m_strRawPic=9
-m_strPic=9
+m_strName=save-code
+m_strRawPic=999
+m_strPic=999
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -279,7 +278,7 @@ m_bFixed=1
 
 @}}
 [FDITEM25_WK]
-m_strName=save-key
+m_strName=save-key-1
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
@@ -287,9 +286,9 @@ m_bFixed=1
 
 @}}
 [FDITEM26_WK]
-m_strName=save-code
-m_strRawPic=999
-m_strPic=999
+m_strName=save-ragsoc-1
+m_strRawPic=x(50)
+m_strPic=x(50)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -297,27 +296,29 @@ m_bFixed=1
 
 @}}
 [FDITEM27_WK]
-m_strName=save-key-1
-m_nItemLevel=1
+m_strName=STATUS-wodmap
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM27_WK
 
 @}}
 [FDITEM28_WK]
-m_strName=save-ragsoc-1
-m_strRawPic=x(50)
-m_strPic=x(50)
-m_nItemLevel=5
+m_strName=Valid-STATUS-wodmap
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM28_WK
 
 @}}
 [FDITEM29_WK]
-m_strName=STATUS-wodmap
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=AUTO-ID
+m_strRawPic=9(6)
+m_strPic=9(6)
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -325,18 +326,19 @@ m_bFixed=1
 
 @}}
 [FDITEM30_WK]
-m_strName=Valid-STATUS-wodmap
-m_nItemLevel=88
+m_strName=Calibri14-Occidentale
+m_nUsage=26
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM30_WK
 
 @}}
 [FDITEM31_WK]
-m_strName=AUTO-ID
-m_strRawPic=9(6)
-m_strPic=9(6)
+m_strName=Screen1-Bt-1-Handle
+m_strRawPic=S9(9)
+m_strPic=S9(9)
+m_nUsage=5
 m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
@@ -345,7 +347,7 @@ m_bFixed=1
 
 @}}
 [FDITEM32_WK]
-m_strName=Calibri14-Occidentale
+m_strName=Calibri14B-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
@@ -354,7 +356,7 @@ m_bFixed=1
 
 @}}
 [FDITEM33_WK]
-m_strName=Screen1-Bt-1-Handle
+m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
 m_nUsage=5
@@ -366,8 +368,9 @@ m_bFixed=1
 
 @}}
 [FDITEM34_WK]
-m_strName=Calibri14B-Occidentale
-m_nUsage=26
+m_strName=wom-note
+m_strRawPic=x(200)
+m_strPic=x(200)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -375,11 +378,9 @@ m_bFixed=1
 
 @}}
 [FDITEM35_WK]
-m_strName=LOGO-PICCOLO-BMP
-m_strRawPic=S9(9)
-m_strPic=S9(9)
-m_nUsage=5
-m_strDefaultValue=0
+m_strName=STATUS-duration
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -387,19 +388,18 @@ m_bFixed=1
 
 @}}
 [FDITEM36_WK]
-m_strName=wom-note
-m_strRawPic=x(200)
-m_strPic=x(200)
-m_nItemLevel=77
+m_strName=Valid-STATUS-duration
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM36_WK
 
 @}}
 [FDITEM37_WK]
-m_strName=STATUS-duration
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=lab-durata-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -407,18 +407,19 @@ m_bFixed=1
 
 @}}
 [FDITEM38_WK]
-m_strName=Valid-STATUS-duration
-m_nItemLevel=88
+m_strName=lab-int-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM38_WK
 
 @}}
 [FDITEM39_WK]
-m_strName=lab-durata-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=STATUS-intensity
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -426,42 +427,22 @@ m_bFixed=1
 
 @}}
 [FDITEM40_WK]
-m_strName=lab-int-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM40_WK
-
-@}}
-[FDITEM41_WK]
-m_strName=STATUS-intensity
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM41_WK
-
-@}}
-[FDITEM42_WK]
 m_strName=Valid-STATUS-intensity
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM42_WK
+{{@DataItem_m_strDescriptionFDITEM40_WK
 
 @}}
-[FDITEM43_WK]
+[FDITEM41_WK]
 m_strName=lab-stimata-buf
 m_strRawPic=X(20)
 m_strPic=X(20)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM43_WK
+{{@DataItem_m_strDescriptionFDITEM41_WK
 
 @}}
 
@@ -1181,7 +1162,7 @@ Begin Screen Form1
       Adjustable Columns = FALSE
       Border            = 3D
       Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
-      Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
+      Cells' Setting    = ( X = 2, Y = 1, Data = "Rgr" )
       Centered Headings = FALSE
       Color             = 0
       Column            = 2,20
@@ -1189,8 +1170,8 @@ Begin Screen Form1
       Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
       Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( X = 2, Name = col-regroup, READONLY = 0 )
+      Columns' Setting  = ( PIC = "99", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 3
@@ -1244,7 +1225,7 @@ Begin Screen Form1
       Adjustable Columns = FALSE
       Border            = 3D
       Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
-      Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
+      Cells' Setting    = ( X = 2, Y = 1, Data = "Rgr" )
       Centered Headings = FALSE
       Color             = 0
       Column            = 14,90
@@ -1252,8 +1233,8 @@ Begin Screen Form1
       Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
       Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( X = 2, Name = col-regroup, READONLY = 0 )
+      Columns' Setting  = ( PIC = "99", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 3
@@ -1307,7 +1288,7 @@ Begin Screen Form1
       Adjustable Columns = FALSE
       Border            = 3D
       Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
-      Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
+      Cells' Setting    = ( X = 2, Y = 1, Data = "Rgr" )
       Centered Headings = FALSE
       Color             = 0
       Column            = 27,70
@@ -1315,8 +1296,8 @@ Begin Screen Form1
       Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
       Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( X = 2, Name = col-regroup, READONLY = 0 )
+      Columns' Setting  = ( PIC = "99", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 3
@@ -1370,7 +1351,7 @@ Begin Screen Form1
       Adjustable Columns = FALSE
       Border            = 3D
       Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
-      Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
+      Cells' Setting    = ( X = 2, Y = 1, Data = "Rgr" )
       Centered Headings = FALSE
       Color             = 0
       Column            = 40,40
@@ -1378,8 +1359,8 @@ Begin Screen Form1
       Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
       Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( X = 2, Name = col-regroup, READONLY = 0 )
+      Columns' Setting  = ( PIC = "99", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 3
@@ -1433,7 +1414,7 @@ Begin Screen Form1
       Adjustable Columns = FALSE
       Border            = 3D
       Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
-      Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
+      Cells' Setting    = ( X = 2, Y = 1, Data = "Rgr" )
       Centered Headings = FALSE
       Color             = 0
       Column            = 52,80
@@ -1441,8 +1422,8 @@ Begin Screen Form1
       Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
       Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( X = 2, Name = col-regroup, READONLY = 0 )
+      Columns' Setting  = ( PIC = "99", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 3
@@ -1496,7 +1477,7 @@ Begin Screen Form1
       Adjustable Columns = FALSE
       Border            = 3D
       Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
-      Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
+      Cells' Setting    = ( X = 2, Y = 1, Data = "Rgr" )
       Centered Headings = FALSE
       Color             = 0
       Column            = 65,50
@@ -1504,8 +1485,8 @@ Begin Screen Form1
       Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
       Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( X = 2, Name = col-regroup, READONLY = 0 )
+      Columns' Setting  = ( PIC = "99", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 3
@@ -1559,7 +1540,7 @@ Begin Screen Form1
       Adjustable Columns = FALSE
       Border            = 3D
       Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
-      Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
+      Cells' Setting    = ( X = 2, Y = 1, Data = "Rgr" )
       Centered Headings = FALSE
       Color             = 0
       Column            = 78,20
@@ -1567,8 +1548,8 @@ Begin Screen Form1
       Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
       Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-      Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( X = 2, Name = col-regroup, READONLY = 0 )
+      Columns' Setting  = ( PIC = "99", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 3
@@ -1741,135 +1722,6 @@ Begin Screen Form1
       Visible           = NONE
       Width in Cells    = TRUE
    End
-   Begin Label Screen1-La-2aaaa
-      SCREEN-COL        = 43,90
-      SCREEN-LINE       = 7,74
-      LOCK-CONTROL      = FALSE
-      LEVEL             = 5
-      (Name)            = Screen1-La-2aaaa
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 43,90
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 15
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 7,74
-      Lines             = 1,30
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 7,00
-      Size Unit         = Default
-      Tab Order         = 22
-      Title             = "Intensità"
-      Transparent       = TRUE
-      Visible           = NONE
-      Width in Cells    = TRUE
-   End
-   Begin Data.Entry-Field ef-int
-      SCREEN-COL        = 52,00
-      SCREEN-LINE       = 7,74
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = ef-int
-      Auto              = FALSE
-      Auto Decimal      = 0
-      Border            = Boxed
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 52,00
-      Csize             = 0
-      Csize Unit        = Default
-      Cursor            = 0
-      Cursor Col        = 0
-      Cursor Row        = 0
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Enable Variable   = MOD
-      Field Edited (Style) = 1
-      Field Edited Format = z9
-      Field Picture     = 99
-      Field Variable    = wom-int-code
-      File              = wodmap
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      Hint              = .
-      ID                = 16
-      ID Variable       = AUTO-ID
-      Justification     = Right
-      Line              = 7,74
-      Lines             = 1,30
-      Lines Unit        = Default
-      Max Lines         = 0
-      Max Text          = 2
-      Max Value         = 0
-      Min Value         = 0
-      No AutoSel        = FALSE
-      No Tab            = FALSE
-      Notify Change     = FALSE
-      Numeric           = FALSE
-      Occurs            = 0
-      Read Only         = FALSE
-      Required          = FALSE
-      Secure            = FALSE
-      Size              = 3,00
-      Size Unit         = Default
-      Style             = Singleline
-      Tab Order         = 23
-      Use Return        = TRUE
-      Use Tab           = FALSE
-      Value Multiple    = FALSE
-      Visible           = NONE
-      Width in Cells    = TRUE
-      My Property       = "CONTROLLO=;CONTROLLO-OLD=;ZOOM="
-      Before Procedure  = ef-macro-BeforeProcedure
-      After Procedure   = ef-macro-AfterProcedure
-   End
-   Begin Label lab-int
-      SCREEN-COL        = 56,30
-      SCREEN-LINE       = 7,74
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = lab-int
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 56,30
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 17
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 7,74
-      Lines             = 1,30
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 31,30
-      Size Unit         = Default
-      Tab Order         = 24
-      Title Picture     = X(100)
-      Title Variable    = lab-int-buf
-      Transparent       = TRUE
-      Visible           = NONE
-      Width in Cells    = TRUE
-   End
    Begin Label Screen1-La-2aab
       SCREEN-COL        = 78,20
       SCREEN-LINE       = 9,39
@@ -1897,7 +1749,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 25
+      Tab Order         = 22
       Title             = "Giorno 7"
       Transparent       = TRUE
       Visible           = NONE
@@ -1930,7 +1782,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 26
+      Tab Order         = 23
       Title             = "Giorno 1"
       Transparent       = TRUE
       Visible           = NONE
@@ -1963,7 +1815,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 27
+      Tab Order         = 24
       Title             = "Giorno 2"
       Transparent       = TRUE
       Visible           = NONE
@@ -1996,7 +1848,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 28
+      Tab Order         = 25
       Title             = "Giorno 4"
       Transparent       = TRUE
       Visible           = NONE
@@ -2029,7 +1881,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 29
+      Tab Order         = 26
       Title             = "Giorno 3"
       Transparent       = TRUE
       Visible           = NONE
@@ -2062,7 +1914,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 30
+      Tab Order         = 27
       Title             = "Giorno 6"
       Transparent       = TRUE
       Visible           = NONE
@@ -2095,7 +1947,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 31
+      Tab Order         = 28
       Title             = "Giorno 5"
       Transparent       = TRUE
       Visible           = NONE
@@ -2128,7 +1980,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 25,80
       Size Unit         = Default
-      Tab Order         = 32
+      Tab Order         = 29
       Title Picture     = X(20)
       Title Variable    = lab-stimata-buf
       Transparent       = TRUE
@@ -2147,7 +1999,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 33
+      Tab Order         = 30
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -2835,7 +2687,7 @@ Begin Screen Form1
       Handle Variable   = Form1-St-1-Handle
       PANEL-WIDTHS      = ( 45, 23, 999 )
       PANEL-STYLE       = ( 1, 1, 1 )
-      Tab Order         = 34
+      Tab Order         = 31
    End
 End
 
@@ -3010,9 +2862,6 @@ BEGIN-TEXT
            move wom-dur-code to dur-code.
            read duration no lock invalid move spaces to dur-desc end-read.
            move dur-desc to lab-durata-buf.
-           move wom-int-code to int-code.
-           read intensity no lock invalid move spaces to int-desc end-read.
-           move int-desc to lab-int-buf.
            Perform VALORIZZA-OLD.
 END-TEXT
 END-DATA
@@ -3162,19 +3011,7 @@ BEGIN-TEXT
                    move dur-desc to lab-durata-buf
                    display ef-durata lab-durata
                    move 4 to accept-control
-                end-if
-           when 78-ID-ef-int
-                inquire ef-int, value in int-code
-                move "intensity"   to Como-File
-                call   "zoom-gt" using como-file, int-rec
-                                giving stato-zoom
-                cancel "zoom-gt"
-                if stato-zoom = 0
-                   move int-code to ef-int-buf
-                   move int-desc to lab-int-buf
-                   display ef-int lab-int
-                   move 4 to accept-control
-                end-if
+                end-if     
            end-evaluate.
 END-TEXT
 END-DATA
@@ -3556,7 +3393,7 @@ BEGIN-TEXT
            set tutto-ok to true.
 
            perform varying CONTROL-ID from 78-ID-ef-descr by 1
-                     until CONTROL-ID > 78-ID-ef-int
+                     until CONTROL-ID > 78-ID-ef-durata
               perform CONTROLLO
               if errori 
                  exit perform 
@@ -3570,8 +3407,7 @@ BEGIN-TEXT
            else                       
               perform FORM1-BUF-TO-FLD
               perform CANCELLA-COLORE 
-              perform WRITE-DAYS      
-              perform CALCOLA-INTENSITA  
+              perform WRITE-DAYS         
                                      
               accept como-data from century-date
               accept como-ora  from time
@@ -3838,19 +3674,19 @@ BEGIN-TEXT
                  add 1 to riga
                  evaluate idx-day
                  when 1 modify gd1(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd1(riga, 2), cell-data wom-split-el-split-regroup(idx-day, idx-split)
                  when 2 modify gd2(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd2(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd2(riga, 2), cell-data wom-split-el-split-regroup(idx-day, idx-split)
                  when 3 modify gd3(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd3(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd3(riga, 2), cell-data wom-split-el-split-regroup(idx-day, idx-split)
                  when 4 modify gd4(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd4(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd4(riga, 2), cell-data wom-split-el-split-regroup(idx-day, idx-split)
                  when 5 modify gd5(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd5(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd5(riga, 2), cell-data wom-split-el-split-regroup(idx-day, idx-split)
                  when 6 modify gd6(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd6(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd6(riga, 2), cell-data wom-split-el-split-regroup(idx-day, idx-split)
                  when 7 modify gd7(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd7(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd7(riga, 2), cell-data wom-split-el-split-regroup(idx-day, idx-split)
                  end-evaluate
               end-perform
            end-perform.           
@@ -3868,8 +3704,8 @@ BEGIN-TEXT
                      until riga > tot-righe                           
               inquire gd1(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(1, riga - 1)
-              inquire gd1(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(1, riga - 1)
+              inquire gd1(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(1, riga - 1)
            end-perform.
            
            inquire gd2, last-row in tot-righe.
@@ -3877,8 +3713,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd2(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(2, riga - 1)  
-              inquire gd2(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(2, riga - 1)
+              inquire gd2(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(2, riga - 1)
            end-perform.
            
            inquire gd3, last-row in tot-righe.
@@ -3886,8 +3722,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd3(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(3, riga - 1)  
-              inquire gd3(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(3, riga - 1)
+              inquire gd3(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(3, riga - 1)
            end-perform.
            
            inquire gd4, last-row in tot-righe.
@@ -3895,8 +3731,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd4(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(4, riga - 1)
-              inquire gd4(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(4, riga - 1)
+              inquire gd4(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(4, riga - 1)
            end-perform.
            
            inquire gd5, last-row in tot-righe.
@@ -3904,8 +3740,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd5(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(5, riga - 1) 
-              inquire gd5(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(5, riga - 1)
+              inquire gd5(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(5, riga - 1)
            end-perform.
            
            inquire gd6, last-row in tot-righe.
@@ -3913,8 +3749,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd6(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(6, riga - 1) 
-              inquire gd6(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(6, riga - 1)
+              inquire gd6(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(6, riga - 1)
            end-perform.
            
            inquire gd7, last-row in tot-righe.
@@ -3922,8 +3758,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd7(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(7, riga - 1)  
-              inquire gd7(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(7, riga - 1)
+              inquire gd7(riga, 2), cell-data in col-regroup
+              move col-regroup to wom-split-el-split-regroup(7, riga - 1)
            end-perform.
 END-TEXT
 END-DATA
@@ -3967,42 +3803,6 @@ BEGIN-TEXT
            when 6              
                 modify gd7, enabled false 
            end-evaluate.
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 3
-   PARAGRAPH         = CALCOLA-INTENSITA
-BEGIN-TEXT
-           move 0 to como-effort.
-
-           perform varying idx-day from 1 by 1 
-                     until idx-day > wom-days
-               perform varying idx-split from 1 by 1 
-                         until idx-split> 20
-                  if wom-split-el-split-effort(idx-day, idx-split) = 0
-                     exit perform
-                  end-if
-                  add wom-split-el-split-effort(idx-day, idx-split) 
-                   to como-effort
-                  add 1 to tot-exe
-           end-perform.
-
-           compute tot-effort = como-effort / tot-exe.
-
-           if tot-effort < 1,5
-              move 1 to int-effort
-           else
-              if tot-effort < 2,5            
-                 move 2 to int-effort ef-int-buf
-              else                              
-                 move 3 to int-effort
-              end-if
-           end-if.
-           
-           read intensity key int-k-effort.
-           move int-desc to lab-int-buf.
-           move int-code to ef-int-buf wom-int-code.
-           display ef-int lab-int.
 END-TEXT
 END-DATA
 BEGIN-DATA

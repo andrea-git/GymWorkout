@@ -2,10 +2,11 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+aNote-andre=192.168.56.1
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E79F151829-417-158799603
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E79F204836-525-2856025984
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -88,6 +89,45 @@ m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM7_
+
+@}}
+[FDITEM8_]
+m_strName=tex-int-series
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM8_
+
+@}}
+[FDITEM9_]
+m_strName=tex-int-range
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM9_
+
+@}}
+[FDITEM10_]
+m_strName=tex-int-range-from
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=15
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM10_
+
+@}}
+[FDITEM11_]
+m_strName=tex-int-range-to
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=15
+m_nSync=-1
+m_bFixed=1
+m_strName_Xfd=tex-int-range-tex-
+{{@DataItem_m_strDescriptionFDITEM11_
 
 @}}
 [CStoAcucobolSL_]

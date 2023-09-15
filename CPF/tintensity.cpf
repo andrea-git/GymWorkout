@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-Adesk-andre=169.254.95.20
+aNote-andre=192.168.56.1
 
 
 [PROGRAM_CONTENT]
@@ -11,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E79E12158-523-218315820
+PROGRAM_UNIQUE_CODE=TOTEM-7E79F213852-440-1800931994
 
 {{@DESCRIPTION:
 
@@ -264,45 +264,35 @@ m_bFixed=1
 
 @}}
 [FDITEM23_WK]
-m_strName=col-effort
-m_strRawPic=z9
-m_strPic=z9
-m_nItemLevel=5
+m_strName=Screen1-Handle
+m_nUsage=24
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM23_WK
 
 @}}
 [FDITEM24_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM24_WK
-
-@}}
-[FDITEM25_WK]
 m_strName=FILLER
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM25_WK
+{{@DataItem_m_strDescriptionFDITEM24_WK
 
 @}}
-[FDITEM26_WK]
+[FDITEM25_WK]
 m_strName=ricarica
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM26_WK
+{{@DataItem_m_strDescriptionFDITEM25_WK
 
 @}}
-[FDITEM27_WK]
+[FDITEM26_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -311,12 +301,22 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM26_WK
+
+@}}
+[FDITEM27_WK]
+m_strName=Default-Font
+m_nUsage=38
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM27_WK
 
 @}}
 [FDITEM28_WK]
-m_strName=Default-Font
-m_nUsage=38
+m_strName=STATUS-intensity
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -324,34 +324,24 @@ m_bFixed=1
 
 @}}
 [FDITEM29_WK]
-m_strName=STATUS-intensity
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM29_WK
-
-@}}
-[FDITEM30_WK]
 m_strName=Valid-STATUS-intensity
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM30_WK
+{{@DataItem_m_strDescriptionFDITEM29_WK
 
 @}}
-[FDITEM31_WK]
+[FDITEM30_WK]
 m_strName=Calibri14-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM31_WK
+{{@DataItem_m_strDescriptionFDITEM30_WK
 
 @}}
-[FDITEM32_WK]
+[FDITEM31_WK]
 m_strName=LOGO_PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -360,26 +350,26 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM32_WK
+{{@DataItem_m_strDescriptionFDITEM31_WK
 
 @}}
-[FDITEM33_WK]
+[FDITEM32_WK]
 m_strName=STATUS-macrointensity
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM33_WK
+{{@DataItem_m_strDescriptionFDITEM32_WK
 
 @}}
-[FDITEM34_WK]
+[FDITEM33_WK]
 m_strName=Valid-STATUS-macrointensity
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM34_WK
+{{@DataItem_m_strDescriptionFDITEM33_WK
 
 @}}
 
@@ -592,7 +582,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 93,80
+   Size              = 83,10
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -641,7 +631,7 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Grid form1-gd-1
-      SCREEN-COL        = 1,90
+      SCREEN-COL        = 1,60
       SCREEN-LINE       = 1,74
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -656,10 +646,9 @@ Begin Screen Form1
       Cells' Setting    = ( X = 5, Y = 1, Data = "Time ("")" )
       Cells' Setting    = ( X = 6, Y = 1, Data = "Min rep" )
       Cells' Setting    = ( X = 7, Y = 1, Data = "Max rep" )
-      Cells' Setting    = ( X = 8, Y = 1, Data = "Effort" )
       Centered Headings = FALSE
       Color             = 0
-      Column            = 1,90
+      Column            = 1,60
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-codice, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
@@ -682,9 +671,6 @@ Begin Screen Form1
       Columns' Setting  = ( X = 7, Name = col-range-to, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 8, Name = col-effort, READONLY = 0 )
-      Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 2
       Cursor X          = 0
@@ -700,7 +686,7 @@ Begin Screen Form1
       Heading Font      = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      Hscroll           = FALSE
+      Hscroll           = TRUE
       ID                = 1
       Last Row          = 0
       Line              = 1,74
@@ -708,19 +694,19 @@ Begin Screen Form1
       Lines Unit        = Default
       No Tab            = FALSE
       Num Col Headings  = 1
-      Num Columns       = 8
+      Num Columns       = 7
       Num Rows          = 0
       Occurs            = 0
       Paged             = FALSE
       Record Data       = rec-grid
       Row Dividers      = 1
       Row Headings      = FALSE
-      Size              = 91,90
+      Size              = 81,90
       Size Unit         = Default
       Tab Order         = 2
       Tiled Headings    = TRUE
       Use Tab           = TRUE
-      Virtual Width     = 90
+      Virtual Width     = 80
       Visible           = NONE
       Vpadding          = 10
       Vscroll           = TRUE
@@ -1035,38 +1021,6 @@ Begin Screen Form1
          Width in Cells    = FALSE
          Additional Properties = "BITMAP-NUMBER BitmapNumZoom"
          Link To           = TOOL-CERCA-LinkTo
-      End
-      Begin Bitmap Form1-Bt-1
-         SCREEN-COL        = 89,90
-         SCREEN-LINE       = 1,00
-         LOCK-CONTROL      = TRUE
-         LEVEL             = 5
-         (Name)            = Form1-Bt-1
-         Bitmap            = "..\RESOURCE\LOGO_PICCOLO.BMP"
-         Bitmap End        = 0
-         Bitmap Handle     = LOGO_PICCOLO-BMP
-         Bitmap Number     = 1
-         Bitmap Start      = 0
-         Bitmap Timer      = 0
-         Column            = 89,90
-         Copy Resource     = TRUE
-         Destroy Type      = Automatic
-         Font              = Default Font
-         Height in Cells   = FALSE
-         Help ID           = 0
-         ID                = 13
-         Line              = 1,00
-         Lines             = 2,78
-         Lines in Pixels   = 64
-         Lines Unit        = Default
-         Occurs            = 0
-         Size              = 4,80
-         Size in Pixels    = 48
-         Size Unit         = Default
-         Tab Order         = 7
-         Transparent Color = 0
-         Visible           = NONE
-         Width in Cells    = FALSE
       End
    End
 End
@@ -1424,14 +1378,7 @@ BEGIN-TEXT
                               title = tit-err
                               icon mb-warning-icon
                    end-if
-                end-if  
-           when 8
-                if int-effort = 0
-                   set errori to true   
-                   display message "Valore obbligatorio"
-                           title = tit-err
-                           icon mb-warning-icon
-                end-if
+                end-if       
 
            end-evaluate.
 
@@ -1478,7 +1425,6 @@ BEGIN-TEXT
                           move int-duration   to col-duration
                           move int-range-from to col-range-from
                           move int-range-to   to col-range-to
-                          move int-effort     to col-effort
                           modify form1-gd-1(riga, 1), cell-data col-codice
                           modify form1-gd-1(riga, 2), cell-data col-des  
                           modify form1-gd-1(riga, 3), cell-data col-rest  
@@ -1486,7 +1432,6 @@ BEGIN-TEXT
                           modify form1-gd-1(riga, 5), cell-data col-duration  
                           modify form1-gd-1(riga, 6), cell-data col-range-from
                           modify form1-gd-1(riga, 7), cell-data col-range-to
-                          modify form1-gd-1(riga, 8), cell-data col-effort
                      end-read                                           
                   end-perform
            end-start.
@@ -1698,8 +1643,7 @@ BEGIN-TEXT
            inquire form1-gd-1(riga, 4), cell-data int-series.  
            inquire form1-gd-1(riga, 5), cell-data int-duration.
            inquire form1-gd-1(riga, 6), cell-data int-range-from.
-           inquire form1-gd-1(riga, 7), cell-data int-range-to.  
-           inquire form1-gd-1(riga, 8), cell-data int-effort.
+           inquire form1-gd-1(riga, 7), cell-data int-range-to.   
 END-TEXT
 END-DATA
 BEGIN-DATA

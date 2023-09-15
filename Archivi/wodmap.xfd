@@ -7,8 +7,8 @@
     <xfd:select-name>WODMAP</xfd:select-name>
     <xfd:table-name>WODMAP</xfd:table-name>
     <xfd:file-organization>Indexed</xfd:file-organization>
-    <xfd:maximum-record-size>1444</xfd:maximum-record-size>
-    <xfd:minimum-record-size>1444</xfd:minimum-record-size>
+    <xfd:maximum-record-size>1582</xfd:maximum-record-size>
+    <xfd:minimum-record-size>1582</xfd:minimum-record-size>
     <xfd:number-of-keys>2</xfd:number-of-keys>
     <xfd:sign-compatibility>0</xfd:sign-compatibility>
     <xfd:maximum-numeric-digits>18</xfd:maximum-numeric-digits>
@@ -50,15 +50,15 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="12"
-       xfd:elementary-items-with-occurs="290"
-       xfd:total-items="18"
-       xfd:total-items-with-occurs="441">
+       xfd:elementary-items="11"
+       xfd:elementary-items-with-occurs="289"
+       xfd:total-items="17"
+       xfd:total-items-with-occurs="440">
     <xfd:field
          xfd:field-offset="0"
-         xfd:field-bytes="1444"
+         xfd:field-bytes="1582"
          xfd:field-type="16"
-         xfd:field-length="1444"
+         xfd:field-length="1582"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -86,9 +86,9 @@
          xfd:field-name="WOM-CODE"/>
     <xfd:field
          xfd:field-offset="3"
-         xfd:field-bytes="1441"
+         xfd:field-bytes="1579"
          xfd:field-type="16"
-         xfd:field-length="1441"
+         xfd:field-length="1579"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -126,19 +126,9 @@
          xfd:field-name="WOM-MACROGROUPS"/>
     <xfd:field
          xfd:field-offset="106"
-         xfd:field-bytes="2"
-         xfd:field-type="1"
-         xfd:field-length="2"
-         xfd:field-scale="0"
-         xfd:field-user-flags="0"
-         xfd:field-condition="0"
-         xfd:field-level="10"
-         xfd:field-name="WOM-INT-CODE"/>
-    <xfd:field
-         xfd:field-offset="108"
-         xfd:field-bytes="280"
+         xfd:field-bytes="420"
          xfd:field-type="16"
-         xfd:field-length="280"
+         xfd:field-length="420"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -146,12 +136,12 @@
          xfd:field-name="WOM-SPLIT-TAB"/>
     <xfd:field-occurs
          xfd:occurs-count="7"
-         xfd:occurs-size="40">
+         xfd:occurs-size="60">
       <xfd:field
-           xfd:field-offset="108"
-           xfd:field-bytes="40"
+           xfd:field-offset="106"
+           xfd:field-bytes="60"
            xfd:field-type="16"
-           xfd:field-length="40"
+           xfd:field-length="60"
            xfd:field-scale="0"
            xfd:field-user-flags="0"
            xfd:field-condition="999"
@@ -159,19 +149,19 @@
            xfd:field-name="WOM-SPLIT-EL-DAYS"/>
       <xfd:field-occurs
            xfd:occurs-count="20"
-           xfd:occurs-size="2">
+           xfd:occurs-size="3">
         <xfd:field
-             xfd:field-offset="108"
-             xfd:field-bytes="2"
+             xfd:field-offset="106"
+             xfd:field-bytes="3"
              xfd:field-type="16"
-             xfd:field-length="2"
+             xfd:field-length="3"
              xfd:field-scale="0"
              xfd:field-user-flags="0"
              xfd:field-condition="999"
              xfd:field-level="20"
              xfd:field-name="WOM-SPLIT-EL-DAYS-SPLIT"/>
         <xfd:field
-             xfd:field-offset="108"
+             xfd:field-offset="106"
              xfd:field-bytes="1"
              xfd:field-type="16"
              xfd:field-length="1"
@@ -181,19 +171,19 @@
              xfd:field-level="25"
              xfd:field-name="WOM-SPLIT-EL-SPLIT-SIGLA"/>
         <xfd:field
-             xfd:field-offset="109"
-             xfd:field-bytes="1"
+             xfd:field-offset="107"
+             xfd:field-bytes="2"
              xfd:field-type="1"
-             xfd:field-length="1"
+             xfd:field-length="2"
              xfd:field-scale="0"
              xfd:field-user-flags="0"
              xfd:field-condition="0"
              xfd:field-level="25"
-             xfd:field-name="WOM-SPLIT-EL-SPLIT-EFFORT"/>
+             xfd:field-name="WOM-SPLIT-EL-SPLIT-REGROUP"/>
       </xfd:field-occurs>
     </xfd:field-occurs>
     <xfd:field
-         xfd:field-offset="388"
+         xfd:field-offset="526"
          xfd:field-bytes="2"
          xfd:field-type="1"
          xfd:field-length="2"
@@ -203,7 +193,7 @@
          xfd:field-level="10"
          xfd:field-name="WOM-DUR-CODE"/>
     <xfd:field
-         xfd:field-offset="390"
+         xfd:field-offset="528"
          xfd:field-bytes="1000"
          xfd:field-type="16"
          xfd:field-length="1000"
@@ -213,7 +203,7 @@
          xfd:field-level="10"
          xfd:field-name="WOM-FILLER"/>
     <xfd:field
-         xfd:field-offset="1390"
+         xfd:field-offset="1528"
          xfd:field-bytes="18"
          xfd:field-type="1"
          xfd:field-length="18"
@@ -223,7 +213,7 @@
          xfd:field-level="10"
          xfd:field-name="WOM-FILLER-N1"/>
     <xfd:field
-         xfd:field-offset="1408"
+         xfd:field-offset="1546"
          xfd:field-bytes="18"
          xfd:field-type="1"
          xfd:field-length="18"
@@ -233,7 +223,7 @@
          xfd:field-level="10"
          xfd:field-name="WOM-FILLER-N2"/>
     <xfd:field
-         xfd:field-offset="1426"
+         xfd:field-offset="1564"
          xfd:field-bytes="18"
          xfd:field-type="1"
          xfd:field-length="18"

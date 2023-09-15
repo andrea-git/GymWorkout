@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 23:08:48.
+       DATE-WRITTEN.        venerdì 15 settembre 2023 23:20:26.
        REMARKS.
       *{TOTEM}END
 
@@ -29,7 +29,6 @@
       *{TOTEM}FILE-CONTROL
            COPY "exercises.sl".
            COPY "groups.sl".
-           COPY "intensity.sl".
            COPY "macrogroups.sl".
       *{TOTEM}END
        DATA                 DIVISION.
@@ -37,7 +36,6 @@
       *{TOTEM}FILE
            COPY "exercises.fd".
            COPY "groups.fd".
-           COPY "intensity.fd".
            COPY "macrogroups.fd".
       *{TOTEM}END
 
@@ -100,8 +98,8 @@
            05 col-group        PIC  x(5).
            05 col-grp-desc     PIC  x(100).
            05 col-mcg-desc     PIC  x(100).
-           05 col-intensity    PIC  z9.
-           05 col-int-desc     PIC  x(100).
+           05 col-regroup      PIC  z9.
+           05 col-abil         PIC  x(100).
            05 col-isMulti      PIC  9.
            05 col-setting      PIC  z.zz9.
        77 Screen1-Handle
@@ -140,7 +138,6 @@
        77 Form1-MULKEY-TMPBUF   PIC X(1189).
        77 TMP-DataSet1-exercises-BUF     PIC X(1189).
        77 TMP-DataSet1-groups-BUF     PIC X(1182).
-       77 TMP-DataSet1-intensity-BUF     PIC X(1188).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
@@ -157,11 +154,6 @@
        77 DataSet1-groups-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-groups-KEY-Asc  VALUE "A".
           88 DataSet1-groups-KEY-Desc VALUE "D".
-       77 DataSet1-intensity-LOCK-FLAG   PIC X VALUE SPACE.
-           88 DataSet1-intensity-LOCK  VALUE "Y".
-       77 DataSet1-intensity-KEY-ORDER  PIC X VALUE "A".
-          88 DataSet1-intensity-KEY-Asc  VALUE "A".
-          88 DataSet1-intensity-KEY-Desc VALUE "D".
        77 DataSet1-macrogroups-LOCK-FLAG   PIC X VALUE SPACE.
            88 DataSet1-macrogroups-LOCK  VALUE "Y".
        77 DataSet1-macrogroups-KEY-ORDER  PIC X VALUE "A".
@@ -171,8 +163,6 @@
        77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
        77 groups-grp-k-desc-SPLITBUF  PIC X(101).
-       77 intensity-int-k-desc-SPLITBUF  PIC X(101).
-       77 intensity-int-kj-effort-SPLITBUF  PIC X(5).
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
 
        01 old-exe-rec.
@@ -542,7 +532,6 @@
       *    Before Open
            PERFORM OPEN-exercises
            PERFORM OPEN-groups
-           PERFORM OPEN-intensity
            PERFORM OPEN-macrogroups
       *    After Open
            .
@@ -578,18 +567,6 @@
       * <TOTEM:END>
            .
 
-       OPEN-intensity.
-      * <TOTEM:EPT. INIT:texercises, FD:intensity, BeforeOpen>
-      * <TOTEM:END>
-           OPEN  INPUT intensity
-           IF NOT Valid-STATUS-intensity
-              PERFORM  Form1-EXTENDED-FILE-STATUS
-              GO TO EXIT-STOP-ROUTINE
-           END-IF
-      * <TOTEM:EPT. INIT:texercises, FD:intensity, AfterOpen>
-      * <TOTEM:END>
-           .
-
        OPEN-macrogroups.
       * <TOTEM:EPT. INIT:texercises, FD:macrogroups, BeforeOpen>
       * <TOTEM:END>
@@ -606,7 +583,6 @@
       *    Before Close
            PERFORM CLOSE-exercises
            PERFORM CLOSE-groups
-           PERFORM CLOSE-intensity
            PERFORM CLOSE-macrogroups
       *    After Close
            .
@@ -621,12 +597,6 @@
       * <TOTEM:EPT. INIT:texercises, FD:groups, BeforeClose>
       * <TOTEM:END>
            CLOSE groups
-           .
-
-       CLOSE-intensity.
-      * <TOTEM:EPT. INIT:texercises, FD:intensity, BeforeClose>
-      * <TOTEM:END>
-           CLOSE intensity
            .
 
        CLOSE-macrogroups.
@@ -1016,177 +986,6 @@
       * <TOTEM:END>
            .
 
-       intensity-int-k-desc-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-k-desc-SPLITBUF
-           MOVE int-desc(1:100) TO intensity-int-k-desc-SPLITBUF(1:100)
-           .
-
-       intensity-int-kj-effort-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-kj-effort-SPLITBUF
-           MOVE int-effort(1:2) TO intensity-int-kj-effort-SPLITBUF(1:2)
-           MOVE int-key(1:2) TO intensity-int-kj-effort-SPLITBUF(3:2)
-           .
-
-       DataSet1-intensity-INITSTART.
-           IF DataSet1-intensity-KEY-Asc
-              MOVE Low-Value TO int-key
-           ELSE
-              MOVE High-Value TO int-key
-           END-IF
-           .
-
-       DataSet1-intensity-INITEND.
-           IF DataSet1-intensity-KEY-Asc
-              MOVE High-Value TO int-key
-           ELSE
-              MOVE Low-Value TO int-key
-           END-IF
-           .
-
-      * intensity
-       DataSet1-intensity-START.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY >= int-key
-           ELSE
-              START intensity KEY <= int-key
-           END-IF
-           .
-
-       DataSet1-intensity-START-NOTGREATER.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY <= int-key
-           ELSE
-              START intensity KEY >= int-key
-           END-IF
-           .
-
-       DataSet1-intensity-START-GREATER.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY > int-key
-           ELSE
-              START intensity KEY < int-key
-           END-IF
-           .
-
-       DataSet1-intensity-START-LESS.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY < int-key
-           ELSE
-              START intensity KEY > int-key
-           END-IF
-           .
-
-       DataSet1-intensity-Read.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadRecord>
-      * <TOTEM:END>
-           IF DataSet1-intensity-LOCK
-              READ intensity WITH LOCK 
-              KEY int-key
-           ELSE
-              READ intensity WITH NO LOCK 
-              KEY int-key
-           END-IF
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT 
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "READ" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadRecord>
-      * <TOTEM:END>
-           .
-
-       DataSet1-intensity-Read-Next.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadNext>
-      * <TOTEM:END>
-           IF DataSet1-intensity-KEY-Asc
-              IF DataSet1-intensity-LOCK
-                 READ intensity NEXT WITH LOCK
-              ELSE
-                 READ intensity NEXT WITH NO LOCK
-              END-IF
-           ELSE
-              IF DataSet1-intensity-LOCK
-                 READ intensity PREVIOUS WITH LOCK
-              ELSE
-                 READ intensity PREVIOUS WITH NO LOCK
-              END-IF
-           END-IF
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "READ NEXT" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadNext>
-      * <TOTEM:END>
-           .
-
-       DataSet1-intensity-Read-Prev.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadPrev>
-      * <TOTEM:END>
-           IF DataSet1-intensity-KEY-Asc
-              IF DataSet1-intensity-LOCK
-                 READ intensity PREVIOUS WITH LOCK
-              ELSE
-                 READ intensity PREVIOUS WITH NO LOCK
-              END-IF
-           ELSE
-              IF DataSet1-intensity-LOCK
-                 READ intensity NEXT WITH LOCK
-              ELSE
-                 READ intensity NEXT WITH NO LOCK
-              END-IF
-           END-IF
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadPrev>
-      * <TOTEM:END>
-           .
-
-       DataSet1-intensity-Rec-Write.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeWrite>
-      * <TOTEM:END>
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "WRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterWrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-intensity-Rec-Rewrite.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRewrite>
-      * <TOTEM:END>
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "REWRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRewrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-intensity-Rec-Delete.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeDelete>
-      * <TOTEM:END>
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "DELETE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterDelete>
-      * <TOTEM:END>
-           .
-
        macrogroups-mcg-k-desc-MERGE-SPLITBUF.
            INITIALIZE macrogroups-mcg-k-desc-SPLITBUF
            MOVE mcg-desc(1:100) TO 
@@ -1353,7 +1152,6 @@
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE grp-rec OF groups
-           INITIALIZE int-rec OF intensity
            INITIALIZE mcg-rec OF macrogroups
            .
 
@@ -1377,10 +1175,10 @@
                 CELL-DATA = "Macrogruppo",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 6, Y = 1,
-                CELL-DATA = "Intensità",
+                CELL-DATA = "Raggruppamento",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 7, Y = 1,
-                CELL-DATA = "Descrizione",
+                CELL-DATA = "Abilitato",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 8, Y = 1,
                 CELL-DATA = "Multi",
@@ -1400,14 +1198,6 @@
       * FD's Initialize Paragraph
        DataSet1-groups-INITREC.
            INITIALIZE grp-rec OF groups
-               REPLACING NUMERIC       DATA BY ZEROS
-                         ALPHANUMERIC  DATA BY SPACES
-                         ALPHABETIC    DATA BY SPACES
-           .
-
-      * FD's Initialize Paragraph
-       DataSet1-intensity-INITREC.
-           INITIALIZE int-rec OF intensity
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -2088,18 +1878,6 @@
                    modify form1-gd-1(riga, 4), cell-data col-grp-desc
                    modify form1-gd-1(riga, 5), cell-data col-mcg-desc
                 end-if 
-           when 6
-                inquire form1-gd-1(riga, colonna), cell-data in int-code
-                move "intensity"    to Como-File
-                call   "zoom-gt" using como-file, int-rec
-                                giving stato-zoom
-                cancel "zoom-gt"
-                if stato-zoom = 0
-                   move int-code to col-intensity
-                   move int-desc to col-int-desc                     
-                   modify form1-gd-1(riga, 6), cell-data col-intensity
-                   modify form1-gd-1(riga, 7), cell-data col-int-desc
-                end-if 
            end-evaluate  
            .
       * <TOTEM:END>
@@ -2169,17 +1947,14 @@
                 end-read                                      
                 modify form1-gd-1(riga, 4), cell-data grp-desc
                 modify form1-gd-1(riga, 5), cell-data mcg-desc  
+
            when 6
-                move exe-int-code to int-code
-                read intensity no lock 
-                     invalid 
-                     move spaces to int-desc 
-                     set errori to true
-                     display message "Intensità non valida"
-                           title = tit-err
-                           icon mb-warning-icon
-                end-read                                      
-                modify form1-gd-1(riga, 7), cell-data int-desc  
+                if exe-regroup = 0
+                   move "Disabilitato" to col-abil
+                else
+                   move "Abilitato" to col-abil
+                end-if
+                modify form1-gd-1(riga, 7), cell-data col-abil
 
            when 8
                 if not (exe-isMulti = 0 or 1)
@@ -2243,10 +2018,12 @@
            to mcg-desc end-read
                           move grp-desc to col-grp-desc
                           move mcg-desc to col-mcg-desc
-                          move exe-int-code to col-intensity int-code
-                          read intensity no lock invalid move spaces to 
-           int-desc end-read
-                          move int-desc    to col-int-desc
+                          move exe-regroup to col-regroup
+                          if exe-regroup = 0
+                             move "Disabilitato" to col-abil
+                          else
+                             move "Abilitato"    to col-abil
+                          end-if
                           move exe-isMulti to col-isMulti
                           move exe-setting to col-setting
                           modify form1-gd-1(riga, 1), cell-data 
@@ -2260,9 +2037,8 @@
                           modify form1-gd-1(riga, 5), cell-data 
            col-mcg-desc
                           modify form1-gd-1(riga, 6), cell-data 
-           col-intensity
-                          modify form1-gd-1(riga, 7), cell-data 
-           col-int-desc
+           col-regroup
+                          modify form1-gd-1(riga, 7), cell-data col-abil
                           modify form1-gd-1(riga, 8), cell-data 
            col-isMulti
                           modify form1-gd-1(riga, 9), cell-data 
@@ -2472,7 +2248,7 @@
            inquire form1-gd-1(riga, 1), cell-data exe-code.
            inquire form1-gd-1(riga, 2), cell-data exe-desc.
            inquire form1-gd-1(riga, 3), cell-data exe-grp-code.
-           inquire form1-gd-1(riga, 6), cell-data exe-int-code.
+           inquire form1-gd-1(riga, 6), cell-data exe-regroup.
            inquire form1-gd-1(riga, 8), cell-data exe-isMulti.
            inquire form1-gd-1(riga, 9), cell-data exe-setting  
            .

@@ -6,14 +6,13 @@
                10 wom-desc         PIC  x(100).
                10 wom-days         PIC  9.
                10 wom-macrogroups  PIC  99.
-               10 wom-int-code     PIC  99.
                10 wom-split-tab.
                    15 wom-split-el-days
                               OCCURS 7 TIMES.
                        20 wom-split-el-days-split
                                   OCCURS 20 TIMES.
                            25 wom-split-el-split-sigla     PIC  x.
-                           25 wom-split-el-split-effort    PIC  9.
+                           25 wom-split-el-split-regroup   PIC  99.
                10 wom-dur-code     PIC  99.
                10 wom-filler       PIC  x(1000).
                10 wom-filler-n1    PIC  9(18).

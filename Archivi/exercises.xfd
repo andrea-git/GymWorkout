@@ -142,7 +142,7 @@
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
-         xfd:field-name="EXE-INT-CODE"/>
+         xfd:field-name="EXE-REGROUP"/>
     <xfd:field
          xfd:field-offset="112"
          xfd:field-bytes="1"

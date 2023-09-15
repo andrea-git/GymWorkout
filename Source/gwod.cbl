@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 15 settembre 2023 19:01:00.
+       DATE-WRITTEN.        venerdì 15 settembre 2023 23:20:32.
        REMARKS.
       *{TOTEM}END
 
@@ -135,15 +135,6 @@
                10 el-exe-desc      PIC  x(100).
                10 el-exe-used      PIC  9.
                10 el-exe-effort    PIC  99.
-       01 tab-wod-exe.
-           05 el-wod-day
-                      OCCURS 7 TIMES.
-               10 el-wod-mcg-exe
-                          OCCURS 20 TIMES.
-                   15 el-wod-mcg       PIC  x(5).
-                   15 el-wod-exe-code  PIC  x(5).
-                   15 el-wod-exe-desc  PIC  x(100).
-                   15 el-wod-exe-effort            PIC  9.
        77 RigheIniziali    PIC  9(3).
        77 lastIdx          PIC  9(3).
        77 idx1 PIC  9(3).
@@ -174,7 +165,9 @@
            05 col-exe-code     PIC  x(5).
            05 col-exe-desc     PIC  x(100).
            05 col-series       PIC  99.
-           05 col-reps         PIC  99.
+           05 col-reps         PIC  x(10).
+       77 como-reps-from   PIC  xx.
+       77 como-reps-to     PIC  xx.
        77 Calibri14-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 Calibri14B-Occidentale
@@ -275,7 +268,7 @@
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
        77 TMP-DataSet1-wodmap-BUF     PIC X(1444).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(112).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(114).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(120).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -5641,7 +5634,8 @@
            inquire cb-int, value in int-desc.
            read intensity key int-k-desc.
            move int-effort to effort-wod.
-           
+           move int-range  to effort-range.
+
            inquire cb-dur, value in dur-desc.
            read duration key dur-k-desc.
            
@@ -5727,15 +5721,39 @@
                        modify gd1(riga, 1), cell-data = "-----"
                        modify gd1(riga, 2), cell-data = "-----"
                     end-if          
-                    add 1 to col-exe-prg
-                    move tex-day to col-day
-                    move tex-exe-code to exe-code
+                    add 1               to col-exe-prg
+                    move tex-day        to col-day
+                    move tex-exe-code   to exe-code
                     read exercises
-                    move exe-grp-code to col-grp-code grp-code
+                    move exe-grp-code   to col-grp-code grp-code
                     read groups
-                    move grp-desc to col-grp-desc
-                    move tex-exe-code to col-exe-code
-                    move tex-exe-desc to col-exe-desc
+                    move grp-desc       to col-grp-desc
+                    move tex-exe-code   to col-exe-code
+                    move tex-exe-desc   to col-exe-desc            
+                    move tex-int-series to col-series
+                                
+                    initialize col-reps                                 
+                    
+                    move tex-int-range-from to como-reps-from
+                    inspect como-reps-from 
+                            replacing leading x"30" by x"20"
+                    call "C$JUSTIFY" using como-reps-from, "L"
+                    inspect como-reps-from replacing trailing spaces by 
+           low-value
+      *
+                    move tex-int-range-to to como-reps-to
+                    inspect como-reps-to 
+                            replacing leading x"30" by x"20"
+                    call "C$JUSTIFY" using como-reps-to, "L"
+                    inspect como-reps-to replacing trailing spaces by 
+           low-value
+
+                    string  como-reps-from delimited low-value
+                            " - "          delimited size
+                            como-reps-to   delimited low-value
+                       into col-reps
+                    end-string
+                    
                     add 1 to riga                                
                     modify gd1(riga, 1), cell-data = col-day
                     modify gd1(riga, 2), cell-data = col-exe-prg
@@ -5743,6 +5761,8 @@
                     modify gd1(riga, 4), cell-data = col-grp-desc
                     modify gd1(riga, 5), cell-data = col-exe-code
                     modify gd1(riga, 6), cell-data = col-exe-desc
+                    modify gd1(riga, 7), cell-data = col-series
+                    modify gd1(riga, 8), cell-data = col-reps
                  end-perform
            end-start.
                                       
@@ -5845,6 +5865,8 @@
                                 move mcg-code         to tex-mcg-code
                                 move el-exe-code(idx) to tex-exe-code
                                 move el-exe-desc(idx) to tex-exe-desc
+                                              
+
                                 write tex-rec
 
                                 move 1                to 
@@ -5919,8 +5941,14 @@
                            move idx-days         to tex-day
                            move idx-split        to tex-prg     
                            move mcg-code         to tex-mcg-code
-                           move el-exe-code(idx) to tex-exe-code
+                           move el-exe-code(idx) to tex-exe-code 
+           exe-code
+                           read exercises
                            move el-exe-desc(idx) to tex-exe-desc
+                           move exe-int-code     to int-code
+                           read intensity          
+                           move int-series to tex-int-series
+                           move int-range  to tex-int-range
                            write tex-rec
                   
                            move 1                to el-exe-used(idx)

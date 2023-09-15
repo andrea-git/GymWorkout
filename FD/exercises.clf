@@ -2,10 +2,11 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+aNote-andre=192.168.56.1
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E79F13540-299-2688928642
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E79F204836-509-124194925
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -71,7 +72,7 @@ m_bFixed=1
 
 @}}
 [FDITEM6_]
-m_strName=exe-int-code
+m_strName=exe-regroup
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=10

@@ -2,7 +2,6 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-Adesk-andre=169.254.95.20
 
 
 [DATALAYOUT_CONTENT]
@@ -62,7 +61,7 @@ m_bFixed=1
 
 @}}
 [FDITEM5_]
-m_strName=tex-exe-code
+m_strName=tex-mcg-code
 m_strRawPic=x(5)
 m_strPic=x(5)
 m_nItemLevel=10
@@ -72,13 +71,23 @@ m_bFixed=1
 
 @}}
 [FDITEM6_]
+m_strName=tex-exe-code
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM6_
+
+@}}
+[FDITEM7_]
 m_strName=tex-exe-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM6_
+{{@DataItem_m_strDescriptionFDITEM7_
 
 @}}
 [CStoAcucobolSL_]

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 15 settembre 2023 18:32:44.
+       DATE-WRITTEN.        venerdì 15 settembre 2023 19:01:00.
        REMARKS.
       *{TOTEM}END
 
@@ -120,6 +120,7 @@
        77 como-qta         PIC  9(6).
        77 link-stampante   PIC  x(200).
        77 como-effort      PIC  99.
+       77 save-day         PIC  9.
        77 AUTO-ID          PIC  9(6)
                   VALUE IS 0,00.
        77 BOTTONE-annulla-BMP          PIC  S9(9)
@@ -166,10 +167,14 @@
                10 el-mgroup        PIC  x(100).
                10 el-mcg-code      PIC  x(5).
        01 rec-grid.
-           05 col-exercise     PIC  x(5).
+           05 col-day          PIC  9.
+           05 col-exe-prg      PIC  99.
+           05 col-grp-code     PIC  x(5).
+           05 col-grp-desc     PIC  x(100).
+           05 col-exe-code     PIC  x(5).
            05 col-exe-desc     PIC  x(100).
-           05 col-series       PIC  z9.
-           05 col-reps         PIC  z9.
+           05 col-series       PIC  99.
+           05 col-reps         PIC  99.
        77 Calibri14-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 Calibri14B-Occidentale
@@ -270,7 +275,7 @@
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
        77 TMP-DataSet1-wodmap-BUF     PIC X(1444).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(112).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(109).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(114).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -426,26 +431,28 @@
            gd1, 
            Grid, 
            COL 2,00, 
-           LINE 16,61,
+           LINE 16,57,
            LINES 9,74 ,
-           SIZE 61,90 ,
+           SIZE 81,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           DATA-COLUMNS (1, 6, 106, 108),
-           ALIGNMENT ("U", "U", "R", "R"),
-           SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(5)", "X(100)", "z9", "z9"),
+           DATA-COLUMNS (1, 2, 4, 9, 109, 114, 214, 216),
+           ALIGNMENT ("C", "R", "C", "L", "C", "L", "R", "R"),
+           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5),
+           DATA-TYPES ("9(1)", "z9", "X(5)", "X(100)", "X(5)", "X(100)"
+           , "z9", "z9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
            DIVIDER-COLOR 1,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 78-ID-gd1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 60,
+           VIRTUAL-WIDTH 80,
            VPADDING 5,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -819,7 +826,7 @@
            pb-genera, 
            Push-Button, 
            COL 80,00, 
-           LINE 9,91,
+           LINE 9,87,
            LINES 3,30 ,
            SIZE 26,40 ,
            EXCEPTION-VALUE 1000,
@@ -3143,19 +3150,27 @@
        gd1-Content.
       * CELLS' SETTING
               MODIFY gd1, X = 1, Y = 1,
-                CELL-COLOR = 299,
-                CELL-DATA = "Esercizio",
+                CELL-DATA = "D",
       * CELLS' SETTING
               MODIFY gd1, X = 2, Y = 1,
-                CELL-COLOR = 299,
-                CELL-DATA = "Descrizione",
+                CELL-DATA = "#",
       * CELLS' SETTING
               MODIFY gd1, X = 3, Y = 1,
-                CELL-COLOR = 299,
-                CELL-DATA = "Serie",
+                CELL-DATA = "Gruppo",
       * CELLS' SETTING
               MODIFY gd1, X = 4, Y = 1,
-                CELL-COLOR = 299,
+                CELL-DATA = "Descrizione",
+      * CELLS' SETTING
+              MODIFY gd1, X = 5, Y = 1,
+                CELL-DATA = "Ex",
+      * CELLS' SETTING
+              MODIFY gd1, X = 6, Y = 1,
+                CELL-DATA = "Descrizione",
+      * CELLS' SETTING
+              MODIFY gd1, X = 7, Y = 1,
+                CELL-DATA = "Series",
+      * CELLS' SETTING
+              MODIFY gd1, X = 8, Y = 1,
                 CELL-DATA = "Reps",
            .
 
@@ -3369,7 +3384,7 @@
               HANDLE IS Form1-St-1-Handle
            DISPLAY Form1 UPON form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY gd1, DISPLAY-COLUMNS (1, 11, 41, 51)
+              MODIFY gd1, DISPLAY-COLUMNS (1, 6, 11, 21, 41, 51, 71, 76)
            .
 
        Form1-PROC.
@@ -4159,7 +4174,7 @@
        COLORE-RIGA.
       * <TOTEM:PARA. COLORE-RIGA>
            modify gd1, start-x = 1,
-                             x = 78-max-colonne - 2,
+                             x = 8,
                        start-y = riga,
                              y = riga,
                   region-color = 257,
@@ -5695,20 +5710,39 @@
            perform LOAD-EXERCISES.
            
            move low-value to tex-rec.
+           move 0 to save-day
            start tmp-exe key >= tex-key
                  invalid continue 
              not invalid
                  move 1 to riga
                  perform until 1 = 2
                     read tmp-exe next at end exit perform end-read
-      *              if tex-day > 1
-      *                 add 1 to riga                           
-      *                 modify gd1(riga, 1), cell-data = "-----"
-      *                 modify gd1(riga, 2), cell-data = "-----"
-      *              end-if      
-                    add 1 to riga                           
-                    modify gd1(riga, 1), cell-data = tex-exe-code
-                    modify gd1(riga, 2), cell-data = tex-exe-desc
+                    if save-day = 0
+                       move tex-day to save-day
+                    end-if
+                    if tex-day not = save-day
+                       move 0 to col-exe-prg
+                       move tex-day to save-day
+                       add 1 to riga                           
+                       modify gd1(riga, 1), cell-data = "-----"
+                       modify gd1(riga, 2), cell-data = "-----"
+                    end-if          
+                    add 1 to col-exe-prg
+                    move tex-day to col-day
+                    move tex-exe-code to exe-code
+                    read exercises
+                    move exe-grp-code to col-grp-code grp-code
+                    read groups
+                    move grp-desc to col-grp-desc
+                    move tex-exe-code to col-exe-code
+                    move tex-exe-desc to col-exe-desc
+                    add 1 to riga                                
+                    modify gd1(riga, 1), cell-data = col-day
+                    modify gd1(riga, 2), cell-data = col-exe-prg
+                    modify gd1(riga, 3), cell-data = col-grp-code
+                    modify gd1(riga, 4), cell-data = col-grp-desc
+                    modify gd1(riga, 5), cell-data = col-exe-code
+                    modify gd1(riga, 6), cell-data = col-exe-desc
                  end-perform
            end-start.
                                       
@@ -5808,6 +5842,7 @@
                                 ex-remain = 0
                                 move idx-days         to tex-day
                                 move idx-split        to tex-prg
+                                move mcg-code         to tex-mcg-code
                                 move el-exe-code(idx) to tex-exe-code
                                 move el-exe-desc(idx) to tex-exe-desc
                                 write tex-rec
@@ -5828,7 +5863,7 @@
       ***---
        LOAD-EXERCISES.      
            perform varying idx-days from 1 by 1 
-                     until idx-days > wom-days
+                     until idx-days > wom-days    
               perform varying idx-split from 1 by 1 
                         until idx-split > 9 
                  move idx-days  to tex-day
@@ -5882,7 +5917,8 @@
                         if el-exe-used(idx) = 0 or
                            ex-remain = 0
                            move idx-days         to tex-day
-                           move idx-split        to tex-prg
+                           move idx-split        to tex-prg     
+                           move mcg-code         to tex-mcg-code
                            move el-exe-code(idx) to tex-exe-code
                            move el-exe-desc(idx) to tex-exe-desc
                            write tex-rec

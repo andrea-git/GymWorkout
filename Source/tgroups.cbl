@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tgroups.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 14:12:34.
+       DATE-WRITTEN.        venerdì 15 settembre 2023 18:47:11.
        REMARKS.
       *{TOTEM}END
 
@@ -137,8 +137,8 @@
           88 DataSet1-macrogroups-KEY-Asc  VALUE "A".
           88 DataSet1-macrogroups-KEY-Desc VALUE "D".
 
-       77 groups-grp-k-desc-SPLITBUF  PIC X(106).
-       77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(106).
+       77 groups-grp-k-desc-SPLITBUF  PIC X(101).
+       77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
 
        01 old-grp-rec.
            05 old-grp-key.
@@ -555,7 +555,6 @@
        groups-grp-k-desc-MERGE-SPLITBUF.
            INITIALIZE groups-grp-k-desc-SPLITBUF
            MOVE grp-desc(1:100) TO groups-grp-k-desc-SPLITBUF(1:100)
-           MOVE grp-key(1:5) TO groups-grp-k-desc-SPLITBUF(101:5)
            .
 
        DataSet1-groups-INITSTART.
@@ -767,7 +766,6 @@
            INITIALIZE macrogroups-mcg-k-desc-SPLITBUF
            MOVE mcg-desc(1:100) TO 
            macrogroups-mcg-k-desc-SPLITBUF(1:100)
-           MOVE mcg-code(1:5) TO macrogroups-mcg-k-desc-SPLITBUF(101:5)
            .
 
        DataSet1-macrogroups-INITSTART.
@@ -1682,7 +1680,7 @@
                            icon mb-warning-icon
                 end-if
            when 3
-                move grp-macro to mcg-code
+                move grp-mcg-code to mcg-code
                 read macrogroups no lock
                      invalid
                      move spaces to mcg-desc
@@ -1729,10 +1727,10 @@
                      read groups next
                           at end exit perform
                       not at end
-                          move grp-code  to col-codice
-                          move grp-desc  to col-des  
-                          move grp-macro to col-macro mcg-code
-                          read macrogroups no lock invalid move spaces 
+                          move grp-code     to col-codice
+                          move grp-desc     to col-des  
+                          move grp-mcg-code to col-macro mcg-code
+                          read macrogroups  no lock invalid move spaces 
            to mcg-desc end-read
                           move mcg-desc  to col-mcg-desc
                           modify form1-gd-1(riga, 1), cell-data 
@@ -1947,7 +1945,7 @@
       * <TOTEM:PARA. VALORE-RIGA>
            inquire form1-gd-1(riga, 1), cell-data grp-code.   
            inquire form1-gd-1(riga, 2), cell-data grp-desc.
-           inquire form1-gd-1(riga, 3), cell-data grp-macro 
+           inquire form1-gd-1(riga, 3), cell-data grp-mcg-code 
            .
       * <TOTEM:END>
 

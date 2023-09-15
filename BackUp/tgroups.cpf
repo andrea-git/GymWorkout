@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E79812848-111-76819298
+PROGRAM_UNIQUE_CODE=TOTEM-7E79E12158-398-651518538
 
 {{@DESCRIPTION:
 
@@ -1323,7 +1323,7 @@ BEGIN-TEXT
                            icon mb-warning-icon
                 end-if
            when 3
-                move grp-macro to mcg-code
+                move grp-mcg-code to mcg-code
                 read macrogroups no lock
                      invalid
                      move spaces to mcg-desc
@@ -1373,10 +1373,10 @@ BEGIN-TEXT
                      read groups next
                           at end exit perform
                       not at end
-                          move grp-code  to col-codice
-                          move grp-desc  to col-des  
-                          move grp-macro to col-macro mcg-code
-                          read macrogroups no lock invalid move spaces to mcg-desc end-read
+                          move grp-code     to col-codice
+                          move grp-desc     to col-des  
+                          move grp-mcg-code to col-macro mcg-code
+                          read macrogroups  no lock invalid move spaces to mcg-desc end-read
                           move mcg-desc  to col-mcg-desc
                           modify form1-gd-1(riga, 1), cell-data col-codice
                           modify form1-gd-1(riga, 2), cell-data col-des  
@@ -1596,7 +1596,7 @@ BEGIN-DATA
 BEGIN-TEXT
            inquire form1-gd-1(riga, 1), cell-data grp-code.   
            inquire form1-gd-1(riga, 2), cell-data grp-desc.
-           inquire form1-gd-1(riga, 3), cell-data grp-macro.
+           inquire form1-gd-1(riga, 3), cell-data grp-mcg-code.
 END-TEXT
 END-DATA
 BEGIN-DATA

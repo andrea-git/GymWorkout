@@ -5,5 +5,6 @@
                10 tex-day          PIC  9.
                10 tex-prg          PIC  9(3).
            05 tex-data.
+               10 tex-mcg-code     PIC  x(5).
                10 tex-exe-code     PIC  x(5).
                10 tex-exe-desc     PIC  x(100).

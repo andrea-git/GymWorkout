@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 14 settembre 2023 16:47:50.
+       DATE-WRITTEN.        venerdì 15 settembre 2023 18:32:44.
        REMARKS.
       *{TOTEM}END
 
@@ -35,6 +35,8 @@
            COPY "tmp-exe-effort.sl".
            COPY "wodbook.sl".
            COPY "wodmap.sl".
+           COPY "tmp-wod-exe.sl".
+           COPY "tmp-exe.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
@@ -47,6 +49,8 @@
            COPY "tmp-exe-effort.fd".
            COPY "wodbook.fd".
            COPY "wodmap.fd".
+           COPY "tmp-wod-exe.fd".
+           COPY "tmp-exe.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -115,6 +119,7 @@
                   USAGE IS HANDLE OF WINDOW.
        77 como-qta         PIC  9(6).
        77 link-stampante   PIC  x(200).
+       77 como-effort      PIC  99.
        77 AUTO-ID          PIC  9(6)
                   VALUE IS 0,00.
        77 BOTTONE-annulla-BMP          PIC  S9(9)
@@ -122,6 +127,13 @@
                   VALUE IS 0.
        77 Form1-Tb-1-Handlea
                   USAGE IS HANDLE OF WINDOW.
+       01 tab-exe.
+           05 el-exe
+                      OCCURS 20 TIMES.
+               10 el-exe-code      PIC  x(5).
+               10 el-exe-desc      PIC  x(100).
+               10 el-exe-used      PIC  9.
+               10 el-exe-effort    PIC  99.
        01 tab-wod-exe.
            05 el-wod-day
                       OCCURS 7 TIMES.
@@ -133,6 +145,8 @@
                    15 el-wod-exe-effort            PIC  9.
        77 RigheIniziali    PIC  9(3).
        77 lastIdx          PIC  9(3).
+       77 idx1 PIC  9(3).
+       77 idx2 PIC  9(3).
        77 idx-days         PIC  9(3).
        77 idx-split        PIC  9(3).
        77 como-x           PIC  x.
@@ -144,12 +158,6 @@
        01 tab-mcg.
            05 el-mcg-desc      PIC  x(100)
                       OCCURS 10 TIMES.
-       01 tab-exercises.
-           05 el-tab-exercises
-                      OCCURS 20 TIMES.
-               10 el-exe-code      PIC  x(5).
-               10 el-exe-desc      PIC  x(100).
-               10 el-exe-used      PIC  9.
        77 tot-gruppi       PIC  999.
        77 idx-gruppi       PIC  999.
        01 tab-mgroups.
@@ -237,6 +245,12 @@
        77 STATUS-wodmap    PIC  X(2).
            88 Valid-STATUS-wodmap VALUE IS "00" THRU "09". 
        77 cb-mg6-buf       PIC  X(100).
+       77 path-tmp-wod-exe PIC  X(256).
+       77 STATUS-tmp-wod-exe           PIC  X(2).
+           88 Valid-STATUS-tmp-wod-exe VALUE IS "00" THRU "09". 
+       77 path-tmp-exe     PIC  X(256).
+       77 STATUS-tmp-exe   PIC  X(2).
+           88 Valid-STATUS-tmp-exe VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -252,9 +266,11 @@
        77 TMP-DataSet1-intensity-BUF     PIC X(1188).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
-       77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(118).
+       77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
-       77 TMP-DataSet1-wodmap-BUF     PIC X(1225).
+       77 TMP-DataSet1-wodmap-BUF     PIC X(1444).
+       77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(112).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(109).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -300,17 +316,26 @@
        77 DataSet1-wodmap-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-wodmap-KEY-Asc  VALUE "A".
           88 DataSet1-wodmap-KEY-Desc VALUE "D".
+       77 DataSet1-tmp-wod-exe-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-tmp-wod-exe-LOCK  VALUE "Y".
+       77 DataSet1-tmp-wod-exe-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-tmp-wod-exe-KEY-Asc  VALUE "A".
+          88 DataSet1-tmp-wod-exe-KEY-Desc VALUE "D".
+       77 DataSet1-tmp-exe-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-tmp-exe-LOCK  VALUE "Y".
+       77 DataSet1-tmp-exe-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-tmp-exe-KEY-Asc  VALUE "A".
+          88 DataSet1-tmp-exe-KEY-Desc VALUE "D".
 
        77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
        77 groups-grp-k-desc-SPLITBUF  PIC X(101).
        77 intensity-int-k-desc-SPLITBUF  PIC X(101).
-       77 intensity-int-kj-effort-SPLITBUF  PIC X(5).
+       77 intensity-int-k-effort-SPLITBUF  PIC X(3).
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
-       77 tmp-exe-effort-tee-k-mcg-eff-SPLITBUF  PIC X(8).
-       77 tmp-exe-effort-tee-k-exe-multi-SPLITBUF  PIC X(7).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
+       77 tmp-wod-exe-twe-k-effort-SPLITBUF  PIC X(7).
 
        78  78-col-data       value 1. 
        78  78-col-art        value 2. 
@@ -794,7 +819,7 @@
            pb-genera, 
            Push-Button, 
            COL 80,00, 
-           LINE 10,00,
+           LINE 9,91,
            LINES 3,30 ,
            SIZE 26,40 ,
            EXCEPTION-VALUE 1000,
@@ -1352,6 +1377,10 @@
       *    PERFORM OPEN-tmp-exe-effort
            PERFORM OPEN-wodbook
            PERFORM OPEN-wodmap
+      *    tmp-wod-exe OPEN MODE IS FALSE
+      *    PERFORM OPEN-tmp-wod-exe
+      *    tmp-exe OPEN MODE IS FALSE
+      *    PERFORM OPEN-tmp-exe
       *    After Open
            .
 
@@ -1458,6 +1487,30 @@
       * <TOTEM:END>
            .
 
+       OPEN-tmp-wod-exe.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-wod-exe, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  OUTPUT tmp-wod-exe
+           IF NOT Valid-STATUS-tmp-wod-exe
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-wod-exe, AfterOpen>
+      * <TOTEM:END>
+           .
+
+       OPEN-tmp-exe.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-exe, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  OUTPUT tmp-exe
+           IF NOT Valid-STATUS-tmp-exe
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-exe, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-exercises
@@ -1469,6 +1522,10 @@
       *    PERFORM CLOSE-tmp-exe-effort
            PERFORM CLOSE-wodbook
            PERFORM CLOSE-wodmap
+      *    tmp-wod-exe CLOSE MODE IS FALSE
+      *    PERFORM CLOSE-tmp-wod-exe
+      *    tmp-exe CLOSE MODE IS FALSE
+      *    PERFORM CLOSE-tmp-exe
       *    After Close
            .
 
@@ -1517,6 +1574,16 @@
       * <TOTEM:EPT. INIT:gwod, FD:wodmap, BeforeClose>
       * <TOTEM:END>
            CLOSE wodmap
+           .
+
+       CLOSE-tmp-wod-exe.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-wod-exe, BeforeClose>
+      * <TOTEM:END>
+           .
+
+       CLOSE-tmp-exe.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-exe, BeforeClose>
+      * <TOTEM:END>
            .
 
        exercises-exe-k-desc-MERGE-SPLITBUF.
@@ -1857,10 +1924,9 @@
            MOVE int-desc(1:100) TO intensity-int-k-desc-SPLITBUF(1:100)
            .
 
-       intensity-int-kj-effort-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-kj-effort-SPLITBUF
-           MOVE int-effort(1:2) TO intensity-int-kj-effort-SPLITBUF(1:2)
-           MOVE int-key(1:2) TO intensity-int-kj-effort-SPLITBUF(3:2)
+       intensity-int-k-effort-MERGE-SPLITBUF.
+           INITIALIZE intensity-int-k-effort-SPLITBUF
+           MOVE int-effort(1:2) TO intensity-int-k-effort-SPLITBUF(1:2)
            .
 
        DataSet1-intensity-INITSTART.
@@ -1925,7 +1991,7 @@
               KEY int-key
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
+           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT 
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -1954,7 +2020,7 @@
               END-IF
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
+           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -1983,7 +2049,7 @@
               END-IF
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
+           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -2346,22 +2412,6 @@
            MOVE "DELETE" TO TOTEM-ERR-MODE
       * <TOTEM:EPT. FD:DataSet1, FD:duration, AfterDelete>
       * <TOTEM:END>
-           .
-
-       tmp-exe-effort-tee-k-mcg-eff-MERGE-SPLITBUF.
-           INITIALIZE tmp-exe-effort-tee-k-mcg-eff-SPLITBUF
-           MOVE tee-mcg-code(1:5) TO 
-           tmp-exe-effort-tee-k-mcg-eff-SPLITBUF(1:5)
-           MOVE tee-int-effort(1:2) TO 
-           tmp-exe-effort-tee-k-mcg-eff-SPLITBUF(6:2)
-           .
-
-       tmp-exe-effort-tee-k-exe-multi-MERGE-SPLITBUF.
-           INITIALIZE tmp-exe-effort-tee-k-exe-multi-SPLITBUF
-           MOVE tee-exe-isMulti(1:1) TO 
-           tmp-exe-effort-tee-k-exe-multi-SPLITBUF(1:1)
-           MOVE tee-mcg-code(1:5) TO 
-           tmp-exe-effort-tee-k-exe-multi-SPLITBUF(2:5)
            .
 
        DataSet1-tmp-exe-effort-INITSTART.
@@ -2841,6 +2891,240 @@
       * <TOTEM:END>
            .
 
+       tmp-wod-exe-twe-k-effort-MERGE-SPLITBUF.
+           INITIALIZE tmp-wod-exe-twe-k-effort-SPLITBUF
+           MOVE twe-exe-isMulti(1:1) TO 
+           tmp-wod-exe-twe-k-effort-SPLITBUF(1:1)
+           MOVE twe-mcg-code(1:5) TO 
+           tmp-wod-exe-twe-k-effort-SPLITBUF(2:5)
+           .
+
+       DataSet1-tmp-wod-exe-INITSTART.
+           IF DataSet1-tmp-wod-exe-KEY-Asc
+              MOVE Low-Value TO twe-key
+           ELSE
+              MOVE High-Value TO twe-key
+           END-IF
+           .
+
+       DataSet1-tmp-wod-exe-INITEND.
+           IF DataSet1-tmp-wod-exe-KEY-Asc
+              MOVE High-Value TO twe-key
+           ELSE
+              MOVE Low-Value TO twe-key
+           END-IF
+           .
+
+      * tmp-wod-exe
+       DataSet1-tmp-wod-exe-START.
+           IF DataSet1-tmp-wod-exe-KEY-Asc
+              START tmp-wod-exe KEY >= twe-key
+           ELSE
+              START tmp-wod-exe KEY <= twe-key
+           END-IF
+           .
+
+       DataSet1-tmp-wod-exe-START-NOTGREATER.
+           IF DataSet1-tmp-wod-exe-KEY-Asc
+              START tmp-wod-exe KEY <= twe-key
+           ELSE
+              START tmp-wod-exe KEY >= twe-key
+           END-IF
+           .
+
+       DataSet1-tmp-wod-exe-START-GREATER.
+           IF DataSet1-tmp-wod-exe-KEY-Asc
+              START tmp-wod-exe KEY > twe-key
+           ELSE
+              START tmp-wod-exe KEY < twe-key
+           END-IF
+           .
+
+       DataSet1-tmp-wod-exe-START-LESS.
+           IF DataSet1-tmp-wod-exe-KEY-Asc
+              START tmp-wod-exe KEY < twe-key
+           ELSE
+              START tmp-wod-exe KEY > twe-key
+           END-IF
+           .
+
+       DataSet1-tmp-wod-exe-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, BeforeReadRecord>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-wod-exe-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, BeforeReadNext>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-wod-exe-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, BeforeReadPrev>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-wod-exe-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, BeforeWrite>
+      * <TOTEM:END>
+           WRITE twe-rec OF tmp-wod-exe.
+           MOVE STATUS-tmp-wod-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-wod-exe" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-wod-exe-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-wod-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-wod-exe" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-wod-exe-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-wod-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-wod-exe" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-wod-exe, AfterDelete>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-INITSTART.
+           IF DataSet1-tmp-exe-KEY-Asc
+              MOVE Low-Value TO tex-key
+           ELSE
+              MOVE High-Value TO tex-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-INITEND.
+           IF DataSet1-tmp-exe-KEY-Asc
+              MOVE High-Value TO tex-key
+           ELSE
+              MOVE Low-Value TO tex-key
+           END-IF
+           .
+
+      * tmp-exe
+       DataSet1-tmp-exe-START.
+           IF DataSet1-tmp-exe-KEY-Asc
+              START tmp-exe KEY >= tex-key
+           ELSE
+              START tmp-exe KEY <= tex-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-START-NOTGREATER.
+           IF DataSet1-tmp-exe-KEY-Asc
+              START tmp-exe KEY <= tex-key
+           ELSE
+              START tmp-exe KEY >= tex-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-START-GREATER.
+           IF DataSet1-tmp-exe-KEY-Asc
+              START tmp-exe KEY > tex-key
+           ELSE
+              START tmp-exe KEY < tex-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-START-LESS.
+           IF DataSet1-tmp-exe-KEY-Asc
+              START tmp-exe KEY < tex-key
+           ELSE
+              START tmp-exe KEY > tex-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeReadRecord>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeReadNext>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeReadPrev>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeWrite>
+      * <TOTEM:END>
+           WRITE tex-rec OF tmp-exe.
+           MOVE STATUS-tmp-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-exe" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-exe" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-exe" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE grp-rec OF groups
@@ -2850,6 +3134,8 @@
            INITIALIZE tee-rec OF tmp-exe-effort
            INITIALIZE wod-rec OF wodbook
            INITIALIZE wom-rec OF wodmap
+           INITIALIZE twe-rec OF tmp-wod-exe
+           INITIALIZE tex-rec OF tmp-exe
            .
 
 
@@ -2989,6 +3275,22 @@
                          ALPHABETIC    DATA BY SPACES
            .
 
+      * FD's Initialize Paragraph
+       DataSet1-tmp-wod-exe-INITREC.
+           INITIALIZE twe-rec OF tmp-wod-exe
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-tmp-exe-INITREC.
+           INITIALIZE tex-rec OF tmp-exe
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
       *
        DataSet1-DISPATCH-BUFTOFLD.
            EVALUATE TOTEM-Form-Index ALSO TOTEM-Frame-Index
@@ -3123,7 +3425,6 @@
                     read macrogroups next at end exit perform end-read
 
                     add 1 to tot-mcg 
-                    move mcg-desc to el-mcg-desc(tot-mcg)
 
                     modify cb-mg1, item-to-add = mcg-desc
                     modify cb-mg2, item-to-add = mcg-desc
@@ -5328,6 +5629,9 @@
            
            inquire cb-dur, value in dur-desc.
            read duration key dur-k-desc.
+           
+           inquire cb-wod, value in wom-desc.
+           read wodmap key wom-k-desc.
                  
            accept  como-data from century-date.
            accept  como-ora  from time.
@@ -5346,122 +5650,80 @@
            spaces.
            open output tmp-exe-effort.    
            close       tmp-exe-effort.
-           open i-o    tmp-exe-effort.              
+           open i-o    tmp-exe-effort.
+                 
+           accept  path-tmp-wod-exe from environment "PATH_ST".
+           inspect path-tmp-wod-exe replacing trailing spaces by 
+           low-value.
+           string  path-tmp-wod-exe delimited low-value
+                   "tmp-wod-exe_"   delimited size
+                   como-data        delimited size
+                   "_"              delimited size
+                   como-ora         delimited size
+              into path-tmp-wod-exe
+           end-string.                                                  
+                 
+           inspect path-tmp-wod-exe replacing trailing low-value by 
+           spaces.
+           open output tmp-wod-exe.
+           close       tmp-wod-exe.
+           open i-o    tmp-wod-exe.
+                 
+           accept  path-tmp-exe from environment "PATH_ST".
+           inspect path-tmp-exe replacing trailing spaces by low-value.
+           string  path-tmp-exe delimited low-value
+                   "tmp-exe_"   delimited size
+                   como-data    delimited size
+                   "_"          delimited size
+                   como-ora     delimited size
+              into path-tmp-exe
+           end-string.                                                  
+                 
+           inspect path-tmp-exe replacing trailing low-value by spaces.
+           open output tmp-exe.
+           close       tmp-exe.
+           open i-o    tmp-exe.
+              
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
-
-           perform LOAD-EXERCISES-ALLOWED-BY-EFFORT.
-           perform LOAD-EXERCISES-MACROGROUPS-MAP.
+                                     
+           initialize tex-rec replacing numeric data by zeroes 
+                                   alphanumeric data by spaces.         
+                                 
+           perform LOAD-EXERCISES-ALLOWED-BY-EFFORT. 
            perform LOAD-EXERCISES-MULTIJOINT.
+           perform LOAD-EXERCISES.
            
-           move 1 to riga
-           perform varying idx-days from 1 by 1 
-                     until idx-days > wom-days
-              if idx-days > 1
-                 add 1 to riga                           
-                 modify gd1(riga, 1), cell-data = "-----"
-                 modify gd1(riga, 2), cell-data = "-----"
-              end-if   
-              perform varying idx-split from 1 by 1 
-                        until idx-split > 9
-                 if el-wod-mcg(idx-days, idx-split) = spaces
-                    exit perform
-                 end-if         
-                 add 1 to riga                           
-                 modify gd1(riga, 1), cell-data = el-wod-mcg(idx-days, 
-           idx-split)     
-                 modify gd1(riga, 2), cell-data = 
-           el-wod-exe-code(idx-days, idx-split)
-                 modify gd1(riga, 3), cell-data = 
-           el-wod-exe-desc(idx-days, idx-split)
-              end-perform
-           end-perform.                              
-     
-      *****     |CARICO ESERCIZI MULTIARTICOLARI
-      *****     if cb-mul-buf = "Si"
-      *****        move 1 to riga
-      *****        initialize tab-exercises replacing numeric data by zeroes 
-      *****                                      alphanumeric data by spaces
-      *****        perform varying idx-gruppi from 1 by 1 
-      *****                  until idx-gruppi > tot-gruppi
-      *****           move el-mcg-code(idx-gruppi) to tee-mcg-code
-      *****           set  tee-exe-isMulti-yes to true            
-      *****           move 0 to idx
-      *****
-      *****           start tmp-exe-effort key >= tee-k-exe-multi
-      *****                 invalid continue
-      *****             not invalid
-      *****                 perform until 1 = 2        
-      *****                    read tmp-exe-effort next
-      *****                      at end exit perform 
-      *****                    end-read        
-      *****                    if tee-mcg-code not = el-mcg-code(idx-gruppi) or
-      *****                       tee-exe-isMulti-no
-      *****                       exit perform
-      *****                    end-if                
-      *****                    add 1 to idx
-      *****                    move tee-exe-code to el-exe-code(idx)
-      *****                    move tee-exe-desc to el-exe-desc(idx)
-      *****                    delete tmp-exe-effort record
-      *****                 end-perform
-      *****           end-start               
-      *****           if idx > 0                                    
-      *****              move idx to tot-exe tot-righe
-      *****              perform until 1 = 2
-      *****                 if tot-righe = 0
-      *****                    exit perform 
-      *****                 end-if
-      *****                 compute idx = function random * (tot-exe)
-      *****                 add 1 to idx
-      *****                 if el-exe-code(idx) not = spaces
-      *****                    add 1 to riga                                     
-      *****                    modify gd1 (riga, 1), cell-data = el-exe-code(idx)
-      *****                    modify gd1 (riga, 2), cell-data = el-exe-desc(idx)
-      *****                    move spaces to el-exe-code(idx)
-      *****                    subtract 1 from tot-righe
-      *****                 end-if
-      *****              end-perform
-      *****           end-if
-      *****        end-perform
-      *****     end-if.                
-
-      *****     move 1 to riga.
-      *****     perform varying idx-gruppi from 1 by 1 
-      *****               until idx-gruppi > tot-gruppi
-      *****        move el-mcg-code(idx-gruppi) to tee-mcg-code
-      *****        move high-value to tee-int-effort
-      *****        start tmp-exe-effort key <= tee-k-mcg-eff
-      *****              invalid continue
-      *****          not invalid
-      *****              perform until 1 = 2
-      *****                 if el-exercises-ok(idx-gruppi) = el-exercises(idx-gruppi)
-      *****                    exit perform
-      *****                 end-if
-      *****                 if tee-exe-isMulti-no
-      *****                 read tmp-exe-effort previous 
-      *****                   at end exit perform 
-      *****                 end-read
-      *****                 if tee-mcg-code not = el-mcg-code(idx-gruppi)
-      *****                    exit perform
-      *****                 end-if                
-      *****                 add 1 to riga el-exercises-ok(idx-gruppi)
-      *****                 modify gd1(riga, 1), cell-data tee-exe-desc
-      *****                 delete tmp-exe-effort record
-      *****              end-perform
-      *****         end-start
-      *****     end-perform.  
-
+           move low-value to tex-rec.
+           start tmp-exe key >= tex-key
+                 invalid continue 
+             not invalid
+                 move 1 to riga
+                 perform until 1 = 2
+                    read tmp-exe next at end exit perform end-read
+      *              if tex-day > 1
+      *                 add 1 to riga                           
+      *                 modify gd1(riga, 1), cell-data = "-----"
+      *                 modify gd1(riga, 2), cell-data = "-----"
+      *              end-if      
+                    add 1 to riga                           
+                    modify gd1(riga, 1), cell-data = tex-exe-code
+                    modify gd1(riga, 2), cell-data = tex-exe-desc
+                 end-perform
+           end-start.
+                                      
            close       tmp-exe-effort.
            delete file tmp-exe-effort.
+
+           close       tmp-wod-exe.
+           delete file tmp-wod-exe.
+
+           close       tmp-exe.
+           delete file tmp-exe.
                                                     
       ***---     
-      * Load a temporary file that contains only valid exercises filtered
-      * by intensity. If choosen "Hard", valid exercise has and effort
-      * (intensity table = 3 ) minor/equal, like "Hard" (effort 3), 
-      * "Medium" (effort 2) or "Light" (effort 1)
        LOAD-EXERCISES-ALLOWED-BY-EFFORT.
            move low-value to exe-key.
-           move 0 to tee-prg.
            start exercises key >= exe-key
                  invalid continue
              not invalid
@@ -5471,154 +5733,85 @@
                     read intensity no lock
                     move exe-grp-code to grp-code
                     read groups no lock
+                    if exe-isMulti-yes and cb-mul-buf = "No"
+                       exit perform cycle
+                    end-if                            
                     if int-effort <= effort-wod or 
                        exe-isMulti-yes and cb-mul-buf = "Si"
                        perform varying idx-gruppi from 1 by 1 
                                  until idx-gruppi > tot-gruppi
                           if el-mcg-code(idx-gruppi) = grp-mcg-code
-                             if exe-isMulti-yes and cb-mul-buf = "No"
-                                exit perform cycle
-                             end-if
-                             add 1 to tee-prg                  
-                             move exe-code     to tee-exe-code
-                             move exe-desc     to tee-exe-desc
-                             move grp-mcg-code to tee-mcg-code
-                             move int-effort   to tee-int-effort
-                             move exe-isMulti  to tee-exe-isMulti
-                             write tee-rec
+                             move exe-code     to twe-exe-code
+                             move exe-desc     to twe-exe-desc
+                             move grp-mcg-code to twe-mcg-code
+                             move int-effort   to twe-effort
+                             move exe-isMulti  to twe-exe-isMulti
+                             write twe-rec 
                           end-if
                        end-perform
                     end-if
                  end-perform
-           end-start.                             
-
-      ***---     
-      * Starting from wodmap, substitute sign "A" with first macrogroups 
-      * selected (and so on) and expands it by the number of exercises 
-      * (for the group) indicated (duration table)
-      * E.g. day 1 split (wodmap) A - B - C 
-      *                  duration 4 - 2 - 2 
-      *           selected groups PET - GMB - ARM 
-      * result (tab-wod-exe, bidimensional) = PET,PET,PET,PET | GMB,GMB | ARM, ARM
-       LOAD-EXERCISES-MACROGROUPS-MAP.
-           perform varying idx-days from 1 by 1 
-                     until idx-days > wom-days
-              move 0 to LastIdx
-              perform varying idx-split from 1 by 1 
-                        until idx-split > 9
-                 if wom-split-el-split-sigla(idx-days, idx-split) = 0
-                    exit perform
-                 end-if
-                 move 0 to idx 
-                 evaluate idx-split
-                 when 1 move dur-exercises1 to tot-righe
-                 when 2 move dur-exercises2 to tot-righe
-                 when 3 move dur-exercises3 to tot-righe
-                 when 4 move dur-exercises4 to tot-righe
-                 when 5 move dur-exercises5 to tot-righe
-                 end-evaluate
-                 perform tot-righe times
-                    add 1 to lastIdx
-                    evaluate wom-split-el-split-sigla(idx-days, 
-           idx-split)
-                    when "A" 
-                         move el-mcg-code(1) to el-wod-mcg(idx-days, 
-           lastIdx)
-                         perform INTENSITY-PER-MACROGROUPS
-                    when "B" 
-                         move el-mcg-code(2) to el-wod-mcg(idx-days, 
-           lastIdx)
-                         perform INTENSITY-PER-MACROGROUPS
-                    when "C" 
-                         move el-mcg-code(3) to el-wod-mcg(idx-days, 
-           lastIdx)
-                         perform INTENSITY-PER-MACROGROUPS
-                    when "D" 
-                         move el-mcg-code(4) to el-wod-mcg(idx-days, 
-           lastIdx)
-                         perform INTENSITY-PER-MACROGROUPS
-                    when "E" 
-                         move el-mcg-code(5) to el-wod-mcg(idx-days, 
-           lastIdx)
-                         perform INTENSITY-PER-MACROGROUPS
-                    when "F" 
-                         move el-mcg-code(6) to el-wod-mcg(idx-days, 
-           lastIdx)
-                         perform INTENSITY-PER-MACROGROUPS
-                    end-evaluate
-                 end-perform
-              end-perform                                 
-           end-perform.         
-
-      ***---
-       INTENSITY-PER-MACROGROUPS.
-           if idx not = 0 exit paragraph end-if.  
+           end-start.           
        
       ***---
-      * Starting from valid exercises (tmp table) fills the grid
-      * corresponding with multi exercise.
-      * Phase 1: Scroll occurs (tab-macrogroups), for every macgroups:
-      *    read tmp (filtered by macrogroups and multijoint active)
-      *    and add the exercise found (code/description) in the relative
-      *    occurs tab-exercises, monodimensional.    
-      *    The result will be
-      *    an occurs (tab-exercise, monodimensional) filled with only
-      *    multijoint exercises with selected macrogroups     
-      * Phase 2:  (only if exercises found). Scrolling the occurs tab-wod-exe 
-      *    searching corresponding macrogroups analyzed fo every day, 
-      *    select a random exercise from tab-exercises, then deletes the
-      *    value (to avoid duplicate) and subtracts 1 from tot-exe. 
-      *    When tot-exe is 0 exits, that menas the exercises are fully selected
        LOAD-EXERCISES-MULTIJOINT.                  
            if cb-mul-buf = "No" exit paragraph end-if.
-                                                                  
+                                    
            perform varying idx-gruppi from 1 by 1 
                      until idx-gruppi > tot-gruppi
-              initialize tab-exercises replacing numeric data by zeroes 
-                                            alphanumeric data by spaces
-             |Phase 1
-              move el-mcg-code(idx-gruppi) to tee-mcg-code
-              set  tee-exe-isMulti-yes to true            
+              move low-value to twe-rec
+              move el-mcg-code(idx-gruppi) to twe-mcg-code
+              set twe-exe-isMulti-yes to true
               move 0 to tot-exe
 
-              start tmp-exe-effort key >= tee-k-exe-multi
+              start tmp-wod-exe key >= twe-key
                     invalid continue
                 not invalid
                     perform until 1 = 2        
-                       read tmp-exe-effort next
+                       read tmp-wod-exe next
                          at end exit perform 
                        end-read        
-                       if tee-mcg-code not = el-mcg-code(idx-gruppi) or
-                          tee-exe-isMulti-no
+                       if twe-mcg-code not = el-mcg-code(idx-gruppi) or
+                          twe-exe-isMulti-no
                           exit perform
-                       end-if                
-                       add 1 to tot-exe
-                       move tee-exe-code to el-exe-code(tot-exe)
-                       move tee-exe-desc to el-exe-desc(tot-exe)
+                       end-if
+                       add 1 to tot-exe    
+                       move twe-exe-code   to el-exe-code(tot-exe)
+                       move twe-exe-desc   to el-exe-desc(tot-exe)
+                       move 0              to el-exe-used(tot-exe)
                     end-perform
-              end-start               
-             |Phase 2                                        
-              if tot-exe > 0    
-                 move tot-exe to ex-remain
+              end-start
+
+             |Phase 2
+              if tot-exe > 0
+                 move tot-exe to ex-remain  
                  perform varying idx-days from 1 by 1 
                            until idx-days > wom-days
                     perform varying idx-split from 1 by 1 
                               until idx-split > 9
-                       if el-wod-mcg(idx-days, idx-split) = spaces
-                          exit perform
-                       end-if         
-                       if el-wod-mcg(idx-days, idx-split) = 
-                          el-mcg-code(idx-gruppi)      
+
+                       evaluate wom-split-el-split-sigla(idx-days, 
+           idx-split)
+                       when "A" move el-mcg-code(1) to mcg-code
+                       when "B" move el-mcg-code(2) to mcg-code
+                       when "C" move el-mcg-code(3) to mcg-code
+                       when "D" move el-mcg-code(4) to mcg-code
+                       when "E" move el-mcg-code(5) to mcg-code
+                       when "F" move el-mcg-code(6) to mcg-code
+                       when other exit perform
+                       end-evaluate
+                       if el-mcg-code(idx-gruppi) = mcg-code
                           perform until 1 = 2
                              compute idx = function random * (tot-exe)
                              add 1 to idx
                              if el-exe-used(idx) = 0 or
-                                ex-remain = 0                           
-                     
-                                move el-exe-code(idx) to 
-           el-wod-exe-code(idx-days, idx-split)
-                                move el-exe-desc(idx) to 
-           el-wod-exe-desc(idx-days, idx-split)
+                                ex-remain = 0
+                                move idx-days         to tex-day
+                                move idx-split        to tex-prg
+                                move el-exe-code(idx) to tex-exe-code
+                                move el-exe-desc(idx) to tex-exe-desc
+                                write tex-rec
+
                                 move 1                to 
            el-exe-used(idx)
                                 subtract 1 from ex-remain
@@ -5630,6 +5823,77 @@
                     end-perform
                  end-perform
               end-if
+           end-perform.
+
+      ***---
+       LOAD-EXERCISES.      
+           perform varying idx-days from 1 by 1 
+                     until idx-days > wom-days
+              perform varying idx-split from 1 by 1 
+                        until idx-split > 9 
+                 move idx-days  to tex-day
+                 move idx-split to tex-prg
+                 read tmp-exe
+                      invalid continue
+                  not invalid exit perform cycle |Salto i multi se già messi
+                 end-read
+
+                 move low-value to twe-rec
+                 set twe-exe-isMulti-no to true
+
+                 evaluate wom-split-el-split-sigla(idx-days, idx-split)
+                 when "A" move el-mcg-code(1) to mcg-code twe-mcg-code
+                 when "B" move el-mcg-code(2) to mcg-code twe-mcg-code
+                 when "C" move el-mcg-code(3) to mcg-code twe-mcg-code
+                 when "D" move el-mcg-code(4) to mcg-code twe-mcg-code
+                 when "E" move el-mcg-code(5) to mcg-code twe-mcg-code
+                 when "F" move el-mcg-code(6) to mcg-code twe-mcg-code
+                 when other exit perform
+                 end-evaluate             
+
+                 move wom-split-el-split-effort(idx-days, idx-split)
+                   to twe-effort como-effort
+
+                 move 0 to tot-exe
+
+                 start tmp-wod-exe key >= twe-key
+                       invalid continue
+                   not invalid
+                       perform until 1 = 2
+                          read tmp-wod-exe next at end exit perform 
+           end-read
+                          if twe-mcg-code  not = mcg-code or
+                             twe-exe-isMulti-yes          or
+                             twe-effort    not = como-effort
+                             exit perform
+                          end-if 
+                          add 1 to tot-exe    
+                          move twe-exe-code to el-exe-code(tot-exe)
+                          move twe-exe-desc to el-exe-desc(tot-exe)
+                          move twe-effort   to el-exe-effort(tot-exe)
+                          move 0            to el-exe-used(tot-exe)
+                       end-perform
+                  end-start
+
+                  if tot-exe > 0
+                     perform until 1 = 2
+                        compute idx = function random * (tot-exe)
+                        add 1 to idx
+                        if el-exe-used(idx) = 0 or
+                           ex-remain = 0
+                           move idx-days         to tex-day
+                           move idx-split        to tex-prg
+                           move el-exe-code(idx) to tex-exe-code
+                           move el-exe-desc(idx) to tex-exe-desc
+                           write tex-rec
+                  
+                           move 1                to el-exe-used(idx)
+                           subtract 1 from ex-remain
+                           exit perform
+                        end-if
+                     end-perform 
+                  end-if
+              end-perform
            end-perform 
            .
       * <TOTEM:END>

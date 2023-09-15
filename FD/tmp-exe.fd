@@ -1,0 +1,9 @@
+      *(( XFD FILE = tmp-exe ))
+       FD  tmp-exe.
+       01 tex-rec.
+           05 tex-key.
+               10 tex-day          PIC  9.
+               10 tex-prg          PIC  9(3).
+           05 tex-data.
+               10 tex-exe-code     PIC  x(5).
+               10 tex-exe-desc     PIC  x(100).

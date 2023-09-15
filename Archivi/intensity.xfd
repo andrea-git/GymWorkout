@@ -46,22 +46,17 @@
       </xfd:key-columns>
     </xfd:key>
     <xfd:key
-         xfd:segment-count="2"
+         xfd:segment-count="1"
          xfd:duplicates-allowed="true">
       <xfd:segments>
         <xfd:segment
              xfd:segment-size="2"
              xfd:segment-offset="114"/>
-        <xfd:segment
-             xfd:segment-size="2"
-             xfd:segment-offset="0"/>
       </xfd:segments>
       <xfd:key-columns
-           xfd:key-column-count="2">
+           xfd:key-column-count="1">
         <xfd:key-column
              xfd:key-column-name="INT-EFFORT"/>
-        <xfd:key-column
-             xfd:key-column-name="INT-CODE"/>
       </xfd:key-columns>
     </xfd:key>
   </xfd:keys>

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 15 settembre 2023 00:14:16.
+       DATE-WRITTEN.        venerdì 15 settembre 2023 16:04:27.
        REMARKS.
       *{TOTEM}END
 
@@ -97,6 +97,9 @@
        77 idx-split        PIC  99.
        77 form1-Handle
                   USAGE IS HANDLE OF WINDOW.
+       77 como-effort      PIC  999.
+       77 tot-exe          PIC  999.
+       77 tot-effort       PIC  999v999.
        01 gd-rec.
            05 col-split        PIC  x.
            05 col-effort       PIC  9.
@@ -125,6 +128,7 @@
        77 lab-int-buf      PIC  X(100).
        77 STATUS-intensity PIC  X(2).
            88 Valid-STATUS-intensity VALUE IS "00" THRU "09". 
+       77 lab-stimata-buf  PIC  X(20).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -185,7 +189,7 @@
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 intensity-int-k-desc-SPLITBUF  PIC X(101).
-       77 intensity-int-kj-effort-SPLITBUF  PIC X(5).
+       77 intensity-int-k-effort-SPLITBUF  PIC X(3).
       * FOR SPLIT KEY BUFFER
        77 DataSet1-wodmap-SPLIT-BUF2   PIC X(101).
 
@@ -740,7 +744,7 @@
            LINE 9,39,
            LINES 0,90 ,
            SIZE 12,10 ,
-           ID IS 9,
+           ID IS 19,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -756,7 +760,7 @@
            LINE 9,39,
            LINES 0,90 ,
            SIZE 12,10 ,
-           ID IS 9,
+           ID IS 20,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -772,7 +776,7 @@
            LINE 9,39,
            LINES 0,90 ,
            SIZE 12,10 ,
-           ID IS 9,
+           ID IS 23,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -788,7 +792,7 @@
            LINE 9,39,
            LINES 0,90 ,
            SIZE 12,10 ,
-           ID IS 9,
+           ID IS 24,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -804,7 +808,7 @@
            LINE 9,39,
            LINES 0,90 ,
            SIZE 12,10 ,
-           ID IS 9,
+           ID IS 25,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -820,7 +824,7 @@
            LINE 9,39,
            LINES 0,90 ,
            SIZE 12,10 ,
-           ID IS 9,
+           ID IS 26,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -836,12 +840,27 @@
            LINE 9,39,
            LINES 0,90 ,
            SIZE 12,10 ,
-           ID IS 9,
+           ID IS 27,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
            TRANSPARENT,
            TITLE "Giorno 5",
+           .
+
+      * LABEL
+       05
+           lab-stimata, 
+           Label, 
+           COL 14,50, 
+           LINE 7,74,
+           LINES 1,30 ,
+           SIZE 25,80 ,
+           ID IS 28,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-stimata-buf,
            .
 
       * TOOLBAR
@@ -1865,10 +1884,9 @@
            MOVE int-desc(1:100) TO intensity-int-k-desc-SPLITBUF(1:100)
            .
 
-       intensity-int-kj-effort-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-kj-effort-SPLITBUF
-           MOVE int-effort(1:2) TO intensity-int-kj-effort-SPLITBUF(1:2)
-           MOVE int-key(1:2) TO intensity-int-kj-effort-SPLITBUF(3:2)
+       intensity-int-k-effort-MERGE-SPLITBUF.
+           INITIALIZE intensity-int-k-effort-SPLITBUF
+           MOVE int-effort(1:2) TO intensity-int-k-effort-SPLITBUF(1:2)
            .
 
        DataSet1-intensity-INITSTART.
@@ -1933,7 +1951,7 @@
               KEY int-key
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
+           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT 
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -1962,7 +1980,7 @@
               END-IF
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
+           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -1991,7 +2009,7 @@
               END-IF
            END-IF
            PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
+           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
            MOVE STATUS-intensity TO TOTEM-ERR-STAT
            MOVE "intensity" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -3359,19 +3377,19 @@
                 move dur-desc to lab-durata-buf
                 display lab-durata
       
-           when 78-ID-ef-int
-                inquire ef-int value in int-code
-                read intensity no lock
-                     invalid
-                     set errori to true
-                     move spaces to int-desc    
-                     display message "Dato non valido"
-                               title tit-err
-                               type  mb-ok
-                               icon  mb-warning-icon
-                end-read
-                move int-desc to lab-int-buf
-                display lab-int
+      *****     when 78-ID-ef-int
+      *****          inquire ef-int value in int-code
+      *****          read intensity no lock
+      *****               invalid
+      *****               set errori to true
+      *****               move spaces to int-desc    
+      *****               display message "Dato non valido"
+      *****                         title tit-err
+      *****                         type  mb-ok
+      *****                         icon  mb-warning-icon
+      *****          end-read
+      *****          move int-desc to lab-int-buf
+      *****          display lab-int
            end-evaluate.
       
            if errori
@@ -3632,7 +3650,8 @@
            else                       
               perform FORM1-BUF-TO-FLD
               perform CANCELLA-COLORE 
-              perform WRITE-DAYS
+              perform WRITE-DAYS      
+              perform CALCOLA-INTENSITA  
                                      
               accept como-data from century-date
               accept como-ora  from time
@@ -3894,27 +3913,27 @@
            wom-split-el-split-effort(idx-day, idx-split)
                  when 2 modify gd2(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data 
+                        modify gd2(riga, 2), cell-data 
            wom-split-el-split-effort(idx-day, idx-split)
                  when 3 modify gd3(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data 
+                        modify gd3(riga, 2), cell-data 
            wom-split-el-split-effort(idx-day, idx-split)
                  when 4 modify gd4(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data 
+                        modify gd4(riga, 2), cell-data 
            wom-split-el-split-effort(idx-day, idx-split)
                  when 5 modify gd5(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data 
+                        modify gd5(riga, 2), cell-data 
            wom-split-el-split-effort(idx-day, idx-split)
                  when 6 modify gd6(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data 
+                        modify gd6(riga, 2), cell-data 
            wom-split-el-split-effort(idx-day, idx-split)
                  when 7 modify gd7(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data 
+                        modify gd7(riga, 2), cell-data 
            wom-split-el-split-effort(idx-day, idx-split)
                  end-evaluate
               end-perform
@@ -4030,6 +4049,41 @@
            when 6              
                 modify gd7, enabled false 
            end-evaluate 
+           .
+      * <TOTEM:END>
+
+       CALCOLA-INTENSITA.
+      * <TOTEM:PARA. CALCOLA-INTENSITA>
+           move 0 to como-effort.
+
+           perform varying idx-day from 1 by 1 
+                     until idx-day > wom-days
+               perform varying idx-split from 1 by 1 
+                         until idx-split> 20
+                  if wom-split-el-split-effort(idx-day, idx-split) = 0
+                     exit perform
+                  end-if
+                  add wom-split-el-split-effort(idx-day, idx-split) 
+                   to como-effort
+                  add 1 to tot-exe
+           end-perform.
+
+           compute tot-effort = como-effort / tot-exe.
+
+           if tot-effort < 1,5
+              move 1 to int-effort
+           else
+              if tot-effort < 2,5            
+                 move 2 to int-effort ef-int-buf
+              else                              
+                 move 3 to int-effort
+              end-if
+           end-if.
+           
+           read intensity key int-k-effort.
+           move int-desc to lab-int-buf.
+           move int-code to ef-int-buf wom-int-code.
+           display ef-int lab-int 
            .
       * <TOTEM:END>
 

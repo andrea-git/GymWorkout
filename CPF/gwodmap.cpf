@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E79E21456-965-2110727708
+PROGRAM_UNIQUE_CODE=TOTEM-7E79F13540-446-994025675
 
 {{@DESCRIPTION:
 
@@ -221,35 +222,37 @@ m_bFixed=1
 
 @}}
 [FDITEM19_WK]
-m_strName=gd-rec
-m_nItemLevel=1
+m_strName=como-effort
+m_strRawPic=999
+m_strPic=999
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM19_WK
 
 @}}
 [FDITEM20_WK]
-m_strName=col-split
-m_strRawPic=x
-m_strPic=x
-m_nItemLevel=5
+m_strName=tot-exe
+m_strRawPic=999
+m_strPic=999
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM20_WK
 
 @}}
 [FDITEM21_WK]
-m_strName=col-effort
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=5
+m_strName=tot-effort
+m_strRawPic=999v999
+m_strPic=999v999
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM21_WK
 
 @}}
 [FDITEM22_WK]
-m_strName=save-key
+m_strName=gd-rec
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
@@ -257,9 +260,9 @@ m_bFixed=1
 
 @}}
 [FDITEM23_WK]
-m_strName=save-code
-m_strRawPic=999
-m_strPic=999
+m_strName=col-split
+m_strRawPic=x
+m_strPic=x
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -267,56 +270,55 @@ m_bFixed=1
 
 @}}
 [FDITEM24_WK]
-m_strName=save-key-1
-m_nItemLevel=1
+m_strName=col-effort
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM24_WK
 
 @}}
 [FDITEM25_WK]
-m_strName=save-ragsoc-1
-m_strRawPic=x(50)
-m_strPic=x(50)
-m_nItemLevel=5
+m_strName=save-key
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM25_WK
 
 @}}
 [FDITEM26_WK]
-m_strName=STATUS-wodmap
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
+m_strName=save-code
+m_strRawPic=999
+m_strPic=999
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM26_WK
 
 @}}
 [FDITEM27_WK]
-m_strName=Valid-STATUS-wodmap
-m_nItemLevel=88
+m_strName=save-key-1
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM27_WK
 
 @}}
 [FDITEM28_WK]
-m_strName=AUTO-ID
-m_strRawPic=9(6)
-m_strPic=9(6)
-m_strDefaultValue=0
-m_nItemLevel=77
+m_strName=save-ragsoc-1
+m_strRawPic=x(50)
+m_strPic=x(50)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM28_WK
 
 @}}
 [FDITEM29_WK]
-m_strName=Calibri14-Occidentale
-m_nUsage=26
+m_strName=STATUS-wodmap
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -324,6 +326,35 @@ m_bFixed=1
 
 @}}
 [FDITEM30_WK]
+m_strName=Valid-STATUS-wodmap
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM30_WK
+
+@}}
+[FDITEM31_WK]
+m_strName=AUTO-ID
+m_strRawPic=9(6)
+m_strPic=9(6)
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM31_WK
+
+@}}
+[FDITEM32_WK]
+m_strName=Calibri14-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM32_WK
+
+@}}
+[FDITEM33_WK]
 m_strName=Screen1-Bt-1-Handle
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -332,19 +363,19 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM30_WK
+{{@DataItem_m_strDescriptionFDITEM33_WK
 
 @}}
-[FDITEM31_WK]
+[FDITEM34_WK]
 m_strName=Calibri14B-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM31_WK
+{{@DataItem_m_strDescriptionFDITEM34_WK
 
 @}}
-[FDITEM32_WK]
+[FDITEM35_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -353,42 +384,13 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM32_WK
-
-@}}
-[FDITEM33_WK]
-m_strName=wom-note
-m_strRawPic=x(200)
-m_strPic=x(200)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM33_WK
-
-@}}
-[FDITEM34_WK]
-m_strName=STATUS-duration
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM34_WK
-
-@}}
-[FDITEM35_WK]
-m_strName=Valid-STATUS-duration
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM35_WK
 
 @}}
 [FDITEM36_WK]
-m_strName=lab-durata-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=wom-note
+m_strRawPic=x(200)
+m_strPic=x(200)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -396,9 +398,9 @@ m_bFixed=1
 
 @}}
 [FDITEM37_WK]
-m_strName=lab-int-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=STATUS-duration
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -406,22 +408,61 @@ m_bFixed=1
 
 @}}
 [FDITEM38_WK]
+m_strName=Valid-STATUS-duration
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM38_WK
+
+@}}
+[FDITEM39_WK]
+m_strName=lab-durata-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM39_WK
+
+@}}
+[FDITEM40_WK]
+m_strName=lab-int-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM40_WK
+
+@}}
+[FDITEM41_WK]
 m_strName=STATUS-intensity
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM38_WK
+{{@DataItem_m_strDescriptionFDITEM41_WK
 
 @}}
-[FDITEM39_WK]
+[FDITEM42_WK]
 m_strName=Valid-STATUS-intensity
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM39_WK
+{{@DataItem_m_strDescriptionFDITEM42_WK
+
+@}}
+[FDITEM43_WK]
+m_strName=lab-stimata-buf
+m_strRawPic=X(20)
+m_strPic=X(20)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM43_WK
 
 @}}
 
@@ -1847,7 +1888,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 9
+      ID                = 19
       Justification     = Center
       Label Offset      = 20
       Line              = 9,39
@@ -1880,7 +1921,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 9
+      ID                = 20
       Justification     = Center
       Label Offset      = 20
       Line              = 9,39
@@ -1913,7 +1954,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 9
+      ID                = 23
       Justification     = Center
       Label Offset      = 20
       Line              = 9,39
@@ -1946,7 +1987,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 9
+      ID                = 24
       Justification     = Center
       Label Offset      = 20
       Line              = 9,39
@@ -1979,7 +2020,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 9
+      ID                = 25
       Justification     = Center
       Label Offset      = 20
       Line              = 9,39
@@ -2012,7 +2053,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 9
+      ID                = 26
       Justification     = Center
       Label Offset      = 20
       Line              = 9,39
@@ -2045,7 +2086,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 9
+      ID                = 27
       Justification     = Center
       Label Offset      = 20
       Line              = 9,39
@@ -2057,6 +2098,40 @@ Begin Screen Form1
       Size Unit         = Default
       Tab Order         = 31
       Title             = "Giorno 5"
+      Transparent       = TRUE
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
+   Begin Label lab-stimata
+      SCREEN-COL        = 14,50
+      SCREEN-LINE       = 7,74
+      LOCK-CONTROL      = FALSE
+      LEVEL             = 5
+      (Name)            = lab-stimata
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 14,50
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 28
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 7,74
+      Lines             = 1,30
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 25,80
+      Size Unit         = Default
+      Tab Order         = 32
+      Title Picture     = X(20)
+      Title Variable    = lab-stimata-buf
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
@@ -2073,7 +2148,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 32
+      Tab Order         = 33
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -2761,7 +2836,7 @@ Begin Screen Form1
       Handle Variable   = Form1-St-1-Handle
       PANEL-WIDTHS      = ( 45, 23, 999 )
       PANEL-STYLE       = ( 1, 1, 1 )
-      Tab Order         = 33
+      Tab Order         = 34
    End
 End
 
@@ -3212,19 +3287,19 @@ BEGIN-TEXT
                 move dur-desc to lab-durata-buf
                 display lab-durata
       
-           when 78-ID-ef-int
-                inquire ef-int value in int-code
-                read intensity no lock
-                     invalid
-                     set errori to true
-                     move spaces to int-desc    
-                     display message "Dato non valido"
-                               title tit-err
-                               type  mb-ok
-                               icon  mb-warning-icon
-                end-read
-                move int-desc to lab-int-buf
-                display lab-int
+      *****     when 78-ID-ef-int
+      *****          inquire ef-int value in int-code
+      *****          read intensity no lock
+      *****               invalid
+      *****               set errori to true
+      *****               move spaces to int-desc    
+      *****               display message "Dato non valido"
+      *****                         title tit-err
+      *****                         type  mb-ok
+      *****                         icon  mb-warning-icon
+      *****          end-read
+      *****          move int-desc to lab-int-buf
+      *****          display lab-int
            end-evaluate.
       
            if errori
@@ -3496,7 +3571,8 @@ BEGIN-TEXT
            else                       
               perform FORM1-BUF-TO-FLD
               perform CANCELLA-COLORE 
-              perform WRITE-DAYS
+              perform WRITE-DAYS      
+              perform CALCOLA-INTENSITA  
                                      
               accept como-data from century-date
               accept como-ora  from time
@@ -3765,17 +3841,17 @@ BEGIN-TEXT
                  when 1 modify gd1(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd1(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
                  when 2 modify gd2(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd2(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
                  when 3 modify gd3(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd3(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
                  when 4 modify gd4(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd4(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
                  when 5 modify gd5(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd5(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
                  when 6 modify gd6(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd6(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
                  when 7 modify gd7(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd1(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
+                        modify gd7(riga, 2), cell-data wom-split-el-split-effort(idx-day, idx-split)
                  end-evaluate
               end-perform
            end-perform.           
@@ -3892,6 +3968,42 @@ BEGIN-TEXT
            when 6              
                 modify gd7, enabled false 
            end-evaluate.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = CALCOLA-INTENSITA
+BEGIN-TEXT
+           move 0 to como-effort.
+
+           perform varying idx-day from 1 by 1 
+                     until idx-day > wom-days
+               perform varying idx-split from 1 by 1 
+                         until idx-split> 20
+                  if wom-split-el-split-effort(idx-day, idx-split) = 0
+                     exit perform
+                  end-if
+                  add wom-split-el-split-effort(idx-day, idx-split) 
+                   to como-effort
+                  add 1 to tot-exe
+           end-perform.
+
+           compute tot-effort = como-effort / tot-exe.
+
+           if tot-effort < 1,5
+              move 1 to int-effort
+           else
+              if tot-effort < 2,5            
+                 move 2 to int-effort ef-int-buf
+              else                              
+                 move 3 to int-effort
+              end-if
+           end-if.
+           
+           read intensity key int-k-effort.
+           move int-desc to lab-int-buf.
+           move int-code to ef-int-buf wom-int-code.
+           display ef-int lab-int.
 END-TEXT
 END-DATA
 BEGIN-DATA

@@ -1,0 +1,12 @@
+      *(( XFD FILE = tmp-wod-exe ))
+       FD  tmp-wod-exe.
+       01 twe-rec.
+           05 twe-key.
+               10 twe-mcg-code     PIC  x(5).
+               10 twe-exe-isMulti  PIC  9.
+                   88 twe-exe-isMulti-yes VALUE IS 1. 
+                   88 twe-exe-isMulti-no VALUE IS 0. 
+               10 twe-effort       PIC  9.
+               10 twe-exe-code     PIC  x(5).
+           05 twe-data.
+               10 twe-exe-desc     PIC  x(100).

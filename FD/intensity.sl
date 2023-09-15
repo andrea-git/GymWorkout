@@ -6,5 +6,5 @@
            RECORD KEY   IS int-key
            ALTERNATE RECORD KEY IS int-k-desc = int-desc
            WITH DUPLICATES 
-           ALTERNATE RECORD KEY IS int-kj-effort = int-effort, int-key
+           ALTERNATE RECORD KEY IS int-k-effort = int-effort
            WITH DUPLICATES .

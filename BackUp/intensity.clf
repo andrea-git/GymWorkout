@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E798195625-486-1192114308
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E79F83751-230-177912236
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -202,11 +202,9 @@ m_strName=int-k-desc
 [SLKEYATOM0_SLINDEX0_]
 m_strName=int-desc
 [SLINDEX1_]
-m_strName=int-kj-effort
+m_strName=int-k-effort
 {{@Key_m_strDescriptionSLINDEX1_
 
 @}}
 [SLKEYATOM0_SLINDEX1_]
 m_strName=int-effort
-[SLKEYATOM1_SLINDEX1_]
-m_strName=int-key

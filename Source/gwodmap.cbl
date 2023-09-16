@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 15 settembre 2023 16:04:27.
+       DATE-WRITTEN.        sabato 16 settembre 2023 00:00:19.
        REMARKS.
       *{TOTEM}END
 
@@ -29,14 +29,14 @@
       *{TOTEM}FILE-CONTROL
            COPY "wodmap.sl".
            COPY "duration.sl".
-           COPY "intensity.sl".
+           COPY "intexe.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
       *{TOTEM}FILE
            COPY "wodmap.fd".
            COPY "duration.fd".
-           COPY "intensity.fd".
+           COPY "intexe.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -129,6 +129,8 @@
        77 STATUS-intensity PIC  X(2).
            88 Valid-STATUS-intensity VALUE IS "00" THRU "09". 
        77 lab-stimata-buf  PIC  X(20).
+       77 STATUS-intexe    PIC  X(2).
+           88 Valid-STATUS-intexe VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -161,7 +163,7 @@
        77 Form1-PKEYTMP   PIC X(3).
        77 TMP-DataSet1-wodmap-BUF     PIC X(1444).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
-       77 TMP-DataSet1-intensity-BUF     PIC X(1188).
+       77 TMP-DataSet1-intexe-BUF     PIC X(1188).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -180,16 +182,16 @@
        77 DataSet1-duration-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-duration-KEY-Asc  VALUE "A".
           88 DataSet1-duration-KEY-Desc VALUE "D".
-       77 DataSet1-intensity-LOCK-FLAG   PIC X VALUE SPACE.
-           88 DataSet1-intensity-LOCK  VALUE "Y".
-       77 DataSet1-intensity-KEY-ORDER  PIC X VALUE "A".
-          88 DataSet1-intensity-KEY-Asc  VALUE "A".
-          88 DataSet1-intensity-KEY-Desc VALUE "D".
+       77 DataSet1-intexe-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-intexe-LOCK  VALUE "Y".
+       77 DataSet1-intexe-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-intexe-KEY-Asc  VALUE "A".
+          88 DataSet1-intexe-KEY-Desc VALUE "D".
 
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
-       77 intensity-int-k-desc-SPLITBUF  PIC X(101).
-       77 intensity-int-k-effort-SPLITBUF  PIC X(3).
+       77 intexe-int-k-desc-SPLITBUF  PIC X(101).
+       77 intexe-int-k-effort-SPLITBUF  PIC X(3).
       * FOR SPLIT KEY BUFFER
        77 DataSet1-wodmap-SPLIT-BUF2   PIC X(101).
 
@@ -1331,7 +1333,7 @@
       *    Before Open
            PERFORM OPEN-wodmap
            PERFORM OPEN-duration
-           PERFORM OPEN-intensity
+           PERFORM OPEN-intexe
       *    After Open
            .
 
@@ -1366,15 +1368,15 @@
       * <TOTEM:END>
            .
 
-       OPEN-intensity.
-      * <TOTEM:EPT. INIT:gwodmap, FD:intensity, BeforeOpen>
+       OPEN-intexe.
+      * <TOTEM:EPT. INIT:gwodmap, FD:intexe, BeforeOpen>
       * <TOTEM:END>
-           OPEN  INPUT intensity
-           IF NOT Valid-STATUS-intensity
+           OPEN  INPUT intexe
+           IF NOT Valid-STATUS-intexe
               PERFORM  Form1-EXTENDED-FILE-STATUS
               GO TO EXIT-STOP-ROUTINE
            END-IF
-      * <TOTEM:EPT. INIT:gwodmap, FD:intensity, AfterOpen>
+      * <TOTEM:EPT. INIT:gwodmap, FD:intexe, AfterOpen>
       * <TOTEM:END>
            .
 
@@ -1382,7 +1384,7 @@
       *    Before Close
            PERFORM CLOSE-wodmap
            PERFORM CLOSE-duration
-           PERFORM CLOSE-intensity
+           PERFORM CLOSE-intexe
       *    After Close
            .
 
@@ -1398,10 +1400,10 @@
            CLOSE duration
            .
 
-       CLOSE-intensity.
-      * <TOTEM:EPT. INIT:gwodmap, FD:intensity, BeforeClose>
+       CLOSE-intexe.
+      * <TOTEM:EPT. INIT:gwodmap, FD:intexe, BeforeClose>
       * <TOTEM:END>
-           CLOSE intensity
+           CLOSE intexe
            .
 
        wodmap-wom-k-desc-MERGE-SPLITBUF.
@@ -1879,180 +1881,180 @@
       * <TOTEM:END>
            .
 
-       intensity-int-k-desc-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-k-desc-SPLITBUF
-           MOVE int-desc(1:100) TO intensity-int-k-desc-SPLITBUF(1:100)
+       intexe-int-k-desc-MERGE-SPLITBUF.
+           INITIALIZE intexe-int-k-desc-SPLITBUF
+           MOVE int-desc(1:100) TO intexe-int-k-desc-SPLITBUF(1:100)
            .
 
-       intensity-int-k-effort-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-k-effort-SPLITBUF
-           MOVE int-effort(1:2) TO intensity-int-k-effort-SPLITBUF(1:2)
+       intexe-int-k-effort-MERGE-SPLITBUF.
+           INITIALIZE intexe-int-k-effort-SPLITBUF
+           MOVE int-effort(1:2) TO intexe-int-k-effort-SPLITBUF(1:2)
            .
 
-       DataSet1-intensity-INITSTART.
-           IF DataSet1-intensity-KEY-Asc
+       DataSet1-intexe-INITSTART.
+           IF DataSet1-intexe-KEY-Asc
               MOVE Low-Value TO int-key
            ELSE
               MOVE High-Value TO int-key
            END-IF
            .
 
-       DataSet1-intensity-INITEND.
-           IF DataSet1-intensity-KEY-Asc
+       DataSet1-intexe-INITEND.
+           IF DataSet1-intexe-KEY-Asc
               MOVE High-Value TO int-key
            ELSE
               MOVE Low-Value TO int-key
            END-IF
            .
 
-      * intensity
-       DataSet1-intensity-START.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY >= int-key
+      * intexe
+       DataSet1-intexe-START.
+           IF DataSet1-intexe-KEY-Asc
+              START intexe KEY >= int-key
            ELSE
-              START intensity KEY <= int-key
+              START intexe KEY <= int-key
            END-IF
            .
 
-       DataSet1-intensity-START-NOTGREATER.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY <= int-key
+       DataSet1-intexe-START-NOTGREATER.
+           IF DataSet1-intexe-KEY-Asc
+              START intexe KEY <= int-key
            ELSE
-              START intensity KEY >= int-key
+              START intexe KEY >= int-key
            END-IF
            .
 
-       DataSet1-intensity-START-GREATER.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY > int-key
+       DataSet1-intexe-START-GREATER.
+           IF DataSet1-intexe-KEY-Asc
+              START intexe KEY > int-key
            ELSE
-              START intensity KEY < int-key
+              START intexe KEY < int-key
            END-IF
            .
 
-       DataSet1-intensity-START-LESS.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY < int-key
+       DataSet1-intexe-START-LESS.
+           IF DataSet1-intexe-KEY-Asc
+              START intexe KEY < int-key
            ELSE
-              START intensity KEY > int-key
+              START intexe KEY > int-key
            END-IF
            .
 
-       DataSet1-intensity-Read.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
+       DataSet1-intexe-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadRecord>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeReadRecord>
       * <TOTEM:END>
-           IF DataSet1-intensity-LOCK
-              READ intensity WITH LOCK 
+           IF DataSet1-intexe-LOCK
+              READ intexe WITH LOCK 
               KEY int-key
            ELSE
-              READ intensity WITH NO LOCK 
+              READ intexe WITH NO LOCK 
               KEY int-key
            END-IF
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT 
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           PERFORM intexe-int-k-desc-MERGE-SPLITBUF
+           PERFORM intexe-int-k-effort-MERGE-SPLITBUF
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT 
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadRecord>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterReadRecord>
       * <TOTEM:END>
            .
 
-       DataSet1-intensity-Read-Next.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
+       DataSet1-intexe-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadNext>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeReadNext>
       * <TOTEM:END>
-           IF DataSet1-intensity-KEY-Asc
-              IF DataSet1-intensity-LOCK
-                 READ intensity NEXT WITH LOCK
+           IF DataSet1-intexe-KEY-Asc
+              IF DataSet1-intexe-LOCK
+                 READ intexe NEXT WITH LOCK
               ELSE
-                 READ intensity NEXT WITH NO LOCK
+                 READ intexe NEXT WITH NO LOCK
               END-IF
            ELSE
-              IF DataSet1-intensity-LOCK
-                 READ intensity PREVIOUS WITH LOCK
+              IF DataSet1-intexe-LOCK
+                 READ intexe PREVIOUS WITH LOCK
               ELSE
-                 READ intensity PREVIOUS WITH NO LOCK
+                 READ intexe PREVIOUS WITH NO LOCK
               END-IF
            END-IF
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           PERFORM intexe-int-k-desc-MERGE-SPLITBUF
+           PERFORM intexe-int-k-effort-MERGE-SPLITBUF
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadNext>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterReadNext>
       * <TOTEM:END>
            .
 
-       DataSet1-intensity-Read-Prev.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
+       DataSet1-intexe-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadPrev>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeReadPrev>
       * <TOTEM:END>
-           IF DataSet1-intensity-KEY-Asc
-              IF DataSet1-intensity-LOCK
-                 READ intensity PREVIOUS WITH LOCK
+           IF DataSet1-intexe-KEY-Asc
+              IF DataSet1-intexe-LOCK
+                 READ intexe PREVIOUS WITH LOCK
               ELSE
-                 READ intensity PREVIOUS WITH NO LOCK
+                 READ intexe PREVIOUS WITH NO LOCK
               END-IF
            ELSE
-              IF DataSet1-intensity-LOCK
-                 READ intensity NEXT WITH LOCK
+              IF DataSet1-intexe-LOCK
+                 READ intexe NEXT WITH LOCK
               ELSE
-                 READ intensity NEXT WITH NO LOCK
+                 READ intexe NEXT WITH NO LOCK
               END-IF
            END-IF
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           PERFORM intexe-int-k-desc-MERGE-SPLITBUF
+           PERFORM intexe-int-k-effort-MERGE-SPLITBUF
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadPrev>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterReadPrev>
       * <TOTEM:END>
            .
 
-       DataSet1-intensity-Rec-Write.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeWrite>
+       DataSet1-intexe-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeWrite>
       * <TOTEM:END>
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "WRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterWrite>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterWrite>
       * <TOTEM:END>
            .
 
-       DataSet1-intensity-Rec-Rewrite.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRewrite>
+       DataSet1-intexe-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRewrite>
       * <TOTEM:END>
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "REWRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRewrite>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRewrite>
       * <TOTEM:END>
            .
 
-       DataSet1-intensity-Rec-Delete.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeDelete>
+       DataSet1-intexe-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeDelete>
       * <TOTEM:END>
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "DELETE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterDelete>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterDelete>
       * <TOTEM:END>
            .
 
        DataSet1-INIT-RECORD.
            INITIALIZE wom-rec OF wodmap
            INITIALIZE dur-rec OF duration
-           INITIALIZE int-rec OF intensity
+           INITIALIZE int-rec OF intexe
            .
 
 
@@ -2143,8 +2145,8 @@
            .
 
       * FD's Initialize Paragraph
-       DataSet1-intensity-INITREC.
-           INITIALIZE int-rec OF intensity
+       DataSet1-intexe-INITREC.
+           INITIALIZE int-rec OF intexe
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -2948,8 +2950,7 @@
            end-read.
            move dur-desc to lab-durata-buf.
            move wom-int-code to int-code.
-           read intensity no lock invalid move spaces to int-desc 
-           end-read.
+           read intexe no lock invalid move spaces to int-desc end-read.
            move int-desc to lab-int-buf.
            Perform VALORIZZA-OLD.
 
@@ -4080,7 +4081,7 @@
               end-if
            end-if.
            
-           read intensity key int-k-effort.
+           read intexe key int-k-effort.
            move int-desc to lab-int-buf.
            move int-code to ef-int-buf wom-int-code.
            display ef-int lab-int 

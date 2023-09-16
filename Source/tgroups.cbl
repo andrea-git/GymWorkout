@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tgroups.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 15 settembre 2023 18:47:11.
+       DATE-WRITTEN.        sabato 16 settembre 2023 01:07:32.
        REMARKS.
       *{TOTEM}END
 
@@ -86,6 +86,8 @@
                   USAGE IS COMP-4
                   VALUE IS 0.
        77 bmpNum           PIC  999.
+       77 como-ord         PIC  s9
+                  VALUE IS 0.
        01 rec-grid.
            05 col-codice       PIC  x(5).
            05 col-des          PIC  X(50).
@@ -138,6 +140,7 @@
           88 DataSet1-macrogroups-KEY-Desc VALUE "D".
 
        77 groups-grp-k-desc-SPLITBUF  PIC X(101).
+       77 groups-grp-k-mcg-SPLITBUF  PIC X(11).
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
 
        01 old-grp-rec.
@@ -346,19 +349,6 @@
            BITMAP-NUMBER BitmapNumZoom
            .
 
-      * BITMAP
-       05
-           Form1-Bt-1, 
-           Bitmap, 
-           COL 80,50, 
-           LINE 1,00,
-           LINES 64,00 ,
-           SIZE 48,00 ,
-           BITMAP-HANDLE LOGO_PICCOLO-BMP,
-           BITMAP-NUMBER 1,
-           ID IS 13,
-           .
-
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
@@ -435,7 +425,6 @@
       * <TOTEM:END>
            DESTROY Calibri14-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
-           CALL "w$bitmap" USING WBITMAP-DESTROY, LOGO_PICCOLO-BMP
       *    After-Program
            PERFORM I-O-BLOCCO
            EXIT PROGRAM TOTEM-PgmStatus
@@ -483,10 +472,6 @@
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
                    GIVING toolbar-bmp.
-      * Form1-Bt-1
-           COPY RESOURCE "LOGO_PICCOLO.BMP".
-           CALL "w$bitmap" USING WBITMAP-LOAD "LOGO_PICCOLO.BMP", 
-                   GIVING LOGO_PICCOLO-BMP.
            .
 
        INIT-RES.
@@ -555,6 +540,12 @@
        groups-grp-k-desc-MERGE-SPLITBUF.
            INITIALIZE groups-grp-k-desc-SPLITBUF
            MOVE grp-desc(1:100) TO groups-grp-k-desc-SPLITBUF(1:100)
+           .
+
+       groups-grp-k-mcg-MERGE-SPLITBUF.
+           INITIALIZE groups-grp-k-mcg-SPLITBUF
+           MOVE grp-mcg-code(1:5) TO groups-grp-k-mcg-SPLITBUF(1:5)
+           MOVE grp-key(1:5) TO groups-grp-k-mcg-SPLITBUF(6:5)
            .
 
        DataSet1-groups-INITSTART.
@@ -658,6 +649,7 @@
               END-IF
            END-EVALUATE
            PERFORM groups-grp-k-desc-MERGE-SPLITBUF
+           PERFORM groups-grp-k-mcg-MERGE-SPLITBUF
            MOVE STATUS-groups TO TOTEM-ERR-STAT 
            MOVE "groups" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -689,6 +681,7 @@
               END-IF
            END-EVALUATE
            PERFORM groups-grp-k-desc-MERGE-SPLITBUF
+           PERFORM groups-grp-k-mcg-MERGE-SPLITBUF
            MOVE STATUS-groups TO TOTEM-ERR-STAT
            MOVE "groups" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -720,6 +713,7 @@
               END-IF
            END-EVALUATE
            PERFORM groups-grp-k-desc-MERGE-SPLITBUF
+           PERFORM groups-grp-k-mcg-MERGE-SPLITBUF
            MOVE STATUS-groups TO TOTEM-ERR-STAT
            MOVE "groups" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -1027,6 +1021,7 @@
            perform ABILITA-TOOLBAR.
 
            perform INTESTAZIONE.
+           move 3 to como-ord.
            perform LOAD-RECORD.
 
            move 2  to event-data-2.
@@ -1536,6 +1531,9 @@
            WHEN Msg-Goto-Cell-Mouse ALSO 1 ALSO
                     Form1-Handle 
               PERFORM form1-gd-1-Ev-Msg-Goto-Cell-Mouse
+           WHEN Msg-Heading-Clicked ALSO 1 ALSO
+                    Form1-Handle 
+              PERFORM form1-gd-1-Ev-Msg-Heading-Clicked
            END-EVALUATE
            .
 
@@ -1718,33 +1716,95 @@
        LOAD-RECORD.
       * <TOTEM:PARA. LOAD-RECORD>
            modify form1-gd-1, mass-update = 1.
-           move low-value to grp-code.
-           start groups key is >= grp-key
-                  invalid continue
-              not invalid
-                  perform varying riga from 2 by 1
-                          until 1 = 2
-                     read groups next
-                          at end exit perform
-                      not at end
-                          move grp-code     to col-codice
-                          move grp-desc     to col-des  
-                          move grp-mcg-code to col-macro mcg-code
-                          read macrogroups  no lock invalid move spaces 
-           to mcg-desc end-read
-                          move mcg-desc  to col-mcg-desc
-                          modify form1-gd-1(riga, 1), cell-data 
-           col-codice
-                          modify form1-gd-1(riga, 2), cell-data col-des 
-            
-                          modify form1-gd-1(riga, 3), cell-data 
-           col-macro
-                          modify form1-gd-1(riga, 4), cell-data 
-           col-mcg-desc
-                     end-read                                           
-                  end-perform
-           end-start.
-           modify form1-gd-1, mass-update = 0 
+           perform FORM1-GD-1-CONTENT.
+           move 1 to riga.
+           evaluate como-ord                 
+           when  1
+                modify form1-gd-1(1, 1), cell-data "Codice <<"
+                move low-value to grp-rec
+                start groups key >= grp-key
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups next at end exit perform end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start
+           when -1                                  
+                modify form1-gd-1(1, 1), cell-data "Codice >>"
+                move high-value to grp-rec
+                start groups key <= grp-key
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups previous at end exit perform 
+           end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start
+           when  2                                           
+                modify form1-gd-1(1, 2), cell-data "Descrizione <<"
+                move low-value to grp-rec
+                start groups key >= grp-k-desc
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups next at end exit perform end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start
+           when -2                                                 
+                modify form1-gd-1(1, 2), cell-data "Descrizione >>"
+                move high-value to grp-rec
+                start groups key <= grp-k-desc
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups previous at end exit perform 
+           end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start                    
+           when  3                                                
+                modify form1-gd-1(1, 3), cell-data "Macro <<"
+                move low-value to grp-rec
+                start groups key >= grp-k-mcg
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups next at end exit perform end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start
+           when -3                                                
+                modify form1-gd-1(1, 3), cell-data "Macro >>"
+                move high-value to grp-rec
+                start groups key <= grp-k-mcg
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups previous at end exit perform 
+           end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start
+           end-evaluate.                                    
+           modify form1-gd-1, mass-update = 0.
+
+      ***---
+       RECORD-TO-GRID.
+           add 1 to riga.
+           move grp-code     to col-codice
+           move grp-desc     to col-des  
+           move grp-mcg-code to col-macro mcg-code
+           read macrogroups  no lock invalid move spaces to mcg-desc 
+           end-read
+           move mcg-desc  to col-mcg-desc
+           modify form1-gd-1(riga, 1), cell-data col-codice.
+           modify form1-gd-1(riga, 2), cell-data col-des.  
+           modify form1-gd-1(riga, 3), cell-data col-macro.
+           modify form1-gd-1(riga, 4), cell-data col-mcg-desc 
+                                                            
            .
       * <TOTEM:END>
 
@@ -2098,6 +2158,21 @@
            if e-cerca = 1
               perform CERCA
            end-if 
+           .
+      * <TOTEM:END>
+       form1-gd-1-Ev-Msg-Heading-Clicked.
+      * <TOTEM:PARA. form1-gd-1-Ev-Msg-Heading-Clicked>
+           evaluate event-data-1
+           when 1
+           when 2
+           when 3
+                if event-data-1 = como-ord
+                   compute como-ord = como-ord * -1
+                else
+                   move event-data-1 to como-ord
+                end-if
+                perform LOAD-RECORD
+           end-evaluate 
            .
       * <TOTEM:END>
 

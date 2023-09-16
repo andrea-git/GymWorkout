@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E79820641-189-195828192
+PROGRAM_UNIQUE_CODE=TOTEM-7E79E12158-523-218315820
 
 {{@DESCRIPTION:
 
@@ -376,6 +376,25 @@ m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM34_WK
+
+@}}
+[FDITEM35_WK]
+m_strName=STATUS-intexe
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM35_WK
+
+@}}
+[FDITEM36_WK]
+m_strName=Valid-STATUS-intexe
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM36_WK
 
 @}}
 
@@ -1165,21 +1184,21 @@ BEGIN-DATA
    ACTOBJ            = tintensity
    ENTRYPOINT        = BeforeDeclarative
 BEGIN-TEXT
-       codint-ERR SECTION.
-           use after error procedure on intensity.
-           evaluate status-intensity
+       INTEXE-ERR SECTION.
+           use after error procedure on intexe.
+           evaluate status-intexe
            when "35"
-                display message "File [intensity] not found!"
+                display message "File [intexe] not found!"
                            title titolo
                             icon 3
                 set errori to true
            when "39"
-                display message "File [intensity] Mismatch size!"
+                display message "File [intexe] Mismatch size!"
                            title titolo
                             icon 3
                 set errori to true
            when "98"
-                display message "[intensity] Indexed file corrupt!"
+                display message "[intexe] Indexed file corrupt!"
                            title titolo
                             icon 3
                 set errori to true 
@@ -1187,7 +1206,7 @@ BEGIN-TEXT
                 move 0 to mod
                 modify tool-modifica, value = mod  
                 set StatusVisua to true
-                open input intensity
+                open input intexe
                 display message box MSG-Gia-in-uso-su-altro-terminale
                             x"0d0a" MSG-SOLA-VISUA
                         title = tit-err
@@ -1305,7 +1324,7 @@ BEGIN-TEXT
               inquire form1-gd-1, cursor-y in riga
               perform VALORE-RIGA
 
-              delete intensity record invalid continue end-delete
+              delete intexe record invalid continue end-delete
 
               modify  form1-gd-1, record-to-delete = riga
               inquire form1-gd-1, last-row in tot-righe
@@ -1362,7 +1381,7 @@ BEGIN-TEXT
                               title = tit-err
                               icon mb-warning-icon
                    else  
-                      read intensity
+                      read intexe
                            not invalid
                                set errori to true
                                display message MGS-codice-gia-inserito|"Codice già inserito!"
@@ -1459,12 +1478,12 @@ BEGIN-DATA
 BEGIN-TEXT
            modify form1-gd-1, mass-update = 1.
            move low-value to int-code.
-           start intensity key is >= int-key
+           start intexe key is >= int-key
                   invalid continue
               not invalid
                   perform varying riga from 2 by 1
                           until 1 = 2
-                     read intensity next
+                     read intexe next
                           at end exit perform
                       not at end
                           move int-code       to col-codice
@@ -1501,8 +1520,8 @@ BEGIN-TEXT
            else
               |specifico per i pgm. con grid-control
               if mod = 1
-                 close intensity
-                 open i-o intensity allowing readers
+                 close intexe
+                 open i-o intexe allowing readers
               else
                  set tutto-ok to true
                  if NoSalvato
@@ -1511,8 +1530,8 @@ BEGIN-TEXT
                  end-if   
                  if tutto-ok
                     move 0 to mod
-                    close intensity
-                    open input intensity
+                    close intexe
+                    open input intexe
 
       *             | specifico x le tabelle.
                     | fa in modo che resto sulla cella in cui ero
@@ -1705,7 +1724,7 @@ BEGIN-TEXT
            if vecchio
               inquire form1-gd-1(riga, 1) cell-data old-int-code
               move old-int-code           to int-code
-              read intensity                 no lock
+              read intexe                 no lock
               move int-rec                to old-int-rec
            else
               initialize old-int-rec replacing numeric data by zeroes
@@ -1936,7 +1955,7 @@ MARGIN_RIGHT=150
 MARGIN_BOTTOM=150
 PROP_DOCU_TYPE=ø
 PROP_DOCU_TYPE2=ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
-PROP_DOCU_NAME=DataSet - DataSet1[tmgroups(GymWorkout)]
+PROP_DOCU_NAME=DataSet - DataSet1[tintensity(GymWorkout)]
 PROP_DOCU_OWNER=Person A
 PROP_DOCU_CDATE=07/13/01
 PROP_DOCU_MODIFIER=Person B
@@ -1964,23 +1983,23 @@ PROP_DOCU_ALIGN=0
 REL_SYM_SIZE=10
 REL_SYM_INFO_L=1
 REL_SYM_INFO_X0=2301
-REL_SYM_INFO_Y0=1387394544
+REL_SYM_INFO_Y0=2007449056
 
-[DRAW_BASESYMBOL_2301_1387394544]
+[DRAW_BASESYMBOL_2301_2007449056]
 OBJ_NAME=2301
-OBJ_ID=1387394544
+OBJ_ID=2007449056
 KIND=1
-{{@LABEL_2301_1387394544
-intensity
+{{@LABEL_2301_2007449056
+intexe
 @}}
 WK_STEP=0
 BK_POINT=0
 CENTER_X=0
 CENTER_Y=0
-LEFT=16
-TOP=16
-RIGHT=416
-BOTTOM=238
+LEFT=2314
+TOP=566
+RIGHT=2714
+BOTTOM=788
 PROP_OBJ_TYPE=
 PROP_OBJ_TYPE2=
 PROP_FILL_PT=0
@@ -2029,11 +2048,11 @@ FILE_SHOW_BMP=0
 FILE_SHOW_LINE=0
 FILE_SHOW_MINIZE=0
 
-[DMD_FILE_0_1387394544]
+[DMD_FILE_0_2007449056]
 OBJ_NAME=0
-OBJ_ID=1387394544
+OBJ_ID=2007449056
 REL_M_OBJ_ID=0
-ENTITY=intensity
+ENTITY=intexe
 LINK=0
 LINK_NAME=
 DSN_SIZE=39
@@ -2045,7 +2064,7 @@ DSN_INFO_KEY_IS=int-key
 DSN_INFO_DATA_ORDER=0
 DSN_INFO_START_VALUE=
 DSN_INFO_END_VALUE=
-{{@DSN_INFO_CONDITION_1387394544
+{{@DSN_INFO_CONDITION_2007449056
 
 @}}
 DSN_INFO_PRIMARY=1

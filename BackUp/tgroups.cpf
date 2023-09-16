@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E79E12158-398-651518538
+PROGRAM_UNIQUE_CODE=TOTEM-7E79F215140-978-2117211558
 
 {{@DESCRIPTION:
 
@@ -169,27 +169,28 @@ m_bFixed=1
 
 @}}
 [FDITEM14_WK]
-m_strName=rec-grid
-m_nItemLevel=1
+m_strName=como-ord
+m_strRawPic=s9
+m_strPic=s9
+m_strDefaultValue=0
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM14_WK
 
 @}}
 [FDITEM15_WK]
-m_strName=col-codice
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=5
+m_strName=rec-grid
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM15_WK
 
 @}}
 [FDITEM16_WK]
-m_strName=col-des
-m_strRawPic=X(50)
-m_strPic=X(50)
+m_strName=col-codice
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -197,9 +198,9 @@ m_bFixed=1
 
 @}}
 [FDITEM17_WK]
-m_strName=col-macro
-m_strRawPic=x(5)
-m_strPic=x(5)
+m_strName=col-des
+m_strRawPic=X(50)
+m_strPic=X(50)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -207,9 +208,9 @@ m_bFixed=1
 
 @}}
 [FDITEM18_WK]
-m_strName=col-mcg-desc
-m_strRawPic=x(50)
-m_strPic=x(50)
+m_strName=col-macro
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -217,35 +218,45 @@ m_bFixed=1
 
 @}}
 [FDITEM19_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
-m_nItemLevel=77
+m_strName=col-mcg-desc
+m_strRawPic=x(50)
+m_strPic=x(50)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM19_WK
 
 @}}
 [FDITEM20_WK]
-m_strName=FILLER
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=1
+m_strName=Screen1-Handle
+m_nUsage=24
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM20_WK
 
 @}}
 [FDITEM21_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM21_WK
+
+@}}
+[FDITEM22_WK]
 m_strName=ricarica
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM21_WK
+{{@DataItem_m_strDescriptionFDITEM22_WK
 
 @}}
-[FDITEM22_WK]
+[FDITEM23_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -254,22 +265,12 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM22_WK
-
-@}}
-[FDITEM23_WK]
-m_strName=Default-Font
-m_nUsage=38
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM23_WK
 
 @}}
 [FDITEM24_WK]
-m_strName=STATUS-groups
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=Default-Font
+m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -277,24 +278,34 @@ m_bFixed=1
 
 @}}
 [FDITEM25_WK]
+m_strName=STATUS-groups
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM25_WK
+
+@}}
+[FDITEM26_WK]
 m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM25_WK
+{{@DataItem_m_strDescriptionFDITEM26_WK
 
 @}}
-[FDITEM26_WK]
+[FDITEM27_WK]
 m_strName=Calibri14-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM26_WK
+{{@DataItem_m_strDescriptionFDITEM27_WK
 
 @}}
-[FDITEM27_WK]
+[FDITEM28_WK]
 m_strName=LOGO_PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -303,26 +314,26 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM27_WK
+{{@DataItem_m_strDescriptionFDITEM28_WK
 
 @}}
-[FDITEM28_WK]
+[FDITEM29_WK]
 m_strName=STATUS-macrogroups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM28_WK
+{{@DataItem_m_strDescriptionFDITEM29_WK
 
 @}}
-[FDITEM29_WK]
+[FDITEM30_WK]
 m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM29_WK
+{{@DataItem_m_strDescriptionFDITEM30_WK
 
 @}}
 
@@ -660,6 +671,7 @@ Begin Screen Form1
       Msg-Goto-Cell     = form1-gd-1-Ev-Msg-Goto-Cell
       Msg-Goto-Cell-Drag = form1-gd-1-Ev-Msg-Goto-Cell-Drag
       Msg-Goto-Cell-Mouse = form1-gd-1-Ev-Msg-Goto-Cell-Mouse
+      Msg-Heading-Clicked = form1-gd-1-Ev-Msg-Heading-Clicked
    End
    Begin Toolbar Form1-Tb-1
       SCREEN-LINE       = 1,00
@@ -963,38 +975,6 @@ Begin Screen Form1
          Additional Properties = "BITMAP-NUMBER BitmapNumZoom"
          Link To           = TOOL-CERCA-LinkTo
       End
-      Begin Bitmap Form1-Bt-1
-         SCREEN-COL        = 80,50
-         SCREEN-LINE       = 1,00
-         LOCK-CONTROL      = TRUE
-         LEVEL             = 5
-         (Name)            = Form1-Bt-1
-         Bitmap            = "..\RESOURCE\LOGO_PICCOLO.BMP"
-         Bitmap End        = 0
-         Bitmap Handle     = LOGO_PICCOLO-BMP
-         Bitmap Number     = 1
-         Bitmap Start      = 0
-         Bitmap Timer      = 0
-         Column            = 80,50
-         Copy Resource     = TRUE
-         Destroy Type      = Automatic
-         Font              = Default Font
-         Height in Cells   = FALSE
-         Help ID           = 0
-         ID                = 13
-         Line              = 1,00
-         Lines             = 2,78
-         Lines in Pixels   = 64
-         Lines Unit        = Default
-         Occurs            = 0
-         Size              = 4,80
-         Size in Pixels    = 48
-         Size Unit         = Default
-         Tab Order         = 7
-         Transparent Color = 0
-         Visible           = NONE
-         Width in Cells    = FALSE
-      End
    End
 End
 
@@ -1050,6 +1030,7 @@ BEGIN-TEXT
            perform ABILITA-TOOLBAR.
 
            perform INTESTAZIONE.
+           move 3 to como-ord.
            perform LOAD-RECORD.
 
            move 2  to event-data-2.
@@ -1364,28 +1345,91 @@ BEGIN-DATA
    PARAGRAPH         = LOAD-RECORD
 BEGIN-TEXT
            modify form1-gd-1, mass-update = 1.
-           move low-value to grp-code.
-           start groups key is >= grp-key
-                  invalid continue
-              not invalid
-                  perform varying riga from 2 by 1
-                          until 1 = 2
-                     read groups next
-                          at end exit perform
-                      not at end
-                          move grp-code     to col-codice
-                          move grp-desc     to col-des  
-                          move grp-mcg-code to col-macro mcg-code
-                          read macrogroups  no lock invalid move spaces to mcg-desc end-read
-                          move mcg-desc  to col-mcg-desc
-                          modify form1-gd-1(riga, 1), cell-data col-codice
-                          modify form1-gd-1(riga, 2), cell-data col-des  
-                          modify form1-gd-1(riga, 3), cell-data col-macro
-                          modify form1-gd-1(riga, 4), cell-data col-mcg-desc
-                     end-read                                           
-                  end-perform
-           end-start.
+           perform FORM1-GD-1-CONTENT.
+           move 1 to riga.
+           evaluate como-ord                 
+           when  1
+                modify form1-gd-1(1, 1), cell-data "Codice <<"
+                move low-value to grp-rec
+                start groups key >= grp-key
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups next at end exit perform end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start
+           when -1                                  
+                modify form1-gd-1(1, 1), cell-data "Codice >>"
+                move high-value to grp-rec
+                start groups key <= grp-key
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups previous at end exit perform end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start
+           when  2                                           
+                modify form1-gd-1(1, 2), cell-data "Descrizione <<"
+                move low-value to grp-rec
+                start groups key >= grp-k-desc
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups next at end exit perform end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start
+           when -2                                                 
+                modify form1-gd-1(1, 2), cell-data "Descrizione >>"
+                move high-value to grp-rec
+                start groups key <= grp-k-desc
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups previous at end exit perform end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start                    
+           when  3                                                
+                modify form1-gd-1(1, 3), cell-data "Macro <<"
+                move low-value to grp-rec
+                start groups key >= grp-k-mcg
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups next at end exit perform end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start
+           when -3                                                
+                modify form1-gd-1(1, 3), cell-data "Macro >>"
+                move high-value to grp-rec
+                start groups key <= grp-k-mcg
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read groups previous at end exit perform end-read
+                         perform RECORD-TO-GRID
+                      end-perform
+                 end-start
+           end-evaluate.                                    
            modify form1-gd-1, mass-update = 0.
+
+      ***---
+       RECORD-TO-GRID.
+           add 1 to riga.
+           move grp-code     to col-codice
+           move grp-desc     to col-des  
+           move grp-mcg-code to col-macro mcg-code
+           read macrogroups  no lock invalid move spaces to mcg-desc end-read
+           move mcg-desc  to col-mcg-desc
+           modify form1-gd-1(riga, 1), cell-data col-codice.
+           modify form1-gd-1(riga, 2), cell-data col-des.  
+           modify form1-gd-1(riga, 3), cell-data col-macro.
+           modify form1-gd-1(riga, 4), cell-data col-mcg-desc.
+                                                            
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1786,6 +1830,23 @@ BEGIN-TEXT
            if e-cerca = 1
               perform CERCA
            end-if.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = form1-gd-1-Ev-Msg-Heading-Clicked
+BEGIN-TEXT
+           evaluate event-data-1
+           when 1
+           when 2
+           when 3
+                if event-data-1 = como-ord
+                   compute como-ord = como-ord * -1
+                else
+                   move event-data-1 to como-ord
+                end-if
+                perform LOAD-RECORD
+           end-evaluate.
 END-TEXT
 END-DATA
 

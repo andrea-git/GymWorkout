@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E798204349-348-2970512475
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E79F214849-438-137272567
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -143,3 +143,12 @@ m_strName=grp-k-desc
 @}}
 [SLKEYATOM0_SLINDEX0_]
 m_strName=grp-desc
+[SLINDEX1_]
+m_strName=grp-k-mcg
+{{@Key_m_strDescriptionSLINDEX1_
+
+@}}
+[SLKEYATOM0_SLINDEX1_]
+m_strName=grp-mcg-code
+[SLKEYATOM1_SLINDEX1_]
+m_strName=grp-key

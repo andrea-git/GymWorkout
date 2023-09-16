@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E79820641-126-664015201
+PROGRAM_UNIQUE_CODE=TOTEM-7E79E12158-461-1081230315
 
 {{@DESCRIPTION:
 
@@ -947,38 +947,6 @@ Begin Screen Form1
          Width in Cells    = FALSE
          Additional Properties = "BITMAP-NUMBER BitmapNumZoom"
          Link To           = TOOL-CERCA-LinkTo
-      End
-      Begin Bitmap Form1-Bt-1
-         SCREEN-COL        = 50,40
-         SCREEN-LINE       = 1,00
-         LOCK-CONTROL      = FALSE
-         LEVEL             = 5
-         (Name)            = Form1-Bt-1
-         Bitmap            = "..\RESOURCE\LOGO_PICCOLO.BMP"
-         Bitmap End        = 0
-         Bitmap Handle     = LOGO_PICCOLO-BMP
-         Bitmap Number     = 1
-         Bitmap Start      = 0
-         Bitmap Timer      = 0
-         Column            = 50,40
-         Copy Resource     = TRUE
-         Destroy Type      = Automatic
-         Font              = Default Font
-         Height in Cells   = FALSE
-         Help ID           = 0
-         ID                = 13
-         Line              = 1,00
-         Lines             = 2,78
-         Lines in Pixels   = 64
-         Lines Unit        = Default
-         Occurs            = 0
-         Size              = 4,80
-         Size in Pixels    = 48
-         Size Unit         = Default
-         Tab Order         = 7
-         Transparent Color = 0
-         Visible           = NONE
-         Width in Cells    = FALSE
       End
    End
 End

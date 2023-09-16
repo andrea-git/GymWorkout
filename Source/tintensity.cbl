@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tintensity.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 22:22:25.
+       DATE-WRITTEN.        venerdì 15 settembre 2023 23:57:44.
        REMARKS.
       *{TOTEM}END
 
@@ -27,12 +27,12 @@
        INPUT-OUTPUT         SECTION.
        FILE-CONTROL.
       *{TOTEM}FILE-CONTROL
-           COPY "intensity.sl".
+           COPY "intexe.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
       *{TOTEM}FILE
-           COPY "intensity.fd".
+           COPY "intexe.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -114,6 +114,8 @@
                   VALUE IS 0.
        77 STATUS-macrointensity        PIC  X(2).
            88 Valid-STATUS-macrointensity VALUE IS "00" THRU "09". 
+       77 STATUS-intexe    PIC  X(2).
+           88 Valid-STATUS-intexe VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -121,23 +123,23 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-intensity-RESTOREBUF  PIC X(1188).
+       77 TMP-Form1-intexe-RESTOREBUF  PIC X(1188).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
        77 Form1-MULKEY-TMPBUF   PIC X(1188).
-       77 TMP-DataSet1-intensity-BUF     PIC X(1188).
+       77 TMP-DataSet1-intexe-BUF     PIC X(1188).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
       * FILE'S LOCK MODE FLAG
-       77 DataSet1-intensity-LOCK-FLAG   PIC X VALUE SPACE.
-           88 DataSet1-intensity-LOCK  VALUE "Y".
+       77 DataSet1-intexe-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-intexe-LOCK  VALUE "Y".
        77 DataSet1-KEYIS   PIC 9(3) VALUE 1.
-       77 DataSet1-intensity-KEY1-ORDER  PIC X VALUE "A".
-          88 DataSet1-intensity-KEY1-Asc  VALUE "A".
-          88 DataSet1-intensity-KEY1-Desc VALUE "D".
+       77 DataSet1-intexe-KEY1-ORDER  PIC X VALUE "A".
+          88 DataSet1-intexe-KEY1-Asc  VALUE "A".
+          88 DataSet1-intexe-KEY1-Desc VALUE "D".
 
-       77 intensity-int-k-desc-SPLITBUF  PIC X(101).
-       77 intensity-int-kj-effort-SPLITBUF  PIC X(5).
+       77 intexe-int-k-desc-SPLITBUF  PIC X(101).
+       77 intexe-int-k-effort-SPLITBUF  PIC X(3).
 
        01 old-int-rec.
            05 old-int-key.
@@ -371,21 +373,21 @@
       *{TOTEM}DECLARATIVE
        DECLARATIVES.
       * <TOTEM:EPT. INIT:tintensity, INIT:tintensity, BeforeDeclarative>
-       codint-ERR SECTION.
-           use after error procedure on intensity.
-           evaluate status-intensity
+       INTEXE-ERR SECTION.
+           use after error procedure on intexe.
+           evaluate status-intexe
            when "35"
-                display message "File [intensity] not found!"
+                display message "File [intexe] not found!"
                            title titolo
                             icon 3
                 set errori to true
            when "39"
-                display message "File [intensity] Mismatch size!"
+                display message "File [intexe] Mismatch size!"
                            title titolo
                             icon 3
                 set errori to true
            when "98"
-                display message "[intensity] Indexed file corrupt!"
+                display message "[intexe] Indexed file corrupt!"
                            title titolo
                             icon 3
                 set errori to true 
@@ -393,7 +395,7 @@
                 move 0 to mod
                 modify tool-modifica, value = mod  
                 set StatusVisua to true
-                open input intensity
+                open input intexe
                 display message box MSG-Gia-in-uso-su-altro-terminale
                             x"0d0a" MSG-SOLA-VISUA
                         title = tit-err
@@ -500,56 +502,55 @@
 
        OPEN-FILE-RTN.
       *    Before Open
-           PERFORM OPEN-intensity
+           PERFORM OPEN-intexe
       *    After Open
            .
 
-       OPEN-intensity.
-      * <TOTEM:EPT. INIT:tintensity, FD:intensity, BeforeOpen>
+       OPEN-intexe.
+      * <TOTEM:EPT. INIT:tintensity, FD:intexe, BeforeOpen>
       * <TOTEM:END>
-           OPEN  I-O intensity
-           IF STATUS-intensity = "35"
-              OPEN OUTPUT intensity
-                IF Valid-STATUS-intensity
-                   CLOSE intensity
-                   OPEN I-O intensity
+           OPEN  I-O intexe
+           IF STATUS-intexe = "35"
+              OPEN OUTPUT intexe
+                IF Valid-STATUS-intexe
+                   CLOSE intexe
+                   OPEN I-O intexe
                 END-IF
            END-IF
-           IF NOT Valid-STATUS-intensity
+           IF NOT Valid-STATUS-intexe
               PERFORM  Form1-EXTENDED-FILE-STATUS
               GO TO EXIT-STOP-ROUTINE
            END-IF
-      * <TOTEM:EPT. INIT:tintensity, FD:intensity, AfterOpen>
+      * <TOTEM:EPT. INIT:tintensity, FD:intexe, AfterOpen>
       * <TOTEM:END>
            .
 
        CLOSE-FILE-RTN.
       *    Before Close
-           PERFORM CLOSE-intensity
+           PERFORM CLOSE-intexe
       *    After Close
            .
 
-       CLOSE-intensity.
-      * <TOTEM:EPT. INIT:tintensity, FD:intensity, BeforeClose>
+       CLOSE-intexe.
+      * <TOTEM:EPT. INIT:tintensity, FD:intexe, BeforeClose>
       * <TOTEM:END>
-           CLOSE intensity
+           CLOSE intexe
            .
 
-       intensity-int-k-desc-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-k-desc-SPLITBUF
-           MOVE int-desc(1:100) TO intensity-int-k-desc-SPLITBUF(1:100)
+       intexe-int-k-desc-MERGE-SPLITBUF.
+           INITIALIZE intexe-int-k-desc-SPLITBUF
+           MOVE int-desc(1:100) TO intexe-int-k-desc-SPLITBUF(1:100)
            .
 
-       intensity-int-kj-effort-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-kj-effort-SPLITBUF
-           MOVE int-effort(1:2) TO intensity-int-kj-effort-SPLITBUF(1:2)
-           MOVE int-key(1:2) TO intensity-int-kj-effort-SPLITBUF(3:2)
+       intexe-int-k-effort-MERGE-SPLITBUF.
+           INITIALIZE intexe-int-k-effort-SPLITBUF
+           MOVE int-effort(1:2) TO intexe-int-k-effort-SPLITBUF(1:2)
            .
 
-       DataSet1-intensity-INITSTART.
+       DataSet1-intexe-INITSTART.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              IF DataSet1-intensity-KEY1-Asc
+              IF DataSet1-intexe-KEY1-Asc
                  MOVE Low-Value TO int-key
               ELSE
                  MOVE High-Value TO int-key
@@ -557,10 +558,10 @@
            END-EVALUATE
            .
 
-       DataSet1-intensity-INITEND.
+       DataSet1-intexe-INITEND.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              IF DataSet1-intensity-KEY1-Asc
+              IF DataSet1-intexe-KEY1-Asc
                  MOVE High-Value TO int-key
               ELSE
                  MOVE Low-Value TO int-key
@@ -575,187 +576,187 @@
        DataSet1-Change-CurrentKey-Asc.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              MOVE "A" TO DataSet1-intensity-KEY1-ORDER
+              MOVE "A" TO DataSet1-intexe-KEY1-ORDER
            END-EVALUATE
            .
 
        DataSet1-Change-CurrentKey-Desc.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              MOVE "D" TO DataSet1-intensity-KEY1-ORDER
+              MOVE "D" TO DataSet1-intexe-KEY1-ORDER
            END-EVALUATE
            .
 
-      * intensity
-       DataSet1-intensity-START.
+      * intexe
+       DataSet1-intexe-START.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              IF DataSet1-intensity-KEY1-Asc
-                 START intensity KEY >= int-key
+              IF DataSet1-intexe-KEY1-Asc
+                 START intexe KEY >= int-key
               ELSE
-                 START intensity KEY <= int-key
+                 START intexe KEY <= int-key
               END-IF
            END-EVALUATE
            .
 
-       DataSet1-intensity-START-NOTGREATER.
+       DataSet1-intexe-START-NOTGREATER.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              IF DataSet1-intensity-KEY1-Asc
-                 START intensity KEY <= int-key
+              IF DataSet1-intexe-KEY1-Asc
+                 START intexe KEY <= int-key
               ELSE
-                 START intensity KEY >= int-key
+                 START intexe KEY >= int-key
               END-IF
            END-EVALUATE
            .
 
-       DataSet1-intensity-START-GREATER.
+       DataSet1-intexe-START-GREATER.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              IF DataSet1-intensity-KEY1-Asc
-                 START intensity KEY > int-key
+              IF DataSet1-intexe-KEY1-Asc
+                 START intexe KEY > int-key
               ELSE
-                 START intensity KEY < int-key
+                 START intexe KEY < int-key
               END-IF
            END-EVALUATE
            .
 
-       DataSet1-intensity-START-LESS.
+       DataSet1-intexe-START-LESS.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              IF DataSet1-intensity-KEY1-Asc
-                 START intensity KEY < int-key
+              IF DataSet1-intexe-KEY1-Asc
+                 START intexe KEY < int-key
               ELSE
-                 START intensity KEY > int-key
+                 START intexe KEY > int-key
               END-IF
            END-EVALUATE
            .
 
-       DataSet1-intensity-Read.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
+       DataSet1-intexe-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadRecord>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeReadRecord>
       * <TOTEM:END>
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              IF DataSet1-intensity-LOCK
-                 READ intensity WITH LOCK 
+              IF DataSet1-intexe-LOCK
+                 READ intexe WITH LOCK 
                  KEY int-key
               ELSE
-                 READ intensity WITH NO LOCK 
+                 READ intexe WITH NO LOCK 
                  KEY int-key
               END-IF
            END-EVALUATE
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT 
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           PERFORM intexe-int-k-desc-MERGE-SPLITBUF
+           PERFORM intexe-int-k-effort-MERGE-SPLITBUF
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT 
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadRecord>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterReadRecord>
       * <TOTEM:END>
            .
 
-       DataSet1-intensity-Read-Next.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
+       DataSet1-intexe-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadNext>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeReadNext>
       * <TOTEM:END>
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              IF DataSet1-intensity-KEY1-Asc
-                 IF DataSet1-intensity-LOCK
-                    READ intensity NEXT WITH LOCK
+              IF DataSet1-intexe-KEY1-Asc
+                 IF DataSet1-intexe-LOCK
+                    READ intexe NEXT WITH LOCK
                  ELSE
-                    READ intensity NEXT WITH NO LOCK
+                    READ intexe NEXT WITH NO LOCK
                  END-IF
               ELSE
-                 IF DataSet1-intensity-LOCK
-                    READ intensity PREVIOUS WITH LOCK
+                 IF DataSet1-intexe-LOCK
+                    READ intexe PREVIOUS WITH LOCK
                  ELSE
-                    READ intensity PREVIOUS WITH NO LOCK
+                    READ intexe PREVIOUS WITH NO LOCK
                  END-IF
               END-IF
            END-EVALUATE
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           PERFORM intexe-int-k-desc-MERGE-SPLITBUF
+           PERFORM intexe-int-k-effort-MERGE-SPLITBUF
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadNext>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterReadNext>
       * <TOTEM:END>
            .
 
-       DataSet1-intensity-Read-Prev.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
+       DataSet1-intexe-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadPrev>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeReadPrev>
       * <TOTEM:END>
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              IF DataSet1-intensity-KEY1-Asc
-                 IF DataSet1-intensity-LOCK
-                    READ intensity PREVIOUS WITH LOCK
+              IF DataSet1-intexe-KEY1-Asc
+                 IF DataSet1-intexe-LOCK
+                    READ intexe PREVIOUS WITH LOCK
                  ELSE
-                    READ intensity PREVIOUS WITH NO LOCK
+                    READ intexe PREVIOUS WITH NO LOCK
                  END-IF
               ELSE
-                 IF DataSet1-intensity-LOCK
-                    READ intensity NEXT WITH LOCK
+                 IF DataSet1-intexe-LOCK
+                    READ intexe NEXT WITH LOCK
                  ELSE
-                    READ intensity NEXT WITH NO LOCK
+                    READ intexe NEXT WITH NO LOCK
                  END-IF
               END-IF
            END-EVALUATE
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-kj-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           PERFORM intexe-int-k-desc-MERGE-SPLITBUF
+           PERFORM intexe-int-k-effort-MERGE-SPLITBUF
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRead>
       * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadPrev>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterReadPrev>
       * <TOTEM:END>
            .
 
-       DataSet1-intensity-Rec-Write.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeWrite>
+       DataSet1-intexe-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeWrite>
       * <TOTEM:END>
-           WRITE int-rec OF intensity.
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           WRITE int-rec OF intexe.
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "WRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterWrite>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterWrite>
       * <TOTEM:END>
            .
 
-       DataSet1-intensity-Rec-Rewrite.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRewrite>
+       DataSet1-intexe-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRewrite>
       * <TOTEM:END>
-           REWRITE int-rec OF intensity.
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           REWRITE int-rec OF intexe.
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "REWRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRewrite>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRewrite>
       * <TOTEM:END>
            .
 
-       DataSet1-intensity-Rec-Delete.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeDelete>
+       DataSet1-intexe-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeDelete>
       * <TOTEM:END>
-           DELETE intensity.
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
+           DELETE intexe.
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
            MOVE "DELETE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterDelete>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterDelete>
       * <TOTEM:END>
            .
 
        DataSet1-INIT-RECORD.
-           INITIALIZE int-rec OF intensity
+           INITIALIZE int-rec OF intexe
            .
 
 
@@ -788,8 +789,8 @@
            .
 
       * FD's Initialize Paragraph
-       DataSet1-intensity-INITREC.
-           INITIALIZE int-rec OF intensity
+       DataSet1-intexe-INITREC.
+           INITIALIZE int-rec OF intexe
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -982,7 +983,7 @@
        Form1-DataSet1-Change-CurrentKey-Asc.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              MOVE "A" TO DataSet1-intensity-KEY1-ORDER
+              MOVE "A" TO DataSet1-intexe-KEY1-ORDER
            END-EVALUATE
            PERFORM Form1-DataSet1-Update-Key
            .
@@ -990,19 +991,19 @@
        Form1-DataSet1-Change-CurrentKey-Desc.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              MOVE "D" TO DataSet1-intensity-KEY1-ORDER
+              MOVE "D" TO DataSet1-intexe-KEY1-ORDER
            END-EVALUATE
            PERFORM Form1-DataSet1-Update-Key
            .
 
        Form1-DataSet1-Update-Key.
-           MOVE int-rec OF intensity TO
+           MOVE int-rec OF intexe TO
                      Form1-MULKEY-TMPBUF
            PERFORM Form1-CLEAR
            PERFORM Form1-INIT-DATA
            MOVE Form1-MULKEY-TMPBUF TO
-                     int-rec OF intensity
-           PERFORM DataSet1-intensity-Read
+                     int-rec OF intexe
+           PERFORM DataSet1-intexe-Read
            PERFORM Form1-DUPLICATE-MOVEKEY
            PERFORM Form1-DUMMY-CURR
            PERFORM Form1-IUD-Display
@@ -1013,16 +1014,16 @@
 
        Form1-First.
            PERFORM Form1-DUMMY-FIRST
-           PERFORM DataSet1-intensity-INITSTART
-           PERFORM DataSet1-intensity-START
-           IF NOT Valid-STATUS-intensity
+           PERFORM DataSet1-intexe-INITSTART
+           PERFORM DataSet1-intexe-START
+           IF NOT Valid-STATUS-intexe
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeFirst>
       * <TOTEM:END>
-           PERFORM DataSet1-intensity-Read-Next
-           IF NOT Valid-STATUS-intensity
+           PERFORM DataSet1-intexe-Read-Next
+           IF NOT Valid-STATUS-intexe
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -1034,15 +1035,15 @@
 
        Form1-Previous.
               PERFORM Form1-Buf-To-Fld
-              PERFORM DataSet1-intensity-START-LESS
-           IF NOT Valid-STATUS-intensity
+              PERFORM DataSet1-intexe-START-LESS
+           IF NOT Valid-STATUS-intexe
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforePrevious>
       * <TOTEM:END>
-           PERFORM DataSet1-intensity-Read-Prev
-           IF NOT Valid-STATUS-intensity
+           PERFORM DataSet1-intexe-Read-Prev
+           IF NOT Valid-STATUS-intexe
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -1055,15 +1056,15 @@
 
        Form1-Next.
               PERFORM Form1-Buf-To-Fld
-              PERFORM DataSet1-intensity-START-GREATER
-           IF NOT Valid-STATUS-intensity
+              PERFORM DataSet1-intexe-START-GREATER
+           IF NOT Valid-STATUS-intexe
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeNext>
       * <TOTEM:END>
-           PERFORM DataSet1-intensity-Read-Next
-           IF NOT Valid-STATUS-intensity
+           PERFORM DataSet1-intexe-Read-Next
+           IF NOT Valid-STATUS-intexe
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -1076,16 +1077,16 @@
       
        Form1-Last.
            PERFORM Form1-DUMMY-LAST
-           PERFORM DataSet1-intensity-INITEND
-           PERFORM DataSet1-intensity-START-NOTGREATER
-           IF NOT Valid-STATUS-intensity
+           PERFORM DataSet1-intexe-INITEND
+           PERFORM DataSet1-intexe-START-NOTGREATER
+           IF NOT Valid-STATUS-intexe
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeLast>
       * <TOTEM:END>
-           PERFORM DataSet1-intensity-Read-Prev
-           IF NOT Valid-STATUS-intensity
+           PERFORM DataSet1-intexe-Read-Prev
+           IF NOT Valid-STATUS-intexe
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -1099,7 +1100,7 @@
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeCurrent>
       * <TOTEM:END>
            PERFORM Form1-Buf-To-Fld
-           PERFORM DataSet1-intensity-Read
+           PERFORM DataSet1-intexe-Read
            PERFORM Form1-DUPLICATE-MOVEKEY
            PERFORM Form1-DUMMY-CURR
            PERFORM Form1-IUD-Display
@@ -1108,7 +1109,7 @@
            .
 
        Form1-IUD-Display.
-           IF Valid-STATUS-intensity
+           IF Valid-STATUS-intexe
               PERFORM Form1-ALLGRID-RESET
               PERFORM Form1-Fld-To-Buf
               PERFORM Form1-NAVI-FOR-MASTERGRID
@@ -1129,14 +1130,14 @@
                EXIT PARAGRAPH
            END-IF
            PERFORM Form1-DUMMY-ADD
-           PERFORM DataSet1-intensity-INITREC
+           PERFORM DataSet1-intexe-INITREC
            PERFORM Form1-Buf-To-Fld
            MOVE SPACES TO TOTEM-TRANSACTION-FLAG
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAdd>
       * <TOTEM:END>
       * write
-           PERFORM DataSet1-intensity-Rec-Write
-           IF Valid-STATUS-intensity
+           PERFORM DataSet1-intexe-Rec-Write
+           IF Valid-STATUS-intexe
               PERFORM Form1-RESUMMARY-INS
               PERFORM Form1-DUMMY-UPDATE-INIT
               MOVE "301" TO TOTEM-MSG-ID
@@ -1149,12 +1150,12 @@
      
        Form1-Update.
            PERFORM Form1-Buf-To-Fld
-           PERFORM DataSet1-intensity-START              
-           IF NOT Valid-STATUS-intensity
+           PERFORM DataSet1-intexe-START              
+           IF NOT Valid-STATUS-intexe
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
-           PERFORM DataSet1-intensity-Read
+           PERFORM DataSet1-intexe-Read
            PERFORM Form1-Buf-To-Fld
            PERFORM Form1-VALIDATION-ROUTINE
            IF NOT TOTEM-CHECK-OK
@@ -1166,8 +1167,8 @@
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeUpdate>
       * <TOTEM:END>
       * write
-           PERFORM DataSet1-intensity-Rec-Rewrite
-           IF Valid-STATUS-intensity
+           PERFORM DataSet1-intexe-Rec-Rewrite
+           IF Valid-STATUS-intexe
               PERFORM Form1-RESUMMARY-DEL
               PERFORM Form1-DUMMY-UPDATE-INIT
               MOVE "302" TO TOTEM-MSG-ID
@@ -1191,12 +1192,12 @@
            PERFORM Form1-DUMMY-DELETE
       * delete
            PERFORM Form1-Buf-To-Fld
-           PERFORM DataSet1-intensity-Rec-Delete
-           IF Valid-STATUS-intensity
+           PERFORM DataSet1-intexe-Rec-Delete
+           IF Valid-STATUS-intexe
               PERFORM Form1-CLEAR
               PERFORM Form1-DUMMY-DELETE-INIT
               MOVE "303" TO TOTEM-MSG-ID
-              MOVE "00" to STATUS-intensity
+              MOVE "00" to STATUS-intexe
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterDelete>
       * <TOTEM:END>
@@ -1207,7 +1208,7 @@
            .
 
        Form1-ERR-CHECKING.
-           IF Valid-STATUS-intensity
+           IF Valid-STATUS-intexe
               PERFORM Form1-SHOW-MSG-ROUTINE
            ELSE
               PERFORM Form1-Extended-File-Status
@@ -1315,28 +1316,28 @@
            .
 
        Form1-Save-Status.
-           MOVE DataSet1-intensity-KEY1-ORDER TO TMP-Form1-KEY1-ORDER
+           MOVE DataSet1-intexe-KEY1-ORDER TO TMP-Form1-KEY1-ORDER
            MOVE DataSet1-KEYIS TO TMP-Form1-KEYIS
-           MOVE int-rec OF intensity TO 
-              TMP-Form1-intensity-RESTOREBUF
+           MOVE int-rec OF intexe TO 
+              TMP-Form1-intexe-RESTOREBUF
            .             
 
        Form1-Restore-Status.
-           MOVE TMP-Form1-KEY1-ORDER TO DataSet1-intensity-KEY1-ORDER
+           MOVE TMP-Form1-KEY1-ORDER TO DataSet1-intexe-KEY1-ORDER
            MOVE TMP-Form1-KEYIS TO DataSet1-KEYIS
-           MOVE TMP-Form1-intensity-RESTOREBUF TO
-              int-rec OF intensity
-           PERFORM DataSet1-intensity-START
-           IF Valid-STATUS-intensity
-              PERFORM DataSet1-intensity-Read-Next
+           MOVE TMP-Form1-intexe-RESTOREBUF TO
+              int-rec OF intexe
+           PERFORM DataSet1-intexe-START
+           IF Valid-STATUS-intexe
+              PERFORM DataSet1-intexe-Read-Next
            ELSE
-              PERFORM DataSet1-intensity-INITREC
+              PERFORM DataSet1-intexe-INITREC
            END-IF
-           PERFORM UNTIL NOT Valid-STATUS-intensity OR
-              (Valid-STATUS-intensity AND
-                 int-rec OF intensity = 
-                   TMP-Form1-intensity-RESTOREBUF)
-              PERFORM DataSet1-intensity-Read-Next
+           PERFORM UNTIL NOT Valid-STATUS-intexe OR
+              (Valid-STATUS-intexe AND
+                 int-rec OF intexe = 
+                   TMP-Form1-intexe-RESTOREBUF)
+              PERFORM DataSet1-intexe-Read-Next
            END-PERFORM
            .
 
@@ -1430,7 +1431,7 @@
               inquire form1-gd-1, cursor-y in riga
               perform VALORE-RIGA
 
-              delete intensity record invalid continue end-delete
+              delete intexe record invalid continue end-delete
 
               modify  form1-gd-1, record-to-delete = riga
               inquire form1-gd-1, last-row in tot-righe
@@ -1482,7 +1483,7 @@
                               title = tit-err
                               icon mb-warning-icon
                    else  
-                      read intensity
+                      read intexe
                            not invalid
                                set errori to true
                                display message MGS-codice-gia-inserito|"Codice già inserito!"
@@ -1576,12 +1577,12 @@
       * <TOTEM:PARA. LOAD-RECORD>
            modify form1-gd-1, mass-update = 1.
            move low-value to int-code.
-           start intensity key is >= int-key
+           start intexe key is >= int-key
                   invalid continue
               not invalid
                   perform varying riga from 2 by 1
                           until 1 = 2
-                     read intensity next
+                     read intexe next
                           at end exit perform
                       not at end
                           move int-code       to col-codice
@@ -1625,8 +1626,8 @@
            else
               |specifico per i pgm. con grid-control
               if mod = 1
-                 close intensity
-                 open i-o intensity allowing readers
+                 close intexe
+                 open i-o intexe allowing readers
               else
                  set tutto-ok to true
                  if NoSalvato
@@ -1635,8 +1636,8 @@
                  end-if   
                  if tutto-ok
                     move 0 to mod
-                    close intensity
-                    open input intensity
+                    close intexe
+                    open input intexe
 
       *             | specifico x le tabelle.
                     | fa in modo che resto sulla cella in cui ero
@@ -1818,7 +1819,7 @@
            if vecchio
               inquire form1-gd-1(riga, 1) cell-data old-int-code
               move old-int-code           to int-code
-              read intensity                 no lock
+              read intexe                 no lock
               move int-rec                to old-int-rec
            else
               initialize old-int-rec replacing numeric data by zeroes

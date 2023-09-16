@@ -1,5 +1,5 @@
-       SELECT intensity
-           ASSIGN       TO  "intensity"
+       SELECT int-exe
+           ASSIGN       TO  "int-exe"
            ORGANIZATION IS INDEXED
            ACCESS MODE  IS DYNAMIC
            FILE STATUS  IS STATUS-intensity

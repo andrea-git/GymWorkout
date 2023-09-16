@@ -1,4 +1,4 @@
-       FD  intensity.
+       FD  intexe.
        01 int-rec.
            05 int-key.
                10 int-code         PIC  99.

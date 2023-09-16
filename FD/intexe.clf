@@ -5,14 +5,14 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E79F13540-296-514930182
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E79F215120-51-236276038
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
 m_bBlockRecords=1
 m_bRecordFixed=1
 m_bStandard=1
-m_strPrefix=intensit
+m_strPrefix=intexe
 {{@FD_m_strDescription
 
 @}}
@@ -53,7 +53,7 @@ m_bFixed=1
 [FDITEM4_]
 m_strName=int-desc
 m_strRawPic=x(100)
-m_strPic=x(100)
+m_strPic=X(100)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -131,7 +131,7 @@ m_bFixed=1
 [FDITEM12_]
 m_strName=int-filler
 m_strRawPic=x(1000)
-m_strPic=x(1000)
+m_strPic=X(1000)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -180,10 +180,10 @@ m_bFixed=1
 @}}
 [CStoAcucobolSL_]
 m_nType=1
-m_strAssignToName="intensity"
+m_strAssignToName="intexe"
 m_nFormat=3
 m_nAccessMode=3
-m_strFileStatus=STATUS-intensity
+m_strFileStatus=STATUS-intexe
 m_nNumber=1
 m_nCompression=70
 {{@SL_m_strDescription

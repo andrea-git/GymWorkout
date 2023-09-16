@@ -9,7 +9,7 @@
            copy "groups.sl".
            copy "macrogroups.sl". 
            copy "wodbook.sl".     
-           copy "intensity.sl".   
+           copy "intexe.sl".   
            copy "duration.sl".    
            copy "wodmap.sl".    
       *
@@ -29,7 +29,7 @@
            copy "groups.fd".
            copy "macrogroups.fd".
            copy "wodbook.fd".      
-           copy "intensity.fd".    
+           copy "intexe.fd".    
            copy "duration.fd".    
            copy "wodmap.fd".    
       *                               
@@ -49,7 +49,7 @@
        77  status-groups         pic xx.
        77  status-macrogroups    pic xx.
        77  status-wodbook        pic xx. 
-       77  status-intensity      pic xx.
+       77  status-intexe         pic xx.
        77  status-duration       pic xx.
        77  status-wodmap         pic xx.
        77  stato-io              pic xx.  
@@ -131,17 +131,17 @@
            end-evaluate.               
 
       ***---
-       INTENSITY-ERR SECTION.
-           use after error procedure on INTENSITY.
-           evaluate status-INTENSITY
+       INTEXE-ERR SECTION.
+           use after error procedure on intexe.
+           evaluate status-intexe
            when "35" continue
            when "39"
-                display message "File [INTENSITY] Mismatch size!"
+                display message "File [INTEXE] Mismatch size!"
                            title titolo
                             icon 3
                 
            when "98"
-                display message "[INTENSITY] Indexed file corrupt!"
+                display message "[INTEXE] Indexed file corrupt!"
                            title titolo
                             icon 3
                 
@@ -223,14 +223,14 @@
            end-if.
            close wodbook.
 
-           open input intensity.
-           if status-intensity = "35"
-              open output intensity
-              if status-intensity not = "00"
+           open input intexe.
+           if status-intexe = "35"
+              open output intexe
+              if status-intexe not = "00"
                  move -1 to link-status
               end-if
            end-if.
-           close intensity.
+           close intexe.
 
            open input duration.
            if status-duration = "35"

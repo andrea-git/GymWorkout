@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tmgroups.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 8 settembre 2023 22:10:22.
+       DATE-WRITTEN.        sabato 16 settembre 2023 01:07:48.
        REMARKS.
       *{TOTEM}END
 
@@ -337,19 +337,6 @@
            BITMAP-NUMBER BitmapNumZoom
            .
 
-      * BITMAP
-       05
-           Form1-Bt-1, 
-           Bitmap, 
-           COL 50,40, 
-           LINE 1,00,
-           LINES 64,00 ,
-           SIZE 48,00 ,
-           BITMAP-HANDLE LOGO_PICCOLO-BMP,
-           BITMAP-NUMBER 1,
-           ID IS 13,
-           .
-
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
@@ -426,7 +413,6 @@
       * <TOTEM:END>
            DESTROY Calibri14-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
-           CALL "w$bitmap" USING WBITMAP-DESTROY, LOGO_PICCOLO-BMP
       *    After-Program
            PERFORM I-O-BLOCCO
            EXIT PROGRAM TOTEM-PgmStatus
@@ -474,10 +460,6 @@
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
                    GIVING toolbar-bmp.
-      * Form1-Bt-1
-           COPY RESOURCE "LOGO_PICCOLO.BMP".
-           CALL "w$bitmap" USING WBITMAP-LOAD "LOGO_PICCOLO.BMP", 
-                   GIVING LOGO_PICCOLO-BMP.
            .
 
        INIT-RES.

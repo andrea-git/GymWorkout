@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E79F13540-446-994025675
+PROGRAM_UNIQUE_CODE=TOTEM-7E79F214849-863-632810565
 
 {{@DESCRIPTION:
 
@@ -462,6 +462,25 @@ m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM43_WK
+
+@}}
+[FDITEM44_WK]
+m_strName=STATUS-intexe
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM44_WK
+
+@}}
+[FDITEM45_WK]
+m_strName=Valid-STATUS-intexe
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM45_WK
 
 @}}
 
@@ -3011,7 +3030,7 @@ BEGIN-TEXT
            read duration no lock invalid move spaces to dur-desc end-read.
            move dur-desc to lab-durata-buf.
            move wom-int-code to int-code.
-           read intensity no lock invalid move spaces to int-desc end-read.
+           read intexe no lock invalid move spaces to int-desc end-read.
            move int-desc to lab-int-buf.
            Perform VALORIZZA-OLD.
 END-TEXT
@@ -3999,7 +4018,7 @@ BEGIN-TEXT
               end-if
            end-if.
            
-           read intensity key int-k-effort.
+           read intexe key int-k-effort.
            move int-desc to lab-int-buf.
            move int-code to ef-int-buf wom-int-code.
            display ef-int lab-int.
@@ -4392,7 +4411,7 @@ REL_SYM_INFO_Y0=1146544667
 REL_SYM_INFO_X1=2301
 REL_SYM_INFO_Y1=2068016505
 REL_SYM_INFO_X2=2301
-REL_SYM_INFO_Y2=1646367803
+REL_SYM_INFO_Y2=73353740
 
 [DRAW_BASESYMBOL_2301_1146544667]
 OBJ_NAME=2301
@@ -4490,20 +4509,20 @@ PROP_TRACK_COLOR=12632256
 REL_SYM_SIZE=4
 REL_SYM_INFO_L=0
 
-[DRAW_BASESYMBOL_2301_1646367803]
+[DRAW_BASESYMBOL_2301_73353740]
 OBJ_NAME=2301
-OBJ_ID=1646367803
+OBJ_ID=73353740
 KIND=1
-{{@LABEL_2301_1646367803
-intensity
+{{@LABEL_2301_73353740
+intexe
 @}}
 WK_STEP=0
 BK_POINT=0
 CENTER_X=0
 CENTER_Y=0
-LEFT=1748
+LEFT=2314
 TOP=50
-RIGHT=2148
+RIGHT=2714
 BOTTOM=272
 PROP_OBJ_TYPE=
 PROP_OBJ_TYPE2=
@@ -4615,11 +4634,11 @@ DSN_INFO_REPLACEBY_RELATIVEKEY=
 DSN_INFO_REPLACEBY_FDDATA=
 DSN_INFO_REPLACEBY_SLDATA=
 
-[DMD_FILE_0_1646367803]
+[DMD_FILE_0_73353740]
 OBJ_NAME=0
-OBJ_ID=1646367803
+OBJ_ID=73353740
 REL_M_OBJ_ID=0
-ENTITY=intensity
+ENTITY=intexe
 LINK=0
 LINK_NAME=
 DSN_SIZE=39
@@ -4631,7 +4650,7 @@ DSN_INFO_KEY_IS=int-key
 DSN_INFO_DATA_ORDER=0
 DSN_INFO_START_VALUE=
 DSN_INFO_END_VALUE=
-{{@DSN_INFO_CONDITION_1646367803
+{{@DSN_INFO_CONDITION_73353740
 
 @}}
 DSN_INFO_PRIMARY=0

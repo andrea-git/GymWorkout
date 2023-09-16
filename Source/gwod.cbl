@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 15 settembre 2023 19:01:00.
+       DATE-WRITTEN.        sabato 16 settembre 2023 02:28:44.
        REMARKS.
       *{TOTEM}END
 
@@ -29,7 +29,6 @@
       *{TOTEM}FILE-CONTROL
            COPY "exercises.sl".
            COPY "groups.sl".
-           COPY "intensity.sl".
            COPY "macrogroups.sl".
            COPY "duration.sl".
            COPY "tmp-exe-effort.sl".
@@ -37,13 +36,13 @@
            COPY "wodmap.sl".
            COPY "tmp-wod-exe.sl".
            COPY "tmp-exe.sl".
+           COPY "intexe.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
       *{TOTEM}FILE
            COPY "exercises.fd".
            COPY "groups.fd".
-           COPY "intensity.fd".
            COPY "macrogroups.fd".
            COPY "duration.fd".
            COPY "tmp-exe-effort.fd".
@@ -51,6 +50,7 @@
            COPY "wodmap.fd".
            COPY "tmp-wod-exe.fd".
            COPY "tmp-exe.fd".
+           COPY "intexe.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -150,6 +150,8 @@
        77 idx2 PIC  9(3).
        77 idx-days         PIC  9(3).
        77 idx-split        PIC  9(3).
+       77 como-range-from  PIC  xx.
+       77 como-range-to    PIC  xx.
        77 como-x           PIC  x.
        01 tot-mcg          PIC  99.
        01 tot-exe          PIC  99.
@@ -174,7 +176,7 @@
            05 col-exe-code     PIC  x(5).
            05 col-exe-desc     PIC  x(100).
            05 col-series       PIC  99.
-           05 col-reps         PIC  99.
+           05 col-reps         PIC  x(10).
        77 Calibri14-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 Calibri14B-Occidentale
@@ -190,28 +192,14 @@
                   USAGE IS HANDLE OF BITMAP.
        77 Calibri18B-Occidentale
                   USAGE IS HANDLE OF FONT.
-       77 lab-scontoa-buf  PIC  X(8).
        77 default-bmp
                   USAGE IS HANDLE OF BITMAP.
-       77 lab-scont-buf    PIC  x.
        77 Calibri16B-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 form-prezz-SF-HANDLE
                   USAGE IS HANDLE OF WINDOW.
-       01 rec-prezzi.
-           05 col-listino      PIC  9(5).
-           05 col-descriz      PIC  x(50).
-           05 col-valido       PIC  99/99/9999.
-           05 col-per          PIC  X(50).
-           05 col-prz1         PIC  zzz.zz9,99.
-           05 col-prz2         PIC  zzz.zz9,99.
-           05 col-prz3         PIC  zzz.zz9,99.
-       77 STATUS-tlistini  PIC  X(2).
-           88 Valid-STATUS-tlistini VALUE IS "00" THRU "09". 
-       77 lab-art-buf      PIC  x(100).
        77 Calibri12BI-Occidentale
                   USAGE IS HANDLE OF FONT.
-       77 tsc-cliente      PIC  x(6).
        77 STATUS-exercises PIC  X(2).
            88 Valid-STATUS-exercises VALUE IS "00" THRU "09". 
        77 STATUS-groups    PIC  X(2).
@@ -222,9 +210,6 @@
            88 Valid-STATUS-macrogroups VALUE IS "00" THRU "09". 
        77 STATUS-wodbook   PIC  X(2).
            88 Valid-STATUS-wodbook VALUE IS "00" THRU "09". 
-       77 LOGO-PICCOLO-BMP PIC  S9(9)
-                  USAGE IS COMP-4
-                  VALUE IS 0.
        77 cb-mg1-buf       PIC  X(100).
        77 cb-mg2-buf       PIC  X(100).
        77 cb-mg3-buf       PIC  X(100).
@@ -256,6 +241,8 @@
        77 path-tmp-exe     PIC  X(256).
        77 STATUS-tmp-exe   PIC  X(2).
            88 Valid-STATUS-tmp-exe VALUE IS "00" THRU "09". 
+       77 STATUS-intexe    PIC  X(2).
+           88 Valid-STATUS-intexe VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -268,7 +255,6 @@
        77 Form1-MULKEY-TMPBUF   PIC X(2447).
        77 TMP-DataSet1-exercises-BUF     PIC X(1189).
        77 TMP-DataSet1-groups-BUF     PIC X(1182).
-       77 TMP-DataSet1-intensity-BUF     PIC X(1188).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
@@ -276,6 +262,7 @@
        77 TMP-DataSet1-wodmap-BUF     PIC X(1444).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(112).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(114).
+       77 TMP-DataSet1-intexe-BUF     PIC X(1188).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -290,11 +277,6 @@
        77 DataSet1-groups-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-groups-KEY-Asc  VALUE "A".
           88 DataSet1-groups-KEY-Desc VALUE "D".
-       77 DataSet1-intensity-LOCK-FLAG   PIC X VALUE SPACE.
-           88 DataSet1-intensity-LOCK  VALUE "Y".
-       77 DataSet1-intensity-KEY-ORDER  PIC X VALUE "A".
-          88 DataSet1-intensity-KEY-Asc  VALUE "A".
-          88 DataSet1-intensity-KEY-Desc VALUE "D".
        77 DataSet1-macrogroups-LOCK-FLAG   PIC X VALUE SPACE.
            88 DataSet1-macrogroups-LOCK  VALUE "Y".
        77 DataSet1-macrogroups-KEY-ORDER  PIC X VALUE "A".
@@ -331,16 +313,22 @@
        77 DataSet1-tmp-exe-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-tmp-exe-KEY-Asc  VALUE "A".
           88 DataSet1-tmp-exe-KEY-Desc VALUE "D".
+       77 DataSet1-intexe-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-intexe-LOCK  VALUE "Y".
+       77 DataSet1-intexe-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-intexe-KEY-Asc  VALUE "A".
+          88 DataSet1-intexe-KEY-Desc VALUE "D".
 
        77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
        77 groups-grp-k-desc-SPLITBUF  PIC X(101).
-       77 intensity-int-k-desc-SPLITBUF  PIC X(101).
-       77 intensity-int-k-effort-SPLITBUF  PIC X(3).
+       77 groups-grp-k-mcg-SPLITBUF  PIC X(11).
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 tmp-wod-exe-twe-k-effort-SPLITBUF  PIC X(7).
+       77 intexe-int-k-desc-SPLITBUF  PIC X(101).
+       77 intexe-int-k-effort-SPLITBUF  PIC X(3).
 
        78  78-col-data       value 1. 
        78  78-col-art        value 2. 
@@ -937,7 +925,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Mappa",
+           TITLE "Modello",
            .
 
       * COMBO-BOX
@@ -1377,7 +1365,6 @@
       *    Before Open
            PERFORM OPEN-exercises
            PERFORM OPEN-groups
-           PERFORM OPEN-intensity
            PERFORM OPEN-macrogroups
            PERFORM OPEN-duration
       *    tmp-exe-effort OPEN MODE IS FALSE
@@ -1388,6 +1375,7 @@
       *    PERFORM OPEN-tmp-wod-exe
       *    tmp-exe OPEN MODE IS FALSE
       *    PERFORM OPEN-tmp-exe
+           PERFORM OPEN-intexe
       *    After Open
            .
 
@@ -1412,18 +1400,6 @@
               GO TO EXIT-STOP-ROUTINE
            END-IF
       * <TOTEM:EPT. INIT:gwod, FD:groups, AfterOpen>
-      * <TOTEM:END>
-           .
-
-       OPEN-intensity.
-      * <TOTEM:EPT. INIT:gwod, FD:intensity, BeforeOpen>
-      * <TOTEM:END>
-           OPEN  INPUT intensity
-           IF NOT Valid-STATUS-intensity
-              PERFORM  Form1-EXTENDED-FILE-STATUS
-              GO TO EXIT-STOP-ROUTINE
-           END-IF
-      * <TOTEM:EPT. INIT:gwod, FD:intensity, AfterOpen>
       * <TOTEM:END>
            .
 
@@ -1518,11 +1494,22 @@
       * <TOTEM:END>
            .
 
+       OPEN-intexe.
+      * <TOTEM:EPT. INIT:gwod, FD:intexe, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  INPUT intexe
+           IF NOT Valid-STATUS-intexe
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:intexe, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-exercises
            PERFORM CLOSE-groups
-           PERFORM CLOSE-intensity
            PERFORM CLOSE-macrogroups
            PERFORM CLOSE-duration
       *    tmp-exe-effort CLOSE MODE IS FALSE
@@ -1533,6 +1520,7 @@
       *    PERFORM CLOSE-tmp-wod-exe
       *    tmp-exe CLOSE MODE IS FALSE
       *    PERFORM CLOSE-tmp-exe
+           PERFORM CLOSE-intexe
       *    After Close
            .
 
@@ -1546,12 +1534,6 @@
       * <TOTEM:EPT. INIT:gwod, FD:groups, BeforeClose>
       * <TOTEM:END>
            CLOSE groups
-           .
-
-       CLOSE-intensity.
-      * <TOTEM:EPT. INIT:gwod, FD:intensity, BeforeClose>
-      * <TOTEM:END>
-           CLOSE intensity
            .
 
        CLOSE-macrogroups.
@@ -1591,6 +1573,12 @@
        CLOSE-tmp-exe.
       * <TOTEM:EPT. INIT:gwod, FD:tmp-exe, BeforeClose>
       * <TOTEM:END>
+           .
+
+       CLOSE-intexe.
+      * <TOTEM:EPT. INIT:gwod, FD:intexe, BeforeClose>
+      * <TOTEM:END>
+           CLOSE intexe
            .
 
        exercises-exe-k-desc-MERGE-SPLITBUF.
@@ -1769,6 +1757,12 @@
            MOVE grp-desc(1:100) TO groups-grp-k-desc-SPLITBUF(1:100)
            .
 
+       groups-grp-k-mcg-MERGE-SPLITBUF.
+           INITIALIZE groups-grp-k-mcg-SPLITBUF
+           MOVE grp-mcg-code(1:5) TO groups-grp-k-mcg-SPLITBUF(1:5)
+           MOVE grp-key(1:5) TO groups-grp-k-mcg-SPLITBUF(6:5)
+           .
+
        DataSet1-groups-INITSTART.
            IF DataSet1-groups-KEY-Asc
               MOVE Low-Value TO grp-key
@@ -1831,6 +1825,7 @@
               KEY grp-key
            END-IF
            PERFORM groups-grp-k-desc-MERGE-SPLITBUF
+           PERFORM groups-grp-k-mcg-MERGE-SPLITBUF
            MOVE STATUS-groups TO TOTEM-ERR-STAT 
            MOVE "groups" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -1859,6 +1854,7 @@
               END-IF
            END-IF
            PERFORM groups-grp-k-desc-MERGE-SPLITBUF
+           PERFORM groups-grp-k-mcg-MERGE-SPLITBUF
            MOVE STATUS-groups TO TOTEM-ERR-STAT
            MOVE "groups" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -1887,6 +1883,7 @@
               END-IF
            END-IF
            PERFORM groups-grp-k-desc-MERGE-SPLITBUF
+           PERFORM groups-grp-k-mcg-MERGE-SPLITBUF
            MOVE STATUS-groups TO TOTEM-ERR-STAT
            MOVE "groups" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -1923,176 +1920,6 @@
            MOVE "groups" TO TOTEM-ERR-FILE
            MOVE "DELETE" TO TOTEM-ERR-MODE
       * <TOTEM:EPT. FD:DataSet1, FD:groups, AfterDelete>
-      * <TOTEM:END>
-           .
-
-       intensity-int-k-desc-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-k-desc-SPLITBUF
-           MOVE int-desc(1:100) TO intensity-int-k-desc-SPLITBUF(1:100)
-           .
-
-       intensity-int-k-effort-MERGE-SPLITBUF.
-           INITIALIZE intensity-int-k-effort-SPLITBUF
-           MOVE int-effort(1:2) TO intensity-int-k-effort-SPLITBUF(1:2)
-           .
-
-       DataSet1-intensity-INITSTART.
-           IF DataSet1-intensity-KEY-Asc
-              MOVE Low-Value TO int-key
-           ELSE
-              MOVE High-Value TO int-key
-           END-IF
-           .
-
-       DataSet1-intensity-INITEND.
-           IF DataSet1-intensity-KEY-Asc
-              MOVE High-Value TO int-key
-           ELSE
-              MOVE Low-Value TO int-key
-           END-IF
-           .
-
-      * intensity
-       DataSet1-intensity-START.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY >= int-key
-           ELSE
-              START intensity KEY <= int-key
-           END-IF
-           .
-
-       DataSet1-intensity-START-NOTGREATER.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY <= int-key
-           ELSE
-              START intensity KEY >= int-key
-           END-IF
-           .
-
-       DataSet1-intensity-START-GREATER.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY > int-key
-           ELSE
-              START intensity KEY < int-key
-           END-IF
-           .
-
-       DataSet1-intensity-START-LESS.
-           IF DataSet1-intensity-KEY-Asc
-              START intensity KEY < int-key
-           ELSE
-              START intensity KEY > int-key
-           END-IF
-           .
-
-       DataSet1-intensity-Read.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadRecord>
-      * <TOTEM:END>
-           IF DataSet1-intensity-LOCK
-              READ intensity WITH LOCK 
-              KEY int-key
-           ELSE
-              READ intensity WITH NO LOCK 
-              KEY int-key
-           END-IF
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT 
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "READ" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadRecord>
-      * <TOTEM:END>
-           .
-
-       DataSet1-intensity-Read-Next.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadNext>
-      * <TOTEM:END>
-           IF DataSet1-intensity-KEY-Asc
-              IF DataSet1-intensity-LOCK
-                 READ intensity NEXT WITH LOCK
-              ELSE
-                 READ intensity NEXT WITH NO LOCK
-              END-IF
-           ELSE
-              IF DataSet1-intensity-LOCK
-                 READ intensity PREVIOUS WITH LOCK
-              ELSE
-                 READ intensity PREVIOUS WITH NO LOCK
-              END-IF
-           END-IF
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "READ NEXT" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadNext>
-      * <TOTEM:END>
-           .
-
-       DataSet1-intensity-Read-Prev.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeReadPrev>
-      * <TOTEM:END>
-           IF DataSet1-intensity-KEY-Asc
-              IF DataSet1-intensity-LOCK
-                 READ intensity PREVIOUS WITH LOCK
-              ELSE
-                 READ intensity PREVIOUS WITH NO LOCK
-              END-IF
-           ELSE
-              IF DataSet1-intensity-LOCK
-                 READ intensity NEXT WITH LOCK
-              ELSE
-                 READ intensity NEXT WITH NO LOCK
-              END-IF
-           END-IF
-           PERFORM intensity-int-k-desc-MERGE-SPLITBUF
-           PERFORM intensity-int-k-effort-MERGE-SPLITBUF
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterReadPrev>
-      * <TOTEM:END>
-           .
-
-       DataSet1-intensity-Rec-Write.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeWrite>
-      * <TOTEM:END>
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "WRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterWrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-intensity-Rec-Rewrite.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeRewrite>
-      * <TOTEM:END>
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "REWRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterRewrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-intensity-Rec-Delete.
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, BeforeDelete>
-      * <TOTEM:END>
-           MOVE STATUS-intensity TO TOTEM-ERR-STAT
-           MOVE "intensity" TO TOTEM-ERR-FILE
-           MOVE "DELETE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:intensity, AfterDelete>
       * <TOTEM:END>
            .
 
@@ -3132,10 +2959,179 @@
       * <TOTEM:END>
            .
 
+       intexe-int-k-desc-MERGE-SPLITBUF.
+           INITIALIZE intexe-int-k-desc-SPLITBUF
+           MOVE int-desc(1:100) TO intexe-int-k-desc-SPLITBUF(1:100)
+           .
+
+       intexe-int-k-effort-MERGE-SPLITBUF.
+           INITIALIZE intexe-int-k-effort-SPLITBUF
+           MOVE int-effort(1:2) TO intexe-int-k-effort-SPLITBUF(1:2)
+           .
+
+       DataSet1-intexe-INITSTART.
+           IF DataSet1-intexe-KEY-Asc
+              MOVE Low-Value TO int-key
+           ELSE
+              MOVE High-Value TO int-key
+           END-IF
+           .
+
+       DataSet1-intexe-INITEND.
+           IF DataSet1-intexe-KEY-Asc
+              MOVE High-Value TO int-key
+           ELSE
+              MOVE Low-Value TO int-key
+           END-IF
+           .
+
+      * intexe
+       DataSet1-intexe-START.
+           IF DataSet1-intexe-KEY-Asc
+              START intexe KEY >= int-key
+           ELSE
+              START intexe KEY <= int-key
+           END-IF
+           .
+
+       DataSet1-intexe-START-NOTGREATER.
+           IF DataSet1-intexe-KEY-Asc
+              START intexe KEY <= int-key
+           ELSE
+              START intexe KEY >= int-key
+           END-IF
+           .
+
+       DataSet1-intexe-START-GREATER.
+           IF DataSet1-intexe-KEY-Asc
+              START intexe KEY > int-key
+           ELSE
+              START intexe KEY < int-key
+           END-IF
+           .
+
+       DataSet1-intexe-START-LESS.
+           IF DataSet1-intexe-KEY-Asc
+              START intexe KEY < int-key
+           ELSE
+              START intexe KEY > int-key
+           END-IF
+           .
+
+       DataSet1-intexe-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeReadRecord>
+      * <TOTEM:END>
+           IF DataSet1-intexe-LOCK
+              READ intexe WITH LOCK 
+              KEY int-key
+           ELSE
+              READ intexe WITH NO LOCK 
+              KEY int-key
+           END-IF
+           PERFORM intexe-int-k-desc-MERGE-SPLITBUF
+           PERFORM intexe-int-k-effort-MERGE-SPLITBUF
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT 
+           MOVE "intexe" TO TOTEM-ERR-FILE
+           MOVE "READ" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-intexe-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeReadNext>
+      * <TOTEM:END>
+           IF DataSet1-intexe-KEY-Asc
+              IF DataSet1-intexe-LOCK
+                 READ intexe NEXT WITH LOCK
+              ELSE
+                 READ intexe NEXT WITH NO LOCK
+              END-IF
+           ELSE
+              IF DataSet1-intexe-LOCK
+                 READ intexe PREVIOUS WITH LOCK
+              ELSE
+                 READ intexe PREVIOUS WITH NO LOCK
+              END-IF
+           END-IF
+           PERFORM intexe-int-k-desc-MERGE-SPLITBUF
+           PERFORM intexe-int-k-effort-MERGE-SPLITBUF
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
+           MOVE "READ NEXT" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-intexe-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeReadPrev>
+      * <TOTEM:END>
+           IF DataSet1-intexe-KEY-Asc
+              IF DataSet1-intexe-LOCK
+                 READ intexe PREVIOUS WITH LOCK
+              ELSE
+                 READ intexe PREVIOUS WITH NO LOCK
+              END-IF
+           ELSE
+              IF DataSet1-intexe-LOCK
+                 READ intexe NEXT WITH LOCK
+              ELSE
+                 READ intexe NEXT WITH NO LOCK
+              END-IF
+           END-IF
+           PERFORM intexe-int-k-desc-MERGE-SPLITBUF
+           PERFORM intexe-int-k-effort-MERGE-SPLITBUF
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
+           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-intexe-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeWrite>
+      * <TOTEM:END>
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-intexe-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-intexe-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-intexe TO TOTEM-ERR-STAT
+           MOVE "intexe" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:intexe, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE grp-rec OF groups
-           INITIALIZE int-rec OF intensity
            INITIALIZE mcg-rec OF macrogroups
            INITIALIZE dur-rec OF duration
            INITIALIZE tee-rec OF tmp-exe-effort
@@ -3143,6 +3139,7 @@
            INITIALIZE wom-rec OF wodmap
            INITIALIZE twe-rec OF tmp-wod-exe
            INITIALIZE tex-rec OF tmp-exe
+           INITIALIZE int-rec OF intexe
            .
 
 
@@ -3243,14 +3240,6 @@
            .
 
       * FD's Initialize Paragraph
-       DataSet1-intensity-INITREC.
-           INITIALIZE int-rec OF intensity
-               REPLACING NUMERIC       DATA BY ZEROS
-                         ALPHANUMERIC  DATA BY SPACES
-                         ALPHABETIC    DATA BY SPACES
-           .
-
-      * FD's Initialize Paragraph
        DataSet1-macrogroups-INITREC.
            INITIALIZE mcg-rec OF macrogroups
                REPLACING NUMERIC       DATA BY ZEROS
@@ -3301,6 +3290,14 @@
       * FD's Initialize Paragraph
        DataSet1-tmp-exe-INITREC.
            INITIALIZE tex-rec OF tmp-exe
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-intexe-INITREC.
+           INITIALIZE int-rec OF intexe
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -3450,11 +3447,11 @@
                  end-perform
            end-start.
            move low-value to int-key.
-           start intensity key >= int-key
+           start intexe key >= int-key
                  invalid continue
              not invalid
                  perform until 1 = 2
-                    read intensity next at end exit perform end-read
+                    read intexe next at end exit perform end-read
                     modify cb-int, item-to-add = int-desc
                  end-perform
            end-start.
@@ -5639,7 +5636,7 @@
 
            move 0 to int-effort.
            inquire cb-int, value in int-desc.
-           read intensity key int-k-desc.
+           read intexe key int-k-desc.
            move int-effort to effort-wod.
            
            inquire cb-dur, value in dur-desc.
@@ -5736,6 +5733,46 @@
                     move grp-desc to col-grp-desc
                     move tex-exe-code to col-exe-code
                     move tex-exe-desc to col-exe-desc
+
+                    move exe-int-code to int-code
+                    read intexe
+                    if exe-isMulti-yes
+                       evaluate wom-int-code
+                       when 1 move  5 to col-series
+                              move  5 to col-reps
+                       when 2 move  6 to col-series
+                              move 10 to col-reps
+                       when 3 move 10 to col-series
+                              move  8 to col-reps
+                       end-evaluate                               
+                       inspect col-reps replacing leading x"30" by x"20"
+                       call "C$JUSTIFY" using col-reps, "L"
+                    else                  
+                       move int-series to col-series
+
+                       move int-range-from to como-range-from
+                       inspect como-range-from replacing leading x"30" 
+           by x"20"
+                       call "C$JUSTIFY" using como-range-from, "L"
+                       inspect como-range-from replacing trailing 
+           spaces by low-value
+
+                       move int-range-to to como-range-to               
+                
+                       inspect como-range-to replacing leading x"30" by 
+           x"20"  
+                       call "C$JUSTIFY" using como-range-to, "L"        
+             
+                       inspect como-range-to replacing trailing spaces 
+           by low-value
+
+                       initialize col-reps
+                       string como-range-from delimited low-value
+                              "-"             delimited size
+                              como-range-to   delimited low-value
+                         into col-reps
+                       end-string
+                    end-if
                     add 1 to riga                                
                     modify gd1(riga, 1), cell-data = col-day
                     modify gd1(riga, 2), cell-data = col-exe-prg
@@ -5743,6 +5780,8 @@
                     modify gd1(riga, 4), cell-data = col-grp-desc
                     modify gd1(riga, 5), cell-data = col-exe-code
                     modify gd1(riga, 6), cell-data = col-exe-desc
+                    modify gd1(riga, 7), cell-data = col-series
+                    modify gd1(riga, 8), cell-data = col-reps
                  end-perform
            end-start.
                                       
@@ -5764,7 +5803,7 @@
                  perform until 1 = 2
                     read exercises next at end exit perform end-read
                     move exe-int-code to int-code
-                    read intensity no lock
+                    read intexe no lock
                     move exe-grp-code to grp-code
                     read groups no lock
                     if exe-isMulti-yes and cb-mul-buf = "No"

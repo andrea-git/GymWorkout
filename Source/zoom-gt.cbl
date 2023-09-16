@@ -83,8 +83,8 @@
                 perform PREPARA-MACROGROUPS
            when "groups"
                 perform PREPARA-GROUPS    
-           when "intensity"
-                perform PREPARA-INTENSITY
+           when "intexe"
+                perform PREPARA-INTEXE
            when "duration"
                 perform PREPARA-DURATION
            when "wodmap"
@@ -719,7 +719,7 @@
            move "000"                    to xzoom-to-value.
                         
       ***---
-       PREPARA-INTENSITY.
+       PREPARA-INTEXE.
            initialize xzoom-linkage xzoom-ext-info(1).
       
            move  0   to xzoom-file-key.
@@ -729,7 +729,7 @@
            move  0                       to xzoom-cln.
            move  10                      to xzoom-lw.
            move  50                      to xzoom-sw.
-           move "intensity"              to xzoom-file-name(1).
+           move "intexe"              to xzoom-file-name(1).
            move  2                       to xzoom-fields.
 
       * CAMPO 1

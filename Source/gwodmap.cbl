@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        sabato 16 settembre 2023 00:00:19.
+       DATE-WRITTEN.        domenica 17 settembre 2023 21:38:22.
        REMARKS.
       *{TOTEM}END
 
@@ -3535,6 +3535,18 @@
               perform STATUS-BAR-MSG  
               set nuovo to true       
               unlock wodmap all records
+
+              move high-value to wom-code
+              start wodmap key <= wom-key
+                    invalid move 0 to wom-code
+                not invalid read wodmap previous
+              end-start
+              add 1 to wom-code
+              move wom-code to ef-codice-buf
+              initialize wom-data replacing numeric data by zeroes
+                                       alphanumeric data by spaces
+              display ef-codice
+
               move 78-ID-ef-codice to CONTROL-ID       
               move 4               to ACCEPT-CONTROL   
            end-if 

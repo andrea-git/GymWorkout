@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E79F214849-863-632810565
+PROGRAM_UNIQUE_CODE=TOTEM-7E791119354-928-107014769
 
 {{@DESCRIPTION:
 
@@ -3467,6 +3467,18 @@ BEGIN-TEXT
               perform STATUS-BAR-MSG  
               set nuovo to true       
               unlock wodmap all records
+
+              move high-value to wom-code
+              start wodmap key <= wom-key
+                    invalid move 0 to wom-code
+                not invalid read wodmap previous
+              end-start
+              add 1 to wom-code
+              move wom-code to ef-codice-buf
+              initialize wom-data replacing numeric data by zeroes
+                                       alphanumeric data by spaces
+              display ef-codice
+
               move 78-ID-ef-codice to CONTROL-ID       
               move 4               to ACCEPT-CONTROL   
            end-if.

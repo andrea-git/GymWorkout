@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E79F214849-708-293353681
+PROGRAM_UNIQUE_CODE=TOTEM-7E7911195121-512-91515076
 
 {{@DESCRIPTION:
 
@@ -1273,6 +1273,25 @@ m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM124_WK
 
 @}}
+[FDITEM125_WK]
+m_strName=cb-mg7-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM125_WK
+
+@}}
+[FDITEM126_WK]
+m_strName=Calibri10-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM126_WK
+
+@}}
 
 
 [LINKAGE_SECTION]
@@ -1456,7 +1475,7 @@ GRAPHICAL-SCREEN
 Begin Screen Form1
    PREFIX            = Screen1
    IMPORTED-SCREEN   = FALSE
-   LOCK-CONTROL      = TRUE
+   LOCK-CONTROL      = FALSE
    LEVEL             = 1
    (Name)            = Form1
    Absolute Column   = 2
@@ -1482,7 +1501,7 @@ Begin Screen Form1
    Height in Cells   = TRUE
    Help ID           = 0
    Label Offset      = 23
-   Lines             = 27,00
+   Lines             = 39,17
    Link To Thread    = TRUE
    Max Lines         = 0,00
    Max Size          = 0,00
@@ -1493,7 +1512,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 113,50
+   Size              = 160,30
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -1506,8 +1525,8 @@ Begin Screen Form1
    Wrap              = FALSE
    Event Procedure   = Screen1-Event-Proc
    Begin Grid gd1
-      SCREEN-COL        = 2,00
-      SCREEN-LINE       = 16,57
+      SCREEN-COL        = 79,40
+      SCREEN-LINE       = 1,74
       LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = gd1
@@ -1524,7 +1543,7 @@ Begin Screen Form1
       Cells' Setting    = ( X = 8, Y = 1, Data = "Reps" )
       Centered Headings = FALSE
       Color             = 0
-      Column            = 2,00
+      Column            = 79,40
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-day, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", TYPE = "9(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
@@ -1559,7 +1578,8 @@ Begin Screen Form1
       Drag Color        = 0
       Enable            = NONE
       End Color         = 0
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Heading Color     = 257
       Heading Divider Color = 1
       Heading Font      = Default Font
@@ -1569,8 +1589,8 @@ Begin Screen Form1
       ID                = 26
       ID Variable       = AUTO-ID
       Last Row          = 0
-      Line              = 16,57
-      Lines             = 9,74
+      Line              = 1,74
+      Lines             = 36,57
       Lines Unit        = Default
       No Tab            = FALSE
       Num Col Headings  = 1
@@ -1598,36 +1618,6 @@ Begin Screen Form1
       Msg-Goto-Cell     = gd1-Ev-Msg-Goto-Cell
       Msg-Goto-Cell-Drag = gd1-Ev-Msg-Goto-Cell-Drag
       Msg-Goto-Cell-Mouse = gd1-Ev-Msg-Goto-Cell-Mouse
-   End
-   Begin Bar Screen1-Br-1
-      SCREEN-COL        = 1,00
-      SCREEN-LINE       = 16,13
-      LOCK-CONTROL      = FALSE
-      LEVEL             = 5
-      (Name)            = Screen1-Br-1
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 1,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 22
-      Kind              = Horizontal
-      Line              = 16,13
-      Line Styles       = Solid
-      Occurs            = 0
-      Position Shift    = 0
-      COLORS            = ( 9, 9 )
-      Size (Lines)      = 113,50
-      Size (Lines) in Pixels = 1135
-      Size (Lines) Unit = Default
-      Tab Order         = 2
-      Visible           = NONE
-      Width             = 2
-      Width in Cells    = TRUE
    End
    Begin CsCtrl.blockpgm Label Screen1-blockpgm-1
       CUST-SYMBOL       = blockpgm
@@ -1658,7 +1648,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 1,50
       Size Unit         = Default
-      Tab Order         = 3
+      Tab Order         = 2
       Title             = "BlockPgm"
       Transparent       = TRUE
       Visible           = NONE
@@ -1696,7 +1686,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 0,80
       Size Unit         = Default
-      Tab Order         = 4
+      Tab Order         = 3
       Title             = "CUSTOM CONTROL"
       Transparent       = TRUE
       Visible           = NONE
@@ -1730,8 +1720,8 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 5
-      Title             = "Macrogruppo 1"
+      Tab Order         = 4
+      Title             = "Macrogruppo A"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
@@ -1763,8 +1753,8 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 6
-      Title             = "Macrogruppo 2"
+      Tab Order         = 5
+      Title             = "Macrogruppo B"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
@@ -1796,8 +1786,8 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 7
-      Title             = "Macrogruppo 3"
+      Tab Order         = 6
+      Title             = "Macrogruppo C"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
@@ -1829,8 +1819,8 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 8
-      Title             = "Macrogruppo 4"
+      Tab Order         = 7
+      Title             = "Macrogruppo D"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
@@ -1862,8 +1852,8 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 9
-      Title             = "Macrogruppo 5"
+      Tab Order         = 8
+      Title             = "Macrogruppo E"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
@@ -1901,7 +1891,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 10
+      Tab Order         = 9
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = X(100)
@@ -1944,7 +1934,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 11
+      Tab Order         = 10
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = X(100)
@@ -1987,7 +1977,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 12
+      Tab Order         = 11
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = X(100)
@@ -2030,7 +2020,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 13
+      Tab Order         = 12
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = X(100)
@@ -2073,7 +2063,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 14
+      Tab Order         = 13
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = X(100)
@@ -2084,15 +2074,15 @@ Begin Screen Form1
       After Procedure   = cb-mg5-AfterProcedure
    End
    Begin Label Screen1-La-2
-      SCREEN-COL        = 3,00
-      SCREEN-LINE       = 10,91
-      LOCK-CONTROL      = TRUE
+      SCREEN-COL        = 56,60
+      SCREEN-LINE       = 11,96
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = Screen1-La-2
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 3,00
+      Column            = 56,60
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2103,23 +2093,23 @@ Begin Screen Form1
       ID                = 14
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 10,91
+      Line              = 11,96
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
       Occurs            = 0
       Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 15
+      Tab Order         = 14
       Title             = "Total body"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
    End
    Begin Combo-Box cb-mgtb
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 10,91
-      LOCK-CONTROL      = TRUE
+      SCREEN-COL        = 54,10
+      SCREEN-LINE       = 14,70
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = cb-mgtb
       Border            = Boxed
@@ -2127,7 +2117,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 54,10
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2137,7 +2127,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 15
-      Line              = 10,91
+      Line              = 14,70
       Lines             = 4,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2149,7 +2139,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 16
+      Tab Order         = 15
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = X(100)
@@ -2160,15 +2150,15 @@ Begin Screen Form1
       After Procedure   = cb-mgtb-AfterProcedure
    End
    Begin Label Screen1-La-2a
-      SCREEN-COL        = 65,00
+      SCREEN-COL        = 43,00
       SCREEN-LINE       = 1,65
-      LOCK-CONTROL      = TRUE
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = Screen1-La-2a
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 65,00
+      Column            = 43,00
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2186,16 +2176,16 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,00
       Size Unit         = Default
-      Tab Order         = 17
+      Tab Order         = 16
       Title             = "Intensità"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
    End
    Begin Combo-Box cb-int
-      SCREEN-COL        = 74,00
+      SCREEN-COL        = 52,00
       SCREEN-LINE       = 1,65
-      LOCK-CONTROL      = TRUE
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = cb-int
       Border            = Boxed
@@ -2203,7 +2193,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 74,00
+      Column            = 52,00
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2225,7 +2215,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 18
+      Tab Order         = 17
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = X(100)
@@ -2236,15 +2226,15 @@ Begin Screen Form1
       After Procedure   = cb-int-AfterProcedure
    End
    Begin Label Screen1-La-2aa
-      SCREEN-COL        = 65,00
+      SCREEN-COL        = 43,00
       SCREEN-LINE       = 3,13
-      LOCK-CONTROL      = TRUE
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = Screen1-La-2aa
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 65,00
+      Column            = 43,00
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2262,16 +2252,16 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,00
       Size Unit         = Default
-      Tab Order         = 19
+      Tab Order         = 18
       Title             = "Durata"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
    End
    Begin Combo-Box cb-dur
-      SCREEN-COL        = 74,00
+      SCREEN-COL        = 52,00
       SCREEN-LINE       = 3,13
-      LOCK-CONTROL      = TRUE
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = cb-dur
       Border            = Boxed
@@ -2279,7 +2269,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 74,00
+      Column            = 52,00
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2301,7 +2291,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 20
+      Tab Order         = 19
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = X(100)
@@ -2338,7 +2328,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 21
+      Tab Order         = 20
       Title             = "Random"
       Transparent       = TRUE
       Visible           = NONE
@@ -2377,7 +2367,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 22
+      Tab Order         = 21
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = X(100)
@@ -2388,8 +2378,8 @@ Begin Screen Form1
       After Procedure   = cb-rnd-AfterProcedure
    End
    Begin Push-Button pb-genera
-      SCREEN-COL        = 80,00
-      SCREEN-LINE       = 9,87
+      SCREEN-COL        = 43,90
+      SCREEN-LINE       = 9,09
       LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = pb-genera
@@ -2398,7 +2388,7 @@ Begin Screen Form1
       Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Column            = 80,00
+      Column            = 43,90
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2411,33 +2401,33 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 1
-      Line              = 9,87
-      Lines             = 3,30
+      Line              = 9,09
+      Lines             = 1,39
       Lines Unit        = Default
       No Auto Default   = FALSE
       No Tab            = FALSE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 26,40
+      Size              = 15,90
       Size Unit         = Default
       Style             = Other
-      Tab Order         = 23
+      Tab Order         = 22
       Termination Value = 0
-      Title             = "GENERA"
+      Title             = "&GENERA"
       Visible           = NONE
       Width in Cells    = TRUE
       Link To           = pb-genera-LinkTo
    End
    Begin Label Screen1-La-2aaa
-      SCREEN-COL        = 65,00
+      SCREEN-COL        = 43,00
       SCREEN-LINE       = 4,87
-      LOCK-CONTROL      = TRUE
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = Screen1-La-2aaa
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 65,00
+      Column            = 43,00
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2455,16 +2445,16 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,00
       Size Unit         = Default
-      Tab Order         = 24
+      Tab Order         = 23
       Title             = "Giorni"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
    End
    Begin Combo-Box cb-gio
-      SCREEN-COL        = 74,00
+      SCREEN-COL        = 52,00
       SCREEN-LINE       = 4,87
-      LOCK-CONTROL      = TRUE
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = cb-gio
       Border            = Boxed
@@ -2472,7 +2462,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 74,00
+      Column            = 52,00
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2494,7 +2484,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 25
+      Tab Order         = 24
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = 9
@@ -2505,8 +2495,8 @@ Begin Screen Form1
       After Procedure   = cb-dur-AfterProcedure
    End
    Begin Push-Button Screen1-Pb-1
-      SCREEN-COL        = 51,30
-      SCREEN-LINE       = 2,91
+      SCREEN-COL        = 63,30
+      SCREEN-LINE       = 9,52
       LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = Screen1-Pb-1
@@ -2515,7 +2505,7 @@ Begin Screen Form1
       Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Column            = 51,30
+      Column            = 63,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2528,7 +2518,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 30
-      Line              = 2,91
+      Line              = 9,52
       Lines             = 1,48
       Lines Unit        = Default
       No Auto Default   = FALSE
@@ -2538,9 +2528,9 @@ Begin Screen Form1
       Size              = 3,80
       Size Unit         = Default
       Style             = Other
-      Tab Order         = 26
+      Tab Order         = 25
       Termination Value = 0
-      Title             = "Push Button"
+      Title             = "C"
       Visible           = NONE
       Width in Cells    = TRUE
       Link To           = Screen1-Pb-1-LinkTo
@@ -2572,7 +2562,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 27
+      Tab Order         = 26
       Title             = "Multiarticolari"
       Transparent       = TRUE
       Visible           = NONE
@@ -2611,7 +2601,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 28
+      Tab Order         = 27
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = X(100)
@@ -2622,15 +2612,15 @@ Begin Screen Form1
       After Procedure   = cb-rnd-AfterProcedure
    End
    Begin Label Screen1-La-2aaaa
-      SCREEN-COL        = 65,00
+      SCREEN-COL        = 43,00
       SCREEN-LINE       = 7,04
-      LOCK-CONTROL      = TRUE
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = Screen1-La-2aaaa
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 65,00
+      Column            = 43,00
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2648,16 +2638,16 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,00
       Size Unit         = Default
-      Tab Order         = 29
+      Tab Order         = 28
       Title             = "Modello"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
    End
    Begin Combo-Box cb-wod
-      SCREEN-COL        = 74,00
+      SCREEN-COL        = 52,00
       SCREEN-LINE       = 7,04
-      LOCK-CONTROL      = TRUE
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = cb-wod
       Border            = Boxed
@@ -2665,7 +2655,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 74,00
+      Column            = 52,00
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2687,7 +2677,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 30
+      Tab Order         = 29
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = x(100)
@@ -2698,8 +2688,8 @@ Begin Screen Form1
       After Procedure   = cb-dur-AfterProcedure
    End
    Begin Push-Button pb-random
-      SCREEN-COL        = 50,30
-      SCREEN-LINE       = 10,00
+      SCREEN-COL        = 46,10
+      SCREEN-LINE       = 11,35
       LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = pb-random
@@ -2708,7 +2698,7 @@ Begin Screen Form1
       Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Column            = 50,30
+      Column            = 46,10
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2721,7 +2711,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 25
-      Line              = 10,00
+      Line              = 11,35
       Lines             = 2,78
       Lines Unit        = Default
       No Auto Default   = FALSE
@@ -2731,7 +2721,7 @@ Begin Screen Form1
       Size              = 7,60
       Size Unit         = Default
       Style             = Other
-      Tab Order         = 31
+      Tab Order         = 30
       Termination Value = 0
       Title             = "RANDOM"
       Visible           = NONE
@@ -2765,8 +2755,8 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 32
-      Title             = "Macrogruppo 6"
+      Tab Order         = 31
+      Title             = "Macrogruppo E"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
@@ -2774,7 +2764,7 @@ Begin Screen Form1
    Begin Combo-Box cb-mg6
       SCREEN-COL        = 17,00
       SCREEN-LINE       = 9,39
-      LOCK-CONTROL      = TRUE
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = cb-mg6
       Border            = Boxed
@@ -2804,7 +2794,7 @@ Begin Screen Form1
       Size              = 25,00
       Size Unit         = Default
       Style             = Drop List
-      Tab Order         = 33
+      Tab Order         = 32
       Termination Value = 0
       Unsorted          = TRUE
       Value Picture     = X(100)
@@ -2813,6 +2803,123 @@ Begin Screen Form1
       Width in Cells    = TRUE
       Before Procedure  = cb-mg5-BeforeProcedure
       After Procedure   = cb-mg5-AfterProcedure
+   End
+   Begin Label Screen1-La-1adaa
+      SCREEN-COL        = 3,00
+      SCREEN-LINE       = 11,13
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = Screen1-La-1adaa
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 3,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 27
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 11,13
+      Lines             = 1,30
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 13,00
+      Size Unit         = Default
+      Tab Order         = 33
+      Title             = "Macrogruppo F"
+      Transparent       = TRUE
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
+   Begin Combo-Box cb-mg7
+      SCREEN-COL        = 17,00
+      SCREEN-LINE       = 11,13
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mg7
+      Border            = Boxed
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 17,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 28
+      Line              = 11,13
+      Lines             = 6,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 25,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 34
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(100)
+      Value Variable    = cb-mg7-buf
+      Visible           = NONE
+      Width in Cells    = TRUE
+      Before Procedure  = cb-mg5-BeforeProcedure
+      After Procedure   = cb-mg5-AfterProcedure
+   End
+   Begin Push-Button Screen1-Pb-1a
+      SCREEN-COL        = 70,10
+      SCREEN-LINE       = 9,52
+      LOCK-CONTROL      = FALSE
+      LEVEL             = 5
+      (Name)            = Screen1-Pb-1a
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Column            = 70,10
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1003
+      Flat              = FALSE
+      Font              = Small Font
+      Font Variable     = Small-Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 30
+      Line              = 9,52
+      Lines             = 1,48
+      Lines Unit        = Default
+      No Auto Default   = FALSE
+      No Tab            = FALSE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 3,80
+      Size Unit         = Default
+      Style             = Other
+      Tab Order         = 35
+      Termination Value = 0
+      Title             = "H"
+      Visible           = NONE
+      Width in Cells    = TRUE
+      Link To           = Screen1-Pb-1a-LinkTo
    End
    Begin Toolbar Form1-Tb-1
       SCREEN-LINE       = 1,00
@@ -2826,7 +2933,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 34
+      Tab Order         = 36
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -3277,7 +3384,7 @@ Begin Screen Form1
       Handle Variable   = Form1-St-1-Handle
       PANEL-WIDTHS      = ( 65, 28, 999 )
       PANEL-STYLE       = ( 1, 1, 1 )
-      Tab Order         = 35
+      Tab Order         = 37
    End
 End
 
@@ -3404,6 +3511,7 @@ BEGIN-TEXT
            modify cb-mg4, item-to-add = "Nessuno". 
            modify cb-mg5, item-to-add = "Nessuno".
            modify cb-mg6, item-to-add = "Nessuno".
+           modify cb-mg7, item-to-add = "Nessuno".
            modify cb-int, item-to-add = "Nessuno".
                                                  
            modify cb-mgtb, item-to-add = "No".
@@ -3414,8 +3522,9 @@ BEGIN-TEXT
  
            modify cb-mul, item-to-add = "No".
            modify cb-mul, item-to-add = "Si".     
-                                          
+                                                   
            modify cb-dur, item-to-add = "Nessuno".
+           modify cb-wod, item-to-add = "Nessuno".
 
            modify cb-gio, item-to-add = 1.
            modify cb-gio, item-to-add = 2.
@@ -3450,6 +3559,9 @@ BEGIN-TEXT
                     modify cb-mg4, item-to-add = mcg-desc
                     modify cb-mg5, item-to-add = mcg-desc
                     modify cb-mg6, item-to-add = mcg-desc
+                    modify cb-mg7, item-to-add = mcg-desc
+
+                    move mcg-desc to el-mcg-desc(tot-mcg)
                  end-perform
            end-start.
            move low-value to int-key.
@@ -3476,6 +3588,7 @@ BEGIN-TEXT
            modify cb-mg4, value "Nessuno".
            modify cb-mg5, value "Nessuno".
            modify cb-mg6, value "Nessuno".
+           modify cb-mg7, value "Nessuno".
            modify cb-int, value "Nessuno".
                         
            modify cb-mgtb, value "No".    
@@ -3483,8 +3596,9 @@ BEGIN-TEXT
            modify cb-rnd,  value "No".    
 
            modify cb-mul,  value "Si".
-                                         
+                                          
            modify cb-dur, value "Nessuno".
+           modify cb-wod, value "Nessuno".
 
            modify cb-gio, value 1.
 END-TEXT
@@ -3953,6 +4067,8 @@ BEGIN-TEXT
            inquire cb-mg5, value in mcg-desc.
            perform ADD-ELEM-GRUPPO.
            inquire cb-mg6, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.
+           inquire cb-mg7, value in mcg-desc.
            perform ADD-ELEM-GRUPPO.
 
       ***---
@@ -5186,6 +5302,7 @@ BEGIN-TEXT
               modify cb-mg4, value "Nessuno", enabled = false
               modify cb-mg5, value "Nessuno", enabled = false
               modify cb-mg6, value "Nessuno", enabled = false
+              modify cb-mg7, value "Nessuno", enabled = false
            else                                              
               modify cb-mg1, enabled = true
               modify cb-mg2, enabled = true
@@ -5193,6 +5310,7 @@ BEGIN-TEXT
               modify cb-mg4, enabled = true
               modify cb-mg5, enabled = true
               modify cb-mg6, enabled = true
+              modify cb-mg7, enabled = true
            end-if.
 END-TEXT
 END-DATA
@@ -5314,6 +5432,7 @@ BEGIN-TEXT
               modify cb-mg4,  value "Nessuno", enabled = false
               modify cb-mg5,  value "Nessuno", enabled = false
               modify cb-mg6,  value "Nessuno", enabled = false
+              modify cb-mg7,  value "Nessuno", enabled = false
               modify cb-mgtb, value "No",      enabled = false
            else                                              
               modify cb-mg1,  enabled = true
@@ -5322,6 +5441,7 @@ BEGIN-TEXT
               modify cb-mg4,  enabled = true
               modify cb-mg5,  enabled = true
               modify cb-mg6,  enabled = true
+              modify cb-mg7,  enabled = true
               modify cb-mgtb, enabled = true
            end-if.
 END-TEXT
@@ -5399,7 +5519,7 @@ BEGIN-TEXT
            perform LOAD-EXERCISES.
            
            move low-value to tex-rec.
-           move 0 to save-day
+           move 0 to save-day col-exe-prg.
            start tmp-exe key >= tex-key
                  invalid continue 
              not invalid
@@ -5491,14 +5611,14 @@ BEGIN-TEXT
                     move exe-int-code to int-code
                     read intexe no lock
                     move exe-grp-code to grp-code
-                    read groups no lock
+                    read groups no lock                                 
                     if exe-isMulti-yes and cb-mul-buf = "No"
                        exit perform cycle
                     end-if                            
                     if int-effort <= effort-wod or 
                        exe-isMulti-yes and cb-mul-buf = "Si"
                        perform varying idx-gruppi from 1 by 1 
-                                 until idx-gruppi > tot-gruppi
+                                 until idx-gruppi > tot-gruppi                     
                           if el-mcg-code(idx-gruppi) = grp-mcg-code
                              move exe-code     to twe-exe-code
                              move exe-desc     to twe-exe-desc
@@ -5550,14 +5670,22 @@ BEGIN-TEXT
                               until idx-split > 9
 
                        evaluate wom-split-el-split-sigla(idx-days, idx-split)
-                       when "A" move el-mcg-code(1) to mcg-code
-                       when "B" move el-mcg-code(2) to mcg-code
-                       when "C" move el-mcg-code(3) to mcg-code
-                       when "D" move el-mcg-code(4) to mcg-code
-                       when "E" move el-mcg-code(5) to mcg-code
-                       when "F" move el-mcg-code(6) to mcg-code
+                       when "A"   move el-mcg-code(1) to mcg-code
+                       when "B"   move el-mcg-code(2) to mcg-code
+                       when "C"   move el-mcg-code(3) to mcg-code
+                       when "D"   move el-mcg-code(4) to mcg-code
+                       when "E"   move el-mcg-code(5) to mcg-code
+                       when "F"   move el-mcg-code(6) to mcg-code
                        when other exit perform
                        end-evaluate
+
+                       move wom-split-el-split-effort(idx-days, idx-split)
+                         to int-code
+                       read intexe no lock
+                       if int-effort not = 3
+                          exit perform
+                       end-if
+
                        if el-mcg-code(idx-gruppi) = mcg-code
                           perform until 1 = 2
                              compute idx = function random * (tot-exe)
@@ -5572,7 +5700,9 @@ BEGIN-TEXT
                                 write tex-rec
 
                                 move 1                to el-exe-used(idx)
-                                subtract 1 from ex-remain
+                                if ex-remain > 0
+                                   subtract 1 from ex-remain
+                                end-if
                                 exit perform
                              end-if
                           end-perform
@@ -5594,7 +5724,7 @@ BEGIN-TEXT
                  read tmp-exe
                       invalid continue
                   not invalid exit perform cycle |Salto i multi se già messi
-                 end-read
+                 end-read                        
 
                  move low-value to twe-rec
                  set twe-exe-isMulti-no to true
@@ -5646,7 +5776,9 @@ BEGIN-TEXT
                            write tex-rec
                   
                            move 1                to el-exe-used(idx)
-                           subtract 1 from ex-remain
+                           if ex-remain > 0
+                              subtract 1 from ex-remain
+                           end-if
                            exit perform
                         end-if
                      end-perform 
@@ -5665,6 +5797,7 @@ BEGIN-TEXT
            modify cb-mg4, value "Pectoral".
            modify cb-mg5, value "Back".
            modify cb-mg6, value "Abs".
+           modify cb-mg7, value "Nessuno".
                                  
            modify cb-int, value = "Hard".
            modify cb-dur, value = "Medium".
@@ -5695,10 +5828,27 @@ BEGIN-TEXT
                  when 4 modify cb-mg4, value = como-el-mcg-desc(idx)
                  when 5 modify cb-mg5, value = como-el-mcg-desc(idx)
                  when 6 modify cb-mg6, value = como-el-mcg-desc(idx)
+                 when 7 modify cb-mg7, value = como-el-mcg-desc(idx)
                  end-evaluate
                  move spaces to como-el-mcg-desc(idx) 
               end-if
            end-perform.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = Screen1-Pb-1a-LinkTo
+BEGIN-TEXT
+           modify cb-mg1, value "Legs".
+           modify cb-mg2, value "Abs".
+           modify cb-mg3, value "Pectoral".
+           modify cb-mg4, value "Arms".
+           modify cb-mg5, value "Shoulder".
+           modify cb-mg6, value "Back".
+           modify cb-mg7, value "Nessuno".
+                                 
+           modify cb-int, value = "Hard".
+           modify cb-dur, value = "Medium".
 END-TEXT
 END-DATA
 

@@ -5,7 +5,7 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791002920-294-2169616062
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7911195121-402-886121101
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -133,12 +133,3 @@ m_bUnique=1
 @}}
 [SLKEYATOM0_]
 m_strName=twe-key
-[SLINDEX0_]
-m_strName=twe-k-effort
-{{@Key_m_strDescriptionSLINDEX0_
-
-@}}
-[SLKEYATOM0_SLINDEX0_]
-m_strName=twe-exe-isMulti
-[SLKEYATOM1_SLINDEX0_]
-m_strName=twe-mcg-code

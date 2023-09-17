@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        sabato 16 settembre 2023 02:28:44.
+       DATE-WRITTEN.        domenica 17 settembre 2023 23:37:01.
        REMARKS.
       *{TOTEM}END
 
@@ -243,6 +243,9 @@
            88 Valid-STATUS-tmp-exe VALUE IS "00" THRU "09". 
        77 STATUS-intexe    PIC  X(2).
            88 Valid-STATUS-intexe VALUE IS "00" THRU "09". 
+       77 cb-mg7-buf       PIC  X(100).
+       77 Calibri10-Occidentale
+                  USAGE IS HANDLE OF FONT.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -326,7 +329,6 @@
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
-       77 tmp-wod-exe-twe-k-effort-SPLITBUF  PIC X(7).
        77 intexe-int-k-desc-SPLITBUF  PIC X(101).
        77 intexe-int-k-effort-SPLITBUF  PIC X(3).
 
@@ -418,9 +420,9 @@
        05
            gd1, 
            Grid, 
-           COL 2,00, 
-           LINE 16,57,
-           LINES 9,74 ,
+           COL 79,40, 
+           LINE 1,74,
+           LINES 36,57 ,
            SIZE 81,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
@@ -433,6 +435,7 @@
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
            DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
            HSCROLL,
@@ -444,20 +447,6 @@
            VPADDING 5,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
-           .
-
-      * BAR
-       05
-           Screen1-Br-1, 
-           Bar,
-           COL 1,00, 
-           LINE 16,13,
-           SIZE 113,50 ,
-           ID IS 22,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           COLORS (9, 9),
-           WIDTH 2,
            .
 
       * LABEL
@@ -502,7 +491,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Macrogruppo 1",
+           TITLE "Macrogruppo A",
            .
 
       * LABEL
@@ -517,7 +506,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Macrogruppo 2",
+           TITLE "Macrogruppo B",
            .
 
       * LABEL
@@ -532,7 +521,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Macrogruppo 3",
+           TITLE "Macrogruppo C",
            .
 
       * LABEL
@@ -547,7 +536,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Macrogruppo 4",
+           TITLE "Macrogruppo D",
            .
 
       * LABEL
@@ -562,7 +551,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Macrogruppo 5",
+           TITLE "Macrogruppo E",
            .
 
       * COMBO-BOX
@@ -669,8 +658,8 @@
        05
            Screen1-La-2, 
            Label, 
-           COL 3,00, 
-           LINE 10,91,
+           COL 56,60, 
+           LINE 11,96,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 14,
@@ -684,8 +673,8 @@
        05
            cb-mgtb, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 10,91,
+           COL 54,10, 
+           LINE 14,70,
            LINES 4,00 ,
            SIZE 25,00 ,
            BOXED,
@@ -705,7 +694,7 @@
        05
            Screen1-La-2a, 
            Label, 
-           COL 65,00, 
+           COL 43,00, 
            LINE 1,65,
            LINES 1,30 ,
            SIZE 8,00 ,
@@ -720,7 +709,7 @@
        05
            cb-int, 
            Combo-Box, 
-           COL 74,00, 
+           COL 52,00, 
            LINE 1,65,
            LINES 6,00 ,
            SIZE 25,00 ,
@@ -741,7 +730,7 @@
        05
            Screen1-La-2aa, 
            Label, 
-           COL 65,00, 
+           COL 43,00, 
            LINE 3,13,
            LINES 1,30 ,
            SIZE 8,00 ,
@@ -756,7 +745,7 @@
        05
            cb-dur, 
            Combo-Box, 
-           COL 74,00, 
+           COL 52,00, 
            LINE 3,13,
            LINES 6,00 ,
            SIZE 25,00 ,
@@ -813,23 +802,23 @@
        05
            pb-genera, 
            Push-Button, 
-           COL 80,00, 
-           LINE 9,87,
-           LINES 3,30 ,
-           SIZE 26,40 ,
+           COL 43,90, 
+           LINE 9,09,
+           LINES 1,39 ,
+           SIZE 15,90 ,
            EXCEPTION-VALUE 1000,
            FONT IS Small-Font,
            ID IS 1,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TITLE "GENERA",
+           TITLE "&GENERA",
            .
 
       * LABEL
        05
            Screen1-La-2aaa, 
            Label, 
-           COL 65,00, 
+           COL 43,00, 
            LINE 4,87,
            LINES 1,30 ,
            SIZE 8,00 ,
@@ -844,7 +833,7 @@
        05
            cb-gio, 
            Combo-Box, 
-           COL 74,00, 
+           COL 52,00, 
            LINE 4,87,
            LINES 6,00 ,
            SIZE 25,00 ,
@@ -865,8 +854,8 @@
        05
            Screen1-Pb-1, 
            Push-Button, 
-           COL 51,30, 
-           LINE 2,91,
+           COL 63,30, 
+           LINE 9,52,
            LINES 1,48 ,
            SIZE 3,80 ,
            EXCEPTION-VALUE 1001,
@@ -874,7 +863,7 @@
            ID IS 30,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TITLE "Push Button",
+           TITLE "C",
            .
 
       * LABEL
@@ -917,7 +906,7 @@
        05
            Screen1-La-2aaaa, 
            Label, 
-           COL 65,00, 
+           COL 43,00, 
            LINE 7,04,
            LINES 1,30 ,
            SIZE 8,00 ,
@@ -932,7 +921,7 @@
        05
            cb-wod, 
            Combo-Box, 
-           COL 74,00, 
+           COL 52,00, 
            LINE 7,04,
            LINES 6,00 ,
            SIZE 25,00 ,
@@ -953,8 +942,8 @@
        05
            pb-random, 
            Push-Button, 
-           COL 50,30, 
-           LINE 10,00,
+           COL 46,10, 
+           LINE 11,35,
            LINES 2,78 ,
            SIZE 7,60 ,
            EXCEPTION-VALUE 1002,
@@ -977,7 +966,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Macrogruppo 6",
+           TITLE "Macrogruppo E",
            .
 
       * COMBO-BOX
@@ -1000,6 +989,57 @@
            AFTER PROCEDURE cb-mg5-AfterProcedure, 
            BEFORE PROCEDURE cb-mg5-BeforeProcedure, 
            .
+      * LABEL
+       05
+           Screen1-La-1adaa, 
+           Label, 
+           COL 3,00, 
+           LINE 11,13,
+           LINES 1,30 ,
+           SIZE 13,00 ,
+           ID IS 27,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Macrogruppo F",
+           .
+
+      * COMBO-BOX
+       05
+           cb-mg7, 
+           Combo-Box, 
+           COL 17,00, 
+           LINE 11,13,
+           LINES 6,00 ,
+           SIZE 25,00 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 28,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mg7-buf,
+           AFTER PROCEDURE cb-mg5-AfterProcedure, 
+           BEFORE PROCEDURE cb-mg5-BeforeProcedure, 
+           .
+      * PUSH BUTTON
+       05
+           Screen1-Pb-1a, 
+           Push-Button, 
+           COL 70,10, 
+           LINE 9,52,
+           LINES 1,48 ,
+           SIZE 3,80 ,
+           EXCEPTION-VALUE 1003,
+           FONT IS Small-Font,
+           ID IS 30,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "H",
+           .
+
       * TOOLBAR
        01
            Form1-Tb-1,
@@ -1304,6 +1344,7 @@
            PERFORM CLOSE-FILE-RTN
       * <TOTEM:EPT. INIT:gwod, INIT:gwod, BeforeDestroyResource>
       * <TOTEM:END>
+           DESTROY Calibri12-Occidentale
            DESTROY Calibri14-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
       *    After-Program
@@ -1333,6 +1374,18 @@
            .
     
        INIT-FONT.
+      * Calibri12-Occidentale
+           INITIALIZE WFONT-DATA Calibri12-Occidentale
+           MOVE 12 TO WFONT-SIZE
+           MOVE "Calibri" TO WFONT-NAME
+           SET WFONT-BOLD TO FALSE
+           SET WFONT-ITALIC TO FALSE
+           SET WFONT-UNDERLINE TO FALSE
+           SET WFONT-STRIKEOUT TO FALSE
+           SET WFONT-FIXED-PITCH TO FALSE
+           MOVE 0 TO WFONT-CHAR-SET
+           CALL "W$FONT" USING WFONT-GET-FONT, 
+                     Calibri12-Occidentale, WFONT-DATA
       * Calibri14-Occidentale
            INITIALIZE WFONT-DATA Calibri14-Occidentale
            MOVE 14 TO WFONT-SIZE
@@ -2725,14 +2778,6 @@
       * <TOTEM:END>
            .
 
-       tmp-wod-exe-twe-k-effort-MERGE-SPLITBUF.
-           INITIALIZE tmp-wod-exe-twe-k-effort-SPLITBUF
-           MOVE twe-exe-isMulti(1:1) TO 
-           tmp-wod-exe-twe-k-effort-SPLITBUF(1:1)
-           MOVE twe-mcg-code(1:5) TO 
-           tmp-wod-exe-twe-k-effort-SPLITBUF(2:5)
-           .
-
        DataSet1-tmp-wod-exe-INITSTART.
            IF DataSet1-tmp-wod-exe-KEY-Asc
               MOVE Low-Value TO twe-key
@@ -3223,6 +3268,10 @@
        cb-mg6-Content.
            .
 
+      * COMBO-BOX
+       cb-mg7-Content.
+           .
+
       * FD's Initialize Paragraph
        DataSet1-exercises-INITREC.
            INITIALIZE exe-rec OF exercises
@@ -3341,8 +3390,8 @@
            Display Independent GRAPHICAL WINDOW
               SCREEN LINE 2,
               SCREEN COLUMN 2,
-              LINES 27,00,
-              SIZE 113,50,
+              LINES 39,17,
+              SIZE 160,30,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -3398,6 +3447,7 @@
            modify cb-mg4, item-to-add = "Nessuno". 
            modify cb-mg5, item-to-add = "Nessuno".
            modify cb-mg6, item-to-add = "Nessuno".
+           modify cb-mg7, item-to-add = "Nessuno".
            modify cb-int, item-to-add = "Nessuno".
                                                  
            modify cb-mgtb, item-to-add = "No".
@@ -3408,8 +3458,9 @@
  
            modify cb-mul, item-to-add = "No".
            modify cb-mul, item-to-add = "Si".     
-                                          
+                                                   
            modify cb-dur, item-to-add = "Nessuno".
+           modify cb-wod, item-to-add = "Nessuno".
 
            modify cb-gio, item-to-add = 1.
            modify cb-gio, item-to-add = 2.
@@ -3444,6 +3495,9 @@
                     modify cb-mg4, item-to-add = mcg-desc
                     modify cb-mg5, item-to-add = mcg-desc
                     modify cb-mg6, item-to-add = mcg-desc
+                    modify cb-mg7, item-to-add = mcg-desc
+
+                    move mcg-desc to el-mcg-desc(tot-mcg)
                  end-perform
            end-start.
            move low-value to int-key.
@@ -3470,6 +3524,7 @@
            modify cb-mg4, value "Nessuno".
            modify cb-mg5, value "Nessuno".
            modify cb-mg6, value "Nessuno".
+           modify cb-mg7, value "Nessuno".
            modify cb-int, value "Nessuno".
                         
            modify cb-mgtb, value "No".    
@@ -3477,8 +3532,9 @@
            modify cb-rnd,  value "No".    
 
            modify cb-mul,  value "Si".
-                                         
+                                          
            modify cb-dur, value "Nessuno".
+           modify cb-wod, value "Nessuno".
 
            modify cb-gio, value 1.
 
@@ -3530,6 +3586,8 @@
                  PERFORM Screen1-Pb-1-LinkTo
               WHEN Key-Status = 1002
                  PERFORM pb-random-LinkTo
+              WHEN Key-Status = 1003
+                 PERFORM Screen1-Pb-1a-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 4
@@ -3618,6 +3676,8 @@
            PERFORM cb-wod-Content
       * COMBO-BOX
            PERFORM cb-mg6-Content
+      * COMBO-BOX
+           PERFORM cb-mg7-Content
            .
 
        Form1-DataSet1-CHANGETO-KEY1.
@@ -4349,6 +4409,8 @@
            inquire cb-mg5, value in mcg-desc.
            perform ADD-ELEM-GRUPPO.
            inquire cb-mg6, value in mcg-desc.
+           perform ADD-ELEM-GRUPPO.
+           inquire cb-mg7, value in mcg-desc.
            perform ADD-ELEM-GRUPPO.
 
       ***---
@@ -5520,6 +5582,7 @@
               modify cb-mg4, value "Nessuno", enabled = false
               modify cb-mg5, value "Nessuno", enabled = false
               modify cb-mg6, value "Nessuno", enabled = false
+              modify cb-mg7, value "Nessuno", enabled = false
            else                                              
               modify cb-mg1, enabled = true
               modify cb-mg2, enabled = true
@@ -5527,6 +5590,7 @@
               modify cb-mg4, enabled = true
               modify cb-mg5, enabled = true
               modify cb-mg6, enabled = true
+              modify cb-mg7, enabled = true
            end-if 
            .
       * <TOTEM:END>
@@ -5616,6 +5680,7 @@
               modify cb-mg4,  value "Nessuno", enabled = false
               modify cb-mg5,  value "Nessuno", enabled = false
               modify cb-mg6,  value "Nessuno", enabled = false
+              modify cb-mg7,  value "Nessuno", enabled = false
               modify cb-mgtb, value "No",      enabled = false
            else                                              
               modify cb-mg1,  enabled = true
@@ -5624,6 +5689,7 @@
               modify cb-mg4,  enabled = true
               modify cb-mg5,  enabled = true
               modify cb-mg6,  enabled = true
+              modify cb-mg7,  enabled = true
               modify cb-mgtb, enabled = true
            end-if 
            .
@@ -5707,7 +5773,7 @@
            perform LOAD-EXERCISES.
            
            move low-value to tex-rec.
-           move 0 to save-day
+           move 0 to save-day col-exe-prg.
            start tmp-exe key >= tex-key
                  invalid continue 
              not invalid
@@ -5805,14 +5871,15 @@
                     move exe-int-code to int-code
                     read intexe no lock
                     move exe-grp-code to grp-code
-                    read groups no lock
+                    read groups no lock                                 
                     if exe-isMulti-yes and cb-mul-buf = "No"
                        exit perform cycle
                     end-if                            
                     if int-effort <= effort-wod or 
                        exe-isMulti-yes and cb-mul-buf = "Si"
                        perform varying idx-gruppi from 1 by 1 
-                                 until idx-gruppi > tot-gruppi
+                                 until idx-gruppi > tot-gruppi          
+                      
                           if el-mcg-code(idx-gruppi) = grp-mcg-code
                              move exe-code     to twe-exe-code
                              move exe-desc     to twe-exe-desc
@@ -5865,14 +5932,23 @@
 
                        evaluate wom-split-el-split-sigla(idx-days, 
            idx-split)
-                       when "A" move el-mcg-code(1) to mcg-code
-                       when "B" move el-mcg-code(2) to mcg-code
-                       when "C" move el-mcg-code(3) to mcg-code
-                       when "D" move el-mcg-code(4) to mcg-code
-                       when "E" move el-mcg-code(5) to mcg-code
-                       when "F" move el-mcg-code(6) to mcg-code
+                       when "A"   move el-mcg-code(1) to mcg-code
+                       when "B"   move el-mcg-code(2) to mcg-code
+                       when "C"   move el-mcg-code(3) to mcg-code
+                       when "D"   move el-mcg-code(4) to mcg-code
+                       when "E"   move el-mcg-code(5) to mcg-code
+                       when "F"   move el-mcg-code(6) to mcg-code
                        when other exit perform
                        end-evaluate
+
+                       move wom-split-el-split-effort(idx-days, 
+           idx-split)
+                         to int-code
+                       read intexe no lock
+                       if int-effort not = 3
+                          exit perform
+                       end-if
+
                        if el-mcg-code(idx-gruppi) = mcg-code
                           perform until 1 = 2
                              compute idx = function random * (tot-exe)
@@ -5888,7 +5964,9 @@
 
                                 move 1                to 
            el-exe-used(idx)
-                                subtract 1 from ex-remain
+                                if ex-remain > 0
+                                   subtract 1 from ex-remain
+                                end-if
                                 exit perform
                              end-if
                           end-perform
@@ -5910,7 +5988,7 @@
                  read tmp-exe
                       invalid continue
                   not invalid exit perform cycle |Salto i multi se già messi
-                 end-read
+                 end-read                        
 
                  move low-value to twe-rec
                  set twe-exe-isMulti-no to true
@@ -5963,7 +6041,9 @@
                            write tex-rec
                   
                            move 1                to el-exe-used(idx)
-                           subtract 1 from ex-remain
+                           if ex-remain > 0
+                              subtract 1 from ex-remain
+                           end-if
                            exit perform
                         end-if
                      end-perform 
@@ -5980,6 +6060,7 @@
            modify cb-mg4, value "Pectoral".
            modify cb-mg5, value "Back".
            modify cb-mg6, value "Abs".
+           modify cb-mg7, value "Nessuno".
                                  
            modify cb-int, value = "Hard".
            modify cb-dur, value = "Medium" 
@@ -6008,10 +6089,25 @@
                  when 4 modify cb-mg4, value = como-el-mcg-desc(idx)
                  when 5 modify cb-mg5, value = como-el-mcg-desc(idx)
                  when 6 modify cb-mg6, value = como-el-mcg-desc(idx)
+                 when 7 modify cb-mg7, value = como-el-mcg-desc(idx)
                  end-evaluate
                  move spaces to como-el-mcg-desc(idx) 
               end-if
            end-perform 
+           .
+      * <TOTEM:END>
+       Screen1-Pb-1a-LinkTo.
+      * <TOTEM:PARA. Screen1-Pb-1a-LinkTo>
+           modify cb-mg1, value "Legs".
+           modify cb-mg2, value "Abs".
+           modify cb-mg3, value "Pectoral".
+           modify cb-mg4, value "Arms".
+           modify cb-mg5, value "Shoulder".
+           modify cb-mg6, value "Back".
+           modify cb-mg7, value "Nessuno".
+                                 
+           modify cb-int, value = "Hard".
+           modify cb-dur, value = "Medium" 
            .
       * <TOTEM:END>
 

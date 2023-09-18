@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 18 settembre 2023 16:13:09.
+       DATE-WRITTEN.        lunedì 18 settembre 2023 18:58:13.
        REMARKS.
       *{TOTEM}END
 
@@ -122,6 +122,7 @@
        77 como-qta         PIC  9(6).
        77 link-stampante   PIC  x(200).
        77 como-effort      PIC  99.
+       77 como-giorno      PIC  99.
        77 save-day         PIC  9.
        77 s-int-buf        PIC  x(100).
        77 s-dur-desc       PIC  x(100).
@@ -130,8 +131,10 @@
        77 como-durata      PIC  x(100).
        77 s-gio-buf        PIC  x(100).
        77 como-nome        PIC  x(100).
+       77 tot-subst        PIC  999.
        77 AUTO-ID          PIC  9(6)
                   VALUE IS 0,00.
+       77 como-dupl        PIC  x(100).
        77 BOTTONE-annulla-BMP          PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
@@ -1304,7 +1307,7 @@
            LINES 1,35 ,
            SIZE 3,10 ,
            FONT IS Small-Font,
-           ID IS 39,
+           ID IS 40,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Push Button",
@@ -1320,7 +1323,7 @@
            LINES 1,35 ,
            SIZE 3,10 ,
            FONT IS Small-Font,
-           ID IS 39,
+           ID IS 41,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Push Button",
@@ -5735,9 +5738,9 @@
                                  
            perform LOAD-EXERCISES-ALLOWED-BY-EFFORT. 
            perform LOAD-EXERCISES-MULTIJOINT.
-           perform LOAD-EXERCISES.        
+           perform LOAD-EXERCISES.              
            perform REMOVE-DUPLICATES.           
-           perform LOAD-GRID.            
+           perform LOAD-GRID.                   
                                       
            close       tmp-exe-effort.
            delete file tmp-exe-effort.
@@ -6187,6 +6190,7 @@
                  move wom-split-el-split-effort(idx-days, idx-split)
                    to int-code
 
+                 move spaces to como-dupl
                  perform ADD-RANDOM-EXERCISE
 
               end-perform
@@ -6226,104 +6230,155 @@
                  add 1 to idx
                  if el-exe-used(idx) = 0 or
                     ex-remain = 0
-                    move idx-days         to tex-day
-                    move idx-split        to tex-split     
-                    move mcg-code         to tex-mcg-code
-                    move el-exe-code(idx) to tex-exe-code
-                    move el-exe-desc(idx) to tex-exe-desc
-                    move int-code         to tex-int-code
-                    set tex-exe-isMulti-no to true
-                    write tex-rec invalid rewrite tex-rec end-write
-           
-                    move 1                to el-exe-used(idx)
-                    if ex-remain > 0
-                       subtract 1 from ex-remain
+
+                    if como-dupl not = spaces
+                       if como-dupl not = el-exe-desc(idx) or tot-exe = 
+           1
+                          move idx-days         to tex-day
+                          move idx-split        to tex-split     
+                          move mcg-code         to tex-mcg-code
+                          move el-exe-code(idx) to tex-exe-code
+                          move el-exe-desc(idx) to tex-exe-desc
+                          move int-code         to tex-int-code
+                          set tex-exe-isMulti-no to true
+                          write tex-rec invalid rewrite tex-rec 
+           end-write
+                    
+                          move 1                to el-exe-used(idx)
+                          if ex-remain > 0
+                             subtract 1 from ex-remain
+                          end-if  
+                          exit perform
+                       end-if
+                    else                                        
+                       move idx-days         to tex-day
+                       move idx-split        to tex-split     
+                       move mcg-code         to tex-mcg-code
+                       move el-exe-code(idx) to tex-exe-code
+                       move el-exe-desc(idx) to tex-exe-desc
+                       move int-code         to tex-int-code
+                       set tex-exe-isMulti-no to true
+                       write tex-rec invalid rewrite tex-rec end-write
+                    
+                       move 1                to el-exe-used(idx)
+                       if ex-remain > 0
+                          subtract 1 from ex-remain
+                       end-if   
+                       exit perform
                     end-if
-                    exit perform
                  end-if
               end-perform 
            end-if.
 
       ***---
        REMOVE-DUPLICATES.
-           move low-value to tex-rec.
-           move 0 to save-day col-exe-prg.
-           start tmp-exe key >= tex-key
-                 invalid continue 
-             not invalid
-                 move 1 to riga
-                 perform until 1 = 2
-                    read tmp-exe next 
-                      at end exit perform 
-                    end-read 
-                    if tex-exe-isMulti-yes exit perform cycle end-if
-                    initialize como-nome counter
-                    inspect tex-exe-desc replacing trailing spaces by 
-           low-value
-                    inspect tex-exe-desc tallying counter for 
+           perform until 1 = 2  
+              move 0 to tot-subst
+              perform varying como-giorno from 1 by 1 
+                        until como-giorno > wom-days  
+                 close       tmp-exe-dupl
+                 open output tmp-exe-dupl
+                 close       tmp-exe-dupl
+                 open i-o    tmp-exe-dupl
+                 move low-value to tex-rec
+                 move como-giorno  to tex-day
+                 move 0 to col-exe-prg
+                 start tmp-exe key >= tex-key
+                       invalid continue 
+                   not invalid
+                       move 1 to riga
+                       perform until 1 = 2
+                          read tmp-exe next 
+                            at end exit perform 
+                          end-read 
+                          if tex-day not = como-giorno
+                             exit perform
+                          end-if
+                          if tex-exe-isMulti-yes exit perform cycle 
+           end-if
+                          initialize como-nome counter
+                          inspect tex-exe-desc replacing trailing 
+           spaces by low-value
+                          inspect tex-exe-desc tallying counter for 
            characters before low-value
-                    if tex-exe-desc(counter - 3 : 4) = "HARD"
-                       move tex-exe-desc(1:counter - 4)to como-nome
-                    end-if 
-                    if tex-exe-desc(counter - 5 : 6) = "MEDIUM"
-                       move tex-exe-desc(1:counter - 6)to como-nome
-                    end-if
-                    if tex-exe-desc(counter - 4 : 5) = "LIGHT"
-                       move tex-exe-desc(1:counter - 5)to como-nome
-                    end-if
-                    if como-nome = spaces
-                       exit perform cycle
-                    end-if
-                    move tex-day   to ted-day
-                    move como-nome to ted-nome-dupl
-                    read tmp-exe-dupl
-                         invalid 
-                         move 1 to ted-num
-                         write ted-rec end-write
-                     not invalid
-                         add  1 to ted-num
-                         rewrite ted-rec end-rewrite
-                    end-read
-                    move como-nome to tex-nome-dupl
-                    rewrite tex-rec
-                 end-perform
-           end-start.
-                                                              
-           move low-value to ted-key.
-           move 2         to ted-num.
-           start tmp-exe-dupl key >= ted-k-num
-                 invalid continue
-             not invalid
-                 perform until 1 = 2
-                    read tmp-exe-dupl next at end exit perform end-read
-                    move ted-day       to tex-day
-                    move ted-nome-dupl to tex-nome-dupl
-                    start tmp-exe key >= tex-k-dupl
-                          invalid continue
-                      not invalid
-                          perform until 1 = 2
-                             read tmp-exe next 
-                               at end exit perform 
-                             end-read
-                             if tex-day       not = ted-day    or
-                                tex-nome-dupl not = ted-nome-dupl
-                                exit perform
-                             end-if    
-                             move low-value to twe-rec
-                             move tex-mcg-code to mcg-code twe-mcg-code
-                             move tex-int-code to int-code
-                                                              
-                             initialize tab-exe 
-                                        replacing numeric data by zeroes
-                                             alphanumeric data by spaces
-                             move tex-day   to idx-days   
-                             move tex-split to idx-split 
-                             perform ADD-RANDOM-EXERCISE
-
-                          end-perform
-                    end-start
-                 end-perform
-           end-start 
+                          if tex-exe-desc(counter - 3 : 4) = "HARD"
+                             move tex-exe-desc(1:counter - 4)to 
+           como-nome
+                          end-if 
+                          if tex-exe-desc(counter - 5 : 6) = "MEDIUM"
+                             move tex-exe-desc(1:counter - 6)to 
+           como-nome
+                          end-if
+                          if tex-exe-desc(counter - 4 : 5) = "LIGHT"
+                             move tex-exe-desc(1:counter - 5)to 
+           como-nome
+                          end-if
+                          if como-nome = spaces
+                             exit perform cycle
+                          end-if
+                          inspect tex-exe-desc replacing trailing 
+           low-value by spaces
+                          move tex-day   to ted-day
+                          move como-nome to ted-nome-dupl
+                          read tmp-exe-dupl
+                               invalid 
+                               move 1 to ted-num
+                               write ted-rec end-write
+                           not invalid
+                               add  1 to ted-num
+                               add  1 to tot-subst
+                               rewrite ted-rec end-rewrite
+                          end-read
+                          move como-nome to tex-nome-dupl
+                          rewrite tex-rec
+                       end-perform
+                 end-start
+                                                                    
+                 move low-value to ted-key
+                 move 2         to ted-num
+                 start tmp-exe-dupl key >= ted-k-num
+                       invalid continue
+                   not invalid
+                       perform until 1 = 2
+                          read tmp-exe-dupl next at end exit perform 
+           end-read
+                          move ted-day       to tex-day
+                          move ted-nome-dupl to tex-nome-dupl
+                          start tmp-exe key >= tex-k-dupl
+                                invalid continue
+                            not invalid
+                                perform until 1 = 2
+                                   read tmp-exe next 
+                                     at end exit perform 
+                                   end-read
+                                   if tex-day       not = ted-day    or
+                                      tex-nome-dupl not = ted-nome-dupl
+                                      exit perform
+                                   end-if    
+                                   move low-value to twe-rec
+                                   move tex-mcg-code to mcg-code 
+           twe-mcg-code
+                                   move tex-int-code to int-code
+                                                                    
+                                   initialize tab-exe 
+                                              replacing numeric data by 
+           zeroes
+                                                   alphanumeric data by 
+           spaces
+                                   move tex-day      to idx-days   
+                                   move tex-split    to idx-split 
+                                   move tex-exe-desc to como-dupl
+                                   perform ADD-RANDOM-EXERCISE
+              
+                                end-perform
+                          end-start
+                       end-perform
+                 end-start     
+              end-perform 
+              if tot-subst = 0
+                 exit perform
+              end-if
+           end-perform 
            .
       * <TOTEM:END>
        Screen1-Pb-1-LinkTo.

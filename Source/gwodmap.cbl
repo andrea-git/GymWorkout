@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        domenica 17 settembre 2023 21:38:22.
+       DATE-WRITTEN.        lunedì 18 settembre 2023 11:55:25.
        REMARKS.
       *{TOTEM}END
 
@@ -203,12 +203,12 @@
                10 old-wom-desc         PIC  x(100).
                10 old-wom-days         PIC  9.
                10 old-wom-macrogroups  PIC  99.
-               10 old-wom-int-code     PIC  99.
+               10 old-wom-effort       PIC  99.
                10 old-wom-split-tab.
                    15 old-wom-split-el-days
                               OCCURS 7 TIMES.
                        20 old-wom-split-el-days-split
-                                  OCCURS 9 TIMES.
+                                  OCCURS 20 TIMES.
                            25 old-wom-split-el-split-sigla     PIC  x.
                            25 old-wom-split-el-split-effort    PIC  9.
                10 old-wom-dur-code     PIC  99.
@@ -263,66 +263,6 @@
            VALUE ef-codice-BUF,
            .
 
-      * LABEL
-       05
-           Screen1-La-1, 
-           Label, 
-           COL 2,90, 
-           LINE 1,50,
-           LINES 1,30 ,
-           SIZE 10,00 ,
-           ID IS 100,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE "Codice",
-           .
-
-      * LABEL
-       05
-           Screen1-Custom1-1, 
-           Label, 
-           COL 84,86, 
-           LINE 1,00,
-           LINES 0,69 ,
-           SIZE 3,29 ,
-           FONT IS Default-Font,
-           ID IS 18,
-           TRANSPARENT,
-           TITLE "CUSTOM CONTROL",
-           VISIBLE v-custom,
-           .
-
-      * LABEL
-       05
-           Screen1-blockpgm-2, 
-           Label, 
-           COL 85,71, 
-           LINE 2,62,
-           LINES 1,00 ,
-           SIZE 2,43 ,
-           ID IS 21,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE "BlockPgm",
-           VISIBLE v-custom,
-           .
-
-      * BAR
-       05
-           Screen1-Br-1, 
-           Bar,
-           COL 1,00, 
-           LINE 3,35,
-           SIZE 90,50 ,
-           ID IS 22,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           COLORS (9, 9),
-           WIDTH 2,
-           .
-
       * ENTRY FIELD
        05
            ef-descr, 
@@ -340,21 +280,6 @@
            LEFT,
            MAX-TEXT 100,
            VALUE ef-descr-BUF,
-           .
-
-      * LABEL
-       05
-           Screen1-La-2, 
-           Label, 
-           COL 2,90, 
-           LINE 4,00,
-           LINES 1,30 ,
-           SIZE 10,00 ,
-           ID IS 33,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE "Descrizione",
            .
 
       * ENTRY FIELD
@@ -377,36 +302,6 @@
            VALUE ef-days-BUF,
            .
 
-      * LABEL
-       05
-           Screen1-La-2a, 
-           Label, 
-           COL 2,90, 
-           LINE 6,00,
-           LINES 1,30 ,
-           SIZE 10,00 ,
-           ID IS 8,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE "Giorni",
-           .
-
-      * LABEL
-       05
-           Screen1-La-2aa, 
-           Label, 
-           COL 18,90, 
-           LINE 6,00,
-           LINES 1,30 ,
-           SIZE 18,00 ,
-           ID IS 9,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE "Macrogruppi coinvolti",
-           .
-
       * ENTRY FIELD
        05
            ef-macro, 
@@ -425,6 +320,46 @@
            MAX-TEXT 2,
            USE-RETURN,
            VALUE ef-macro-BUF,
+           .
+
+      * ENTRY FIELD
+       05
+           ef-durata, 
+           Entry-Field, 
+           COL 52,00, 
+           LINE 6,00,
+           LINES 1,30 ,
+           SIZE 3,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 78-ID-ef-durata,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           RIGHT,
+           MAX-TEXT 2,
+           USE-RETURN,
+           VALUE ef-durata-BUF,
+           .
+
+      * ENTRY FIELD
+       05
+           ef-int, 
+           Entry-Field, 
+           COL 52,00, 
+           LINE 7,74,
+           LINES 1,30 ,
+           SIZE 3,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED 0,
+           ID IS 78-ID-ef-int,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           RIGHT,
+           MAX-TEXT 2,
+           USE-RETURN,
+           VALUE ef-int-BUF,
            .
 
       * GRID
@@ -640,6 +575,111 @@
 
       * LABEL
        05
+           Screen1-La-1, 
+           Label, 
+           COL 2,90, 
+           LINE 1,50,
+           LINES 1,30 ,
+           SIZE 10,00 ,
+           ID IS 100,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Codice",
+           .
+
+      * LABEL
+       05
+           Screen1-Custom1-1, 
+           Label, 
+           COL 84,86, 
+           LINE 1,00,
+           LINES 0,69 ,
+           SIZE 3,29 ,
+           FONT IS Default-Font,
+           ID IS 18,
+           TRANSPARENT,
+           TITLE "CUSTOM CONTROL",
+           VISIBLE v-custom,
+           .
+
+      * LABEL
+       05
+           Screen1-blockpgm-2, 
+           Label, 
+           COL 85,71, 
+           LINE 2,62,
+           LINES 1,00 ,
+           SIZE 2,43 ,
+           ID IS 21,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "BlockPgm",
+           VISIBLE v-custom,
+           .
+
+      * BAR
+       05
+           Screen1-Br-1, 
+           Bar,
+           COL 1,00, 
+           LINE 3,35,
+           SIZE 90,50 ,
+           ID IS 22,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           COLORS (9, 9),
+           WIDTH 2,
+           .
+
+      * LABEL
+       05
+           Screen1-La-2, 
+           Label, 
+           COL 2,90, 
+           LINE 4,00,
+           LINES 1,30 ,
+           SIZE 10,00 ,
+           ID IS 33,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Descrizione",
+           .
+
+      * LABEL
+       05
+           Screen1-La-2a, 
+           Label, 
+           COL 2,90, 
+           LINE 6,00,
+           LINES 1,30 ,
+           SIZE 10,00 ,
+           ID IS 8,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Giorni",
+           .
+
+      * LABEL
+       05
+           Screen1-La-2aa, 
+           Label, 
+           COL 18,90, 
+           LINE 6,00,
+           LINES 1,30 ,
+           SIZE 18,00 ,
+           ID IS 9,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Macrogruppi coinvolti",
+           .
+
+      * LABEL
+       05
            Screen1-La-2aaa, 
            Label, 
            COL 43,90, 
@@ -651,26 +691,6 @@
            WIDTH-IN-CELLS,
            TRANSPARENT,
            TITLE "Durata",
-           .
-
-      * ENTRY FIELD
-       05
-           ef-durata, 
-           Entry-Field, 
-           COL 52,00, 
-           LINE 6,00,
-           LINES 1,30 ,
-           SIZE 3,00 ,
-           BOXED,
-           COLOR IS 513,
-           ENABLED MOD,
-           ID IS 78-ID-ef-durata,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           USE-RETURN,
-           VALUE ef-durata-BUF,
            .
 
       * LABEL
@@ -701,26 +721,6 @@
            WIDTH-IN-CELLS,
            TRANSPARENT,
            TITLE "Intensità",
-           .
-
-      * ENTRY FIELD
-       05
-           ef-int, 
-           Entry-Field, 
-           COL 52,00, 
-           LINE 7,74,
-           LINES 1,30 ,
-           SIZE 3,00 ,
-           BOXED,
-           COLOR IS 513,
-           ENABLED MOD,
-           ID IS 78-ID-ef-int,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           USE-RETURN,
-           VALUE ef-int-BUF,
            .
 
       * LABEL
@@ -855,7 +855,7 @@
            lab-stimata, 
            Label, 
            COL 14,50, 
-           LINE 7,74,
+           LINE 7,70,
            LINES 1,30 ,
            SIZE 25,80 ,
            ID IS 28,
@@ -2921,7 +2921,7 @@
       * DB_Entry-Field : ef-durata
            MOVE ef-durata-BUF TO wom-dur-code
       * DB_Entry-Field : ef-int
-           MOVE ef-int-BUF TO wom-int-code
+           MOVE ef-int-BUF TO wom-effort
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterBufToFld>
       * <TOTEM:END>
            .
@@ -2940,7 +2940,7 @@
       * DB_Entry-Field : ef-durata
            MOVE wom-dur-code TO ef-durata-BUF
       * DB_Entry-Field : ef-int
-           MOVE wom-int-code TO ef-int-BUF
+           MOVE wom-effort TO ef-int-BUF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterFldToBuf>
            perform ABILITAZIONI. 
            perform LOAD-DAYS.
@@ -2949,9 +2949,11 @@
            read duration no lock invalid move spaces to dur-desc 
            end-read.
            move dur-desc to lab-durata-buf.
-           move wom-int-code to int-code.
-           read intexe no lock invalid move spaces to int-desc end-read.
-           move int-desc to lab-int-buf.
+           evaluate wom-effort
+           when 1 move "Light wod effort" to lab-int-buf
+           when 2 move "Medium wod effort" to lab-int-buf
+           when 3 move "Heavy wod effort" to lab-int-buf
+           end-evaluate.
            Perform VALORIZZA-OLD.
 
            .
@@ -2977,7 +2979,7 @@
               move 78-ID-ef-durata to store-id 
            end-if
 
-           if wom-int-code not = old-wom-int-code
+           if wom-effort not = old-wom-effort
               and SiSalvato
               set NoSalvato to true
               |78-ID-ef-int è l'ID del campo ef-int
@@ -3683,6 +3685,10 @@
       * <TOTEM:PARA. SALV-MOD>
            set tutto-ok to true.
            perform FORM1-CONTROLLO-OLD.
+           perform WRITE-DAYS.
+           if wom-split-tab not = old-wom-split-tab
+              set NoSalvato to true
+           end-if.
 
            if NoSalvato
               display message box MSG-Salvare-le-modifiche
@@ -4084,18 +4090,20 @@
            compute tot-effort = como-effort / tot-exe.
 
            if tot-effort < 1,5
-              move 1 to int-effort
+              move 1 to como-effort
            else
               if tot-effort < 2,5            
-                 move 2 to int-effort ef-int-buf
+                 move 2 to como-effort ef-int-buf
               else                              
-                 move 3 to int-effort
+                 move 3 to como-effort ef-int-buf
               end-if
            end-if.
-           
-           read intexe key int-k-effort.
-           move int-desc to lab-int-buf.
-           move int-code to ef-int-buf wom-int-code.
+
+           evaluate como-effort
+           when 1 move "Light wod effort" to lab-int-buf
+           when 2 move "Medium wod effort" to lab-int-buf
+           when 3 move "Heavy wod effort" to lab-int-buf
+           end-evaluate.     
            display ef-int lab-int 
            .
       * <TOTEM:END>
@@ -4309,7 +4317,7 @@
               IF NOT TOTEM-CHECK-OK
                  MOVE 1 TO ACCEPT-CONTROL
               END-IF
-              INQUIRE ef-int, VALUE IN wom-int-code
+              INQUIRE ef-int, VALUE IN wom-effort
               SET TOTEM-CHECK-OK TO FALSE
               PERFORM ef-int-VALIDATION
               IF NOT TOTEM-CHECK-OK

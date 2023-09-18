@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E79E21456-824-24785760
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791283147-636-344828910
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -78,7 +78,7 @@ m_bFixed=1
 
 @}}
 [FDITEM7_]
-m_strName=wom-int-code
+m_strName=wom-effort
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=10

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tintensity.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 15 settembre 2023 23:57:44.
+       DATE-WRITTEN.        lunedì 18 settembre 2023 10:35:22.
        REMARKS.
       *{TOTEM}END
 
@@ -1515,7 +1515,7 @@
                            icon mb-warning-icon
                 end-if   
            when 5
-                if int-duration = spaces
+                if int-time = 0
                    set errori to true   
                    display message "Valore obbligatorio"
                            title = tit-err
@@ -1589,7 +1589,7 @@
                           move int-desc       to col-des  
                           move int-rest       to col-rest
                           move int-series     to col-series 
-                          move int-duration   to col-duration
+                          move int-time       to col-duration
                           move int-range-from to col-range-from
                           move int-range-to   to col-range-to
                           move int-effort     to col-effort
@@ -1807,7 +1807,7 @@
            inquire form1-gd-1(riga, 2), cell-data int-desc.  
            inquire form1-gd-1(riga, 3), cell-data int-rest.  
            inquire form1-gd-1(riga, 4), cell-data int-series.  
-           inquire form1-gd-1(riga, 5), cell-data int-duration.
+           inquire form1-gd-1(riga, 5), cell-data int-time.
            inquire form1-gd-1(riga, 6), cell-data int-range-from.
            inquire form1-gd-1(riga, 7), cell-data int-range-to.  
            inquire form1-gd-1(riga, 8), cell-data int-effort 

@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E791119354-928-107014769
+PROGRAM_UNIQUE_CODE=TOTEM-7E791284043-110-1638524237
 
 {{@DESCRIPTION:
 
@@ -767,144 +768,6 @@ Begin Screen Form1
       Before Procedure  = ef-codice-BeforeProcedure
       After Procedure   = ef-codice-AfterProcedure
    End
-   Begin Label Screen1-La-1
-      SCREEN-COL        = 2,90
-      SCREEN-LINE       = 1,50
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = Screen1-La-1
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 2,90
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 100
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 1,50
-      Lines             = 1,30
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 10,00
-      Size Unit         = Default
-      Tab Order         = 2
-      Title             = "Codice"
-      Transparent       = TRUE
-      Visible           = NONE
-      Width in Cells    = TRUE
-   End
-   Begin CsCtrl.Custom1 Label Screen1-Custom1-1
-      CUST-SYMBOL       = Custom1
-      CUST-MODIFYFLAG   = 100000000000000000000000000000000000000000000000000
-      SCREEN-COL        = 84,86
-      SCREEN-LINE       = 1,00
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = Screen1-Custom1-1
-      Ccol              = 0
-      Cline             = 0
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 84,86
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
-      Font Variable     = Default-Font
-      Height in Cells   = FALSE
-      Help ID           = 0
-      ID                = 18
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 1,00
-      Lines             = 0,69
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 3,29
-      Size Unit         = Default
-      Tab Order         = 3
-      Title             = "CUSTOM CONTROL"
-      Transparent       = TRUE
-      Visible           = NONE
-      Visible Variable  = v-custom
-      Width in Cells    = FALSE
-   End
-   Begin CsCtrl.blockpgm Label Screen1-blockpgm-2
-      CUST-SYMBOL       = blockpgm
-      CUST-MODIFYFLAG   = 100000000000000000000000000000001000000000000000000
-      SCREEN-COL        = 85,71
-      SCREEN-LINE       = 2,62
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = Screen1-blockpgm-2
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 85,71
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 21
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 2,62
-      Lines             = 1,00
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 2,43
-      Size Unit         = Default
-      Tab Order         = 4
-      Title             = "BlockPgm"
-      Transparent       = TRUE
-      Visible           = NONE
-      Visible Variable  = v-custom
-      Width in Cells    = TRUE
-   End
-   Begin Bar Screen1-Br-1
-      SCREEN-COL        = 1,00
-      SCREEN-LINE       = 3,35
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = Screen1-Br-1
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 1,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 22
-      Kind              = Horizontal
-      Line              = 3,35
-      Line Styles       = Solid
-      Occurs            = 0
-      Position Shift    = 0
-      COLORS            = ( 9, 9 )
-      Size (Lines)      = 90,50
-      Size (Lines) in Pixels = 905
-      Size (Lines) Unit = Default
-      Tab Order         = 5
-      Visible           = NONE
-      Width             = 2
-      Width in Cells    = TRUE
-   End
    Begin Data.Entry-Field ef-descr
       SCREEN-COL        = 14,00
       SCREEN-LINE       = 4,00
@@ -957,7 +820,7 @@ Begin Screen Form1
       Size              = 72,00
       Size Unit         = Default
       Style             = Singleline
-      Tab Order         = 6
+      Tab Order         = 2
       Use Return        = FALSE
       Use Tab           = FALSE
       Value Multiple    = FALSE
@@ -966,39 +829,6 @@ Begin Screen Form1
       My Property       = "CONTROLLO-OLD=;CONTROLLO="
       Before Procedure  = ef-descr-BeforeProcedure
       After Procedure   = ef-ragsoc-AfterProcedure
-   End
-   Begin Label Screen1-La-2
-      SCREEN-COL        = 2,90
-      SCREEN-LINE       = 4,00
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = Screen1-La-2
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 2,90
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 33
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 4,00
-      Lines             = 1,30
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 10,00
-      Size Unit         = Default
-      Tab Order         = 7
-      Title             = "Descrizione"
-      Transparent       = TRUE
-      Visible           = NONE
-      Width in Cells    = TRUE
    End
    Begin Data.Entry-Field ef-days
       SCREEN-COL        = 14,00
@@ -1052,7 +882,7 @@ Begin Screen Form1
       Size              = 3,00
       Size Unit         = Default
       Style             = Singleline
-      Tab Order         = 8
+      Tab Order         = 3
       Use Return        = TRUE
       Use Tab           = FALSE
       Value Multiple    = FALSE
@@ -1061,72 +891,6 @@ Begin Screen Form1
       My Property       = "CONTROLLO="
       Before Procedure  = ef-days-BeforeProcedure
       After Procedure   = ef-days-AfterProcedure
-   End
-   Begin Label Screen1-La-2a
-      SCREEN-COL        = 2,90
-      SCREEN-LINE       = 6,00
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = Screen1-La-2a
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 2,90
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 8
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 6,00
-      Lines             = 1,30
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 10,00
-      Size Unit         = Default
-      Tab Order         = 9
-      Title             = "Giorni"
-      Transparent       = TRUE
-      Visible           = NONE
-      Width in Cells    = TRUE
-   End
-   Begin Label Screen1-La-2aa
-      SCREEN-COL        = 18,90
-      SCREEN-LINE       = 6,00
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = Screen1-La-2aa
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 18,90
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 9
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 6,00
-      Lines             = 1,30
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 18,00
-      Size Unit         = Default
-      Tab Order         = 10
-      Title             = "Macrogruppi coinvolti"
-      Transparent       = TRUE
-      Visible           = NONE
-      Width in Cells    = TRUE
    End
    Begin Data.Entry-Field ef-macro
       SCREEN-COL        = 38,00
@@ -1180,13 +944,136 @@ Begin Screen Form1
       Size              = 3,00
       Size Unit         = Default
       Style             = Singleline
-      Tab Order         = 11
+      Tab Order         = 4
       Use Return        = TRUE
       Use Tab           = FALSE
       Value Multiple    = FALSE
       Visible           = NONE
       Width in Cells    = TRUE
       My Property       = "CONTROLLO="
+      Before Procedure  = ef-macro-BeforeProcedure
+      After Procedure   = ef-macro-AfterProcedure
+   End
+   Begin Data.Entry-Field ef-durata
+      SCREEN-COL        = 52,00
+      SCREEN-LINE       = 6,00
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = ef-durata
+      Auto              = FALSE
+      Auto Decimal      = 0
+      Border            = Boxed
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 52,00
+      Csize             = 0
+      Csize Unit        = Default
+      Cursor            = 0
+      Cursor Col        = 0
+      Cursor Row        = 0
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Field Edited (Style) = 1
+      Field Edited Format = z9
+      Field Picture     = 99
+      Field Variable    = wom-dur-code
+      File              = wodmap
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      Hint              = .
+      ID                = 13
+      ID Variable       = AUTO-ID
+      Justification     = Right
+      Line              = 6,00
+      Lines             = 1,30
+      Lines Unit        = Default
+      Max Lines         = 0
+      Max Text          = 2
+      Max Value         = 0
+      Min Value         = 0
+      No AutoSel        = FALSE
+      No Tab            = FALSE
+      Notify Change     = FALSE
+      Numeric           = FALSE
+      Occurs            = 0
+      Read Only         = FALSE
+      Required          = FALSE
+      Secure            = FALSE
+      Size              = 3,00
+      Size Unit         = Default
+      Style             = Singleline
+      Tab Order         = 5
+      Use Return        = TRUE
+      Use Tab           = FALSE
+      Value Multiple    = FALSE
+      Visible           = NONE
+      Width in Cells    = TRUE
+      My Property       = "CONTROLLO=;CONTROLLO-OLD=;ZOOM="
+      Before Procedure  = ef-macro-BeforeProcedure
+      After Procedure   = ef-macro-AfterProcedure
+   End
+   Begin Data.Entry-Field ef-int
+      SCREEN-COL        = 52,00
+      SCREEN-LINE       = 7,74
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = ef-int
+      Auto              = FALSE
+      Auto Decimal      = 0
+      Border            = Boxed
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 52,00
+      Csize             = 0
+      Csize Unit        = Default
+      Cursor            = 0
+      Cursor Col        = 0
+      Cursor Row        = 0
+      Destroy Type      = Automatic
+      Enable            = FALSE
+      Field Edited (Style) = 1
+      Field Edited Format = z9
+      Field Picture     = 99
+      Field Variable    = wom-effort
+      File              = wodmap
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      Hint              = .
+      ID                = 16
+      ID Variable       = AUTO-ID
+      Justification     = Right
+      Line              = 7,74
+      Lines             = 1,30
+      Lines Unit        = Default
+      Max Lines         = 0
+      Max Text          = 2
+      Max Value         = 0
+      Min Value         = 0
+      No AutoSel        = FALSE
+      No Tab            = FALSE
+      Notify Change     = FALSE
+      Numeric           = FALSE
+      Occurs            = 0
+      Read Only         = FALSE
+      Required          = FALSE
+      Secure            = FALSE
+      Size              = 3,00
+      Size Unit         = Default
+      Style             = Singleline
+      Tab Order         = 6
+      Use Return        = TRUE
+      Use Tab           = FALSE
+      Value Multiple    = FALSE
+      Visible           = NONE
+      Width in Cells    = TRUE
+      My Property       = "CONTROLLO=;CONTROLLO-OLD=;ZOOM="
       Before Procedure  = ef-macro-BeforeProcedure
       After Procedure   = ef-macro-AfterProcedure
    End
@@ -1242,7 +1129,7 @@ Begin Screen Form1
       Row Headings      = FALSE
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 12
+      Tab Order         = 7
       Tiled Headings    = TRUE
       Use Tab           = FALSE
       Virtual Width     = 10
@@ -1305,7 +1192,7 @@ Begin Screen Form1
       Row Headings      = FALSE
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 13
+      Tab Order         = 8
       Tiled Headings    = TRUE
       Use Tab           = FALSE
       Virtual Width     = 10
@@ -1368,7 +1255,7 @@ Begin Screen Form1
       Row Headings      = FALSE
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 14
+      Tab Order         = 9
       Tiled Headings    = TRUE
       Use Tab           = FALSE
       Virtual Width     = 10
@@ -1431,7 +1318,7 @@ Begin Screen Form1
       Row Headings      = FALSE
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 15
+      Tab Order         = 10
       Tiled Headings    = TRUE
       Use Tab           = FALSE
       Virtual Width     = 10
@@ -1494,7 +1381,7 @@ Begin Screen Form1
       Row Headings      = FALSE
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 16
+      Tab Order         = 11
       Tiled Headings    = TRUE
       Use Tab           = FALSE
       Virtual Width     = 10
@@ -1557,7 +1444,7 @@ Begin Screen Form1
       Row Headings      = FALSE
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 17
+      Tab Order         = 12
       Tiled Headings    = TRUE
       Use Tab           = FALSE
       Virtual Width     = 10
@@ -1620,7 +1507,7 @@ Begin Screen Form1
       Row Headings      = FALSE
       Size              = 12,10
       Size Unit         = Default
-      Tab Order         = 18
+      Tab Order         = 13
       Tiled Headings    = TRUE
       Use Tab           = FALSE
       Virtual Width     = 10
@@ -1630,6 +1517,243 @@ Begin Screen Form1
       Width in Cells    = TRUE
       Event Procedure   = Screen1-Gd-1-Event-Proc
       Msg-Begin-Entry   = gd7-Ev-Msg-Begin-Entry
+   End
+   Begin Label Screen1-La-1
+      SCREEN-COL        = 2,90
+      SCREEN-LINE       = 1,50
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = Screen1-La-1
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 2,90
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 100
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 1,50
+      Lines             = 1,30
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 10,00
+      Size Unit         = Default
+      Tab Order         = 14
+      Title             = "Codice"
+      Transparent       = TRUE
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
+   Begin CsCtrl.Custom1 Label Screen1-Custom1-1
+      CUST-SYMBOL       = Custom1
+      CUST-MODIFYFLAG   = 100000000000000000000000000000000000000000000000000
+      SCREEN-COL        = 84,86
+      SCREEN-LINE       = 1,00
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = Screen1-Custom1-1
+      Ccol              = 0
+      Cline             = 0
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 84,86
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Font Variable     = Default-Font
+      Height in Cells   = FALSE
+      Help ID           = 0
+      ID                = 18
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 1,00
+      Lines             = 0,69
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 3,29
+      Size Unit         = Default
+      Tab Order         = 15
+      Title             = "CUSTOM CONTROL"
+      Transparent       = TRUE
+      Visible           = NONE
+      Visible Variable  = v-custom
+      Width in Cells    = FALSE
+   End
+   Begin CsCtrl.blockpgm Label Screen1-blockpgm-2
+      CUST-SYMBOL       = blockpgm
+      CUST-MODIFYFLAG   = 100000000000000000000000000000001000000000000000000
+      SCREEN-COL        = 85,71
+      SCREEN-LINE       = 2,62
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = Screen1-blockpgm-2
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 85,71
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 21
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 2,62
+      Lines             = 1,00
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 2,43
+      Size Unit         = Default
+      Tab Order         = 16
+      Title             = "BlockPgm"
+      Transparent       = TRUE
+      Visible           = NONE
+      Visible Variable  = v-custom
+      Width in Cells    = TRUE
+   End
+   Begin Bar Screen1-Br-1
+      SCREEN-COL        = 1,00
+      SCREEN-LINE       = 3,35
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = Screen1-Br-1
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 1,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 22
+      Kind              = Horizontal
+      Line              = 3,35
+      Line Styles       = Solid
+      Occurs            = 0
+      Position Shift    = 0
+      COLORS            = ( 9, 9 )
+      Size (Lines)      = 90,50
+      Size (Lines) in Pixels = 905
+      Size (Lines) Unit = Default
+      Tab Order         = 17
+      Visible           = NONE
+      Width             = 2
+      Width in Cells    = TRUE
+   End
+   Begin Label Screen1-La-2
+      SCREEN-COL        = 2,90
+      SCREEN-LINE       = 4,00
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = Screen1-La-2
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 2,90
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 33
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 4,00
+      Lines             = 1,30
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 10,00
+      Size Unit         = Default
+      Tab Order         = 18
+      Title             = "Descrizione"
+      Transparent       = TRUE
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
+   Begin Label Screen1-La-2a
+      SCREEN-COL        = 2,90
+      SCREEN-LINE       = 6,00
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = Screen1-La-2a
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 2,90
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 8
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 6,00
+      Lines             = 1,30
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 10,00
+      Size Unit         = Default
+      Tab Order         = 19
+      Title             = "Giorni"
+      Transparent       = TRUE
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
+   Begin Label Screen1-La-2aa
+      SCREEN-COL        = 18,90
+      SCREEN-LINE       = 6,00
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = Screen1-La-2aa
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 18,90
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 9
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 6,00
+      Lines             = 1,30
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 18,00
+      Size Unit         = Default
+      Tab Order         = 20
+      Title             = "Macrogruppi coinvolti"
+      Transparent       = TRUE
+      Visible           = NONE
+      Width in Cells    = TRUE
    End
    Begin Label Screen1-La-2aaa
       SCREEN-COL        = 43,90
@@ -1658,73 +1782,11 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 7,00
       Size Unit         = Default
-      Tab Order         = 19
+      Tab Order         = 21
       Title             = "Durata"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
-   End
-   Begin Data.Entry-Field ef-durata
-      SCREEN-COL        = 52,00
-      SCREEN-LINE       = 6,00
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = ef-durata
-      Auto              = FALSE
-      Auto Decimal      = 0
-      Border            = Boxed
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 52,00
-      Csize             = 0
-      Csize Unit        = Default
-      Cursor            = 0
-      Cursor Col        = 0
-      Cursor Row        = 0
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Enable Variable   = MOD
-      Field Edited (Style) = 1
-      Field Edited Format = z9
-      Field Picture     = 99
-      Field Variable    = wom-dur-code
-      File              = wodmap
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      Hint              = .
-      ID                = 13
-      ID Variable       = AUTO-ID
-      Justification     = Right
-      Line              = 6,00
-      Lines             = 1,30
-      Lines Unit        = Default
-      Max Lines         = 0
-      Max Text          = 2
-      Max Value         = 0
-      Min Value         = 0
-      No AutoSel        = FALSE
-      No Tab            = FALSE
-      Notify Change     = FALSE
-      Numeric           = FALSE
-      Occurs            = 0
-      Read Only         = FALSE
-      Required          = FALSE
-      Secure            = FALSE
-      Size              = 3,00
-      Size Unit         = Default
-      Style             = Singleline
-      Tab Order         = 20
-      Use Return        = TRUE
-      Use Tab           = FALSE
-      Value Multiple    = FALSE
-      Visible           = NONE
-      Width in Cells    = TRUE
-      My Property       = "CONTROLLO=;CONTROLLO-OLD=;ZOOM="
-      Before Procedure  = ef-macro-BeforeProcedure
-      After Procedure   = ef-macro-AfterProcedure
    End
    Begin Label lab-durata
       SCREEN-COL        = 56,30
@@ -1753,7 +1815,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 31,30
       Size Unit         = Default
-      Tab Order         = 21
+      Tab Order         = 22
       Title Picture     = X(100)
       Title Variable    = lab-durata-buf
       Transparent       = TRUE
@@ -1787,73 +1849,11 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 7,00
       Size Unit         = Default
-      Tab Order         = 22
+      Tab Order         = 23
       Title             = "Intensità"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
-   End
-   Begin Data.Entry-Field ef-int
-      SCREEN-COL        = 52,00
-      SCREEN-LINE       = 7,74
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = ef-int
-      Auto              = FALSE
-      Auto Decimal      = 0
-      Border            = Boxed
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 52,00
-      Csize             = 0
-      Csize Unit        = Default
-      Cursor            = 0
-      Cursor Col        = 0
-      Cursor Row        = 0
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Enable Variable   = MOD
-      Field Edited (Style) = 1
-      Field Edited Format = z9
-      Field Picture     = 99
-      Field Variable    = wom-int-code
-      File              = wodmap
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      Hint              = .
-      ID                = 16
-      ID Variable       = AUTO-ID
-      Justification     = Right
-      Line              = 7,74
-      Lines             = 1,30
-      Lines Unit        = Default
-      Max Lines         = 0
-      Max Text          = 2
-      Max Value         = 0
-      Min Value         = 0
-      No AutoSel        = FALSE
-      No Tab            = FALSE
-      Notify Change     = FALSE
-      Numeric           = FALSE
-      Occurs            = 0
-      Read Only         = FALSE
-      Required          = FALSE
-      Secure            = FALSE
-      Size              = 3,00
-      Size Unit         = Default
-      Style             = Singleline
-      Tab Order         = 23
-      Use Return        = TRUE
-      Use Tab           = FALSE
-      Value Multiple    = FALSE
-      Visible           = NONE
-      Width in Cells    = TRUE
-      My Property       = "CONTROLLO=;CONTROLLO-OLD=;ZOOM="
-      Before Procedure  = ef-macro-BeforeProcedure
-      After Procedure   = ef-macro-AfterProcedure
    End
    Begin Label lab-int
       SCREEN-COL        = 56,30
@@ -2122,7 +2122,7 @@ Begin Screen Form1
    End
    Begin Label lab-stimata
       SCREEN-COL        = 14,50
-      SCREEN-LINE       = 7,74
+      SCREEN-LINE       = 7,70
       LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = lab-stimata
@@ -2140,7 +2140,7 @@ Begin Screen Form1
       ID                = 28
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 7,74
+      Line              = 7,70
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -2885,12 +2885,12 @@ BEGIN-TEXT
                10 old-wom-desc         PIC  x(100).
                10 old-wom-days         PIC  9.
                10 old-wom-macrogroups  PIC  99.
-               10 old-wom-int-code     PIC  99.
+               10 old-wom-effort       PIC  99.
                10 old-wom-split-tab.
                    15 old-wom-split-el-days
                               OCCURS 7 TIMES.
                        20 old-wom-split-el-days-split
-                                  OCCURS 9 TIMES.
+                                  OCCURS 20 TIMES.
                            25 old-wom-split-el-split-sigla     PIC  x.
                            25 old-wom-split-el-split-effort    PIC  9.
                10 old-wom-dur-code     PIC  99.
@@ -3029,9 +3029,11 @@ BEGIN-TEXT
            move wom-dur-code to dur-code.
            read duration no lock invalid move spaces to dur-desc end-read.
            move dur-desc to lab-durata-buf.
-           move wom-int-code to int-code.
-           read intexe no lock invalid move spaces to int-desc end-read.
-           move int-desc to lab-int-buf.
+           evaluate wom-effort
+           when 1 move "Light wod effort" to lab-int-buf
+           when 2 move "Medium wod effort" to lab-int-buf
+           when 3 move "Heavy wod effort" to lab-int-buf
+           end-evaluate.
            Perform VALORIZZA-OLD.
 END-TEXT
 END-DATA
@@ -3622,6 +3624,10 @@ BEGIN-DATA
 BEGIN-TEXT
            set tutto-ok to true.
            perform FORM1-CONTROLLO-OLD.
+           perform WRITE-DAYS.
+           if wom-split-tab not = old-wom-split-tab
+              set NoSalvato to true
+           end-if.
 
            if NoSalvato
               display message box MSG-Salvare-le-modifiche
@@ -4021,18 +4027,20 @@ BEGIN-TEXT
            compute tot-effort = como-effort / tot-exe.
 
            if tot-effort < 1,5
-              move 1 to int-effort
+              move 1 to como-effort
            else
               if tot-effort < 2,5            
-                 move 2 to int-effort ef-int-buf
+                 move 2 to como-effort ef-int-buf
               else                              
-                 move 3 to int-effort
+                 move 3 to como-effort ef-int-buf
               end-if
            end-if.
-           
-           read intexe key int-k-effort.
-           move int-desc to lab-int-buf.
-           move int-code to ef-int-buf wom-int-code.
+
+           evaluate como-effort
+           when 1 move "Light wod effort" to lab-int-buf
+           when 2 move "Medium wod effort" to lab-int-buf
+           when 3 move "Heavy wod effort" to lab-int-buf
+           end-evaluate.     
            display ef-int lab-int.
 END-TEXT
 END-DATA

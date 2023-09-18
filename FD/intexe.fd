@@ -6,7 +6,7 @@
                10 int-desc         PIC  x(100).
                10 int-rest         PIC  9(3).
                10 int-series       PIC  99.
-               10 int-duration     PIC  9(3).
+               10 int-time         PIC  9(3).
                10 int-range.
                    15 int-range-from   PIC  99.
                    15 int-range-to     PIC  99.

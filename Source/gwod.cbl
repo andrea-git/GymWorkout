@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 18 settembre 2023 18:58:13.
+       DATE-WRITTEN.        lunedì 18 settembre 2023 19:30:50.
        REMARKS.
       *{TOTEM}END
 
@@ -6248,6 +6248,10 @@
                           if ex-remain > 0
                              subtract 1 from ex-remain
                           end-if  
+
+                          if ted-num > 1
+                             subtract 1 from ted-num
+                          end-if
                           exit perform
                        end-if
                     else                                        
@@ -6272,7 +6276,7 @@
 
       ***---
        REMOVE-DUPLICATES.
-           perform until 1 = 2  
+           perform 10 times |Se non riesco dopo 10 tentativi esco, significa che non ho esercizi sufficienti
               move 0 to tot-subst
               perform varying como-giorno from 1 by 1 
                         until como-giorno > wom-days  
@@ -6369,11 +6373,15 @@
                                    move tex-split    to idx-split 
                                    move tex-exe-desc to como-dupl
                                    perform ADD-RANDOM-EXERCISE
+
+                                   if ted-num <= 1
+                                      exit perform
+                                   end-if
               
                                 end-perform
                           end-start
                        end-perform
-                 end-start     
+                 end-start        
               end-perform 
               if tot-subst = 0
                  exit perform

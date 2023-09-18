@@ -6,19 +6,19 @@ Adesk-andre=169.254.95.20
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791213726-610-1894613641
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7912141347-650-3227222827
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
 m_bBlockRecords=1
 m_bRecordFixed=1
 m_bStandard=1
-m_strPrefix=tem
+m_strPrefix=ted
 {{@FD_m_strDescription
 
 @}}
 [FDITEM0_]
-m_strName=tem-rec
+m_strName=ted-rec
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
@@ -26,7 +26,7 @@ m_bFixed=1
 
 @}}
 [FDITEM1_]
-m_strName=tem-key
+m_strName=ted-key
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -34,9 +34,9 @@ m_bFixed=1
 
 @}}
 [FDITEM2_]
-m_strName=tem-mcg-code
-m_strRawPic=x(5)
-m_strPic=x(5)
+m_strName=ted-day
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -44,42 +44,58 @@ m_bFixed=1
 
 @}}
 [FDITEM3_]
-m_strName=tem-int-code
-m_strRawPic=99
-m_strPic=99
+m_strName=ted-nome-dupl
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-m_strName_Xfd=tem-mcg-code_1
 {{@DataItem_m_strDescriptionFDITEM3_
 
 @}}
 [FDITEM4_]
-m_strName=tem-exe-code
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=10
+m_strName=ted-data
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM4_
 
 @}}
+[FDITEM5_]
+m_strName=ted-num
+m_strRawPic=9(3)
+m_strPic=9(3)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM5_
+
+@}}
 [CStoAcucobolSL_]
 m_nType=1
-m_strAssignToName=path-tmp-exe-mcg
+m_strAssignToName=path-tmp-exe-dupl
 m_nFormat=3
 m_nAccessMode=3
-m_strFileStatus=STATUS-tmp-exe-mcg
+m_strFileStatus=STATUS-tmp-exe-dupl
 m_nNumber=1
 m_nCompression=70
 {{@SL_m_strDescription
-Per ordinamento
+
 @}}
 [SLPKEY_]
-m_strName=tem-key
+m_strName=ted-key
 m_bUnique=1
 {{@Key_m_strDescription
 
 @}}
 [SLKEYATOM0_]
-m_strName=tem-key
+m_strName=ted-key
+[SLINDEX0_]
+m_strName=ted-k-num
+{{@Key_m_strDescriptionSLINDEX0_
+
+@}}
+[SLKEYATOM0_SLINDEX0_]
+m_strName=ted-num
+[SLKEYATOM1_SLINDEX0_]
+m_strName=ted-key

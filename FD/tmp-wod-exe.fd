@@ -6,7 +6,8 @@
                10 twe-exe-isMulti  PIC  9.
                    88 twe-exe-isMulti-yes VALUE IS 1. 
                    88 twe-exe-isMulti-no VALUE IS 0. 
-               10 twe-effort       PIC  9.
+               10 twe-effort       PIC  99.
                10 twe-exe-code     PIC  x(5).
            05 twe-data.
+               10 twe-int-code     PIC  99.
                10 twe-exe-desc     PIC  x(100).

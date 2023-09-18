@@ -1,0 +1,8 @@
+      *(( XFD FILE = tmp-exe-dupl ))
+       FD  tmp-exe-dupl.
+       01 ted-rec.
+           05 ted-key.
+               10 ted-day          PIC  99.
+               10 ted-nome-dupl    PIC  x(100).
+           05 ted-data.
+               10 ted-num          PIC  9(3).

@@ -4,4 +4,6 @@
            ORGANIZATION IS INDEXED
            ACCESS MODE  IS DYNAMIC
            FILE STATUS  IS STATUS-tmp-exe
-           RECORD KEY   IS tex-key.
+           RECORD KEY   IS tex-key
+           ALTERNATE RECORD KEY IS tex-k-dupl = tex-day, tex-nome-dupl
+           WITH DUPLICATES .

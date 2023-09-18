@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7911195121-402-886121101
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791283147-620-36382368
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -71,8 +71,8 @@ m_strTrue=0
 @}}
 [FDITEM6_]
 m_strName=twe-effort
-m_strRawPic=9
-m_strPic=9
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -100,6 +100,18 @@ m_bFixed=1
 
 @}}
 [FDITEM9_]
+m_strName=twe-int-code
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+m_strRawSize=20
+m_nSize=20
+{{@DataItem_m_strDescriptionFDITEM9_
+
+@}}
+[FDITEM10_]
 m_strName=twe-exe-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
@@ -108,7 +120,7 @@ m_nSync=-1
 m_bFixed=1
 m_strRawSize=20
 m_nSize=20
-{{@DataItem_m_strDescriptionFDITEM9_
+{{@DataItem_m_strDescriptionFDITEM10_
 
 @}}
 [CStoAcucobolSL_]

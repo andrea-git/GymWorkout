@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 18 settembre 2023 11:55:25.
+       DATE-WRITTEN.        lunedì 18 settembre 2023 12:00:44.
        REMARKS.
       *{TOTEM}END
 
@@ -346,7 +346,7 @@
        05
            ef-int, 
            Entry-Field, 
-           COL 52,00, 
+           COL 14,00, 
            LINE 7,74,
            LINES 1,30 ,
            SIZE 3,00 ,
@@ -712,10 +712,10 @@
        05
            Screen1-La-2aaaa, 
            Label, 
-           COL 43,90, 
+           COL 2,90, 
            LINE 7,74,
            LINES 1,30 ,
-           SIZE 7,00 ,
+           SIZE 10,00 ,
            ID IS 15,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -727,7 +727,7 @@
        05
            lab-int, 
            Label, 
-           COL 56,30, 
+           COL 18,30, 
            LINE 7,74,
            LINES 1,30 ,
            SIZE 31,30 ,
@@ -848,21 +848,6 @@
            CENTER,
            TRANSPARENT,
            TITLE "Giorno 5",
-           .
-
-      * LABEL
-       05
-           lab-stimata, 
-           Label, 
-           COL 14,50, 
-           LINE 7,70,
-           LINES 1,30 ,
-           SIZE 25,80 ,
-           ID IS 28,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE lab-stimata-buf,
            .
 
       * TOOLBAR

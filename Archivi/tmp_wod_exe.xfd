@@ -7,8 +7,8 @@
     <xfd:select-name>TMP-WOD-EXE</xfd:select-name>
     <xfd:table-name>TMP-WOD-EXE</xfd:table-name>
     <xfd:file-organization>Indexed</xfd:file-organization>
-    <xfd:maximum-record-size>112</xfd:maximum-record-size>
-    <xfd:minimum-record-size>112</xfd:minimum-record-size>
+    <xfd:maximum-record-size>115</xfd:maximum-record-size>
+    <xfd:minimum-record-size>115</xfd:minimum-record-size>
     <xfd:number-of-keys>1</xfd:number-of-keys>
     <xfd:sign-compatibility>0</xfd:sign-compatibility>
     <xfd:maximum-numeric-digits>18</xfd:maximum-numeric-digits>
@@ -22,7 +22,7 @@
          xfd:duplicates-allowed="false">
       <xfd:segments>
         <xfd:segment
-             xfd:segment-size="12"
+             xfd:segment-size="13"
              xfd:segment-offset="0"/>
       </xfd:segments>
       <xfd:key-columns
@@ -42,15 +42,15 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="5"
-       xfd:elementary-items-with-occurs="5"
-       xfd:total-items="8"
-       xfd:total-items-with-occurs="8">
+       xfd:elementary-items="6"
+       xfd:elementary-items-with-occurs="6"
+       xfd:total-items="9"
+       xfd:total-items-with-occurs="9">
     <xfd:field
          xfd:field-offset="0"
-         xfd:field-bytes="112"
+         xfd:field-bytes="115"
          xfd:field-type="16"
-         xfd:field-length="112"
+         xfd:field-length="115"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -58,9 +58,9 @@
          xfd:field-name="TWE-REC"/>
     <xfd:field
          xfd:field-offset="0"
-         xfd:field-bytes="12"
+         xfd:field-bytes="13"
          xfd:field-type="16"
-         xfd:field-length="12"
+         xfd:field-length="13"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -88,16 +88,16 @@
          xfd:field-name="TWE-EXE-ISMULTI"/>
     <xfd:field
          xfd:field-offset="6"
-         xfd:field-bytes="1"
+         xfd:field-bytes="2"
          xfd:field-type="1"
-         xfd:field-length="1"
+         xfd:field-length="2"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
          xfd:field-name="TWE-EFFORT"/>
     <xfd:field
-         xfd:field-offset="7"
+         xfd:field-offset="8"
          xfd:field-bytes="5"
          xfd:field-type="16"
          xfd:field-length="5"
@@ -107,17 +107,27 @@
          xfd:field-level="10"
          xfd:field-name="TWE-EXE-CODE"/>
     <xfd:field
-         xfd:field-offset="12"
-         xfd:field-bytes="100"
+         xfd:field-offset="13"
+         xfd:field-bytes="102"
          xfd:field-type="16"
-         xfd:field-length="100"
+         xfd:field-length="102"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
          xfd:field-level="5"
          xfd:field-name="TWE-DATA"/>
     <xfd:field
-         xfd:field-offset="12"
+         xfd:field-offset="13"
+         xfd:field-bytes="2"
+         xfd:field-type="1"
+         xfd:field-length="2"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="10"
+         xfd:field-name="TWE-INT-CODE"/>
+    <xfd:field
+         xfd:field-offset="15"
          xfd:field-bytes="100"
          xfd:field-type="16"
          xfd:field-length="100"

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 18 settembre 2023 11:48:35.
+       DATE-WRITTEN.        lunedì 18 settembre 2023 16:13:09.
        REMARKS.
       *{TOTEM}END
 
@@ -37,6 +37,7 @@
            COPY "tmp-wod-exe.sl".
            COPY "tmp-exe.sl".
            COPY "intexe.sl".
+           COPY "tmp-exe-dupl.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
@@ -51,6 +52,7 @@
            COPY "tmp-wod-exe.fd".
            COPY "tmp-exe.fd".
            COPY "intexe.fd".
+           COPY "tmp-exe-dupl.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -123,7 +125,11 @@
        77 save-day         PIC  9.
        77 s-int-buf        PIC  x(100).
        77 s-dur-desc       PIC  x(100).
+       77 como-mm          PIC  xx.
+       77 como-hh          PIC  xx.
+       77 como-durata      PIC  x(100).
        77 s-gio-buf        PIC  x(100).
+       77 como-nome        PIC  x(100).
        77 AUTO-ID          PIC  9(6)
                   VALUE IS 0,00.
        77 BOTTONE-annulla-BMP          PIC  S9(9)
@@ -149,6 +155,17 @@
                    15 el-wod-exe-effort            PIC  9.
        77 RigheIniziali    PIC  9(3).
        77 como-giorni      PIC  99.
+       77 hh   PIC  99.
+       77 mm   PIC  99.
+       77 resto            PIC  9(5).
+       77 s-day1           PIC  x(200).
+       77 s-day2           PIC  x(200).
+       77 s-day3           PIC  x(200).
+       77 s-day4           PIC  x(200).
+       77 s-day5           PIC  x(200).
+       77 s-day6           PIC  x(200).
+       77 s-day7           PIC  x(200).
+       77 tot-durata       PIC  9(10).
        77 lastIdx          PIC  9(3).
        77 idx1 PIC  9(3).
        77 idx2 PIC  9(3).
@@ -271,6 +288,10 @@
        77 lab-5-buf        PIC  X(100).
        77 lab-6-buf        PIC  X(100).
        77 lab-7-buf        PIC  X(100).
+       77 counter          PIC  9(3).
+       77 path-tmp-exe-dupl            PIC  X(256).
+       77 STATUS-tmp-exe-dupl          PIC  X(2).
+           88 Valid-STATUS-tmp-exe-dupl VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -288,9 +309,10 @@
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
        77 TMP-DataSet1-wodmap-BUF     PIC X(1444).
-       77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(112).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(114).
+       77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(115).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(217).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
+       77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(105).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -346,6 +368,11 @@
        77 DataSet1-intexe-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-intexe-KEY-Asc  VALUE "A".
           88 DataSet1-intexe-KEY-Desc VALUE "D".
+       77 DataSet1-tmp-exe-dupl-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-tmp-exe-dupl-LOCK  VALUE "Y".
+       77 DataSet1-tmp-exe-dupl-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-tmp-exe-dupl-KEY-Asc  VALUE "A".
+          88 DataSet1-tmp-exe-dupl-KEY-Desc VALUE "D".
 
        77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
@@ -354,8 +381,10 @@
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
+       77 tmp-exe-tex-k-dupl-SPLITBUF  PIC X(102).
        77 intexe-int-k-desc-SPLITBUF  PIC X(101).
        77 intexe-int-k-effort-SPLITBUF  PIC X(3).
+       77 tmp-exe-dupl-ted-k-num-SPLITBUF  PIC X(106).
 
        78  78-col-data       value 1. 
        78  78-col-art        value 2. 
@@ -719,7 +748,7 @@
            ID IS 30,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TITLE "C",
+           TITLE "&C",
            .
 
       * PUSH BUTTON
@@ -735,7 +764,7 @@
            ID IS 36,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TITLE "H",
+           TITLE "&H",
            .
 
       * PUSH BUTTON
@@ -1170,27 +1199,6 @@
 
       * PUSH BUTTON
        05
-           TOOL-CANCELLA, 
-           Push-Button, 
-           COL 16,90, 
-           LINE 1,09,
-           LINES 64,00 ,
-           SIZE 48,00 ,
-           BITMAP-HANDLE toolbar-bmp,
-           FRAMED,
-           SQUARE,
-           ENABLED E-CANCELLA,
-           EXCEPTION-VALUE 4,
-           FLAT,
-           FONT IS Calibri14-Occidentale,
-           ID IS 74,
-           SELF-ACT,
-           TITLE "Cancella (F4)",
-           BITMAP-NUMBER BitmapNumDelete
-           .
-
-      * PUSH BUTTON
-       05
            TOOL-SALVA, 
            Push-Button, 
            COL 11,60, 
@@ -1214,7 +1222,7 @@
        05
            TOOL-ANTEPRIMA, 
            Push-Button, 
-           COL 27,50, 
+           COL 16,90, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1230,35 +1238,11 @@
            TITLE "Anteprima (F6)",
            .
 
-      * CHECK BOX
-       05
-           TOOL-MODIFICA, 
-           Check-Box, 
-           COL 22,20, 
-           LINE 1,09,
-           LINES 64,00 ,
-           SIZE 48,00 ,
-           BITMAP-HANDLE toolbar-bmp,
-           BITMAP-NUMBER 5,
-           FRAMED,
-           SQUARE,
-           ENABLED E-MODIFICA,
-           EXCEPTION-VALUE 150
-           FLAT,
-           FONT IS Calibri14-Occidentale,
-           ID IS 77,
-           SELF-ACT,
-           TITLE "Modifica (F5)",
-           VALUE MOD,
-           BITMAP-NUMBER BitmapNumEdit
-           AFTER PROCEDURE TOOL-MODIFICA-AfterProcedure,
-           BEFORE PROCEDURE TOOL-MODIFICA-BeforeProcedure, 
-           .
       * PUSH BUTTON
        05
            TOOL-STAMPA, 
            Push-Button, 
-           COL 32,80, 
+           COL 22,20, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1278,7 +1262,7 @@
        05
            TOOL-CERCA, 
            Push-Button, 
-           COL 38,10, 
+           COL 27,50, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1297,23 +1281,50 @@
 
       * PUSH BUTTON
        05
-           TOOL-SELEZIONA, 
+           tool-modifica, 
            Push-Button, 
-           COL 43,40, 
-           LINE 1,09,
-           LINES 64,00 ,
-           SIZE 48,00 ,
-           BITMAP-HANDLE toolbar-bmp,
-           BITMAP-NUMBER 9,
-           FRAMED,
-           SQUARE,
-           ENABLED E-SELEZIONA,
-           EXCEPTION-VALUE 9,
-           FLAT,
-           FONT IS Calibri14-Occidentale,
-           ID IS 112,
-           SELF-ACT,
-           TITLE "Seleziona (F9)",
+           COL 49,80, 
+           LINE 1,13,
+           LINES 1,35 ,
+           SIZE 3,10 ,
+           FONT IS Small-Font,
+           ID IS 39,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Push Button",
+           VISIBLE 0,
+           .
+
+      * PUSH BUTTON
+       05
+           tool-cancella, 
+           Push-Button, 
+           COL 52,90, 
+           LINE 1,13,
+           LINES 1,35 ,
+           SIZE 3,10 ,
+           FONT IS Small-Font,
+           ID IS 39,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Push Button",
+           VISIBLE 0,
+           .
+
+      * PUSH BUTTON
+       05
+           tool-seleziona, 
+           Push-Button, 
+           COL 56,00, 
+           LINE 1,13,
+           LINES 1,35 ,
+           SIZE 3,10 ,
+           FONT IS Small-Font,
+           ID IS 39,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Push Button",
+           VISIBLE 0,
            .
 
       *{TOTEM}END
@@ -1348,44 +1359,6 @@
            when "93"
                 set RecLocked to true
                 set errori    to true
-                move 0 to mod
-                modify tool-modifica, value = mod
-                move 1 to mod-k
-                display form1
-                set StatusVisua to true
-                perform STATUS-BAR-MSG
-                move "00" to status-wodbook
-                if ReadSecca
-                   read WODBOOK    no lock 
-                        invalid      continue
-                        not invalid  perform FORM1-IUD-DISPLAY
-                   end-read
-                end-if
-                display message box MSG-Record-gia-in-uso
-                        title = tit-err
-                        icon is mb-error-icon
-           when "23"
-                move 1 to mod-k
-                move 0 to mod
-                modify tool-modifica, value = mod
-                set StatusVisua to true
-                perform STATUS-BAR-MSG 
-                if nuovo              
-                   initialize wod-data
-                              replacing numeric data by zeroes
-                                   alphanumeric data by spaces
-                   perform FORM1-FLD-TO-BUF
-                   display form1-tb-1
-                   set vecchio to true
-                end-if      
-                perform ABILITAZIONI
-                display form1
-                |RISETTO IL VALORE A "23" PERCHE DENTRO AL PAR. CLEAR-SCREEN
-                |CON L'OPERAZIONE UNLOCK VIENE RISETTATO A ZERO COSICCHÈ 
-                |QUANDO TORNA DENTRO AI PAR. DI SCORRIMENTO DI TOTEM SI 
-                |TROVA IN UNA SITUAZIONE CORRETTA E PROSEGUE CON LA READ
-                |USCENDO CON UN MESSAGGIO DI ERRORE DI TIPO "46"
-                move "23" to status-WODBOOK
            end-evaluate.
 
       * <TOTEM:END>
@@ -1534,6 +1507,8 @@
       *    tmp-exe OPEN MODE IS FALSE
       *    PERFORM OPEN-tmp-exe
            PERFORM OPEN-intexe
+      *    tmp-exe-dupl OPEN MODE IS FALSE
+      *    PERFORM OPEN-tmp-exe-dupl
       *    After Open
            .
 
@@ -1664,6 +1639,18 @@
       * <TOTEM:END>
            .
 
+       OPEN-tmp-exe-dupl.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-exe-dupl, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  OUTPUT tmp-exe-dupl
+           IF NOT Valid-STATUS-tmp-exe-dupl
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-exe-dupl, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-exercises
@@ -1679,6 +1666,8 @@
       *    tmp-exe CLOSE MODE IS FALSE
       *    PERFORM CLOSE-tmp-exe
            PERFORM CLOSE-intexe
+      *    tmp-exe-dupl CLOSE MODE IS FALSE
+      *    PERFORM CLOSE-tmp-exe-dupl
       *    After Close
            .
 
@@ -1737,6 +1726,11 @@
       * <TOTEM:EPT. INIT:gwod, FD:intexe, BeforeClose>
       * <TOTEM:END>
            CLOSE intexe
+           .
+
+       CLOSE-tmp-exe-dupl.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-exe-dupl, BeforeClose>
+      * <TOTEM:END>
            .
 
        exercises-exe-k-desc-MERGE-SPLITBUF.
@@ -2996,6 +2990,13 @@
       * <TOTEM:END>
            .
 
+       tmp-exe-tex-k-dupl-MERGE-SPLITBUF.
+           INITIALIZE tmp-exe-tex-k-dupl-SPLITBUF
+           MOVE tex-day(1:1) TO tmp-exe-tex-k-dupl-SPLITBUF(1:1)
+           MOVE tex-nome-dupl(1:100) TO 
+           tmp-exe-tex-k-dupl-SPLITBUF(2:100)
+           .
+
        DataSet1-tmp-exe-INITSTART.
            IF DataSet1-tmp-exe-KEY-Asc
               MOVE Low-Value TO tex-key
@@ -3279,6 +3280,125 @@
       * <TOTEM:END>
            .
 
+       tmp-exe-dupl-ted-k-num-MERGE-SPLITBUF.
+           INITIALIZE tmp-exe-dupl-ted-k-num-SPLITBUF
+           MOVE ted-num(1:3) TO tmp-exe-dupl-ted-k-num-SPLITBUF(1:3)
+           MOVE ted-key(1:102) TO tmp-exe-dupl-ted-k-num-SPLITBUF(4:102)
+           .
+
+       DataSet1-tmp-exe-dupl-INITSTART.
+           IF DataSet1-tmp-exe-dupl-KEY-Asc
+              MOVE Low-Value TO ted-key
+           ELSE
+              MOVE High-Value TO ted-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-dupl-INITEND.
+           IF DataSet1-tmp-exe-dupl-KEY-Asc
+              MOVE High-Value TO ted-key
+           ELSE
+              MOVE Low-Value TO ted-key
+           END-IF
+           .
+
+      * tmp-exe-dupl
+       DataSet1-tmp-exe-dupl-START.
+           IF DataSet1-tmp-exe-dupl-KEY-Asc
+              START tmp-exe-dupl KEY >= ted-key
+           ELSE
+              START tmp-exe-dupl KEY <= ted-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-dupl-START-NOTGREATER.
+           IF DataSet1-tmp-exe-dupl-KEY-Asc
+              START tmp-exe-dupl KEY <= ted-key
+           ELSE
+              START tmp-exe-dupl KEY >= ted-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-dupl-START-GREATER.
+           IF DataSet1-tmp-exe-dupl-KEY-Asc
+              START tmp-exe-dupl KEY > ted-key
+           ELSE
+              START tmp-exe-dupl KEY < ted-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-dupl-START-LESS.
+           IF DataSet1-tmp-exe-dupl-KEY-Asc
+              START tmp-exe-dupl KEY < ted-key
+           ELSE
+              START tmp-exe-dupl KEY > ted-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-dupl-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, BeforeReadRecord>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-dupl-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, BeforeReadNext>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-dupl-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, BeforeReadPrev>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-dupl-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, BeforeWrite>
+      * <TOTEM:END>
+           WRITE ted-rec OF tmp-exe-dupl.
+           MOVE STATUS-tmp-exe-dupl TO TOTEM-ERR-STAT
+           MOVE "tmp-exe-dupl" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-dupl-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-exe-dupl TO TOTEM-ERR-STAT
+           MOVE "tmp-exe-dupl" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-dupl-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-exe-dupl TO TOTEM-ERR-STAT
+           MOVE "tmp-exe-dupl" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe-dupl, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE grp-rec OF groups
@@ -3290,6 +3410,7 @@
            INITIALIZE twe-rec OF tmp-wod-exe
            INITIALIZE tex-rec OF tmp-exe
            INITIALIZE int-rec OF intexe
+           INITIALIZE ted-rec OF tmp-exe-dupl
            .
 
 
@@ -3444,6 +3565,14 @@
       * FD's Initialize Paragraph
        DataSet1-intexe-INITREC.
            INITIALIZE int-rec OF intexe
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-tmp-exe-dupl-INITREC.
+           INITIALIZE ted-rec OF tmp-exe-dupl
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -3639,21 +3768,6 @@
 
        Form1-Evaluate-Func.
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterAccept>
-           evaluate key-status
-           when 5 |MODIFICA
-                inquire tool-modifica, enabled in e-modifica
-                if e-modifica = 1
-                   if mod = zero 
-                      move 1    to mod
-                   else          
-                      move zero to mod
-                   end-if
-                   modify tool-modifica, value = mod
-                   perform MODIFICA
-                end-if
-           end-evaluate.
-
-           .
       * <TOTEM:END>
            EVALUATE TRUE
               WHEN Exit-Pushed
@@ -3672,20 +3786,14 @@
                  PERFORM pb-random-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
-              WHEN Key-Status = 4
-                 PERFORM CANCELLA-LinkTo
               WHEN Key-Status = 3
                  PERFORM TOOL-SALVA-LinkTo
               WHEN Key-Status = 6
                  PERFORM ANTEPRIMA-LinkTo
-              WHEN Key-Status = 150
-                 PERFORM TOOL-MODIFICA-LinkTo
               WHEN Key-Status = 7
                  PERFORM STAMPA-LinkTo
               WHEN Key-Status = 8
                  PERFORM TOOL-CERCA-LinkTo
-              WHEN Key-Status = 9
-                 PERFORM TOOL-SELEZIONA-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -3715,14 +3823,6 @@
        Form1-Exit.
       * for main screen
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeExit>
-           perform SALV-MOD.
-
-           if errori
-              move 26 to key-status
-              exit paragraph
-           end-if.
-
-           .
       * <TOTEM:END>
            MOVE 27 TO Key-Status
            .
@@ -4167,6 +4267,134 @@
            .
       * <TOTEM:END>
 
+       ABILITA-MACROGRUPPI.
+      * <TOTEM:PARA. ABILITA-MACROGRUPPI>
+           inquire cb-wod, value in wom-desc.
+           modify cb-mg1, enabled false.
+           modify cb-mg2, enabled false.
+           modify cb-mg3, enabled false.
+           modify cb-mg4, enabled false.
+           modify cb-mg5, enabled false.
+           modify cb-mg6, enabled false.
+           modify cb-mg7, enabled false.    
+
+           move spaces to lab-1-buf.
+           move spaces to lab-2-buf.
+           move spaces to lab-3-buf.
+           move spaces to lab-4-buf.
+           move spaces to lab-5-buf.
+           move spaces to lab-6-buf.
+           move spaces to lab-7-buf.
+
+           display lab-day1 
+                   lab-day2 
+                   lab-day3 
+                   lab-day4 
+                   lab-day5 
+                   lab-day6 
+                   lab-day7.
+
+           read wodmap key wom-k-desc
+                invalid
+                modify cb-mg1, value "Nessuno"
+                modify cb-mg2, value "Nessuno"
+                modify cb-mg3, value "Nessuno"
+                modify cb-mg4, value "Nessuno"
+                modify cb-mg5, value "Nessuno"
+                modify cb-mg6, value "Nessuno"
+                modify cb-mg7, value "Nessuno"
+                initialize wom-data replacing numeric data by zeroes
+                                         alphanumeric data by spaces
+                exit paragraph
+           end-read.
+                              
+           perform varying idx-days from 1 by 1
+                     until idx-days > wom-days
+              perform varying idx-split from 1 by 1
+                        until idx-split > 20
+                 if wom-split-el-split-sigla(idx-days, idx-split) = 
+           space
+                    exit perform
+                 end-if
+                 if idx-split = 1
+                    move ": " to como-day
+                 end-if
+                 inspect como-day replacing trailing spaces by low-value
+                 string  como-day delimited low-value
+                         " "
+                         wom-split-el-split-sigla(idx-days, idx-split)
+                         wom-split-el-split-effort(idx-days, idx-split)
+                         " | "      
+                    into como-day
+                 end-string
+              end-perform
+              inspect como-day replacing trailing low-value by spaces
+              evaluate idx-days
+              when 1 string "DAY 1" como-day into lab-1-buf
+              when 2 string "DAY 2" como-day into lab-2-buf
+              when 3 string "DAY 3" como-day into lab-3-buf
+              when 4 string "DAY 4" como-day into lab-4-buf
+              when 5 string "DAY 5" como-day into lab-5-buf
+              when 6 string "DAY 6" como-day into lab-6-buf
+              when 7 string "DAY 7" como-day into lab-7-buf
+              end-evaluate
+           end-perform.             
+           move lab-1-buf to s-day1.
+           move lab-2-buf to s-day2.
+           move lab-3-buf to s-day3.
+           move lab-4-buf to s-day4.
+           move lab-5-buf to s-day5.
+           move lab-6-buf to s-day6.
+           move lab-7-buf to s-day7.
+
+           display lab-day1 
+                   lab-day2 
+                   lab-day3 
+                   lab-day4 
+                   lab-day5 
+                   lab-day6 
+                   lab-day7.
+
+           evaluate wom-macrogroups
+           when 1
+                modify cb-mg1, enabled true
+           when 2                           
+                modify cb-mg1, enabled true
+                modify cb-mg2, enabled true
+           when 3            
+                modify cb-mg1, enabled true
+                modify cb-mg2, enabled true
+                modify cb-mg3, enabled true
+           when 4            
+                modify cb-mg1, enabled true
+                modify cb-mg2, enabled true
+                modify cb-mg3, enabled true
+                modify cb-mg4, enabled true
+           when 5                          
+                modify cb-mg1, enabled true
+                modify cb-mg2, enabled true
+                modify cb-mg3, enabled true
+                modify cb-mg4, enabled true
+                modify cb-mg5, enabled true
+           when 6                          
+                modify cb-mg1, enabled true
+                modify cb-mg2, enabled true
+                modify cb-mg3, enabled true
+                modify cb-mg4, enabled true
+                modify cb-mg5, enabled true
+                modify cb-mg6, enabled true
+           when 7                          
+                modify cb-mg1, enabled true
+                modify cb-mg2, enabled true
+                modify cb-mg3, enabled true
+                modify cb-mg4, enabled true
+                modify cb-mg5, enabled true
+                modify cb-mg6, enabled true
+                modify cb-mg7, enabled true
+           end-evaluate 
+           .
+      * <TOTEM:END>
+
        ABILITAZIONI.
       * <TOTEM:PARA. ABILITAZIONI>
            if mod = 1              
@@ -4195,46 +4423,6 @@
       * <TOTEM:PARA. ANTEPRIMA>
            set s-anteprima to true.
            perform STAMPA-ANTEPRIMA 
-           .
-      * <TOTEM:END>
-
-       CANCELLA.
-      * <TOTEM:PARA. CANCELLA>
-      *     if mod = 0 exit paragraph end-if.
-      **
-      *     display message MSG-Cancellare-il-record-corrente
-      *             title   titolo
-      *             type    mb-yes-no 
-      *             default mb-no
-      *             giving  scelta
-      *
-      *     if scelta = mb-yes
-      *        perform RIEMPI-CHIAVE
-      *        delete tschede record 
-      *               invalid  continue
-      *           not invalid  perform DELETE-RIGHE
-      *        end-delete
-      *
-      *        move 0   to mod
-      *        move 1   to mod-k
-      *        perform FORM1-CLEAR
-      *        set vecchio to true
-      *        perform CANCELLA-COLORE
-      *        perform INIT-OLD-REC
-      *        perform RESETTA-GRID
-      *        
-      *        display message MSG-Cancellazione-avvenuta-con-successo
-      *                title titolo                         
-      *
-      *        unlock tschede all records
-      *
-      *        move 78-ID-ef-cliente to control-id     
-      *        move 4                to accept-control 
-      *
-      *        set Statusvisua to true
-      *        perform STATUS-BAR-MSG
-      *        modify TOOL-MODIFICA value = mod
-      *     end-if 
            .
       * <TOTEM:END>
 
@@ -4576,24 +4764,6 @@
            .
       * <TOTEM:END>
 
-       DELETE-RIGHE.
-      * <TOTEM:PARA. DELETE-RIGHE>
-      *     move low-value  to rsc-rec.
-      *     move tsc-codice to rsc-codice.
-      *     start rschede key >= rsc-chiave
-      *           invalid continue
-      *       not invalid
-      *           perform until 1 = 2
-      *              read rschede next at end exit perform end-read
-      *              if rsc-codice not = tsc-codice
-      *                 exit perform 
-      *              end-if
-      *              delete rschede record invalid continue end-delete
-      *           end-perform
-      *     end-start 
-           .
-      * <TOTEM:END>
-
        INIT.
       * <TOTEM:PARA. INIT>
            move 0 to StatusHelp.
@@ -4611,53 +4781,6 @@
       *                                 alphanumeric data by spaces.
       *
       *     move tsc-cliente to old-tsc-cliente 
-           .
-      * <TOTEM:END>
-
-       MODIFICA.
-      * <TOTEM:PARA. MODIFICA>
-      *     move 5 to key-status.
-      *     inquire tool-modifica, value in mod.
-      *     set tutto-ok to true.
-      *
-      *     if nuovo
-      *        move 1   to mod                  
-      *        modify tool-modifica, value mod
-      *     else
-      **  SE L'UTENTE E' ABILITATO PUO' MODIFICARE UN RECORD
-      *        if mod = 1
-      *           set YesMessage to true
-      *           perform CURRENT-RECORD
-      *           if tutto-ok
-      *              move 0   to mod-k
-      *              move 1   to mod
-      *              set StatusModifica to true
-      *              perform STATUS-BAR-MSG
-      *           end-if
-      *        else
-      *           move 1 to mod
-      *           perform SALV-MOD            
-      *           move 0 to mod
-      *           move 1 to mod-k
-      *           if errori
-      *              move 1 to mod
-      *              move 0 to mod-k
-      *           else                  
-      *              set NoMessage to true
-      *              perform CURRENT-RECORD
-      *              set StatusVisua to true
-      *              perform STATUS-BAR-MSG 
-      *              unlock tschede all records
-      *              move 78-ID-ef-cliente to control-id
-      *           end-if
-      *        end-if
-      *
-      *        display form1
-      *        modify tool-modifica,  value mod
-      *        perform CANCELLA-COLORE 
-      *
-      *        move 4 to ACCEPT-CONTROL
-      *     end-if 
            .
       * <TOTEM:END>
 
@@ -4693,15 +4816,6 @@
            modify gd1,       cursor-y riga, 
                              cursor-x colonna.
            perform COLORE-RIGA 
-           .
-      * <TOTEM:END>
-
-       RESETTA-GRID.
-      * <TOTEM:PARA. RESETTA-GRID>
-           modify gd1, reset-grid = 1.
-           perform GD1-CONTENT.
-           initialize rec-grid.
-           modify gd1, insert-rows = 999 
            .
       * <TOTEM:END>
 
@@ -4902,244 +5016,6 @@
            .
       * <TOTEM:END>
 
-       SALV-MOD.
-      * <TOTEM:PARA. SALV-MOD>
-      *     set tutto-ok to true.
-      *     perform FORM1-CONTROLLO-OLD.
-      *
-      *     if SiSalvato and mod = 1
-      *        if RigaCambiata not = 0 or ColonnaCambiata not = 0
-      *           set NoSalvato  to true
-      *           move 78-ID-gd1 to store-id
-      *           move ColonnaCambiata to colonna
-      *           move RigaCambiata    to riga
-      *        end-if
-      *     end-if.    
-      *
-      *     if SiSalvato and mod = 1
-      *        inquire gd1, last-row in tot-righe
-      *        subtract 1 from tot-righe
-      *        if tot-righe not = RigheIniziali |or inserito-extra
-      *           move tot-righe to riga
-      *           set NoSalvato  to true
-      *           move 78-ID-gd1 to store-id
-      *           move 1 to colonna
-      *        end-if
-      *     end-if.
-      *
-      *     if NoSalvato
-      *        display message MSG-Salvare-le-modifiche
-      *                  title titolo
-      *                   type mb-yes-no-cancel 
-      *                 giving scelta       
-      * 
-      *        evaluate scelta
-      *        when mb-yes 
-      *             perform SALVA
-      *        when mb-no  
-      *             continue
-      *             if nuovo
-      *                perform RIEMPI-CHIAVE
-      *                delete tschede record invalid continue end-delete
-      *             end-if
-      *        when other                
-      *             perform CANCELLA-COLORE
-      *             set errori to true
-      *             evaluate store-id
-      *             when 78-ID-gd1     
-      *                  perform PUNTA-CELLA
-      *             when other
-      *                move store-id to control-id       
-      *                move 4        to accept-control   
-      *             end-evaluate
-      *        end-evaluate
-      *     end-if 
-           .
-      * <TOTEM:END>
-
-       SCRIVI-RIGA.
-      * <TOTEM:PARA. SCRIVI-RIGA>
-      *     if como-col-data = 0
-      *        exit paragraph
-      *     end-if.
-      *     initialize rsc-rec replacing numeric data by zeroes
-      *                             alphanumeric data by spaces.
-      *     move 1           to rsc-riga
-      *     move tsc-codice  to rsc-codice.
-      *     move como-col-data to como-data.
-      *     perform DATE-TO-FILE.
-      *     move como-data   to rsc-data.
-      *     move col-art     to rsc-articolo.
-      *
-      *     move tsc-cliente to rsc-cliente.
-      *     move col-des     to rsc-descrizione.
-      *     move col-qta     to rsc-qta.
-      *     move col-prz     to rsc-prz.
-      *     move col-sc1     to rsc-sconto1.
-      ******     move col-sc2     to rsc-sconto2.
-      *     move col-netto   to rsc-netto.
-      *     move col-note    to rsc-note.
-      *     if como-col-numdoc not = 0
-      *        if Hid-Fattura
-      *           move col-numdoc  to rsc-numfat
-      *           move col-datadoc to como-data
-      *           perform DATE-TO-FILE
-      *           move como-data   to rsc-datafat
-      *        else
-      *           move col-numdoc  to rsc-numcor
-      *           move col-datadoc to como-data
-      *           perform DATE-TO-FILE
-      *           move como-data   to rsc-datacor
-      *        end-if
-      *     end-if.
-      *     
-      *     perform until 1 = 2
-      *        write rsc-rec 
-      *              invalid add 1 to rsc-riga
-      *          not invalid exit perform
-      *        end-write
-      *     end-perform 
-           .
-      * <TOTEM:END>
-
-       SELEZIONA.
-      * <TOTEM:PARA. SELEZIONA>
-      *     inquire ef-cliente, value in tsc-cliente.
-      *     move "tschede"     to Como-File
-      *     call   "zoom-gt" using  como-file, tsc-rec
-      *                      giving stato-zoom
-      *     cancel "zoom-gt"
-      *     if stato-zoom = 0
-      *        if old-tsc-chiave not = tsc-chiave or
-      *         ( tsc-codice = 0 and mod = 0 )
-      *           move tsc-cliente to save-cliente
-      *           perform SALV-MOD
-      *           if tutto-ok
-      *              move save-cliente to tsc-cliente
-      *              set ReadSecca to true
-      *              modify ef-cliente, value tsc-cliente
-      *              perform CURRENT-RECORD
-      *              perform CANCELLA-COLORE
-      *              move 78-ID-ef-cliente to CONTROL-ID       
-      *              move 4                to ACCEPT-CONTROL   
-      *           end-if                                  
-      *        end-if
-      *     end-if.
-      *
-      ******     set tutto-ok to true.
-      ******     move zero   to link-fornitore
-      ******     perform SEL-LISTINI.
-      ******
-      *********---
-      ****** SEL-LISTINI.
-      ******     call   "sel-listini" using link-codice 
-      ******                                link-articolo 
-      ******                                link-fornitore.
-      ******     cancel "sel-listini".
-      ******
-      ******     if link-codice not = 0
-      ******
-      ******        if link-codice not = tsc-codice of tschede
-      ******           perform SALV-MOD
-      ******        end-if
-      ******
-      ******        if tutto-ok
-      ******           set  ReadSecca   to true
-      ******           move link-codice to tsc-codice of tschede 
-      ******           move link-codice to ef-codice-buf
-      ******           display ef-codice
-      ******           perform CURRENT-RECORD
-      ******           if link-articolo = 0
-      ******              move 2 to riga
-      ******           else
-      ******              move store-riga to riga
-      ******           end-if
-      ******           move 1 to colonna
-      ******           perform PUNTA-CELLA
-      ******           perform CANCELLA-COLORE
-      ******           if link-articolo = 0
-      ******              move 78-ID-ef-codice to control-id
-      ******              move 4               to accept-control
-      ******           end-if
-      ******        end-if
-      ******
-      ******     end-if.
-      ******
-      ******
-      *********---
-      ****** SELEZIONA-NUMERICO.
-      ******     if tsc-codice of tschede not > 0
-      ******        set errori to true
-      ******        move 78-ID-ef-codice to control-id
-      ******        display message box msg-codice-obbligatorio
-      ******                title tit-err
-      ******                icon  mb-warning-icon
-      ******     else           
-      ******        read tschede no lock
-      ******             invalid
-      ******             if vecchio
-      ******                display message MSG-record-inesistente
-      ******                          title tit-err
-      ******                           icon 2
-      ******                perform CLEAR-SCREEN
-      ******                set errori to true
-      ******             end-if
-      ******         not invalid      
-      ******             if old-tsc-chiave not = tsc-chiave of tschede or
-      ******              ( tsc-codice of tschede = 0 and mod = 0 )
-      ******                perform CURRENT-RECORD 
-      ******             end-if
-      ******        end-read
-      ******     end-if.
-      ******
-      *********---
-      ****** SELEZIONA-ALFA.
-      ******* LA SECONDA CHIAVE E' ALFANUMERICA E LA VALUE VARIABLE CONTIENE
-      ******* ANCORA GLI ZERI DAVANTI CHE ELIMINO
-      ******     inspect ef-codice-buf replacing leading ZERO by SPACES.
-      ******     move ef-codice-buf to cli-ragsoc-1.
-      ******
-      ******
-      ******* POI GIUSTIFICO A SINISTRA E MI POSIZIONO SULLO ZOOM PER CHIAVE
-      ******* ALTERNATA
-      ******     call "C$JUSTIFY" using cli-ragsoc-1, "L".
-      ******     move low-value to cli-codice
-      ******                  
-      ******     set cli-tipo-F to true.
-      ******     start clienti key not < cli-k1
-      ******        invalid 
-      ******           initialize cli-rec
-      ******        not invalid 
-      ******           read clienti next 
-      ******              if cli-tipo-C
-      ******                 initialize cli-rec
-      ******              end-if
-      ******     end-start.
-      ******     set cli-tipo-F to true.
-      ******
-      ******     if cli-ragsoc-1 = ef-codice-buf
-      ******        move cli-codice   to link-fornitore
-      ******        perform SEL-LISTINI
-      ******     else
-      ******        move "clienti-alfa-all" to como-file
-      ******        call "zoom-gt"  using  como-file, cli-rec
-      ******                        giving  stato-zoom
-      ******        cancel "zoom-gt"
-      ******        if stato-zoom = 0
-      ******           move cli-codice    to link-fornitore
-      ******           perform SEL-LISTINI
-      ******        end-if
-      *******     else
-      *******        set errori           to true
-      *******        move 78-ID-ef-codice to CONTROL-ID
-      ******     end-if.
-      ******
-      *
-      *
-      * 
-           .
-      * <TOTEM:END>
-
        SPOSTAMENTO.
       * <TOTEM:PARA. SPOSTAMENTO>
       *     set tutto-ok to true.
@@ -5240,23 +5116,6 @@
            .
       * <TOTEM:END>
 
-       TORNA-IN-VISUA.
-      * <TOTEM:PARA. TORNA-IN-VISUA>
-      *     move 0 to mod.
-      *     move 1 to mod-k.
-      *     move 78-ID-ef-cliente to CONTROL-ID.
-      *     set NoMessage to true.
-      *     perform ABILITAZIONI.
-      *     set StatusVisua to true.
-      *     perform STATUS-BAR-MSG.
-      *     unlock tschede all records.
-      *                  
-      *     modify tool-modifica,  value mod.
-      *     perform CANCELLA-COLORE.
-      *     move 4 to ACCEPT-CONTROL 
-           .
-      * <TOTEM:END>
-
        VALORE-RIGA.
       * <TOTEM:PARA. VALORE-RIGA>
       *     inquire gd1(riga, 78-col-data),    cell-data col-data.
@@ -5324,14 +5183,6 @@
       *
       *     move 0 to RigheIniziali.
       *     move 0 to RigaCambiata ColonnaCambiata 
-           .
-      * <TOTEM:END>
-
-       X-Y.
-      * <TOTEM:PARA. X-Y>
-           inquire gd1, cursor-y in riga,
-                        cursor-x in colonna,
-                        last-row in tot-righe 
            .
       * <TOTEM:END>
 
@@ -5405,124 +5256,11 @@
            .
       * <TOTEM:END>
 
-       ABILITA-MACROGRUPPI.
-      * <TOTEM:PARA. ABILITA-MACROGRUPPI>
-           inquire cb-wod, value in wom-desc.
-           modify cb-mg1, enabled false.
-           modify cb-mg2, enabled false.
-           modify cb-mg3, enabled false.
-           modify cb-mg4, enabled false.
-           modify cb-mg5, enabled false.
-           modify cb-mg6, enabled false.
-           modify cb-mg7, enabled false.    
-
-           move spaces to lab-1-buf.
-           move spaces to lab-2-buf.
-           move spaces to lab-3-buf.
-           move spaces to lab-4-buf.
-           move spaces to lab-5-buf.
-           move spaces to lab-6-buf.
-           move spaces to lab-7-buf.
-
-           display lab-day1 
-                   lab-day2 
-                   lab-day3 
-                   lab-day4 
-                   lab-day5 
-                   lab-day6 
-                   lab-day7.
-
-           read wodmap key wom-k-desc
-                invalid
-                modify cb-mg1, value "Nessuno"
-                modify cb-mg2, value "Nessuno"
-                modify cb-mg3, value "Nessuno"
-                modify cb-mg4, value "Nessuno"
-                modify cb-mg5, value "Nessuno"
-                modify cb-mg6, value "Nessuno"
-                modify cb-mg7, value "Nessuno"
-                initialize wom-data replacing numeric data by zeroes
-                                         alphanumeric data by spaces
-                exit paragraph
-           end-read.
-                              
-           perform varying idx-days from 1 by 1
-                     until idx-days > wom-days
-              perform varying idx-split from 1 by 1
-                        until idx-split > 20
-                 if wom-split-el-split-sigla(idx-days, idx-split) = 
-           space
-                    exit perform
-                 end-if
-                 if idx-split = 1
-                    move ": " to como-day
-                 end-if
-                 inspect como-day replacing trailing spaces by low-value
-                 string  como-day delimited low-value
-                         " "
-                         wom-split-el-split-sigla(idx-days, idx-split)
-                         wom-split-el-split-effort(idx-days, idx-split)
-                         " | "      
-                    into como-day
-                 end-string
-              end-perform
-              inspect como-day replacing trailing low-value by spaces
-              evaluate idx-days
-              when 1 string "DAY 1" como-day into lab-1-buf
-              when 2 string "DAY 2" como-day into lab-2-buf
-              when 3 string "DAY 3" como-day into lab-3-buf
-              when 4 string "DAY 4" como-day into lab-4-buf
-              when 5 string "DAY 5" como-day into lab-5-buf
-              when 6 string "DAY 6" como-day into lab-6-buf
-              when 7 string "DAY 7" como-day into lab-7-buf
-              end-evaluate
-           end-perform.
-
-           display lab-day1 
-                   lab-day2 
-                   lab-day3 
-                   lab-day4 
-                   lab-day5 
-                   lab-day6 
-                   lab-day7.
-
-           evaluate wom-macrogroups
-           when 1
-                modify cb-mg1, enabled true
-           when 2                           
-                modify cb-mg1, enabled true
-                modify cb-mg2, enabled true
-           when 3            
-                modify cb-mg1, enabled true
-                modify cb-mg2, enabled true
-                modify cb-mg3, enabled true
-           when 4            
-                modify cb-mg1, enabled true
-                modify cb-mg2, enabled true
-                modify cb-mg3, enabled true
-                modify cb-mg4, enabled true
-           when 5                          
-                modify cb-mg1, enabled true
-                modify cb-mg2, enabled true
-                modify cb-mg3, enabled true
-                modify cb-mg4, enabled true
-                modify cb-mg5, enabled true
-           when 6                          
-                modify cb-mg1, enabled true
-                modify cb-mg2, enabled true
-                modify cb-mg3, enabled true
-                modify cb-mg4, enabled true
-                modify cb-mg5, enabled true
-                modify cb-mg6, enabled true
-           when 7                          
-                modify cb-mg1, enabled true
-                modify cb-mg2, enabled true
-                modify cb-mg3, enabled true
-                modify cb-mg4, enabled true
-                modify cb-mg5, enabled true
-                modify cb-mg6, enabled true
-                modify cb-mg7, enabled true
-           end-evaluate 
+       X-Y.
+      * <TOTEM:PARA. X-Y>
+           inquire gd1, cursor-y in riga,
+                        cursor-x in colonna,
+                        last-row in tot-righe 
            .
       * <TOTEM:END>
 
@@ -5534,16 +5272,6 @@
            IF E-NUOVO = 1
               PERFORM NUOVO
            END-IF                    
-           .
-      * <TOTEM:END>
-       CANCELLA-LinkTo.
-      * <TOTEM:PARA. CANCELLA-LinkTo>
-           INQUIRE TOOL-MODIFICA, VALUE IN MOD.
-                              
-           INQUIRE TOOL-CANCELLA, ENABLED IN E-CANCELLA
-           IF E-CANCELLA = 1
-              PERFORM CANCELLA
-           END-IF                                                
            .
       * <TOTEM:END>
        TOOL-SALVA-LinkTo.
@@ -5564,25 +5292,6 @@
            END-IF 
            .
       * <TOTEM:END>
-       TOOL-MODIFICA-BeforeProcedure.
-      * <TOTEM:PARA. TOOL-MODIFICA-BeforeProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
-           .
-      * <TOTEM:END>
-       TOOL-MODIFICA-AfterProcedure.
-      * <TOTEM:PARA. TOOL-MODIFICA-AfterProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-           .
-      * <TOTEM:END>
-       TOOL-MODIFICA-LinkTo.
-      * <TOTEM:PARA. TOOL-MODIFICA-LinkTo>
-           INQUIRE TOOL-MODIFICA, ENABLED IN E-MODIFICA.
-
-           IF E-MODIFICA = 1
-              PERFORM MODIFICA
-           END-IF 
-           .
-      * <TOTEM:END>
        STAMPA-LinkTo.
       * <TOTEM:PARA. STAMPA-LinkTo>
            INQUIRE TOOL-STAMPA, ENABLED IN E-STAMPA
@@ -5596,14 +5305,6 @@
            inquire tool-cerca, enabled in e-cerca
            if e-cerca = 1
               perform CERCA
-           end-if 
-           .
-      * <TOTEM:END>
-       TOOL-SELEZIONA-LinkTo.
-      * <TOTEM:PARA. TOOL-SELEZIONA-LinkTo>
-           inquire tool-seleziona, enabled in e-seleziona
-           if e-seleziona = 1
-              perform SELEZIONA
            end-if 
            .
       * <TOTEM:END>
@@ -5930,6 +5631,15 @@
        pb-genera-LinkTo.
       * <TOTEM:PARA. pb-genera-LinkTo>
            perform CREA-OCCURS-GRUPPI.
+                                   
+           move s-day1 to lab-1-buf.
+           move s-day2 to lab-2-buf.
+           move s-day3 to lab-3-buf.
+           move s-day4 to lab-4-buf.
+           move s-day5 to lab-5-buf.
+           move s-day6 to lab-6-buf.
+           move s-day7 to lab-7-buf.
+
            modify gd1, mass-update = 1.
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
@@ -5998,7 +5708,24 @@
            inspect path-tmp-exe replacing trailing low-value by spaces.
            open output tmp-exe.
            close       tmp-exe.
-           open i-o    tmp-exe.
+           open i-o    tmp-exe. 
+
+           accept  path-tmp-exe-dupl from environment "PATH_ST".
+           inspect path-tmp-exe-dupl replacing trailing spaces by 
+           low-value.
+           string  path-tmp-exe-dupl delimited low-value
+                   "path-tmp-exe-dupl_"   delimited size
+                   como-data           delimited size
+                   "_"                 delimited size
+                   como-ora            delimited size
+              into path-tmp-exe-dupl
+           end-string.                                                  
+                 
+           inspect path-tmp-exe-dupl replacing trailing low-value by 
+           spaces.
+           open output tmp-exe-dupl.    
+           close       tmp-exe-dupl.
+           open i-o    tmp-exe-dupl.
               
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
@@ -6008,8 +5735,24 @@
                                  
            perform LOAD-EXERCISES-ALLOWED-BY-EFFORT. 
            perform LOAD-EXERCISES-MULTIJOINT.
-           perform LOAD-EXERCISES.
-           
+           perform LOAD-EXERCISES.        
+           perform REMOVE-DUPLICATES.           
+           perform LOAD-GRID.            
+                                      
+           close       tmp-exe-effort.
+           delete file tmp-exe-effort.
+
+           close       tmp-wod-exe.
+           delete file tmp-wod-exe.
+                            
+           close       tmp-exe.
+           delete file tmp-exe.    
+
+           close       tmp-exe-dupl.
+           delete file tmp-exe-dupl.
+      
+      ***---
+       LOAD-GRID.
            move low-value to tex-rec.
            move 0 to save-day col-exe-prg.
            start tmp-exe key >= tex-key
@@ -6017,12 +5760,18 @@
              not invalid
                  move 1 to riga
                  perform until 1 = 2
-                    read tmp-exe next at end exit perform end-read
-                    if save-day = 0
+                    read tmp-exe next 
+                      at end 
+                         perform DISPLAY-DURATA
+                         exit perform 
+                    end-read
+                    if save-day = 0                    
+                       move 0 to tot-durata
                        move tex-day to save-day
                     end-if
                     if tex-day not = save-day
-                       move 0 to col-exe-prg
+                       perform DISPLAY-DURATA
+                       move 0 to col-exe-prg tot-durata
                        move tex-day to save-day
                        add 1 to riga                           
                        modify gd1(riga, 1), cell-data = spaces
@@ -6032,7 +5781,7 @@
                        modify gd1(riga, 5), cell-data = spaces
                        modify gd1(riga, 6), cell-data = spaces
                        modify gd1(riga, 7), cell-data = spaces
-                       modify gd1(riga, 8), cell-data = spaces
+                       modify gd1(riga, 8), cell-data = spaces 
                     end-if          
                     add 1 to col-exe-prg
                     move tex-day to col-day
@@ -6093,6 +5842,11 @@
                     modify gd1(riga, 7), cell-data = col-series
                     modify gd1(riga, 8), cell-data = col-reps
 
+                    compute tot-durata  = tot-durata +
+                            exe-setting +
+                          ( col-series * int-time  ) +
+                          ( int-rest   * ( col-series - 1 ) )
+
                     perform varying idx from 1 by 1 
                               until idx > tot-gruppi
                        if el-mcg-code(idx) = tex-mcg-code
@@ -6138,16 +5892,153 @@
                    end-evaluate
               end-evaluate
            end-perform.
-                                      
-           close       tmp-exe-effort.
-           delete file tmp-exe-effort.
 
-           close       tmp-wod-exe.
-           delete file tmp-wod-exe.
-
-           close       tmp-exe.
-           delete file tmp-exe.    
            modify gd1, mass-update = 0.
+
+      ***---
+       DISPLAY-DURATA.
+           initialize como-durata.
+           if tot-durata > 3600
+              divide tot-durata by 3600 giving hh remainder resto
+              if resto > 0
+                 if resto > 60
+                    compute mm = resto / 60
+                 else
+                    move resto to mm
+                 end-if
+              else
+                 move 0 to mm 
+              end-if
+              move mm to como-mm
+              inspect como-mm replacing leading x"30" by x"20"
+              call "C$JUSTIFY" using como-mm, "L"                   
+              inspect como-mm replacing trailing spaces by low-value
+
+              move hh to como-hh
+              inspect como-hh replacing leading x"30" by x"20"
+              call "C$JUSTIFY" using como-hh, "L"
+              inspect como-hh replacing trailing spaces by low-value
+
+              string  como-hh    delimited low-value
+                      " ore e "  delimited size
+                      como-mm    delimited low-value
+                      " minuti." delimited size
+                 into como-durata
+              end-string
+           else
+              compute mm = tot-durata / 60
+              move mm to como-mm
+              inspect como-mm replacing leading x"30" by x"20"
+              call "C$JUSTIFY" using como-mm, "L"
+              inspect como-mm replacing trailing spaces by low-value
+              string  como-mm    delimited low-value
+                      " minuti." delimited size
+                 into como-durata
+              end-string
+           end-if.
+           move como-durata to como-durata(18:)
+           move "Durata stimata: " to como-durata(1:17).
+
+           evaluate save-day
+           when 1 
+                if lab-1-buf not = spaces                               
+              
+                   inspect lab-1-buf replacing trailing spaces by 
+           low-value
+                   string  lab-1-buf delimited low-value  
+                           " - "
+                           como-durata
+                      into lab-1-buf
+                   end-string
+                   inspect lab-1-buf replacing trailing low-value by 
+           spaces
+                   display lab-day1
+                end-if
+           when 2 
+                if lab-2-buf not = spaces                               
+              
+                   inspect lab-2-buf replacing trailing spaces by 
+           low-value
+                   string  lab-2-buf delimited low-value 
+                           " - "
+                           como-durata
+                      into lab-2-buf
+                   end-string
+                   inspect lab-2-buf replacing trailing low-value by 
+           spaces
+                   display lab-day2
+                end-if  
+           when 3                  
+                if lab-3-buf not = spaces                               
+              
+                   inspect lab-3-buf replacing trailing spaces by 
+           low-value
+                   string  lab-3-buf delimited low-value 
+                           " - "
+                           como-durata
+                      into lab-3-buf
+                   end-string
+                   inspect lab-3-buf replacing trailing low-value by 
+           spaces
+                   display lab-day3
+                end-if
+           when 4                  
+                if lab-4-buf not = spaces                               
+              
+                   inspect lab-4-buf replacing trailing spaces by 
+           low-value
+                   string  lab-4-buf delimited low-value
+                           " - "
+                           como-durata
+                      into lab-4-buf
+                   end-string
+                   inspect lab-4-buf replacing trailing low-value by 
+           spaces
+                   display lab-day4
+                end-if
+           when 5                  
+                if lab-5-buf not = spaces                               
+              
+                   inspect lab-5-buf replacing trailing spaces by 
+           low-value
+                   string  lab-5-buf delimited low-value
+                           " - "
+                           como-durata
+                      into lab-5-buf
+                   end-string
+                   inspect lab-5-buf replacing trailing low-value by 
+           spaces
+                   display lab-day5
+                end-if
+           when 6                  
+                if lab-6-buf not = spaces                               
+              
+                   inspect lab-6-buf replacing trailing spaces by 
+           low-value
+                   string  lab-6-buf delimited low-value
+                           " - "
+                           como-durata
+                      into lab-6-buf
+                   end-string
+                   inspect lab-6-buf replacing trailing low-value by 
+           spaces
+                   display lab-day6
+                end-if
+           when 7            
+                if lab-7-buf not = spaces                               
+              
+                   inspect lab-7-buf replacing trailing spaces by 
+           low-value
+                   string  lab-7-buf delimited low-value
+                           " - "
+                           como-durata
+                      into lab-7-buf
+                   end-string
+                   inspect lab-7-buf replacing trailing low-value by 
+           spaces
+                   display lab-day7
+                end-if
+           end-evaluate.
                                                     
       ***---     
        LOAD-EXERCISES-ALLOWED-BY-EFFORT.
@@ -6175,6 +6066,7 @@
                              move grp-mcg-code to twe-mcg-code
                              move int-effort   to twe-effort
                              move exe-isMulti  to twe-exe-isMulti
+                             move exe-int-code to twe-int-code
                              write twe-rec 
                           end-if
                        end-perform
@@ -6234,7 +6126,7 @@
            idx-split)
                          to int-code
                        read intexe no lock
-                       if int-effort not = 3
+                       if int-effort not = 4
                           exit perform
                        end-if
 
@@ -6245,10 +6137,12 @@
                              if el-exe-used(idx) = 0 or
                                 ex-remain = 0
                                 move idx-days         to tex-day
-                                move idx-split        to tex-prg
+                                move idx-split        to tex-split
                                 move mcg-code         to tex-mcg-code
                                 move el-exe-code(idx) to tex-exe-code
                                 move el-exe-desc(idx) to tex-exe-desc
+                                move int-code         to tex-int-code
+                                set tex-exe-isMulti-yes to true
                                 write tex-rec
 
                                 move 1                to 
@@ -6273,15 +6167,13 @@
               perform varying idx-split from 1 by 1 
                         until idx-split > 20 
                  move idx-days  to tex-day
-                 move idx-split to tex-prg
+                 move idx-split to tex-split
                  read tmp-exe
                       invalid continue
                   not invalid exit perform cycle |Salto i multi se già messi
-                 end-read                        
+                 end-read                           
 
                  move low-value to twe-rec
-                 set twe-exe-isMulti-no to true
-
                  evaluate wom-split-el-split-sigla(idx-days, idx-split)
                  when "A" move el-mcg-code(1) to mcg-code twe-mcg-code
                  when "B" move el-mcg-code(2) to mcg-code twe-mcg-code
@@ -6290,55 +6182,148 @@
                  when "E" move el-mcg-code(5) to mcg-code twe-mcg-code
                  when "F" move el-mcg-code(6) to mcg-code twe-mcg-code
                  when other exit perform
-                 end-evaluate             
+                 end-evaluate       
 
                  move wom-split-el-split-effort(idx-days, idx-split)
-                   to twe-effort como-effort
+                   to int-code
 
-                 move 0 to tot-exe
+                 perform ADD-RANDOM-EXERCISE
 
-                 start tmp-wod-exe key >= twe-key
-                       invalid continue
-                   not invalid
-                       perform until 1 = 2
-                          read tmp-wod-exe next at end exit perform 
-           end-read
-                          if twe-mcg-code  not = mcg-code or
-                             twe-exe-isMulti-yes          or
-                             twe-effort    not = como-effort
-                             exit perform
-                          end-if 
-                          add 1 to tot-exe    
-                          move twe-exe-code to el-exe-code(tot-exe)
-                          move twe-exe-desc to el-exe-desc(tot-exe)
-                          move twe-effort   to el-exe-effort(tot-exe)
-                          move 0            to el-exe-used(tot-exe)
-                       end-perform
-                  end-start
-
-                  if tot-exe > 0
-                     perform until 1 = 2
-                        compute idx = function random * (tot-exe)
-                        add 1 to idx
-                        if el-exe-used(idx) = 0 or
-                           ex-remain = 0
-                           move idx-days         to tex-day
-                           move idx-split        to tex-prg     
-                           move mcg-code         to tex-mcg-code
-                           move el-exe-code(idx) to tex-exe-code
-                           move el-exe-desc(idx) to tex-exe-desc
-                           write tex-rec
-                  
-                           move 1                to el-exe-used(idx)
-                           if ex-remain > 0
-                              subtract 1 from ex-remain
-                           end-if
-                           exit perform
-                        end-if
-                     end-perform 
-                  end-if
               end-perform
-           end-perform 
+           end-perform.
+
+      ***---
+       ADD-RANDOM-EXERCISE.
+           set twe-exe-isMulti-no to true.    
+                                              
+           read intexe no lock.
+           move int-effort to twe-effort.
+
+           move 0 to tot-exe.
+                              
+           start tmp-wod-exe key >= twe-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-wod-exe next at end exit perform end-read
+                    if twe-mcg-code  not = mcg-code or
+                       twe-exe-isMulti-yes          or
+                       twe-effort    not = int-effort
+                       exit perform
+                    end-if 
+                    add 1 to tot-exe    
+                    move twe-exe-code to el-exe-code(tot-exe)
+                    move twe-exe-desc to el-exe-desc(tot-exe)
+                    move twe-effort   to el-exe-effort(tot-exe)
+                    move 0            to el-exe-used(tot-exe)
+                 end-perform
+           end-start.
+
+           if tot-exe > 0     
+              move tot-exe to ex-remain  
+              perform until 1 = 2
+                 compute idx = function random * (tot-exe)
+                 add 1 to idx
+                 if el-exe-used(idx) = 0 or
+                    ex-remain = 0
+                    move idx-days         to tex-day
+                    move idx-split        to tex-split     
+                    move mcg-code         to tex-mcg-code
+                    move el-exe-code(idx) to tex-exe-code
+                    move el-exe-desc(idx) to tex-exe-desc
+                    move int-code         to tex-int-code
+                    set tex-exe-isMulti-no to true
+                    write tex-rec invalid rewrite tex-rec end-write
+           
+                    move 1                to el-exe-used(idx)
+                    if ex-remain > 0
+                       subtract 1 from ex-remain
+                    end-if
+                    exit perform
+                 end-if
+              end-perform 
+           end-if.
+
+      ***---
+       REMOVE-DUPLICATES.
+           move low-value to tex-rec.
+           move 0 to save-day col-exe-prg.
+           start tmp-exe key >= tex-key
+                 invalid continue 
+             not invalid
+                 move 1 to riga
+                 perform until 1 = 2
+                    read tmp-exe next 
+                      at end exit perform 
+                    end-read 
+                    if tex-exe-isMulti-yes exit perform cycle end-if
+                    initialize como-nome counter
+                    inspect tex-exe-desc replacing trailing spaces by 
+           low-value
+                    inspect tex-exe-desc tallying counter for 
+           characters before low-value
+                    if tex-exe-desc(counter - 3 : 4) = "HARD"
+                       move tex-exe-desc(1:counter - 4)to como-nome
+                    end-if 
+                    if tex-exe-desc(counter - 5 : 6) = "MEDIUM"
+                       move tex-exe-desc(1:counter - 6)to como-nome
+                    end-if
+                    if tex-exe-desc(counter - 4 : 5) = "LIGHT"
+                       move tex-exe-desc(1:counter - 5)to como-nome
+                    end-if
+                    if como-nome = spaces
+                       exit perform cycle
+                    end-if
+                    move tex-day   to ted-day
+                    move como-nome to ted-nome-dupl
+                    read tmp-exe-dupl
+                         invalid 
+                         move 1 to ted-num
+                         write ted-rec end-write
+                     not invalid
+                         add  1 to ted-num
+                         rewrite ted-rec end-rewrite
+                    end-read
+                    move como-nome to tex-nome-dupl
+                    rewrite tex-rec
+                 end-perform
+           end-start.
+                                                              
+           move low-value to ted-key.
+           move 2         to ted-num.
+           start tmp-exe-dupl key >= ted-k-num
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-exe-dupl next at end exit perform end-read
+                    move ted-day       to tex-day
+                    move ted-nome-dupl to tex-nome-dupl
+                    start tmp-exe key >= tex-k-dupl
+                          invalid continue
+                      not invalid
+                          perform until 1 = 2
+                             read tmp-exe next 
+                               at end exit perform 
+                             end-read
+                             if tex-day       not = ted-day    or
+                                tex-nome-dupl not = ted-nome-dupl
+                                exit perform
+                             end-if    
+                             move low-value to twe-rec
+                             move tex-mcg-code to mcg-code twe-mcg-code
+                             move tex-int-code to int-code
+                                                              
+                             initialize tab-exe 
+                                        replacing numeric data by zeroes
+                                             alphanumeric data by spaces
+                             move tex-day   to idx-days   
+                             move tex-split to idx-split 
+                             perform ADD-RANDOM-EXERCISE
+
+                          end-perform
+                    end-start
+                 end-perform
+           end-start 
            .
       * <TOTEM:END>
        Screen1-Pb-1-LinkTo.
@@ -6352,7 +6337,11 @@
            modify cb-mg7, value "Nessuno".
                                  
            modify cb-int, value = "Tutto".
-           modify cb-dur, value = "Medium" 
+           modify cb-dur, value = "Medium".
+
+           modify cb-wod, value = "Cedimento con richiamo (A-B-C-D-E-F)"
+               
+           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
        pb-random-LinkTo.
@@ -6399,7 +6388,11 @@
            modify cb-mg7, value "Nessuno".
                                  
            modify cb-int, value = "Tutto".
-           modify cb-dur, value = "Medium" 
+           modify cb-dur, value = "Medium".
+
+           modify cb-wod, value "HATFIELD".
+
+           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
        cb-wod-AfterProcedure.

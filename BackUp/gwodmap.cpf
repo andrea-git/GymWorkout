@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [PROGRAM_CONTENT]
+DIRTY_AFTER_GEN=1
 QUIT_CONFIRM=0
 ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
@@ -1013,7 +1014,7 @@ Begin Screen Form1
       After Procedure   = ef-macro-AfterProcedure
    End
    Begin Data.Entry-Field ef-int
-      SCREEN-COL        = 52,00
+      SCREEN-COL        = 14,00
       SCREEN-LINE       = 7,74
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1025,7 +1026,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 52,00
+      Column            = 14,00
       Csize             = 0
       Csize Unit        = Default
       Cursor            = 0
@@ -1819,15 +1820,15 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Label Screen1-La-2aaaa
-      SCREEN-COL        = 43,90
+      SCREEN-COL        = 2,90
       SCREEN-LINE       = 7,74
-      LOCK-CONTROL      = FALSE
+      LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-La-2aaaa
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 43,90
+      Column            = 2,90
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -1843,7 +1844,7 @@ Begin Screen Form1
       Lines Unit        = Default
       No Key Letter     = FALSE
       Occurs            = 0
-      Size              = 7,00
+      Size              = 10,00
       Size Unit         = Default
       Tab Order         = 23
       Title             = "Intensità"
@@ -1852,7 +1853,7 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Label lab-int
-      SCREEN-COL        = 56,30
+      SCREEN-COL        = 18,30
       SCREEN-LINE       = 7,74
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1860,7 +1861,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 56,30
+      Column            = 18,30
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2116,40 +2117,6 @@ Begin Screen Form1
       Visible           = NONE
       Width in Cells    = TRUE
    End
-   Begin Label lab-stimata
-      SCREEN-COL        = 14,50
-      SCREEN-LINE       = 7,70
-      LOCK-CONTROL      = FALSE
-      LEVEL             = 5
-      (Name)            = lab-stimata
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 14,50
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 28
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 7,70
-      Lines             = 1,30
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 25,80
-      Size Unit         = Default
-      Tab Order         = 32
-      Title Picture     = X(20)
-      Title Variable    = lab-stimata-buf
-      Transparent       = TRUE
-      Visible           = NONE
-      Width in Cells    = TRUE
-   End
    Begin Toolbar Form1-Tb-1
       SCREEN-LINE       = 1,00
       LOCK-CONTROL      = TRUE
@@ -2162,7 +2129,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 33
+      Tab Order         = 32
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -2850,7 +2817,7 @@ Begin Screen Form1
       Handle Variable   = Form1-St-1-Handle
       PANEL-WIDTHS      = ( 45, 23, 999 )
       PANEL-STYLE       = ( 1, 1, 1 )
-      Tab Order         = 34
+      Tab Order         = 33
    End
 End
 

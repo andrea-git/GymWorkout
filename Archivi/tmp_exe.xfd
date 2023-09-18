@@ -7,9 +7,9 @@
     <xfd:select-name>TMP-EXE</xfd:select-name>
     <xfd:table-name>TMP-EXE</xfd:table-name>
     <xfd:file-organization>Indexed</xfd:file-organization>
-    <xfd:maximum-record-size>114</xfd:maximum-record-size>
-    <xfd:minimum-record-size>114</xfd:minimum-record-size>
-    <xfd:number-of-keys>1</xfd:number-of-keys>
+    <xfd:maximum-record-size>217</xfd:maximum-record-size>
+    <xfd:minimum-record-size>217</xfd:minimum-record-size>
+    <xfd:number-of-keys>2</xfd:number-of-keys>
     <xfd:sign-compatibility>0</xfd:sign-compatibility>
     <xfd:maximum-numeric-digits>18</xfd:maximum-numeric-digits>
     <xfd:period-character>,</xfd:period-character>
@@ -30,7 +30,26 @@
         <xfd:key-column
              xfd:key-column-name="TEX-DAY"/>
         <xfd:key-column
-             xfd:key-column-name="TEX-PRG"/>
+             xfd:key-column-name="TEX-SPLIT"/>
+      </xfd:key-columns>
+    </xfd:key>
+    <xfd:key
+         xfd:segment-count="2"
+         xfd:duplicates-allowed="true">
+      <xfd:segments>
+        <xfd:segment
+             xfd:segment-size="1"
+             xfd:segment-offset="0"/>
+        <xfd:segment
+             xfd:segment-size="100"
+             xfd:segment-offset="114"/>
+      </xfd:segments>
+      <xfd:key-columns
+           xfd:key-column-count="2">
+        <xfd:key-column
+             xfd:key-column-name="TEX-DAY"/>
+        <xfd:key-column
+             xfd:key-column-name="TEX-NOME-DUPL"/>
       </xfd:key-columns>
     </xfd:key>
   </xfd:keys>
@@ -38,15 +57,15 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="5"
-       xfd:elementary-items-with-occurs="5"
-       xfd:total-items="8"
-       xfd:total-items-with-occurs="8">
+       xfd:elementary-items="8"
+       xfd:elementary-items-with-occurs="8"
+       xfd:total-items="11"
+       xfd:total-items-with-occurs="11">
     <xfd:field
          xfd:field-offset="0"
-         xfd:field-bytes="114"
+         xfd:field-bytes="217"
          xfd:field-type="16"
-         xfd:field-length="114"
+         xfd:field-length="217"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -81,12 +100,12 @@
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
-         xfd:field-name="TEX-PRG"/>
+         xfd:field-name="TEX-SPLIT"/>
     <xfd:field
          xfd:field-offset="4"
-         xfd:field-bytes="110"
+         xfd:field-bytes="213"
          xfd:field-type="16"
-         xfd:field-length="110"
+         xfd:field-length="213"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -122,5 +141,35 @@
          xfd:field-condition="0"
          xfd:field-level="10"
          xfd:field-name="TEX-EXE-DESC"/>
+    <xfd:field
+         xfd:field-offset="114"
+         xfd:field-bytes="100"
+         xfd:field-type="16"
+         xfd:field-length="100"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="10"
+         xfd:field-name="TEX-NOME-DUPL"/>
+    <xfd:field
+         xfd:field-offset="214"
+         xfd:field-bytes="2"
+         xfd:field-type="1"
+         xfd:field-length="2"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="10"
+         xfd:field-name="TEX-INT-CODE"/>
+    <xfd:field
+         xfd:field-offset="216"
+         xfd:field-bytes="1"
+         xfd:field-type="1"
+         xfd:field-length="1"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="10"
+         xfd:field-name="TEX-EXE-ISMULTI"/>
   </xfd:fields>
 </xfd:xfdfile>

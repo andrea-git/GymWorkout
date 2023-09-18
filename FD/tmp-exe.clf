@@ -6,7 +6,7 @@ Adesk-andre=169.254.95.20
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791283147-632-669319708
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7912141347-658-1688226482
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -44,7 +44,7 @@ m_bFixed=1
 
 @}}
 [FDITEM3_]
-m_strName=tex-prg
+m_strName=tex-split
 m_strRawPic=9(3)
 m_strPic=9(3)
 m_nItemLevel=10
@@ -91,6 +91,54 @@ m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM7_
 
 @}}
+[FDITEM8_]
+m_strName=tex-nome-dupl
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM8_
+
+@}}
+[FDITEM9_]
+m_strName=tex-int-code
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM9_
+
+@}}
+[FDITEM10_]
+m_strName=tex-exe-isMulti
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM10_
+
+@}}
+[FDITEM11_]
+m_strName=tex-exe-isMulti-no
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=0
+{{@DataItem_m_strDescriptionFDITEM11_
+
+@}}
+[FDITEM12_]
+m_strName=tex-exe-isMulti-yes
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+{{@DataItem_m_strDescriptionFDITEM12_
+
+@}}
 [CStoAcucobolSL_]
 m_nType=1
 m_strAssignToName=path-tmp-exe
@@ -110,3 +158,12 @@ m_bUnique=1
 @}}
 [SLKEYATOM0_]
 m_strName=tex-key
+[SLINDEX0_]
+m_strName=tex-k-dupl
+{{@Key_m_strDescriptionSLINDEX0_
+
+@}}
+[SLKEYATOM0_SLINDEX0_]
+m_strName=tex-day
+[SLKEYATOM1_SLINDEX0_]
+m_strName=tex-nome-dupl

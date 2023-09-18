@@ -3,8 +3,13 @@
        01 tex-rec.
            05 tex-key.
                10 tex-day          PIC  9.
-               10 tex-prg          PIC  9(3).
+               10 tex-split        PIC  9(3).
            05 tex-data.
                10 tex-mcg-code     PIC  x(5).
                10 tex-exe-code     PIC  x(5).
                10 tex-exe-desc     PIC  x(100).
+               10 tex-nome-dupl    PIC  x(100).
+               10 tex-int-code     PIC  99.
+               10 tex-exe-isMulti  PIC  9.
+                   88 tex-exe-isMulti-no VALUE IS 0. 
+                   88 tex-exe-isMulti-yes VALUE IS 1. 

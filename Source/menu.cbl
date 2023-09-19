@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          "menu".
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 13 settembre 2023 12:25:38.
+       DATE-WRITTEN.        martedì 19 settembre 2023 13:21:41.
        REMARKS.
       *{TOTEM}END
 

@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E791217451-142-118377780
+PROGRAM_UNIQUE_CODE=TOTEM-7E7913104855-509-2326485
 
 {{@DESCRIPTION:
 
@@ -118,6 +118,16 @@ m_bFixed=1
 
 @}}
 [FDITEM9_WK]
+m_strName=effort-xx
+m_strRawPic=xx
+m_strPic=xx
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM9_WK
+
+@}}
+[FDITEM10_WK]
 m_strName=toolbar-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -126,22 +136,11 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM9_WK
-
-@}}
-[FDITEM10_WK]
-m_strName=E-ESCI
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=1
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM10_WK
 
 @}}
 [FDITEM11_WK]
-m_strName=E-NUOVO
+m_strName=E-ESCI
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=1
@@ -152,7 +151,7 @@ m_bFixed=1
 
 @}}
 [FDITEM12_WK]
-m_strName=E-CANCELLA
+m_strName=E-NUOVO
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=1
@@ -163,7 +162,7 @@ m_bFixed=1
 
 @}}
 [FDITEM13_WK]
-m_strName=E-SALVA
+m_strName=E-CANCELLA
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=1
@@ -174,7 +173,7 @@ m_bFixed=1
 
 @}}
 [FDITEM14_WK]
-m_strName=E-ANTEPRIMA
+m_strName=E-SALVA
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=1
@@ -185,7 +184,7 @@ m_bFixed=1
 
 @}}
 [FDITEM15_WK]
-m_strName=E-MODIFICA
+m_strName=E-ANTEPRIMA
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=1
@@ -196,10 +195,10 @@ m_bFixed=1
 
 @}}
 [FDITEM16_WK]
-m_strName=E-STAMPA
+m_strName=E-MODIFICA
 m_strRawPic=9
 m_strPic=9
-m_strDefaultValue=0
+m_strDefaultValue=1
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -207,7 +206,7 @@ m_bFixed=1
 
 @}}
 [FDITEM17_WK]
-m_strName=E-CERCA
+m_strName=E-STAMPA
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -218,10 +217,10 @@ m_bFixed=1
 
 @}}
 [FDITEM18_WK]
-m_strName=E-SELEZIONA
+m_strName=E-CERCA
 m_strRawPic=9
 m_strPic=9
-m_strDefaultValue=1
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -229,8 +228,10 @@ m_bFixed=1
 
 @}}
 [FDITEM19_WK]
-m_strName=Small-Font
-m_nUsage=37
+m_strName=E-SELEZIONA
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -238,8 +239,8 @@ m_bFixed=1
 
 @}}
 [FDITEM20_WK]
-m_strName=Form1-St-1-Handle
-m_nUsage=51
+m_strName=Small-Font
+m_nUsage=37
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -247,8 +248,8 @@ m_bFixed=1
 
 @}}
 [FDITEM21_WK]
-m_strName=form1-Handle
-m_nUsage=24
+m_strName=Form1-St-1-Handle
+m_nUsage=51
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -256,9 +257,8 @@ m_bFixed=1
 
 @}}
 [FDITEM22_WK]
-m_strName=como-qta
-m_strRawPic=9(6)
-m_strPic=9(6)
+m_strName=form1-Handle
+m_nUsage=24
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -266,9 +266,9 @@ m_bFixed=1
 
 @}}
 [FDITEM23_WK]
-m_strName=link-stampante
-m_strRawPic=x(200)
-m_strPic=x(200)
+m_strName=como-qta
+m_strRawPic=9(6)
+m_strPic=9(6)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -276,9 +276,9 @@ m_bFixed=1
 
 @}}
 [FDITEM24_WK]
-m_strName=como-effort
-m_strRawPic=99
-m_strPic=99
+m_strName=link-stampante
+m_strRawPic=x(200)
+m_strPic=x(200)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -286,7 +286,7 @@ m_bFixed=1
 
 @}}
 [FDITEM25_WK]
-m_strName=como-giorno
+m_strName=como-effort
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=77
@@ -296,9 +296,9 @@ m_bFixed=1
 
 @}}
 [FDITEM26_WK]
-m_strName=save-day
-m_strRawPic=9
-m_strPic=9
+m_strName=como-giorno
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -306,9 +306,9 @@ m_bFixed=1
 
 @}}
 [FDITEM27_WK]
-m_strName=s-int-buf
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=save-day
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -316,7 +316,7 @@ m_bFixed=1
 
 @}}
 [FDITEM28_WK]
-m_strName=s-dur-desc
+m_strName=s-int-buf
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=77
@@ -326,9 +326,9 @@ m_bFixed=1
 
 @}}
 [FDITEM29_WK]
-m_strName=como-mm
-m_strRawPic=xx
-m_strPic=xx
+m_strName=s-dur-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -336,7 +336,7 @@ m_bFixed=1
 
 @}}
 [FDITEM30_WK]
-m_strName=como-hh
+m_strName=como-mm
 m_strRawPic=xx
 m_strPic=xx
 m_nItemLevel=77
@@ -346,9 +346,9 @@ m_bFixed=1
 
 @}}
 [FDITEM31_WK]
-m_strName=como-durata
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=como-hh
+m_strRawPic=xx
+m_strPic=xx
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -356,7 +356,7 @@ m_bFixed=1
 
 @}}
 [FDITEM32_WK]
-m_strName=s-gio-buf
+m_strName=como-durata
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=77
@@ -366,7 +366,7 @@ m_bFixed=1
 
 @}}
 [FDITEM33_WK]
-m_strName=como-nome
+m_strName=s-gio-buf
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=77
@@ -376,9 +376,9 @@ m_bFixed=1
 
 @}}
 [FDITEM34_WK]
-m_strName=tot-subst
-m_strRawPic=999
-m_strPic=999
+m_strName=como-nome
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -386,10 +386,9 @@ m_bFixed=1
 
 @}}
 [FDITEM35_WK]
-m_strName=AUTO-ID
-m_strRawPic=9(6)
-m_strPic=9(6)
-m_strDefaultValue=0,00
+m_strName=tot-subst
+m_strRawPic=999
+m_strPic=999
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -397,9 +396,10 @@ m_bFixed=1
 
 @}}
 [FDITEM36_WK]
-m_strName=como-dupl
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=AUTO-ID
+m_strRawPic=9(6)
+m_strPic=9(6)
+m_strDefaultValue=0,00
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -407,6 +407,46 @@ m_bFixed=1
 
 @}}
 [FDITEM37_WK]
+m_strName=como-minuto-i
+m_strRawPic=x(6)
+m_strPic=x(6)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM37_WK
+
+@}}
+[FDITEM38_WK]
+m_strName=como-ora-e
+m_strRawPic=x(3)
+m_strPic=x(3)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM38_WK
+
+@}}
+[FDITEM39_WK]
+m_strName=como-dupl
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM39_WK
+
+@}}
+[FDITEM40_WK]
+m_strName=colore
+m_strRawPic=999
+m_strPic=999
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM40_WK
+
+@}}
+[FDITEM41_WK]
 m_strName=BOTTONE-annulla-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -415,27 +455,251 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM37_WK
+{{@DataItem_m_strDescriptionFDITEM41_WK
 
 @}}
-[FDITEM38_WK]
+[FDITEM42_WK]
 m_strName=Form1-Tb-1-Handlea
 m_nUsage=24
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM38_WK
+{{@DataItem_m_strDescriptionFDITEM42_WK
 
 @}}
-[FDITEM39_WK]
+[FDITEM43_WK]
+m_strName=rec-schema
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM43_WK
+
+@}}
+[FDITEM44_WK]
+m_strName=sigle-effort
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM44_WK
+
+@}}
+[FDITEM45_WK]
+m_strName=sigle-effort-1
+m_strRawPic=x(7)
+m_strPic=x(7)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM45_WK
+
+@}}
+[FDITEM46_WK]
+m_strName=sigle-effort-2
+m_strRawPic=x(7)
+m_strPic=x(7)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM46_WK
+
+@}}
+[FDITEM47_WK]
+m_strName=sigle-effort-3
+m_strRawPic=x(7)
+m_strPic=x(7)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM47_WK
+
+@}}
+[FDITEM48_WK]
+m_strName=sigle-effort-4
+m_strRawPic=x(7)
+m_strPic=x(7)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM48_WK
+
+@}}
+[FDITEM49_WK]
+m_strName=sigle-effort-5
+m_strRawPic=x(7)
+m_strPic=x(7)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM49_WK
+
+@}}
+[FDITEM50_WK]
+m_strName=sigle-effort-6
+m_strRawPic=x(7)
+m_strPic=x(7)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM50_WK
+
+@}}
+[FDITEM51_WK]
+m_strName=sigle-effort-7
+m_strRawPic=x(7)
+m_strPic=x(7)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM51_WK
+
+@}}
+[FDITEM52_WK]
+m_strName=sigle-effort-8
+m_strRawPic=x(7)
+m_strPic=x(7)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM52_WK
+
+@}}
+[FDITEM53_WK]
+m_strName=sigle-effort-9
+m_strRawPic=x(7)
+m_strPic=x(7)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM53_WK
+
+@}}
+[FDITEM54_WK]
+m_strName=sigle-effort-10
+m_strRawPic=x(7)
+m_strPic=x(7)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM54_WK
+
+@}}
+[FDITEM55_WK]
+m_strName=mcg
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM55_WK
+
+@}}
+[FDITEM56_WK]
+m_strName=mcg-1
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM56_WK
+
+@}}
+[FDITEM57_WK]
+m_strName=mcg-2
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM57_WK
+
+@}}
+[FDITEM58_WK]
+m_strName=mcg-3
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM58_WK
+
+@}}
+[FDITEM59_WK]
+m_strName=mcg-4
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM59_WK
+
+@}}
+[FDITEM60_WK]
+m_strName=mcg-5
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM60_WK
+
+@}}
+[FDITEM61_WK]
+m_strName=mcg-6
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM61_WK
+
+@}}
+[FDITEM62_WK]
+m_strName=mcg-7
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM62_WK
+
+@}}
+[FDITEM63_WK]
+m_strName=mcg-8
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM63_WK
+
+@}}
+[FDITEM64_WK]
+m_strName=mcg-9
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM64_WK
+
+@}}
+[FDITEM65_WK]
+m_strName=mcg-10
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM65_WK
+
+@}}
+[FDITEM66_WK]
 m_strName=tab-exe
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM39_WK
+{{@DataItem_m_strDescriptionFDITEM66_WK
 
 @}}
-[FDITEM40_WK]
+[FDITEM67_WK]
 m_strName=el-exe
 m_nItemLevel=5
 m_nSync=-1
@@ -443,58 +707,58 @@ m_bOccurs=1
 m_bFixed=1
 m_strRawSize=20
 m_nSize=20
-{{@DataItem_m_strDescriptionFDITEM40_WK
+{{@DataItem_m_strDescriptionFDITEM67_WK
 
 @}}
-[FDITEM41_WK]
+[FDITEM68_WK]
 m_strName=el-exe-code
 m_strRawPic=x(5)
 m_strPic=x(5)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM41_WK
+{{@DataItem_m_strDescriptionFDITEM68_WK
 
 @}}
-[FDITEM42_WK]
+[FDITEM69_WK]
 m_strName=el-exe-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM42_WK
+{{@DataItem_m_strDescriptionFDITEM69_WK
 
 @}}
-[FDITEM43_WK]
+[FDITEM70_WK]
 m_strName=el-exe-used
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM43_WK
+{{@DataItem_m_strDescriptionFDITEM70_WK
 
 @}}
-[FDITEM44_WK]
+[FDITEM71_WK]
 m_strName=el-exe-effort
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM44_WK
+{{@DataItem_m_strDescriptionFDITEM71_WK
 
 @}}
-[FDITEM45_WK]
+[FDITEM72_WK]
 m_strName=tab-wod-exe
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM45_WK
+{{@DataItem_m_strDescriptionFDITEM72_WK
 
 @}}
-[FDITEM46_WK]
+[FDITEM73_WK]
 m_strName=el-wod-day
 m_nItemLevel=5
 m_nSync=-1
@@ -502,10 +766,10 @@ m_bOccurs=1
 m_bFixed=1
 m_strRawSize=7
 m_nSize=7
-{{@DataItem_m_strDescriptionFDITEM46_WK
+{{@DataItem_m_strDescriptionFDITEM73_WK
 
 @}}
-[FDITEM47_WK]
+[FDITEM74_WK]
 m_strName=el-wod-mcg-exe
 m_nItemLevel=10
 m_nSync=-1
@@ -513,10 +777,10 @@ m_bOccurs=1
 m_bFixed=1
 m_strRawSize=20
 m_nSize=20
-{{@DataItem_m_strDescriptionFDITEM47_WK
+{{@DataItem_m_strDescriptionFDITEM74_WK
 
 @}}
-[FDITEM48_WK]
+[FDITEM75_WK]
 m_strName=el-wod-mcg
 m_strRawPic=x(5)
 m_strPic=x(5)
@@ -525,10 +789,10 @@ m_nSync=-1
 m_bFixed=1
 m_strRawSize=20
 m_nSize=20
-{{@DataItem_m_strDescriptionFDITEM48_WK
+{{@DataItem_m_strDescriptionFDITEM75_WK
 
 @}}
-[FDITEM49_WK]
+[FDITEM76_WK]
 m_strName=el-wod-exe-code
 m_strRawPic=x(5)
 m_strPic=x(5)
@@ -537,10 +801,10 @@ m_nSync=-1
 m_bFixed=1
 m_strRawSize=20
 m_nSize=20
-{{@DataItem_m_strDescriptionFDITEM49_WK
+{{@DataItem_m_strDescriptionFDITEM76_WK
 
 @}}
-[FDITEM50_WK]
+[FDITEM77_WK]
 m_strName=el-wod-exe-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
@@ -549,10 +813,10 @@ m_nSync=-1
 m_bFixed=1
 m_strRawSize=20
 m_nSize=20
-{{@DataItem_m_strDescriptionFDITEM50_WK
+{{@DataItem_m_strDescriptionFDITEM77_WK
 
 @}}
-[FDITEM51_WK]
+[FDITEM78_WK]
 m_strName=el-wod-exe-effort
 m_strRawPic=9
 m_strPic=9
@@ -561,248 +825,178 @@ m_nSync=-1
 m_bFixed=1
 m_strRawSize=20
 m_nSize=20
-{{@DataItem_m_strDescriptionFDITEM51_WK
+{{@DataItem_m_strDescriptionFDITEM78_WK
 
 @}}
-[FDITEM52_WK]
+[FDITEM79_WK]
 m_strName=RigheIniziali
 m_strRawPic=9(3)
 m_strPic=9(3)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM52_WK
+{{@DataItem_m_strDescriptionFDITEM79_WK
 
 @}}
-[FDITEM53_WK]
+[FDITEM80_WK]
 m_strName=como-giorni
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM53_WK
+{{@DataItem_m_strDescriptionFDITEM80_WK
 
 @}}
-[FDITEM54_WK]
+[FDITEM81_WK]
 m_strName=hh
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM54_WK
+{{@DataItem_m_strDescriptionFDITEM81_WK
 
 @}}
-[FDITEM55_WK]
+[FDITEM82_WK]
 m_strName=mm
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM55_WK
+{{@DataItem_m_strDescriptionFDITEM82_WK
 
 @}}
-[FDITEM56_WK]
+[FDITEM83_WK]
 m_strName=resto
 m_strRawPic=9(5)
 m_strPic=9(5)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM56_WK
+{{@DataItem_m_strDescriptionFDITEM83_WK
 
 @}}
-[FDITEM57_WK]
-m_strName=s-day1
-m_strRawPic=x(200)
-m_strPic=x(200)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM57_WK
-
-@}}
-[FDITEM58_WK]
-m_strName=s-day2
-m_strRawPic=x(200)
-m_strPic=x(200)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM58_WK
-
-@}}
-[FDITEM59_WK]
-m_strName=s-day3
-m_strRawPic=x(200)
-m_strPic=x(200)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM59_WK
-
-@}}
-[FDITEM60_WK]
-m_strName=s-day4
-m_strRawPic=x(200)
-m_strPic=x(200)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM60_WK
-
-@}}
-[FDITEM61_WK]
-m_strName=s-day5
-m_strRawPic=x(200)
-m_strPic=x(200)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM61_WK
-
-@}}
-[FDITEM62_WK]
-m_strName=s-day6
-m_strRawPic=x(200)
-m_strPic=x(200)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM62_WK
-
-@}}
-[FDITEM63_WK]
-m_strName=s-day7
-m_strRawPic=x(200)
-m_strPic=x(200)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM63_WK
-
-@}}
-[FDITEM64_WK]
+[FDITEM84_WK]
 m_strName=tot-durata
 m_strRawPic=9(10)
 m_strPic=9(10)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM64_WK
+{{@DataItem_m_strDescriptionFDITEM84_WK
 
 @}}
-[FDITEM65_WK]
+[FDITEM85_WK]
 m_strName=lastIdx
 m_strRawPic=9(3)
 m_strPic=9(3)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM65_WK
+{{@DataItem_m_strDescriptionFDITEM85_WK
 
 @}}
-[FDITEM66_WK]
+[FDITEM86_WK]
 m_strName=idx1
 m_strRawPic=9(3)
 m_strPic=9(3)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM66_WK
+{{@DataItem_m_strDescriptionFDITEM86_WK
 
 @}}
-[FDITEM67_WK]
+[FDITEM87_WK]
 m_strName=idx2
 m_strRawPic=9(3)
 m_strPic=9(3)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM67_WK
+{{@DataItem_m_strDescriptionFDITEM87_WK
 
 @}}
-[FDITEM68_WK]
+[FDITEM88_WK]
 m_strName=idx-days
 m_strRawPic=9(3)
 m_strPic=9(3)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM68_WK
+{{@DataItem_m_strDescriptionFDITEM88_WK
 
 @}}
-[FDITEM69_WK]
+[FDITEM89_WK]
 m_strName=idx-split
 m_strRawPic=9(3)
 m_strPic=9(3)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM69_WK
+{{@DataItem_m_strDescriptionFDITEM89_WK
 
 @}}
-[FDITEM70_WK]
+[FDITEM90_WK]
 m_strName=como-range-from
 m_strRawPic=xx
 m_strPic=xx
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM70_WK
+{{@DataItem_m_strDescriptionFDITEM90_WK
 
 @}}
-[FDITEM71_WK]
+[FDITEM91_WK]
 m_strName=como-range-to
 m_strRawPic=xx
 m_strPic=xx
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM71_WK
+{{@DataItem_m_strDescriptionFDITEM91_WK
 
 @}}
-[FDITEM72_WK]
+[FDITEM92_WK]
 m_strName=como-x
 m_strRawPic=x
 m_strPic=x
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM72_WK
+{{@DataItem_m_strDescriptionFDITEM92_WK
 
 @}}
-[FDITEM73_WK]
+[FDITEM93_WK]
 m_strName=tot-mcg
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM73_WK
+{{@DataItem_m_strDescriptionFDITEM93_WK
 
 @}}
-[FDITEM74_WK]
+[FDITEM94_WK]
 m_strName=tot-exe
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM74_WK
+{{@DataItem_m_strDescriptionFDITEM94_WK
 
 @}}
-[FDITEM75_WK]
+[FDITEM95_WK]
 m_strName=como-tab-mcg
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM75_WK
+{{@DataItem_m_strDescriptionFDITEM95_WK
 
 @}}
-[FDITEM76_WK]
+[FDITEM96_WK]
 m_strName=como-el-mcg-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
@@ -812,18 +1006,18 @@ m_bOccurs=1
 m_bFixed=1
 m_strRawSize=10
 m_nSize=10
-{{@DataItem_m_strDescriptionFDITEM76_WK
+{{@DataItem_m_strDescriptionFDITEM96_WK
 
 @}}
-[FDITEM77_WK]
+[FDITEM97_WK]
 m_strName=tab-mcg
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM77_WK
+{{@DataItem_m_strDescriptionFDITEM97_WK
 
 @}}
-[FDITEM78_WK]
+[FDITEM98_WK]
 m_strName=el-mcg-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
@@ -833,38 +1027,38 @@ m_bOccurs=1
 m_bFixed=1
 m_strRawSize=10
 m_nSize=10
-{{@DataItem_m_strDescriptionFDITEM78_WK
+{{@DataItem_m_strDescriptionFDITEM98_WK
 
 @}}
-[FDITEM79_WK]
+[FDITEM99_WK]
 m_strName=tot-gruppi
 m_strRawPic=999
 m_strPic=999
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM79_WK
+{{@DataItem_m_strDescriptionFDITEM99_WK
 
 @}}
-[FDITEM80_WK]
+[FDITEM100_WK]
 m_strName=idx-gruppi
 m_strRawPic=999
 m_strPic=999
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM80_WK
+{{@DataItem_m_strDescriptionFDITEM100_WK
 
 @}}
-[FDITEM81_WK]
+[FDITEM101_WK]
 m_strName=tab-mgroups
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM81_WK
+{{@DataItem_m_strDescriptionFDITEM101_WK
 
 @}}
-[FDITEM82_WK]
+[FDITEM102_WK]
 m_strName=el-mgroups
 m_nItemLevel=5
 m_nSync=-1
@@ -872,146 +1066,146 @@ m_bOccurs=1
 m_bFixed=1
 m_strRawSize=10
 m_nSize=10
-{{@DataItem_m_strDescriptionFDITEM82_WK
+{{@DataItem_m_strDescriptionFDITEM102_WK
 
 @}}
-[FDITEM83_WK]
+[FDITEM103_WK]
 m_strName=el-mgroup
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM83_WK
+{{@DataItem_m_strDescriptionFDITEM103_WK
 
 @}}
-[FDITEM84_WK]
+[FDITEM104_WK]
 m_strName=el-mcg-code
 m_strRawPic=x(5)
 m_strPic=x(5)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM84_WK
+{{@DataItem_m_strDescriptionFDITEM104_WK
 
 @}}
-[FDITEM85_WK]
+[FDITEM105_WK]
 m_strName=el-mcg-hit
 m_strRawPic=9(3)
 m_strPic=9(3)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM85_WK
+{{@DataItem_m_strDescriptionFDITEM105_WK
 
 @}}
-[FDITEM86_WK]
+[FDITEM106_WK]
 m_strName=rec-grid
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM86_WK
+{{@DataItem_m_strDescriptionFDITEM106_WK
 
 @}}
-[FDITEM87_WK]
+[FDITEM107_WK]
 m_strName=col-day
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM87_WK
+{{@DataItem_m_strDescriptionFDITEM107_WK
 
 @}}
-[FDITEM88_WK]
+[FDITEM108_WK]
 m_strName=col-exe-prg
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM88_WK
+{{@DataItem_m_strDescriptionFDITEM108_WK
 
 @}}
-[FDITEM89_WK]
+[FDITEM109_WK]
 m_strName=col-grp-code
 m_strRawPic=x(5)
 m_strPic=x(5)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM89_WK
+{{@DataItem_m_strDescriptionFDITEM109_WK
 
 @}}
-[FDITEM90_WK]
+[FDITEM110_WK]
 m_strName=col-grp-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM90_WK
+{{@DataItem_m_strDescriptionFDITEM110_WK
 
 @}}
-[FDITEM91_WK]
+[FDITEM111_WK]
 m_strName=col-exe-code
 m_strRawPic=x(5)
 m_strPic=x(5)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM91_WK
+{{@DataItem_m_strDescriptionFDITEM111_WK
 
 @}}
-[FDITEM92_WK]
+[FDITEM112_WK]
 m_strName=col-exe-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM92_WK
+{{@DataItem_m_strDescriptionFDITEM112_WK
 
 @}}
-[FDITEM93_WK]
+[FDITEM113_WK]
 m_strName=col-series
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM93_WK
+{{@DataItem_m_strDescriptionFDITEM113_WK
 
 @}}
-[FDITEM94_WK]
+[FDITEM114_WK]
 m_strName=col-reps
 m_strRawPic=x(10)
 m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM94_WK
+{{@DataItem_m_strDescriptionFDITEM114_WK
 
 @}}
-[FDITEM95_WK]
+[FDITEM115_WK]
 m_strName=Calibri14-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM95_WK
+{{@DataItem_m_strDescriptionFDITEM115_WK
 
 @}}
-[FDITEM96_WK]
+[FDITEM116_WK]
 m_strName=Calibri14B-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM96_WK
+{{@DataItem_m_strDescriptionFDITEM116_WK
 
 @}}
-[FDITEM97_WK]
+[FDITEM117_WK]
 m_strName=cambia-cliente-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -1020,200 +1214,12 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM97_WK
-
-@}}
-[FDITEM98_WK]
-m_strName=Calibri12-Occidentale
-m_nUsage=26
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM98_WK
-
-@}}
-[FDITEM99_WK]
-m_strName=Calibri12B-Occidentale
-m_nUsage=26
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM99_WK
-
-@}}
-[FDITEM100_WK]
-m_strName=contact-bmp
-m_nUsage=45
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM100_WK
-
-@}}
-[FDITEM101_WK]
-m_strName=Calibri18B-Occidentale
-m_nUsage=26
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM101_WK
-
-@}}
-[FDITEM102_WK]
-m_strName=default-bmp
-m_nUsage=45
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM102_WK
-
-@}}
-[FDITEM103_WK]
-m_strName=Calibri16B-Occidentale
-m_nUsage=26
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM103_WK
-
-@}}
-[FDITEM104_WK]
-m_strName=form-prezz-SF-HANDLE
-m_nUsage=24
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM104_WK
-
-@}}
-[FDITEM105_WK]
-m_strName=Calibri12BI-Occidentale
-m_nUsage=26
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM105_WK
-
-@}}
-[FDITEM106_WK]
-m_strName=STATUS-exercises
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM106_WK
-
-@}}
-[FDITEM107_WK]
-m_strName=Valid-STATUS-exercises
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM107_WK
-
-@}}
-[FDITEM108_WK]
-m_strName=STATUS-groups
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM108_WK
-
-@}}
-[FDITEM109_WK]
-m_strName=Valid-STATUS-groups
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM109_WK
-
-@}}
-[FDITEM110_WK]
-m_strName=STATUS-intensity
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM110_WK
-
-@}}
-[FDITEM111_WK]
-m_strName=Valid-STATUS-intensity
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM111_WK
-
-@}}
-[FDITEM112_WK]
-m_strName=STATUS-macrogroups
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM112_WK
-
-@}}
-[FDITEM113_WK]
-m_strName=Valid-STATUS-macrogroups
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM113_WK
-
-@}}
-[FDITEM114_WK]
-m_strName=STATUS-wodbook
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM114_WK
-
-@}}
-[FDITEM115_WK]
-m_strName=Valid-STATUS-wodbook
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM115_WK
-
-@}}
-[FDITEM116_WK]
-m_strName=cb-mg1-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM116_WK
-
-@}}
-[FDITEM117_WK]
-m_strName=cb-mg2-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM117_WK
 
 @}}
 [FDITEM118_WK]
-m_strName=cb-mg3-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=Calibri12-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1221,9 +1227,8 @@ m_bFixed=1
 
 @}}
 [FDITEM119_WK]
-m_strName=cb-mg4-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=Calibri12B-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1231,9 +1236,8 @@ m_bFixed=1
 
 @}}
 [FDITEM120_WK]
-m_strName=cb-mg5-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=contact-bmp
+m_nUsage=45
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1241,9 +1245,8 @@ m_bFixed=1
 
 @}}
 [FDITEM121_WK]
-m_strName=cb-mgtb-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=Calibri18B-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1251,9 +1254,8 @@ m_bFixed=1
 
 @}}
 [FDITEM122_WK]
-m_strName=cb-int-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=default-bmp
+m_nUsage=45
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1261,9 +1263,8 @@ m_bFixed=1
 
 @}}
 [FDITEM123_WK]
-m_strName=old-cb-dur-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=Calibri16B-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1271,9 +1272,8 @@ m_bFixed=1
 
 @}}
 [FDITEM124_WK]
-m_strName=STATUS-duration
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=form-prezz-SF-HANDLE
+m_nUsage=24
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1281,18 +1281,18 @@ m_bFixed=1
 
 @}}
 [FDITEM125_WK]
-m_strName=Valid-STATUS-duration
-m_nItemLevel=88
+m_strName=Calibri12BI-Occidentale
+m_nUsage=26
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM125_WK
 
 @}}
 [FDITEM126_WK]
-m_strName=cb-rnd-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=STATUS-exercises
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1300,18 +1300,18 @@ m_bFixed=1
 
 @}}
 [FDITEM127_WK]
-m_strName=cb-dur-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
+m_strName=Valid-STATUS-exercises
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM127_WK
 
 @}}
 [FDITEM128_WK]
-m_strName=Default-Font
-m_nUsage=38
+m_strName=STATUS-groups
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1319,19 +1319,18 @@ m_bFixed=1
 
 @}}
 [FDITEM129_WK]
-m_strName=ex-remain
-m_strRawPic=99
-m_strPic=99
-m_nItemLevel=77
+m_strName=Valid-STATUS-groups
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM129_WK
 
 @}}
 [FDITEM130_WK]
-m_strName=effort-wod
-m_strRawPic=99
-m_strPic=99
+m_strName=STATUS-intensity
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1339,17 +1338,16 @@ m_bFixed=1
 
 @}}
 [FDITEM131_WK]
-m_strName=path-tmp-exe-effort
-m_strRawPic=X(256)
-m_strPic=X(256)
-m_nItemLevel=77
+m_strName=Valid-STATUS-intensity
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM131_WK
 
 @}}
 [FDITEM132_WK]
-m_strName=STATUS-tmp-exe-effort
+m_strName=STATUS-macrogroups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -1359,7 +1357,7 @@ m_bFixed=1
 
 @}}
 [FDITEM133_WK]
-m_strName=Valid-STATUS-tmp-exe-effort
+m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -1368,9 +1366,9 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM134_WK]
-m_strName=cb-gio-buf
-m_strRawPic=x(5)
-m_strPic=x(5)
+m_strName=STATUS-wodbook
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1378,19 +1376,18 @@ m_bFixed=1
 
 @}}
 [FDITEM135_WK]
-m_strName=cb-mul-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
+m_strName=Valid-STATUS-wodbook
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM135_WK
 
 @}}
 [FDITEM136_WK]
-m_strName=cb-wod-buf
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=cb-mg1-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1398,9 +1395,9 @@ m_bFixed=1
 
 @}}
 [FDITEM137_WK]
-m_strName=STATUS-wodmap
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=cb-mg2-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1408,16 +1405,17 @@ m_bFixed=1
 
 @}}
 [FDITEM138_WK]
-m_strName=Valid-STATUS-wodmap
-m_nItemLevel=88
+m_strName=cb-mg3-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM138_WK
 
 @}}
 [FDITEM139_WK]
-m_strName=cb-mg6-buf
+m_strName=cb-mg4-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -1427,9 +1425,9 @@ m_bFixed=1
 
 @}}
 [FDITEM140_WK]
-m_strName=path-tmp-wod-exe
-m_strRawPic=X(256)
-m_strPic=X(256)
+m_strName=cb-mg5-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1437,9 +1435,9 @@ m_bFixed=1
 
 @}}
 [FDITEM141_WK]
-m_strName=STATUS-tmp-wod-exe
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=cb-mgtb-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1447,18 +1445,19 @@ m_bFixed=1
 
 @}}
 [FDITEM142_WK]
-m_strName=Valid-STATUS-tmp-wod-exe
-m_nItemLevel=88
+m_strName=cb-int-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM142_WK
 
 @}}
 [FDITEM143_WK]
-m_strName=path-tmp-exe
-m_strRawPic=X(256)
-m_strPic=X(256)
+m_strName=old-cb-dur-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1466,7 +1465,7 @@ m_bFixed=1
 
 @}}
 [FDITEM144_WK]
-m_strName=STATUS-tmp-exe
+m_strName=STATUS-duration
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -1476,7 +1475,7 @@ m_bFixed=1
 
 @}}
 [FDITEM145_WK]
-m_strName=Valid-STATUS-tmp-exe
+m_strName=Valid-STATUS-duration
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -1485,9 +1484,9 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM146_WK]
-m_strName=STATUS-intexe
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=cb-rnd-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1495,18 +1494,18 @@ m_bFixed=1
 
 @}}
 [FDITEM147_WK]
-m_strName=Valid-STATUS-intexe
-m_nItemLevel=88
+m_strName=cb-dur-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM147_WK
 
 @}}
 [FDITEM148_WK]
-m_strName=cb-mg7-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=Default-Font
+m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1514,8 +1513,9 @@ m_bFixed=1
 
 @}}
 [FDITEM149_WK]
-m_strName=Calibri10-Occidentale
-m_nUsage=26
+m_strName=ex-remain
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1523,11 +1523,9 @@ m_bFixed=1
 
 @}}
 [FDITEM150_WK]
-m_strName=genera-bmp
-m_strRawPic=S9(9)
-m_strPic=S9(9)
-m_nUsage=5
-m_strDefaultValue=0
+m_strName=effort-wod
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1535,11 +1533,9 @@ m_bFixed=1
 
 @}}
 [FDITEM151_WK]
-m_strName=random-bmp
-m_strRawPic=S9(9)
-m_strPic=S9(9)
-m_nUsage=5
-m_strDefaultValue=0
+m_strName=path-tmp-exe-effort
+m_strRawPic=X(256)
+m_strPic=X(256)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1547,10 +1543,9 @@ m_bFixed=1
 
 @}}
 [FDITEM152_WK]
-m_strName=e-lab-day1
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
+m_strName=STATUS-tmp-exe-effort
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1558,19 +1553,18 @@ m_bFixed=1
 
 @}}
 [FDITEM153_WK]
-m_strName=Calibri10B-Occidentale
-m_nUsage=26
-m_nItemLevel=77
+m_strName=Valid-STATUS-tmp-exe-effort
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM153_WK
 
 @}}
 [FDITEM154_WK]
-m_strName=e-lab-day2
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=1
+m_strName=cb-gio-buf
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1578,7 +1572,7 @@ m_bFixed=1
 
 @}}
 [FDITEM155_WK]
-m_strName=como-day
+m_strName=cb-mul-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -1588,9 +1582,9 @@ m_bFixed=1
 
 @}}
 [FDITEM156_WK]
-m_strName=lab-1-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=cb-wod-buf
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1598,9 +1592,9 @@ m_bFixed=1
 
 @}}
 [FDITEM157_WK]
-m_strName=lab-2-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=STATUS-wodmap
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1608,17 +1602,16 @@ m_bFixed=1
 
 @}}
 [FDITEM158_WK]
-m_strName=lab-3-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
+m_strName=Valid-STATUS-wodmap
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM158_WK
 
 @}}
 [FDITEM159_WK]
-m_strName=lab-4-buf
+m_strName=cb-mg6-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -1628,9 +1621,9 @@ m_bFixed=1
 
 @}}
 [FDITEM160_WK]
-m_strName=lab-5-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=path-tmp-wod-exe
+m_strRawPic=X(256)
+m_strPic=X(256)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1638,9 +1631,9 @@ m_bFixed=1
 
 @}}
 [FDITEM161_WK]
-m_strName=lab-6-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=STATUS-tmp-wod-exe
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1648,19 +1641,18 @@ m_bFixed=1
 
 @}}
 [FDITEM162_WK]
-m_strName=lab-7-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
+m_strName=Valid-STATUS-tmp-wod-exe
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM162_WK
 
 @}}
 [FDITEM163_WK]
-m_strName=counter
-m_strRawPic=9(3)
-m_strPic=9(3)
+m_strName=path-tmp-exe
+m_strRawPic=X(256)
+m_strPic=X(256)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1668,9 +1660,9 @@ m_bFixed=1
 
 @}}
 [FDITEM164_WK]
-m_strName=path-tmp-exe-dupl
-m_strRawPic=X(256)
-m_strPic=X(256)
+m_strName=STATUS-tmp-exe
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1678,22 +1670,141 @@ m_bFixed=1
 
 @}}
 [FDITEM165_WK]
+m_strName=Valid-STATUS-tmp-exe
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM165_WK
+
+@}}
+[FDITEM166_WK]
+m_strName=STATUS-intexe
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM166_WK
+
+@}}
+[FDITEM167_WK]
+m_strName=Valid-STATUS-intexe
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM167_WK
+
+@}}
+[FDITEM168_WK]
+m_strName=cb-mg7-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM168_WK
+
+@}}
+[FDITEM169_WK]
+m_strName=Calibri10-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM169_WK
+
+@}}
+[FDITEM170_WK]
+m_strName=genera-bmp
+m_strRawPic=S9(9)
+m_strPic=S9(9)
+m_nUsage=5
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM170_WK
+
+@}}
+[FDITEM171_WK]
+m_strName=random-bmp
+m_strRawPic=S9(9)
+m_strPic=S9(9)
+m_nUsage=5
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM171_WK
+
+@}}
+[FDITEM172_WK]
+m_strName=como-day
+m_strRawPic=X(200)
+m_strPic=X(200)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM172_WK
+
+@}}
+[FDITEM173_WK]
+m_strName=counter
+m_strRawPic=9(3)
+m_strPic=9(3)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM173_WK
+
+@}}
+[FDITEM174_WK]
+m_strName=path-tmp-exe-dupl
+m_strRawPic=X(256)
+m_strPic=X(256)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM174_WK
+
+@}}
+[FDITEM175_WK]
 m_strName=STATUS-tmp-exe-dupl
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM165_WK
+{{@DataItem_m_strDescriptionFDITEM175_WK
 
 @}}
-[FDITEM166_WK]
+[FDITEM176_WK]
 m_strName=Valid-STATUS-tmp-exe-dupl
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM166_WK
+{{@DataItem_m_strDescriptionFDITEM176_WK
+
+@}}
+[FDITEM177_WK]
+m_strName=Courier-New8-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM177_WK
+
+@}}
+[FDITEM178_WK]
+m_strName=Calibri10B-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM178_WK
 
 @}}
 
@@ -1879,7 +1990,7 @@ GRAPHICAL-SCREEN
 Begin Screen Form1
    PREFIX            = Screen1
    IMPORTED-SCREEN   = FALSE
-   LOCK-CONTROL      = TRUE
+   LOCK-CONTROL      = FALSE
    LEVEL             = 1
    (Name)            = Form1
    Absolute Column   = 2
@@ -1905,7 +2016,7 @@ Begin Screen Form1
    Height in Cells   = TRUE
    Help ID           = 0
    Label Offset      = 23
-   Lines             = 37,43
+   Lines             = 38,39
    Link To Thread    = TRUE
    Max Lines         = 0,00
    Max Size          = 0,00
@@ -1916,7 +2027,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 112,40
+   Size              = 130,00
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -1929,8 +2040,8 @@ Begin Screen Form1
    Wrap              = FALSE
    Event Procedure   = Screen1-Event-Proc
    Begin Combo-Box cb-mg1
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 1,50
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 1,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-mg1
@@ -1939,7 +2050,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -1949,7 +2060,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 7
-      Line              = 1,50
+      Line              = 1,70
       Lines             = 6,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -1958,7 +2069,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = FALSE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 1
@@ -1972,8 +2083,8 @@ Begin Screen Form1
       After Procedure   = cb-mg1-AfterProcedure
    End
    Begin Combo-Box cb-mg2
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 3,00
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 3,17
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-mg2
@@ -1982,7 +2093,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -1992,7 +2103,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 8
-      Line              = 3,00
+      Line              = 3,17
       Lines             = 6,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2001,7 +2112,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = FALSE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 2
@@ -2015,8 +2126,8 @@ Begin Screen Form1
       After Procedure   = cb-mg2-AfterProcedure
    End
    Begin Combo-Box cb-mg3
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 4,50
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 4,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-mg3
@@ -2025,7 +2136,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2035,7 +2146,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 9
-      Line              = 4,50
+      Line              = 4,70
       Lines             = 6,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2044,7 +2155,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = FALSE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 3
@@ -2058,8 +2169,8 @@ Begin Screen Form1
       After Procedure   = cb-mg3-AfterProcedure
    End
    Begin Combo-Box cb-mg4
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 6,00
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 6,17
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-mg4
@@ -2068,7 +2179,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2078,7 +2189,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 11
-      Line              = 6,00
+      Line              = 6,17
       Lines             = 6,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2087,7 +2198,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = FALSE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 4
@@ -2101,8 +2212,8 @@ Begin Screen Form1
       After Procedure   = cb-mg4-AfterProcedure
    End
    Begin Combo-Box cb-mg5
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 7,50
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 7,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-mg5
@@ -2111,7 +2222,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2121,7 +2232,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 13
-      Line              = 7,50
+      Line              = 7,70
       Lines             = 6,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2130,7 +2241,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = FALSE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 5
@@ -2144,8 +2255,8 @@ Begin Screen Form1
       After Procedure   = cb-mg5-AfterProcedure
    End
    Begin Combo-Box cb-mg6
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 9,00
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 9,17
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-mg6
@@ -2154,7 +2265,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2164,7 +2275,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 28
-      Line              = 9,00
+      Line              = 9,17
       Lines             = 6,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2173,7 +2284,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = FALSE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 6
@@ -2187,8 +2298,8 @@ Begin Screen Form1
       After Procedure   = cb-mg5-AfterProcedure
    End
    Begin Combo-Box cb-mg7
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 10,50
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 10,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-mg7
@@ -2197,7 +2308,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2207,7 +2318,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 35
-      Line              = 10,50
+      Line              = 10,70
       Lines             = 6,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2216,7 +2327,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = FALSE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 7
@@ -2230,8 +2341,8 @@ Begin Screen Form1
       After Procedure   = cb-mg5-AfterProcedure
    End
    Begin Combo-Box cb-mul
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 14,91
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 15,09
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-mul
@@ -2240,7 +2351,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2250,7 +2361,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 32
-      Line              = 14,91
+      Line              = 15,09
       Lines             = 4,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2259,7 +2370,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = TRUE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 8
@@ -2273,8 +2384,8 @@ Begin Screen Form1
       After Procedure   = cb-rnd-AfterProcedure
    End
    Begin Combo-Box cb-int
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 16,91
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 17,09
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-int
@@ -2283,7 +2394,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2293,7 +2404,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 17
-      Line              = 16,91
+      Line              = 17,09
       Lines             = 6,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2302,7 +2413,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = TRUE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 9
@@ -2316,8 +2427,8 @@ Begin Screen Form1
       After Procedure   = cb-int-AfterProcedure
    End
    Begin Combo-Box cb-dur
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 18,39
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 18,57
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-dur
@@ -2326,7 +2437,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2336,7 +2447,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 19
-      Line              = 18,39
+      Line              = 18,57
       Lines             = 6,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2345,7 +2456,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = TRUE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 10
@@ -2359,8 +2470,8 @@ Begin Screen Form1
       After Procedure   = cb-dur-AfterProcedure
    End
    Begin Combo-Box cb-gio
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 19,91
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 20,09
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-gio
@@ -2369,7 +2480,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2379,7 +2490,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 24
-      Line              = 19,91
+      Line              = 20,09
       Lines             = 6,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2388,7 +2499,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = TRUE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 11
@@ -2402,8 +2513,8 @@ Begin Screen Form1
       After Procedure   = cb-gio-AfterProcedure
    End
    Begin Combo-Box cb-wod
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 21,39
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 21,57
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = cb-wod
@@ -2412,7 +2523,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 17,00
+      Column            = 17,80
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2422,7 +2533,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 34
-      Line              = 21,39
+      Line              = 21,57
       Lines             = 6,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
@@ -2431,7 +2542,7 @@ Begin Screen Form1
       Notify DblClick   = FALSE
       Notify SelChange  = TRUE
       Occurs            = 0
-      Size              = 25,00
+      Size              = 43,00
       Size Unit         = Default
       Style             = Drop List
       Tab Order         = 12
@@ -2445,8 +2556,8 @@ Begin Screen Form1
       After Procedure   = cb-wod-AfterProcedure
    End
    Begin Push-Button pb-genera
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 23,17
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 23,35
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = pb-genera
@@ -2457,7 +2568,7 @@ Begin Screen Form1
       Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Column            = 17,00
+      Column            = 17,80
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2470,7 +2581,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 1
-      Line              = 23,17
+      Line              = 23,35
       Lines             = 2,39
       Lines in Pixels   = 48
       Lines Unit        = Pixels
@@ -2491,7 +2602,7 @@ Begin Screen Form1
    End
    Begin Push-Button Screen1-Pb-1
       SCREEN-COL        = 2,30
-      SCREEN-LINE       = 23,65
+      SCREEN-LINE       = 23,83
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-Pb-1
@@ -2513,7 +2624,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 30
-      Line              = 23,65
+      Line              = 23,83
       Lines             = 1,48
       Lines Unit        = Default
       No Auto Default   = FALSE
@@ -2532,7 +2643,7 @@ Begin Screen Form1
    End
    Begin Push-Button Screen1-Pb-1a
       SCREEN-COL        = 9,10
-      SCREEN-LINE       = 23,65
+      SCREEN-LINE       = 23,83
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-Pb-1a
@@ -2554,7 +2665,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 36
-      Line              = 23,65
+      Line              = 23,83
       Lines             = 1,48
       Lines Unit        = Default
       No Auto Default   = FALSE
@@ -2572,8 +2683,8 @@ Begin Screen Form1
       Link To           = Screen1-Pb-1a-LinkTo
    End
    Begin Push-Button pb-random
-      SCREEN-COL        = 17,00
-      SCREEN-LINE       = 12,17
+      SCREEN-COL        = 17,80
+      SCREEN-LINE       = 12,35
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = pb-random
@@ -2584,7 +2695,7 @@ Begin Screen Form1
       Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Column            = 17,00
+      Column            = 17,80
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2597,7 +2708,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 25
-      Line              = 12,17
+      Line              = 12,35
       Lines             = 2,39
       Lines in Pixels   = 48
       Lines Unit        = Pixels
@@ -2617,8 +2728,8 @@ Begin Screen Form1
       Link To           = pb-random-LinkTo
    End
    Begin Grid gd1
-      SCREEN-COL        = 44,40
-      SCREEN-LINE       = 1,50
+      SCREEN-COL        = 62,40
+      SCREEN-LINE       = 1,74
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = gd1
@@ -2635,7 +2746,7 @@ Begin Screen Form1
       Cells' Setting    = ( X = 8, Y = 1, Data = "Reps" )
       Centered Headings = FALSE
       Color             = 0
-      Column            = 44,40
+      Column            = 62,40
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-day, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", TYPE = "9(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
@@ -2681,8 +2792,8 @@ Begin Screen Form1
       ID                = 26
       ID Variable       = AUTO-ID
       Last Row          = 0
-      Line              = 1,50
-      Lines             = 34,78
+      Line              = 1,74
+      Lines             = 34,87
       Lines Unit        = Default
       No Tab            = FALSE
       Num Col Headings  = 1
@@ -2787,7 +2898,7 @@ Begin Screen Form1
    End
    Begin Label lab-a
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 1,50
+      SCREEN-LINE       = 1,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = lab-a
@@ -2805,7 +2916,7 @@ Begin Screen Form1
       ID                = 2
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 1,50
+      Line              = 1,70
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -2820,7 +2931,7 @@ Begin Screen Form1
    End
    Begin Label lab-b
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 3,00
+      SCREEN-LINE       = 3,17
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = lab-b
@@ -2838,7 +2949,7 @@ Begin Screen Form1
       ID                = 3
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 3,00
+      Line              = 3,17
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -2853,7 +2964,7 @@ Begin Screen Form1
    End
    Begin Label lab-c
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 4,50
+      SCREEN-LINE       = 4,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = lab-c
@@ -2871,7 +2982,7 @@ Begin Screen Form1
       ID                = 4
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 4,50
+      Line              = 4,70
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -2886,7 +2997,7 @@ Begin Screen Form1
    End
    Begin Label lab-d
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 6,00
+      SCREEN-LINE       = 6,17
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = lab-d
@@ -2904,7 +3015,7 @@ Begin Screen Form1
       ID                = 5
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 6,00
+      Line              = 6,17
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -2919,7 +3030,7 @@ Begin Screen Form1
    End
    Begin Label lab-e
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 7,50
+      SCREEN-LINE       = 7,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = lab-e
@@ -2937,7 +3048,7 @@ Begin Screen Form1
       ID                = 6
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 7,50
+      Line              = 7,70
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -2952,7 +3063,7 @@ Begin Screen Form1
    End
    Begin Label Screen1-La-2a
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 16,91
+      SCREEN-LINE       = 17,09
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-La-2a
@@ -2970,7 +3081,7 @@ Begin Screen Form1
       ID                = 16
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 16,91
+      Line              = 17,09
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -2985,7 +3096,7 @@ Begin Screen Form1
    End
    Begin Label Screen1-La-2aa
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 18,39
+      SCREEN-LINE       = 18,57
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-La-2aa
@@ -3003,7 +3114,7 @@ Begin Screen Form1
       ID                = 18
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 18,39
+      Line              = 18,57
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -3018,7 +3129,7 @@ Begin Screen Form1
    End
    Begin Label Screen1-La-2aaa
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 19,91
+      SCREEN-LINE       = 20,09
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-La-2aaa
@@ -3036,7 +3147,7 @@ Begin Screen Form1
       ID                = 23
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 19,91
+      Line              = 20,09
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -3051,7 +3162,7 @@ Begin Screen Form1
    End
    Begin Label Screen1-La-2ba
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 14,91
+      SCREEN-LINE       = 15,09
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-La-2ba
@@ -3069,7 +3180,7 @@ Begin Screen Form1
       ID                = 31
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 14,91
+      Line              = 15,09
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -3084,7 +3195,7 @@ Begin Screen Form1
    End
    Begin Label Screen1-La-2aaaa
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 21,39
+      SCREEN-LINE       = 21,57
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-La-2aaaa
@@ -3102,7 +3213,7 @@ Begin Screen Form1
       ID                = 33
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 21,39
+      Line              = 21,57
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -3117,7 +3228,7 @@ Begin Screen Form1
    End
    Begin Label lab-f
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 9,00
+      SCREEN-LINE       = 9,17
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = lab-f
@@ -3135,7 +3246,7 @@ Begin Screen Form1
       ID                = 27
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 9,00
+      Line              = 9,17
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -3150,7 +3261,7 @@ Begin Screen Form1
    End
    Begin Label lab-g
       SCREEN-COL        = 3,00
-      SCREEN-LINE       = 10,50
+      SCREEN-LINE       = 10,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = lab-g
@@ -3168,7 +3279,7 @@ Begin Screen Form1
       ID                = 29
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 10,50
+      Line              = 10,70
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
@@ -3181,250 +3292,109 @@ Begin Screen Form1
       Visible           = NONE
       Width in Cells    = TRUE
    End
-   Begin Label lab-day1
-      SCREEN-COL        = 3,00
-      SCREEN-LINE       = 26,04
+   Begin Grid gd-schema
+      SCREEN-COL        = 2,30
+      SCREEN-LINE       = 26,09
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
-      (Name)            = lab-day1
-      Clines            = 0
-      Clines Unit       = Default
+      (Name)            = gd-schema
+      Action            = (None)
+      Adjustable Columns = TRUE
+      Border            = Boxed
+      Cells' Setting    = ( X = 1, Y = 1, Data = "Day" )
+      Cells' Setting    = ( X = 2, Y = 1, Data = "#1" )
+      Cells' Setting    = ( X = 3, Y = 1, Data = "#2" )
+      Cells' Setting    = ( X = 4, Y = 1, Data = "#3" )
+      Cells' Setting    = ( X = 5, Y = 1, Data = "#4" )
+      Cells' Setting    = ( X = 6, Y = 1, Data = "#5" )
+      Cells' Setting    = ( X = 7, Y = 1, Data = "#6" )
+      Cells' Setting    = ( X = 8, Y = 1, Data = "#7" )
+      Cells' Setting    = ( X = 9, Y = 1, Data = "#8" )
+      Cells' Setting    = ( X = 10, Y = 1, Data = "#9" )
+      Cells' Setting    = ( X = 11, Y = 1, Data = "#10" )
+      Cells' Setting    = ( X = 12, Y = 1, Data = "Durata stimata" )
+      Centered Headings = FALSE
       Color             = 0
-      Column            = 3,00
-      Csize             = 0
-      Csize Unit        = Default
+      Column            = 2,30
+      Column Headings   = TRUE
+      Columns' Setting  = ( X = 1, Name = como-col-1, READONLY = 0 )
+      Columns' Setting  = ( PIC = "99", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 2, Name = como-col-2, READONLY = 0 )
+      Columns' Setting  = ( PIC = "x(5)", TYPE = "x(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "L" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 3, Name = como-col-3, READONLY = 0 )
+      Columns' Setting  = ( PIC = "x(5)", TYPE = "X(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "L" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 4, Name = como-col-4, READONLY = 0 )
+      Columns' Setting  = ( PIC = "x(5)", TYPE = "X(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "L" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 5, Name = como-col-5, READONLY = 0 )
+      Columns' Setting  = ( PIC = "x(5)", TYPE = "X(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "L" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 6, Name = como-col-6, READONLY = 0 )
+      Columns' Setting  = ( PIC = "x(5)", TYPE = "X(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "L" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 7, Name = como-col-7, READONLY = 0 )
+      Columns' Setting  = ( PIC = "x(5)", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "L" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 8, Name = como-col-8, READONLY = 0 )
+      Columns' Setting  = ( PIC = "x(5)", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "L" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 9, Name = como-col-9, READONLY = 0 )
+      Columns' Setting  = ( PIC = "x(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "L" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 10, Name = como-col-10, READONLY = 0 )
+      Columns' Setting  = ( PIC = "x(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "L" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 11, Name = como-col-11, READONLY = 0 )
+      Columns' Setting  = ( PIC = "x(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "L" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 12, Name = como-col-12, READONLY = 0 )
+      Columns' Setting  = ( PIC = "X(20)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
+      Columns' Setting  = ( DISP = 20, SEPA = 5, DIVI = 1 )
+      Cursor Color      = 0
+      Cursor Frame Width = 0
+      Cursor X          = 0
+      Cursor Y          = 0
       Destroy Type      = Automatic
+      Divider Color     = 1
+      Drag Color        = 0
       Enable            = NONE
-      Font              = Calibri/10/C0/@Occidentale
-      Font Variable     = Calibri10-Occidentale
+      End Color         = 0
+      Font              = Calibri/10/B/C0/@Occidentale
+      Font Variable     = Calibri10B-Occidentale
+      Heading Color     = 257
+      Heading Divider Color = 1
+      Heading Font      = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 14
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 26,04
-      Lines             = 0,80
+      Hscroll           = FALSE
+      ID                = 37
+      Last Row          = 0
+      Line              = 26,09
+      Lines             = 10,52
       Lines Unit        = Default
-      No Key Letter     = FALSE
+      No Tab            = FALSE
+      Num Col Headings  = 1
+      Num Columns       = 12
+      Num Rows          = 15
       Occurs            = 0
-      Size              = 39,00
+      Paged             = FALSE
+      Row Dividers      = 1
+      Row Headings      = FALSE
+      Size              = 58,50
       Size Unit         = Default
       Tab Order         = 32
-      Title Picture     = X(100)
-      Title Variable    = lab-1-buf
-      Transparent       = TRUE
-      Visible           = TRUE
+      Tiled Headings    = TRUE
+      Use Tab           = FALSE
+      Virtual Width     = 80
+      Visible           = NONE
+      Vpadding          = 5
+      Vscroll           = FALSE
       Width in Cells    = TRUE
-   End
-   Begin Label lab-day2
-      SCREEN-COL        = 3,00
-      SCREEN-LINE       = 26,91
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = lab-day2
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 3,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Calibri/10/C0/@Occidentale
-      Font Variable     = Calibri10-Occidentale
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 15
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 26,91
-      Lines             = 0,80
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 39,00
-      Size Unit         = Default
-      Tab Order         = 33
-      Title Picture     = X(100)
-      Title Variable    = lab-2-buf
-      Transparent       = TRUE
-      Visible           = TRUE
-      Width in Cells    = TRUE
-   End
-   Begin Label lab-day3
-      SCREEN-COL        = 3,00
-      SCREEN-LINE       = 27,78
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = lab-day3
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 3,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Calibri/10/C0/@Occidentale
-      Font Variable     = Calibri10-Occidentale
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 20
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 27,78
-      Lines             = 0,80
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 39,00
-      Size Unit         = Default
-      Tab Order         = 34
-      Title Picture     = X(100)
-      Title Variable    = lab-3-buf
-      Transparent       = TRUE
-      Visible           = TRUE
-      Width in Cells    = TRUE
-   End
-   Begin Label lab-day4
-      SCREEN-COL        = 3,00
-      SCREEN-LINE       = 28,65
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = lab-day4
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 3,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Calibri/10/C0/@Occidentale
-      Font Variable     = Calibri10-Occidentale
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 21
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 28,65
-      Lines             = 0,80
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 39,00
-      Size Unit         = Default
-      Tab Order         = 35
-      Title Picture     = X(100)
-      Title Variable    = lab-4-buf
-      Transparent       = TRUE
-      Visible           = TRUE
-      Width in Cells    = TRUE
-   End
-   Begin Label lab-day5
-      SCREEN-COL        = 3,00
-      SCREEN-LINE       = 29,52
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = lab-day5
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 3,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Calibri/10/C0/@Occidentale
-      Font Variable     = Calibri10-Occidentale
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 22
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 29,52
-      Lines             = 0,80
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 39,00
-      Size Unit         = Default
-      Tab Order         = 36
-      Title Picture     = X(100)
-      Title Variable    = lab-5-buf
-      Transparent       = TRUE
-      Visible           = TRUE
-      Width in Cells    = TRUE
-   End
-   Begin Label lab-day6
-      SCREEN-COL        = 3,00
-      SCREEN-LINE       = 30,39
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = lab-day6
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 3,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Calibri/10/C0/@Occidentale
-      Font Variable     = Calibri10-Occidentale
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 37
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 30,39
-      Lines             = 0,80
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 39,00
-      Size Unit         = Default
-      Tab Order         = 37
-      Title Picture     = X(100)
-      Title Variable    = lab-6-buf
-      Transparent       = TRUE
-      Visible           = TRUE
-      Width in Cells    = TRUE
-   End
-   Begin Label lab-day7
-      SCREEN-COL        = 3,00
-      SCREEN-LINE       = 31,26
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = lab-day7
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 3,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Calibri/10/C0/@Occidentale
-      Font Variable     = Calibri10-Occidentale
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 38
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 31,26
-      Lines             = 0,80
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 39,00
-      Size Unit         = Default
-      Tab Order         = 38
-      Title Picture     = X(100)
-      Title Variable    = lab-7-buf
-      Transparent       = TRUE
-      Visible           = TRUE
-      Width in Cells    = TRUE
+      Event Procedure   = Screen1-Gd-1-Event-Proc
+      Msg-Begin-Entry   = gd-schema-Ev-Msg-Begin-Entry
    End
    Begin Toolbar Form1-Tb-1
       SCREEN-LINE       = 1,00
@@ -3438,7 +3408,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 39
+      Tab Order         = 33
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -3826,8 +3796,8 @@ Begin Screen Form1
          Enable            = NONE
          Exception Value   = 0
          Flat              = FALSE
-         Font              = Small Font
-         Font Variable     = Small-Font
+         Font              = Calibri/10/C0/@Occidentale
+         Font Variable     = Calibri10-Occidentale
          Height in Cells   = TRUE
          Help ID           = 0
          ID                = 41
@@ -3858,7 +3828,7 @@ Begin Screen Form1
       Handle Variable   = Form1-St-1-Handle
       PANEL-WIDTHS      = ( 65, 28, 999 )
       PANEL-STYLE       = ( 1, 1, 1 )
-      Tab Order         = 40
+      Tab Order         = 34
    End
 End
 
@@ -4128,23 +4098,7 @@ BEGIN-TEXT
            modify cb-mg4, enabled false.
            modify cb-mg5, enabled false.
            modify cb-mg6, enabled false.
-           modify cb-mg7, enabled false.    
-
-           move spaces to lab-1-buf.
-           move spaces to lab-2-buf.
-           move spaces to lab-3-buf.
-           move spaces to lab-4-buf.
-           move spaces to lab-5-buf.
-           move spaces to lab-6-buf.
-           move spaces to lab-7-buf.
-
-           display lab-day1 
-                   lab-day2 
-                   lab-day3 
-                   lab-day4 
-                   lab-day5 
-                   lab-day6 
-                   lab-day7.
+           modify cb-mg7, enabled false. 
 
            read wodmap key wom-k-desc
                 invalid
@@ -4159,52 +4113,100 @@ BEGIN-TEXT
                                          alphanumeric data by spaces
                 exit paragraph
            end-read.
-                              
+                     
+           modify gd-schema, reset-grid = 1.
+           perform GD-SCHEMA-CONTENT.
+           move 1 to riga.
+           move 304 to colore.
            perform varying idx-days from 1 by 1
                      until idx-days > wom-days
               perform varying idx-split from 1 by 1
                         until idx-split > 20
                  if wom-split-el-split-sigla(idx-days, idx-split) = space
                     exit perform
-                 end-if
-                 if idx-split = 1
-                    move ": " to como-day
-                 end-if
+                 end-if     
+                 evaluate wom-split-el-split-sigla(idx-days, idx-split)
+                 when "A" inquire cb-mg1, value = mcg-desc
+                 when "B" inquire cb-mg2, value = mcg-desc
+                 when "C" inquire cb-mg3, value = mcg-desc
+                 when "D" inquire cb-mg4, value = mcg-desc
+                 when "E" inquire cb-mg5, value = mcg-desc
+                 when "F" inquire cb-mg6, value = mcg-desc
+                 when "G" inquire cb-mg7, value = mcg-desc
+                 end-evaluate
+                 read macrogroups key mcg-k-desc
+
+                 move wom-split-el-split-effort(idx-days, idx-split)
+                   to int-code
+                 read intexe no lock
+                 
+                 initialize como-day
+                 move int-effort to effort-xx
+                 inspect effort-xx replacing leading x"30" by x"20"
+                 call "C$JUSTIFY" using effort-xx, "L"
+                 inspect effort-xx replacing trailing spaces by low-value
+
                  inspect como-day replacing trailing spaces by low-value
                  string  como-day delimited low-value
-                         " "
                          wom-split-el-split-sigla(idx-days, idx-split)
                          wom-split-el-split-effort(idx-days, idx-split)
-                         " | "      
+                         "-"          
+                         effort-xx delimited low-value
+                         int-desc(1:1)
                     into como-day
                  end-string
+                 evaluate idx-split
+                 when 1 move como-day to sigle-effort-1
+                        move mcg-code to mcg-1
+                 when 2 move como-day to sigle-effort-2
+                        move mcg-code to mcg-2
+                 when 3 move como-day to sigle-effort-3
+                        move mcg-code to mcg-3
+                 when 4 move como-day to sigle-effort-4
+                        move mcg-code to mcg-4
+                 when 5 move como-day to sigle-effort-5
+                        move mcg-code to mcg-5
+                 when 6 move como-day to sigle-effort-6
+                        move mcg-code to mcg-6
+                 when 7 move como-day to sigle-effort-7
+                        move mcg-code to mcg-7
+                 end-evaluate
               end-perform
-              inspect como-day replacing trailing low-value by spaces
-              evaluate idx-days
-              when 1 string "DAY 1" como-day into lab-1-buf
-              when 2 string "DAY 2" como-day into lab-2-buf
-              when 3 string "DAY 3" como-day into lab-3-buf
-              when 4 string "DAY 4" como-day into lab-4-buf
-              when 5 string "DAY 5" como-day into lab-5-buf
-              when 6 string "DAY 6" como-day into lab-6-buf
-              when 7 string "DAY 7" como-day into lab-7-buf
-              end-evaluate
-           end-perform.             
-           move lab-1-buf to s-day1.
-           move lab-2-buf to s-day2.
-           move lab-3-buf to s-day3.
-           move lab-4-buf to s-day4.
-           move lab-5-buf to s-day5.
-           move lab-6-buf to s-day6.
-           move lab-7-buf to s-day7.
+              if colore = 304 
+                 move 0 to colore
+              else
+                 move 304 to colore
+              end-if
+              add 1 to riga 
+              modify gd-schema(riga,  1), cell-data = idx-days
+              modify gd-schema(riga,  2), cell-data = sigle-effort-1
+              modify gd-schema(riga,  3), cell-data = sigle-effort-2
+              modify gd-schema(riga,  4), cell-data = sigle-effort-3
+              modify gd-schema(riga,  5), cell-data = sigle-effort-4
+              modify gd-schema(riga,  6), cell-data = sigle-effort-5
+              modify gd-schema(riga,  7), cell-data = sigle-effort-6
+              modify gd-schema(riga,  8), cell-data = sigle-effort-7
+              modify gd-schema(riga,  9), cell-data = sigle-effort-8
+              modify gd-schema(riga, 10), cell-data = sigle-effort-9
+              modify gd-schema(riga, 11), cell-data = sigle-effort-10
+              modify gd-schema(riga, 12), cell-data = spaces                
 
-           display lab-day1 
-                   lab-day2 
-                   lab-day3 
-                   lab-day4 
-                   lab-day5 
-                   lab-day6 
-                   lab-day7.
+              modify gd-schema(riga), row-color = colore
+              add 1 to riga                                  
+              modify gd-schema(riga,  1), cell-data = spaces
+              modify gd-schema(riga,  2), cell-data = mcg-1
+              modify gd-schema(riga,  3), cell-data = mcg-2
+              modify gd-schema(riga,  4), cell-data = mcg-3
+              modify gd-schema(riga,  5), cell-data = mcg-4
+              modify gd-schema(riga,  6), cell-data = mcg-5
+              modify gd-schema(riga,  7), cell-data = mcg-6
+              modify gd-schema(riga,  8), cell-data = mcg-7
+              modify gd-schema(riga,  9), cell-data = mcg-8
+              modify gd-schema(riga, 10), cell-data = mcg-9 
+              modify gd-schema(riga, 11), cell-data = mcg-10
+              modify gd-schema(riga, 12), cell-data = spaces
+              modify gd-schema(riga), row-color = colore    
+           end-perform.             
 
            evaluate wom-macrogroups
            when 1
@@ -5568,14 +5570,6 @@ BEGIN-DATA
    PARAGRAPH         = pb-genera-LinkTo
 BEGIN-TEXT
            perform CREA-OCCURS-GRUPPI.
-                                   
-           move s-day1 to lab-1-buf.
-           move s-day2 to lab-2-buf.
-           move s-day3 to lab-3-buf.
-           move s-day4 to lab-4-buf.
-           move s-day5 to lab-5-buf.
-           move s-day6 to lab-6-buf.
-           move s-day7 to lab-7-buf.
 
            modify gd1, mass-update = 1.
            modify gd1, reset-grid = 1.
@@ -5838,11 +5832,26 @@ BEGIN-TEXT
               inspect como-hh replacing leading x"30" by x"20"
               call "C$JUSTIFY" using como-hh, "L"
               inspect como-hh replacing trailing spaces by low-value
+                    
+              if hh = 1             
+                 move "ora" to como-ora-e
+              else
+                 move "ore" to como-ora-e
+              end-if
 
-              string  como-hh    delimited low-value
-                      " ore e "  delimited size
-                      como-mm    delimited low-value
-                      " minuti." delimited size
+              if mm = 1             
+                 move "minuto" to como-minuto-i
+              else
+                 move "minuti" to como-minuto-i
+              end-if
+
+              string  como-hh       delimited low-value
+                      " "           delimited size
+                      como-ora-e    delimited size
+                      " "           delimited size
+                      como-mm       delimited low-value
+                      " "           delimited size
+                      como-minuto-i delimited size
                  into como-durata
               end-string
            else
@@ -5851,92 +5860,28 @@ BEGIN-TEXT
               inspect como-mm replacing leading x"30" by x"20"
               call "C$JUSTIFY" using como-mm, "L"
               inspect como-mm replacing trailing spaces by low-value
-              string  como-mm    delimited low-value
-                      " minuti." delimited size
+
+              if mm = 1             
+                 move "minuto" to como-minuto-i
+              else
+                 move "minuti" to como-minuto-i
+              end-if
+
+              string  como-mm       delimited low-value
+                      " "           delimited size
+                      como-minuto-i delimited size
                  into como-durata
               end-string
            end-if.
-           move como-durata to como-durata(18:)
-           move "Durata stimata: " to como-durata(1:17).
 
            evaluate save-day
-           when 1 
-                if lab-1-buf not = spaces                                  
-                   inspect lab-1-buf replacing trailing spaces by low-value
-                   string  lab-1-buf delimited low-value  
-                           " - "
-                           como-durata
-                      into lab-1-buf
-                   end-string
-                   inspect lab-1-buf replacing trailing low-value by spaces
-                   display lab-day1
-                end-if
-           when 2 
-                if lab-2-buf not = spaces                                  
-                   inspect lab-2-buf replacing trailing spaces by low-value
-                   string  lab-2-buf delimited low-value 
-                           " - "
-                           como-durata
-                      into lab-2-buf
-                   end-string
-                   inspect lab-2-buf replacing trailing low-value by spaces
-                   display lab-day2
-                end-if  
-           when 3                  
-                if lab-3-buf not = spaces                                  
-                   inspect lab-3-buf replacing trailing spaces by low-value
-                   string  lab-3-buf delimited low-value 
-                           " - "
-                           como-durata
-                      into lab-3-buf
-                   end-string
-                   inspect lab-3-buf replacing trailing low-value by spaces
-                   display lab-day3
-                end-if
-           when 4                  
-                if lab-4-buf not = spaces                                  
-                   inspect lab-4-buf replacing trailing spaces by low-value
-                   string  lab-4-buf delimited low-value
-                           " - "
-                           como-durata
-                      into lab-4-buf
-                   end-string
-                   inspect lab-4-buf replacing trailing low-value by spaces
-                   display lab-day4
-                end-if
-           when 5                  
-                if lab-5-buf not = spaces                                  
-                   inspect lab-5-buf replacing trailing spaces by low-value
-                   string  lab-5-buf delimited low-value
-                           " - "
-                           como-durata
-                      into lab-5-buf
-                   end-string
-                   inspect lab-5-buf replacing trailing low-value by spaces
-                   display lab-day5
-                end-if
-           when 6                  
-                if lab-6-buf not = spaces                                  
-                   inspect lab-6-buf replacing trailing spaces by low-value
-                   string  lab-6-buf delimited low-value
-                           " - "
-                           como-durata
-                      into lab-6-buf
-                   end-string
-                   inspect lab-6-buf replacing trailing low-value by spaces
-                   display lab-day6
-                end-if
-           when 7            
-                if lab-7-buf not = spaces                                  
-                   inspect lab-7-buf replacing trailing spaces by low-value
-                   string  lab-7-buf delimited low-value
-                           " - "
-                           como-durata
-                      into lab-7-buf
-                   end-string
-                   inspect lab-7-buf replacing trailing low-value by spaces
-                   display lab-day7
-                end-if
+           when 1 modify gd-schema( 2, 12), cell-data como-durata
+           when 2 modify gd-schema( 4, 12), cell-data como-durata
+           when 3 modify gd-schema( 6, 12), cell-data como-durata
+           when 4 modify gd-schema( 8, 12), cell-data como-durata
+           when 5 modify gd-schema(10, 12), cell-data como-durata
+           when 6 modify gd-schema(12, 12), cell-data como-durata
+           when 7 modify gd-schema(14, 12), cell-data como-durata
            end-evaluate.
                                                     
       ***---     
@@ -6115,7 +6060,8 @@ BEGIN-TEXT
                  end-perform
            end-start.
 
-           if tot-exe > 0     
+           if ( como-dupl not = spaces and tot-exe > 1 ) or
+              ( como-dupl     = spaces and tot-exe > 0 )
               move tot-exe to ex-remain  
               perform until 1 = 2
                  compute idx = function random * (tot-exe)
@@ -6124,7 +6070,7 @@ BEGIN-TEXT
                     ex-remain = 0
 
                     if como-dupl not = spaces
-                       if como-dupl not = el-exe-desc(idx) or tot-exe = 1
+                       if como-dupl not = el-exe-desc(idx)
                           move idx-days         to tex-day
                           move idx-split        to tex-split     
                           move mcg-code         to tex-mcg-code
@@ -6138,9 +6084,10 @@ BEGIN-TEXT
                           if ex-remain > 0
                              subtract 1 from ex-remain
                           end-if  
-
-                          if ted-num > 1
-                             subtract 1 from ted-num
+                                                     
+                          if ted-num > 0 and 
+                             como-dupl not = el-exe-desc(idx)
+                             subtract 1 from ted-num 
                           end-if
                           exit perform
                        end-if
@@ -6202,7 +6149,7 @@ BEGIN-TEXT
                              move tex-exe-desc(1:counter - 5)to como-nome
                           end-if
                           if como-nome = spaces
-                             exit perform cycle
+                             move tex-exe-desc to como-nome
                           end-if
                           inspect tex-exe-desc replacing trailing low-value by spaces
                           move tex-day   to ted-day
@@ -6227,7 +6174,10 @@ BEGIN-TEXT
                        invalid continue
                    not invalid
                        perform until 1 = 2
-                          read tmp-exe-dupl next at end exit perform end-read
+                          read tmp-exe-dupl next at end exit perform end-read 
+                          if ted-num < 2
+                             exit perform
+                          end-if
                           move ted-day       to tex-day
                           move ted-nome-dupl to tex-nome-dupl
                           start tmp-exe key >= tex-k-dupl
@@ -6253,14 +6203,14 @@ BEGIN-TEXT
                                    move tex-exe-desc to como-dupl
                                    perform ADD-RANDOM-EXERCISE
 
-                                   if ted-num <= 1
+                                   if ted-num < 2
                                       exit perform
                                    end-if
               
                                 end-perform
                           end-start
                        end-perform
-                 end-start        
+                 end-start                
               end-perform 
               if tot-subst = 0
                  exit perform
@@ -6320,6 +6270,8 @@ BEGIN-TEXT
                  move spaces to como-el-mcg-desc(idx) 
               end-if
            end-perform.
+
+           perform ABILITA-MACROGRUPPI.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -6371,6 +6323,13 @@ BEGIN-DATA
    PARAGRAPH         = cb-wod-BeforeProcedure
 BEGIN-TEXT
       *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = gd-schema-Ev-Msg-Begin-Entry
+BEGIN-TEXT
+           set event-action to event-action-fail.
 END-TEXT
 END-DATA
 

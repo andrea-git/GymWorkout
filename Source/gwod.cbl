@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 18 settembre 2023 19:30:50.
+       DATE-WRITTEN.        martedì 19 settembre 2023 13:47:36.
        REMARKS.
       *{TOTEM}END
 
@@ -92,6 +92,7 @@
        77 store-ini        PIC  9(8).
        77 store-codice     PIC  9(5).
        77 data-oggi        PIC  9(8).
+       77 effort-xx        PIC  xx.
        77 toolbar-bmp      PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
@@ -134,12 +135,38 @@
        77 tot-subst        PIC  999.
        77 AUTO-ID          PIC  9(6)
                   VALUE IS 0,00.
+       77 como-minuto-i    PIC  x(6).
+       77 como-ora-e       PIC  x(3).
        77 como-dupl        PIC  x(100).
+       77 colore           PIC  999.
        77 BOTTONE-annulla-BMP          PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
        77 Form1-Tb-1-Handlea
                   USAGE IS HANDLE OF WINDOW.
+       01 rec-schema.
+           05 sigle-effort.
+               10 sigle-effort-1   PIC  x(7).
+               10 sigle-effort-2   PIC  x(7).
+               10 sigle-effort-3   PIC  x(7).
+               10 sigle-effort-4   PIC  x(7).
+               10 sigle-effort-5   PIC  x(7).
+               10 sigle-effort-6   PIC  x(7).
+               10 sigle-effort-7   PIC  x(7).
+               10 sigle-effort-8   PIC  x(7).
+               10 sigle-effort-9   PIC  x(7).
+               10 sigle-effort-10  PIC  x(7).
+           05 mcg.
+               10 mcg-1            PIC  x(5).
+               10 mcg-2            PIC  x(5).
+               10 mcg-3            PIC  x(5).
+               10 mcg-4            PIC  x(5).
+               10 mcg-5            PIC  x(5).
+               10 mcg-6            PIC  x(5).
+               10 mcg-7            PIC  x(5).
+               10 mcg-8            PIC  x(5).
+               10 mcg-9            PIC  x(5).
+               10 mcg-10           PIC  x(5).
        01 tab-exe.
            05 el-exe
                       OCCURS 20 TIMES.
@@ -161,13 +188,6 @@
        77 hh   PIC  99.
        77 mm   PIC  99.
        77 resto            PIC  9(5).
-       77 s-day1           PIC  x(200).
-       77 s-day2           PIC  x(200).
-       77 s-day3           PIC  x(200).
-       77 s-day4           PIC  x(200).
-       77 s-day5           PIC  x(200).
-       77 s-day6           PIC  x(200).
-       77 s-day7           PIC  x(200).
        77 tot-durata       PIC  9(10).
        77 lastIdx          PIC  9(3).
        77 idx1 PIC  9(3).
@@ -277,24 +297,15 @@
        77 random-bmp       PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
-       77 e-lab-day1       PIC  9
-                  VALUE IS 0.
-       77 Calibri10B-Occidentale
-                  USAGE IS HANDLE OF FONT.
-       77 e-lab-day2       PIC  9
-                  VALUE IS 1.
-       77 como-day         PIC  X(100).
-       77 lab-1-buf        PIC  X(100).
-       77 lab-2-buf        PIC  X(100).
-       77 lab-3-buf        PIC  X(100).
-       77 lab-4-buf        PIC  X(100).
-       77 lab-5-buf        PIC  X(100).
-       77 lab-6-buf        PIC  X(100).
-       77 lab-7-buf        PIC  X(100).
+       77 como-day         PIC  X(200).
        77 counter          PIC  9(3).
        77 path-tmp-exe-dupl            PIC  X(256).
        77 STATUS-tmp-exe-dupl          PIC  X(2).
            88 Valid-STATUS-tmp-exe-dupl VALUE IS "00" THRU "09". 
+       77 Courier-New8-Occidentale
+                  USAGE IS HANDLE OF FONT.
+       77 Calibri10B-Occidentale
+                  USAGE IS HANDLE OF FONT.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -477,10 +488,10 @@
        05
            cb-mg1, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 1,50,
+           COL 17,80, 
+           LINE 1,70,
            LINES 6,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 7,
@@ -497,10 +508,10 @@
        05
            cb-mg2, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 3,00,
+           COL 17,80, 
+           LINE 3,17,
            LINES 6,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 8,
@@ -517,10 +528,10 @@
        05
            cb-mg3, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 4,50,
+           COL 17,80, 
+           LINE 4,70,
            LINES 6,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 9,
@@ -537,10 +548,10 @@
        05
            cb-mg4, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 6,00,
+           COL 17,80, 
+           LINE 6,17,
            LINES 6,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 11,
@@ -557,10 +568,10 @@
        05
            cb-mg5, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 7,50,
+           COL 17,80, 
+           LINE 7,70,
            LINES 6,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 13,
@@ -577,10 +588,10 @@
        05
            cb-mg6, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 9,00,
+           COL 17,80, 
+           LINE 9,17,
            LINES 6,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 28,
@@ -597,10 +608,10 @@
        05
            cb-mg7, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 10,50,
+           COL 17,80, 
+           LINE 10,70,
            LINES 6,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 35,
@@ -617,10 +628,10 @@
        05
            cb-mul, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 14,91,
+           COL 17,80, 
+           LINE 15,09,
            LINES 4,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 32,
@@ -638,10 +649,10 @@
        05
            cb-int, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 16,91,
+           COL 17,80, 
+           LINE 17,09,
            LINES 6,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 17,
@@ -659,10 +670,10 @@
        05
            cb-dur, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 18,39,
+           COL 17,80, 
+           LINE 18,57,
            LINES 6,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 19,
@@ -680,10 +691,10 @@
        05
            cb-gio, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 19,91,
+           COL 17,80, 
+           LINE 20,09,
            LINES 6,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 24,
@@ -701,10 +712,10 @@
        05
            cb-wod, 
            Combo-Box, 
-           COL 17,00, 
-           LINE 21,39,
+           COL 17,80, 
+           LINE 21,57,
            LINES 6,00 ,
-           SIZE 25,00 ,
+           SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
            ID IS 34,
@@ -722,8 +733,8 @@
        05
            pb-genera, 
            Push-Button, 
-           COL 17,00, 
-           LINE 23,17,
+           COL 17,80, 
+           LINE 23,35,
            LINES 55 PIXELS,
            SIZE 148 PIXELS,
            BITMAP-HANDLE genera-bmp,
@@ -743,7 +754,7 @@
            Screen1-Pb-1, 
            Push-Button, 
            COL 2,30, 
-           LINE 23,65,
+           LINE 23,83,
            LINES 1,48 ,
            SIZE 3,80 ,
            EXCEPTION-VALUE 1001,
@@ -759,7 +770,7 @@
            Screen1-Pb-1a, 
            Push-Button, 
            COL 9,10, 
-           LINE 23,65,
+           LINE 23,83,
            LINES 1,48 ,
            SIZE 3,80 ,
            EXCEPTION-VALUE 1003,
@@ -774,8 +785,8 @@
        05
            pb-random, 
            Push-Button, 
-           COL 17,00, 
-           LINE 12,17,
+           COL 17,80, 
+           LINE 12,35,
            LINES 55 PIXELS,
            SIZE 148 PIXELS,
            BITMAP-HANDLE random-bmp,
@@ -794,9 +805,9 @@
        05
            gd1, 
            Grid, 
-           COL 44,40, 
-           LINE 1,50,
-           LINES 34,78 ,
+           COL 62,40, 
+           LINE 1,74,
+           LINES 34,87 ,
            SIZE 67,30 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
@@ -858,7 +869,7 @@
            lab-a, 
            Label, 
            COL 3,00, 
-           LINE 1,50,
+           LINE 1,70,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 2,
@@ -873,7 +884,7 @@
            lab-b, 
            Label, 
            COL 3,00, 
-           LINE 3,00,
+           LINE 3,17,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 3,
@@ -888,7 +899,7 @@
            lab-c, 
            Label, 
            COL 3,00, 
-           LINE 4,50,
+           LINE 4,70,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 4,
@@ -903,7 +914,7 @@
            lab-d, 
            Label, 
            COL 3,00, 
-           LINE 6,00,
+           LINE 6,17,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 5,
@@ -918,7 +929,7 @@
            lab-e, 
            Label, 
            COL 3,00, 
-           LINE 7,50,
+           LINE 7,70,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 6,
@@ -933,7 +944,7 @@
            Screen1-La-2a, 
            Label, 
            COL 3,00, 
-           LINE 16,91,
+           LINE 17,09,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 16,
@@ -948,7 +959,7 @@
            Screen1-La-2aa, 
            Label, 
            COL 3,00, 
-           LINE 18,39,
+           LINE 18,57,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 18,
@@ -963,7 +974,7 @@
            Screen1-La-2aaa, 
            Label, 
            COL 3,00, 
-           LINE 19,91,
+           LINE 20,09,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 23,
@@ -978,7 +989,7 @@
            Screen1-La-2ba, 
            Label, 
            COL 3,00, 
-           LINE 14,91,
+           LINE 15,09,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 31,
@@ -993,7 +1004,7 @@
            Screen1-La-2aaaa, 
            Label, 
            COL 3,00, 
-           LINE 21,39,
+           LINE 21,57,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 33,
@@ -1008,7 +1019,7 @@
            lab-f, 
            Label, 
            COL 3,00, 
-           LINE 9,00,
+           LINE 9,17,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 27,
@@ -1023,7 +1034,7 @@
            lab-g, 
            Label, 
            COL 3,00, 
-           LINE 10,50,
+           LINE 10,70,
            LINES 1,30 ,
            SIZE 13,00 ,
            ID IS 29,
@@ -1033,123 +1044,37 @@
            TITLE "Macrogruppo G",
            .
 
-      * LABEL
+      * GRID
        05
-           lab-day1, 
-           Label, 
-           COL 3,00, 
-           LINE 26,04,
-           LINES 0,80 ,
-           SIZE 39,00 ,
-           FONT IS Calibri10-Occidentale,
-           ID IS 14,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE lab-1-buf,
-           VISIBLE 1,
-           .
-
-      * LABEL
-       05
-           lab-day2, 
-           Label, 
-           COL 3,00, 
-           LINE 26,91,
-           LINES 0,80 ,
-           SIZE 39,00 ,
-           FONT IS Calibri10-Occidentale,
-           ID IS 15,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE lab-2-buf,
-           VISIBLE 1,
-           .
-
-      * LABEL
-       05
-           lab-day3, 
-           Label, 
-           COL 3,00, 
-           LINE 27,78,
-           LINES 0,80 ,
-           SIZE 39,00 ,
-           FONT IS Calibri10-Occidentale,
-           ID IS 20,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE lab-3-buf,
-           VISIBLE 1,
-           .
-
-      * LABEL
-       05
-           lab-day4, 
-           Label, 
-           COL 3,00, 
-           LINE 28,65,
-           LINES 0,80 ,
-           SIZE 39,00 ,
-           FONT IS Calibri10-Occidentale,
-           ID IS 21,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE lab-4-buf,
-           VISIBLE 1,
-           .
-
-      * LABEL
-       05
-           lab-day5, 
-           Label, 
-           COL 3,00, 
-           LINE 29,52,
-           LINES 0,80 ,
-           SIZE 39,00 ,
-           FONT IS Calibri10-Occidentale,
-           ID IS 22,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE lab-5-buf,
-           VISIBLE 1,
-           .
-
-      * LABEL
-       05
-           lab-day6, 
-           Label, 
-           COL 3,00, 
-           LINE 30,39,
-           LINES 0,80 ,
-           SIZE 39,00 ,
-           FONT IS Calibri10-Occidentale,
+           gd-schema, 
+           Grid, 
+           COL 2,30, 
+           LINE 26,09,
+           LINES 10,52 ,
+           SIZE 58,50 ,
+           ADJUSTABLE-COLUMNS,
+           BOXED,
+           DATA-COLUMNS (1, 3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53),
+           ALIGNMENT ("R", "L", "L", "L", "L", "L", "L", "L", "L", "L", 
+           "L", "U"),
+           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+           DATA-TYPES ("z9", "x(5)", "X(5)", "X(100)", "X(5)", "X(100)"
+           , "z9", "z9", "X", "X", "X", "X"),
+           NUM-COL-HEADINGS 1,
+           COLUMN-HEADINGS,
+           CURSOR-FRAME-WIDTH 0,
+           DIVIDER-COLOR 1,
+           FONT IS Calibri10B-Occidentale,
+           HEADING-COLOR 257,
+           HEADING-DIVIDER-COLOR 1,
            ID IS 37,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE lab-6-buf,
-           VISIBLE 1,
-           .
-
-      * LABEL
-       05
-           lab-day7, 
-           Label, 
-           COL 3,00, 
-           LINE 31,26,
-           LINES 0,80 ,
-           SIZE 39,00 ,
-           FONT IS Calibri10-Occidentale,
-           ID IS 38,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE lab-7-buf,
-           VISIBLE 1,
+           NUM-ROWS 15,
+           TILED-HEADINGS,
+           VIRTUAL-WIDTH 80,
+           VPADDING 5,
+           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
            .
 
       * TOOLBAR
@@ -1322,7 +1247,7 @@
            LINE 1,13,
            LINES 1,35 ,
            SIZE 3,10 ,
-           FONT IS Small-Font,
+           FONT IS Calibri10-Occidentale,
            ID IS 41,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1401,8 +1326,9 @@
       * <TOTEM:EPT. INIT:gwod, INIT:gwod, BeforeDestroyResource>
       * <TOTEM:END>
            DESTROY Calibri12-Occidentale
-           DESTROY Calibri10-Occidentale
+           DESTROY Calibri10B-Occidentale
            DESTROY Calibri14-Occidentale
+           DESTROY Calibri10-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, genera-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, random-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
@@ -1446,19 +1372,18 @@
            MOVE 0 TO WFONT-CHAR-SET
            CALL "W$FONT" USING WFONT-GET-FONT, 
                      Calibri12-Occidentale, WFONT-DATA
-      * Calibri10-Occidentale
-           INITIALIZE WFONT-DATA Calibri10-Occidentale
+      * Calibri10B-Occidentale
+           INITIALIZE WFONT-DATA Calibri10B-Occidentale
            MOVE 10 TO WFONT-SIZE
            MOVE "Calibri" TO WFONT-NAME
-           SET WFCHARSET-DONT-CARE TO TRUE
-           SET WFONT-BOLD TO FALSE
+           SET WFONT-BOLD TO TRUE
            SET WFONT-ITALIC TO FALSE
            SET WFONT-UNDERLINE TO FALSE
            SET WFONT-STRIKEOUT TO FALSE
            SET WFONT-FIXED-PITCH TO FALSE
            MOVE 0 TO WFONT-CHAR-SET
            CALL "W$FONT" USING WFONT-GET-FONT, 
-                     Calibri10-Occidentale, WFONT-DATA
+                     Calibri10B-Occidentale, WFONT-DATA
       * Calibri14-Occidentale
            INITIALIZE WFONT-DATA Calibri14-Occidentale
            MOVE 14 TO WFONT-SIZE
@@ -1472,6 +1397,18 @@
            MOVE 0 TO WFONT-CHAR-SET
            CALL "W$FONT" USING WFONT-GET-FONT, 
                      Calibri14-Occidentale, WFONT-DATA
+      * Calibri10-Occidentale
+           INITIALIZE WFONT-DATA Calibri10-Occidentale
+           MOVE 10 TO WFONT-SIZE
+           MOVE "Calibri" TO WFONT-NAME
+           SET WFONT-BOLD TO FALSE
+           SET WFONT-ITALIC TO FALSE
+           SET WFONT-UNDERLINE TO FALSE
+           SET WFONT-STRIKEOUT TO FALSE
+           SET WFONT-FIXED-PITCH TO FALSE
+           MOVE 0 TO WFONT-CHAR-SET
+           CALL "W$FONT" USING WFONT-GET-FONT, 
+                     Calibri10-Occidentale, WFONT-DATA
            .
 
        INIT-BMP.
@@ -3493,6 +3430,46 @@
                 CELL-DATA = "Reps",
            .
 
+      * GRID
+       gd-schema-Content.
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 1, Y = 1,
+                CELL-DATA = "Day",
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 2, Y = 1,
+                CELL-DATA = "#1",
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 3, Y = 1,
+                CELL-DATA = "#2",
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 4, Y = 1,
+                CELL-DATA = "#3",
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 5, Y = 1,
+                CELL-DATA = "#4",
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 6, Y = 1,
+                CELL-DATA = "#5",
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 7, Y = 1,
+                CELL-DATA = "#6",
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 8, Y = 1,
+                CELL-DATA = "#7",
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 9, Y = 1,
+                CELL-DATA = "#8",
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 10, Y = 1,
+                CELL-DATA = "#9",
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 11, Y = 1,
+                CELL-DATA = "#10",
+      * CELLS' SETTING
+              MODIFY gd-schema, X = 12, Y = 1,
+                CELL-DATA = "Durata stimata",
+           .
+
       * FD's Initialize Paragraph
        DataSet1-exercises-INITREC.
            INITIALIZE exe-rec OF exercises
@@ -3619,8 +3596,8 @@
            Display Independent GRAPHICAL WINDOW
               SCREEN LINE 2,
               SCREEN COLUMN 2,
-              LINES 37,43,
-              SIZE 112,40,
+              LINES 38,39,
+              SIZE 130,00,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -3660,6 +3637,8 @@
            DISPLAY Form1 UPON form1-Handle
       * DISPLAY-COLUMNS settings
               MODIFY gd1, DISPLAY-COLUMNS (1, 6, 11, 21, 41, 51, 71, 76)
+              MODIFY gd-schema, DISPLAY-COLUMNS (1, 6, 12, 18, 24, 30, 
+           36, 42, 48, 54, 60, 66)
            .
 
        Form1-PROC.
@@ -3859,6 +3838,8 @@
            PERFORM cb-wod-Content
       * GRID
            PERFORM gd1-Content
+      * GRID
+           PERFORM gd-schema-Content
            .
 
        Form1-DataSet1-CHANGETO-KEY1.
@@ -4257,6 +4238,9 @@
            WHEN Msg-Goto-Cell-Mouse ALSO 5001 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Goto-Cell-Mouse
+           WHEN Msg-Begin-Entry ALSO 37 ALSO
+                    form1-Handle 
+              PERFORM gd-schema-Ev-Msg-Begin-Entry
            END-EVALUATE
            .
 
@@ -4279,23 +4263,7 @@
            modify cb-mg4, enabled false.
            modify cb-mg5, enabled false.
            modify cb-mg6, enabled false.
-           modify cb-mg7, enabled false.    
-
-           move spaces to lab-1-buf.
-           move spaces to lab-2-buf.
-           move spaces to lab-3-buf.
-           move spaces to lab-4-buf.
-           move spaces to lab-5-buf.
-           move spaces to lab-6-buf.
-           move spaces to lab-7-buf.
-
-           display lab-day1 
-                   lab-day2 
-                   lab-day3 
-                   lab-day4 
-                   lab-day5 
-                   lab-day6 
-                   lab-day7.
+           modify cb-mg7, enabled false. 
 
            read wodmap key wom-k-desc
                 invalid
@@ -4310,7 +4278,11 @@
                                          alphanumeric data by spaces
                 exit paragraph
            end-read.
-                              
+                     
+           modify gd-schema, reset-grid = 1.
+           perform GD-SCHEMA-CONTENT.
+           move 1 to riga.
+           move 304 to colore.
            perform varying idx-days from 1 by 1
                      until idx-days > wom-days
               perform varying idx-split from 1 by 1
@@ -4318,45 +4290,91 @@
                  if wom-split-el-split-sigla(idx-days, idx-split) = 
            space
                     exit perform
-                 end-if
-                 if idx-split = 1
-                    move ": " to como-day
-                 end-if
+                 end-if     
+                 evaluate wom-split-el-split-sigla(idx-days, idx-split)
+                 when "A" inquire cb-mg1, value = mcg-desc
+                 when "B" inquire cb-mg2, value = mcg-desc
+                 when "C" inquire cb-mg3, value = mcg-desc
+                 when "D" inquire cb-mg4, value = mcg-desc
+                 when "E" inquire cb-mg5, value = mcg-desc
+                 when "F" inquire cb-mg6, value = mcg-desc
+                 when "G" inquire cb-mg7, value = mcg-desc
+                 end-evaluate
+                 read macrogroups key mcg-k-desc
+
+                 move wom-split-el-split-effort(idx-days, idx-split)
+                   to int-code
+                 read intexe no lock
+                 
+                 initialize como-day
+                 move int-effort to effort-xx
+                 inspect effort-xx replacing leading x"30" by x"20"
+                 call "C$JUSTIFY" using effort-xx, "L"
+                 inspect effort-xx replacing trailing spaces by 
+           low-value
+
                  inspect como-day replacing trailing spaces by low-value
                  string  como-day delimited low-value
-                         " "
                          wom-split-el-split-sigla(idx-days, idx-split)
                          wom-split-el-split-effort(idx-days, idx-split)
-                         " | "      
+                         "-"          
+                         effort-xx delimited low-value
+                         int-desc(1:1)
                     into como-day
                  end-string
+                 evaluate idx-split
+                 when 1 move como-day to sigle-effort-1
+                        move mcg-code to mcg-1
+                 when 2 move como-day to sigle-effort-2
+                        move mcg-code to mcg-2
+                 when 3 move como-day to sigle-effort-3
+                        move mcg-code to mcg-3
+                 when 4 move como-day to sigle-effort-4
+                        move mcg-code to mcg-4
+                 when 5 move como-day to sigle-effort-5
+                        move mcg-code to mcg-5
+                 when 6 move como-day to sigle-effort-6
+                        move mcg-code to mcg-6
+                 when 7 move como-day to sigle-effort-7
+                        move mcg-code to mcg-7
+                 end-evaluate
               end-perform
-              inspect como-day replacing trailing low-value by spaces
-              evaluate idx-days
-              when 1 string "DAY 1" como-day into lab-1-buf
-              when 2 string "DAY 2" como-day into lab-2-buf
-              when 3 string "DAY 3" como-day into lab-3-buf
-              when 4 string "DAY 4" como-day into lab-4-buf
-              when 5 string "DAY 5" como-day into lab-5-buf
-              when 6 string "DAY 6" como-day into lab-6-buf
-              when 7 string "DAY 7" como-day into lab-7-buf
-              end-evaluate
-           end-perform.             
-           move lab-1-buf to s-day1.
-           move lab-2-buf to s-day2.
-           move lab-3-buf to s-day3.
-           move lab-4-buf to s-day4.
-           move lab-5-buf to s-day5.
-           move lab-6-buf to s-day6.
-           move lab-7-buf to s-day7.
+              if colore = 304 
+                 move 0 to colore
+              else
+                 move 304 to colore
+              end-if
+              add 1 to riga 
+              modify gd-schema(riga,  1), cell-data = idx-days
+              modify gd-schema(riga,  2), cell-data = sigle-effort-1
+              modify gd-schema(riga,  3), cell-data = sigle-effort-2
+              modify gd-schema(riga,  4), cell-data = sigle-effort-3
+              modify gd-schema(riga,  5), cell-data = sigle-effort-4
+              modify gd-schema(riga,  6), cell-data = sigle-effort-5
+              modify gd-schema(riga,  7), cell-data = sigle-effort-6
+              modify gd-schema(riga,  8), cell-data = sigle-effort-7
+              modify gd-schema(riga,  9), cell-data = sigle-effort-8
+              modify gd-schema(riga, 10), cell-data = sigle-effort-9
+              modify gd-schema(riga, 11), cell-data = sigle-effort-10
+              modify gd-schema(riga, 12), cell-data = spaces            
+               
 
-           display lab-day1 
-                   lab-day2 
-                   lab-day3 
-                   lab-day4 
-                   lab-day5 
-                   lab-day6 
-                   lab-day7.
+              modify gd-schema(riga), row-color = colore
+              add 1 to riga                                  
+              modify gd-schema(riga,  1), cell-data = spaces
+              modify gd-schema(riga,  2), cell-data = mcg-1
+              modify gd-schema(riga,  3), cell-data = mcg-2
+              modify gd-schema(riga,  4), cell-data = mcg-3
+              modify gd-schema(riga,  5), cell-data = mcg-4
+              modify gd-schema(riga,  6), cell-data = mcg-5
+              modify gd-schema(riga,  7), cell-data = mcg-6
+              modify gd-schema(riga,  8), cell-data = mcg-7
+              modify gd-schema(riga,  9), cell-data = mcg-8
+              modify gd-schema(riga, 10), cell-data = mcg-9 
+              modify gd-schema(riga, 11), cell-data = mcg-10
+              modify gd-schema(riga, 12), cell-data = spaces
+              modify gd-schema(riga), row-color = colore    
+           end-perform.             
 
            evaluate wom-macrogroups
            when 1
@@ -5634,14 +5652,6 @@
        pb-genera-LinkTo.
       * <TOTEM:PARA. pb-genera-LinkTo>
            perform CREA-OCCURS-GRUPPI.
-                                   
-           move s-day1 to lab-1-buf.
-           move s-day2 to lab-2-buf.
-           move s-day3 to lab-3-buf.
-           move s-day4 to lab-4-buf.
-           move s-day5 to lab-5-buf.
-           move s-day6 to lab-6-buf.
-           move s-day7 to lab-7-buf.
 
            modify gd1, mass-update = 1.
            modify gd1, reset-grid = 1.
@@ -5921,11 +5931,26 @@
               inspect como-hh replacing leading x"30" by x"20"
               call "C$JUSTIFY" using como-hh, "L"
               inspect como-hh replacing trailing spaces by low-value
+                    
+              if hh = 1             
+                 move "ora" to como-ora-e
+              else
+                 move "ore" to como-ora-e
+              end-if
 
-              string  como-hh    delimited low-value
-                      " ore e "  delimited size
-                      como-mm    delimited low-value
-                      " minuti." delimited size
+              if mm = 1             
+                 move "minuto" to como-minuto-i
+              else
+                 move "minuti" to como-minuto-i
+              end-if
+
+              string  como-hh       delimited low-value
+                      " "           delimited size
+                      como-ora-e    delimited size
+                      " "           delimited size
+                      como-mm       delimited low-value
+                      " "           delimited size
+                      como-minuto-i delimited size
                  into como-durata
               end-string
            else
@@ -5934,113 +5959,28 @@
               inspect como-mm replacing leading x"30" by x"20"
               call "C$JUSTIFY" using como-mm, "L"
               inspect como-mm replacing trailing spaces by low-value
-              string  como-mm    delimited low-value
-                      " minuti." delimited size
+
+              if mm = 1             
+                 move "minuto" to como-minuto-i
+              else
+                 move "minuti" to como-minuto-i
+              end-if
+
+              string  como-mm       delimited low-value
+                      " "           delimited size
+                      como-minuto-i delimited size
                  into como-durata
               end-string
            end-if.
-           move como-durata to como-durata(18:)
-           move "Durata stimata: " to como-durata(1:17).
 
            evaluate save-day
-           when 1 
-                if lab-1-buf not = spaces                               
-              
-                   inspect lab-1-buf replacing trailing spaces by 
-           low-value
-                   string  lab-1-buf delimited low-value  
-                           " - "
-                           como-durata
-                      into lab-1-buf
-                   end-string
-                   inspect lab-1-buf replacing trailing low-value by 
-           spaces
-                   display lab-day1
-                end-if
-           when 2 
-                if lab-2-buf not = spaces                               
-              
-                   inspect lab-2-buf replacing trailing spaces by 
-           low-value
-                   string  lab-2-buf delimited low-value 
-                           " - "
-                           como-durata
-                      into lab-2-buf
-                   end-string
-                   inspect lab-2-buf replacing trailing low-value by 
-           spaces
-                   display lab-day2
-                end-if  
-           when 3                  
-                if lab-3-buf not = spaces                               
-              
-                   inspect lab-3-buf replacing trailing spaces by 
-           low-value
-                   string  lab-3-buf delimited low-value 
-                           " - "
-                           como-durata
-                      into lab-3-buf
-                   end-string
-                   inspect lab-3-buf replacing trailing low-value by 
-           spaces
-                   display lab-day3
-                end-if
-           when 4                  
-                if lab-4-buf not = spaces                               
-              
-                   inspect lab-4-buf replacing trailing spaces by 
-           low-value
-                   string  lab-4-buf delimited low-value
-                           " - "
-                           como-durata
-                      into lab-4-buf
-                   end-string
-                   inspect lab-4-buf replacing trailing low-value by 
-           spaces
-                   display lab-day4
-                end-if
-           when 5                  
-                if lab-5-buf not = spaces                               
-              
-                   inspect lab-5-buf replacing trailing spaces by 
-           low-value
-                   string  lab-5-buf delimited low-value
-                           " - "
-                           como-durata
-                      into lab-5-buf
-                   end-string
-                   inspect lab-5-buf replacing trailing low-value by 
-           spaces
-                   display lab-day5
-                end-if
-           when 6                  
-                if lab-6-buf not = spaces                               
-              
-                   inspect lab-6-buf replacing trailing spaces by 
-           low-value
-                   string  lab-6-buf delimited low-value
-                           " - "
-                           como-durata
-                      into lab-6-buf
-                   end-string
-                   inspect lab-6-buf replacing trailing low-value by 
-           spaces
-                   display lab-day6
-                end-if
-           when 7            
-                if lab-7-buf not = spaces                               
-              
-                   inspect lab-7-buf replacing trailing spaces by 
-           low-value
-                   string  lab-7-buf delimited low-value
-                           " - "
-                           como-durata
-                      into lab-7-buf
-                   end-string
-                   inspect lab-7-buf replacing trailing low-value by 
-           spaces
-                   display lab-day7
-                end-if
+           when 1 modify gd-schema( 2, 12), cell-data como-durata
+           when 2 modify gd-schema( 4, 12), cell-data como-durata
+           when 3 modify gd-schema( 6, 12), cell-data como-durata
+           when 4 modify gd-schema( 8, 12), cell-data como-durata
+           when 5 modify gd-schema(10, 12), cell-data como-durata
+           when 6 modify gd-schema(12, 12), cell-data como-durata
+           when 7 modify gd-schema(14, 12), cell-data como-durata
            end-evaluate.
                                                     
       ***---     
@@ -6223,7 +6163,8 @@
                  end-perform
            end-start.
 
-           if tot-exe > 0     
+           if ( como-dupl not = spaces and tot-exe > 1 ) or
+              ( como-dupl     = spaces and tot-exe > 0 )
               move tot-exe to ex-remain  
               perform until 1 = 2
                  compute idx = function random * (tot-exe)
@@ -6232,8 +6173,7 @@
                     ex-remain = 0
 
                     if como-dupl not = spaces
-                       if como-dupl not = el-exe-desc(idx) or tot-exe = 
-           1
+                       if como-dupl not = el-exe-desc(idx)
                           move idx-days         to tex-day
                           move idx-split        to tex-split     
                           move mcg-code         to tex-mcg-code
@@ -6248,9 +6188,10 @@
                           if ex-remain > 0
                              subtract 1 from ex-remain
                           end-if  
-
-                          if ted-num > 1
-                             subtract 1 from ted-num
+                                                     
+                          if ted-num > 0 and 
+                             como-dupl not = el-exe-desc(idx)
+                             subtract 1 from ted-num 
                           end-if
                           exit perform
                        end-if
@@ -6318,7 +6259,7 @@
            como-nome
                           end-if
                           if como-nome = spaces
-                             exit perform cycle
+                             move tex-exe-desc to como-nome
                           end-if
                           inspect tex-exe-desc replacing trailing 
            low-value by spaces
@@ -6345,7 +6286,10 @@
                    not invalid
                        perform until 1 = 2
                           read tmp-exe-dupl next at end exit perform 
-           end-read
+           end-read 
+                          if ted-num < 2
+                             exit perform
+                          end-if
                           move ted-day       to tex-day
                           move ted-nome-dupl to tex-nome-dupl
                           start tmp-exe key >= tex-k-dupl
@@ -6374,14 +6318,14 @@
                                    move tex-exe-desc to como-dupl
                                    perform ADD-RANDOM-EXERCISE
 
-                                   if ted-num <= 1
+                                   if ted-num < 2
                                       exit perform
                                    end-if
               
                                 end-perform
                           end-start
                        end-perform
-                 end-start        
+                 end-start                
               end-perform 
               if tot-subst = 0
                  exit perform
@@ -6437,7 +6381,9 @@
                  end-evaluate
                  move spaces to como-el-mcg-desc(idx) 
               end-if
-           end-perform 
+           end-perform.
+
+           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
        Screen1-Pb-1a-LinkTo.
@@ -6478,6 +6424,11 @@
        cb-wod-BeforeProcedure.
       * <TOTEM:PARA. cb-wod-BeforeProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       gd-schema-Ev-Msg-Begin-Entry.
+      * <TOTEM:PARA. gd-schema-Ev-Msg-Begin-Entry>
+           set event-action to event-action-fail 
            .
       * <TOTEM:END>
 

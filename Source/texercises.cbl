@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        sabato 16 settembre 2023 01:22:50.
+       DATE-WRITTEN.        martedì 19 settembre 2023 13:21:42.
        REMARKS.
       *{TOTEM}END
 

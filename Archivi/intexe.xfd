@@ -64,10 +64,10 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="13"
-       xfd:elementary-items-with-occurs="13"
-       xfd:total-items="17"
-       xfd:total-items-with-occurs="17">
+       xfd:elementary-items="14"
+       xfd:elementary-items-with-occurs="14"
+       xfd:total-items="18"
+       xfd:total-items-with-occurs="18">
     <xfd:field
          xfd:field-offset="0"
          xfd:field-bytes="1188"
@@ -190,9 +190,19 @@
          xfd:field-name="INT-EFFORT"/>
     <xfd:field
          xfd:field-offset="116"
-         xfd:field-bytes="1000"
+         xfd:field-bytes="1"
+         xfd:field-type="1"
+         xfd:field-length="1"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="10"
+         xfd:field-name="INT-RESTPAUSE"/>
+    <xfd:field
+         xfd:field-offset="117"
+         xfd:field-bytes="999"
          xfd:field-type="16"
-         xfd:field-length="1000"
+         xfd:field-length="999"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="0"

@@ -6,7 +6,7 @@ QUIT_CONFIRM=0
 ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Screen1
 BEFORE_PROGRAM=menu-Ev-Before-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E79D102152-94-1684631437
+PROGRAM_UNIQUE_CODE=TOTEM-7E7913155045-214-747818996
 
 {{@DESCRIPTION:
 
@@ -1082,7 +1082,7 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = pb-catcli-LinkTo
 BEGIN-TEXT
-           move "tintensity" to NomeProgramma.
+           move "tintexe" to NomeProgramma.
            perform CALL-PROGRAM.
 END-TEXT
 END-DATA

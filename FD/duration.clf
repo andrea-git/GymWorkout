@@ -5,7 +5,7 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7913115629-892-84618095
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7913164138-245-2389923591
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -186,3 +186,10 @@ m_strName=dur-k-desc
 @}}
 [SLKEYATOM0_SLINDEX0_]
 m_strName=dur-desc
+[SLINDEX1_]
+m_strName=dur-k-exercises
+{{@Key_m_strDescriptionSLINDEX1_
+
+@}}
+[SLKEYATOM0_SLINDEX1_]
+m_strName=dur-exercises

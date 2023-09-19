@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 19 settembre 2023 13:47:36.
+       DATE-WRITTEN.        martedì 19 settembre 2023 18:52:09.
        REMARKS.
       *{TOTEM}END
 
@@ -144,6 +144,8 @@
                   VALUE IS 0.
        77 Form1-Tb-1-Handlea
                   USAGE IS HANDLE OF WINDOW.
+       77 Form1-Tb-1-Handlea
+                  USAGE IS HANDLE OF WINDOW.
        01 rec-schema.
            05 sigle-effort.
                10 sigle-effort-1   PIC  x(7).
@@ -221,7 +223,7 @@
            05 col-exe-code     PIC  x(5).
            05 col-exe-desc     PIC  x(100).
            05 col-series       PIC  99.
-           05 col-reps         PIC  x(10).
+           05 col-reps         PIC  x(20).
        77 Calibri14-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 Calibri14B-Occidentale
@@ -306,6 +308,8 @@
                   USAGE IS HANDLE OF FONT.
        77 Calibri10B-Occidentale
                   USAGE IS HANDLE OF FONT.
+       01 hiddenData.
+           05 hid-restpause    PIC  9(3).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -394,6 +398,7 @@
        77 groups-grp-k-mcg-SPLITBUF  PIC X(11).
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
+       77 duration-dur-k-exercises-SPLITBUF  PIC X(3).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 tmp-exe-tex-k-dupl-SPLITBUF  PIC X(102).
        77 intexe-int-k-desc-SPLITBUF  PIC X(101).
@@ -805,14 +810,14 @@
        05
            gd1, 
            Grid, 
-           COL 62,40, 
-           LINE 1,74,
+           COL 63,00, 
+           LINE 1,70,
            LINES 34,87 ,
-           SIZE 67,30 ,
+           SIZE 75,50 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
            DATA-COLUMNS (1, 2, 4, 9, 109, 114, 214, 216),
-           ALIGNMENT ("C", "R", "C", "L", "C", "L", "R", "R"),
+           ALIGNMENT ("C", "R", "U", "L", "U", "L", "U", "U"),
            SEPARATION (5, 5, 5, 5, 5, 5, 5, 5),
            DATA-TYPES ("9(1)", "z9", "X(5)", "X(100)", "X(5)", "X(100)"
            , "z9", "z9"),
@@ -828,7 +833,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 80,
+           VIRTUAL-WIDTH 90,
            VPADDING 5,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -1049,7 +1054,7 @@
            gd-schema, 
            Grid, 
            COL 2,30, 
-           LINE 26,09,
+           LINE 26,13,
            LINES 10,52 ,
            SIZE 58,50 ,
            ADJUSTABLE-COLUMNS,
@@ -1376,6 +1381,7 @@
            INITIALIZE WFONT-DATA Calibri10B-Occidentale
            MOVE 10 TO WFONT-SIZE
            MOVE "Calibri" TO WFONT-NAME
+           SET WFCHARSET-DONT-CARE TO TRUE
            SET WFONT-BOLD TO TRUE
            SET WFONT-ITALIC TO FALSE
            SET WFONT-UNDERLINE TO FALSE
@@ -1401,6 +1407,7 @@
            INITIALIZE WFONT-DATA Calibri10-Occidentale
            MOVE 10 TO WFONT-SIZE
            MOVE "Calibri" TO WFONT-NAME
+           SET WFCHARSET-DONT-CARE TO TRUE
            SET WFONT-BOLD TO FALSE
            SET WFONT-ITALIC TO FALSE
            SET WFONT-UNDERLINE TO FALSE
@@ -2183,6 +2190,12 @@
            MOVE dur-desc(1:100) TO duration-dur-k-desc-SPLITBUF(1:100)
            .
 
+       duration-dur-k-exercises-MERGE-SPLITBUF.
+           INITIALIZE duration-dur-k-exercises-SPLITBUF
+           MOVE dur-exercises(1:2) TO 
+           duration-dur-k-exercises-SPLITBUF(1:2)
+           .
+
        DataSet1-duration-INITSTART.
            IF DataSet1-duration-KEY-Asc
               MOVE Low-Value TO dur-key
@@ -2245,6 +2258,7 @@
               KEY dur-key
            END-IF
            PERFORM duration-dur-k-desc-MERGE-SPLITBUF
+           PERFORM duration-dur-k-exercises-MERGE-SPLITBUF
            MOVE STATUS-duration TO TOTEM-ERR-STAT 
            MOVE "duration" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -2273,6 +2287,7 @@
               END-IF
            END-IF
            PERFORM duration-dur-k-desc-MERGE-SPLITBUF
+           PERFORM duration-dur-k-exercises-MERGE-SPLITBUF
            MOVE STATUS-duration TO TOTEM-ERR-STAT
            MOVE "duration" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -2301,6 +2316,7 @@
               END-IF
            END-IF
            PERFORM duration-dur-k-desc-MERGE-SPLITBUF
+           PERFORM duration-dur-k-exercises-MERGE-SPLITBUF
            MOVE STATUS-duration TO TOTEM-ERR-STAT
            MOVE "duration" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -3597,7 +3613,7 @@
               SCREEN LINE 2,
               SCREEN COLUMN 2,
               LINES 38,39,
-              SIZE 130,00,
+              SIZE 139,90,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -3636,7 +3652,7 @@
               HANDLE IS Form1-St-1-Handle
            DISPLAY Form1 UPON form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY gd1, DISPLAY-COLUMNS (1, 6, 11, 21, 41, 51, 71, 76)
+              MODIFY gd1, DISPLAY-COLUMNS (1, 6, 9, 16, 36, 43, 73, 78)
               MODIFY gd-schema, DISPLAY-COLUMNS (1, 6, 12, 18, 24, 30, 
            36, 42, 48, 54, 60, 66)
            .
@@ -4285,12 +4301,15 @@
            move 304 to colore.
            perform varying idx-days from 1 by 1
                      until idx-days > wom-days
+              initialize rec-schema
+                         replacing numeric data by zeroes
+                              alphanumeric data by spaces
               perform varying idx-split from 1 by 1
                         until idx-split > 20
                  if wom-split-el-split-sigla(idx-days, idx-split) = 
            space
                     exit perform
-                 end-if     
+                 end-if                     
                  evaluate wom-split-el-split-sigla(idx-days, idx-split)
                  when "A" inquire cb-mg1, value = mcg-desc
                  when "B" inquire cb-mg2, value = mcg-desc
@@ -5806,7 +5825,8 @@
                     move tex-exe-code to col-exe-code
                     move tex-exe-desc to col-exe-desc
 
-                    move exe-int-code to int-code
+                    move wom-split-el-split-effort(tex-day, tex-split)
+                      to int-code
                     read intexe
                     if exe-isMulti-yes
                        evaluate wom-effort
@@ -5821,29 +5841,48 @@
                        call "C$JUSTIFY" using col-reps, "L"
                     else                  
                        move int-series to col-series
-
-                       move int-range-from to como-range-from
-                       inspect como-range-from replacing leading x"30" 
-           by x"20"
-                       call "C$JUSTIFY" using como-range-from, "L"
-                       inspect como-range-from replacing trailing 
-           spaces by low-value
-
-                       move int-range-to to como-range-to               
-                
-                       inspect como-range-to replacing leading x"30" by 
-           x"20"  
-                       call "C$JUSTIFY" using como-range-to, "L"        
-             
-                       inspect como-range-to replacing trailing spaces 
-           by low-value
-
+                                             
                        initialize col-reps
-                       string como-range-from delimited low-value
-                              "-"             delimited size
-                              como-range-to   delimited low-value
-                         into col-reps
-                       end-string
+                       if int-restpause > 0  
+                          move int-restpause to como-range-from
+                          inspect como-range-from replacing leading x"30
+      -    "" by x"20"
+                          call "C$JUSTIFY" using como-range-from, "L"
+                          inspect como-range-from replacing trailing 
+           spaces by low-value
+                          string "Rest/pause (" delimited size
+                                 int-restpause  delimited low-value
+                                 ")"            delimited size
+                            into col-reps
+                          end-string
+                       else
+                          if int-range-from = 99 and int-range-to = 99
+                             move "Max" to col-reps
+                          else
+                             move int-range-from to como-range-from
+                             inspect como-range-from replacing leading 
+           x"30" by x"20"
+                             call "C$JUSTIFY" using como-range-from, "L"
+                             inspect como-range-from replacing trailing 
+           spaces by low-value
+                          
+                             move int-range-to to como-range-to         
+                      
+                             inspect como-range-to replacing leading x"3
+      -    "0" by x"20"  
+                             call "C$JUSTIFY" using como-range-to, "L"  
+                   
+                             inspect como-range-to replacing trailing 
+           spaces by low-value
+                          
+                             initialize col-reps
+                             string como-range-from delimited low-value
+                                    "-"             delimited size
+                                    como-range-to   delimited low-value
+                               into col-reps
+                             end-string
+                          end-if
+                       end-if
                     end-if
                     add 1 to riga                                
                     modify gd1(riga, 1), cell-data = col-day
@@ -5854,6 +5893,8 @@
                     modify gd1(riga, 6), cell-data = col-exe-desc
                     modify gd1(riga, 7), cell-data = col-series
                     modify gd1(riga, 8), cell-data = col-reps
+                    move int-restpause to int-restpause
+                    modify gd1(riga, 1), hidden-data hiddenData
 
                     compute tot-durata  = tot-durata +
                             exe-setting +

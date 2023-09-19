@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 18 settembre 2023 12:00:44.
+       DATE-WRITTEN.        martedì 19 settembre 2023 18:24:01.
        REMARKS.
       *{TOTEM}END
 
@@ -100,6 +100,8 @@
        77 como-effort      PIC  999.
        77 tot-exe          PIC  999.
        77 tot-effort       PIC  999v999.
+       77 resto            PIC  999.
+       77 tot-durata       PIC  9(5).
        01 gd-rec.
            05 col-split        PIC  x.
            05 col-effort       PIC  9.
@@ -190,6 +192,7 @@
 
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
+       77 duration-dur-k-exercises-SPLITBUF  PIC X(3).
        77 intexe-int-k-desc-SPLITBUF  PIC X(101).
        77 intexe-int-k-effort-SPLITBUF  PIC X(3).
       * FOR SPLIT KEY BUFFER
@@ -332,7 +335,7 @@
            SIZE 3,00 ,
            BOXED,
            COLOR IS 513,
-           ENABLED MOD,
+           ENABLED 0,
            ID IS 78-ID-ef-durata,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -346,7 +349,7 @@
        05
            ef-int, 
            Entry-Field, 
-           COL 14,00, 
+           COL 52,00, 
            LINE 7,74,
            LINES 1,30 ,
            SIZE 3,00 ,
@@ -701,6 +704,7 @@
            LINE 6,00,
            LINES 1,30 ,
            SIZE 31,30 ,
+           COLOR IS 2,
            ID IS 14,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -712,10 +716,10 @@
        05
            Screen1-La-2aaaa, 
            Label, 
-           COL 2,90, 
+           COL 43,90, 
            LINE 7,74,
            LINES 1,30 ,
-           SIZE 10,00 ,
+           SIZE 7,00 ,
            ID IS 15,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -727,10 +731,11 @@
        05
            lab-int, 
            Label, 
-           COL 18,30, 
+           COL 56,30, 
            LINE 7,74,
            LINES 1,30 ,
            SIZE 31,30 ,
+           COLOR IS 2,
            ID IS 17,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1709,6 +1714,12 @@
            MOVE dur-desc(1:100) TO duration-dur-k-desc-SPLITBUF(1:100)
            .
 
+       duration-dur-k-exercises-MERGE-SPLITBUF.
+           INITIALIZE duration-dur-k-exercises-SPLITBUF
+           MOVE dur-exercises(1:2) TO 
+           duration-dur-k-exercises-SPLITBUF(1:2)
+           .
+
        DataSet1-duration-INITSTART.
            IF DataSet1-duration-KEY-Asc
               MOVE Low-Value TO dur-key
@@ -1771,6 +1782,7 @@
               KEY dur-key
            END-IF
            PERFORM duration-dur-k-desc-MERGE-SPLITBUF
+           PERFORM duration-dur-k-exercises-MERGE-SPLITBUF
            MOVE STATUS-duration TO TOTEM-ERR-STAT 
            MOVE "duration" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -1799,6 +1811,7 @@
               END-IF
            END-IF
            PERFORM duration-dur-k-desc-MERGE-SPLITBUF
+           PERFORM duration-dur-k-exercises-MERGE-SPLITBUF
            MOVE STATUS-duration TO TOTEM-ERR-STAT
            MOVE "duration" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -1827,6 +1840,7 @@
               END-IF
            END-IF
            PERFORM duration-dur-k-desc-MERGE-SPLITBUF
+           PERFORM duration-dur-k-exercises-MERGE-SPLITBUF
            MOVE STATUS-duration TO TOTEM-ERR-STAT
            MOVE "duration" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -3651,7 +3665,7 @@
               perform FORM1-BUF-TO-FLD
               perform CANCELLA-COLORE 
               perform WRITE-DAYS      
-              perform CALCOLA-INTENSITA  
+              perform CALCOLA-INTENSITA-DURATA  
                                      
               accept como-data from century-date
               accept como-ora  from time
@@ -4056,9 +4070,9 @@
            .
       * <TOTEM:END>
 
-       CALCOLA-INTENSITA.
-      * <TOTEM:PARA. CALCOLA-INTENSITA>
-           move 0 to como-effort.
+       CALCOLA-INTENSITA-DURATA.
+      * <TOTEM:PARA. CALCOLA-INTENSITA-DURATA>
+           move 0 to como-effort tot-exe.
 
            perform varying idx-day from 1 by 1 
                      until idx-day > wom-days
@@ -4067,20 +4081,39 @@
                   if wom-split-el-split-effort(idx-day, idx-split) = 0
                      exit perform
                   end-if
-                  add wom-split-el-split-effort(idx-day, idx-split) 
-                   to como-effort
+                  move wom-split-el-split-effort(idx-day, idx-split) 
+                    to int-code
+                  read intexe no lock
+                  add int-effort to como-effort
                   add 1 to tot-exe
-           end-perform.
+           end-perform. 
+
+           divide tot-exe by wom-days giving tot-durata remainder resto.
+           if resto > 0
+              add 1 to tot-durata
+           end-if.
+           move tot-durata to dur-exercises.
+           move low-value  to dur-code.
+           start duration key >= dur-k-exercises
+                 invalid 
+                 move spaces to dur-desc 
+                 move 0      to wom-dur-code
+             not invalid
+                 read duration next         
+                 move dur-code to wom-dur-code
+           end-start.
+           move dur-desc to lab-durata-buf.
+           display ef-durata lab-durata.
 
            compute tot-effort = como-effort / tot-exe.
 
            if tot-effort < 1,5
-              move 1 to como-effort
+              move 1 to como-effort ef-int-buf wom-effort
            else
-              if tot-effort < 2,5            
-                 move 2 to como-effort ef-int-buf
+              if tot-effort < 2,6            
+                 move 2 to como-effort ef-int-buf wom-effort
               else                              
-                 move 3 to como-effort ef-int-buf
+                 move 3 to como-effort ef-int-buf wom-effort
               end-if
            end-if.
 

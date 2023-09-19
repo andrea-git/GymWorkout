@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          "menu".
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 19 settembre 2023 13:21:41.
+       DATE-WRITTEN.        martedì 19 settembre 2023 17:50:54.
        REMARKS.
       *{TOTEM}END
 
@@ -686,7 +686,7 @@
       * <TOTEM:END>
        pb-catcli-LinkTo.
       * <TOTEM:PARA. pb-catcli-LinkTo>
-           move "tintensity" to NomeProgramma.
+           move "tintexe" to NomeProgramma.
            perform CALL-PROGRAM 
            .
       * <TOTEM:END>

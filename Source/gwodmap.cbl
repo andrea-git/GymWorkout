@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 19 settembre 2023 19:07:25.
+       DATE-WRITTEN.        martedì 19 settembre 2023 20:06:14.
        REMARKS.
       *{TOTEM}END
 
@@ -105,6 +105,7 @@
        01 gd-rec.
            05 col-split        PIC  x.
            05 col-effort       PIC  9.
+           05 col-int-desc     PIC  x(100).
        01 save-key.
            05 save-code        PIC  999.
        01 save-key-1.
@@ -133,6 +134,10 @@
        77 lab-stimata-buf  PIC  X(20).
        77 STATUS-intexe    PIC  X(2).
            88 Valid-STATUS-intexe VALUE IS "00" THRU "09". 
+       77 Calibri10-Occidentale
+                  USAGE IS HANDLE OF FONT.
+       77 Calibri12-Occidentale
+                  USAGE IS HANDLE OF FONT.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -271,7 +276,7 @@
            ef-descr, 
            Entry-Field, 
            COL 14,00, 
-           LINE 4,00,
+           LINE 3,13,
            LINES 1,30 ,
            SIZE 72,00 ,
            BOXED,
@@ -290,7 +295,7 @@
            ef-days, 
            Entry-Field, 
            COL 14,00, 
-           LINE 5,96,
+           LINE 4,65,
            LINES 1,30 ,
            SIZE 3,00 ,
            BOXED,
@@ -310,7 +315,7 @@
            ef-macro, 
            Entry-Field, 
            COL 38,00, 
-           LINE 6,00,
+           LINE 4,70,
            LINES 1,30 ,
            SIZE 3,00 ,
            BOXED,
@@ -330,7 +335,7 @@
            ef-durata, 
            Entry-Field, 
            COL 52,00, 
-           LINE 6,00,
+           LINE 4,70,
            LINES 1,30 ,
            SIZE 3,00 ,
            BOXED,
@@ -349,8 +354,8 @@
        05
            ef-int, 
            Entry-Field, 
-           COL 52,00, 
-           LINE 7,74,
+           COL 98,00, 
+           LINE 4,70,
            LINES 1,30 ,
            SIZE 3,00 ,
            BOXED,
@@ -370,27 +375,27 @@
            gd1, 
            Grid, 
            COL 2,20, 
-           LINE 10,70,
-           LINES 15,30 ,
-           SIZE 12,10 ,
+           LINE 7,65,
+           LINES 13,96 ,
+           SIZE 26,40 ,
            3-D,
-           DATA-COLUMNS (1, 2),
-           ALIGNMENT ("C", "C"),
-           SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
            DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
-           HSCROLL,
            ID IS 1,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           NUM-ROWS 20,
+           NUM-ROWS 11,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 10,
+           VIRTUAL-WIDTH 30,
            VPADDING 50,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -400,19 +405,20 @@
        05
            gd2, 
            Grid, 
-           COL 14,90, 
-           LINE 10,70,
-           LINES 15,30 ,
-           SIZE 12,10 ,
+           COL 30,00, 
+           LINE 7,65,
+           LINES 13,96 ,
+           SIZE 26,40 ,
            3-D,
-           DATA-COLUMNS (1, 2),
-           ALIGNMENT ("C", "C"),
-           SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
            DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
            ID IS 2,
@@ -420,7 +426,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 10,
+           VIRTUAL-WIDTH 30,
            VPADDING 50,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -430,19 +436,20 @@
        05
            gd3, 
            Grid, 
-           COL 27,70, 
-           LINE 10,70,
-           LINES 15,30 ,
-           SIZE 12,10 ,
+           COL 57,70, 
+           LINE 7,65,
+           LINES 13,96 ,
+           SIZE 26,40 ,
            3-D,
-           DATA-COLUMNS (1, 2),
-           ALIGNMENT ("C", "C"),
-           SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
            DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
            ID IS 3,
@@ -450,7 +457,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 10,
+           VIRTUAL-WIDTH 30,
            VPADDING 50,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -460,19 +467,20 @@
        05
            gd4, 
            Grid, 
-           COL 40,40, 
-           LINE 10,70,
-           LINES 15,30 ,
-           SIZE 12,10 ,
+           COL 85,40, 
+           LINE 7,65,
+           LINES 13,96 ,
+           SIZE 26,40 ,
            3-D,
-           DATA-COLUMNS (1, 2),
-           ALIGNMENT ("C", "C"),
-           SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
            DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
            ID IS 4,
@@ -480,7 +488,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 10,
+           VIRTUAL-WIDTH 30,
            VPADDING 50,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -490,19 +498,20 @@
        05
            gd5, 
            Grid, 
-           COL 52,80, 
-           LINE 10,70,
-           LINES 15,30 ,
-           SIZE 12,10 ,
+           COL 2,20, 
+           LINE 23,22,
+           LINES 13,96 ,
+           SIZE 26,40 ,
            3-D,
-           DATA-COLUMNS (1, 2),
-           ALIGNMENT ("C", "C"),
-           SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
            DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
            ID IS 5,
@@ -510,7 +519,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 10,
+           VIRTUAL-WIDTH 30,
            VPADDING 50,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -520,19 +529,20 @@
        05
            gd6, 
            Grid, 
-           COL 65,50, 
-           LINE 10,70,
-           LINES 15,30 ,
-           SIZE 12,10 ,
+           COL 30,00, 
+           LINE 23,22,
+           LINES 13,96 ,
+           SIZE 26,40 ,
            3-D,
-           DATA-COLUMNS (1, 2),
-           ALIGNMENT ("C", "C"),
-           SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
            DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
            ID IS 6,
@@ -540,7 +550,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 10,
+           VIRTUAL-WIDTH 30,
            VPADDING 50,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -550,19 +560,20 @@
        05
            gd7, 
            Grid, 
-           COL 78,20, 
-           LINE 10,70,
-           LINES 15,30 ,
-           SIZE 12,10 ,
+           COL 57,70, 
+           LINE 23,22,
+           LINES 13,96 ,
+           SIZE 26,40 ,
            3-D,
-           DATA-COLUMNS (1, 2),
-           ALIGNMENT ("C", "C"),
-           SEPARATION (5, 5),
-           DATA-TYPES ("U(1)", "9"),
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
            DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
            ID IS 11,
@@ -570,7 +581,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 10,
+           VIRTUAL-WIDTH 30,
            VPADDING 50,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -622,26 +633,12 @@
            VISIBLE v-custom,
            .
 
-      * BAR
-       05
-           Screen1-Br-1, 
-           Bar,
-           COL 1,00, 
-           LINE 3,35,
-           SIZE 90,50 ,
-           ID IS 22,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           COLORS (9, 9),
-           WIDTH 2,
-           .
-
       * LABEL
        05
            Screen1-La-2, 
            Label, 
            COL 2,90, 
-           LINE 4,00,
+           LINE 3,13,
            LINES 1,30 ,
            SIZE 10,00 ,
            ID IS 33,
@@ -656,7 +653,7 @@
            Screen1-La-2a, 
            Label, 
            COL 2,90, 
-           LINE 6,00,
+           LINE 4,70,
            LINES 1,30 ,
            SIZE 10,00 ,
            ID IS 8,
@@ -671,7 +668,7 @@
            Screen1-La-2aa, 
            Label, 
            COL 18,90, 
-           LINE 6,00,
+           LINE 4,70,
            LINES 1,30 ,
            SIZE 18,00 ,
            ID IS 9,
@@ -686,7 +683,7 @@
            Screen1-La-2aaa, 
            Label, 
            COL 43,90, 
-           LINE 6,00,
+           LINE 4,70,
            LINES 1,30 ,
            SIZE 7,00 ,
            ID IS 12,
@@ -701,7 +698,7 @@
            lab-durata, 
            Label, 
            COL 56,30, 
-           LINE 6,00,
+           LINE 4,70,
            LINES 1,30 ,
            SIZE 31,30 ,
            COLOR IS 2,
@@ -716,8 +713,8 @@
        05
            Screen1-La-2aaaa, 
            Label, 
-           COL 43,90, 
-           LINE 7,74,
+           COL 89,90, 
+           LINE 4,70,
            LINES 1,30 ,
            SIZE 7,00 ,
            ID IS 15,
@@ -731,8 +728,8 @@
        05
            lab-int, 
            Label, 
-           COL 56,30, 
-           LINE 7,74,
+           COL 102,30, 
+           LINE 4,70,
            LINES 1,30 ,
            SIZE 31,30 ,
            COLOR IS 2,
@@ -747,10 +744,10 @@
        05
            Screen1-La-2aab, 
            Label, 
-           COL 78,20, 
-           LINE 9,39,
-           LINES 0,90 ,
-           SIZE 12,10 ,
+           COL 57,70, 
+           LINE 21,87,
+           LINES 0,91 ,
+           SIZE 26,40 ,
            ID IS 19,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -764,9 +761,9 @@
            Screen1-La-2aaba, 
            Label, 
            COL 2,20, 
-           LINE 9,39,
-           LINES 0,90 ,
-           SIZE 12,10 ,
+           LINE 6,22,
+           LINES 0,91 ,
+           SIZE 23,70 ,
            ID IS 20,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -779,10 +776,10 @@
        05
            Screen1-La-2aabb, 
            Label, 
-           COL 14,90, 
-           LINE 9,39,
-           LINES 0,90 ,
-           SIZE 12,10 ,
+           COL 30,00, 
+           LINE 6,22,
+           LINES 0,91 ,
+           SIZE 26,40 ,
            ID IS 23,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -795,10 +792,10 @@
        05
            Screen1-La-2aabba, 
            Label, 
-           COL 39,90, 
-           LINE 9,39,
-           LINES 0,90 ,
-           SIZE 12,10 ,
+           COL 85,40, 
+           LINE 6,22,
+           LINES 0,91 ,
+           SIZE 26,40 ,
            ID IS 24,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -811,10 +808,10 @@
        05
            Screen1-La-2aabaa, 
            Label, 
-           COL 27,20, 
-           LINE 9,39,
-           LINES 0,90 ,
-           SIZE 12,10 ,
+           COL 57,70, 
+           LINE 6,22,
+           LINES 0,91 ,
+           SIZE 26,40 ,
            ID IS 25,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -827,10 +824,10 @@
        05
            Screen1-La-2aabbb, 
            Label, 
-           COL 65,90, 
-           LINE 9,39,
-           LINES 0,90 ,
-           SIZE 12,10 ,
+           COL 30,00, 
+           LINE 21,87,
+           LINES 0,91 ,
+           SIZE 26,40 ,
            ID IS 26,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -843,10 +840,10 @@
        05
            Screen1-La-2aabab, 
            Label, 
-           COL 53,20, 
-           LINE 9,39,
-           LINES 0,90 ,
-           SIZE 12,10 ,
+           COL 2,20, 
+           LINE 21,87,
+           LINES 0,91 ,
+           SIZE 26,40 ,
            ID IS 27,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1262,6 +1259,7 @@
            PERFORM CLOSE-FILE-RTN
       * <TOTEM:EPT. INIT:gwodmap, INIT:gwodmap, BeforeDestroyResource>
       * <TOTEM:END>
+           DESTROY Calibri12-Occidentale
            DESTROY Calibri14-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
       *    After-Program
@@ -1291,6 +1289,18 @@
            .
     
        INIT-FONT.
+      * Calibri12-Occidentale
+           INITIALIZE WFONT-DATA Calibri12-Occidentale
+           MOVE 12 TO WFONT-SIZE
+           MOVE "Calibri" TO WFONT-NAME
+           SET WFONT-BOLD TO FALSE
+           SET WFONT-ITALIC TO FALSE
+           SET WFONT-UNDERLINE TO FALSE
+           SET WFONT-STRIKEOUT TO FALSE
+           SET WFONT-FIXED-PITCH TO FALSE
+           MOVE 0 TO WFONT-CHAR-SET
+           CALL "W$FONT" USING WFONT-GET-FONT, 
+                     Calibri12-Occidentale, WFONT-DATA
       * Calibri14-Occidentale
            INITIALIZE WFONT-DATA Calibri14-Occidentale
            MOVE 14 TO WFONT-SIZE
@@ -2065,6 +2075,9 @@
       * CELLS' SETTING
               MODIFY gd1, X = 2, Y = 1,
                 CELL-DATA = "Effort",
+      * CELLS' SETTING
+              MODIFY gd1, X = 3, Y = 1,
+                CELL-DATA = "Descrizione",
            .
 
       * GRID
@@ -2075,6 +2088,9 @@
       * CELLS' SETTING
               MODIFY gd2, X = 2, Y = 1,
                 CELL-DATA = "Effort",
+      * CELLS' SETTING
+              MODIFY gd2, X = 3, Y = 1,
+                CELL-DATA = "Descrizione",
            .
 
       * GRID
@@ -2085,6 +2101,9 @@
       * CELLS' SETTING
               MODIFY gd3, X = 2, Y = 1,
                 CELL-DATA = "Effort",
+      * CELLS' SETTING
+              MODIFY gd3, X = 3, Y = 1,
+                CELL-DATA = "Descrizione",
            .
 
       * GRID
@@ -2095,6 +2114,9 @@
       * CELLS' SETTING
               MODIFY gd4, X = 2, Y = 1,
                 CELL-DATA = "Effort",
+      * CELLS' SETTING
+              MODIFY gd4, X = 3, Y = 1,
+                CELL-DATA = "Descrizione",
            .
 
       * GRID
@@ -2105,6 +2127,9 @@
       * CELLS' SETTING
               MODIFY gd5, X = 2, Y = 1,
                 CELL-DATA = "Effort",
+      * CELLS' SETTING
+              MODIFY gd5, X = 3, Y = 1,
+                CELL-DATA = "Descrizione",
            .
 
       * GRID
@@ -2115,6 +2140,9 @@
       * CELLS' SETTING
               MODIFY gd6, X = 2, Y = 1,
                 CELL-DATA = "Effort",
+      * CELLS' SETTING
+              MODIFY gd6, X = 3, Y = 1,
+                CELL-DATA = "Descrizione",
            .
 
       * GRID
@@ -2125,6 +2153,9 @@
       * CELLS' SETTING
               MODIFY gd7, X = 2, Y = 1,
                 CELL-DATA = "Effort",
+      * CELLS' SETTING
+              MODIFY gd7, X = 3, Y = 1,
+                CELL-DATA = "Descrizione",
            .
 
       * FD's Initialize Paragraph
@@ -2187,8 +2218,8 @@
 
        Form1-Create-Win.
            Display Independent GRAPHICAL WINDOW
-              LINES 26,78,
-              SIZE 90,50,
+              LINES 38,83,
+              SIZE 134,40,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -2226,13 +2257,13 @@
               HANDLE IS Form1-St-1-Handle
            DISPLAY Form1 UPON form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY gd1, DISPLAY-COLUMNS (1, 6)
-              MODIFY gd2, DISPLAY-COLUMNS (1, 6)
-              MODIFY gd3, DISPLAY-COLUMNS (1, 6)
-              MODIFY gd4, DISPLAY-COLUMNS (1, 6)
-              MODIFY gd5, DISPLAY-COLUMNS (1, 6)
-              MODIFY gd6, DISPLAY-COLUMNS (1, 6)
-              MODIFY gd7, DISPLAY-COLUMNS (1, 6)
+              MODIFY gd1, DISPLAY-COLUMNS (1, 6, 11)
+              MODIFY gd2, DISPLAY-COLUMNS (1, 6, 11)
+              MODIFY gd3, DISPLAY-COLUMNS (1, 6, 11)
+              MODIFY gd4, DISPLAY-COLUMNS (1, 6, 11)
+              MODIFY gd5, DISPLAY-COLUMNS (1, 6, 11)
+              MODIFY gd6, DISPLAY-COLUMNS (1, 6, 11)
+              MODIFY gd7, DISPLAY-COLUMNS (1, 6, 11)
            .
 
        Form1-PROC.
@@ -3923,36 +3954,47 @@
            spaces
                     exit perform
                  end-if
+                 move wom-split-el-split-int-code(idx-day, idx-split)
+                   to int-code
+                 read intexe no lock invalid move spaces to int-desc 
+           end-read
                  add 1 to riga
                  evaluate idx-day
                  when 1 modify gd1(riga, 1), cell-data 
-           wom-split-el-split-sigla(idx-day, idx-split)
+           wom-split-el-split-sigla(idx-day, idx-split)   
                         modify gd1(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd1(riga, 3), cell-data int-desc
                  when 2 modify gd2(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd2(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd2(riga, 3), cell-data int-desc
                  when 3 modify gd3(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd3(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd3(riga, 3), cell-data int-desc
                  when 4 modify gd4(riga, 1), cell-data 
-           wom-split-el-split-sigla(idx-day, idx-split)
+           wom-split-el-split-sigla(idx-day, idx-split)   
                         modify gd4(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd4(riga, 3), cell-data int-desc
                  when 5 modify gd5(riga, 1), cell-data 
-           wom-split-el-split-sigla(idx-day, idx-split)
+           wom-split-el-split-sigla(idx-day, idx-split)   
                         modify gd5(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd5(riga, 3), cell-data int-desc
                  when 6 modify gd6(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd6(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd6(riga, 3), cell-data int-desc
                  when 7 modify gd7(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd7(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd7(riga, 3), cell-data int-desc
                  end-evaluate
               end-perform
            end-perform            

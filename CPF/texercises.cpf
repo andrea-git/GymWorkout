@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7913161120-740-2551011433
+PROGRAM_UNIQUE_CODE=TOTEM-7E7913173137-952-359027549
 
 {{@DESCRIPTION:
 
@@ -293,19 +294,18 @@ m_bFixed=1
 
 @}}
 [FDITEM26_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
-m_nItemLevel=77
+m_strName=col-restpause
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM26_WK
 
 @}}
 [FDITEM27_WK]
-m_strName=como-ord
-m_strRawPic=s9
-m_strPic=s9
-m_strDefaultValue=0
+m_strName=Screen1-Handle
+m_nUsage=24
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -313,26 +313,37 @@ m_bFixed=1
 
 @}}
 [FDITEM28_WK]
-m_strName=FILLER
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=1
+m_strName=como-ord
+m_strRawPic=s9
+m_strPic=s9
+m_strDefaultValue=0
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM28_WK
 
 @}}
 [FDITEM29_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM29_WK
+
+@}}
+[FDITEM30_WK]
 m_strName=ricarica
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM29_WK
+{{@DataItem_m_strDescriptionFDITEM30_WK
 
 @}}
-[FDITEM30_WK]
+[FDITEM31_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -341,22 +352,12 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM30_WK
-
-@}}
-[FDITEM31_WK]
-m_strName=Default-Font
-m_nUsage=38
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM31_WK
 
 @}}
 [FDITEM32_WK]
-m_strName=STATUS-exercises
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=Default-Font
+m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -364,24 +365,34 @@ m_bFixed=1
 
 @}}
 [FDITEM33_WK]
+m_strName=STATUS-exercises
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM33_WK
+
+@}}
+[FDITEM34_WK]
 m_strName=Valid-STATUS-exercises
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM33_WK
+{{@DataItem_m_strDescriptionFDITEM34_WK
 
 @}}
-[FDITEM34_WK]
+[FDITEM35_WK]
 m_strName=Calibri14-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM34_WK
+{{@DataItem_m_strDescriptionFDITEM35_WK
 
 @}}
-[FDITEM35_WK]
+[FDITEM36_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -390,80 +401,70 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM35_WK
+{{@DataItem_m_strDescriptionFDITEM36_WK
 
 @}}
-[FDITEM36_WK]
+[FDITEM37_WK]
 m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM36_WK
+{{@DataItem_m_strDescriptionFDITEM37_WK
 
 @}}
-[FDITEM37_WK]
+[FDITEM38_WK]
 m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM37_WK
+{{@DataItem_m_strDescriptionFDITEM38_WK
 
 @}}
-[FDITEM38_WK]
+[FDITEM39_WK]
 m_strName=STATUS-intexe
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM38_WK
+{{@DataItem_m_strDescriptionFDITEM39_WK
 
 @}}
-[FDITEM39_WK]
+[FDITEM40_WK]
 m_strName=Valid-STATUS-intexe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM39_WK
+{{@DataItem_m_strDescriptionFDITEM40_WK
 
 @}}
-[FDITEM40_WK]
+[FDITEM41_WK]
 m_strName=STATUS-macrogroups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM40_WK
+{{@DataItem_m_strDescriptionFDITEM41_WK
 
 @}}
-[FDITEM41_WK]
+[FDITEM42_WK]
 m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM41_WK
-
-@}}
-[FDITEM42_WK]
-m_strName=path-tmp-exe-mcg
-m_strRawPic=X(256)
-m_strPic=X(256)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM42_WK
 
 @}}
 [FDITEM43_WK]
-m_strName=STATUS-tmp-exe-mcg
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=path-tmp-exe-mcg
+m_strRawPic=X(256)
+m_strPic=X(256)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -471,12 +472,22 @@ m_bFixed=1
 
 @}}
 [FDITEM44_WK]
+m_strName=STATUS-tmp-exe-mcg
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM44_WK
+
+@}}
+[FDITEM45_WK]
 m_strName=Valid-STATUS-tmp-exe-mcg
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM44_WK
+{{@DataItem_m_strDescriptionFDITEM45_WK
 
 @}}
 
@@ -689,7 +700,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 154,40
+   Size              = 160,70
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -738,8 +749,8 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Grid form1-gd-1
-      SCREEN-COL        = 2,20
-      SCREEN-LINE       = 1,70
+      SCREEN-COL        = 2,80
+      SCREEN-LINE       = 1,74
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = form1-gd-1
@@ -755,9 +766,10 @@ Begin Screen Form1
       Cells' Setting    = ( X = 7, Y = 1, Data = "Descrizione" )
       Cells' Setting    = ( X = 8, Y = 1, Data = "Multi" )
       Cells' Setting    = ( X = 9, Y = 1, Data = "Setting ("")" )
+      Cells' Setting    = ( X = 10, Y = 1, Data = "R/P" )
       Centered Headings = FALSE
       Color             = 0
-      Column            = 2,20
+      Column            = 2,80
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-codice, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(5)", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
@@ -786,6 +798,9 @@ Begin Screen Form1
       Columns' Setting  = ( X = 9, Name = col-setting, READONLY = 0 )
       Columns' Setting  = ( PIC = "z.zz9", TYPE = "z.zz9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 10, Name = col-restpause, READONLY = 0 )
+      Columns' Setting  = ( PIC = "9", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 2
       Cursor X          = 0
@@ -804,24 +819,24 @@ Begin Screen Form1
       Hscroll           = FALSE
       ID                = 1
       Last Row          = 0
-      Line              = 1,70
+      Line              = 1,74
       Lines             = 35,74
       Lines Unit        = Default
       No Tab            = FALSE
       Num Col Headings  = 1
-      Num Columns       = 9
+      Num Columns       = 10
       Num Rows          = 0
       Occurs            = 0
       Paged             = FALSE
       Record Data       = rec-grid
       Row Dividers      = 1
       Row Headings      = FALSE
-      Size              = 151,90
+      Size              = 157,00
       Size Unit         = Default
       Tab Order         = 2
       Tiled Headings    = TRUE
       Use Tab           = TRUE
-      Virtual Width     = 150
+      Virtual Width     = 155
       Visible           = NONE
       Vpadding          = 10
       Vscroll           = TRUE
@@ -1172,7 +1187,8 @@ BEGIN-TEXT
                    88 old-exe-isMulti-no VALUE IS 0. 
                    88 old-exe-isMulti-yes VALUE IS 1. 
                10 old-exe-setting      PIC  9(4).
-               10 old-exe-filler       PIC  x(1000).
+               10 old-exe-restpause    PIC  9.
+               10 old-exe-filler       PIC  x(999).
                10 old-exe-filler-n1    PIC  9(18).
                10 old-exe-filler-n2    PIC  9(18).
                10 old-exe-filler-n3    PIC  9(18).
@@ -1441,7 +1457,7 @@ BEGIN-TEXT
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x     = 9,
+           modify form1-gd-1, start-x = 1, x     = 10,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,
@@ -1525,6 +1541,14 @@ BEGIN-TEXT
                 if exe-setting = 0
                    set errori to true
                    display message "Valore obbligatorio"
+                           title = tit-err
+                           icon mb-warning-icon
+                end-if    
+
+           when 10
+                if not (exe-restpause = 0 or 1)
+                   set errori to true
+                   display message "Valori consentiti 1/0"
                            title = tit-err
                            icon mb-warning-icon
                 end-if
@@ -1672,15 +1696,17 @@ BEGIN-TEXT
            move int-desc    to col-int-desc
            move exe-isMulti to col-isMulti
            move exe-setting to col-setting
-           modify form1-gd-1(riga, 1), cell-data col-codice.
-           modify form1-gd-1(riga, 2), cell-data col-des.  
-           modify form1-gd-1(riga, 3), cell-data col-group.   
-           modify form1-gd-1(riga, 4), cell-data col-grp-desc.
-           modify form1-gd-1(riga, 5), cell-data col-mcg-desc.
-           modify form1-gd-1(riga, 6), cell-data col-intensity.
-           modify form1-gd-1(riga, 7), cell-data col-int-desc.
-           modify form1-gd-1(riga, 8), cell-data col-isMulti.
-           modify form1-gd-1(riga, 9), cell-data col-setting.
+           move exe-restpause to col-restpause
+           modify form1-gd-1(riga, 1),  cell-data col-codice.
+           modify form1-gd-1(riga, 2),  cell-data col-des.  
+           modify form1-gd-1(riga, 3),  cell-data col-group.   
+           modify form1-gd-1(riga, 4),  cell-data col-grp-desc.
+           modify form1-gd-1(riga, 5),  cell-data col-mcg-desc.
+           modify form1-gd-1(riga, 6),  cell-data col-intensity.
+           modify form1-gd-1(riga, 7),  cell-data col-int-desc.
+           modify form1-gd-1(riga, 8),  cell-data col-isMulti.
+           modify form1-gd-1(riga, 9),  cell-data col-setting.
+           modify form1-gd-1(riga, 10), cell-data col-restpause.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1889,12 +1915,13 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = VALORE-RIGA
 BEGIN-TEXT
-           inquire form1-gd-1(riga, 1), cell-data exe-code.
-           inquire form1-gd-1(riga, 2), cell-data exe-desc.
-           inquire form1-gd-1(riga, 3), cell-data exe-grp-code.
-           inquire form1-gd-1(riga, 6), cell-data exe-int-code.
-           inquire form1-gd-1(riga, 8), cell-data exe-isMulti.
-           inquire form1-gd-1(riga, 9), cell-data exe-setting. 
+           inquire form1-gd-1(riga, 1),  cell-data exe-code.
+           inquire form1-gd-1(riga, 2),  cell-data exe-desc.
+           inquire form1-gd-1(riga, 3),  cell-data exe-grp-code.
+           inquire form1-gd-1(riga, 6),  cell-data exe-int-code.
+           inquire form1-gd-1(riga, 8),  cell-data exe-isMulti.
+           inquire form1-gd-1(riga, 9),  cell-data exe-setting.
+           inquire form1-gd-1(riga, 10), cell-data exe-restpause. 
 
 END-TEXT
 END-DATA

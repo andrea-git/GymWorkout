@@ -69,10 +69,10 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="11"
-       xfd:elementary-items-with-occurs="11"
-       xfd:total-items="14"
-       xfd:total-items-with-occurs="14">
+       xfd:elementary-items="12"
+       xfd:elementary-items-with-occurs="12"
+       xfd:total-items="15"
+       xfd:total-items-with-occurs="15">
     <xfd:field
          xfd:field-offset="0"
          xfd:field-bytes="1189"
@@ -165,9 +165,19 @@
          xfd:field-name="EXE-SETTING"/>
     <xfd:field
          xfd:field-offset="117"
-         xfd:field-bytes="1000"
+         xfd:field-bytes="1"
+         xfd:field-type="1"
+         xfd:field-length="1"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="10"
+         xfd:field-name="EXE-RESTPAUSE"/>
+    <xfd:field
+         xfd:field-offset="118"
+         xfd:field-bytes="999"
          xfd:field-type="16"
-         xfd:field-length="1000"
+         xfd:field-length="999"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="0"

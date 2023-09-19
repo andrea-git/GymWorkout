@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 19 settembre 2023 18:52:09.
+       DATE-WRITTEN.        martedì 19 settembre 2023 19:49:52.
        REMARKS.
       *{TOTEM}END
 
@@ -176,6 +176,7 @@
                10 el-exe-desc      PIC  x(100).
                10 el-exe-used      PIC  9.
                10 el-exe-effort    PIC  99.
+               10 el-exe-restpause PIC  9.
        01 tab-wod-exe.
            05 el-wod-day
                       OCCURS 7 TIMES.
@@ -327,7 +328,7 @@
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
        77 TMP-DataSet1-wodmap-BUF     PIC X(1444).
-       77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(115).
+       77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(217).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(105).
@@ -4321,7 +4322,7 @@
                  end-evaluate
                  read macrogroups key mcg-k-desc
 
-                 move wom-split-el-split-effort(idx-days, idx-split)
+                 move wom-split-el-split-int-code(idx-days, idx-split)
                    to int-code
                  read intexe no lock
                  
@@ -4335,7 +4336,8 @@
                  inspect como-day replacing trailing spaces by low-value
                  string  como-day delimited low-value
                          wom-split-el-split-sigla(idx-days, idx-split)
-                         wom-split-el-split-effort(idx-days, idx-split)
+                         wom-split-el-split-int-code(idx-days, 
+           idx-split)
                          "-"          
                          effort-xx delimited low-value
                          int-desc(1:1)
@@ -5825,7 +5827,7 @@
                     move tex-exe-code to col-exe-code
                     move tex-exe-desc to col-exe-desc
 
-                    move wom-split-el-split-effort(tex-day, tex-split)
+                    move wom-split-el-split-int-code(tex-day, tex-split)
                       to int-code
                     read intexe
                     if exe-isMulti-yes
@@ -6045,12 +6047,13 @@
                                  until idx-gruppi > tot-gruppi          
                       
                           if el-mcg-code(idx-gruppi) = grp-mcg-code
-                             move exe-code     to twe-exe-code
-                             move exe-desc     to twe-exe-desc
-                             move grp-mcg-code to twe-mcg-code
-                             move int-effort   to twe-effort
-                             move exe-isMulti  to twe-exe-isMulti
-                             move exe-int-code to twe-int-code
+                             move exe-code      to twe-exe-code
+                             move exe-desc      to twe-exe-desc
+                             move grp-mcg-code  to twe-mcg-code
+                             move int-effort    to twe-effort
+                             move exe-isMulti   to twe-exe-isMulti
+                             move exe-int-code  to twe-int-code
+                             move exe-restpause to twe-exe-restpause
                              write twe-rec 
                           end-if
                        end-perform
@@ -6081,9 +6084,9 @@
                           exit perform
                        end-if
                        add 1 to tot-exe    
-                       move twe-exe-code   to el-exe-code(tot-exe)
-                       move twe-exe-desc   to el-exe-desc(tot-exe)
-                       move 0              to el-exe-used(tot-exe)
+                       move twe-exe-code      to el-exe-code(tot-exe)
+                       move twe-exe-desc      to el-exe-desc(tot-exe)
+                       move 0                 to el-exe-used(tot-exe)
                     end-perform
               end-start
 
@@ -6106,7 +6109,7 @@
                        when other exit perform
                        end-evaluate
 
-                       move wom-split-el-split-effort(idx-days, 
+                       move wom-split-el-split-int-code(idx-days, 
            idx-split)
                          to int-code
                        read intexe no lock
@@ -6168,8 +6171,8 @@
                  when other exit perform
                  end-evaluate       
 
-                 move wom-split-el-split-effort(idx-days, idx-split)
-                   to int-code
+                 move wom-split-el-split-int-code(idx-days, idx-split)
+                   to int-code  
 
                  move spaces to como-dupl
                  perform ADD-RANDOM-EXERCISE
@@ -6182,7 +6185,7 @@
            set twe-exe-isMulti-no to true.    
                                               
            read intexe no lock.
-           move int-effort to twe-effort.
+           move int-effort to twe-effort.     
 
            move 0 to tot-exe.
                               
@@ -6195,15 +6198,22 @@
                        twe-exe-isMulti-yes          or
                        twe-effort    not = int-effort
                        exit perform
-                    end-if 
-                    add 1 to tot-exe    
-                    move twe-exe-code to el-exe-code(tot-exe)
-                    move twe-exe-desc to el-exe-desc(tot-exe)
-                    move twe-effort   to el-exe-effort(tot-exe)
-                    move 0            to el-exe-used(tot-exe)
-                 end-perform
-           end-start.
+                    end-if
 
+                    if twe-exe-restpause = 0 and
+                       int-restpause > 0         
+                       exit perform cycle
+                    end-if             
+                       
+                    add 1 to tot-exe    
+                    move twe-exe-code      to el-exe-code(tot-exe)
+                    move twe-exe-desc      to el-exe-desc(tot-exe)
+                    move twe-effort        to el-exe-effort(tot-exe)
+                    move 0                 to el-exe-used(tot-exe)
+                    move twe-exe-restpause to el-exe-restpause(tot-exe)
+                 end-perform
+           end-start.      
+           
            if ( como-dupl not = spaces and tot-exe > 1 ) or
               ( como-dupl     = spaces and tot-exe > 0 )
               move tot-exe to ex-remain  
@@ -6236,7 +6246,7 @@
                           end-if
                           exit perform
                        end-if
-                    else                                        
+                    else               
                        move idx-days         to tex-day
                        move idx-split        to tex-split     
                        move mcg-code         to tex-mcg-code

@@ -189,7 +189,7 @@
              xfd:field-user-flags="0"
              xfd:field-condition="0"
              xfd:field-level="25"
-             xfd:field-name="WOM-SPLIT-EL-SPLIT-EFFORT"/>
+             xfd:field-name="WOM-SPLIT-EL-SPLIT-INT-CODE"/>
       </xfd:field-occurs>
     </xfd:field-occurs>
     <xfd:field

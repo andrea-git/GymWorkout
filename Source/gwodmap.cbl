@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 19 settembre 2023 18:24:01.
+       DATE-WRITTEN.        martedì 19 settembre 2023 19:07:25.
        REMARKS.
       *{TOTEM}END
 
@@ -3928,31 +3928,31 @@
                  when 1 modify gd1(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd1(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-int-code(idx-day, idx-split)
                  when 2 modify gd2(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd2(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-int-code(idx-day, idx-split)
                  when 3 modify gd3(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd3(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-int-code(idx-day, idx-split)
                  when 4 modify gd4(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd4(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-int-code(idx-day, idx-split)
                  when 5 modify gd5(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd5(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-int-code(idx-day, idx-split)
                  when 6 modify gd6(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd6(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-int-code(idx-day, idx-split)
                  when 7 modify gd7(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd7(riga, 2), cell-data 
-           wom-split-el-split-effort(idx-day, idx-split)
+           wom-split-el-split-int-code(idx-day, idx-split)
                  end-evaluate
               end-perform
            end-perform            
@@ -3970,7 +3970,8 @@
               inquire gd1(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(1, riga - 1)
               inquire gd1(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(1, riga - 1)
+              move col-effort to wom-split-el-split-int-code(1, riga - 
+           1)
            end-perform.
            
            inquire gd2, last-row in tot-righe.
@@ -3979,7 +3980,8 @@
               inquire gd2(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(2, riga - 1)  
               inquire gd2(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(2, riga - 1)
+              move col-effort to wom-split-el-split-int-code(2, riga - 
+           1)
            end-perform.
            
            inquire gd3, last-row in tot-righe.
@@ -3988,7 +3990,8 @@
               inquire gd3(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(3, riga - 1)  
               inquire gd3(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(3, riga - 1)
+              move col-effort to wom-split-el-split-int-code(3, riga - 
+           1)
            end-perform.
            
            inquire gd4, last-row in tot-righe.
@@ -3997,7 +4000,8 @@
               inquire gd4(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(4, riga - 1)
               inquire gd4(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(4, riga - 1)
+              move col-effort to wom-split-el-split-int-code(4, riga - 
+           1)
            end-perform.
            
            inquire gd5, last-row in tot-righe.
@@ -4006,7 +4010,8 @@
               inquire gd5(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(5, riga - 1) 
               inquire gd5(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(5, riga - 1)
+              move col-effort to wom-split-el-split-int-code(5, riga - 
+           1)
            end-perform.
            
            inquire gd6, last-row in tot-righe.
@@ -4015,7 +4020,8 @@
               inquire gd6(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(6, riga - 1) 
               inquire gd6(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(6, riga - 1)
+              move col-effort to wom-split-el-split-int-code(6, riga - 
+           1)
            end-perform.
            
            inquire gd7, last-row in tot-righe.
@@ -4024,7 +4030,8 @@
               inquire gd7(riga, 1), cell-data in col-split
               move col-split to wom-split-el-split-sigla(7, riga - 1)  
               inquire gd7(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-effort(7, riga - 1)
+              move col-effort to wom-split-el-split-int-code(7, riga - 
+           1)
            end-perform 
            .
       * <TOTEM:END>
@@ -4078,10 +4085,10 @@
                      until idx-day > wom-days
                perform varying idx-split from 1 by 1 
                          until idx-split> 20
-                  if wom-split-el-split-effort(idx-day, idx-split) = 0
+                  if wom-split-el-split-int-code(idx-day, idx-split) = 0
                      exit perform
                   end-if
-                  move wom-split-el-split-effort(idx-day, idx-split) 
+                  move wom-split-el-split-int-code(idx-day, idx-split) 
                     to int-code
                   read intexe no lock
                   add int-effort to como-effort

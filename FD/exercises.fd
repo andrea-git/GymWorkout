@@ -10,7 +10,8 @@
                    88 exe-isMulti-no VALUE IS 0. 
                    88 exe-isMulti-yes VALUE IS 1. 
                10 exe-setting      PIC  9(4).
-               10 exe-filler       PIC  x(1000).
+               10 exe-restpause    PIC  9.
+               10 exe-filler       PIC  x(999).
                10 exe-filler-n1    PIC  9(18).
                10 exe-filler-n2    PIC  9(18).
                10 exe-filler-n3    PIC  9(18).

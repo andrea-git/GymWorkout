@@ -2,10 +2,11 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791216592-658-1421931051
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791317540-275-213868372
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -131,7 +132,7 @@ m_bFixed=1
 
 @}}
 [FDITEM12_]
-m_strName=wom-split-el-split-effort
+m_strName=wom-split-el-split-int-code
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=25

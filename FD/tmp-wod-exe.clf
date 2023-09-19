@@ -2,10 +2,11 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7913164138-258-1507924380
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791317728-877-780218329
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -124,6 +125,18 @@ m_bFixed=1
 m_strRawSize=20
 m_nSize=20
 {{@DataItem_m_strDescriptionFDITEM10_
+
+@}}
+[FDITEM11_]
+m_strName=twe-exe-restpause
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+m_strRawSize=20
+m_nSize=20
+{{@DataItem_m_strDescriptionFDITEM11_
 
 @}}
 [CStoAcucobolSL_]

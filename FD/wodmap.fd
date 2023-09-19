@@ -13,7 +13,7 @@
                        20 wom-split-el-days-split
                                   OCCURS 20 TIMES.
                            25 wom-split-el-split-sigla     PIC  x.
-                           25 wom-split-el-split-effort    PIC  9.
+                           25 wom-split-el-split-int-code  PIC  9.
                10 wom-dur-code     PIC  99.
                10 wom-filler       PIC  x(1000).
                10 wom-filler-n1    PIC  9(18).

@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7914134714-707-251889283
+PROGRAM_UNIQUE_CODE=TOTEM-7E791416915-308-36554042
 
 {{@DESCRIPTION:
 
@@ -4182,6 +4182,8 @@ BEGIN-TEXT
                  when "G" inquire cb-mg7, value = mcg-desc
                  end-evaluate
                  read macrogroups key mcg-k-desc
+                      invalid move spaces to mcg-desc mcg-code
+                 end-read
 
                  move wom-split-el-split-int-code(idx-days, idx-split)
                    to int-code
@@ -5538,34 +5540,39 @@ BEGIN-DATA
    PARAGRAPH         = cb-mg1-AfterProcedure
 BEGIN-TEXT
       *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+           perform ABILITA-MACROGRUPPI.
 END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = cb-mg2-AfterProcedure
 BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>    
+           perform ABILITA-MACROGRUPPI.
 END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = cb-mg3-AfterProcedure
 BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>    
+           perform ABILITA-MACROGRUPPI.
 END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = cb-mg4-AfterProcedure
 BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
+           perform ABILITA-MACROGRUPPI.
 END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = cb-mg5-AfterProcedure
 BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
+           perform ABILITA-MACROGRUPPI.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -6315,16 +6322,18 @@ BEGIN-DATA
 BEGIN-TEXT
            modify cb-mg1, value "Legs".
            modify cb-mg2, value "Shoulder".
-           modify cb-mg3, value "Arms".
-           modify cb-mg4, value "Pectoral".
-           modify cb-mg5, value "Back".
+           modify cb-mg3, value "Pectoral".
+           modify cb-mg4, value "Back".    
+           modify cb-mg5, value "Arms".
            modify cb-mg6, value "Abs".
            modify cb-mg7, value "Nessuno".
                                  
            modify cb-int, value = "Tutto".
            modify cb-dur, value = "Medium".
 
-           modify cb-wod, value = "Cedimento con richiamo (A-B-C-D-E-F)"    
+           move 1 to wom-code.
+           read wodmap no lock.
+           modify cb-wod, value = wom-desc.
            perform ABILITA-MACROGRUPPI.
 END-TEXT
 END-DATA

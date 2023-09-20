@@ -4024,7 +4024,22 @@ BEGIN-TEXT
                                 icon 2
                      move spaces to int-desc
                 end-read
-                move int-desc to col-int-desc
+                if int-restpause > 0  
+                   initialize como-desc
+                   move int-restpause to como-value
+                   perform FORMAT-VALUE
+                   inspect int-desc replacing trailing spaces by low-value
+                   string  int-desc   delimited low-value
+                           " ("       delimited size
+                           como-value delimited low-value
+                           ")"        delimited size
+                      into como-desc
+                   end-string
+                   inspect como-desc replacing trailing low-value by spaces
+                   move como-desc to col-int-desc
+                else
+                   move int-desc to col-int-desc
+                end-if                           
            end-evaluate.      
   
            if errori
@@ -4093,6 +4108,7 @@ BEGIN-TEXT
                    to int-code
                  read intexe no lock invalid move spaces to int-desc end-read
                  if int-restpause > 0
+                    initialize como-desc
                     move int-restpause to como-value
                     perform FORMAT-VALUE
                     inspect int-desc replacing trailing spaces by low-value
@@ -4379,6 +4395,8 @@ BEGIN-DATA
    PARAGRAPH         = SALV-MOD
 BEGIN-TEXT
            set tutto-ok to true.
+           if mod = 0 exit paragraph end-if.
+
            perform FORM1-CONTROLLO-OLD.
            perform WRITE-DAYS.
            if wom-split-tab not = old-wom-split-tab

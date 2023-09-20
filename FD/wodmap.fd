@@ -12,8 +12,14 @@
                               OCCURS 7 TIMES.
                        20 wom-split-el-days-split
                                   OCCURS 20 TIMES.
+      *(( XFD NAME = wom-split-el-sp-si ))
                            25 wom-split-el-split-sigla     PIC  x.
+      *(( XFD NAME = wom-split-el-sp-ic ))
                            25 wom-split-el-split-int-code  PIC  9.
+      *(( XFD NAME = wom-split-el-sp-ss ))
+                           25 wom-split-el-split-ss        PIC  9.
+                           25 FILLER           PIC  x(100).
+                           25 FILLER           PIC  9(18).
                10 wom-dur-code     PIC  99.
                10 wom-filler       PIC  x(1000).
                10 wom-filler-n1    PIC  9(18).

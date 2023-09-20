@@ -2,11 +2,10 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-Adesk-andre=169.254.95.20
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791416915-273-2098222803
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7914171655-794-168306873
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -128,6 +127,7 @@ m_strPic=x
 m_nItemLevel=25
 m_nSync=-1
 m_bFixed=1
+m_strName_Xfd=wom-split-el-sp-si
 {{@DataItem_m_strDescriptionFDITEM11_
 
 @}}
@@ -138,44 +138,45 @@ m_strPic=9
 m_nItemLevel=25
 m_nSync=-1
 m_bFixed=1
-m_strName_Xfd=wom-split-el-split
+m_strName_Xfd=wom-split-el-sp-ic
 {{@DataItem_m_strDescriptionFDITEM12_
 
 @}}
 [FDITEM13_]
-m_strName=wom-dur-code
-m_strRawPic=99
-m_strPic=99
-m_nItemLevel=10
+m_strName=wom-split-el-split-ss
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=25
 m_nSync=-1
 m_bFixed=1
+m_strName_Xfd=wom-split-el-sp-ss
 {{@DataItem_m_strDescriptionFDITEM13_
 
 @}}
 [FDITEM14_]
-m_strName=wom-filler
-m_strRawPic=x(1000)
-m_strPic=x(1000)
-m_nItemLevel=10
+m_strName=FILLER
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=25
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM14_
 
 @}}
 [FDITEM15_]
-m_strName=wom-filler-n1
+m_strName=FILLER
 m_strRawPic=9(18)
 m_strPic=9(18)
-m_nItemLevel=10
+m_nItemLevel=25
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM15_
 
 @}}
 [FDITEM16_]
-m_strName=wom-filler-n2
-m_strRawPic=9(18)
-m_strPic=9(18)
+m_strName=wom-dur-code
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -183,13 +184,43 @@ m_bFixed=1
 
 @}}
 [FDITEM17_]
+m_strName=wom-filler
+m_strRawPic=x(1000)
+m_strPic=x(1000)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM17_
+
+@}}
+[FDITEM18_]
+m_strName=wom-filler-n1
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM18_
+
+@}}
+[FDITEM19_]
+m_strName=wom-filler-n2
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM19_
+
+@}}
+[FDITEM20_]
 m_strName=wom-filler-n3
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM17_
+{{@DataItem_m_strDescriptionFDITEM20_
 
 @}}
 [CStoAcucobolSL_]

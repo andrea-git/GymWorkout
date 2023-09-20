@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 20 settembre 2023 16:59:11.
+       DATE-WRITTEN.        mercoledì 20 settembre 2023 19:09:18.
        REMARKS.
       *{TOTEM}END
 
@@ -328,7 +328,7 @@
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
-       77 TMP-DataSet1-wodmap-BUF     PIC X(1444).
+       77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(217).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
@@ -4322,6 +4322,8 @@
                  when "G" inquire cb-mg7, value = mcg-desc
                  end-evaluate
                  read macrogroups key mcg-k-desc
+                      invalid move spaces to mcg-desc mcg-code
+                 end-read
 
                  move wom-split-el-split-int-code(idx-days, idx-split)
                    to int-code
@@ -5617,26 +5619,31 @@
        cb-mg1-AfterProcedure.
       * <TOTEM:PARA. cb-mg1-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
        cb-mg2-AfterProcedure.
       * <TOTEM:PARA. cb-mg2-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
        cb-mg3-AfterProcedure.
       * <TOTEM:PARA. cb-mg3-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
        cb-mg4-AfterProcedure.
       * <TOTEM:PARA. cb-mg4-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
        cb-mg5-AfterProcedure.
       * <TOTEM:PARA. cb-mg5-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
        cb-int-BeforeProcedure.
@@ -6405,17 +6412,18 @@
       * <TOTEM:PARA. Screen1-Pb-1-LinkTo>
            modify cb-mg1, value "Legs".
            modify cb-mg2, value "Shoulder".
-           modify cb-mg3, value "Arms".
-           modify cb-mg4, value "Pectoral".
-           modify cb-mg5, value "Back".
+           modify cb-mg3, value "Pectoral".
+           modify cb-mg4, value "Back".    
+           modify cb-mg5, value "Arms".
            modify cb-mg6, value "Abs".
            modify cb-mg7, value "Nessuno".
                                  
            modify cb-int, value = "Tutto".
            modify cb-dur, value = "Medium".
 
-           modify cb-wod, value = "Cedimento con richiamo (A-B-C-D-E-F)"
-               
+           move 1 to wom-code.
+           read wodmap no lock.
+           modify cb-wod, value = wom-desc.
            perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>

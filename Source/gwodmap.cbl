@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 20 settembre 2023 18:31:34.
+       DATE-WRITTEN.        mercoledì 20 settembre 2023 19:14:59.
        REMARKS.
       *{TOTEM}END
 
@@ -171,13 +171,13 @@
 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
        77 TMP-Form1-KEY2-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-wodmap-RESTOREBUF  PIC X(1444).
+       77 TMP-Form1-wodmap-RESTOREBUF  PIC X(18104).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(1444).
+       77 Form1-MULKEY-TMPBUF   PIC X(18104).
        77 Form1-KEYISTMP2   PIC X(100).
       * Form1 : PKEY & AKEY'S TEMP BUFFER
        77 Form1-PKEYTMP   PIC X(3).
-       77 TMP-DataSet1-wodmap-BUF     PIC X(1444).
+       77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
       * VARIABLES FOR RECORD LENGTH.
@@ -3965,7 +3965,24 @@
                                 icon 2
                      move spaces to int-desc
                 end-read
-                move int-desc to col-int-desc
+                if int-restpause > 0  
+                   initialize como-desc
+                   move int-restpause to como-value
+                   perform FORMAT-VALUE
+                   inspect int-desc replacing trailing spaces by 
+           low-value
+                   string  int-desc   delimited low-value
+                           " ("       delimited size
+                           como-value delimited low-value
+                           ")"        delimited size
+                      into como-desc
+                   end-string
+                   inspect como-desc replacing trailing low-value by 
+           spaces
+                   move como-desc to col-int-desc
+                else
+                   move int-desc to col-int-desc
+                end-if                           
            end-evaluate.      
   
            if errori
@@ -4035,6 +4052,7 @@
                  read intexe no lock invalid move spaces to int-desc 
            end-read
                  if int-restpause > 0
+                    initialize como-desc
                     move int-restpause to como-value
                     perform FORMAT-VALUE
                     inspect int-desc replacing trailing spaces by 
@@ -4326,6 +4344,8 @@
        SALV-MOD.
       * <TOTEM:PARA. SALV-MOD>
            set tutto-ok to true.
+           if mod = 0 exit paragraph end-if.
+
            perform FORM1-CONTROLLO-OLD.
            perform WRITE-DAYS.
            if wom-split-tab not = old-wom-split-tab

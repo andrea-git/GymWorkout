@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 19 settembre 2023 19:49:52.
+       DATE-WRITTEN.        mercoledì 20 settembre 2023 12:32:43.
        REMARKS.
       *{TOTEM}END
 
@@ -139,6 +139,7 @@
        77 como-ora-e       PIC  x(3).
        77 como-dupl        PIC  x(100).
        77 colore           PIC  999.
+       77 como-e           PIC  999.
        77 BOTTONE-annulla-BMP          PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
@@ -4398,7 +4399,7 @@
            end-perform.             
 
            evaluate wom-macrogroups
-           when 1
+           when 1                          
                 modify cb-mg1, enabled true
            when 2                           
                 modify cb-mg1, enabled true
@@ -5672,6 +5673,21 @@
       * <TOTEM:END>
        pb-genera-LinkTo.
       * <TOTEM:PARA. pb-genera-LinkTo>
+           inquire cb-mg1, enabled in como-e, value in como-nome.
+           if como-e = 1 and como-nome = "Nessuno"
+              display message "Valorizzare tutti i macrogruppi"
+                        title titolo
+                         icon 2
+              exit paragraph
+           end-if.
+           inquire cb-wod, value in como-nome.
+           if como-nome = "Nessuno"
+              display message "Selezionare un modello"
+                        title titolo
+                         icon 2
+              exit paragraph
+           end-if.
+           
            perform CREA-OCCURS-GRUPPI.
 
            modify gd1, mass-update = 1.

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 19 settembre 2023 20:06:14.
+       DATE-WRITTEN.        mercoledì 20 settembre 2023 13:25:33.
        REMARKS.
       *{TOTEM}END
 
@@ -95,16 +95,27 @@
                   USAGE IS HANDLE OF STATUS-BAR.
        77 idx-day          PIC  9.
        77 idx-split        PIC  99.
+       77 tot-days         PIC  99.
        77 form1-Handle
                   USAGE IS HANDLE OF WINDOW.
        77 como-effort      PIC  999.
        77 tot-exe          PIC  999.
        77 tot-effort       PIC  999v999.
        77 resto            PIC  999.
+       77 idx-gruppo       PIC  999.
+       77 mcg-code         PIC  x(5).
+       77 como-value       PIC  x(20).
+       77 grid-day         PIC  9.
+       77 como-desc        PIC  x(100).
+       77 bmpNum           PIC  999.
+       77 idx-ok           PIC  999.
+       01 tab-mcg.
+           05 el-mcg           PIC  x(5)
+                      OCCURS 20 TIMES.
        77 tot-durata       PIC  9(5).
        01 gd-rec.
            05 col-split        PIC  x.
-           05 col-effort       PIC  9.
+           05 col-effort       PIC  z.
            05 col-int-desc     PIC  x(100).
        01 save-key.
            05 save-code        PIC  999.
@@ -138,6 +149,8 @@
                   USAGE IS HANDLE OF FONT.
        77 Calibri12-Occidentale
                   USAGE IS HANDLE OF FONT.
+       77 lab-macro-buf    PIC  X(100).
+       77 lab-days-buf     PIC  X(100).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -149,16 +162,8 @@
       * Data.Entry-Field
               05 ef-codice-BUF PIC zz9.
       * Data.Entry-Field
-              05 ef-descr-BUF PIC x(100).
-              05 ef-descr-VALUEBUF PIC x(100).
-      * Data.Entry-Field
-              05 ef-days-BUF PIC 9.
-      * Data.Entry-Field
-              05 ef-macro-BUF PIC z9.
-      * Data.Entry-Field
-              05 ef-durata-BUF PIC z9.
-      * Data.Entry-Field
-              05 ef-int-BUF PIC z9.
+              05 ef-desc-BUF PIC x(100).
+              05 ef-desc-VALUEBUF PIC x(100).
 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
        77 TMP-Form1-KEY2-ORDER  PIC X VALUE "A".
@@ -229,11 +234,14 @@
       *{TOTEM}ID-LOGICI
       ***** Elenco ID Logici *****
        78  78-ID-ef-codice VALUE 5001.
-       78  78-ID-ef-descr VALUE 5002.
-       78  78-ID-ef-days VALUE 5003.
-       78  78-ID-ef-macro VALUE 5004.
-       78  78-ID-ef-durata VALUE 5005.
-       78  78-ID-ef-int VALUE 5006.
+       78  78-ID-ef-desc VALUE 5002.
+       78  78-ID-gd1 VALUE 5003.
+       78  78-ID-gd2 VALUE 5004.
+       78  78-ID-gd3 VALUE 5005.
+       78  78-ID-gd4 VALUE 5006.
+       78  78-ID-gd5 VALUE 5007.
+       78  78-ID-gd6 VALUE 5008.
+       78  78-ID-gd7 VALUE 5009.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -256,8 +264,8 @@
        05
            ef-codice, 
            Entry-Field, 
-           COL 14,00, 
-           LINE 1,50,
+           COL 21,00, 
+           LINE 1,52,
            LINES 1,30 ,
            SIZE 10,00 ,
            BOXED,
@@ -273,318 +281,21 @@
 
       * ENTRY FIELD
        05
-           ef-descr, 
+           ef-desc, 
            Entry-Field, 
-           COL 14,00, 
+           COL 21,00, 
            LINE 3,13,
            LINES 1,30 ,
            SIZE 72,00 ,
            BOXED,
            COLOR IS 513,
            ENABLED MOD,
-           ID IS 78-ID-ef-descr,                
+           ID IS 78-ID-ef-desc,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            LEFT,
            MAX-TEXT 100,
-           VALUE ef-descr-BUF,
-           .
-
-      * ENTRY FIELD
-       05
-           ef-days, 
-           Entry-Field, 
-           COL 14,00, 
-           LINE 4,65,
-           LINES 1,30 ,
-           SIZE 3,00 ,
-           BOXED,
-           COLOR IS 513,
-           ENABLED MOD,
-           ID IS 78-ID-ef-days,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 1,
-           USE-RETURN,
-           VALUE ef-days-BUF,
-           .
-
-      * ENTRY FIELD
-       05
-           ef-macro, 
-           Entry-Field, 
-           COL 38,00, 
-           LINE 4,70,
-           LINES 1,30 ,
-           SIZE 3,00 ,
-           BOXED,
-           COLOR IS 513,
-           ENABLED MOD,
-           ID IS 78-ID-ef-macro,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           USE-RETURN,
-           VALUE ef-macro-BUF,
-           .
-
-      * ENTRY FIELD
-       05
-           ef-durata, 
-           Entry-Field, 
-           COL 52,00, 
-           LINE 4,70,
-           LINES 1,30 ,
-           SIZE 3,00 ,
-           BOXED,
-           COLOR IS 513,
-           ENABLED 0,
-           ID IS 78-ID-ef-durata,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           USE-RETURN,
-           VALUE ef-durata-BUF,
-           .
-
-      * ENTRY FIELD
-       05
-           ef-int, 
-           Entry-Field, 
-           COL 98,00, 
-           LINE 4,70,
-           LINES 1,30 ,
-           SIZE 3,00 ,
-           BOXED,
-           COLOR IS 513,
-           ENABLED 0,
-           ID IS 78-ID-ef-int,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           RIGHT,
-           MAX-TEXT 2,
-           USE-RETURN,
-           VALUE ef-int-BUF,
-           .
-
-      * GRID
-       05
-           gd1, 
-           Grid, 
-           COL 2,20, 
-           LINE 7,65,
-           LINES 13,96 ,
-           SIZE 26,40 ,
-           3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
-           NUM-COL-HEADINGS 1,
-           COLUMN-HEADINGS,
-           CURSOR-FRAME-WIDTH 3,
-           DIVIDER-COLOR 1,
-           FONT IS Calibri12-Occidentale,
-           HEADING-COLOR 257,
-           HEADING-DIVIDER-COLOR 1,
-           ID IS 1,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NUM-ROWS 11,
-           TILED-HEADINGS,
-           VIRTUAL-WIDTH 30,
-           VPADDING 50,
-           VSCROLL,
-           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
-           .
-
-      * GRID
-       05
-           gd2, 
-           Grid, 
-           COL 30,00, 
-           LINE 7,65,
-           LINES 13,96 ,
-           SIZE 26,40 ,
-           3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
-           NUM-COL-HEADINGS 1,
-           COLUMN-HEADINGS,
-           CURSOR-FRAME-WIDTH 3,
-           DIVIDER-COLOR 1,
-           FONT IS Calibri12-Occidentale,
-           HEADING-COLOR 257,
-           HEADING-DIVIDER-COLOR 1,
-           ID IS 2,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NUM-ROWS 20,
-           TILED-HEADINGS,
-           VIRTUAL-WIDTH 30,
-           VPADDING 50,
-           VSCROLL,
-           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
-           .
-
-      * GRID
-       05
-           gd3, 
-           Grid, 
-           COL 57,70, 
-           LINE 7,65,
-           LINES 13,96 ,
-           SIZE 26,40 ,
-           3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
-           NUM-COL-HEADINGS 1,
-           COLUMN-HEADINGS,
-           CURSOR-FRAME-WIDTH 3,
-           DIVIDER-COLOR 1,
-           FONT IS Calibri12-Occidentale,
-           HEADING-COLOR 257,
-           HEADING-DIVIDER-COLOR 1,
-           ID IS 3,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NUM-ROWS 20,
-           TILED-HEADINGS,
-           VIRTUAL-WIDTH 30,
-           VPADDING 50,
-           VSCROLL,
-           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
-           .
-
-      * GRID
-       05
-           gd4, 
-           Grid, 
-           COL 85,40, 
-           LINE 7,65,
-           LINES 13,96 ,
-           SIZE 26,40 ,
-           3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
-           NUM-COL-HEADINGS 1,
-           COLUMN-HEADINGS,
-           CURSOR-FRAME-WIDTH 3,
-           DIVIDER-COLOR 1,
-           FONT IS Calibri12-Occidentale,
-           HEADING-COLOR 257,
-           HEADING-DIVIDER-COLOR 1,
-           ID IS 4,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NUM-ROWS 20,
-           TILED-HEADINGS,
-           VIRTUAL-WIDTH 30,
-           VPADDING 50,
-           VSCROLL,
-           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
-           .
-
-      * GRID
-       05
-           gd5, 
-           Grid, 
-           COL 2,20, 
-           LINE 23,22,
-           LINES 13,96 ,
-           SIZE 26,40 ,
-           3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
-           NUM-COL-HEADINGS 1,
-           COLUMN-HEADINGS,
-           CURSOR-FRAME-WIDTH 3,
-           DIVIDER-COLOR 1,
-           FONT IS Calibri12-Occidentale,
-           HEADING-COLOR 257,
-           HEADING-DIVIDER-COLOR 1,
-           ID IS 5,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NUM-ROWS 20,
-           TILED-HEADINGS,
-           VIRTUAL-WIDTH 30,
-           VPADDING 50,
-           VSCROLL,
-           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
-           .
-
-      * GRID
-       05
-           gd6, 
-           Grid, 
-           COL 30,00, 
-           LINE 23,22,
-           LINES 13,96 ,
-           SIZE 26,40 ,
-           3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
-           NUM-COL-HEADINGS 1,
-           COLUMN-HEADINGS,
-           CURSOR-FRAME-WIDTH 3,
-           DIVIDER-COLOR 1,
-           FONT IS Calibri12-Occidentale,
-           HEADING-COLOR 257,
-           HEADING-DIVIDER-COLOR 1,
-           ID IS 6,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NUM-ROWS 20,
-           TILED-HEADINGS,
-           VIRTUAL-WIDTH 30,
-           VPADDING 50,
-           VSCROLL,
-           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
-           .
-
-      * GRID
-       05
-           gd7, 
-           Grid, 
-           COL 57,70, 
-           LINE 23,22,
-           LINES 13,96 ,
-           SIZE 26,40 ,
-           3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
-           NUM-COL-HEADINGS 1,
-           COLUMN-HEADINGS,
-           CURSOR-FRAME-WIDTH 3,
-           DIVIDER-COLOR 1,
-           FONT IS Calibri12-Occidentale,
-           HEADING-COLOR 257,
-           HEADING-DIVIDER-COLOR 1,
-           ID IS 11,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NUM-ROWS 20,
-           TILED-HEADINGS,
-           VIRTUAL-WIDTH 30,
-           VPADDING 50,
-           VSCROLL,
-           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
+           VALUE ef-desc-BUF,
            .
 
       * LABEL
@@ -655,20 +366,20 @@
            COL 2,90, 
            LINE 4,70,
            LINES 1,30 ,
-           SIZE 10,00 ,
+           SIZE 18,00 ,
            ID IS 8,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Giorni",
+           TITLE "Giorni per settimana",
            .
 
       * LABEL
        05
            Screen1-La-2aa, 
            Label, 
-           COL 18,90, 
-           LINE 4,70,
+           COL 2,90, 
+           LINE 6,00,
            LINES 1,30 ,
            SIZE 18,00 ,
            ID IS 9,
@@ -682,72 +393,304 @@
        05
            Screen1-La-2aaa, 
            Label, 
-           COL 43,90, 
-           LINE 4,70,
+           COL 2,90, 
+           LINE 7,30,
            LINES 1,30 ,
-           SIZE 7,00 ,
+           SIZE 18,00 ,
            ID IS 12,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Durata",
+           TITLE "Durata complessiva",
            .
 
       * LABEL
        05
-           lab-durata, 
+           lab-days, 
            Label, 
-           COL 56,30, 
+           COL 21,30, 
            LINE 4,70,
            LINES 1,30 ,
            SIZE 31,30 ,
-           COLOR IS 2,
            ID IS 14,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE lab-durata-buf,
+           TITLE lab-days-buf,
            .
 
       * LABEL
        05
            Screen1-La-2aaaa, 
            Label, 
-           COL 89,90, 
-           LINE 4,70,
+           COL 2,90, 
+           LINE 8,61,
            LINES 1,30 ,
-           SIZE 7,00 ,
+           SIZE 18,00 ,
            ID IS 15,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Intensità",
+           TITLE "Intensità media",
            .
 
       * LABEL
        05
-           lab-int, 
+           lab-macro, 
            Label, 
-           COL 102,30, 
-           LINE 4,70,
+           COL 21,30, 
+           LINE 6,00,
            LINES 1,30 ,
            SIZE 31,30 ,
-           COLOR IS 2,
            ID IS 17,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE lab-int-buf,
+           TITLE lab-macro-buf,
+           .
+
+      * FRAME
+       05
+           Screen1-Fr-1, 
+           Frame, 
+           COL 1,90, 
+           LINE 9,74,
+           LINES 18,13 ,
+           SIZE 158,90 ,
+           ENGRAVED,
+           ID IS 7,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Giorni di allenamento",
+           TITLE-POSITION 2,
+           .
+
+      * GRID
+       05
+           gd1, 
+           Grid, 
+           COL 3,10, 
+           LINE 12,57,
+           LINES 13,96 ,
+           SIZE 20,70 ,
+           3-D,
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
+           NUM-COL-HEADINGS 1,
+           COLUMN-HEADINGS,
+           CURSOR-FRAME-WIDTH 3,
+           DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
+           HEADING-COLOR 257,
+           HEADING-DIVIDER-COLOR 1,
+           ID IS 78-ID-gd1,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NUM-ROWS 11,
+           TILED-HEADINGS,
+           VIRTUAL-WIDTH 23,
+           VPADDING 50,
+           VSCROLL,
+           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
+           .
+
+      * GRID
+       05
+           gd2, 
+           Grid, 
+           COL 25,90, 
+           LINE 12,57,
+           LINES 13,96 ,
+           SIZE 20,70 ,
+           3-D,
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
+           NUM-COL-HEADINGS 1,
+           COLUMN-HEADINGS,
+           CURSOR-FRAME-WIDTH 3,
+           DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
+           HEADING-COLOR 257,
+           HEADING-DIVIDER-COLOR 1,
+           ID IS 78-ID-gd2,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NUM-ROWS 20,
+           TILED-HEADINGS,
+           VIRTUAL-WIDTH 23,
+           VPADDING 50,
+           VSCROLL,
+           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
+           .
+
+      * GRID
+       05
+           gd3, 
+           Grid, 
+           COL 48,60, 
+           LINE 12,57,
+           LINES 13,96 ,
+           SIZE 20,70 ,
+           3-D,
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
+           NUM-COL-HEADINGS 1,
+           COLUMN-HEADINGS,
+           CURSOR-FRAME-WIDTH 3,
+           DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
+           HEADING-COLOR 257,
+           HEADING-DIVIDER-COLOR 1,
+           ID IS 78-ID-gd3,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NUM-ROWS 20,
+           TILED-HEADINGS,
+           VIRTUAL-WIDTH 23,
+           VPADDING 50,
+           VSCROLL,
+           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
+           .
+
+      * GRID
+       05
+           gd4, 
+           Grid, 
+           COL 71,30, 
+           LINE 12,57,
+           LINES 13,96 ,
+           SIZE 20,70 ,
+           3-D,
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
+           NUM-COL-HEADINGS 1,
+           COLUMN-HEADINGS,
+           CURSOR-FRAME-WIDTH 3,
+           DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
+           HEADING-COLOR 257,
+           HEADING-DIVIDER-COLOR 1,
+           ID IS 78-ID-gd4,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NUM-ROWS 20,
+           TILED-HEADINGS,
+           VIRTUAL-WIDTH 23,
+           VPADDING 50,
+           VSCROLL,
+           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
+           .
+
+      * GRID
+       05
+           gd5, 
+           Grid, 
+           COL 94,10, 
+           LINE 12,57,
+           LINES 13,96 ,
+           SIZE 20,70 ,
+           3-D,
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
+           NUM-COL-HEADINGS 1,
+           COLUMN-HEADINGS,
+           CURSOR-FRAME-WIDTH 3,
+           DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
+           HEADING-COLOR 257,
+           HEADING-DIVIDER-COLOR 1,
+           ID IS 78-ID-gd5,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NUM-ROWS 20,
+           TILED-HEADINGS,
+           VIRTUAL-WIDTH 23,
+           VPADDING 50,
+           VSCROLL,
+           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
+           .
+
+      * GRID
+       05
+           gd6, 
+           Grid, 
+           COL 116,90, 
+           LINE 12,57,
+           LINES 13,96 ,
+           SIZE 20,70 ,
+           3-D,
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
+           NUM-COL-HEADINGS 1,
+           COLUMN-HEADINGS,
+           CURSOR-FRAME-WIDTH 3,
+           DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
+           HEADING-COLOR 257,
+           HEADING-DIVIDER-COLOR 1,
+           ID IS 78-ID-gd6,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NUM-ROWS 20,
+           TILED-HEADINGS,
+           VIRTUAL-WIDTH 23,
+           VPADDING 50,
+           VSCROLL,
+           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
+           .
+
+      * GRID
+       05
+           gd7, 
+           Grid, 
+           COL 138,70, 
+           LINE 12,57,
+           LINES 13,96 ,
+           SIZE 20,70 ,
+           3-D,
+           DATA-COLUMNS (1, 2, 3),
+           ALIGNMENT ("C", "C", "U"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)"),
+           NUM-COL-HEADINGS 1,
+           COLUMN-HEADINGS,
+           CURSOR-FRAME-WIDTH 3,
+           DIVIDER-COLOR 1,
+           FONT IS Calibri12-Occidentale,
+           HEADING-COLOR 257,
+           HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
+           ID IS 78-ID-gd7,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NUM-ROWS 20,
+           TILED-HEADINGS,
+           VIRTUAL-WIDTH 23,
+           VPADDING 50,
+           VSCROLL,
+           EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
            .
 
       * LABEL
        05
            Screen1-La-2aab, 
            Label, 
-           COL 57,70, 
-           LINE 21,87,
-           LINES 0,91 ,
-           SIZE 26,40 ,
+           COL 139,60, 
+           LINE 11,04,
+           LINES 1,30 ,
+           SIZE 20,70 ,
            ID IS 19,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -760,10 +703,10 @@
        05
            Screen1-La-2aaba, 
            Label, 
-           COL 2,20, 
-           LINE 6,22,
-           LINES 0,91 ,
-           SIZE 23,70 ,
+           COL 3,10, 
+           LINE 11,04,
+           LINES 1,30 ,
+           SIZE 20,70 ,
            ID IS 20,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -776,10 +719,10 @@
        05
            Screen1-La-2aabb, 
            Label, 
-           COL 30,00, 
-           LINE 6,22,
-           LINES 0,91 ,
-           SIZE 26,40 ,
+           COL 25,90, 
+           LINE 11,04,
+           LINES 1,30 ,
+           SIZE 20,70 ,
            ID IS 23,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -792,10 +735,10 @@
        05
            Screen1-La-2aabba, 
            Label, 
-           COL 85,40, 
-           LINE 6,22,
-           LINES 0,91 ,
-           SIZE 26,40 ,
+           COL 71,30, 
+           LINE 11,04,
+           LINES 1,30 ,
+           SIZE 20,70 ,
            ID IS 24,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -808,10 +751,10 @@
        05
            Screen1-La-2aabaa, 
            Label, 
-           COL 57,70, 
-           LINE 6,22,
-           LINES 0,91 ,
-           SIZE 26,40 ,
+           COL 48,60, 
+           LINE 11,04,
+           LINES 1,30 ,
+           SIZE 20,70 ,
            ID IS 25,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -824,10 +767,10 @@
        05
            Screen1-La-2aabbb, 
            Label, 
-           COL 30,00, 
-           LINE 21,87,
-           LINES 0,91 ,
-           SIZE 26,40 ,
+           COL 116,90, 
+           LINE 11,04,
+           LINES 1,30 ,
+           SIZE 20,70 ,
            ID IS 26,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -840,16 +783,46 @@
        05
            Screen1-La-2aabab, 
            Label, 
-           COL 2,20, 
-           LINE 21,87,
-           LINES 0,91 ,
-           SIZE 26,40 ,
+           COL 94,10, 
+           LINE 11,04,
+           LINES 1,30 ,
+           SIZE 20,70 ,
            ID IS 27,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
            TRANSPARENT,
            TITLE "Giorno 5",
+           .
+
+      * LABEL
+       05
+           lab-durata, 
+           Label, 
+           COL 21,30, 
+           LINE 7,30,
+           LINES 1,30 ,
+           SIZE 31,30 ,
+           ID IS 28,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-durata-buf,
+           .
+
+      * LABEL
+       05
+           lab-int, 
+           Label, 
+           COL 21,30, 
+           LINE 8,61,
+           LINES 1,30 ,
+           SIZE 31,30 ,
+           ID IS 29,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-int-buf,
            .
 
       * TOOLBAR
@@ -1293,6 +1266,7 @@
            INITIALIZE WFONT-DATA Calibri12-Occidentale
            MOVE 12 TO WFONT-SIZE
            MOVE "Calibri" TO WFONT-NAME
+           SET WFCHARSET-DONT-CARE TO TRUE
            SET WFONT-BOLD TO FALSE
            SET WFONT-ITALIC TO FALSE
            SET WFONT-UNDERLINE TO FALSE
@@ -2218,8 +2192,8 @@
 
        Form1-Create-Win.
            Display Independent GRAPHICAL WINDOW
-              LINES 38,83,
-              SIZE 134,40,
+              LINES 29,30,
+              SIZE 160,70,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -2281,7 +2255,50 @@
            perform INIT.
            perform ABILITA-TOOLBAR.
            perform ABILITAZIONI.
-           perform STATUS-BAR-MSG.   
+           perform STATUS-BAR-MSG.      
+                                     
+           modify gd1, start-x = 1,
+                       x = 3,
+                 start-y = 2,
+                       y = 2,
+            region-color = 257,
+            cursor-color = colore-nu.
+           modify gd2, start-x = 1,
+                       x = 3,
+                 start-y = 2,
+                       y = 2,
+            region-color = 257,
+            cursor-color = colore-nu.
+           modify gd3, start-x = 1,
+                       x = 3,
+                 start-y = 2,
+                       y = 2,
+            region-color = 257,
+            cursor-color = colore-nu.
+           modify gd4, start-x = 1,
+                       x = 3,
+                 start-y = 2,
+                       y = 2,
+            region-color = 257,
+            cursor-color = colore-nu.
+           modify gd5, start-x = 1,
+                       x = 3,
+                 start-y = 2,
+                       y = 2,
+            region-color = 257,
+            cursor-color = colore-nu.
+           modify gd6, start-x = 1,
+                       x = 3,
+                 start-y = 2,
+                       y = 2,
+            region-color = 257,
+            cursor-color = colore-nu.
+           modify gd7, start-x = 1,
+                       x = 3,
+                 start-y = 2,
+                       y = 2,
+            region-color = 257,
+            cursor-color = colore-nu.
            
       *     perform PRIMO.
 
@@ -2792,44 +2809,12 @@
                MOVE 5001 TO CONTROL-ID
                EXIT PARAGRAPH
            END-IF
-      * ef-descr's Validation
+      * ef-desc's Validation
            SET TOTEM-CHECK-OK TO FALSE
-           PERFORM ef-descr-VALIDATION
+           PERFORM ef-desc-VALIDATION
            IF NOT TOTEM-CHECK-OK
                MOVE 4 TO ACCEPT-CONTROL
                MOVE 5002 TO CONTROL-ID
-               EXIT PARAGRAPH
-           END-IF
-      * ef-days's Validation
-           SET TOTEM-CHECK-OK TO FALSE
-           PERFORM ef-days-VALIDATION
-           IF NOT TOTEM-CHECK-OK
-               MOVE 4 TO ACCEPT-CONTROL
-               MOVE 5003 TO CONTROL-ID
-               EXIT PARAGRAPH
-           END-IF
-      * ef-macro's Validation
-           SET TOTEM-CHECK-OK TO FALSE
-           PERFORM ef-macro-VALIDATION
-           IF NOT TOTEM-CHECK-OK
-               MOVE 4 TO ACCEPT-CONTROL
-               MOVE 5004 TO CONTROL-ID
-               EXIT PARAGRAPH
-           END-IF
-      * ef-durata's Validation
-           SET TOTEM-CHECK-OK TO FALSE
-           PERFORM ef-durata-VALIDATION
-           IF NOT TOTEM-CHECK-OK
-               MOVE 4 TO ACCEPT-CONTROL
-               MOVE 5005 TO CONTROL-ID
-               EXIT PARAGRAPH
-           END-IF
-      * ef-int's Validation
-           SET TOTEM-CHECK-OK TO FALSE
-           PERFORM ef-int-VALIDATION
-           IF NOT TOTEM-CHECK-OK
-               MOVE 4 TO ACCEPT-CONTROL
-               MOVE 5006 TO CONTROL-ID
                EXIT PARAGRAPH
            END-IF
            .
@@ -2851,89 +2836,21 @@
            PERFORM ef-codice-AFTER-VALIDATION
            .
 
-       ef-descr-BEFORE-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-descr, BeforeValidation>
+       ef-desc-BEFORE-VALIDATION.
+      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-desc, BeforeValidation>
       * <TOTEM:END>
            .
 
-       ef-descr-AFTER-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-descr, AfterValidation>
+       ef-desc-AFTER-VALIDATION.
+      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-desc, AfterValidation>
       * <TOTEM:END>
            .
 
-      * ef-descr's Validation
-       ef-descr-VALIDATION.
-           PERFORM ef-descr-BEFORE-VALIDATION
+      * ef-desc's Validation
+       ef-desc-VALIDATION.
+           PERFORM ef-desc-BEFORE-VALIDATION
            SET TOTEM-CHECK-OK TO TRUE
-           PERFORM ef-descr-AFTER-VALIDATION
-           .
-
-       ef-days-BEFORE-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-days, BeforeValidation>
-      * <TOTEM:END>
-           .
-
-       ef-days-AFTER-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-days, AfterValidation>
-      * <TOTEM:END>
-           .
-
-      * ef-days's Validation
-       ef-days-VALIDATION.
-           PERFORM ef-days-BEFORE-VALIDATION
-           SET TOTEM-CHECK-OK TO TRUE
-           PERFORM ef-days-AFTER-VALIDATION
-           .
-
-       ef-macro-BEFORE-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-macro, BeforeValidation>
-      * <TOTEM:END>
-           .
-
-       ef-macro-AFTER-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-macro, AfterValidation>
-      * <TOTEM:END>
-           .
-
-      * ef-macro's Validation
-       ef-macro-VALIDATION.
-           PERFORM ef-macro-BEFORE-VALIDATION
-           SET TOTEM-CHECK-OK TO TRUE
-           PERFORM ef-macro-AFTER-VALIDATION
-           .
-
-       ef-durata-BEFORE-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-durata, BeforeValidation>
-      * <TOTEM:END>
-           .
-
-       ef-durata-AFTER-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-durata, AfterValidation>
-      * <TOTEM:END>
-           .
-
-      * ef-durata's Validation
-       ef-durata-VALIDATION.
-           PERFORM ef-durata-BEFORE-VALIDATION
-           SET TOTEM-CHECK-OK TO TRUE
-           PERFORM ef-durata-AFTER-VALIDATION
-           .
-
-       ef-int-BEFORE-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-int, BeforeValidation>
-      * <TOTEM:END>
-           .
-
-       ef-int-AFTER-VALIDATION.
-      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-int, AfterValidation>
-      * <TOTEM:END>
-           .
-
-      * ef-int's Validation
-       ef-int-VALIDATION.
-           PERFORM ef-int-BEFORE-VALIDATION
-           SET TOTEM-CHECK-OK TO TRUE
-           PERFORM ef-int-AFTER-VALIDATION
+           PERFORM ef-desc-AFTER-VALIDATION
            .
 
 
@@ -2942,16 +2859,8 @@
       * <TOTEM:END>
       * DB_Entry-Field : ef-codice
            MOVE ef-codice-BUF TO wom-code
-      * DB_Entry-Field : ef-descr
-           MOVE ef-descr-BUF TO wom-desc
-      * DB_Entry-Field : ef-days
-           MOVE ef-days-BUF TO wom-days
-      * DB_Entry-Field : ef-macro
-           MOVE ef-macro-BUF TO wom-macrogroups
-      * DB_Entry-Field : ef-durata
-           MOVE ef-durata-BUF TO wom-dur-code
-      * DB_Entry-Field : ef-int
-           MOVE ef-int-BUF TO wom-effort
+      * DB_Entry-Field : ef-desc
+           MOVE ef-desc-BUF TO wom-desc
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterBufToFld>
       * <TOTEM:END>
            .
@@ -2961,16 +2870,8 @@
       * <TOTEM:END>
       * DB_Entry-Field : ef-codice
            MOVE wom-code TO ef-codice-BUF
-      * DB_Entry-Field : ef-descr
-           MOVE wom-desc TO ef-descr-BUF
-      * DB_Entry-Field : ef-days
-           MOVE wom-days TO ef-days-BUF
-      * DB_Entry-Field : ef-macro
-           MOVE wom-macrogroups TO ef-macro-BUF
-      * DB_Entry-Field : ef-durata
-           MOVE wom-dur-code TO ef-durata-BUF
-      * DB_Entry-Field : ef-int
-           MOVE wom-effort TO ef-int-BUF
+      * DB_Entry-Field : ef-desc
+           MOVE wom-desc TO ef-desc-BUF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterFldToBuf>
            perform ABILITAZIONI. 
            perform LOAD-DAYS.
@@ -2979,12 +2880,8 @@
            read duration no lock invalid move spaces to dur-desc 
            end-read.
            move dur-desc to lab-durata-buf.
-           evaluate wom-effort
-           when 1 move "Light wod effort" to lab-int-buf
-           when 2 move "Medium wod effort" to lab-int-buf
-           when 3 move "Heavy wod effort" to lab-int-buf
-           end-evaluate.
-           Perform VALORIZZA-OLD.
+           Perform VALORIZZA-OLD.         
+           perform CALCOLA-VALORI
 
            .
       * <TOTEM:END>
@@ -2998,22 +2895,8 @@
            if wom-desc not = old-wom-desc
               and SiSalvato
               set NoSalvato to true
-              |78-ID-ef-descr è l'ID del campo ef-descr
-              move 78-ID-ef-descr to store-id 
-           end-if
-
-           if wom-dur-code not = old-wom-dur-code
-              and SiSalvato
-              set NoSalvato to true
-              |78-ID-ef-durata è l'ID del campo ef-durata
-              move 78-ID-ef-durata to store-id 
-           end-if
-
-           if wom-effort not = old-wom-effort
-              and SiSalvato
-              set NoSalvato to true
-              |78-ID-ef-int è l'ID del campo ef-int
-              move 78-ID-ef-int to store-id 
+              |78-ID-ef-desc è l'ID del campo ef-desc
+              move 78-ID-ef-desc to store-id 
            end-if
 
            .
@@ -3067,47 +2950,9 @@
            .
 
 
-      * Paragrafo per la struttura del codice in BEFORE sulla screen Form1
-      ***---
-       Form1-BEFORE-SCREEN.
-           evaluate control-id
-           |78-ID-ef-durata è l'ID del campo ef-durata
-           when 78-ID-ef-durata
-                move 1 to StatusHelp
-                perform STATUS-HELP
-           |78-ID-ef-int è l'ID del campo ef-int
-           when 78-ID-ef-int
-                move 1 to StatusHelp
-                perform STATUS-HELP
-           |99999 è un valore fittizio, che non sarà MAI usato,
-           |ma mi serve per non riscontrare errori di compilazione
-           |in caso non avessi generato nulla nella BEFORE della screen
-           when 99999 continue
-           when other continue
-           end-evaluate.
-
-      * Generazione settaggio keyboard "." ---> ","
-
       * Paragrafo per la struttura del codice in AFTER sulla screen Form1
       ***---
        Form1-AFTER-SCREEN.
-           evaluate control-id
-           |78-ID-ef-durata è l'ID del campo ef-durata
-           when 78-ID-ef-durata
-                move 0 to StatusHelp
-                perform STATUS-HELP
-
-           |78-ID-ef-int è l'ID del campo ef-int
-           when 78-ID-ef-int
-                move 0 to StatusHelp
-                perform STATUS-HELP
-
-           |99999 è un valore fittizio, che non sarà MAI usato,
-           |ma mi serve per non riscontrare errori di compilazione
-           |in caso non avessi generato nulla nella AFTER della screen
-           when 99999 continue
-           when other continue
-           end-evaluate.
 
       * Generazione risettaggio keyboard "." ---> "."
 
@@ -3116,20 +2961,8 @@
            |78-ID-ef-codice è l'ID del campo ef-codice
            when 78-ID-ef-codice
                 perform CONTROLLO
-           |78-ID-ef-descr è l'ID del campo ef-descr
-           when 78-ID-ef-descr
-                perform CONTROLLO
-           |78-ID-ef-days è l'ID del campo ef-days
-           when 78-ID-ef-days
-                perform CONTROLLO
-           |78-ID-ef-macro è l'ID del campo ef-macro
-           when 78-ID-ef-macro
-                perform CONTROLLO
-           |78-ID-ef-durata è l'ID del campo ef-durata
-           when 78-ID-ef-durata
-                perform CONTROLLO
-           |78-ID-ef-int è l'ID del campo ef-int
-           when 78-ID-ef-int
+           |78-ID-ef-desc è l'ID del campo ef-desc
+           when 78-ID-ef-desc
                 perform CONTROLLO
            |99999 è un valore fittizio, che non sarà MAI usato,
            |ma mi serve per non riscontrare errori di compilazione
@@ -3144,32 +2977,19 @@
            EVALUATE Control-Id
            WHEN 5001 MOVE "Digitare il Codice" to TOTEM-HINT-TEXT
            WHEN 5002 MOVE "." to TOTEM-HINT-TEXT
-           WHEN 5003 MOVE "." to TOTEM-HINT-TEXT
-           WHEN 5004 MOVE "." to TOTEM-HINT-TEXT
-           WHEN 5005 MOVE "." to TOTEM-HINT-TEXT
-           WHEN 5006 MOVE "." to TOTEM-HINT-TEXT
            WHEN OTHER MOVE SPACES TO TOTEM-HINT-TEXT
            END-EVALUATE
            EVALUATE Control-Id
            When 5001 PERFORM ef-codice-BeforeProcedure
            When 5002 PERFORM ef-descr-BeforeProcedure
-           When 5003 PERFORM ef-days-BeforeProcedure
-           When 5004 PERFORM ef-macro-BeforeProcedure
-           When 5005 PERFORM ef-macro-BeforeProcedure
-           When 5006 PERFORM ef-macro-BeforeProcedure
            END-EVALUATE
            PERFORM Form1-DISPLAY-STATUS-MSG
-           perform Form1-BEFORE-SCREEN
            .
 
        Form1-AfterProcedure.
            EVALUATE Control-Id
            When 5001 PERFORM ef-codice-AfterProcedure
            When 5002 PERFORM ef-ragsoc-AfterProcedure
-           When 5003 PERFORM ef-days-AfterProcedure
-           When 5004 PERFORM ef-macro-AfterProcedure
-           When 5005 PERFORM ef-macro-AfterProcedure
-           When 5006 PERFORM ef-macro-AfterProcedure
            END-EVALUATE
            perform Form1-AFTER-SCREEN
            .
@@ -3180,31 +3000,198 @@
        Screen1-Gd-1-Event-Proc.
            EVALUATE Event-Type ALSO Event-Control-Id ALSO
                                     Event-Window-Handle
-           WHEN Msg-Begin-Entry ALSO 1 ALSO
+           WHEN Msg-Begin-Drag ALSO 5003 ALSO
+                    form1-Handle 
+              PERFORM gd1-Ev-Msg-Begin-Drag
+           WHEN Msg-Begin-Entry ALSO 5003 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Begin-Entry
-           WHEN Msg-Begin-Entry ALSO 2 ALSO
+           WHEN Msg-End-Drag ALSO 5003 ALSO
+                    form1-Handle 
+              PERFORM gd1-Ev-Msg-End-Drag
+           WHEN Msg-Finish-Entry ALSO 5003 ALSO
+                    form1-Handle 
+              PERFORM gd1-Ev-Msg-Finish-Entry
+           WHEN Msg-Goto-Cell ALSO 5003 ALSO
+                    form1-Handle 
+              PERFORM gd1-Ev-Msg-Goto-Cell
+           WHEN Msg-Goto-Cell-Drag ALSO 5003 ALSO
+                    form1-Handle 
+              PERFORM gd1-Ev-Msg-Goto-Cell-Drag
+           WHEN Msg-Goto-Cell-Mouse ALSO 5003 ALSO
+                    form1-Handle 
+              PERFORM gd1-Ev-Msg-Goto-Cell-Mouse
+           WHEN Msg-Begin-Drag ALSO 5004 ALSO
+                    form1-Handle 
+              PERFORM gd2-Ev-Msg-Begin-Drag
+           WHEN Msg-Begin-Entry ALSO 5004 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Begin-Entry
-           WHEN Msg-Begin-Entry ALSO 3 ALSO
+           WHEN Msg-End-Drag ALSO 5004 ALSO
+                    form1-Handle 
+              PERFORM gd2-Ev-Msg-End-Drag
+           WHEN Msg-Finish-Entry ALSO 5004 ALSO
+                    form1-Handle 
+              PERFORM gd2-Ev-Msg-Finish-Entry
+           WHEN Msg-Goto-Cell ALSO 5004 ALSO
+                    form1-Handle 
+              PERFORM gd2-Ev-Msg-Goto-Cell
+           WHEN Msg-Goto-Cell-Drag ALSO 5004 ALSO
+                    form1-Handle 
+              PERFORM gd2-Ev-Msg-Goto-Cell-Drag
+           WHEN Msg-Goto-Cell-Mouse ALSO 5004 ALSO
+                    form1-Handle 
+              PERFORM gd2-Ev-Msg-Goto-Cell-Mouse
+           WHEN Msg-Begin-Drag ALSO 5005 ALSO
+                    form1-Handle 
+              PERFORM gd3-Ev-Msg-Begin-Drag
+           WHEN Msg-Begin-Entry ALSO 5005 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Begin-Entry
-           WHEN Msg-Begin-Entry ALSO 4 ALSO
+           WHEN Msg-End-Drag ALSO 5005 ALSO
+                    form1-Handle 
+              PERFORM gd3-Ev-Msg-End-Drag
+           WHEN Msg-Finish-Entry ALSO 5005 ALSO
+                    form1-Handle 
+              PERFORM gd3-Ev-Msg-Finish-Entry
+           WHEN Msg-Goto-Cell ALSO 5005 ALSO
+                    form1-Handle 
+              PERFORM gd3-Ev-Msg-Goto-Cell
+           WHEN Msg-Goto-Cell-Drag ALSO 5005 ALSO
+                    form1-Handle 
+              PERFORM gd3-Ev-Msg-Goto-Cell-Drag
+           WHEN Msg-Goto-Cell-Mouse ALSO 5005 ALSO
+                    form1-Handle 
+              PERFORM gd3-Ev-Msg-Goto-Cell-Mouse
+           WHEN Msg-Begin-Drag ALSO 5006 ALSO
+                    form1-Handle 
+              PERFORM gd4-Ev-Msg-Begin-Drag
+           WHEN Msg-Begin-Entry ALSO 5006 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Begin-Entry
-           WHEN Msg-Begin-Entry ALSO 5 ALSO
+           WHEN Msg-End-Drag ALSO 5006 ALSO
+                    form1-Handle 
+              PERFORM gd4-Ev-Msg-End-Drag
+           WHEN Msg-Finish-Entry ALSO 5006 ALSO
+                    form1-Handle 
+              PERFORM gd4-Ev-Msg-Finish-Entry
+           WHEN Msg-Goto-Cell ALSO 5006 ALSO
+                    form1-Handle 
+              PERFORM gd4-Ev-Msg-Goto-Cell
+           WHEN Msg-Goto-Cell-Drag ALSO 5006 ALSO
+                    form1-Handle 
+              PERFORM gd4-Ev-Msg-Goto-Cell-Drag
+           WHEN Msg-Goto-Cell-Mouse ALSO 5006 ALSO
+                    form1-Handle 
+              PERFORM gd4-Ev-Msg-Goto-Cell-Mouse
+           WHEN Msg-Begin-Drag ALSO 5007 ALSO
+                    form1-Handle 
+              PERFORM gd5-Ev-Msg-Begin-Drag
+           WHEN Msg-Begin-Entry ALSO 5007 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Begin-Entry
-           WHEN Msg-Begin-Entry ALSO 6 ALSO
+           WHEN Msg-End-Drag ALSO 5007 ALSO
+                    form1-Handle 
+              PERFORM gd5-Ev-Msg-End-Drag
+           WHEN Msg-Finish-Entry ALSO 5007 ALSO
+                    form1-Handle 
+              PERFORM gd5-Ev-Msg-Finish-Entry
+           WHEN Msg-Goto-Cell ALSO 5007 ALSO
+                    form1-Handle 
+              PERFORM gd5-Ev-Msg-Goto-Cell
+           WHEN Msg-Goto-Cell-Drag ALSO 5007 ALSO
+                    form1-Handle 
+              PERFORM gd5-Ev-Msg-Goto-Cell-Drag
+           WHEN Msg-Goto-Cell-Mouse ALSO 5007 ALSO
+                    form1-Handle 
+              PERFORM gd5-Ev-Msg-Goto-Cell-Mouse
+           WHEN Msg-Begin-Drag ALSO 5008 ALSO
+                    form1-Handle 
+              PERFORM gd6-Ev-Msg-Begin-Drag
+           WHEN Msg-Begin-Entry ALSO 5008 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Begin-Entry
-           WHEN Msg-Begin-Entry ALSO 11 ALSO
+           WHEN Msg-End-Drag ALSO 5008 ALSO
+                    form1-Handle 
+              PERFORM gd6-Ev-Msg-End-Drag
+           WHEN Msg-Finish-Entry ALSO 5008 ALSO
+                    form1-Handle 
+              PERFORM gd6-Ev-Msg-Finish-Entry
+           WHEN Msg-Goto-Cell ALSO 5008 ALSO
+                    form1-Handle 
+              PERFORM gd6-Ev-Msg-Goto-Cell
+           WHEN Msg-Goto-Cell-Drag ALSO 5008 ALSO
+                    form1-Handle 
+              PERFORM gd6-Ev-Msg-Goto-Cell-Drag
+           WHEN Msg-Goto-Cell-Mouse ALSO 5008 ALSO
+                    form1-Handle 
+              PERFORM gd6-Ev-Msg-Goto-Cell-Mouse
+           WHEN Msg-Begin-Drag ALSO 5009 ALSO
+                    form1-Handle 
+              PERFORM gd7-Ev-Msg-Begin-Drag
+           WHEN Msg-Begin-Entry ALSO 5009 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Begin-Entry
+           WHEN Msg-End-Drag ALSO 5009 ALSO
+                    form1-Handle 
+              PERFORM gd7-Ev-Msg-End-Drag
+           WHEN Msg-Finish-Entry ALSO 5009 ALSO
+                    form1-Handle 
+              PERFORM gd7-Ev-Msg-Finish-Entry
+           WHEN Msg-Goto-Cell ALSO 5009 ALSO
+                    form1-Handle 
+              PERFORM gd7-Ev-Msg-Goto-Cell
+           WHEN Msg-Goto-Cell-Drag ALSO 5009 ALSO
+                    form1-Handle 
+              PERFORM gd7-Ev-Msg-Goto-Cell-Drag
+           WHEN Msg-Goto-Cell-Mouse ALSO 5009 ALSO
+                    form1-Handle 
+              PERFORM gd7-Ev-Msg-Goto-Cell-Mouse
            END-EVALUATE
            .
 
       * USER DEFINE PARAGRAPH
+       ABILITA-GRID-DAYS.
+      * <TOTEM:PARA. ABILITA-GRID-DAYS>
+      *****     modify gd1, enabled true.
+      *****     modify gd2, enabled true.
+      *****     modify gd3, enabled true.
+      *****     modify gd4, enabled true.
+      *****     modify gd5, enabled true.
+      *****     modify gd6, enabled true.
+      *****     modify gd7, enabled true.
+      *****     evaluate wom-days
+      *****     when 1                        
+      *****          modify gd2, enabled false
+      *****          modify gd3, enabled false
+      *****          modify gd4, enabled false
+      *****          modify gd5, enabled false
+      *****          modify gd6, enabled false
+      *****          modify gd7, enabled false
+      *****     when 2              
+      *****          modify gd3, enabled false
+      *****          modify gd4, enabled false
+      *****          modify gd5, enabled false
+      *****          modify gd6, enabled false
+      *****          modify gd7, enabled false
+      *****     when 3              
+      *****          modify gd4, enabled false
+      *****          modify gd5, enabled false
+      *****          modify gd6, enabled false
+      *****          modify gd7, enabled false
+      *****     when 4              
+      *****          modify gd5, enabled false
+      *****          modify gd6, enabled false
+      *****          modify gd7, enabled false
+      *****     when 5              
+      *****          modify gd6, enabled false
+      *****          modify gd7, enabled false
+      *****     when 6              
+      *****          modify gd7, enabled false 
+      *****     end-evaluate 
+           .
+      * <TOTEM:END>
+
        ABILITAZIONI.
       * <TOTEM:PARA. ABILITAZIONI>
            if mod = 1              
@@ -3231,6 +3218,201 @@
        ANTEPRIMA.
       * <TOTEM:PARA. ANTEPRIMA>
            continue 
+           .
+      * <TOTEM:END>
+
+       CALCOLA-VALORI.
+      * <TOTEM:PARA. CALCOLA-VALORI>
+           move 0 to tot-days.
+           initialize tab-mcg.                
+           inquire gd1, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd1(riga, 1), cell-data mcg-code
+              perform CERCA-MACROGRUPPO
+           end-perform.
+           inquire gd2, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd2(riga, 1), cell-data mcg-code
+              perform CERCA-MACROGRUPPO
+           end-perform.
+           inquire gd3, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd3(riga, 1), cell-data mcg-code
+              perform CERCA-MACROGRUPPO
+           end-perform.
+           inquire gd4, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd4(riga, 1), cell-data mcg-code
+              perform CERCA-MACROGRUPPO
+           end-perform.
+           inquire gd5, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd5(riga, 1), cell-data mcg-code
+              perform CERCA-MACROGRUPPO
+           end-perform.
+           inquire gd6, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd6(riga, 1), cell-data mcg-code
+              perform CERCA-MACROGRUPPO
+           end-perform.
+           inquire gd7, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd7(riga, 1), cell-data mcg-code
+              perform CERCA-MACROGRUPPO
+           end-perform.
+           perform varying idx from 1 by 1 
+                     until idx > 20
+              if el-mcg(idx) = spaces
+                 subtract 1 from idx
+                 exit perform
+              end-if
+           end-perform.                         
+           move idx to wom-macrogroups.
+
+           move idx to como-value.
+           perform FORMAT-VALUE.
+           initialize lab-macro-buf.
+           if idx > 0
+              string como-value delimited low-value
+                     " macrogruppi totali: " delimited size
+                     el-mcg(1)  delimited space
+                     " "        delimited size
+                     el-mcg(2)  delimited space
+                     " "        delimited size
+                     el-mcg(3)  delimited space
+                     " "        delimited size
+                     el-mcg(4)  delimited space
+                     " "        delimited size
+                     el-mcg(5)  delimited space
+                     " "        delimited size
+                     el-mcg(6)  delimited space
+                     " "        delimited size
+                     el-mcg(7)  delimited space
+                into lab-macro-buf
+              end-string
+           end-if.
+           display lab-macro.  
+
+           initialize lab-days-buf.
+           move tot-days to como-value wom-days.   
+           if tot-days > 0
+              perform FORMAT-VALUE
+              string como-value      delimited low-value
+                     " gg/settimana" delimited size
+                into lab-days-buf
+              end-string
+           end-if.
+           display lab-days.
+
+           move 0 to como-effort tot-exe.
+
+           perform varying idx-day from 1 by 1 
+                     until idx-day > wom-days
+               perform varying idx-split from 1 by 1 
+                         until idx-split> 20
+                  if wom-split-el-split-int-code(idx-day, idx-split) = 0
+                     exit perform
+                  end-if
+                  move wom-split-el-split-int-code(idx-day, idx-split) 
+                    to int-code
+                  read intexe no lock
+                  add int-effort to como-effort
+                  add 1 to tot-exe
+               end-perform
+           end-perform. 
+
+           divide tot-exe by wom-days giving tot-durata remainder resto.
+           if resto > 0
+              add 1 to tot-durata
+           end-if.
+           if tot-durata > 0
+              move tot-durata to dur-exercises
+              move low-value  to dur-code
+              start duration key >= dur-k-exercises
+                    invalid 
+                    move spaces to dur-desc 
+                    move 0      to wom-dur-code
+                not invalid
+                    read duration next         
+                    move dur-code to wom-dur-code
+              end-start                      
+           end-if.
+
+           initialize lab-durata-buf.
+           if wom-dur-code > 0
+              move wom-dur-code to como-value
+              perform FORMAT-VALUE
+              string como-value delimited low-value
+                     " - "      delimited size
+                     dur-desc   delimited size
+                into lab-durata-buf
+              end-string
+           end-if.
+           display lab-durata.
+
+           compute tot-effort = como-effort / tot-exe.
+
+           if tot-effort > 0
+              if tot-effort < 2,5 
+                 move 1 to como-effort wom-effort
+              else
+                 if tot-effort < 3,5            
+                    move 2 to como-effort wom-effort
+                 else                              
+                    move 3 to como-effort wom-effort
+                 end-if
+              end-if
+           end-if.
+
+           move como-effort to como-value.
+           perform FORMAT-VALUE.
+                                      
+           initialize lab-int-buf.
+           evaluate como-effort
+           when 1 
+                string como-value delimited low-value
+                       " - Light wod effort"  
+                  into lab-int-buf
+                end-string
+           when 2 
+                string como-value delimited low-value
+                       " - Medium wod effort"  
+                  into lab-int-buf
+                end-string
+           when 3 
+                string como-value delimited low-value
+                       " - Heavy wod effort"  
+                  into lab-int-buf
+                end-string            
+           end-evaluate.     
+           display lab-int. 
+
+      ***---
+       CERCA-MACROGRUPPO.
+           if mcg-code = spaces exit paragraph end-if.
+           if riga = 2 add 1 to tot-days end-if.   
+           move 0 to idx-gruppo.
+           perform varying idx from 1 by 1 
+                     until idx > 20
+              if el-mcg(idx) = spaces
+                 move idx to idx-gruppo
+                 exit perform
+              end-if
+              if el-mcg(idx) = mcg-code
+                 move 0 to idx-gruppo
+                 exit perform
+              end-if
+           end-perform.
+           if idx-gruppo not = 0
+              move mcg-code to el-mcg(idx-gruppo)
+           end-if                                                    
            .
       * <TOTEM:END>
 
@@ -3277,32 +3459,76 @@
 
        CERCA.
       * <TOTEM:PARA. CERCA>
-           evaluate control-id 
-           when 78-ID-ef-durata
-                inquire ef-durata, value in dur-code
-                move "duration"   to Como-File
-                call   "zoom-gt" using como-file, dur-rec
-                                giving stato-zoom
-                cancel "zoom-gt"
-                if stato-zoom = 0
-                   move dur-code to ef-durata-buf
-                   move dur-desc to lab-durata-buf
-                   display ef-durata lab-durata
-                   move 4 to accept-control
-                end-if
-           when 78-ID-ef-int
-                inquire ef-int, value in int-code
-                move "intensity"   to Como-File
+      *****     evaluate control-id 
+      *****     when 78-ID-ef-durata                      
+                evaluate control-id               
+                when 78-ID-gd1                                        
+                     inquire gd1, cursor-y in riga
+                when 78-ID-gd2                                        
+                     inquire gd2, cursor-y in riga
+                when 78-ID-gd3                                        
+                     inquire gd3, cursor-y in riga
+                when 78-ID-gd4                                        
+                     inquire gd4, cursor-y in riga
+                when 78-ID-gd5                                        
+                     inquire gd5, cursor-y in riga
+                when 78-ID-gd6                                        
+                     inquire gd6, cursor-y in riga
+                when 78-ID-gd7                                        
+                     inquire gd7, cursor-y in riga
+                end-evaluate
+
+                move col-effort to int-code
+                move "intexe"   to Como-File
                 call   "zoom-gt" using como-file, int-rec
                                 giving stato-zoom
                 cancel "zoom-gt"
                 if stato-zoom = 0
-                   move int-code to ef-int-buf
-                   move int-desc to lab-int-buf
-                   display ef-int lab-int
-                   move 4 to accept-control
+                   move int-code to col-effort
+                   move int-desc to col-int-desc
+                   evaluate control-id
+                   when 78-ID-gd1                                       
+            
+                        modify gd1(riga, 2), cell-data col-effort
+                        modify gd1(riga, 3), cell-data col-int-desc
+                   when 78-ID-gd2                                       
+              
+                        modify gd2(riga, 2), cell-data col-effort
+                        modify gd2(riga, 3), cell-data col-int-desc
+                   when 78-ID-gd3                                       
+              
+                        modify gd3(riga, 2), cell-data col-effort
+                        modify gd3(riga, 3), cell-data col-int-desc
+                   when 78-ID-gd4                                       
+              
+                        modify gd4(riga, 2), cell-data col-effort
+                        modify gd4(riga, 3), cell-data col-int-desc
+                   when 78-ID-gd5                                       
+              
+                        modify gd5(riga, 2), cell-data col-effort
+                        modify gd5(riga, 3), cell-data col-int-desc
+                   when 78-ID-gd6                                       
+              
+                        modify gd6(riga, 2), cell-data col-effort
+                        modify gd6(riga, 3), cell-data col-int-desc
+                   when 78-ID-gd7                
+                        modify gd7(riga, 2), cell-data col-effort
+                        modify gd7(riga, 3), cell-data col-int-desc
+                   end-evaluate
                 end-if
-           end-evaluate 
+      *****     when 78-ID-ef-int
+      *****          inquire ef-int, value in int-code
+      *****          move "intensity"   to Como-File
+      *****          call   "zoom-gt" using como-file, int-rec
+      *****                          giving stato-zoom
+      *****          cancel "zoom-gt"
+      *****          if stato-zoom = 0
+      *****             move int-code to ef-int-buf
+      *****             move int-desc to lab-int-buf
+      *****             display ef-int lab-int
+      *****             move 4 to accept-control
+      *****          end-if
+      *****     end-evaluate 
            .
       * <TOTEM:END>
 
@@ -3310,8 +3536,12 @@
       * <TOTEM:PARA. CLEAR-SCREEN>
            move wom-key to old-wom-key.
 
-           initialize wom-data replacing numeric data by zeroes
-                                   alphanumeric data by spaces.
+           initialize wom-data 
+                      lab-int-buf
+                      lab-days-buf
+                      lab-int-buf
+                      lab-durata-buf replacing numeric data by zeroes
+                                          alphanumeric data by spaces.
                          
            perform FORM1-FLD-TO-BUF. 
 
@@ -3356,8 +3586,8 @@
                            icon  mb-warning-icon
                 end-if      
       
-           when 78-ID-ef-descr
-                inquire ef-descr value in wom-desc
+           when 78-ID-ef-desc
+                inquire ef-desc value in wom-desc
                 if wom-desc = spaces
                    set errori to true
                    display message "Descrizione obbligatoria"
@@ -3366,49 +3596,49 @@
                               icon  mb-warning-icon
                 end-if 
       
-           when 78-ID-ef-days
-                inquire ef-days value in wom-days
-                if wom-days = 0
-                   set errori to true
-                   display message "Dato obbligatorio"
-                             title tit-err
-                              type  mb-ok
-                              icon  mb-warning-icon
-                else
-                   if wom-days > 7              
-                      set errori to true
-                      display message "Massimo 7 giorni"
-                                title tit-err
-                                 type  mb-ok
-                                 icon  mb-warning-icon
-                   else              
-                      perform ABILITA-GRID-DAYS
-                   end-if
-                end-if                          
+      *****     when 78-ID-ef-days
+      *****          inquire ef-days value in wom-days
+      *****          if wom-days = 0
+      *****             set errori to true
+      *****             display message "Dato obbligatorio"
+      *****                       title tit-err
+      *****                        type  mb-ok
+      *****                        icon  mb-warning-icon
+      *****          else
+      *****             if wom-days > 7              
+      *****                set errori to true
+      *****                display message "Massimo 7 giorni"
+      *****                          title tit-err
+      *****                           type  mb-ok
+      *****                           icon  mb-warning-icon
+      *****             else              
+      *****                perform ABILITA-GRID-DAYS
+      *****             end-if
+      *****          end-if                          
       
-           when 78-ID-ef-macro
-                inquire ef-macro value in wom-macrogroups
-                if wom-macrogroups = 0
-                   set errori to true
-                   display message "Dato obbligatorio"
-                             title tit-err
-                              type  mb-ok
-                              icon  mb-warning-icon
-                end-if    
+      *****     when 78-ID-ef-macro
+      *****          inquire ef-macro value in wom-macrogroups
+      *****          if wom-macrogroups = 0
+      *****             set errori to true
+      *****             display message "Dato obbligatorio"
+      *****                       title tit-err
+      *****                        type  mb-ok
+      *****                        icon  mb-warning-icon
+      *****          end-if    
       
-           when 78-ID-ef-durata
-                inquire ef-durata value in dur-code
-                read duration no lock
-                     invalid
-                     set errori to true
-                     move spaces to dur-desc    
-                     display message "Dato non valido"
-                               title tit-err
-                               type  mb-ok
-                               icon  mb-warning-icon
-                end-read
-                move dur-desc to lab-durata-buf
-                display lab-durata
+      *****     when 78-ID-ef-durata
+      *****          inquire ef-durata value in dur-code
+      *****          read duration no lock
+      *****               invalid
+      *****               set errori to true
+      *****               move spaces to dur-desc    
+      *****               display message "Dato non valido"
+      *****                         title tit-err
+      *****                         type  mb-ok
+      *****                         icon  mb-warning-icon
+      *****          end-read
+      *****          move dur-desc to lab-durata-buf
+      *****          display lab-durata
       
       *****     when 78-ID-ef-int
       *****          inquire ef-int value in int-code
@@ -3469,7 +3699,7 @@
                     set StatusVisua    to true
                  end-if
                  perform STATUS-BAR-MSG
-                 perform VALORIZZA-OLD
+                 perform VALORIZZA-OLD    
               else
                  move 0 to mod
                  move 1 to mod-k
@@ -3485,6 +3715,172 @@
                  end-if
               end-if
            end-if 
+           .
+      * <TOTEM:END>
+
+       FORMAT-VALUE.
+      * <TOTEM:PARA. FORMAT-VALUE>
+           inspect como-value replacing leading x"30" by x"20".
+           call "C$JUSTIFY" using como-value, "L".
+           inspect como-value replacing trailing spaces by low-value 
+           .
+      * <TOTEM:END>
+
+       GD-FINISH-ENTRY.
+      * <TOTEM:PARA. GD-FINISH-ENTRY>
+           set tutto-ok to true.
+           evaluate grid-day
+           when 1 inquire gd1,(event-data-2, 1), cell-data col-split
+                  inquire gd1,(event-data-2, 2), cell-data col-effort
+           when 2 inquire gd2,(event-data-2, 1), cell-data col-split
+                  inquire gd2,(event-data-2, 2), cell-data col-effort
+           when 3 inquire gd3,(event-data-2, 1), cell-data col-split
+                  inquire gd3,(event-data-2, 2), cell-data col-effort
+           when 4 inquire gd4,(event-data-2, 1), cell-data col-split
+                  inquire gd4,(event-data-2, 2), cell-data col-effort
+           when 5 inquire gd5,(event-data-2, 1), cell-data col-split
+                  inquire gd5,(event-data-2, 2), cell-data col-effort
+           when 6 inquire gd6,(event-data-2, 1), cell-data col-split
+                  inquire gd6,(event-data-2, 2), cell-data col-effort
+           when 7 inquire gd7,(event-data-2, 1), cell-data col-split
+                  inquire gd7,(event-data-2, 2), cell-data col-effort
+           end-evaluate.
+           evaluate event-data-1
+           when 1 if col-split = spaces
+                     move spaces to col-int-desc
+                     move 0      to col-effort
+                  end-if
+           when 2
+                move col-effort to int-code
+                read intexe no lock
+                     invalid 
+                     set errori to true
+                     display message "Effort non valido"
+                               title tit-err
+                                icon 2
+                     move spaces to int-desc
+                end-read
+                move int-desc to col-int-desc
+           end-evaluate.      
+  
+           if errori
+              set event-action to event-action-fail
+           end-if.
+
+           evaluate grid-day
+           when 1 modify gd1,(event-data-2, 1), cell-data col-split 
+                  modify gd1,(event-data-2, 2), cell-data col-effort
+                  modify gd1,(event-data-2, 3), cell-data col-int-desc
+           when 2 modify gd2,(event-data-2, 1), cell-data col-split
+                  modify gd2,(event-data-2, 2), cell-data col-effort  
+                  modify gd2,(event-data-2, 3), cell-data col-int-desc
+           when 3 modify gd3,(event-data-2, 1), cell-data col-split
+                  modify gd3,(event-data-2, 2), cell-data col-effort  
+                  modify gd3,(event-data-2, 3), cell-data col-int-desc
+           when 4 modify gd4,(event-data-2, 1), cell-data col-split   
+                  modify gd4,(event-data-2, 2), cell-data col-effort  
+                  modify gd4,(event-data-2, 3), cell-data col-int-desc
+           when 5 modify gd5,(event-data-2, 1), cell-data col-split
+                  modify gd5,(event-data-2, 2), cell-data col-effort  
+                  modify gd5,(event-data-2, 3), cell-data col-int-desc
+           when 6 modify gd6,(event-data-2, 1), cell-data col-split
+                  modify gd6,(event-data-2, 2), cell-data col-effort  
+                  modify gd6,(event-data-2, 3), cell-data col-int-desc
+           when 7 modify gd7,(event-data-2, 1), cell-data col-split
+                  modify gd7,(event-data-2, 2), cell-data col-effort  
+                  modify gd7,(event-data-2, 3), cell-data col-int-desc
+           end-evaluate 
+           .
+      * <TOTEM:END>
+
+       LOAD-DAYS.
+      * <TOTEM:PARA. LOAD-DAYS>
+           modify gd1, reset-grid = 1.
+           perform GD1-CONTENT.
+           modify gd2, reset-grid = 1.
+           perform GD2-CONTENT.
+           modify gd3, reset-grid = 1.
+           perform GD3-CONTENT.
+           modify gd4, reset-grid = 1.
+           perform GD4-CONTENT.
+           modify gd5, reset-grid = 1.
+           perform GD5-CONTENT.
+           modify gd6, reset-grid = 1.
+           perform GD6-CONTENT.
+           modify gd7, reset-grid = 1.
+           perform GD7-CONTENT.
+                                        
+           perform varying idx-day from 1 by 1 
+                     until idx-day > wom-days
+                                           
+              move 1 to riga
+              perform varying idx-split from 1 by 1 
+                        until idx-split > 9
+                 if wom-split-el-split-sigla(idx-day, idx-split) = 
+           spaces
+                    exit perform
+                 end-if
+                 move wom-split-el-split-int-code(idx-day, idx-split)
+                   to int-code
+                 read intexe no lock invalid move spaces to int-desc 
+           end-read
+                 if int-restpause > 0
+                    move int-restpause to como-value
+                    perform FORMAT-VALUE
+                    inspect int-desc replacing trailing spaces by 
+           low-value
+                    string  int-desc   delimited low-value
+                            " ("       delimited size
+                            como-value delimited low-value
+                            ")"        delimited size
+                       into como-desc
+                    end-string
+                    inspect int-desc replacing trailing low-value by 
+           spaces
+                 else
+                    move int-desc to como-desc
+                 end-if
+
+                 add 1 to riga
+                 evaluate idx-day
+                 when 1 modify gd1(riga, 1), cell-data 
+           wom-split-el-split-sigla(idx-day, idx-split)   
+                        modify gd1(riga, 2), cell-data 
+           wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd1(riga, 3), cell-data como-desc
+                 when 2 modify gd2(riga, 1), cell-data 
+           wom-split-el-split-sigla(idx-day, idx-split)
+                        modify gd2(riga, 2), cell-data 
+           wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd2(riga, 3), cell-data como-desc
+                 when 3 modify gd3(riga, 1), cell-data 
+           wom-split-el-split-sigla(idx-day, idx-split)
+                        modify gd3(riga, 2), cell-data 
+           wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd3(riga, 3), cell-data como-desc
+                 when 4 modify gd4(riga, 1), cell-data 
+           wom-split-el-split-sigla(idx-day, idx-split)   
+                        modify gd4(riga, 2), cell-data 
+           wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd4(riga, 3), cell-data como-desc
+                 when 5 modify gd5(riga, 1), cell-data 
+           wom-split-el-split-sigla(idx-day, idx-split)   
+                        modify gd5(riga, 2), cell-data 
+           wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd5(riga, 3), cell-data como-desc
+                 when 6 modify gd6(riga, 1), cell-data 
+           wom-split-el-split-sigla(idx-day, idx-split)
+                        modify gd6(riga, 2), cell-data 
+           wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd6(riga, 3), cell-data como-desc
+                 when 7 modify gd7(riga, 1), cell-data 
+           wom-split-el-split-sigla(idx-day, idx-split)
+                        modify gd7(riga, 2), cell-data 
+           wom-split-el-split-int-code(idx-day, idx-split)
+                        modify gd7(riga, 3), cell-data como-desc
+                 end-evaluate
+              end-perform
+           end-perform            
            .
       * <TOTEM:END>
 
@@ -3518,8 +3914,8 @@
                  set YesMessage to true
                  perform CURRENT-RECORD
                  if tutto-ok
-                    if CONTROL-ID < 78-ID-ef-descr
-                       move 78-ID-ef-descr to CONTROL-ID
+                    if CONTROL-ID < 78-ID-ef-desc
+                       move 78-ID-ef-desc to CONTROL-ID
                     end-if
                     move ZERO to mod-k
                     move 1    to mod
@@ -3680,8 +4076,8 @@
 
            set tutto-ok to true.
 
-           perform varying CONTROL-ID from 78-ID-ef-descr by 1
-                     until CONTROL-ID > 78-ID-ef-int
+           perform varying CONTROL-ID from 78-ID-ef-desc by 1
+                     until CONTROL-ID > 78-ID-ef-desc
               perform CONTROLLO
               if errori 
                  exit perform 
@@ -3696,12 +4092,14 @@
               perform FORM1-BUF-TO-FLD
               perform CANCELLA-COLORE 
               perform WRITE-DAYS      
-              perform CALCOLA-INTENSITA-DURATA  
+              perform CALCOLA-VALORI  
                                      
               accept como-data from century-date
               accept como-ora  from time
           
               write wom-rec invalid rewrite wom-rec end-write
+
+              perform LOAD-DAYS
 
               set vecchio to true       
               perform TORNA-IN-VISUA
@@ -3760,8 +4158,8 @@
                     modify ef-codice, value wom-code
                     perform CURRENT-RECORD
                     perform CANCELLA-COLORE
-                    move 78-ID-ef-descr to CONTROL-ID       
-                    move 4              to ACCEPT-CONTROL   
+                    move 78-ID-ef-desc to CONTROL-ID       
+                    move 4             to ACCEPT-CONTROL   
                  end-if                                  
               end-if
            end-if 
@@ -3801,7 +4199,7 @@
                     modify ef-codice, value wom-code
                     perform CURRENT-RECORD
                     perform CANCELLA-COLORE
-                    move 78-ID-ef-descr to CONTROL-ID       
+                    move 78-ID-ef-desc to CONTROL-ID       
                     move 4              to ACCEPT-CONTROL   
                  end-if                                  
               end-if
@@ -3822,6 +4220,70 @@
                    perform CURRENT-RECORD 
                 end-if
            end-read 
+           .
+      * <TOTEM:END>
+
+       SPOSTAMENTO.
+      * <TOTEM:PARA. SPOSTAMENTO>
+           evaluate grid-day                
+           when 1 modify gd1, start-x = 1,
+                              x = 3,
+                        start-y = event-data-2,
+                              y = event-data-2,
+                   region-color = 257,
+                   cursor-color = colore-nu
+                  inquire gd1(event-data-2, 1), cell-data col-split
+           when 2 modify gd2, start-x = 1,
+                              x = 3,
+                        start-y = event-data-2,
+                              y = event-data-2,
+                   region-color = 257,
+                   cursor-color = colore-nu                        
+                  inquire gd2(event-data-2, 1), cell-data col-split
+           when 3 modify gd3, start-x = 1,
+                              x = 3,
+                        start-y = event-data-2,
+                              y = event-data-2,
+                   region-color = 257,                             
+                   cursor-color = colore-nu                        
+                  inquire gd3(event-data-2, 1), cell-data col-split
+           when 4 modify gd4, start-x = 1,
+                              x = 3,
+                        start-y = event-data-2,
+                              y = event-data-2,
+                   region-color = 257,
+                   cursor-color = colore-nu                     
+                  inquire gd4(event-data-2, 1), cell-data col-split
+           when 5 modify gd5, start-x = 1,
+                              x = 3,
+                        start-y = event-data-2,
+                              y = event-data-2,
+                   region-color = 257,
+                   cursor-color = colore-nu                     
+                  inquire gd5(event-data-2, 1), cell-data col-split
+           when 6 modify gd6, start-x = 1,
+                              x = 3,
+                        start-y = event-data-2,
+                              y = event-data-2,
+                   region-color = 257,
+                   cursor-color = colore-nu                     
+                  inquire gd6(event-data-2, 1), cell-data col-split
+           when 7 modify gd7, start-x = 1,
+                              x = 3,
+                        start-y = event-data-2,
+                              y = event-data-2,
+                   region-color = 257,
+                   cursor-color = colore-nu                     
+                  inquire gd7(event-data-2, 1), cell-data col-split
+           end-evaluate. 
+
+           if mod = 1 and event-data-1 = 2 and col-split not = space
+              move BitmapZoomEnabled to bmpNum
+              modify tool-cerca, bitmap-number = bmpNum, enabled true
+           else
+              move BitmapZoomDisabled to bmpNum
+              modify tool-cerca, bitmap-number = bmpNum, enabled false
+           end-if               
            .
       * <TOTEM:END>
 
@@ -3919,85 +4381,8 @@
        VALORIZZA-NUOVO.
       * <TOTEM:PARA. VALORIZZA-NUOVO>
            move "00"    to status-wodmap.
-
-           initialize wom-rec replacing numeric data by zeroes
-                                   alphanumeric data by spaces.
-                                       
-           perform FORM1-IUD-DISPLAY   
-           .
-      * <TOTEM:END>
-
-       LOAD-DAYS.
-      * <TOTEM:PARA. LOAD-DAYS>
-           modify gd1, reset-grid = 1.
-           perform GD1-CONTENT.
-           modify gd2, reset-grid = 1.
-           perform GD2-CONTENT.
-           modify gd3, reset-grid = 1.
-           perform GD3-CONTENT.
-           modify gd4, reset-grid = 1.
-           perform GD4-CONTENT.
-           modify gd5, reset-grid = 1.
-           perform GD5-CONTENT.
-           modify gd6, reset-grid = 1.
-           perform GD6-CONTENT.
-           modify gd7, reset-grid = 1.
-           perform GD7-CONTENT.
                                         
-           perform varying idx-day from 1 by 1 
-                     until idx-day > wom-days
-                                           
-              move 1 to riga
-              perform varying idx-split from 1 by 1 
-                        until idx-split > 9
-                 if wom-split-el-split-sigla(idx-day, idx-split) = 
-           spaces
-                    exit perform
-                 end-if
-                 move wom-split-el-split-int-code(idx-day, idx-split)
-                   to int-code
-                 read intexe no lock invalid move spaces to int-desc 
-           end-read
-                 add 1 to riga
-                 evaluate idx-day
-                 when 1 modify gd1(riga, 1), cell-data 
-           wom-split-el-split-sigla(idx-day, idx-split)   
-                        modify gd1(riga, 2), cell-data 
-           wom-split-el-split-int-code(idx-day, idx-split)
-                        modify gd1(riga, 3), cell-data int-desc
-                 when 2 modify gd2(riga, 1), cell-data 
-           wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd2(riga, 2), cell-data 
-           wom-split-el-split-int-code(idx-day, idx-split)
-                        modify gd2(riga, 3), cell-data int-desc
-                 when 3 modify gd3(riga, 1), cell-data 
-           wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd3(riga, 2), cell-data 
-           wom-split-el-split-int-code(idx-day, idx-split)
-                        modify gd3(riga, 3), cell-data int-desc
-                 when 4 modify gd4(riga, 1), cell-data 
-           wom-split-el-split-sigla(idx-day, idx-split)   
-                        modify gd4(riga, 2), cell-data 
-           wom-split-el-split-int-code(idx-day, idx-split)
-                        modify gd4(riga, 3), cell-data int-desc
-                 when 5 modify gd5(riga, 1), cell-data 
-           wom-split-el-split-sigla(idx-day, idx-split)   
-                        modify gd5(riga, 2), cell-data 
-           wom-split-el-split-int-code(idx-day, idx-split)
-                        modify gd5(riga, 3), cell-data int-desc
-                 when 6 modify gd6(riga, 1), cell-data 
-           wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd6(riga, 2), cell-data 
-           wom-split-el-split-int-code(idx-day, idx-split)
-                        modify gd6(riga, 3), cell-data int-desc
-                 when 7 modify gd7(riga, 1), cell-data 
-           wom-split-el-split-sigla(idx-day, idx-split)
-                        modify gd7(riga, 2), cell-data 
-           wom-split-el-split-int-code(idx-day, idx-split)
-                        modify gd7(riga, 3), cell-data int-desc
-                 end-evaluate
-              end-perform
-           end-perform            
+           perform CLEAR-SCREEN 
            .
       * <TOTEM:END>
 
@@ -4007,171 +4392,95 @@
                                          alphanumeric data by spaces.
 
            inquire gd1, last-row in tot-righe.
+           move 0 to idx-ok.
            perform varying riga from 2 by 1 
                      until riga > tot-righe                           
               inquire gd1(riga, 1), cell-data in col-split
-              move col-split to wom-split-el-split-sigla(1, riga - 1)
+              if col-split not = space
+                 add 1 to idx-ok
+              end-if
+              move col-split to wom-split-el-split-sigla(1, idx-ok)
               inquire gd1(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(1, riga - 
-           1)
+              move col-effort to wom-split-el-split-int-code(1, idx-ok)
            end-perform.
            
            inquire gd2, last-row in tot-righe.
+           move 0 to idx-ok.
            perform varying riga from 2 by 1 
                      until riga > tot-righe
               inquire gd2(riga, 1), cell-data in col-split
-              move col-split to wom-split-el-split-sigla(2, riga - 1)  
+              if col-split not = space             
+                 add 1 to idx-ok
+              end-if
+              move col-split to wom-split-el-split-sigla(2, idx-ok)  
               inquire gd2(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(2, riga - 
-           1)
+              move col-effort to wom-split-el-split-int-code(2, idx-ok)
            end-perform.
            
-           inquire gd3, last-row in tot-righe.
+           inquire gd3, last-row in tot-righe.    
+           move 0 to idx-ok.
            perform varying riga from 2 by 1 
                      until riga > tot-righe
               inquire gd3(riga, 1), cell-data in col-split
-              move col-split to wom-split-el-split-sigla(3, riga - 1)  
+              if col-split not = space             
+                 add 1 to idx-ok
+              end-if
+              move col-split to wom-split-el-split-sigla(3, idx-ok)  
               inquire gd3(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(3, riga - 
-           1)
+              move col-effort to wom-split-el-split-int-code(3, idx-ok)
            end-perform.
            
-           inquire gd4, last-row in tot-righe.
+           inquire gd4, last-row in tot-righe.    
+           move 0 to idx-ok.
            perform varying riga from 2 by 1 
                      until riga > tot-righe
               inquire gd4(riga, 1), cell-data in col-split
-              move col-split to wom-split-el-split-sigla(4, riga - 1)
+              if col-split not = space             
+                 add 1 to idx-ok
+              end-if
+              move col-split to wom-split-el-split-sigla(4, idx-ok)
               inquire gd4(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(4, riga - 
-           1)
+              move col-effort to wom-split-el-split-int-code(4, idx-ok)
            end-perform.
            
-           inquire gd5, last-row in tot-righe.
+           inquire gd5, last-row in tot-righe.    
+           move 0 to idx-ok.
            perform varying riga from 2 by 1 
                      until riga > tot-righe
               inquire gd5(riga, 1), cell-data in col-split
-              move col-split to wom-split-el-split-sigla(5, riga - 1) 
+              if col-split not = space             
+                 add 1 to idx-ok
+              end-if
+              move col-split to wom-split-el-split-sigla(5, idx-ok) 
               inquire gd5(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(5, riga - 
-           1)
+              move col-effort to wom-split-el-split-int-code(5, idx-ok)
            end-perform.
            
-           inquire gd6, last-row in tot-righe.
+           inquire gd6, last-row in tot-righe.    
+           move 0 to idx-ok.
            perform varying riga from 2 by 1 
                      until riga > tot-righe
               inquire gd6(riga, 1), cell-data in col-split
-              move col-split to wom-split-el-split-sigla(6, riga - 1) 
+              if col-split not = space             
+                 add 1 to idx-ok
+              end-if
+              move col-split to wom-split-el-split-sigla(6, idx-ok) 
               inquire gd6(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(6, riga - 
-           1)
+              move col-effort to wom-split-el-split-int-code(6, idx-ok)
            end-perform.
            
-           inquire gd7, last-row in tot-righe.
+           inquire gd7, last-row in tot-righe.    
+           move 0 to idx-ok.
            perform varying riga from 2 by 1 
                      until riga > tot-righe
               inquire gd7(riga, 1), cell-data in col-split
-              move col-split to wom-split-el-split-sigla(7, riga - 1)  
-              inquire gd7(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(7, riga - 
-           1)
-           end-perform 
-           .
-      * <TOTEM:END>
-
-       ABILITA-GRID-DAYS.
-      * <TOTEM:PARA. ABILITA-GRID-DAYS>
-           modify gd1, enabled true.
-           modify gd2, enabled true.
-           modify gd3, enabled true.
-           modify gd4, enabled true.
-           modify gd5, enabled true.
-           modify gd6, enabled true.
-           modify gd7, enabled true.
-           evaluate wom-days
-           when 1                        
-                modify gd2, enabled false
-                modify gd3, enabled false
-                modify gd4, enabled false
-                modify gd5, enabled false
-                modify gd6, enabled false
-                modify gd7, enabled false
-           when 2              
-                modify gd3, enabled false
-                modify gd4, enabled false
-                modify gd5, enabled false
-                modify gd6, enabled false
-                modify gd7, enabled false
-           when 3              
-                modify gd4, enabled false
-                modify gd5, enabled false
-                modify gd6, enabled false
-                modify gd7, enabled false
-           when 4              
-                modify gd5, enabled false
-                modify gd6, enabled false
-                modify gd7, enabled false
-           when 5              
-                modify gd6, enabled false
-                modify gd7, enabled false
-           when 6              
-                modify gd7, enabled false 
-           end-evaluate 
-           .
-      * <TOTEM:END>
-
-       CALCOLA-INTENSITA-DURATA.
-      * <TOTEM:PARA. CALCOLA-INTENSITA-DURATA>
-           move 0 to como-effort tot-exe.
-
-           perform varying idx-day from 1 by 1 
-                     until idx-day > wom-days
-               perform varying idx-split from 1 by 1 
-                         until idx-split> 20
-                  if wom-split-el-split-int-code(idx-day, idx-split) = 0
-                     exit perform
-                  end-if
-                  move wom-split-el-split-int-code(idx-day, idx-split) 
-                    to int-code
-                  read intexe no lock
-                  add int-effort to como-effort
-                  add 1 to tot-exe
-           end-perform. 
-
-           divide tot-exe by wom-days giving tot-durata remainder resto.
-           if resto > 0
-              add 1 to tot-durata
-           end-if.
-           move tot-durata to dur-exercises.
-           move low-value  to dur-code.
-           start duration key >= dur-k-exercises
-                 invalid 
-                 move spaces to dur-desc 
-                 move 0      to wom-dur-code
-             not invalid
-                 read duration next         
-                 move dur-code to wom-dur-code
-           end-start.
-           move dur-desc to lab-durata-buf.
-           display ef-durata lab-durata.
-
-           compute tot-effort = como-effort / tot-exe.
-
-           if tot-effort < 1,5
-              move 1 to como-effort ef-int-buf wom-effort
-           else
-              if tot-effort < 2,6            
-                 move 2 to como-effort ef-int-buf wom-effort
-              else                              
-                 move 3 to como-effort ef-int-buf wom-effort
+              if col-split not = space             
+                 add 1 to idx-ok
               end-if
-           end-if.
-
-           evaluate como-effort
-           when 1 move "Light wod effort" to lab-int-buf
-           when 2 move "Medium wod effort" to lab-int-buf
-           when 3 move "Heavy wod effort" to lab-int-buf
-           end-evaluate.     
-           display ef-int lab-int 
+              move col-split to wom-split-el-split-sigla(7, idx-ok)  
+              inquire gd7(riga, 2), cell-data in col-effort
+              move col-effort to wom-split-el-split-int-code(7, idx-ok)
+           end-perform 
            .
       * <TOTEM:END>
 
@@ -4331,9 +4640,9 @@
 
        ef-ragsoc-AfterProcedure.
       * <TOTEM:PARA. ef-ragsoc-AfterProcedure>
-              INQUIRE ef-descr, VALUE IN wom-desc
+              INQUIRE ef-desc, VALUE IN wom-desc
               SET TOTEM-CHECK-OK TO FALSE
-              PERFORM ef-descr-VALIDATION
+              PERFORM ef-desc-VALIDATION
               IF NOT TOTEM-CHECK-OK
                  MOVE 1 TO ACCEPT-CONTROL
               END-IF
@@ -4347,101 +4656,341 @@
            MODIFY CONTROL-HANDLE COLOR = COLORE-NU
            .
       * <TOTEM:END>
-       ef-days-BeforeProcedure.
-      * <TOTEM:PARA. ef-days-BeforeProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
-           .
-      * <TOTEM:END>
-       ef-macro-BeforeProcedure.
-      * <TOTEM:PARA. ef-macro-BeforeProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
-           .
-      * <TOTEM:END>
-       ef-days-AfterProcedure.
-      * <TOTEM:PARA. ef-days-AfterProcedure>
-              INQUIRE ef-days, VALUE IN wom-days
-              SET TOTEM-CHECK-OK TO FALSE
-              PERFORM ef-days-VALIDATION
-              IF NOT TOTEM-CHECK-OK
-                 MOVE 1 TO ACCEPT-CONTROL
-              END-IF
-           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-
-           .
-      * <TOTEM:END>
-
-       ef-macro-AfterProcedure.
-      * <TOTEM:PARA. ef-macro-AfterProcedure>
-              INQUIRE ef-macro, VALUE IN wom-macrogroups
-              SET TOTEM-CHECK-OK TO FALSE
-              PERFORM ef-macro-VALIDATION
-              IF NOT TOTEM-CHECK-OK
-                 MOVE 1 TO ACCEPT-CONTROL
-              END-IF
-              INQUIRE ef-durata, VALUE IN wom-dur-code
-              SET TOTEM-CHECK-OK TO FALSE
-              PERFORM ef-durata-VALIDATION
-              IF NOT TOTEM-CHECK-OK
-                 MOVE 1 TO ACCEPT-CONTROL
-              END-IF
-              INQUIRE ef-int, VALUE IN wom-effort
-              SET TOTEM-CHECK-OK TO FALSE
-              PERFORM ef-int-VALIDATION
-              IF NOT TOTEM-CHECK-OK
-                 MOVE 1 TO ACCEPT-CONTROL
-              END-IF
-           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-
-           .
-      * <TOTEM:END>
-
        gd1-Ev-Msg-Begin-Entry.
       * <TOTEM:PARA. gd1-Ev-Msg-Begin-Entry>
-           if mod = 0 
+           if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
+           else
+              inquire gd1(event-data-2, 1), cell-data in col-split
+              if col-split = space and event-data-1 = 2
+                 set event-action to event-action-fail
+              end-if
            end-if 
            .
       * <TOTEM:END>
        gd2-Ev-Msg-Begin-Entry.
       * <TOTEM:PARA. gd2-Ev-Msg-Begin-Entry>
-           if mod = 0 
+           if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
+           else
+              inquire gd1(event-data-2, 1), cell-data in col-split
+              if col-split = space and event-data-1 = 2
+                 set event-action to event-action-fail
+              end-if
            end-if 
            .
       * <TOTEM:END>
        gd3-Ev-Msg-Begin-Entry.
       * <TOTEM:PARA. gd3-Ev-Msg-Begin-Entry>
-           if mod = 0 
+           if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
+           else
+              inquire gd1(event-data-2, 1), cell-data in col-split
+              if col-split = space and event-data-1 = 2
+                 set event-action to event-action-fail
+              end-if
            end-if 
            .
       * <TOTEM:END>
        gd4-Ev-Msg-Begin-Entry.
       * <TOTEM:PARA. gd4-Ev-Msg-Begin-Entry>
-           if mod = 0 
+           if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
+           else
+              inquire gd1(event-data-2, 1), cell-data in col-split
+              if col-split = space and event-data-1 = 2
+                 set event-action to event-action-fail
+              end-if
            end-if 
            .
       * <TOTEM:END>
        gd5-Ev-Msg-Begin-Entry.
       * <TOTEM:PARA. gd5-Ev-Msg-Begin-Entry>
-           if mod = 0 
+           if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
+           else
+              inquire gd1(event-data-2, 1), cell-data in col-split
+              if col-split = space and event-data-1 = 2
+                 set event-action to event-action-fail
+              end-if
            end-if 
            .
       * <TOTEM:END>
        gd6-Ev-Msg-Begin-Entry.
       * <TOTEM:PARA. gd6-Ev-Msg-Begin-Entry>
-           if mod = 0 
+           if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
+           else
+              inquire gd1(event-data-2, 1), cell-data in col-split
+              if col-split = space and event-data-1 = 2
+                 set event-action to event-action-fail
+              end-if
            end-if 
            .
       * <TOTEM:END>
        gd7-Ev-Msg-Begin-Entry.
       * <TOTEM:PARA. gd7-Ev-Msg-Begin-Entry>
-           if mod = 0 
+           if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
+           else
+              inquire gd1(event-data-2, 1), cell-data in col-split
+              if col-split = space and event-data-1 = 2
+                 set event-action to event-action-fail
+              end-if
            end-if 
+           .
+      * <TOTEM:END>
+       gd1-Ev-Msg-Finish-Entry.
+      * <TOTEM:PARA. gd1-Ev-Msg-Finish-Entry>
+           move 1 to grid-day.
+           perform GD-FINISH-ENTRY 
+           .
+      * <TOTEM:END>
+       gd2-Ev-Msg-Finish-Entry.
+      * <TOTEM:PARA. gd2-Ev-Msg-Finish-Entry>
+           move 2 to grid-day.
+           perform GD-FINISH-ENTRY 
+           .
+      * <TOTEM:END>
+       gd3-Ev-Msg-Finish-Entry.
+      * <TOTEM:PARA. gd3-Ev-Msg-Finish-Entry>
+           move 3 to grid-day.
+           perform GD-FINISH-ENTRY 
+           .
+      * <TOTEM:END>
+       gd4-Ev-Msg-Finish-Entry.
+      * <TOTEM:PARA. gd4-Ev-Msg-Finish-Entry>
+           move 4 to grid-day.
+           perform GD-FINISH-ENTRY 
+           .
+      * <TOTEM:END>
+       gd5-Ev-Msg-Finish-Entry.
+      * <TOTEM:PARA. gd5-Ev-Msg-Finish-Entry>
+           move 5 to grid-day.
+           perform GD-FINISH-ENTRY 
+           .
+      * <TOTEM:END>
+       gd6-Ev-Msg-Finish-Entry.
+      * <TOTEM:PARA. gd6-Ev-Msg-Finish-Entry>
+           move 6 to grid-day.
+           perform GD-FINISH-ENTRY 
+           .
+      * <TOTEM:END>
+       gd7-Ev-Msg-Finish-Entry.
+      * <TOTEM:PARA. gd7-Ev-Msg-Finish-Entry>
+           move 7 to grid-day.
+           perform GD-FINISH-ENTRY 
+           .
+      * <TOTEM:END>
+       gd1-Ev-Msg-Begin-Drag.
+      * <TOTEM:PARA. gd1-Ev-Msg-Begin-Drag>
+           move 1 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd1-Ev-Msg-End-Drag.
+      * <TOTEM:PARA. gd1-Ev-Msg-End-Drag>
+           move 1 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd1-Ev-Msg-Goto-Cell.
+      * <TOTEM:PARA. gd1-Ev-Msg-Goto-Cell>
+           move 1 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd1-Ev-Msg-Goto-Cell-Drag.
+      * <TOTEM:PARA. gd1-Ev-Msg-Goto-Cell-Drag>
+           move 1 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd1-Ev-Msg-Goto-Cell-Mouse.
+      * <TOTEM:PARA. gd1-Ev-Msg-Goto-Cell-Mouse>
+           move 1 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd2-Ev-Msg-Begin-Drag.
+      * <TOTEM:PARA. gd2-Ev-Msg-Begin-Drag>
+           move 2 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd2-Ev-Msg-End-Drag.
+      * <TOTEM:PARA. gd2-Ev-Msg-End-Drag>
+           move 2 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd2-Ev-Msg-Goto-Cell.
+      * <TOTEM:PARA. gd2-Ev-Msg-Goto-Cell>
+           move 2 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd2-Ev-Msg-Goto-Cell-Drag.
+      * <TOTEM:PARA. gd2-Ev-Msg-Goto-Cell-Drag>
+           move 2 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd2-Ev-Msg-Goto-Cell-Mouse.
+      * <TOTEM:PARA. gd2-Ev-Msg-Goto-Cell-Mouse>
+           move 2 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd3-Ev-Msg-Begin-Drag.
+      * <TOTEM:PARA. gd3-Ev-Msg-Begin-Drag>
+           move 3 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd3-Ev-Msg-End-Drag.
+      * <TOTEM:PARA. gd3-Ev-Msg-End-Drag>
+           move 3 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd3-Ev-Msg-Goto-Cell.
+      * <TOTEM:PARA. gd3-Ev-Msg-Goto-Cell>
+           move 3 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd3-Ev-Msg-Goto-Cell-Drag.
+      * <TOTEM:PARA. gd3-Ev-Msg-Goto-Cell-Drag>
+           move 3 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd3-Ev-Msg-Goto-Cell-Mouse.
+      * <TOTEM:PARA. gd3-Ev-Msg-Goto-Cell-Mouse>
+           move 3 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd4-Ev-Msg-Begin-Drag.
+      * <TOTEM:PARA. gd4-Ev-Msg-Begin-Drag>
+           move 4 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd4-Ev-Msg-End-Drag.
+      * <TOTEM:PARA. gd4-Ev-Msg-End-Drag>
+           move 4 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd4-Ev-Msg-Goto-Cell.
+      * <TOTEM:PARA. gd4-Ev-Msg-Goto-Cell>
+           move 4 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd4-Ev-Msg-Goto-Cell-Drag.
+      * <TOTEM:PARA. gd4-Ev-Msg-Goto-Cell-Drag>
+           move 4 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd4-Ev-Msg-Goto-Cell-Mouse.
+      * <TOTEM:PARA. gd4-Ev-Msg-Goto-Cell-Mouse>
+           move 4 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd5-Ev-Msg-Begin-Drag.
+      * <TOTEM:PARA. gd5-Ev-Msg-Begin-Drag>
+           move 5 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd5-Ev-Msg-End-Drag.
+      * <TOTEM:PARA. gd5-Ev-Msg-End-Drag>
+           move 5 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd5-Ev-Msg-Goto-Cell.
+      * <TOTEM:PARA. gd5-Ev-Msg-Goto-Cell>
+
+           move 5 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd5-Ev-Msg-Goto-Cell-Drag.
+      * <TOTEM:PARA. gd5-Ev-Msg-Goto-Cell-Drag>
+           move 5 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd5-Ev-Msg-Goto-Cell-Mouse.
+      * <TOTEM:PARA. gd5-Ev-Msg-Goto-Cell-Mouse>
+           move 5 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd6-Ev-Msg-Begin-Drag.
+      * <TOTEM:PARA. gd6-Ev-Msg-Begin-Drag>
+           move 6 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd6-Ev-Msg-End-Drag.
+      * <TOTEM:PARA. gd6-Ev-Msg-End-Drag>
+           move 6 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd6-Ev-Msg-Goto-Cell.
+      * <TOTEM:PARA. gd6-Ev-Msg-Goto-Cell>
+           move 6 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd6-Ev-Msg-Goto-Cell-Drag.
+      * <TOTEM:PARA. gd6-Ev-Msg-Goto-Cell-Drag>
+           move 6 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd6-Ev-Msg-Goto-Cell-Mouse.
+      * <TOTEM:PARA. gd6-Ev-Msg-Goto-Cell-Mouse>
+           move 6 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd7-Ev-Msg-Begin-Drag.
+      * <TOTEM:PARA. gd7-Ev-Msg-Begin-Drag>
+           move 7 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd7-Ev-Msg-End-Drag.
+      * <TOTEM:PARA. gd7-Ev-Msg-End-Drag>
+           move 7 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd7-Ev-Msg-Goto-Cell.
+      * <TOTEM:PARA. gd7-Ev-Msg-Goto-Cell>
+           move 7 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd7-Ev-Msg-Goto-Cell-Drag.
+      * <TOTEM:PARA. gd7-Ev-Msg-Goto-Cell-Drag>
+           move 7 to grid-day.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       gd7-Ev-Msg-Goto-Cell-Mouse.
+      * <TOTEM:PARA. gd7-Ev-Msg-Goto-Cell-Mouse>
+           move 7 to grid-day.
+           perform SPOSTAMENTO 
            .
       * <TOTEM:END>
 

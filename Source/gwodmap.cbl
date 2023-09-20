@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 20 settembre 2023 16:30:46.
+       DATE-WRITTEN.        mercoledì 20 settembre 2023 18:31:34.
        REMARKS.
       *{TOTEM}END
 
@@ -106,11 +106,14 @@
        77 mcg-code         PIC  x(5).
        77 como-value       PIC  x(20).
        77 grid-day         PIC  9.
-       77 como-desc        PIC  x(100).
+       77 como-desc        PIC  x(200).
        77 bmpNum           PIC  999.
        77 idx-ok           PIC  999.
+       77 como-hit-x       PIC  xxx.
        01 tab-mcg.
            05 el-mcg           PIC  x(5)
+                      OCCURS 20 TIMES.
+           05 el-mcg-hit       PIC  999
                       OCCURS 20 TIMES.
        77 tot-durata       PIC  9(5).
        01 gd-rec.
@@ -123,6 +126,7 @@
            05 save-ragsoc-1    PIC  x(50).
        77 STATUS-wodmap    PIC  X(2).
            88 Valid-STATUS-wodmap VALUE IS "00" THRU "09". 
+       77 como-volta-e     PIC  x(5).
        77 AUTO-ID          PIC  9(6)
                   VALUE IS 0.
        77 Calibri14-Occidentale
@@ -149,7 +153,7 @@
                   USAGE IS HANDLE OF FONT.
        77 Calibri12-Occidentale
                   USAGE IS HANDLE OF FONT.
-       77 lab-macro-buf    PIC  X(100).
+       77 lab-macro-buf    PIC  X(200).
        77 lab-days-buf     PIC  X(100).
 
       ***********************************************************
@@ -411,7 +415,7 @@
            COL 21,30, 
            LINE 4,70,
            LINES 1,30 ,
-           SIZE 31,30 ,
+           SIZE 100,00 ,
            ID IS 14,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -441,7 +445,7 @@
            COL 21,30, 
            LINE 6,00,
            LINES 1,30 ,
-           SIZE 31,30 ,
+           SIZE 100,00 ,
            ID IS 17,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -809,7 +813,7 @@
            COL 21,30, 
            LINE 7,30,
            LINES 1,30 ,
-           SIZE 31,30 ,
+           SIZE 100,00 ,
            ID IS 28,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -824,7 +828,7 @@
            COL 21,30, 
            LINE 8,61,
            LINES 1,30 ,
-           SIZE 31,30 ,
+           SIZE 100,00 ,
            ID IS 29,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -3286,24 +3290,39 @@
            move idx to como-value.
            perform FORMAT-VALUE.
            initialize lab-macro-buf.
-           if idx > 0
-              string como-value delimited low-value
+           if idx > 0  
+              string como-value              delimited low-value
                      " macrogruppi totali: " delimited size
-                     el-mcg(1)  delimited space
-                     " "        delimited size
-                     el-mcg(2)  delimited space
-                     " "        delimited size
-                     el-mcg(3)  delimited space
-                     " "        delimited size
-                     el-mcg(4)  delimited space
-                     " "        delimited size
-                     el-mcg(5)  delimited space
-                     " "        delimited size
-                     el-mcg(6)  delimited space
-                     " "        delimited size
-                     el-mcg(7)  delimited space
-                into lab-macro-buf
+                 into lab-macro-buf
               end-string
+              perform varying idx from 1 by 1 
+                        until idx > 20
+                 if el-mcg(idx) = spaces
+                    exit perform
+                 end-if               
+                 move el-mcg-hit(idx) to como-hit-x
+                 inspect como-hit-x
+                         replacing leading x"30" by x"20"
+                 call "C$JUSTIFY" using como-hit-x, "L"
+                 if el-mcg-hit(idx) = 1       
+                    move "volta" to como-volta-e
+                 else
+                    move "volte" to como-volta-e
+                 end-if
+                 move lab-macro-buf to como-desc
+                 inspect como-desc replacing trailing spaces by 
+           low-value
+                 string  como-desc    delimited low-value
+                         "  "         delimited size
+                         el-mcg(idx)  delimited space
+                         " ("         delimited size
+                         como-hit-x   delimited space
+                         " "          delimited size
+                         como-volta-e delimited size
+                         ")  | "      delimited size
+                    into lab-macro-buf                  
+                 end-string
+              end-perform
            end-if.
            display lab-macro.  
 
@@ -3413,12 +3432,14 @@
                  exit perform
               end-if
               if el-mcg(idx) = mcg-code
+                 add  1 to el-mcg-hit(idx)
                  move 0 to idx-gruppo
                  exit perform
               end-if
            end-perform.
            if idx-gruppo not = 0
               move mcg-code to el-mcg(idx-gruppo)
+              move 1        to el-mcg-hit(idx-gruppo)    
            end-if                                                    
            .
       * <TOTEM:END>

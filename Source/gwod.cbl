@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 20 settembre 2023 15:52:22.
+       DATE-WRITTEN.        mercoledì 20 settembre 2023 16:59:11.
        REMARKS.
       *{TOTEM}END
 
@@ -6425,6 +6425,18 @@
            read wodmap key wom-k-desc.
 
            move tab-mcg to como-tab-mcg.
+
+           perform varying idx1 from 1 by 1 
+                     until idx1 > 10
+              if como-el-mcg-desc(idx1) = spaces
+                 subtract 1 from idx1
+                 exit perform
+              end-if
+           end-perform.
+
+           if idx1 = 0
+              exit paragraph
+           end-if.
            
            move 0 to riga.
            perform until 1 = 2
@@ -6448,6 +6460,12 @@
                  when 7 modify cb-mg7, value = como-el-mcg-desc(idx)
                  end-evaluate
                  move spaces to como-el-mcg-desc(idx) 
+                 if idx1 = 1 |Ho finito i gruppi e riparto
+                    move tab-mcg to como-tab-mcg
+                 else
+                    subtract 1 from idx1
+                 end-if
+
               end-if
            end-perform.
 

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 20 settembre 2023 12:32:43.
+       DATE-WRITTEN.        mercoledì 20 settembre 2023 15:52:22.
        REMARKS.
       *{TOTEM}END
 
@@ -6050,13 +6050,14 @@
              not invalid
                  perform until 1 = 2
                     read exercises next at end exit perform end-read
+                    if exe-disab = 1 exit perform cycle end-if
                     move exe-int-code to int-code
                     read intexe no lock
                     move exe-grp-code to grp-code
                     read groups no lock                                 
                     if exe-isMulti-yes and cb-mul-buf = "No"
                        exit perform cycle
-                    end-if                            
+                    end-if
                     if int-effort <= effort-wod or 
                        exe-isMulti-yes and cb-mul-buf = "Si"
                        perform varying idx-gruppi from 1 by 1 

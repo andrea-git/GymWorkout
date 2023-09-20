@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E791410280-829-231195253
+PROGRAM_UNIQUE_CODE=TOTEM-7E7914134714-707-251889283
 
 {{@DESCRIPTION:
 
@@ -5977,13 +5978,14 @@ BEGIN-TEXT
              not invalid
                  perform until 1 = 2
                     read exercises next at end exit perform end-read
+                    if exe-disab = 1 exit perform cycle end-if
                     move exe-int-code to int-code
                     read intexe no lock
                     move exe-grp-code to grp-code
                     read groups no lock                                 
                     if exe-isMulti-yes and cb-mul-buf = "No"
                        exit perform cycle
-                    end-if                            
+                    end-if
                     if int-effort <= effort-wod or 
                        exe-isMulti-yes and cb-mul-buf = "Si"
                        perform varying idx-gruppi from 1 by 1 

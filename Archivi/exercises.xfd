@@ -69,10 +69,10 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="12"
-       xfd:elementary-items-with-occurs="12"
-       xfd:total-items="15"
-       xfd:total-items-with-occurs="15">
+       xfd:elementary-items="13"
+       xfd:elementary-items-with-occurs="13"
+       xfd:total-items="16"
+       xfd:total-items-with-occurs="16">
     <xfd:field
          xfd:field-offset="0"
          xfd:field-bytes="1189"
@@ -175,9 +175,19 @@
          xfd:field-name="EXE-RESTPAUSE"/>
     <xfd:field
          xfd:field-offset="118"
-         xfd:field-bytes="999"
+         xfd:field-bytes="1"
+         xfd:field-type="1"
+         xfd:field-length="1"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="10"
+         xfd:field-name="EXE-DISAB"/>
+    <xfd:field
+         xfd:field-offset="119"
+         xfd:field-bytes="998"
          xfd:field-type="16"
-         xfd:field-length="999"
+         xfd:field-length="998"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="0"

@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E791485649-134-1052018477
+PROGRAM_UNIQUE_CODE=TOTEM-7E7914134644-481-212871974
 
 {{@DESCRIPTION:
 
@@ -1443,6 +1443,7 @@ Begin Screen Form1
          Msg-Goto-Cell     = gd1-Ev-Msg-Goto-Cell
          Msg-Goto-Cell-Drag = gd1-Ev-Msg-Goto-Cell-Drag
          Msg-Goto-Cell-Mouse = gd1-Ev-Msg-Goto-Cell-Mouse
+         Before Procedure  = gd1-BeforeProcedure
       End
       Begin Grid gd2
          SCREEN-COL        = 25,90
@@ -1518,6 +1519,7 @@ Begin Screen Form1
          Msg-Goto-Cell     = gd2-Ev-Msg-Goto-Cell
          Msg-Goto-Cell-Drag = gd2-Ev-Msg-Goto-Cell-Drag
          Msg-Goto-Cell-Mouse = gd2-Ev-Msg-Goto-Cell-Mouse
+         Before Procedure  = gd2-BeforeProcedure
       End
       Begin Grid gd3
          SCREEN-COL        = 48,60
@@ -1593,6 +1595,7 @@ Begin Screen Form1
          Msg-Goto-Cell     = gd3-Ev-Msg-Goto-Cell
          Msg-Goto-Cell-Drag = gd3-Ev-Msg-Goto-Cell-Drag
          Msg-Goto-Cell-Mouse = gd3-Ev-Msg-Goto-Cell-Mouse
+         Before Procedure  = gd3-BeforeProcedure
       End
       Begin Grid gd4
          SCREEN-COL        = 71,30
@@ -1668,6 +1671,7 @@ Begin Screen Form1
          Msg-Goto-Cell     = gd4-Ev-Msg-Goto-Cell
          Msg-Goto-Cell-Drag = gd4-Ev-Msg-Goto-Cell-Drag
          Msg-Goto-Cell-Mouse = gd4-Ev-Msg-Goto-Cell-Mouse
+         Before Procedure  = gd4-BeforeProcedure
       End
       Begin Grid gd5
          SCREEN-COL        = 94,10
@@ -1743,6 +1747,7 @@ Begin Screen Form1
          Msg-Goto-Cell     = gd5-Ev-Msg-Goto-Cell
          Msg-Goto-Cell-Drag = gd5-Ev-Msg-Goto-Cell-Drag
          Msg-Goto-Cell-Mouse = gd5-Ev-Msg-Goto-Cell-Mouse
+         Before Procedure  = gd5-BeforeProcedure
       End
       Begin Grid gd6
          SCREEN-COL        = 116,90
@@ -1818,6 +1823,7 @@ Begin Screen Form1
          Msg-Goto-Cell     = gd6-Ev-Msg-Goto-Cell
          Msg-Goto-Cell-Drag = gd6-Ev-Msg-Goto-Cell-Drag
          Msg-Goto-Cell-Mouse = gd6-Ev-Msg-Goto-Cell-Mouse
+         Before Procedure  = gd6-BeforeProcedure
       End
       Begin Grid gd7
          SCREEN-COL        = 138,70
@@ -1893,6 +1899,7 @@ Begin Screen Form1
          Msg-Goto-Cell     = gd7-Ev-Msg-Goto-Cell
          Msg-Goto-Cell-Drag = gd7-Ev-Msg-Goto-Cell-Drag
          Msg-Goto-Cell-Mouse = gd7-Ev-Msg-Goto-Cell-Mouse
+         Before Procedure  = gd7-BeforeProcedure
       End
       Begin Label Screen1-La-2aab
          SCREEN-COL        = 139,60
@@ -3691,6 +3698,176 @@ END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 3
+   PARAGRAPH         = CONTROLLO-GRIDS
+BEGIN-TEXT
+           set tutto-ok to true.
+           initialize wom-split-tab replacing numeric data by zeroes
+                                         alphanumeric data by spaces.
+
+           inquire gd1, last-row in tot-righe.
+           move 0 to idx-ok.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe                           
+              inquire gd1(riga, 1), cell-data in col-split
+              if col-split not = space
+                 inquire gd1(riga, 2), cell-data in col-effort
+                 if col-effort = spaces
+                    subtract 1 from riga
+                    set errori to true
+                    display message "Valorizzare effort per il giorno 1"
+                             x"0d0a""a riga " riga
+                    exit perform
+                 end-if
+              else
+                 move 0 to col-effort
+                 move spaces to col-int-desc              
+                 modify gd1(riga, 2), cell-data col-effort
+                 modify gd1(riga, 3), cell-data col-int-desc
+              end-if                    
+           end-perform.
+           if errori exit paragraph end-if.
+           
+           inquire gd2, last-row in tot-righe.
+           move 0 to idx-ok.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd2(riga, 1), cell-data in col-split
+              if col-split not = space
+                 inquire gd2(riga, 2), cell-data in col-effort
+                 if col-effort = spaces
+                    subtract 1 from riga
+                    set errori to true
+                    display message "Valorizzare effort per il giorno 2"
+                             x"0d0a""a riga " riga
+                    exit perform
+                 end-if
+              else
+                 move 0 to col-effort
+                 move spaces to col-int-desc              
+                 modify gd2(riga, 2), cell-data col-effort
+                 modify gd2(riga, 3), cell-data col-int-desc
+              end-if
+           end-perform.           
+           if errori exit paragraph end-if.
+           
+           inquire gd3, last-row in tot-righe.    
+           move 0 to idx-ok.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd3(riga, 1), cell-data in col-split
+              if col-split not = space             
+                 inquire gd3(riga, 2), cell-data in col-effort
+                 if col-effort = spaces
+                    subtract 1 from riga
+                    set errori to true
+                    display message "Valorizzare effort per il giorno 3"
+                             x"0d0a""a riga " riga
+                    exit perform
+                 end-if
+              else
+                 move 0 to col-effort
+                 move spaces to col-int-desc              
+                 modify gd3(riga, 2), cell-data col-effort
+                 modify gd3(riga, 3), cell-data col-int-desc
+              end-if                  
+           end-perform.     
+           if errori exit paragraph end-if.
+           
+           inquire gd4, last-row in tot-righe.    
+           move 0 to idx-ok.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd4(riga, 1), cell-data in col-split
+              if col-split not = space             
+                 inquire gd4(riga, 2), cell-data in col-effort
+                 if col-effort = spaces
+                    subtract 1 from riga
+                    set errori to true
+                    display message "Valorizzare effort per il giorno 4"
+                             x"0d0a""a riga " riga
+                    exit perform
+                 end-if
+              else
+                 move 0 to col-effort
+                 move spaces to col-int-desc              
+                 modify gd4(riga, 2), cell-data col-effort
+                 modify gd4(riga, 3), cell-data col-int-desc
+              end-if                  
+           end-perform.    
+           if errori exit paragraph end-if.
+           
+           inquire gd5, last-row in tot-righe.    
+           move 0 to idx-ok.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd5(riga, 1), cell-data in col-split
+              if col-split not = space             
+                 inquire gd5(riga, 2), cell-data in col-effort
+                 if col-effort = spaces
+                    subtract 1 from riga
+                    set errori to true
+                    display message "Valorizzare effort per il giorno 5"
+                             x"0d0a""a riga " riga
+                    exit perform
+                 end-if
+              else
+                 move 0 to col-effort
+                 move spaces to col-int-desc              
+                 modify gd5(riga, 2), cell-data col-effort
+                 modify gd5(riga, 3), cell-data col-int-desc
+              end-if                  
+           end-perform.  
+           if errori exit paragraph end-if.
+           
+           inquire gd6, last-row in tot-righe.    
+           move 0 to idx-ok.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd6(riga, 1), cell-data in col-split
+              if col-split not = space             
+                 inquire gd6(riga, 2), cell-data in col-effort
+                 if col-effort = spaces
+                    subtract 1 from riga
+                    set errori to true
+                    display message "Valorizzare effort per il giorno 6"
+                             x"0d0a""a riga " riga
+                    exit perform
+                 end-if
+              else
+                 move 0 to col-effort
+                 move spaces to col-int-desc              
+                 modify gd6(riga, 2), cell-data col-effort
+                 modify gd6(riga, 3), cell-data col-int-desc
+              end-if                  
+           end-perform.  
+           if errori exit paragraph end-if.
+           
+           inquire gd7, last-row in tot-righe.    
+           move 0 to idx-ok.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd7(riga, 1), cell-data in col-split
+              if col-split not = space             
+                 inquire gd7(riga, 2), cell-data in col-effort
+                 if col-effort = spaces
+                    subtract 1 from riga
+                    set errori to true
+                    display message "Valorizzare effort per il giorno 7"
+                             x"0d0a""a riga " riga
+                    exit perform
+                 end-if
+              else
+                 move 0 to col-effort
+                 move spaces to col-int-desc              
+                 modify gd7(riga, 2), cell-data col-effort
+                 modify gd7(riga, 3), cell-data col-int-desc
+              end-if                  
+           end-perform.  
+           if errori exit paragraph end-if.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
    PARAGRAPH         = CURRENT-RECORD
 BEGIN-TEXT
            perform RIEMPI-CHIAVE.
@@ -3759,21 +3936,29 @@ BEGIN-DATA
    PARAGRAPH         = GD-FINISH-ENTRY
 BEGIN-TEXT
            set tutto-ok to true.
+           initialize col-int-desc.
            evaluate grid-day
            when 1 inquire gd1,(event-data-2, 1), cell-data col-split
                   inquire gd1,(event-data-2, 2), cell-data col-effort
+                  inquire gd1,(event-data-2, 3), cell-data col-int-desc
            when 2 inquire gd2,(event-data-2, 1), cell-data col-split
-                  inquire gd2,(event-data-2, 2), cell-data col-effort
+                  inquire gd2,(event-data-2, 2), cell-data col-effort  
+                  inquire gd2,(event-data-2, 3), cell-data col-int-desc
            when 3 inquire gd3,(event-data-2, 1), cell-data col-split
-                  inquire gd3,(event-data-2, 2), cell-data col-effort
+                  inquire gd3,(event-data-2, 2), cell-data col-effort  
+                  inquire gd3,(event-data-2, 3), cell-data col-int-desc
            when 4 inquire gd4,(event-data-2, 1), cell-data col-split
-                  inquire gd4,(event-data-2, 2), cell-data col-effort
+                  inquire gd4,(event-data-2, 2), cell-data col-effort  
+                  inquire gd4,(event-data-2, 3), cell-data col-int-desc
            when 5 inquire gd5,(event-data-2, 1), cell-data col-split
-                  inquire gd5,(event-data-2, 2), cell-data col-effort
+                  inquire gd5,(event-data-2, 2), cell-data col-effort  
+                  inquire gd5,(event-data-2, 3), cell-data col-int-desc
            when 6 inquire gd6,(event-data-2, 1), cell-data col-split
-                  inquire gd6,(event-data-2, 2), cell-data col-effort
+                  inquire gd6,(event-data-2, 2), cell-data col-effort  
+                  inquire gd6,(event-data-2, 3), cell-data col-int-desc
            when 7 inquire gd7,(event-data-2, 1), cell-data col-split
-                  inquire gd7,(event-data-2, 2), cell-data col-effort
+                  inquire gd7,(event-data-2, 2), cell-data col-effort  
+                  inquire gd7,(event-data-2, 3), cell-data col-int-desc
            end-evaluate.
            evaluate event-data-1
            when 1 if col-split = spaces
@@ -3820,6 +4005,11 @@ BEGIN-TEXT
                   modify gd7,(event-data-2, 2), cell-data col-effort  
                   modify gd7,(event-data-2, 3), cell-data col-int-desc
            end-evaluate.
+
+           if tutto-ok
+              perform WRITE-DAYS
+              perform CALCOLA-VALORI
+           end-if.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -4106,6 +4296,10 @@ BEGIN-TEXT
                  exit perform 
               end-if
            end-perform.
+
+           if tutto-ok
+              perform CONTROLLO-GRIDS
+           end-if.
 
            if errori
               perform ABILITAZIONI
@@ -4433,10 +4627,10 @@ BEGIN-TEXT
               inquire gd1(riga, 1), cell-data in col-split
               if col-split not = space
                  add 1 to idx-ok
+                 move col-split to wom-split-el-split-sigla(1, idx-ok)
+                 inquire gd1(riga, 2), cell-data in col-effort
+                 move col-effort to wom-split-el-split-int-code(1, idx-ok)
               end-if
-              move col-split to wom-split-el-split-sigla(1, idx-ok)
-              inquire gd1(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(1, idx-ok)
            end-perform.
            
            inquire gd2, last-row in tot-righe.
@@ -4446,10 +4640,10 @@ BEGIN-TEXT
               inquire gd2(riga, 1), cell-data in col-split
               if col-split not = space             
                  add 1 to idx-ok
+                 move col-split to wom-split-el-split-sigla(2, idx-ok)  
+                 inquire gd2(riga, 2), cell-data in col-effort
+                 move col-effort to wom-split-el-split-int-code(2, idx-ok)
               end-if
-              move col-split to wom-split-el-split-sigla(2, idx-ok)  
-              inquire gd2(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(2, idx-ok)
            end-perform.
            
            inquire gd3, last-row in tot-righe.    
@@ -4459,10 +4653,10 @@ BEGIN-TEXT
               inquire gd3(riga, 1), cell-data in col-split
               if col-split not = space             
                  add 1 to idx-ok
+                 move col-split to wom-split-el-split-sigla(3, idx-ok)  
+                 inquire gd3(riga, 2), cell-data in col-effort
+                 move col-effort to wom-split-el-split-int-code(3, idx-ok)
               end-if
-              move col-split to wom-split-el-split-sigla(3, idx-ok)  
-              inquire gd3(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(3, idx-ok)
            end-perform.
            
            inquire gd4, last-row in tot-righe.    
@@ -4472,10 +4666,10 @@ BEGIN-TEXT
               inquire gd4(riga, 1), cell-data in col-split
               if col-split not = space             
                  add 1 to idx-ok
+                 move col-split to wom-split-el-split-sigla(4, idx-ok)
+                 inquire gd4(riga, 2), cell-data in col-effort
+                 move col-effort to wom-split-el-split-int-code(4, idx-ok)
               end-if
-              move col-split to wom-split-el-split-sigla(4, idx-ok)
-              inquire gd4(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(4, idx-ok)
            end-perform.
            
            inquire gd5, last-row in tot-righe.    
@@ -4485,10 +4679,10 @@ BEGIN-TEXT
               inquire gd5(riga, 1), cell-data in col-split
               if col-split not = space             
                  add 1 to idx-ok
+                 move col-split to wom-split-el-split-sigla(5, idx-ok) 
+                 inquire gd5(riga, 2), cell-data in col-effort
+                 move col-effort to wom-split-el-split-int-code(5, idx-ok)
               end-if
-              move col-split to wom-split-el-split-sigla(5, idx-ok) 
-              inquire gd5(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(5, idx-ok)
            end-perform.
            
            inquire gd6, last-row in tot-righe.    
@@ -4498,10 +4692,10 @@ BEGIN-TEXT
               inquire gd6(riga, 1), cell-data in col-split
               if col-split not = space             
                  add 1 to idx-ok
+                 move col-split to wom-split-el-split-sigla(6, idx-ok) 
+                 inquire gd6(riga, 2), cell-data in col-effort
+                 move col-effort to wom-split-el-split-int-code(6, idx-ok)
               end-if
-              move col-split to wom-split-el-split-sigla(6, idx-ok) 
-              inquire gd6(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(6, idx-ok)
            end-perform.
            
            inquire gd7, last-row in tot-righe.    
@@ -4511,10 +4705,10 @@ BEGIN-TEXT
               inquire gd7(riga, 1), cell-data in col-split
               if col-split not = space             
                  add 1 to idx-ok
+                 move col-split to wom-split-el-split-sigla(7, idx-ok)  
+                 inquire gd7(riga, 2), cell-data in col-effort
+                 move col-effort to wom-split-el-split-int-code(7, idx-ok)
               end-if
-              move col-split to wom-split-el-split-sigla(7, idx-ok)  
-              inquire gd7(riga, 2), cell-data in col-effort
-              move col-effort to wom-split-el-split-int-code(7, idx-ok)
            end-perform.
 END-TEXT
 END-DATA
@@ -4740,7 +4934,7 @@ BEGIN-TEXT
            if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
            else
-              inquire gd1(event-data-2, 1), cell-data in col-split
+              inquire gd2(event-data-2, 1), cell-data in col-split
               if col-split = space and event-data-1 = 2
                  set event-action to event-action-fail
               end-if
@@ -4754,7 +4948,7 @@ BEGIN-TEXT
            if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
            else
-              inquire gd1(event-data-2, 1), cell-data in col-split
+              inquire gd3(event-data-2, 1), cell-data in col-split
               if col-split = space and event-data-1 = 2
                  set event-action to event-action-fail
               end-if
@@ -4768,7 +4962,7 @@ BEGIN-TEXT
            if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
            else
-              inquire gd1(event-data-2, 1), cell-data in col-split
+              inquire gd4(event-data-2, 1), cell-data in col-split
               if col-split = space and event-data-1 = 2
                  set event-action to event-action-fail
               end-if
@@ -4782,7 +4976,7 @@ BEGIN-TEXT
            if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
            else
-              inquire gd1(event-data-2, 1), cell-data in col-split
+              inquire gd5(event-data-2, 1), cell-data in col-split
               if col-split = space and event-data-1 = 2
                  set event-action to event-action-fail
               end-if
@@ -4796,7 +4990,7 @@ BEGIN-TEXT
            if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
            else
-              inquire gd1(event-data-2, 1), cell-data in col-split
+              inquire gd6(event-data-2, 1), cell-data in col-split
               if col-split = space and event-data-1 = 2
                  set event-action to event-action-fail
               end-if
@@ -4810,7 +5004,7 @@ BEGIN-TEXT
            if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
            else
-              inquire gd1(event-data-2, 1), cell-data in col-split
+              inquire gd7(event-data-2, 1), cell-data in col-split
               if col-split = space and event-data-1 = 2
                  set event-action to event-action-fail
               end-if
@@ -5157,6 +5351,69 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = gd7-Ev-Msg-Goto-Cell-Mouse
 BEGIN-TEXT
+           move 7 to grid-day.
+           perform SPOSTAMENTO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = gd2-BeforeProcedure
+BEGIN-TEXT
+           inquire gd2, cursor-y event-data-2.   
+           move 2 to grid-day.
+           perform SPOSTAMENTO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = gd1-BeforeProcedure
+BEGIN-TEXT
+           inquire gd1, cursor-y event-data-2.  
+           move 1 to grid-day.
+           perform SPOSTAMENTO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = gd3-BeforeProcedure
+BEGIN-TEXT
+           inquire gd3, cursor-y event-data-2.  
+           move 3 to grid-day.
+           perform SPOSTAMENTO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = gd4-BeforeProcedure
+BEGIN-TEXT
+           inquire gd4, cursor-y event-data-2.            
+           move 4 to grid-day.
+           perform SPOSTAMENTO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = gd5-BeforeProcedure
+BEGIN-TEXT
+           inquire gd5, cursor-y event-data-2.      
+           move 5 to grid-day.
+           perform SPOSTAMENTO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = gd6-BeforeProcedure
+BEGIN-TEXT
+           inquire gd6, cursor-y event-data-2.     
+           move 6 to grid-day.
+           perform SPOSTAMENTO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = gd7-BeforeProcedure
+BEGIN-TEXT
+           inquire gd7, cursor-y event-data-2.       
            move 7 to grid-day.
            perform SPOSTAMENTO.
 END-TEXT

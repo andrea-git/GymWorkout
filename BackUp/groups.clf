@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E79F214849-438-137272567
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791571234-836-32178127
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -68,9 +68,9 @@ m_bFixed=1
 
 @}}
 [FDITEM6_]
-m_strName=grp-filler
-m_strRawPic=x(1000)
-m_strPic=x(1000)
+m_strName=grp-primary
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -78,17 +78,18 @@ m_bFixed=1
 
 @}}
 [FDITEM7_]
-m_strName=grp-filler-n1
-m_strRawPic=9(18)
-m_strPic=9(18)
+m_strName=grp-filler
+m_strRawPic=x(999)
+m_strPic=x(999)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
+m_strName_Xfd=grp-filler_1
 {{@DataItem_m_strDescriptionFDITEM7_
 
 @}}
 [FDITEM8_]
-m_strName=grp-filler-n2
+m_strName=grp-filler-n1
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
@@ -98,7 +99,7 @@ m_bFixed=1
 
 @}}
 [FDITEM9_]
-m_strName=grp-filler-n3
+m_strName=grp-filler-n2
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
@@ -108,13 +109,23 @@ m_bFixed=1
 
 @}}
 [FDITEM10_]
-m_strName=grp-filler-n4
+m_strName=grp-filler-n3
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM10_
+
+@}}
+[FDITEM11_]
+m_strName=grp-filler-n4
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM11_
 
 @}}
 [CStoAcucobolSL_]

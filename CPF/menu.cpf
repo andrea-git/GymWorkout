@@ -9,7 +9,7 @@ QUIT_CONFIRM=0
 ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Screen1
 BEFORE_PROGRAM=menu-Ev-Before-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7914134714-16-461715205
+PROGRAM_UNIQUE_CODE=TOTEM-7E7915101319-202-961513289
 
 {{@DESCRIPTION:
 
@@ -410,7 +410,7 @@ Begin Screen Screen1
    Height in Cells   = TRUE
    Help ID           = 0
    Label Offset      = 20
-   Lines             = 21,00
+   Lines             = 16,64
    Link To Thread    = TRUE
    Max Lines         = 0,00
    Max Size          = 0,00
@@ -435,7 +435,7 @@ Begin Screen Screen1
    Event Procedure   = Screen1-Event-Proc
    Begin Frame frame-menu
       SCREEN-COL        = 2,00
-      SCREEN-LINE       = 1,39
+      SCREEN-LINE       = 1,24
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = frame-menu
@@ -443,7 +443,7 @@ Begin Screen Screen1
       Alternate         = FALSE
       Clines            = 0
       Clines Unit       = Default
-      Color             = 11
+      Color             = 0
       Column            = 2,00
       Csize             = 0
       Csize Unit        = Default
@@ -454,14 +454,14 @@ Begin Screen Screen1
       Help ID           = 0
       High Color        = 0
       ID                = 1
-      Line              = 1,39
-      Lines             = 20,21
+      Line              = 1,24
+      Lines             = 15,48
       Lines Unit        = Default
       Low Color         = 0
       Size              = 63,07
       Size Unit         = Default
       Tab Order         = 1
-      Thickness         = Heavy
+      Thickness         = Default
       Title Picture     = x(50)
       Title Position    = 2:Top center
       Title Variable    = tit-frame
@@ -469,7 +469,7 @@ Begin Screen Screen1
       Width in Cells    = TRUE
       Begin Push-Button pb-clienti
          SCREEN-COL        = 3,79
-         SCREEN-LINE       = 2,66
+         SCREEN-LINE       = 2,51
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-clienti
@@ -506,14 +506,14 @@ Begin Screen Screen1
          Style             = Other
          Tab Order         = 1
          Termination Value = 0
-         Title             = "Gestione Clienti (F1)"
+         Title             = "Tabella &Esercizi (F1)"
          Visible           = NONE
          Width in Cells    = FALSE
          Link To           = pb-clienti-LinkTo
       End
       Begin Push-Button pb-articoli
          SCREEN-COL        = 24,07
-         SCREEN-LINE       = 2,66
+         SCREEN-LINE       = 2,51
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-articoli
@@ -550,14 +550,14 @@ Begin Screen Screen1
          Style             = Other
          Tab Order         = 2
          Termination Value = 0
-         Title             = "Anagrafica Articoli (F2)"
+         Title             = "Tabella &Gruppi (F2)"
          Visible           = NONE
          Width in Cells    = FALSE
          Link To           = pb-articoli-LinkTo
       End
       Begin Push-Button pb-iva
          SCREEN-COL        = 44,36
-         SCREEN-LINE       = 2,66
+         SCREEN-LINE       = 2,51
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-iva
@@ -594,14 +594,14 @@ Begin Screen Screen1
          Style             = Other
          Tab Order         = 3
          Termination Value = 0
-         Title             = "Tabella IVA (F3)"
+         Title             = "Tabella Ma&crogruppi (F3)"
          Visible           = NONE
          Width in Cells    = FALSE
          Link To           = pb-iva-LinkTo
       End
       Begin Push-Button pb-catcli
          SCREEN-COL        = 3,50
-         SCREEN-LINE       = 7,33
+         SCREEN-LINE       = 7,18
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-catcli
@@ -638,14 +638,14 @@ Begin Screen Screen1
          Style             = Other
          Tab Order         = 4
          Termination Value = 0
-         Title             = "Categorie Clienti (F4)"
+         Title             = "&Intensità esercizii (F4)"
          Visible           = NONE
          Width in Cells    = FALSE
          Link To           = pb-catcli-LinkTo
       End
       Begin Push-Button pb-param
          SCREEN-COL        = 24,07
-         SCREEN-LINE       = 7,33
+         SCREEN-LINE       = 7,18
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-param
@@ -682,21 +682,21 @@ Begin Screen Screen1
          Style             = Other
          Tab Order         = 5
          Termination Value = 0
-         Title             = "Parametri Ditta (F5)"
+         Title             = "Tabella &Durata (F5)"
          Visible           = NONE
          Width in Cells    = FALSE
          Link To           = pb-param-LinkTo
       End
-      Begin Push-Button pb-listini
+      Begin Push-Button pb-schede
          SCREEN-COL        = 44,36
-         SCREEN-LINE       = 7,33
+         SCREEN-LINE       = 7,18
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
-         (Name)            = pb-listini
+         (Name)            = pb-schede
          Bitmap            = "..\RESOURCE\STRIP-MENU.BMP"
          Bitmap Frame      = TRUE
          Bitmap Handle     = STRIP-MENU-BMP
-         Bitmap Number     = 6
+         Bitmap Number     = 7
          Bitmap Square     = TRUE
          Clines            = 0
          Clines Unit       = Default
@@ -711,7 +711,7 @@ Begin Screen Screen1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 8
+         ID                = 9
          Line              = 6,94
          Lines             = 3,65
          Lines in Pixels   = 130
@@ -726,21 +726,21 @@ Begin Screen Screen1
          Style             = Other
          Tab Order         = 6
          Termination Value = 0
-         Title             = "Listini Clienti (F6)"
+         Title             = "&Mappatura allenamenti (F6)"
          Visible           = NONE
          Width in Cells    = FALSE
-         Link To           = pb-listini-LinkTo
+         Link To           = pb-schede-LinkTo
       End
-      Begin Push-Button pb-schede
+      Begin Push-Button pb-listini
          SCREEN-COL        = 3,50
-         SCREEN-LINE       = 12,03
+         SCREEN-LINE       = 11,76
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
-         (Name)            = pb-schede
+         (Name)            = pb-listini
          Bitmap            = "..\RESOURCE\STRIP-MENU.BMP"
          Bitmap Frame      = TRUE
          Bitmap Handle     = STRIP-MENU-BMP
-         Bitmap Number     = 7
+         Bitmap Number     = 6
          Bitmap Square     = TRUE
          Clines            = 0
          Clines Unit       = Default
@@ -755,8 +755,8 @@ Begin Screen Screen1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 9
-         Line              = 11,64
+         ID                = 8
+         Line              = 11,52
          Lines             = 3,65
          Lines in Pixels   = 130
          Lines Unit        = Default
@@ -770,146 +770,14 @@ Begin Screen Screen1
          Style             = Other
          Tab Order         = 7
          Termination Value = 0
-         Title             = "Mappatura allenamenti"
+         Title             = "Gestione &Allenamenti (F7)"
          Visible           = NONE
          Width in Cells    = FALSE
-         Link To           = pb-schede-LinkTo
-      End
-      Begin Push-Button pb-fatture
-         SCREEN-COL        = 24,07
-         SCREEN-LINE       = 12,03
-         LOCK-CONTROL      = TRUE
-         LEVEL             = 5
-         (Name)            = pb-fatture
-         Bitmap            = "..\RESOURCE\STRIP-MENU.BMP"
-         Bitmap Frame      = TRUE
-         Bitmap Handle     = STRIP-MENU-BMP
-         Bitmap Number     = 8
-         Bitmap Square     = TRUE
-         Clines            = 0
-         Clines Unit       = Default
-         Column            = 23,07
-         Copy Resource     = TRUE
-         Csize             = 0
-         Csize Unit        = Default
-         Destroy Type      = Automatic
-         Enable            = NONE
-         Exception Value   = 8
-         Flat              = FALSE
-         Font              = Default Font
-         Height in Cells   = FALSE
-         Help ID           = 0
-         ID                = 10
-         Line              = 11,64
-         Lines             = 3,65
-         Lines in Pixels   = 130
-         Lines Unit        = Default
-         No Auto Default   = FALSE
-         No Tab            = FALSE
-         Occurs            = 0
-         Self Act          = FALSE
-         Size              = 18,14
-         Size in Pixels    = 260
-         Size Unit         = Default
-         Style             = Other
-         Tab Order         = 8
-         Termination Value = 0
-         Title             = "Fatture / Corrispettivi (F8)"
-         Visible           = NONE
-         Width in Cells    = FALSE
-         Link To           = pb-fatture-LinkTo
-      End
-      Begin Push-Button pb-report
-         SCREEN-COL        = 3,50
-         SCREEN-LINE       = 16,75
-         LOCK-CONTROL      = TRUE
-         LEVEL             = 5
-         (Name)            = pb-report
-         Bitmap            = "..\RESOURCE\STRIP-MENU.BMP"
-         Bitmap Frame      = TRUE
-         Bitmap Handle     = STRIP-MENU-BMP
-         Bitmap Number     = 9
-         Bitmap Square     = TRUE
-         Clines            = 0
-         Clines Unit       = Default
-         Column            = 2,50
-         Copy Resource     = TRUE
-         Csize             = 0
-         Csize Unit        = Default
-         Destroy Type      = Automatic
-         Enable            = NONE
-         Exception Value   = 10
-         Flat              = FALSE
-         Font              = Default Font
-         Height in Cells   = FALSE
-         Help ID           = 0
-         ID                = 11
-         Line              = 16,36
-         Lines             = 3,65
-         Lines in Pixels   = 130
-         Lines Unit        = Default
-         No Auto Default   = FALSE
-         No Tab            = FALSE
-         Occurs            = 0
-         Self Act          = FALSE
-         Size              = 18,14
-         Size in Pixels    = 260
-         Size Unit         = Default
-         Style             = Other
-         Tab Order         = 9
-         Termination Value = 0
-         Title             = "Reportistica Fatturati (F10)"
-         Visible           = NONE
-         Width in Cells    = FALSE
-         Link To           = pb-report-LinkTo
-      End
-      Begin Push-Button pb-note
-         SCREEN-COL        = 44,36
-         SCREEN-LINE       = 12,03
-         LOCK-CONTROL      = TRUE
-         LEVEL             = 5
-         (Name)            = pb-note
-         Bitmap            = "..\RESOURCE\STRIP-MENU.BMP"
-         Bitmap Frame      = TRUE
-         Bitmap Handle     = STRIP-MENU-BMP
-         Bitmap Number     = 10
-         Bitmap Square     = TRUE
-         Clines            = 0
-         Clines Unit       = Default
-         Column            = 43,36
-         Copy Resource     = TRUE
-         Csize             = 0
-         Csize Unit        = Default
-         Destroy Type      = Automatic
-         Enable            = NONE
-         Exception Value   = 9
-         Flat              = FALSE
-         Font              = Default Font
-         Height in Cells   = FALSE
-         Help ID           = 0
-         ID                = 12
-         Line              = 11,64
-         Lines             = 3,65
-         Lines in Pixels   = 130
-         Lines Unit        = Default
-         No Auto Default   = FALSE
-         No Tab            = FALSE
-         Occurs            = 0
-         Self Act          = FALSE
-         Size              = 18,14
-         Size in Pixels    = 260
-         Size Unit         = Default
-         Style             = Other
-         Tab Order         = 10
-         Termination Value = 0
-         Title             = "Note Credito (F9)"
-         Visible           = NONE
-         Width in Cells    = FALSE
-         Link To           = pb-note-LinkTo
+         Link To           = pb-listini-LinkTo
       End
       Begin Push-Button pb-exit
          SCREEN-COL        = 44,36
-         SCREEN-LINE       = 16,75
+         SCREEN-LINE       = 11,76
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-exit
@@ -932,7 +800,7 @@ Begin Screen Screen1
          Height in Cells   = FALSE
          Help ID           = 0
          ID                = 13
-         Line              = 16,36
+         Line              = 11,52
          Lines             = 3,65
          Lines in Pixels   = 130
          Lines Unit        = Default
@@ -944,55 +812,11 @@ Begin Screen Screen1
          Size in Pixels    = 260
          Size Unit         = Default
          Style             = Escape Button
-         Tab Order         = 11
+         Tab Order         = 8
          Termination Value = 0
-         Title             = "Esce dal programma (Esc)"
+         Title             = "&Uscita (Esc)"
          Visible           = NONE
          Width in Cells    = FALSE
-      End
-      Begin Push-Button pb-appuntamenti
-         SCREEN-COL        = 24,07
-         SCREEN-LINE       = 16,75
-         LOCK-CONTROL      = TRUE
-         LEVEL             = 5
-         (Name)            = pb-appuntamenti
-         Bitmap            = "..\RESOURCE\STRIP-MENU.BMP"
-         Bitmap Frame      = TRUE
-         Bitmap Handle     = STRIP-MENU-BMP
-         Bitmap Number     = 12
-         Bitmap Square     = TRUE
-         Clines            = 0
-         Clines Unit       = Default
-         Column            = 23,07
-         Copy Resource     = TRUE
-         Csize             = 0
-         Csize Unit        = Default
-         Destroy Type      = Automatic
-         Enable            = NONE
-         Exception Value   = 11
-         Flat              = FALSE
-         Font              = Default Font
-         Height in Cells   = FALSE
-         Help ID           = 0
-         ID                = 14
-         Line              = 16,36
-         Lines             = 3,65
-         Lines in Pixels   = 130
-         Lines Unit        = Default
-         No Auto Default   = FALSE
-         No Tab            = FALSE
-         Occurs            = 0
-         Self Act          = FALSE
-         Size              = 18,14
-         Size in Pixels    = 260
-         Size Unit         = Default
-         Style             = Other
-         Tab Order         = 12
-         Termination Value = 0
-         Title             = "Gestione appuntamenti (F11)"
-         Visible           = NONE
-         Width in Cells    = FALSE
-         Link To           = pb-appuntamenti-LinkTo
       End
    End
 End
@@ -1118,38 +942,6 @@ BEGIN-DATA
    PARAGRAPH         = pb-schede-LinkTo
 BEGIN-TEXT
            move "gwodmap" to NomeProgramma.
-           perform CALL-PROGRAM.
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 2
-   PARAGRAPH         = pb-fatture-LinkTo
-BEGIN-TEXT
-           move "fatcli" to NomeProgramma.
-           perform CALL-PROGRAM.
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 2
-   PARAGRAPH         = pb-report-LinkTo
-BEGIN-TEXT
-           move "docum" to NomeProgramma.
-           perform CALL-PROGRAM.
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 2
-   PARAGRAPH         = pb-note-LinkTo
-BEGIN-TEXT
-           move "selnota" to NomeProgramma.
-           perform CALL-PROGRAM.
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 2
-   PARAGRAPH         = pb-appuntamenti-LinkTo
-BEGIN-TEXT
-           move "appuntamenti" to NomeProgramma.
            perform CALL-PROGRAM.
 END-TEXT
 END-DATA

@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E798195625-449-2131014737
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791571234-833-1893125328
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -58,9 +58,9 @@ m_bFixed=1
 
 @}}
 [FDITEM5_]
-m_strName=mcg-filler
-m_strRawPic=x(1000)
-m_strPic=x(1000)
+m_strName=mcg-primary
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -68,9 +68,9 @@ m_bFixed=1
 
 @}}
 [FDITEM6_]
-m_strName=mcg-filler-n1
-m_strRawPic=9(18)
-m_strPic=9(18)
+m_strName=mcg-filler
+m_strRawPic=x(999)
+m_strPic=x(999)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -78,7 +78,7 @@ m_bFixed=1
 
 @}}
 [FDITEM7_]
-m_strName=mcg-filler-n2
+m_strName=mcg-filler-n1
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
@@ -88,7 +88,7 @@ m_bFixed=1
 
 @}}
 [FDITEM8_]
-m_strName=mcg-filler-n3
+m_strName=mcg-filler-n2
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
@@ -98,13 +98,23 @@ m_bFixed=1
 
 @}}
 [FDITEM9_]
-m_strName=mcg-filler-n4
+m_strName=mcg-filler-n3
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM9_
+
+@}}
+[FDITEM10_]
+m_strName=mcg-filler-n4
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM10_
 
 @}}
 [CStoAcucobolSL_]

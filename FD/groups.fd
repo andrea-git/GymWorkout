@@ -5,7 +5,9 @@
            05 grp-data.
                10 grp-desc         PIC  x(100).
                10 grp-mcg-code     PIC  x(5).
-               10 grp-filler       PIC  x(1000).
+               10 grp-primary      PIC  9.
+      *(( XFD NAME = grp-filler_1 ))
+               10 grp-filler       PIC  x(999).
                10 grp-filler-n1    PIC  9(18).
                10 grp-filler-n2    PIC  9(18).
                10 grp-filler-n3    PIC  9(18).

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 21 settembre 2023 09:39:24.
+       DATE-WRITTEN.        giovedì 21 settembre 2023 17:04:58.
        REMARKS.
       *{TOTEM}END
 
@@ -273,6 +273,14 @@
        77 cb-dur-buf       PIC  X(100).
        77 Default-Font
                   USAGE IS HANDLE OF FONT DEFAULT-FONT.
+       78 78-col-day VALUE IS 1. 
+       78 78-col-prg VALUE IS 2. 
+       78 78-col-grp-code VALUE IS 3. 
+       78 78-col-grp-desc VALUE IS 4. 
+       78 78-col-exe-code VALUE IS 5. 
+       78 78-col-exe-desc VALUE IS 6. 
+       78 78-col-series VALUE IS 7. 
+       78 78-col-reps VALUE IS 8. 
        77 ex-remain        PIC  99.
        77 effort-wod       PIC  99.
        77 path-tmp-exe-effort          PIC  X(256).
@@ -312,9 +320,6 @@
                   USAGE IS HANDLE OF FONT.
        01 hiddenData.
            05 hid-restpause    PIC  9(3).
-       77 riparti-bmp      PIC  S9(9)
-                  USAGE IS COMP-4
-                  VALUE IS 0.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -410,68 +415,23 @@
        77 intexe-int-k-effort-SPLITBUF  PIC X(3).
        77 tmp-exe-dupl-ted-k-num-SPLITBUF  PIC X(106).
 
-       78  78-col-data       value 1. 
-       78  78-col-art        value 2. 
-       78  78-col-des        value 3. 
-       78  78-col-qta        value 4. 
-       78  78-col-prz        value 5. 
-       78  78-col-sc1        value 6. 
-      ***** 78  78-col-sc2        value 7. 
-       78  78-col-netto      value 7. 
-       78  78-col-note       value 8. 
-       78  78-col-numdoc     value 9. 
-       78  78-col-datadoc    value 10. 
-
-       78  78-max-colonne    value 10.
-
-       77  como-riga         pic 9(4).
-
-       01                    pic 9.
-           88 controllo-finale  value 1 false zero.
-
        01                 pic 9.
            88 s-excell    value 1.
            88 s-stampa    value 2.
            88 s-anteprima value 3.
 
-       77  messaggio      pic x(200).  
-
-       01 OLD-tsc-rec.
-           05 OLD-tsc-chiave.
-               10 OLD-tsc-codice       PIC  9(6).
-           05 OLD-tsc-dati.
-               10 OLD-tsc-cliente      PIC  x(6).
-               10 OLD-tsc-data-creazione           PIC  9(8).
-               10 OLD-tsc-vuoti.
-                   15 FILLER           PIC  9(18).
-                   15 FILLER           PIC  9(18).
-                   15 FILLER           PIC  9(18).
-                   15 FILLER           PIC  x(500).
-
-       01 OLD-rsc-rec.
-           05 OLD-rsc-chiave.
-               10 OLD-rsc-codice       PIC  9(6).
-               10 OLD-rsc-data         PIC  9(8).
-               10 OLD-rsc-articolo     PIC  x(6).
-               10 OLD-rsc-riga         PIC  9(6).
-           05 OLD-rsc-dati.
-               10 OLD-rsc-cliente      PIC  x(6).
-               10 OLD-rsc-qta          PIC  9(8).
-               10 OLD-rsc-prz          PIC  9(6)v99.
-               10 OLD-rsc-sconto       PIC  9(3)v99.
-               10 OLD-rsc-netto        PIC  9(6)v99.
-               10 OLD-rsc-note         PIC  x(150).
-               10 OLD-rsc-fattura.
-                   15 OLD-rsc-numfat       PIC  9(6).
-                   15 OLD-rsc-datafat      PIC  9(8).
-               10 OLD-rsc-corrisp.
-                   15 OLD-rsc-numcor       PIC  9(6).
-                   15 OLD-rsc-datacor      PIC  9(8).
-               10 OLD-rsc-vuoti.
-                   15 FILLER           PIC  9(18).
-                   15 FILLER           PIC  9(18).
-                   15 FILLER           PIC  9(18).
-                   15 FILLER           PIC  x(500).
+       77  s-cb-mg1-buf   pic x(100).
+       77  s-cb-mg2-buf   pic x(100).
+       77  s-cb-mg3-buf   pic x(100).
+       77  s-cb-mg4-buf   pic x(100).
+       77  s-cb-mg5-buf   pic x(100).
+       77  s-cb-mg6-buf   pic x(100).
+       77  s-cb-mg7-buf   pic x(100).
+       77  s-cb-mul-buf   pic x(100).
+       77  s-cb-int-buf   pic x(100).
+       77  s-cb-dur-buf   pic x(100).
+       77  s-cb-gio-buf   pic x(100).
+       77  s-cb-wod-buf   pic x(100).
       *{TOTEM}END
 
       *{TOTEM}ID-LOGICI
@@ -751,6 +711,7 @@
            BITMAP-NUMBER 1,
            FRAMED,
            SQUARE,
+           ENABLED 0,
            EXCEPTION-VALUE 1000,
            FONT IS Small-Font,
            ID IS 1,
@@ -1095,26 +1056,6 @@
            TITLE "&S",
            .
 
-      * PUSH BUTTON
-       05
-           pb-default, 
-           Push-Button, 
-           COL 33,80, 
-           LINE 23,35,
-           LINES 55 PIXELS,
-           SIZE 148 PIXELS,
-           BITMAP-HANDLE riparti-bmp,
-           BITMAP-NUMBER 1,
-           FRAMED,
-           SQUARE,
-           EXCEPTION-VALUE 1005,
-           FONT IS Small-Font,
-           ID IS 1,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TITLE "Ri&parti",
-           .
-
       * TOOLBAR
        01
            Form1-Tb-1,
@@ -1188,7 +1129,7 @@
        05
            TOOL-ANTEPRIMA, 
            Push-Button, 
-           COL 16,90, 
+           COL 22,10, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1208,7 +1149,7 @@
        05
            TOOL-STAMPA, 
            Push-Button, 
-           COL 22,20, 
+           COL 27,40, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1228,7 +1169,7 @@
        05
            TOOL-CERCA, 
            Push-Button, 
-           COL 27,50, 
+           COL 16,90, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1250,7 +1191,7 @@
            tool-modifica, 
            Push-Button, 
            COL 49,80, 
-           LINE 1,13,
+           LINE 1,09,
            LINES 1,35 ,
            SIZE 3,10 ,
            FONT IS Small-Font,
@@ -1369,7 +1310,6 @@
            DESTROY Calibri10-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, genera-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, random-bmp
-           CALL "w$bitmap" USING WBITMAP-DESTROY, riparti-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
       *    After-Program
            PERFORM ginqui-Ev-After-Program
@@ -1461,10 +1401,6 @@
            COPY RESOURCE "random.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "random.bmp", 
                    GIVING random-bmp.
-      * pb-default
-           COPY RESOURCE "riparti.bmp".
-           CALL "w$bitmap" USING WBITMAP-LOAD "riparti.bmp", 
-                   GIVING riparti-bmp.
       * TOOL-ESCI
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
@@ -3675,7 +3611,7 @@
 
       * Tool Bar    
            DISPLAY TOOL-BAR 
-              LINES 3,35,   
+              LINES 3,30,   
               CONTROL FONT IS Calibri14-Occidentale
               HANDLE IN Form1-Tb-1-Handle
            DISPLAY Form1-Tb-1 UPON Form1-Tb-1-Handle
@@ -3798,8 +3734,6 @@
                  PERFORM pb-random-LinkTo
               WHEN Key-Status = 1004
                  PERFORM Screen1-Pb-1aa-LinkTo
-              WHEN Key-Status = 1005
-                 PERFORM pb-default-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 3
@@ -4290,6 +4224,34 @@
 
        ABILITA-MACROGRUPPI.
       * <TOTEM:PARA. ABILITA-MACROGRUPPI>
+           inquire cb-mg1, value cb-mg1-buf.
+           inquire cb-mg2, value cb-mg2-buf.
+           inquire cb-mg3, value cb-mg3-buf.
+           inquire cb-mg4, value cb-mg4-buf.
+           inquire cb-mg5, value cb-mg5-buf.
+           inquire cb-mg6, value cb-mg6-buf.
+           inquire cb-mg7, value cb-mg7-buf.
+           inquire cb-mul, value cb-mul-buf.
+           inquire cb-int, value cb-int-buf.
+           inquire cb-dur, value cb-dur-buf.
+           inquire cb-gio, value cb-gio-buf.
+           inquire cb-wod, value cb-wod-buf.
+
+           if cb-mg1-buf = s-cb-mg1-buf and
+              cb-mg2-buf = s-cb-mg2-buf and
+              cb-mg3-buf = s-cb-mg3-buf and
+              cb-mg4-buf = s-cb-mg4-buf and
+              cb-mg5-buf = s-cb-mg5-buf and
+              cb-mg6-buf = s-cb-mg6-buf and
+              cb-mg7-buf = s-cb-mg7-buf and
+              cb-mul-buf = s-cb-mul-buf and
+              cb-int-buf = s-cb-int-buf and
+              cb-dur-buf = s-cb-dur-buf and
+              cb-gio-buf = s-cb-gio-buf and
+              cb-wod-buf = s-cb-wod-buf
+              exit paragraph 
+           end-if.
+
            inquire cb-wod, value in wom-desc.
            modify cb-mg1, enabled false.
            modify cb-mg2, enabled false.
@@ -4312,11 +4274,19 @@
                                          alphanumeric data by spaces
                 exit paragraph
            end-read.
-                     
+                                       
+           modify gd1, reset-grid = 1.
+           perform GD1-CONTENT.
+           move 0 to mod.
+           perform ABILITAZIONI.
+
            modify gd-schema, reset-grid = 1.
            perform GD-SCHEMA-CONTENT.
            move 1 to riga.
-           move 304 to colore.
+           move 304 to colore. 
+
+           modify pb-genera, enabled false.
+
            perform varying idx-days from 1 by 1
                      until idx-days > wom-days
               initialize rec-schema
@@ -4327,7 +4297,7 @@
                  if wom-split-el-split-sigla(idx-days, idx-split) = 
            space
                     exit perform
-                 end-if                     
+                 end-if                                
                  evaluate wom-split-el-split-sigla(idx-days, idx-split)
                  when "A" inquire cb-mg1, value = mcg-desc
                  when "B" inquire cb-mg2, value = mcg-desc
@@ -4400,7 +4370,20 @@
                
 
               modify gd-schema(riga), row-color = colore
-              add 1 to riga                                  
+              add 1 to riga      
+              if mcg-1 not = spaces or
+                 mcg-2 not = spaces or
+                 mcg-3 not = spaces or
+                 mcg-4 not = spaces or
+                 mcg-5 not = spaces or
+                 mcg-6 not = spaces or
+                 mcg-7 not = spaces
+                 inquire pb-genera, enabled in como-e
+                 if como-e = 0
+                    move 1 to como-e
+                    modify pb-genera, enabled true
+                 end-if
+              end-if
               modify gd-schema(riga,  1), cell-data = spaces
               modify gd-schema(riga,  2), cell-data = mcg-1
               modify gd-schema(riga,  3), cell-data = mcg-2
@@ -4452,30 +4435,51 @@
                 modify cb-mg5, enabled true
                 modify cb-mg6, enabled true
                 modify cb-mg7, enabled true
-           end-evaluate 
+           end-evaluate.
+
+           
+           move cb-mg1-buf to s-cb-mg1-buf.
+           move cb-mg2-buf to s-cb-mg2-buf.
+           move cb-mg3-buf to s-cb-mg3-buf.
+           move cb-mg4-buf to s-cb-mg4-buf.
+           move cb-mg5-buf to s-cb-mg5-buf.
+           move cb-mg6-buf to s-cb-mg6-buf.
+           move cb-mg7-buf to s-cb-mg7-buf.
+           move cb-mul-buf to s-cb-mul-buf.
+           move cb-int-buf to s-cb-int-buf.
+           move cb-dur-buf to s-cb-dur-buf.
+           move cb-gio-buf to s-cb-gio-buf.
+           move cb-wod-buf to s-cb-wod-buf 
            .
       * <TOTEM:END>
 
        ABILITAZIONI.
       * <TOTEM:PARA. ABILITAZIONI>
            if mod = 1              
-              move BitmapDeleteEnabled to BitmapNumDelete
-              move BitmapSaveEnabled   to BitmapNumSave
-              move 1 to e-salva e-cancella
+              move BitmapDeleteEnabled  to BitmapNumDelete
+              move BitmapSaveEnabled    to BitmapNumSave
+              move BitmapPrintEnabled   to BitmapNumPrint
+              move BitmapPreviewEnabled to BitmapNumPreview
+              move 1 to e-salva e-cancella e-stampa e-anteprima 
            else           
-              move BitmapDeleteDisabled to BitmapNumDelete
-              move BitmapSaveDisabled   to BitmapNumSave
-              move 0 to e-salva e-cancella
+              move BitmapDeleteDisabled  to BitmapNumDelete
+              move BitmapSaveDisabled    to BitmapNumSave   
+              move BitmapPrintDisabled   to BitmapNumPrint
+              move BitmapPreviewDisabled to BitmapNumPreview
+              move 0 to e-salva e-cancella e-stampa e-anteprima 
            end-if.      
 
-
-           modify tool-cancella, enabled = e-cancella.
-           modify tool-salva,    enabled = e-salva.
+                                         
+           modify tool-cancella,  enabled = e-cancella.
+           modify tool-salva,     enabled = e-salva.
+           modify tool-stampa,    enabled = e-stampa.
+           modify tool-anteprima, enabled = e-anteprima. 
        
       * ISACCO (SERVE SEMPRE PER LA MODIFICA PRCEDENTE E PER RIPRISTINARE
       * LE BITMAP DISABILITATE. - 10/11/2003
       *     perform FORM1-DISPLAY.
-           display tool-nuovo, tool-salva, tool-cancella, tool-modifica.
+           display tool-nuovo, tool-salva, tool-cancella, tool-modifica
+                   tool-stampa tool-anteprima.
       * FINE 
            .
       * <TOTEM:END>
@@ -4489,8 +4493,8 @@
 
        CERCA.
       * <TOTEM:PARA. CERCA>
-      *     evaluate CONTROL-ID
-      **
+           evaluate CONTROL-ID
+      *
       *     when 78-ID-ef-cliente           
       *          set SceltoCliente to false
       *          inquire ef-cliente, value in cli-codice
@@ -4505,7 +4509,8 @@
       *             move 4                to ACCEPT-CONTROL   
       *          end-if
       *
-      *     when 78-ID-gd1
+           when 78-ID-gd1
+                display message "K"
       *          perform X-Y
       *          evaluate colonna
       *          when 78-col-art
@@ -4549,20 +4554,9 @@
       *               move 78-ID-gd1 to control-id
       *               move 4         to accept-control
       *               modify gd1, cursor-y riga, cursor-x 78-col-prz
-      *
+      
       *          end-evaluate
-      *     end-evaluate  
-           .
-      * <TOTEM:END>
-
-       COLORE-RIGA.
-      * <TOTEM:PARA. COLORE-RIGA>
-           modify gd1, start-x = 1,
-                             x = 8,
-                       start-y = riga,
-                             y = riga,
-                  region-color = 257,
-                  cursor-color = colore-nu 
+           end-evaluate  
            .
       * <TOTEM:END>
 
@@ -4862,8 +4856,13 @@
                                
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
+           move 0 to mod.
+           perform ABILITAZIONI.
+
            modify gd-schema, reset-grid = 1.
-           perform GD-SCHEMA-CONTENT 
+           perform GD-SCHEMA-CONTENT.    
+
+           modify pb-genera, enabled false 
            .
       * <TOTEM:END>
 
@@ -4889,36 +4888,11 @@
 
        NUOVO.
       * <TOTEM:PARA. NUOVO>
-      *     perform SALV-MOD.
-      *
-      *     if tutto-ok  
-      *        move 78-ID-ef-cliente to control-id
-      *        move 4                to accept-control
-      *        set nuovo to true
-      *        perform CERCA
-      *        if SceltoCliente
-      *           move 1                to mod mod-k
-      *           modify tool-modifica,  value = mod
-      *           perform CANCELLA-COLORE
-      *           perform VALORIZZA-NUOVO
-      *           perform INIT-OLD-REC
-      *           set StatusIns to true
-      *           perform STATUS-BAR-MSG  
-      *           set nuovo to true
-      *        else
-      *           set vecchio to true
-      *        end-if
-      *     end-if 
-           .
-      * <TOTEM:END>
-
-       PUNTA-CELLA.
-      * <TOTEM:PARA. PUNTA-CELLA>
-           move 78-ID-gd1    to control-id store-id.
-           move 4            to accept-control.
-           modify gd1,       cursor-y riga, 
-                             cursor-x colonna.
-           perform COLORE-RIGA 
+           perform SALV-MOD.
+      
+           if tutto-ok  
+              perform DATI-DEFAULT
+           end-if 
            .
       * <TOTEM:END>
 
@@ -5121,76 +5095,22 @@
 
        SPOSTAMENTO.
       * <TOTEM:PARA. SPOSTAMENTO>
-      *     set tutto-ok to true.
-      *     perform X-Y.
-      *
-      *     if event-data-2 not = riga
-      *
-      *        perform VALORE-RIGA
-      *
-      *        if not RigaVuota
-      *           perform varying colonna from 78-col-data by 1
-      *                     until colonna > 78-max-colonne|78-col-tipo-imp
-      *              perform CONTROLLO-RIGA
-      *              if errori exit perform end-if
-      *           end-perform
-      *        end-if
-      *
-      ******        if tutto-ok and mod = 1
-      ******           perform SCRIVI-RIGA
-      ******        end-if
-      *
-      *        if tutto-ok
-      *           evaluate true
-      *           when event-data-2 < 2 
-      *                move 2            to riga
-      *                move event-data-1 to colonna
-      *
-      *           when event-data-2 > tot-righe
-      *                add  1                to tot-righe giving riga
-      *                set event-action      to event-action-fail
-      *                move 1                to colonna
-      *                perform PUNTA-CELLA
-      *           when other
-      *                move event-data-2 to riga
-      *                move event-data-1 to colonna
-      *           end-evaluate
-      *           perform VALORE-RIGA
-      *           if art-codice = 0
-      *              initialize rsc-rec 
-      *                         replacing numeric data by zeroes
-      *                              alphanumeric data by spaces
-      *           end-if
-      *           move rsc-rec       to old-rsc-rec
-      *           move rsc-data      to como-old-rsc-data
-      *           move rsc-articolo  to como-old-rsc-articolo
-      *        else                  
-      *           set event-action   to event-action-fail
-      *           perform PUNTA-CELLA
-      *        end-if
-      *     else
-      *        if event-data-1 not = colonna
-      *           inquire gd1(riga, 1), cell-data in art-codice
-      *           if art-codice = 0
-      *              set event-action to event-action-fail
-      *              move 1 to colonna event-data-1
-      *              perform PUNTA-CELLA
-      *           end-if
-      *        end-if
-      *        move event-data-1 to colonna
-      *     end-if.
-      *
-      *     perform COLORE-RIGA.
-      *     move 0 to StatusHelp.
-      *     if mod = 1 and como-col-data not = 0
-      *        if colonna = 78-col-art
-      *           move 1 to StatusHelp
-      *        end-if
-      *        if colonna = 78-col-prz and col-art not = spaces
-      *           move 1 to StatusHelp
-      *        end-if
-      *     end-if.
-      *     perform STATUS-HELP 
+           set tutto-ok to true.
+           perform X-Y.
+
+           move 0 to StatusHelp
+                             
+           modify gd1, start-x = 1,
+                             x = 78-col-reps,
+                       start-y = event-data-2,
+                             y = event-data-2,
+                  region-color = 257,
+                  cursor-color = colore-nu.
+
+           evaluate event-data-1
+           when 78-col-exe-code move 1 to StatusHelp
+           end-evaluate.
+           perform STATUS-HELP 
            .
       * <TOTEM:END>
 
@@ -5203,19 +5123,14 @@
 
        STAMPA-ANTEPRIMA.
       * <TOTEM:PARA. STAMPA-ANTEPRIMA>
-      *     if nuovo
-      *        display message "Salvare prima la scheda"
-      *                  title tit-err
-      *                   icon 2
-      *     else
-      *        if s-anteprima
-      *           accept link-stampante from environment "STAMPANTE_ANTEPRIMA"
-      *        else
-      *           move spaces to link-stampante
-      *        end-if
-      *        call   "st-schedacli" using tsc-codice, link-stampante
-      *        cancel "st-schedacli"
-      *     end-if 
+           if s-anteprima
+              accept link-stampante from environment "STAMPANTE_ANTEPRIM
+      -    "A"
+           else
+              move spaces to link-stampante
+           end-if
+      *     call   "st-schedacli" using tsc-codice, link-stampante
+      *     cancel "st-schedacli"
            .
       * <TOTEM:END>
 
@@ -5291,14 +5206,20 @@
 
        VALORIZZA-WOD.
       * <TOTEM:PARA. VALORIZZA-WOD>
-           inquire cb-int, value in cb-int-buf.
+           inquire cb-int, value cb-int-buf.
+           inquire cb-dur, value cb-dur-buf.
+           inquire cb-gio, value cb-gio-buf.
+
+           if cb-int-buf = s-cb-int-buf and
+              cb-dur-buf = s-cb-dur-buf and
+              cb-gio-buf = s-cb-gio-buf 
+              exit paragraph 
+           end-if.
 
            inquire cb-dur, value in dur-desc.
            read duration key dur-k-desc 
                 invalid move 0 to dur-code
            end-read.
-
-           inquire cb-gio, value in cb-gio-buf.
 
            if cb-int-buf = s-int-buf and
               dur-desc = s-dur-desc and
@@ -5355,7 +5276,13 @@
            modify cb-wod, value = "Nessuno".
            modify cb-wod, enabled true.
 
-           perform ABILITA-MACROGRUPPI 
+           perform ABILITA-MACROGRUPPI.
+           
+           move cb-int-buf to s-cb-int-buf.
+           move cb-dur-buf to s-cb-dur-buf.
+           move cb-gio-buf to s-cb-gio-buf 
+           
+
            .
       * <TOTEM:END>
 
@@ -5367,16 +5294,30 @@
            .
       * <TOTEM:END>
 
-      * EVENT PARAGRAPH
-       NUOVO-LinkTo.
-      * <TOTEM:PARA. NUOVO-LinkTo>
-           INQUIRE TOOL-NUOVO, ENABLED IN E-NUOVO.
+       SALV-MOD.
+      * <TOTEM:PARA. SALV-MOD>
+           set tutto-ok to true.
+           set SiSalvato to true.
 
-           IF E-NUOVO = 1
-              PERFORM NUOVO
-           END-IF                    
+           inquire gd1, last-row in tot-righe.
+           if tot-righe > 1
+              set NoSalvato to true
+           end-if.
+
+           if NoSalvato
+              display message "Vuoi reettare il lavoro fatto?"
+                        title titolo
+                         type mb-yes-no
+                       giving scelta       
+       
+              if scelta = mb-no
+                 set errori to true
+              end-if
+           end-if 
            .
       * <TOTEM:END>
+
+      * EVENT PARAGRAPH
        TOOL-SALVA-LinkTo.
       * <TOTEM:PARA. TOOL-SALVA-LinkTo>
            INQUIRE TOOL-MODIFICA, VALUE IN MOD           
@@ -5754,11 +5695,7 @@
            end-if.
            
            perform CREA-OCCURS-GRUPPI.
-
-           modify gd1, mass-update = 1.
-           modify gd1, reset-grid = 1.
-           perform GD1-CONTENT.
-
+                                         
            move 0 to int-effort.
            inquire cb-int, value in cb-int-buf.
            evaluate cb-int-buf
@@ -5841,7 +5778,8 @@
            open output tmp-exe-dupl.    
            close       tmp-exe-dupl.
            open i-o    tmp-exe-dupl.
-              
+                                 
+           modify gd1, mass-update = 1.  
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
                                      
@@ -5865,6 +5803,19 @@
 
            close       tmp-exe-dupl.
            delete file tmp-exe-dupl.
+                                  
+           move cb-mg1-buf to s-cb-mg1-buf.
+           move cb-mg2-buf to s-cb-mg2-buf.
+           move cb-mg3-buf to s-cb-mg3-buf.
+           move cb-mg4-buf to s-cb-mg4-buf.
+           move cb-mg5-buf to s-cb-mg5-buf.
+           move cb-mg6-buf to s-cb-mg6-buf.
+           move cb-mg7-buf to s-cb-mg7-buf.
+           move cb-mul-buf to s-cb-mul-buf.
+           move cb-int-buf to s-cb-int-buf.
+           move cb-dur-buf to s-cb-dur-buf.
+           move cb-gio-buf to s-cb-gio-buf.
+           move cb-wod-buf to s-cb-wod-buf.
       
       ***---
        LOAD-GRID.
@@ -5889,14 +5840,22 @@
                        move 0 to col-exe-prg tot-durata
                        move tex-day to save-day
                        add 1 to riga                           
-                       modify gd1(riga, 1), cell-data = spaces
-                       modify gd1(riga, 2), cell-data = spaces
-                       modify gd1(riga, 3), cell-data = spaces
-                       modify gd1(riga, 4), cell-data = spaces
-                       modify gd1(riga, 5), cell-data = spaces
-                       modify gd1(riga, 6), cell-data = spaces
-                       modify gd1(riga, 7), cell-data = spaces 
-                       modify gd1(riga, 8), cell-data = spaces 
+                       modify gd1(riga, 78-col-day),      cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-prg),      cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-grp-code), cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-grp-desc), cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-exe-code), cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-exe-desc), cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-series),   cell-data = 
+           spaces 
+                       modify gd1(riga, 78-col-reps),     cell-data = 
+           spaces 
                        modify gd1(riga), row-color 288
                     end-if          
                     add 1 to col-exe-prg
@@ -5969,16 +5928,24 @@
                        end-if
                     end-if
                     add 1 to riga                                
-                    modify gd1(riga, 1), cell-data = col-day
-                    modify gd1(riga, 2), cell-data = col-exe-prg
-                    modify gd1(riga, 3), cell-data = col-grp-code
-                    modify gd1(riga, 4), cell-data = col-grp-desc
-                    modify gd1(riga, 5), cell-data = col-exe-code
-                    modify gd1(riga, 6), cell-data = col-exe-desc
-                    modify gd1(riga, 7), cell-data = col-series
-                    modify gd1(riga, 8), cell-data = col-reps
+                    modify gd1(riga, 78-col-day),      cell-data = 
+           col-day
+                    modify gd1(riga, 78-col-prg),      cell-data = 
+           col-exe-prg
+                    modify gd1(riga, 78-col-grp-code), cell-data = 
+           col-grp-code
+                    modify gd1(riga, 78-col-grp-desc), cell-data = 
+           col-grp-desc
+                    modify gd1(riga, 78-col-exe-code), cell-data = 
+           col-exe-code
+                    modify gd1(riga, 78-col-exe-desc), cell-data = 
+           col-exe-desc
+                    modify gd1(riga, 78-col-series),   cell-data = 
+           col-series
+                    modify gd1(riga, 78-col-reps),     cell-data = 
+           col-reps
                     move int-restpause to int-restpause
-                    modify gd1(riga, 1), hidden-data hiddenData
+                    modify gd1(riga, 78-col-day), hidden-data hiddenData
 
                     compute tot-durata  = tot-durata +
                             exe-setting +
@@ -6031,6 +5998,14 @@
            end-perform.
 
            modify gd1, mass-update = 0.
+
+           inquire gd1, last-row in tot-righe.
+           if tot-righe > 1
+              move 1 to mod
+           else
+              move 0 to mod
+           end-if.         
+           perform ABILITAZIONI.
 
       ***---
        DISPLAY-DURATA.
@@ -6458,7 +6433,7 @@
                                 end-perform
                           end-start
                        end-perform
-                 end-start                
+                 end-start  
               end-perform 
               if tot-subst = 0
                  exit perform
@@ -6482,7 +6457,9 @@
            move 1 to wom-code.
            read wodmap no lock.
            modify cb-wod, value = wom-desc.
-           perform ABILITA-MACROGRUPPI 
+           perform ABILITA-MACROGRUPPI.
+
+           modify pb-genera, enabled true 
            .
       * <TOTEM:END>
        pb-random-LinkTo.
@@ -6555,7 +6532,9 @@
            read wodmap no lock.
            modify cb-wod, value = wom-desc.
 
-           perform ABILITA-MACROGRUPPI 
+           perform ABILITA-MACROGRUPPI. 
+
+           modify pb-genera, enabled true 
            .
       * <TOTEM:END>
        cb-wod-AfterProcedure.
@@ -6602,12 +6581,14 @@
            read wodmap no lock.
            modify cb-wod, value = wom-desc.
 
-           perform ABILITA-MACROGRUPPI 
+           perform ABILITA-MACROGRUPPI. 
+
+           modify pb-genera, enabled true 
            .
       * <TOTEM:END>
-       pb-default-LinkTo.
-      * <TOTEM:PARA. pb-default-LinkTo>
-           perform DATI-DEFAULT 
+       NUOVO-LinkTo.
+      * <TOTEM:PARA. NUOVO-LinkTo>
+           perform NUOVO 
            .
       * <TOTEM:END>
 

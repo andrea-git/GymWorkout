@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          "menu".
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 19 settembre 2023 17:50:54.
+       DATE-WRITTEN.        giovedì 21 settembre 2023 12:15:24.
        REMARKS.
       *{TOTEM}END
 
@@ -117,14 +117,12 @@
            frame-menu, 
            Frame, 
            COL 2,00, 
-           LINE 1,39,
-           LINES 20,21 ,
+           LINE 1,24,
+           LINES 15,48 ,
            SIZE 63,07 ,
-           COLOR IS 11,
            ID IS 1,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           HEAVY,
            TITLE tit-frame,
            TITLE-POSITION 2,
            .
@@ -134,7 +132,7 @@
            pb-clienti, 
            Push-Button, 
            COL 3,79, 
-           LINE 2,66,
+           LINE 2,51,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -143,7 +141,7 @@
            SQUARE,
            EXCEPTION-VALUE 1,
            ID IS 3,
-           TITLE "Gestione Clienti (F1)",
+           TITLE "Tabella &Esercizi (F1)",
            .
 
       * PUSH BUTTON
@@ -151,7 +149,7 @@
            pb-articoli, 
            Push-Button, 
            COL 24,07, 
-           LINE 2,66,
+           LINE 2,51,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -160,7 +158,7 @@
            SQUARE,
            EXCEPTION-VALUE 2,
            ID IS 4,
-           TITLE "Anagrafica Articoli (F2)",
+           TITLE "Tabella &Gruppi (F2)",
            .
 
       * PUSH BUTTON
@@ -168,7 +166,7 @@
            pb-iva, 
            Push-Button, 
            COL 44,36, 
-           LINE 2,66,
+           LINE 2,51,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -177,7 +175,7 @@
            SQUARE,
            EXCEPTION-VALUE 3,
            ID IS 5,
-           TITLE "Tabella IVA (F3)",
+           TITLE "Tabella Ma&crogruppi (F3)",
            .
 
       * PUSH BUTTON
@@ -185,7 +183,7 @@
            pb-catcli, 
            Push-Button, 
            COL 3,50, 
-           LINE 7,33,
+           LINE 7,18,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -194,7 +192,7 @@
            SQUARE,
            EXCEPTION-VALUE 4,
            ID IS 6,
-           TITLE "Categorie Clienti (F4)",
+           TITLE "&Intensità esercizii (F4)",
            .
 
       * PUSH BUTTON
@@ -202,7 +200,7 @@
            pb-param, 
            Push-Button, 
            COL 24,07, 
-           LINE 7,33,
+           LINE 7,18,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -211,92 +209,41 @@
            SQUARE,
            EXCEPTION-VALUE 5,
            ID IS 7,
-           TITLE "Parametri Ditta (F5)",
-           .
-
-      * PUSH BUTTON
-       05
-           pb-listini, 
-           Push-Button, 
-           COL 44,36, 
-           LINE 7,33,
-           LINES 130,00 ,
-           SIZE 260,00 ,
-           BITMAP-HANDLE STRIP-MENU-BMP,
-           BITMAP-NUMBER 6,
-           FRAMED,
-           SQUARE,
-           EXCEPTION-VALUE 6,
-           ID IS 8,
-           TITLE "Listini Clienti (F6)",
+           TITLE "Tabella &Durata (F5)",
            .
 
       * PUSH BUTTON
        05
            pb-schede, 
            Push-Button, 
-           COL 3,50, 
-           LINE 12,03,
+           COL 44,36, 
+           LINE 7,18,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
            BITMAP-NUMBER 7,
            FRAMED,
            SQUARE,
-           EXCEPTION-VALUE 7,
+           EXCEPTION-VALUE 6,
            ID IS 9,
-           TITLE "Mappatura allenamenti",
+           TITLE "&Mappatura allenamenti (F6)",
            .
 
       * PUSH BUTTON
        05
-           pb-fatture, 
-           Push-Button, 
-           COL 24,07, 
-           LINE 12,03,
-           LINES 130,00 ,
-           SIZE 260,00 ,
-           BITMAP-HANDLE STRIP-MENU-BMP,
-           BITMAP-NUMBER 8,
-           FRAMED,
-           SQUARE,
-           EXCEPTION-VALUE 8,
-           ID IS 10,
-           TITLE "Fatture / Corrispettivi (F8)",
-           .
-
-      * PUSH BUTTON
-       05
-           pb-report, 
+           pb-listini, 
            Push-Button, 
            COL 3,50, 
-           LINE 16,75,
+           LINE 11,76,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
-           BITMAP-NUMBER 9,
+           BITMAP-NUMBER 6,
            FRAMED,
            SQUARE,
-           EXCEPTION-VALUE 10,
-           ID IS 11,
-           TITLE "Reportistica Fatturati (F10)",
-           .
-
-      * PUSH BUTTON
-       05
-           pb-note, 
-           Push-Button, 
-           COL 44,36, 
-           LINE 12,03,
-           LINES 130,00 ,
-           SIZE 260,00 ,
-           BITMAP-HANDLE STRIP-MENU-BMP,
-           BITMAP-NUMBER 10,
-           FRAMED,
-           SQUARE,
-           EXCEPTION-VALUE 9,
-           ID IS 12,
-           TITLE "Note Credito (F9)",
+           EXCEPTION-VALUE 7,
+           ID IS 8,
+           TITLE "Gestione &Allenamenti (F7)",
            .
 
       * PUSH BUTTON
@@ -304,7 +251,7 @@
            pb-exit, 
            Push-Button, 
            COL 44,36, 
-           LINE 16,75,
+           LINE 11,76,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -314,24 +261,7 @@
            EXCEPTION-VALUE 27,
            ID IS 13,
            ESCAPE-BUTTON,
-           TITLE "Esce dal programma (Esc)",
-           .
-
-      * PUSH BUTTON
-       05
-           pb-appuntamenti, 
-           Push-Button, 
-           COL 24,07, 
-           LINE 16,75,
-           LINES 130,00 ,
-           SIZE 260,00 ,
-           BITMAP-HANDLE STRIP-MENU-BMP,
-           BITMAP-NUMBER 12,
-           FRAMED,
-           SQUARE,
-           EXCEPTION-VALUE 11,
-           ID IS 14,
-           TITLE "Gestione appuntamenti (F11)",
+           TITLE "&Uscita (Esc)",
            .
 
       *{TOTEM}END
@@ -429,7 +359,7 @@
 
        Screen1-Create-Win.
            Display Initial GRAPHICAL WINDOW
-              LINES 21,00,
+              LINES 16,64,
               SIZE 65,14,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
@@ -496,17 +426,9 @@
               WHEN Key-Status = 5
                  PERFORM pb-param-LinkTo
               WHEN Key-Status = 6
-                 PERFORM pb-listini-LinkTo
-              WHEN Key-Status = 7
                  PERFORM pb-schede-LinkTo
-              WHEN Key-Status = 8
-                 PERFORM pb-fatture-LinkTo
-              WHEN Key-Status = 10
-                 PERFORM pb-report-LinkTo
-              WHEN Key-Status = 9
-                 PERFORM pb-note-LinkTo
-              WHEN Key-Status = 11
-                 PERFORM pb-appuntamenti-LinkTo
+              WHEN Key-Status = 7
+                 PERFORM pb-listini-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -711,30 +633,6 @@
        pb-schede-LinkTo.
       * <TOTEM:PARA. pb-schede-LinkTo>
            move "gwodmap" to NomeProgramma.
-           perform CALL-PROGRAM 
-           .
-      * <TOTEM:END>
-       pb-fatture-LinkTo.
-      * <TOTEM:PARA. pb-fatture-LinkTo>
-           move "fatcli" to NomeProgramma.
-           perform CALL-PROGRAM 
-           .
-      * <TOTEM:END>
-       pb-report-LinkTo.
-      * <TOTEM:PARA. pb-report-LinkTo>
-           move "docum" to NomeProgramma.
-           perform CALL-PROGRAM 
-           .
-      * <TOTEM:END>
-       pb-note-LinkTo.
-      * <TOTEM:PARA. pb-note-LinkTo>
-           move "selnota" to NomeProgramma.
-           perform CALL-PROGRAM 
-           .
-      * <TOTEM:END>
-       pb-appuntamenti-LinkTo.
-      * <TOTEM:PARA. pb-appuntamenti-LinkTo>
-           move "appuntamenti" to NomeProgramma.
            perform CALL-PROGRAM 
            .
       * <TOTEM:END>

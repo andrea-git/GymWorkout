@@ -50,10 +50,10 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="7"
-       xfd:elementary-items-with-occurs="7"
-       xfd:total-items="10"
-       xfd:total-items-with-occurs="10">
+       xfd:elementary-items="8"
+       xfd:elementary-items-with-occurs="8"
+       xfd:total-items="11"
+       xfd:total-items-with-occurs="11">
     <xfd:field
          xfd:field-offset="0"
          xfd:field-bytes="1177"
@@ -106,9 +106,19 @@
          xfd:field-name="MCG-DESC"/>
     <xfd:field
          xfd:field-offset="105"
-         xfd:field-bytes="1000"
+         xfd:field-bytes="1"
+         xfd:field-type="1"
+         xfd:field-length="1"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="10"
+         xfd:field-name="MCG-PRIMARY"/>
+    <xfd:field
+         xfd:field-offset="106"
+         xfd:field-bytes="999"
          xfd:field-type="16"
-         xfd:field-length="1000"
+         xfd:field-length="999"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="0"

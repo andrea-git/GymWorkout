@@ -4,7 +4,8 @@
                10 mcg-code         PIC  x(5).
            05 mcg-data.
                10 mcg-desc         PIC  x(100).
-               10 mcg-filler       PIC  x(1000).
+               10 mcg-primary      PIC  9.
+               10 mcg-filler       PIC  x(999).
                10 mcg-filler-n1    PIC  9(18).
                10 mcg-filler-n2    PIC  9(18).
                10 mcg-filler-n3    PIC  9(18).

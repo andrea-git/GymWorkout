@@ -69,10 +69,10 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="8"
-       xfd:elementary-items-with-occurs="8"
-       xfd:total-items="11"
-       xfd:total-items-with-occurs="11">
+       xfd:elementary-items="9"
+       xfd:elementary-items-with-occurs="9"
+       xfd:total-items="12"
+       xfd:total-items-with-occurs="12">
     <xfd:field
          xfd:field-offset="0"
          xfd:field-bytes="1182"
@@ -135,14 +135,24 @@
          xfd:field-name="GRP-MCG-CODE"/>
     <xfd:field
          xfd:field-offset="110"
-         xfd:field-bytes="1000"
-         xfd:field-type="16"
-         xfd:field-length="1000"
+         xfd:field-bytes="1"
+         xfd:field-type="1"
+         xfd:field-length="1"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
-         xfd:field-name="GRP-FILLER"/>
+         xfd:field-name="GRP-PRIMARY"/>
+    <xfd:field
+         xfd:field-offset="111"
+         xfd:field-bytes="999"
+         xfd:field-type="16"
+         xfd:field-length="999"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="10"
+         xfd:field-name="GRP-FILLER-1"/>
     <xfd:field
          xfd:field-offset="1110"
          xfd:field-bytes="18"

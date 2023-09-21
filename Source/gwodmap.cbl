@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 20 settembre 2023 19:14:59.
+       DATE-WRITTEN.        giovedì 21 settembre 2023 17:58:33.
        REMARKS.
       *{TOTEM}END
 
@@ -93,7 +93,7 @@
                   USAGE IS HANDLE OF FONT DEFAULT-FONT.
        77 Form1-St-1-Handle
                   USAGE IS HANDLE OF STATUS-BAR.
-       77 idx-day          PIC  9.
+       77 idx-day          PIC  99.
        77 idx-split        PIC  99.
        77 tot-days         PIC  99.
        77 form1-Handle
@@ -110,6 +110,12 @@
        77 bmpNum           PIC  999.
        77 idx-ok           PIC  999.
        77 como-hit-x       PIC  xxx.
+       77 e-genera         PIC  9.
+       77 colore           PIC  999.
+       77 check-mcg        PIC  999.
+       77 como-prim        PIC  9.
+       77 startX           PIC  99.
+       77 cursorColor      PIC  999.
        01 tab-mcg.
            05 el-mcg           PIC  x(5)
                       OCCURS 20 TIMES.
@@ -151,10 +157,47 @@
            88 Valid-STATUS-intexe VALUE IS "00" THRU "09". 
        77 Calibri10-Occidentale
                   USAGE IS HANDLE OF FONT.
+       01 hiddenData.
+           03 hid-primary      PIC  9.
        77 Calibri12-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 lab-macro-buf    PIC  X(200).
        77 lab-days-buf     PIC  X(100).
+       77 chk-prim1-buf    PIC  9
+                  VALUE IS 0.
+       77 lab-macro1-buf   PIC  X(20).
+       77 v-macro1         PIC  9
+                  VALUE IS 0.
+       77 v-macro2         PIC  9
+                  VALUE IS 0.
+       77 v-macro6         PIC  9
+                  VALUE IS 0.
+       77 v-macro5         PIC  9
+                  VALUE IS 0.
+       77 v-macro4         PIC  9
+                  VALUE IS 0.
+       77 v-macro3         PIC  9
+                  VALUE IS 0.
+       77 v-macro7         PIC  9
+                  VALUE IS 0.
+       77 chk-prim7-buf    PIC  9
+                  VALUE IS 0.
+       77 lab-macro7-buf   PIC  X(20).
+       77 chk-prim6-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-prim5-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-prim4-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-prim3-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-prim2-buf    PIC  9
+                  VALUE IS 0.
+       77 lab-macro2-buf   PIC  X(20).
+       77 lab-macro3-buf   PIC  X(20).
+       77 lab-macro4-buf   PIC  X(20).
+       77 lab-macro5-buf   PIC  X(20).
+       77 lab-macro6-buf   PIC  X(20).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -227,7 +270,11 @@
                        20 old-wom-split-el-days-split
                                   OCCURS 20 TIMES.
                            25 old-wom-split-el-split-sigla     PIC  x.
-                           25 old-wom-split-el-split-effort    PIC  9.
+                           25 old-wom-split-el-split-int-code  PIC  9.
+                           25 old-wom-split-el-split-ss        PIC  9.
+                           25 old-wom-split-el-split-primary   PIC  9.
+                           25 FILLER           PIC  x(99).
+                           25 FILLER           PIC  9(18).
                10 old-wom-dur-code     PIC  99.
                10 old-wom-filler       PIC  x(1000).
                10 old-wom-filler-n1    PIC  9(18).
@@ -239,13 +286,20 @@
       ***** Elenco ID Logici *****
        78  78-ID-ef-codice VALUE 5001.
        78  78-ID-ef-desc VALUE 5002.
-       78  78-ID-gd1 VALUE 5003.
-       78  78-ID-gd2 VALUE 5004.
-       78  78-ID-gd3 VALUE 5005.
-       78  78-ID-gd4 VALUE 5006.
-       78  78-ID-gd5 VALUE 5007.
-       78  78-ID-gd6 VALUE 5008.
-       78  78-ID-gd7 VALUE 5009.
+       78  78-ID-chk-prim1 VALUE 5003.
+       78  78-ID-chk-prim2 VALUE 5004.
+       78  78-ID-chk-prim3 VALUE 5005.
+       78  78-ID-chk-prim4 VALUE 5006.
+       78  78-ID-chk-prim5 VALUE 5007.
+       78  78-ID-chk-prim6 VALUE 5008.
+       78  78-ID-chk-prim7 VALUE 5009.
+       78  78-ID-gd1 VALUE 5010.
+       78  78-ID-gd2 VALUE 5011.
+       78  78-ID-gd3 VALUE 5012.
+       78  78-ID-gd4 VALUE 5013.
+       78  78-ID-gd5 VALUE 5014.
+       78  78-ID-gd6 VALUE 5015.
+       78  78-ID-gd7 VALUE 5016.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -302,6 +356,153 @@
            VALUE ef-desc-BUF,
            .
 
+      * CHECK BOX
+       05
+           chk-prim1, 
+           Check-Box, 
+           COL 29,60, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 78-ID-chk-prim1,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim1-buf,
+           VISIBLE v-macro1,
+           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
+           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim2, 
+           Check-Box, 
+           COL 48,60, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1003
+           FLAT,
+           ID IS 78-ID-chk-prim2,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim2-buf,
+           VISIBLE v-macro2,
+           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
+           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim3, 
+           Check-Box, 
+           COL 67,60, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1004
+           FLAT,
+           ID IS 78-ID-chk-prim3,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim3-buf,
+           VISIBLE v-macro3,
+           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
+           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim4, 
+           Check-Box, 
+           COL 86,60, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1005
+           FLAT,
+           ID IS 78-ID-chk-prim4,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim4-buf,
+           VISIBLE v-macro4,
+           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
+           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim5, 
+           Check-Box, 
+           COL 105,60, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1007
+           FLAT,
+           ID IS 78-ID-chk-prim5,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim5-buf,
+           VISIBLE v-macro5,
+           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
+           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim6, 
+           Check-Box, 
+           COL 124,60, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1008
+           FLAT,
+           ID IS 78-ID-chk-prim6,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim6-buf,
+           VISIBLE v-macro6,
+           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
+           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim7, 
+           Check-Box, 
+           COL 143,60, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1009
+           FLAT,
+           ID IS 78-ID-chk-prim7,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim7-buf,
+           VISIBLE v-macro7,
+           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
+           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
+           .
       * LABEL
        05
            Screen1-La-1, 
@@ -375,7 +576,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Giorni per settimana",
+           TITLE "Macrogruppi coinvolti",
            .
 
       * LABEL
@@ -390,7 +591,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
-           TITLE "Macrogruppi coinvolti",
+           TITLE "Giorni per settimana",
            .
 
       * LABEL
@@ -413,7 +614,7 @@
            lab-days, 
            Label, 
            COL 21,30, 
-           LINE 4,70,
+           LINE 6,00,
            LINES 1,30 ,
            SIZE 100,00 ,
            ID IS 14,
@@ -438,29 +639,14 @@
            TITLE "Intensità media",
            .
 
-      * LABEL
-       05
-           lab-macro, 
-           Label, 
-           COL 21,30, 
-           LINE 6,00,
-           LINES 1,30 ,
-           SIZE 100,00 ,
-           ID IS 17,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE lab-macro-buf,
-           .
-
       * FRAME
        05
            Screen1-Fr-1, 
            Frame, 
-           COL 1,90, 
+           COL 2,30, 
            LINE 9,74,
            LINES 18,13 ,
-           SIZE 158,90 ,
+           SIZE 153,80 ,
            ENGRAVED,
            ID IS 7,
            HEIGHT-IN-CELLS,
@@ -473,7 +659,7 @@
        05
            gd1, 
            Grid, 
-           COL 3,10, 
+           COL 3,70, 
            LINE 12,57,
            LINES 13,96 ,
            SIZE 20,70 ,
@@ -489,6 +675,7 @@
            FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 78-ID-gd1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -505,7 +692,7 @@
        05
            gd2, 
            Grid, 
-           COL 25,90, 
+           COL 25,50, 
            LINE 12,57,
            LINES 13,96 ,
            SIZE 20,70 ,
@@ -521,6 +708,7 @@
            FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 78-ID-gd2,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -537,7 +725,7 @@
        05
            gd3, 
            Grid, 
-           COL 48,60, 
+           COL 47,20, 
            LINE 12,57,
            LINES 13,96 ,
            SIZE 20,70 ,
@@ -553,6 +741,7 @@
            FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 78-ID-gd3,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -569,7 +758,7 @@
        05
            gd4, 
            Grid, 
-           COL 71,30, 
+           COL 68,90, 
            LINE 12,57,
            LINES 13,96 ,
            SIZE 20,70 ,
@@ -585,6 +774,7 @@
            FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 78-ID-gd4,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -601,7 +791,7 @@
        05
            gd5, 
            Grid, 
-           COL 94,10, 
+           COL 90,70, 
            LINE 12,57,
            LINES 13,96 ,
            SIZE 20,70 ,
@@ -617,6 +807,7 @@
            FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 78-ID-gd5,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -633,7 +824,7 @@
        05
            gd6, 
            Grid, 
-           COL 116,90, 
+           COL 112,50, 
            LINE 12,57,
            LINES 13,96 ,
            SIZE 20,70 ,
@@ -649,6 +840,7 @@
            FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 78-ID-gd6,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -665,7 +857,7 @@
        05
            gd7, 
            Grid, 
-           COL 138,70, 
+           COL 134,20, 
            LINE 12,57,
            LINES 13,96 ,
            SIZE 20,70 ,
@@ -698,7 +890,7 @@
        05
            Screen1-La-2aab, 
            Label, 
-           COL 139,60, 
+           COL 134,20, 
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
@@ -714,7 +906,7 @@
        05
            Screen1-La-2aaba, 
            Label, 
-           COL 3,10, 
+           COL 3,70, 
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
@@ -730,7 +922,7 @@
        05
            Screen1-La-2aabb, 
            Label, 
-           COL 25,90, 
+           COL 25,50, 
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
@@ -746,7 +938,7 @@
        05
            Screen1-La-2aabba, 
            Label, 
-           COL 71,30, 
+           COL 68,90, 
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
@@ -762,7 +954,7 @@
        05
            Screen1-La-2aabaa, 
            Label, 
-           COL 48,60, 
+           COL 47,20, 
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
@@ -778,7 +970,7 @@
        05
            Screen1-La-2aabbb, 
            Label, 
-           COL 116,90, 
+           COL 112,50, 
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
@@ -794,7 +986,7 @@
        05
            Screen1-La-2aabab, 
            Label, 
-           COL 94,10, 
+           COL 90,70, 
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
@@ -834,6 +1026,118 @@
            WIDTH-IN-CELLS,
            TRANSPARENT,
            TITLE lab-int-buf,
+           .
+
+      * LABEL
+       05
+           lab-macro1, 
+           Label, 
+           COL 21,30, 
+           LINE 4,70,
+           LINES 1,30 ,
+           SIZE 8,50 ,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-macro1-buf,
+           VISIBLE v-macro1,
+           .
+
+      * LABEL
+       05
+           lab-macro2, 
+           Label, 
+           COL 40,30, 
+           LINE 4,70,
+           LINES 1,30 ,
+           SIZE 8,50 ,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-macro2-buf,
+           VISIBLE v-macro2,
+           .
+
+      * LABEL
+       05
+           lab-macro3, 
+           Label, 
+           COL 59,30, 
+           LINE 4,70,
+           LINES 1,30 ,
+           SIZE 8,50 ,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-macro3-buf,
+           VISIBLE v-macro3,
+           .
+
+      * LABEL
+       05
+           lab-macro4, 
+           Label, 
+           COL 78,30, 
+           LINE 4,70,
+           LINES 1,30 ,
+           SIZE 8,50 ,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-macro4-buf,
+           VISIBLE v-macro4,
+           .
+
+      * LABEL
+       05
+           lab-macro5, 
+           Label, 
+           COL 97,30, 
+           LINE 4,70,
+           LINES 1,30 ,
+           SIZE 8,50 ,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-macro5-buf,
+           VISIBLE v-macro5,
+           .
+
+      * LABEL
+       05
+           lab-macro6, 
+           Label, 
+           COL 116,30, 
+           LINE 4,70,
+           LINES 1,30 ,
+           SIZE 8,50 ,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-macro6-buf,
+           VISIBLE v-macro6,
+           .
+
+      * LABEL
+       05
+           lab-macro7, 
+           Label, 
+           COL 135,30, 
+           LINE 4,70,
+           LINES 1,30 ,
+           SIZE 8,50 ,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-macro7-buf,
+           VISIBLE v-macro7,
            .
 
       * TOOLBAR
@@ -2204,7 +2508,7 @@
        Form1-Create-Win.
            Display Independent GRAPHICAL WINDOW
               LINES 29,30,
-              SIZE 160,70,
+              SIZE 156,40,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -2267,49 +2571,7 @@
            perform ABILITA-TOOLBAR.
            perform ABILITAZIONI.
            perform STATUS-BAR-MSG.      
-                                     
-           modify gd1, start-x = 1,
-                       x = 3,
-                 start-y = 2,
-                       y = 2,
-            region-color = 257,
-            cursor-color = colore-nu.
-           modify gd2, start-x = 1,
-                       x = 3,
-                 start-y = 2,
-                       y = 2,
-            region-color = 257,
-            cursor-color = colore-nu.
-           modify gd3, start-x = 1,
-                       x = 3,
-                 start-y = 2,
-                       y = 2,
-            region-color = 257,
-            cursor-color = colore-nu.
-           modify gd4, start-x = 1,
-                       x = 3,
-                 start-y = 2,
-                       y = 2,
-            region-color = 257,
-            cursor-color = colore-nu.
-           modify gd5, start-x = 1,
-                       x = 3,
-                 start-y = 2,
-                       y = 2,
-            region-color = 257,
-            cursor-color = colore-nu.
-           modify gd6, start-x = 1,
-                       x = 3,
-                 start-y = 2,
-                       y = 2,
-            region-color = 257,
-            cursor-color = colore-nu.
-           modify gd7, start-x = 1,
-                       x = 3,
-                 start-y = 2,
-                       y = 2,
-            region-color = 257,
-            cursor-color = colore-nu.
+
            
       *     perform PRIMO.
 
@@ -2363,6 +2625,20 @@
                  IF Event-Type = Cmd-Close
                     PERFORM Form1-Exit
                  END-IF
+              WHEN Key-Status = 1000
+                 PERFORM chk-prim1-LinkTo
+              WHEN Key-Status = 1003
+                 PERFORM chk-prim2-LinkTo
+              WHEN Key-Status = 1004
+                 PERFORM chk-prim3-LinkTo
+              WHEN Key-Status = 1005
+                 PERFORM chk-prim4-LinkTo
+              WHEN Key-Status = 1007
+                 PERFORM chk-prim5-LinkTo
+              WHEN Key-Status = 1008
+                 PERFORM chk-prim6-LinkTo
+              WHEN Key-Status = 1009
+                 PERFORM chk-prim7-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 4
@@ -3011,151 +3287,151 @@
        Screen1-Gd-1-Event-Proc.
            EVALUATE Event-Type ALSO Event-Control-Id ALSO
                                     Event-Window-Handle
-           WHEN Msg-Begin-Drag ALSO 5003 ALSO
+           WHEN Msg-Begin-Drag ALSO 5010 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5003 ALSO
+           WHEN Msg-Begin-Entry ALSO 5010 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5003 ALSO
+           WHEN Msg-End-Drag ALSO 5010 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5003 ALSO
+           WHEN Msg-Finish-Entry ALSO 5010 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5003 ALSO
+           WHEN Msg-Goto-Cell ALSO 5010 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5003 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5010 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5003 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5010 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5004 ALSO
+           WHEN Msg-Begin-Drag ALSO 5011 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5004 ALSO
+           WHEN Msg-Begin-Entry ALSO 5011 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5004 ALSO
+           WHEN Msg-End-Drag ALSO 5011 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5004 ALSO
+           WHEN Msg-Finish-Entry ALSO 5011 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5004 ALSO
+           WHEN Msg-Goto-Cell ALSO 5011 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5004 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5011 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5004 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5011 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5005 ALSO
+           WHEN Msg-Begin-Drag ALSO 5012 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5005 ALSO
+           WHEN Msg-Begin-Entry ALSO 5012 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5005 ALSO
+           WHEN Msg-End-Drag ALSO 5012 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5005 ALSO
+           WHEN Msg-Finish-Entry ALSO 5012 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5005 ALSO
+           WHEN Msg-Goto-Cell ALSO 5012 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5005 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5012 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5005 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5012 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5006 ALSO
+           WHEN Msg-Begin-Drag ALSO 5013 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5006 ALSO
+           WHEN Msg-Begin-Entry ALSO 5013 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5006 ALSO
+           WHEN Msg-End-Drag ALSO 5013 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5006 ALSO
+           WHEN Msg-Finish-Entry ALSO 5013 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5006 ALSO
+           WHEN Msg-Goto-Cell ALSO 5013 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5006 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5013 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5006 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5013 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5007 ALSO
+           WHEN Msg-Begin-Drag ALSO 5014 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5007 ALSO
+           WHEN Msg-Begin-Entry ALSO 5014 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5007 ALSO
+           WHEN Msg-End-Drag ALSO 5014 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5007 ALSO
+           WHEN Msg-Finish-Entry ALSO 5014 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5007 ALSO
+           WHEN Msg-Goto-Cell ALSO 5014 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5007 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5014 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5007 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5014 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5008 ALSO
+           WHEN Msg-Begin-Drag ALSO 5015 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5008 ALSO
+           WHEN Msg-Begin-Entry ALSO 5015 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5008 ALSO
+           WHEN Msg-End-Drag ALSO 5015 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5008 ALSO
+           WHEN Msg-Finish-Entry ALSO 5015 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5008 ALSO
+           WHEN Msg-Goto-Cell ALSO 5015 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5008 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5015 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5008 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5015 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5009 ALSO
+           WHEN Msg-Begin-Drag ALSO 5016 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5009 ALSO
+           WHEN Msg-Begin-Entry ALSO 5016 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5009 ALSO
+           WHEN Msg-End-Drag ALSO 5016 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5009 ALSO
+           WHEN Msg-Finish-Entry ALSO 5016 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5009 ALSO
+           WHEN Msg-Goto-Cell ALSO 5016 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5009 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5016 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5009 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5016 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Goto-Cell-Mouse
            END-EVALUATE
@@ -3234,6 +3510,13 @@
 
        CALCOLA-VALORI.
       * <TOTEM:PARA. CALCOLA-VALORI>
+           move 0 to v-macro1 v-macro2 v-macro3 v-macro4 
+                     v-macro5 v-macro6 v-macro7
+                     chk-prim1-buf chk-prim2-buf chk-prim3-buf 
+                     chk-prim4-buf chk-prim5-buf chk-prim6-buf 
+                     chk-prim7-buf 
+           initialize lab-durata-buf lab-macro-buf
+
            move 0 to tot-days.
            initialize tab-mcg.                
            inquire gd1, last-row in tot-righe.
@@ -3289,17 +3572,17 @@
 
            move idx to como-value.
            perform FORMAT-VALUE.
-           initialize lab-macro-buf.
            if idx > 0  
-              string como-value              delimited low-value
-                     " macrogruppi totali: " delimited size
-                 into lab-macro-buf
-              end-string
+      *****        string como-value              delimited low-value
+      *****               " macrogruppi totali: " delimited size
+      *****           into lab-macro-buf
+      *****        end-string
               perform varying idx from 1 by 1 
                         until idx > 20
                  if el-mcg(idx) = spaces
                     exit perform
                  end-if               
+                 initialize como-desc
                  move el-mcg-hit(idx) to como-hit-x
                  inspect como-hit-x
                          replacing leading x"30" by x"20"
@@ -3308,23 +3591,40 @@
                     move "volta" to como-volta-e
                  else
                     move "volte" to como-volta-e
-                 end-if
-                 move lab-macro-buf to como-desc
-                 inspect como-desc replacing trailing spaces by 
-           low-value
-                 string  como-desc    delimited low-value
-                         "  "         delimited size
-                         el-mcg(idx)  delimited space
+                 end-if                
+                 string  el-mcg(idx)  delimited space
                          " ("         delimited size
                          como-hit-x   delimited space
                          " "          delimited size
                          como-volta-e delimited size
-                         ")  | "      delimited size
-                    into lab-macro-buf                  
+                         ")"          delimited size
+                    into como-desc
                  end-string
+                 evaluate idx
+                 when 1 
+                      move como-desc to lab-macro1-buf
+                      move 1 to v-macro1
+                 when 2 
+                      move como-desc to lab-macro2-buf
+                      move 1 to v-macro2
+                 when 3 
+                      move como-desc to lab-macro3-buf
+                      move 1 to v-macro3
+                 when 4 
+                      move como-desc to lab-macro4-buf
+                      move 1 to v-macro4
+                 when 5 
+                      move como-desc to lab-macro5-buf
+                      move 1 to v-macro5
+                 when 6 
+                      move como-desc to lab-macro6-buf
+                      move 1 to v-macro6
+                 when 7 
+                      move como-desc to lab-macro7-buf
+                      move 1 to v-macro7
+                 end-evaluate
               end-perform
-           end-if.
-           display lab-macro.  
+           end-if. 
 
            initialize lab-days-buf.
            move tot-days to como-value wom-days.   
@@ -3334,8 +3634,7 @@
                      " gg/settimana" delimited size
                 into lab-days-buf
               end-string
-           end-if.
-           display lab-days.
+           end-if. 
 
            move 0 to como-effort tot-exe.
 
@@ -3354,45 +3653,44 @@
                end-perform
            end-perform. 
 
-           divide tot-exe by wom-days giving tot-durata remainder resto.
-           if resto > 0
-              add 1 to tot-durata
-           end-if.
-           if tot-durata > 0
-              move tot-durata to dur-exercises
-              move low-value  to dur-code
-              start duration key >= dur-k-exercises
-                    invalid 
-                    move spaces to dur-desc 
-                    move 0      to wom-dur-code
-                not invalid
-                    read duration next         
-                    move dur-code to wom-dur-code
-              end-start                      
-           end-if.
-
-           initialize lab-durata-buf.
-           if wom-dur-code > 0
-              move wom-dur-code to como-value
-              perform FORMAT-VALUE
-              string como-value delimited low-value
-                     " - "      delimited size
-                     dur-desc   delimited size
-                into lab-durata-buf
-              end-string
-           end-if.
-           display lab-durata.
-
-           compute tot-effort = como-effort / tot-exe.
-
-           if tot-effort > 0
-              if tot-effort < 2,5 
-                 move 1 to como-effort wom-effort
-              else
-                 if tot-effort < 3,5            
-                    move 2 to como-effort wom-effort
-                 else                              
-                    move 3 to como-effort wom-effort
+           if tot-exe > 0
+              divide tot-exe by wom-days giving tot-durata remainder 
+           resto
+              if resto > 0
+                 add 1 to tot-durata
+              end-if
+              if tot-durata > 0
+                 move tot-durata to dur-exercises
+                 move low-value  to dur-code
+                 start duration key >= dur-k-exercises
+                       invalid 
+                       move spaces to dur-desc 
+                       move 0      to wom-dur-code
+                   not invalid
+                       read duration next         
+                       move dur-code to wom-dur-code
+                 end-start                      
+              end-if
+                                       
+              if wom-dur-code > 0
+                 move wom-dur-code to como-value
+                 perform FORMAT-VALUE
+                 string como-value delimited low-value
+                        " - "      delimited size
+                        dur-desc   delimited size
+                   into lab-durata-buf
+                 end-string
+              end-if
+              compute tot-effort = como-effort / tot-exe
+              if tot-effort > 0
+                 if tot-effort < 2,5 
+                    move 1 to como-effort wom-effort
+                 else
+                    if tot-effort < 3,5            
+                       move 2 to como-effort wom-effort
+                    else                              
+                       move 3 to como-effort wom-effort
+                    end-if
                  end-if
               end-if
            end-if.
@@ -3418,7 +3716,7 @@
                   into lab-int-buf
                 end-string            
            end-evaluate.     
-           display lab-int. 
+           display form1.
 
       ***---
        CERCA-MACROGRUPPO.
@@ -3426,7 +3724,7 @@
            if riga = 2 add 1 to tot-days end-if.   
            move 0 to idx-gruppo.
            perform varying idx from 1 by 1 
-                     until idx > 20
+                     until idx > 20  
               if el-mcg(idx) = spaces
                  move idx to idx-gruppo
                  exit perform
@@ -3439,7 +3737,35 @@
            end-perform.
            if idx-gruppo not = 0
               move mcg-code to el-mcg(idx-gruppo)
-              move 1        to el-mcg-hit(idx-gruppo)    
+              move 1        to el-mcg-hit(idx-gruppo)       
+              set trovato to false
+                          
+              perform varying idx-day from 1 by 1 
+                        until idx-day > wom-days
+                 perform varying idx-split from 1 by 1 
+                           until idx-split > 9
+                    if wom-split-el-split-sigla(idx-day, idx-split) = 
+                       mcg-code
+                       if wom-split-el-split-primary(idx-day, 
+           idx-split) > 0
+                          set trovato to false
+                          evaluate idx-gruppo
+                          when 1 move 1 to chk-prim1-buf
+                          when 2 move 1 to chk-prim2-buf
+                          when 3 move 1 to chk-prim3-buf
+                          when 4 move 1 to chk-prim4-buf
+                          when 5 move 1 to chk-prim5-buf
+                          when 6 move 1 to chk-prim6-buf
+                          when 7 move 1 to chk-prim7-buf
+                          end-evaluate
+                          exit perform
+                       end-if
+                    end-if
+                 end-perform
+                 if trovato 
+                    exit perform 
+                 end-if
+              end-perform
            end-if                                                    
            .
       * <TOTEM:END>
@@ -3563,6 +3889,14 @@
        CLEAR-SCREEN.
       * <TOTEM:PARA. CLEAR-SCREEN>
            move wom-key to old-wom-key.
+           move 0 to v-macro1 v-macro2 v-macro3 v-macro4 
+                     v-macro5 v-macro6 v-macro7
+                     chk-prim1-buf chk-prim3-buf chk-prim3-buf 
+                     chk-prim4-buf chk-prim5-buf
+                     chk-prim6-buf chk-prim7-buf.
+           move spaces to lab-macro1-buf lab-macro2-buf lab-macro3-buf 
+                          lab-macro4-buf lab-macro5-buf lab-macro6-buf 
+                          lab-macro7-buf. 
 
            initialize wom-data 
                       lab-int-buf
@@ -3594,6 +3928,401 @@
            end-evaluate.
       
            perform STATUS-BAR-MSG 
+           .
+      * <TOTEM:END>
+
+       COLORA-PRIMARY.
+      * <TOTEM:PARA. COLORA-PRIMARY>
+           modify gd1, mass-update = 1.
+           modify gd2, mass-update = 1.
+           modify gd3, mass-update = 1.
+           modify gd4, mass-update = 1.
+           modify gd5, mass-update = 1.
+           modify gd6, mass-update = 1.
+           modify gd7, mass-update = 1.
+
+           inquire gd1, last-row in tot-righe.
+           move 0 to idx-ok.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe                           
+              inquire gd1(riga, 1), cell-data in col-split
+              evaluate col-split      
+              when lab-macro1-buf(1:1)
+                   if chk-prim1-buf = 1
+                      modify gd1(riga, 1), cell-color = 176
+                   else                
+                      modify gd1(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro2-buf(1:1)
+                   if chk-prim2-buf = 1
+                      modify gd1(riga, 1), cell-color = 176
+                   else                
+                      modify gd1(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro3-buf(1:1)
+                   if chk-prim3-buf = 1
+                      modify gd1(riga, 1), cell-color = 176
+                   else                
+                      modify gd1(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro4-buf(1:1)
+                   if chk-prim4-buf = 1
+                      modify gd1(riga, 1), cell-color = 176
+                   else                
+                      modify gd1(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro5-buf(1:1)
+                   if chk-prim5-buf = 1
+                      modify gd1(riga, 1), cell-color = 176
+                   else                
+                      modify gd1(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro6-buf(1:1)
+                   if chk-prim6-buf = 1
+                      modify gd1(riga, 1), cell-color = 176
+                   else                
+                      modify gd1(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro7-buf(1:1)
+                   if chk-prim7-buf = 1
+                      modify gd1(riga, 1), cell-color = 176
+                   else                
+                      modify gd1(riga, 1), cell-color = 0
+                   end-if
+              when other
+                   modify gd1(riga, 1), cell-color = 0 
+              end-evaluate
+           end-perform.                       
+
+           inquire gd2, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe                           
+              inquire gd2(riga, 1), cell-data in col-split
+              evaluate col-split      
+              when lab-macro1-buf(1:1)
+                   if chk-prim1-buf = 1
+                      modify gd2(riga, 1), cell-color = 176
+                   else                
+                      modify gd2(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro2-buf(1:1)
+                   if chk-prim2-buf = 1
+                      modify gd2(riga, 1), cell-color = 176
+                   else                
+                      modify gd2(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro3-buf(1:1)
+                   if chk-prim3-buf = 1
+                      modify gd2(riga, 1), cell-color = 176
+                   else                
+                      modify gd2(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro4-buf(1:1)
+                   if chk-prim4-buf = 1
+                      modify gd2(riga, 1), cell-color = 176
+                   else                
+                      modify gd2(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro5-buf(1:1)
+                   if chk-prim5-buf = 1
+                      modify gd2(riga, 1), cell-color = 176
+                   else                
+                      modify gd2(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro6-buf(1:1)
+                   if chk-prim6-buf = 1
+                      modify gd2(riga, 1), cell-color = 176
+                   else                
+                      modify gd2(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro7-buf(1:1)
+                   if chk-prim7-buf = 1
+                      modify gd2(riga, 1), cell-color = 176
+                   else                
+                      modify gd2(riga, 1), cell-color = 0
+                   end-if
+              when other
+                   modify gd2(riga, 1), cell-color = 0 
+              end-evaluate
+           end-perform.      
+           
+           inquire gd3, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe                           
+              inquire gd3(riga, 1), cell-data in col-split
+              evaluate col-split      
+              when lab-macro1-buf(1:1)
+                   if chk-prim1-buf = 1
+                      modify gd3(riga, 1), cell-color = 176
+                   else                
+                      modify gd3(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro2-buf(1:1)
+                   if chk-prim2-buf = 1
+                      modify gd3(riga, 1), cell-color = 176
+                   else                
+                      modify gd3(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro3-buf(1:1)
+                   if chk-prim3-buf = 1
+                      modify gd3(riga, 1), cell-color = 176
+                   else                
+                      modify gd3(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro4-buf(1:1)
+                   if chk-prim4-buf = 1
+                      modify gd3(riga, 1), cell-color = 176
+                   else                
+                      modify gd3(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro5-buf(1:1)
+                   if chk-prim5-buf = 1
+                      modify gd3(riga, 1), cell-color = 176
+                   else                
+                      modify gd3(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro6-buf(1:1)
+                   if chk-prim6-buf = 1
+                      modify gd3(riga, 1), cell-color = 176
+                   else                
+                      modify gd3(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro7-buf(1:1)
+                   if chk-prim7-buf = 1
+                      modify gd3(riga, 1), cell-color = 176
+                   else                
+                      modify gd3(riga, 1), cell-color = 0
+                   end-if
+              when other
+                   modify gd3(riga, 1), cell-color = 0 
+              end-evaluate
+           end-perform.                
+
+           inquire gd4, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe                           
+              inquire gd4(riga, 1), cell-data in col-split
+              evaluate col-split      
+              when lab-macro1-buf(1:1)  
+                   if chk-prim1-buf = 1
+                      modify gd4(riga, 1), cell-color = 176
+                   else                
+                      modify gd4(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro2-buf(1:1)  
+                   if chk-prim2-buf = 1
+                      modify gd4(riga, 1), cell-color = 176
+                   else                
+                      modify gd4(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro3-buf(1:1)  
+                   if chk-prim3-buf = 1
+                      modify gd4(riga, 1), cell-color = 176
+                   else                
+                      modify gd4(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro4-buf(1:1)  
+                   if chk-prim4-buf = 1
+                      modify gd4(riga, 1), cell-color = 176
+                   else                
+                      modify gd4(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro5-buf(1:1)  
+                   if chk-prim5-buf = 1
+                      modify gd4(riga, 1), cell-color = 176
+                   else                
+                      modify gd4(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro6-buf(1:1)  
+                   if chk-prim6-buf = 1
+                      modify gd4(riga, 1), cell-color = 176
+                   else                
+                      modify gd4(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro7-buf(1:1)
+                   if chk-prim7-buf = 1
+                      modify gd4(riga, 1), cell-color = 176
+                   else                
+                      modify gd4(riga, 1), cell-color = 0
+                   end-if
+              when other
+                   modify gd4(riga, 1), cell-color = 0 
+              end-evaluate
+           end-perform.  
+           
+           inquire gd5, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe                           
+              inquire gd5(riga, 1), cell-data in col-split
+              evaluate col-split      
+              when lab-macro1-buf(1:1)
+                   if chk-prim1-buf = 1
+                      modify gd5(riga, 1), cell-color = 176
+                   else                
+                      modify gd5(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro2-buf(1:1)
+                   if chk-prim2-buf = 1
+                      modify gd5(riga, 1), cell-color = 176
+                   else                
+                      modify gd5(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro3-buf(1:1)
+                   if chk-prim3-buf = 1
+                      modify gd5(riga, 1), cell-color = 176
+                   else                
+                      modify gd5(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro4-buf(1:1)
+                   if chk-prim4-buf = 1
+                      modify gd5(riga, 1), cell-color = 176
+                   else                
+                      modify gd5(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro5-buf(1:1)
+                   if chk-prim5-buf = 1
+                      modify gd5(riga, 1), cell-color = 176
+                   else                
+                      modify gd5(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro6-buf(1:1)
+                   if chk-prim6-buf = 1
+                      modify gd5(riga, 1), cell-color = 176
+                   else                
+                      modify gd5(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro7-buf(1:1)
+                   if chk-prim7-buf = 1
+                      modify gd5(riga, 1), cell-color = 176
+                   else                
+                      modify gd5(riga, 1), cell-color = 0
+                   end-if
+              when other
+                   modify gd5(riga, 1), cell-color = 0 
+              end-evaluate
+           end-perform.  
+           
+           inquire gd6, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe                           
+              inquire gd6(riga, 1), cell-data in col-split
+              evaluate col-split      
+              when lab-macro1-buf(1:1)
+                   if chk-prim1-buf = 1
+                      modify gd6(riga, 1), cell-color = 176
+                   else                
+                      modify gd6(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro2-buf(1:1)
+                   if chk-prim2-buf = 1
+                      modify gd6(riga, 1), cell-color = 176
+                   else                
+                      modify gd6(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro3-buf(1:1)
+                   if chk-prim3-buf = 1
+                      modify gd6(riga, 1), cell-color = 176
+                   else                
+                      modify gd6(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro4-buf(1:1)
+                   if chk-prim4-buf = 1
+                      modify gd6(riga, 1), cell-color = 176
+                   else                
+                      modify gd6(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro5-buf(1:1)
+                   if chk-prim5-buf = 1
+                      modify gd6(riga, 1), cell-color = 176
+                   else                
+                      modify gd6(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro6-buf(1:1)
+                   if chk-prim6-buf = 1
+                      modify gd6(riga, 1), cell-color = 176
+                   else                
+                      modify gd6(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro7-buf(1:1)
+                   if chk-prim7-buf = 1
+                      modify gd6(riga, 1), cell-color = 176
+                   else                
+                      modify gd6(riga, 1), cell-color = 0
+                   end-if
+              when other
+                   modify gd6(riga, 1), cell-color = 0 
+              end-evaluate
+           end-perform.  
+           
+           inquire gd7, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe                           
+              inquire gd7(riga, 1), cell-data in col-split
+              modify gd7(riga, 1), cell-color = 0 
+              evaluate col-split      
+              when lab-macro1-buf(1:1)
+                   if chk-prim1-buf = 1
+                      modify gd7(riga, 1), cell-color = 176
+                   else                
+                      modify gd7(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro2-buf(1:1)
+                   if chk-prim2-buf = 1
+                      modify gd7(riga, 1), cell-color = 176
+                   else                
+                      modify gd7(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro3-buf(1:1)
+                   if chk-prim3-buf = 1
+                      modify gd7(riga, 1), cell-color = 176
+                   else                
+                      modify gd7(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro4-buf(1:1)
+                   if chk-prim4-buf = 1
+                      modify gd7(riga, 1), cell-color = 176
+                   else                
+                      modify gd7(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro5-buf(1:1)
+                   if chk-prim5-buf = 1
+                      modify gd7(riga, 1), cell-color = 176
+                   else                
+                      modify gd7(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro6-buf(1:1)
+                   if chk-prim6-buf = 1
+                      modify gd7(riga, 1), cell-color = 176
+                   else                
+                      modify gd7(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro7-buf(1:1)                     
+                   if chk-prim7-buf = 1
+                      modify gd7(riga, 1), cell-color = 176
+                   else                
+                      modify gd7(riga, 1), cell-color = 0
+                   end-if
+              end-evaluate
+           end-perform.
+
+           evaluate check-mcg
+           when 1 move 78-ID-chk-prim1 to control-id
+           when 2 move 78-ID-chk-prim2 to control-id
+           when 3 move 78-ID-chk-prim3 to control-id
+           when 4 move 78-ID-chk-prim4 to control-id
+           when 5 move 78-ID-chk-prim5 to control-id
+           when 6 move 78-ID-chk-prim6 to control-id
+           when 7 move 78-ID-chk-prim7 to control-id
+           end-evaluate.
+           move 4 to accept-control.
+
+           modify gd1, mass-update = 0.
+           modify gd2, mass-update = 0.
+           modify gd3, mass-update = 0.
+           modify gd4, mass-update = 0.
+           modify gd5, mass-update = 0.
+           modify gd6, mass-update = 0.
+           modify gd7, mass-update = 0 
            .
       * <TOTEM:END>
 
@@ -3712,7 +4441,7 @@
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-effort 
                  move spaces to col-int-desc              
                  modify gd1(riga, 2), cell-data col-effort
                  modify gd1(riga, 3), cell-data col-int-desc
@@ -3982,33 +4711,72 @@
                    move como-desc to col-int-desc
                 else
                    move int-desc to col-int-desc
-                end-if                           
+                end-if                       
            end-evaluate.      
   
            if errori
               set event-action to event-action-fail
-           end-if.
+           end-if.    
+
+           move 0 to colore.
+           evaluate col-split
+           when lab-macro1-buf(1:1)
+                if chk-prim1-buf = 1
+                   move 176 to colore
+                end-if
+           when lab-macro2-buf(1:1)
+                if chk-prim2-buf = 1
+                   move 176 to colore
+                end-if
+           when lab-macro3-buf(1:1)
+                if chk-prim3-buf = 1
+                   move 176 to colore
+                end-if
+           when lab-macro4-buf(1:1)
+                if chk-prim4-buf = 1
+                   move 176 to colore
+                end-if
+           when lab-macro5-buf(1:1)
+                if chk-prim5-buf = 1
+                   move 176 to colore
+                end-if
+           when lab-macro6-buf(1:1)
+                if chk-prim6-buf = 1
+                   move 176 to colore
+                end-if
+           when lab-macro7-buf(1:1)
+                if chk-prim7-buf = 1
+                   move 176 to colore
+                end-if
+           end-evaluate.
 
            evaluate grid-day
-           when 1 modify gd1,(event-data-2, 1), cell-data col-split 
-                  modify gd1,(event-data-2, 2), cell-data col-effort
+           when 1 modify gd1,(event-data-2, 1), cell-data col-split,
+                                                cell-color colore
+                  modify gd1,(event-data-2, 2), cell-data col-effort  
                   modify gd1,(event-data-2, 3), cell-data col-int-desc
-           when 2 modify gd2,(event-data-2, 1), cell-data col-split
+           when 2 modify gd2,(event-data-2, 1), cell-data col-split 
+                                                cell-color colore
                   modify gd2,(event-data-2, 2), cell-data col-effort  
                   modify gd2,(event-data-2, 3), cell-data col-int-desc
-           when 3 modify gd3,(event-data-2, 1), cell-data col-split
+           when 3 modify gd3,(event-data-2, 1), cell-data col-split 
+                                                cell-color colore
                   modify gd3,(event-data-2, 2), cell-data col-effort  
                   modify gd3,(event-data-2, 3), cell-data col-int-desc
-           when 4 modify gd4,(event-data-2, 1), cell-data col-split   
+           when 4 modify gd4,(event-data-2, 1), cell-data col-split 
+                                                cell-color colore  
                   modify gd4,(event-data-2, 2), cell-data col-effort  
                   modify gd4,(event-data-2, 3), cell-data col-int-desc
-           when 5 modify gd5,(event-data-2, 1), cell-data col-split
+           when 5 modify gd5,(event-data-2, 1), cell-data col-split 
+                                                cell-color colore
                   modify gd5,(event-data-2, 2), cell-data col-effort  
                   modify gd5,(event-data-2, 3), cell-data col-int-desc
-           when 6 modify gd6,(event-data-2, 1), cell-data col-split
+           when 6 modify gd6,(event-data-2, 1), cell-data col-split 
+                                                cell-color colore
                   modify gd6,(event-data-2, 2), cell-data col-effort  
                   modify gd6,(event-data-2, 3), cell-data col-int-desc
-           when 7 modify gd7,(event-data-2, 1), cell-data col-split
+           when 7 modify gd7,(event-data-2, 1), cell-data col-split 
+                                                cell-color colore
                   modify gd7,(event-data-2, 2), cell-data col-effort  
                   modify gd7,(event-data-2, 3), cell-data col-int-desc
            end-evaluate.
@@ -4016,7 +4784,7 @@
            if tutto-ok
               perform WRITE-DAYS
               perform CALCOLA-VALORI
-           end-if 
+           end-if    
            .
       * <TOTEM:END>
 
@@ -4070,42 +4838,92 @@
                  end-if
 
                  add 1 to riga
+                 
                  evaluate idx-day
                  when 1 modify gd1(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)   
                         modify gd1(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd1(riga, 3), cell-data como-desc
+                        if wom-split-el-split-primary(idx-day, 
+           idx-split) = 1
+                           modify gd1(riga, 1), cell-color 176
+                        else                                            
+                                             
+                           modify gd1(riga, 1), cell-color 0
+                        end-if
                  when 2 modify gd2(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd2(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd2(riga, 3), cell-data como-desc
+                        if wom-split-el-split-primary(idx-day, 
+           idx-split) = 1
+                           modify gd2(riga, 1), cell-color 176
+                        else                                            
+                                             
+                           modify gd2(riga, 1), cell-color 0
+                        end-if                                     
                  when 3 modify gd3(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd3(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd3(riga, 3), cell-data como-desc
+                        if wom-split-el-split-primary(idx-day, 
+           idx-split) = 1
+                           modify gd3(riga, 1), cell-color 176
+                        else                                            
+                                             
+                           modify gd3(riga, 1), cell-color 0
+                        end-if                                     
                  when 4 modify gd4(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)   
                         modify gd4(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd4(riga, 3), cell-data como-desc
+                        if wom-split-el-split-primary(idx-day, 
+           idx-split) = 1
+                           modify gd4(riga, 1), cell-color 176
+                        else                                            
+                                             
+                           modify gd4(riga, 1), cell-color 0
+                        end-if                                     
                  when 5 modify gd5(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)   
                         modify gd5(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd5(riga, 3), cell-data como-desc
+                        if wom-split-el-split-primary(idx-day, 
+           idx-split) = 1
+                           modify gd5(riga, 1), cell-color 176
+                        else                                            
+                                             
+                           modify gd5(riga, 1), cell-color 0
+                        end-if                                     
                  when 6 modify gd6(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd6(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd6(riga, 3), cell-data como-desc
+                        if wom-split-el-split-primary(idx-day, 
+           idx-split) = 1
+                           modify gd6(riga, 1), cell-color 176
+                        else                                            
+                                             
+                           modify gd6(riga, 1), cell-color 0
+                        end-if                                     
                  when 7 modify gd7(riga, 1), cell-data 
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd7(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd7(riga, 3), cell-data como-desc
+                        if wom-split-el-split-primary(idx-day, 
+           idx-split) = 1
+                           modify gd7(riga, 1), cell-color 176
+                        else                                            
+                                             
+                           modify gd7(riga, 1), cell-color 0
+                        end-if                                     
                  end-evaluate
               end-perform
            end-perform            
@@ -4348,8 +5166,46 @@
 
            perform FORM1-CONTROLLO-OLD.
            perform WRITE-DAYS.
-           if wom-split-tab not = old-wom-split-tab
-              set NoSalvato to true
+
+           if SiSalvato
+              perform varying idx-day from 1 by 1
+                        until idx-day > 7
+                 perform varying idx-split from 1 by 1
+                           until idx-split > 20
+                    if old-wom-split-el-split-sigla(idx-day, idx-split) 
+           = spaces
+                       exit perform
+                    end-if
+                    if 
+                     wom-split-el-split-sigla(idx-day, idx-split)     
+                       not =
+                     old-wom-split-el-split-sigla(idx-day, idx-split)   
+             
+                       or
+                     wom-split-el-split-int-code(idx-day, idx-split)  
+                       not =     
+                     old-wom-split-el-split-int-code(idx-day, 
+           idx-split)  
+                       or
+                     wom-split-el-split-ss(idx-day, idx-split)        
+                       not =                                            
+                
+                     old-wom-split-el-split-ss(idx-day, idx-split)      
+             
+                       or
+                     wom-split-el-split-primary(idx-day, idx-split)   
+                       not =                                            
+                
+                     old-wom-split-el-split-primary(idx-day, idx-split) 
+             
+                       set NoSalvato to true
+                       exit perform
+                    end-if
+                 end-perform
+                 if NoSalvato
+                    exit perform
+                 end-if
+              end-perform
            end-if.
 
            if NoSalvato
@@ -4459,55 +5315,107 @@
 
        SPOSTAMENTO.
       * <TOTEM:PARA. SPOSTAMENTO>
+           move 1         to startX.
+           move colore-nu to cursorColor.
+
            evaluate grid-day                
-           when 1 modify gd1, start-x = 1,
+           when 1 inquire gd1(event-data-2, 1), cell-color colore  
+                  if colore not = 0
+                     move 2 to startX  
+                     if event-data-1 <= 1
+                        move colore to cursorColor
+                     end-if
+                  end-if
+                  modify gd1, start-x = startX,
                               x = 3,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
-                   cursor-color = colore-nu
+                   cursor-color = cursorColor
                   inquire gd1(event-data-2, 1), cell-data col-split
-           when 2 modify gd2, start-x = 1,
+           when 2 inquire gd2(event-data-2, 1), cell-color colore  
+                  if colore not = 0
+                     move 2 to startX  
+                     if event-data-1 <= 1
+                        move colore to cursorColor
+                     end-if
+                  end-if
+                  modify gd2, start-x = startX,
                               x = 3,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
-                   cursor-color = colore-nu                        
+                   cursor-color = cursorColor
                   inquire gd2(event-data-2, 1), cell-data col-split
-           when 3 modify gd3, start-x = 1,
+           when 3 inquire gd3(event-data-2, 1), cell-color colore  
+                  if colore not = 0
+                     move 2 to startX  
+                     if event-data-1 <= 1
+                        move colore to cursorColor
+                     end-if
+                  end-if
+                  modify gd3, start-x = startX,
                               x = 3,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,                             
-                   cursor-color = colore-nu                        
+                   cursor-color = cursorColor                        
                   inquire gd3(event-data-2, 1), cell-data col-split
-           when 4 modify gd4, start-x = 1,
+           when 4 inquire gd4(event-data-2, 1), cell-color colore  
+                  if colore not = 0
+                     move 2 to startX  
+                     if event-data-1 <= 1
+                        move colore to cursorColor
+                     end-if
+                  end-if
+                  modify gd4, start-x = startX,
                               x = 3,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
-                   cursor-color = colore-nu                     
+                   cursor-color = cursorColor                     
                   inquire gd4(event-data-2, 1), cell-data col-split
-           when 5 modify gd5, start-x = 1,
+           when 5 inquire gd5(event-data-2, 1), cell-color colore  
+                  if colore not = 0
+                     move 2 to startX  
+                     if event-data-1 <= 1
+                        move colore to cursorColor
+                     end-if
+                  end-if
+                  modify gd5, start-x = startX,
                               x = 3,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
-                   cursor-color = colore-nu                     
+                   cursor-color = cursorColor                     
                   inquire gd5(event-data-2, 1), cell-data col-split
-           when 6 modify gd6, start-x = 1,
+           when 6 inquire gd6(event-data-2, 1), cell-color colore  
+                  if colore not = 0
+                     move 2 to startX  
+                     if event-data-1 <= 1
+                        move colore to cursorColor
+                     end-if
+                  end-if
+                  modify gd6, start-x = startX,
                               x = 3,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
-                   cursor-color = colore-nu                     
+                   cursor-color = cursorColor                     
                   inquire gd6(event-data-2, 1), cell-data col-split
-           when 7 modify gd7, start-x = 1,
+           when 7 inquire gd7(event-data-2, 1), cell-color colore  
+                  if colore not = 0
+                     move 2 to startX  
+                     if event-data-1 <= 1
+                        move colore to cursorColor
+                     end-if
+                  end-if
+                  modify gd7, start-x = startX,
                               x = 3,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
-                   cursor-color = colore-nu                     
+                   cursor-color = cursorColor                     
                   inquire gd7(event-data-2, 1), cell-data col-split
            end-evaluate. 
 
@@ -4622,6 +5530,14 @@
 
        WRITE-DAYS.
       * <TOTEM:PARA. WRITE-DAYS>
+           inquire chk-prim1, value chk-prim1-buf.
+           inquire chk-prim2, value chk-prim2-buf.
+           inquire chk-prim3, value chk-prim3-buf.
+           inquire chk-prim4, value chk-prim4-buf.
+           inquire chk-prim5, value chk-prim5-buf.
+           inquire chk-prim6, value chk-prim6-buf.
+           inquire chk-prim7, value chk-prim7-buf.
+
            initialize wom-split-tab replacing numeric data by zeroes
                                          alphanumeric data by spaces.
 
@@ -4635,6 +5551,11 @@
                  move col-split to wom-split-el-split-sigla(1, idx-ok)
                  inquire gd1(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(1, 
+           idx-ok)
+                 move col-effort to wom-split-el-split-int-code(1, 
+           idx-ok)
+                 perform VALORIZZA-PRIMARY
+                 move como-prim  to wom-split-el-split-primary(1, 
            idx-ok)
               end-if
            end-perform.
@@ -4650,6 +5571,9 @@
                  inquire gd2(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(2, 
            idx-ok)
+                 perform VALORIZZA-PRIMARY 
+                 move como-prim  to wom-split-el-split-primary(2, 
+           idx-ok)
               end-if
            end-perform.
            
@@ -4663,6 +5587,9 @@
                  move col-split to wom-split-el-split-sigla(3, idx-ok)  
                  inquire gd3(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(3, 
+           idx-ok) 
+                 perform VALORIZZA-PRIMARY                      
+                 move como-prim  to wom-split-el-split-primary(3, 
            idx-ok)
               end-if
            end-perform.
@@ -4678,6 +5605,9 @@
                  inquire gd4(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(4, 
            idx-ok)
+                 perform VALORIZZA-PRIMARY                      
+                 move como-prim  to wom-split-el-split-primary(4, 
+           idx-ok)
               end-if
            end-perform.
            
@@ -4691,6 +5621,9 @@
                  move col-split to wom-split-el-split-sigla(5, idx-ok) 
                  inquire gd5(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(5, 
+           idx-ok)
+                 perform VALORIZZA-PRIMARY                      
+                 move como-prim  to wom-split-el-split-primary(5, 
            idx-ok)
               end-if
            end-perform.
@@ -4706,6 +5639,9 @@
                  inquire gd6(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(6, 
            idx-ok)
+                 perform VALORIZZA-PRIMARY                      
+                 move como-prim  to wom-split-el-split-primary(6, 
+           idx-ok)
               end-if
            end-perform.
            
@@ -4720,8 +5656,32 @@
                  inquire gd7(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(7, 
            idx-ok)
+                 perform VALORIZZA-PRIMARY                      
+                 move como-prim  to wom-split-el-split-primary(7, 
+           idx-ok)
               end-if
-           end-perform 
+           end-perform.
+
+      ***---
+       VALORIZZA-PRIMARY.
+           move 0 to como-prim.
+           perform varying idx-gruppo from 1 by 1
+                     until idx-gruppo > 7
+              if el-mcg(idx-gruppo) = space
+                 exit perform
+              end-if
+              if col-split = el-mcg(idx-gruppo)
+                 evaluate idx-gruppo
+                 when 1 move chk-prim1-buf to como-prim
+                 when 2 move chk-prim2-buf to como-prim
+                 when 3 move chk-prim3-buf to como-prim
+                 when 4 move chk-prim4-buf to como-prim
+                 when 5 move chk-prim5-buf to como-prim
+                 when 6 move chk-prim6-buf to como-prim
+                 when 7 move chk-prim7-buf to como-prim
+                 exit perform
+              end-if
+           end-perform       
            .
       * <TOTEM:END>
 
@@ -4903,7 +5863,7 @@
               set event-action to event-action-fail
            else
               inquire gd1(event-data-2, 1), cell-data in col-split
-              if col-split = space and event-data-1 = 2
+              if col-split = space and event-data-1 > 1
                  set event-action to event-action-fail
               end-if
            end-if 
@@ -4914,8 +5874,8 @@
            if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
            else
-              inquire gd2(event-data-2, 1), cell-data in col-split
-              if col-split = space and event-data-1 = 2
+              inquire gd2(event-data-2, 1), cell-data in col-split  
+              if col-split = space and event-data-1 > 1
                  set event-action to event-action-fail
               end-if
            end-if 
@@ -4926,8 +5886,8 @@
            if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
            else
-              inquire gd3(event-data-2, 1), cell-data in col-split
-              if col-split = space and event-data-1 = 2
+              inquire gd3(event-data-2, 1), cell-data in col-split 
+              if col-split = space and event-data-1 > 1
                  set event-action to event-action-fail
               end-if
            end-if 
@@ -4938,8 +5898,8 @@
            if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
            else
-              inquire gd4(event-data-2, 1), cell-data in col-split
-              if col-split = space and event-data-1 = 2
+              inquire gd4(event-data-2, 1), cell-data in col-split 
+              if col-split = space and event-data-1 > 1
                  set event-action to event-action-fail
               end-if
            end-if 
@@ -4951,7 +5911,7 @@
               set event-action to event-action-fail
            else
               inquire gd5(event-data-2, 1), cell-data in col-split
-              if col-split = space and event-data-1 = 2
+              if col-split = space and event-data-1 > 1
                  set event-action to event-action-fail
               end-if
            end-if 
@@ -4962,8 +5922,8 @@
            if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
            else
-              inquire gd6(event-data-2, 1), cell-data in col-split
-              if col-split = space and event-data-1 = 2
+              inquire gd6(event-data-2, 1), cell-data in col-split 
+              if col-split = space and event-data-1 > 1
                  set event-action to event-action-fail
               end-if
            end-if 
@@ -4974,8 +5934,8 @@
            if mod = 0 or event-data-1 = 3
               set event-action to event-action-fail
            else
-              inquire gd7(event-data-2, 1), cell-data in col-split
-              if col-split = space and event-data-1 = 2
+              inquire gd7(event-data-2, 1), cell-data in col-split 
+              if col-split = space and event-data-1 > 1
                  set event-action to event-action-fail
               end-if
            end-if 
@@ -5236,51 +6196,103 @@
       * <TOTEM:END>
        gd2-BeforeProcedure.
       * <TOTEM:PARA. gd2-BeforeProcedure>
-           inquire gd2, cursor-y event-data-2.   
+           inquire gd2, cursor-y event-data-2, cursor-x event-data-1.  
            move 2 to grid-day.
            perform SPOSTAMENTO 
            .
       * <TOTEM:END>
        gd1-BeforeProcedure.
       * <TOTEM:PARA. gd1-BeforeProcedure>
-           inquire gd1, cursor-y event-data-2.  
+           inquire gd1, cursor-y event-data-2, cursor-x event-data-1.  
            move 1 to grid-day.
            perform SPOSTAMENTO 
            .
       * <TOTEM:END>
        gd3-BeforeProcedure.
       * <TOTEM:PARA. gd3-BeforeProcedure>
-           inquire gd3, cursor-y event-data-2.  
+           inquire gd3, cursor-y event-data-2, cursor-x event-data-1.  
            move 3 to grid-day.
            perform SPOSTAMENTO 
            .
       * <TOTEM:END>
        gd4-BeforeProcedure.
       * <TOTEM:PARA. gd4-BeforeProcedure>
-           inquire gd4, cursor-y event-data-2.            
+           inquire gd4, cursor-y event-data-2, cursor-x event-data-1.  
            move 4 to grid-day.
            perform SPOSTAMENTO 
            .
       * <TOTEM:END>
        gd5-BeforeProcedure.
       * <TOTEM:PARA. gd5-BeforeProcedure>
-           inquire gd5, cursor-y event-data-2.      
+           inquire gd5, cursor-y event-data-2, cursor-x event-data-1.  
            move 5 to grid-day.
            perform SPOSTAMENTO 
            .
       * <TOTEM:END>
        gd6-BeforeProcedure.
       * <TOTEM:PARA. gd6-BeforeProcedure>
-           inquire gd6, cursor-y event-data-2.     
+           inquire gd6, cursor-y event-data-2, cursor-x event-data-1.  
            move 6 to grid-day.
            perform SPOSTAMENTO 
            .
       * <TOTEM:END>
        gd7-BeforeProcedure.
       * <TOTEM:PARA. gd7-BeforeProcedure>
-           inquire gd7, cursor-y event-data-2.       
+           inquire gd7, cursor-y event-data-2, cursor-x event-data-1.  
            move 7 to grid-day.
            perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       Screen1-Cb-1-BeforeProcedure.
+      * <TOTEM:PARA. Screen1-Cb-1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       Screen1-Cb-1-AfterProcedure.
+      * <TOTEM:PARA. Screen1-Cb-1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-prim1-LinkTo.
+      * <TOTEM:PARA. chk-prim1-LinkTo>
+           move 1 to check-mcg.
+           perform COLORA-PRIMARY 
+           .
+      * <TOTEM:END>
+       chk-prim2-LinkTo.
+      * <TOTEM:PARA. chk-prim2-LinkTo>
+           move 2 to check-mcg.
+           perform COLORA-PRIMARY 
+           .
+      * <TOTEM:END>
+       chk-prim3-LinkTo.
+      * <TOTEM:PARA. chk-prim3-LinkTo>
+           move 3 to check-mcg.
+           perform COLORA-PRIMARY 
+           .
+      * <TOTEM:END>
+       chk-prim4-LinkTo.
+      * <TOTEM:PARA. chk-prim4-LinkTo>
+           move 4 to check-mcg.
+           perform COLORA-PRIMARY 
+           .
+      * <TOTEM:END>
+       chk-prim5-LinkTo.
+      * <TOTEM:PARA. chk-prim5-LinkTo>
+           move 5 to check-mcg.
+           perform COLORA-PRIMARY 
+           .
+      * <TOTEM:END>
+       chk-prim6-LinkTo.
+      * <TOTEM:PARA. chk-prim6-LinkTo>
+           move 6 to check-mcg.
+           perform COLORA-PRIMARY 
+           .
+      * <TOTEM:END>
+       chk-prim7-LinkTo.
+      * <TOTEM:PARA. chk-prim7-LinkTo>
+           move 7 to check-mcg.
+           perform COLORA-PRIMARY 
            .
       * <TOTEM:END>
 

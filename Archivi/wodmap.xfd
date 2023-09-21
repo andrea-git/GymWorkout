@@ -50,10 +50,10 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="13"
-       xfd:elementary-items-with-occurs="430"
-       xfd:total-items="19"
-       xfd:total-items-with-occurs="581">
+       xfd:elementary-items="14"
+       xfd:elementary-items-with-occurs="570"
+       xfd:total-items="20"
+       xfd:total-items-with-occurs="721">
     <xfd:field
          xfd:field-offset="0"
          xfd:field-bytes="18104"
@@ -200,6 +200,16 @@
              xfd:field-condition="0"
              xfd:field-level="25"
              xfd:field-name="WOM-SPLIT-EL-SP-SS"/>
+        <xfd:field
+             xfd:field-offset="111"
+             xfd:field-bytes="1"
+             xfd:field-type="1"
+             xfd:field-length="1"
+             xfd:field-scale="0"
+             xfd:field-user-flags="0"
+             xfd:field-condition="0"
+             xfd:field-level="25"
+             xfd:field-name="WOM-SPLIT-EL-SP-P"/>
       </xfd:field-occurs>
     </xfd:field-occurs>
     <xfd:field

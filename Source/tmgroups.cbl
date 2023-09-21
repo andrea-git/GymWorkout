@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tmgroups.
        AUTHOR.              andre.
-       DATE-WRITTEN.        sabato 16 settembre 2023 01:07:48.
+       DATE-WRITTEN.        giovedì 21 settembre 2023 14:43:58.
        REMARKS.
       *{TOTEM}END
 
@@ -90,6 +90,7 @@
        01 rec-grid.
            05 col-codice       PIC  x(5).
            05 col-des          PIC  X(50).
+           05 col-prim         PIC  9.
        77 Screen1-Handle
                   USAGE IS HANDLE OF WINDOW.
        01 FILLER           PIC  9.
@@ -134,14 +135,15 @@
 
        01 old-mcg-rec.
            05 old-mcg-key.
-               10 old-mcg-code         PIC  99.
+               10 old-mcg-code      PIC 99.
            05 old-mcg-data.
-               10 old-mcg-desc         PIC  x(100).
-               10 old-mcg-filler       PIC  x(1000).
-               10 old-mcg-filler-n1    PIC  9(18).
-               10 old-mcg-filler-n2    PIC  9(18).
-               10 old-mcg-filler-n3    PIC  9(18).
-               10 old-mcg-filler-n4    PIC  9(18).
+               10 old-mcg-desc      PIC x(100).    
+               10 old-mcg-primary   PIC 9.
+               10 old-mcg-filler    PIC x(999).
+               10 old-mcg-filler-n1 PIC 9(18).
+               10 old-mcg-filler-n2 PIC 9(18).
+               10 old-mcg-filler-n3 PIC 9(18).
+               10 old-mcg-filler-n4 PIC 9(18).
       *{TOTEM}END
 
       *{TOTEM}ID-LOGICI
@@ -182,28 +184,30 @@
        05
            form1-gd-1, 
            Grid, 
-           COL 2,10, 
+           COL 2,30, 
            LINE 1,78,
            LINES 22,70 ,
-           SIZE 51,90 ,
+           SIZE 61,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           DATA-COLUMNS (1, 6),
-           SEPARATION (5, 5),
-           DATA-TYPES ("U(5)", "X(50)"),
+           DATA-COLUMNS (1, 6, 56),
+           ALIGNMENT ("U", "U", "C"),
+           SEPARATION (5, 5, 5),
+           DATA-TYPES ("U(5)", "X(50)", "9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
            DIVIDER-COLOR 1,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 1,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            RECORD-DATA rec-grid,
            TILED-HEADINGS,
            USE-TAB,
-           VIRTUAL-WIDTH 50,
+           VIRTUAL-WIDTH 60,
            VPADDING 10,
            VSCROLL,
            EVENT PROCEDURE Form1-Gd-1-Event-Proc,
@@ -729,6 +733,9 @@
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 2, Y = 1,
                 CELL-DATA = "Descrizione",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 3, Y = 1,
+                CELL-DATA = "Primario",
            .
 
       * FD's Initialize Paragraph
@@ -767,7 +774,7 @@
               SCREEN LINE 1,
               SCREEN COLUMN 0,
               LINES 24,30,
-              SIZE 54,20,
+              SIZE 64,50,
               COLOR 131329,
               CONTROL FONT Calibri14-Occidentale,
               LINK TO THREAD,
@@ -795,7 +802,7 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 51)
            .
 
        Form1-PROC.
@@ -1399,7 +1406,7 @@
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x     = 2,
+           modify form1-gd-1, start-x = 1, x     = 3,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,
@@ -1433,7 +1440,7 @@
                                        icon mb-warning-icon
                       end-read
                    end-if
-                end-if
+                end-if     
            when 2
                 if mcg-desc = spaces
                    set errori to true
@@ -1441,6 +1448,14 @@
                    display message box MSG-Descrizione-mancante|"Descrizione mancante"
                            title = tit-err
                            icon mb-warning-icon
+                end-if
+           when 3
+                if mcg-primary not = 1 and not = 0
+                   set errori to true
+                   move 2 to colonna
+                   display message "Valori consentiti 0/1"
+                             title tit-err
+                             icon mb-warning-icon
                 end-if
 
            end-evaluate.
@@ -1478,12 +1493,15 @@
                      read macrogroups next
                           at end exit perform
                       not at end
-                          move mcg-code  to col-codice
-                          move mcg-desc  to col-des  
+                          move mcg-code    to col-codice
+                          move mcg-desc    to col-des  
+                          move mcg-primary to col-prim
                           modify form1-gd-1(riga, 1), cell-data 
            col-codice
                           modify form1-gd-1(riga, 2), cell-data col-des 
             
+                          modify form1-gd-1(riga, 3), cell-data 
+           col-prim 
                      end-read                                           
                   end-perform
            end-start.
@@ -1614,7 +1632,7 @@
                                cursor-y in riga.
 
            perform varying colonna from 1 by 1
-                     until colonna > 2
+                     until colonna > 3
               perform CONTROLLO
               if errori exit perform end-if
            end-perform.
@@ -1679,7 +1697,8 @@
        VALORE-RIGA.
       * <TOTEM:PARA. VALORE-RIGA>
            inquire form1-gd-1(riga, 1), cell-data mcg-code.
-           inquire form1-gd-1(riga, 2), cell-data mcg-desc    
+           inquire form1-gd-1(riga, 2), cell-data mcg-desc.
+           inquire form1-gd-1(riga, 3), cell-data mcg-primary    
            .
       * <TOTEM:END>
 

@@ -13,3 +13,6 @@
                10 tex-exe-isMulti  PIC  9.
                    88 tex-exe-isMulti-no VALUE IS 0. 
                    88 tex-exe-isMulti-yes VALUE IS 1. 
+               10 tex-reps         PIC  x(10).
+               10 tex-series       PIC  99.
+               10 tex-restpause    PIC  9.

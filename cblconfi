@@ -18,6 +18,6 @@ STRIP_TRAILING_SPACES 1
 #Indica la versione dei file Vision creati
 V_VERSION 4
 LOCKS_PER_FILE 5000
-STAMPANTE_ANTEPRIMA PDFCreator
+STAMPANTE_ANTEPRIMA Microsoft Print to PDF
 
 PATH_ST F:\GymWorkout\tmp\

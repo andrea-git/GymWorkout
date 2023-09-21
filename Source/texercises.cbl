@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 20 settembre 2023 15:51:20.
+       DATE-WRITTEN.        venerdì 22 settembre 2023 00:57:13.
        REMARKS.
       *{TOTEM}END
 
@@ -99,6 +99,7 @@
        01 rec-grid.
            05 col-codice       PIC  x(5).
            05 col-des          PIC  X(50).
+           05 col-des-stampa   PIC  X(20).
            05 col-group        PIC  x(5).
            05 col-grp-desc     PIC  x(100).
            05 col-mcg-desc     PIC  x(100).
@@ -202,7 +203,8 @@
                10 old-exe-setting      PIC  9(4).
                10 old-exe-restpause    PIC  9.
                10 old-exe-disab        PIC  9.
-               10 old-exe-filler       PIC  x(998).
+               10 old-exe-desc-stampa  PIC  x(20).
+               10 old-exe-filler       PIC  x(978).
                10 old-exe-filler-n1    PIC  9(18).
                10 old-exe-filler-n2    PIC  9(18).
                10 old-exe-filler-n3    PIC  9(18).
@@ -253,13 +255,13 @@
            SIZE 161,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           DATA-COLUMNS (1, 6, 56, 61, 161, 261, 263, 363, 364, 369, 
-           370),
-           ALIGNMENT ("U", "U", "U", "U", "U", "C", "U", "C", "R", "C", 
-           "C"),
-           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
-           DATA-TYPES ("U(5)", "X(100)", "U(5)", "X", "X", "zz", "X", "X
-      -    "", "z.zz9", "9", "9"),
+           DATA-COLUMNS (1, 6, 56, 76, 81, 181, 281, 283, 383, 384, 
+           389, 390),
+           ALIGNMENT ("U", "U", "U", "U", "U", "U", "C", "U", "C", "R", 
+           "C", "C"),
+           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+           DATA-TYPES ("U(5)", "X(100)", "X(20)", "U(5)", "X", "X", "zz"
+           , "X", "X", "z.zz9", "9", "9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
@@ -1512,30 +1514,33 @@
                 CELL-DATA = "Descrizione",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 3, Y = 1,
-                CELL-DATA = "Gruppo",
+                CELL-DATA = "Desc. stampa",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 4, Y = 1,
-                CELL-DATA = "Descrizione",
+                CELL-DATA = "Gruppo",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 5, Y = 1,
-                CELL-DATA = "Macrogruppo",
-      * CELLS' SETTING
-              MODIFY form1-gd-1, X = 6, Y = 1,
-                CELL-DATA = "Intensità",
-      * CELLS' SETTING
-              MODIFY form1-gd-1, X = 7, Y = 1,
                 CELL-DATA = "Descrizione",
       * CELLS' SETTING
+              MODIFY form1-gd-1, X = 6, Y = 1,
+                CELL-DATA = "Macrogruppo",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 7, Y = 1,
+                CELL-DATA = "Intensità",
+      * CELLS' SETTING
               MODIFY form1-gd-1, X = 8, Y = 1,
-                CELL-DATA = "Multi",
+                CELL-DATA = "Descrizione",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 9, Y = 1,
-                CELL-DATA = 'Setting (")',
+                CELL-DATA = "Multi",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 10, Y = 1,
-                CELL-DATA = "R/P",
+                CELL-DATA = 'Setting (")',
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 11, Y = 1,
+                CELL-DATA = "R/P",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 12, Y = 1,
                 CELL-DATA = "Disab",
            .
 
@@ -1635,8 +1640,8 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 51, 61, 91, 
-           111, 121, 136, 141, 151, 156)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 9, 47, 65, 72, 97, 
+           115, 123, 138, 143, 151, 156)
            .
 
        Form1-PROC.
@@ -2236,7 +2241,7 @@
        CERCA.
       * <TOTEM:PARA. CERCA>
            evaluate colonna
-           when 3
+           when 4
                 inquire form1-gd-1(riga, colonna), cell-data in grp-code
                 move "groups"       to Como-File
                 call   "zoom-gt" using como-file, grp-rec
@@ -2251,7 +2256,7 @@
                    modify form1-gd-1(riga, 4), cell-data col-grp-desc
                    modify form1-gd-1(riga, 5), cell-data col-mcg-desc
                 end-if 
-           when 6
+           when 7
                 inquire form1-gd-1(riga, colonna), cell-data in int-code
                 move "intexe"    to Como-File
                 call   "zoom-gt" using como-file, int-rec
@@ -2273,7 +2278,7 @@
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x     = 11,
+           modify form1-gd-1, start-x = 1, x     = 12,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,
@@ -2284,6 +2289,7 @@
        CONTROLLO.
       * <TOTEM:PARA. CONTROLLO>
            set tutto-ok to true.
+           if mod = 0 exit paragraph end-if.
 
            inquire form1-gd-1, cursor-y in riga.
 
@@ -2315,8 +2321,20 @@
                    display message box MSG-Descrizione-mancante|"Descrizione mancante"
                            title = tit-err
                            icon mb-warning-icon
-                end-if
+                else
+                   if exe-desc-stampa = spaces 
+                      move exe-desc to exe-desc-stampa
+                      modify form1-gd-1(riga, 3), cell-data = 
+           exe-desc-stampa
+                   end-if
+                end-if    
            when 3
+                if exe-desc-stampa = spaces 
+                   move exe-desc to exe-desc-stampa
+                   modify form1-gd-1(riga, 3), cell-data = 
+           exe-desc-stampa
+                end-if
+           when 4
                 move exe-grp-code to grp-code
                 read groups no lock 
                      invalid 
@@ -2330,9 +2348,9 @@
                      read macrogroups no lock invalid move spaces to 
            mcg-desc end-read
                 end-read                                      
-                modify form1-gd-1(riga, 4), cell-data grp-desc
-                modify form1-gd-1(riga, 5), cell-data mcg-desc  
-           when 6
+                modify form1-gd-1(riga, 5), cell-data grp-desc
+                modify form1-gd-1(riga, 6), cell-data mcg-desc  
+           when 5
                 move exe-int-code to int-code
                 read intexe no lock 
                      invalid 
@@ -2342,9 +2360,9 @@
                            title = tit-err
                            icon mb-warning-icon
                 end-read                                      
-                modify form1-gd-1(riga, 7), cell-data int-desc  
+                modify form1-gd-1(riga, 8), cell-data int-desc  
 
-           when 8
+           when 9
                 if not (exe-isMulti = 0 or 1)
                    set errori to true
                    display message "Valori consentiti 1/0"
@@ -2352,7 +2370,7 @@
                            icon mb-warning-icon
                 end-if
 
-           when 9
+           when 10
                 if exe-setting = 0
                    set errori to true
                    display message "Valore obbligatorio"
@@ -2360,7 +2378,7 @@
                            icon mb-warning-icon
                 end-if    
 
-           when 10
+           when 11
                 if not (exe-restpause = 0 or 1)
                    set errori to true
                    display message "Valori consentiti 1/0"
@@ -2512,17 +2530,19 @@
            move exe-setting   to col-setting
            move exe-restpause to col-restpause
            move exe-disab     to col-disab
+           move exe-desc-stampa to col-des-stampa.
            modify form1-gd-1(riga, 1),  cell-data col-codice.
            modify form1-gd-1(riga, 2),  cell-data col-des.  
-           modify form1-gd-1(riga, 3),  cell-data col-group.   
-           modify form1-gd-1(riga, 4),  cell-data col-grp-desc.
-           modify form1-gd-1(riga, 5),  cell-data col-mcg-desc.
-           modify form1-gd-1(riga, 6),  cell-data col-intensity.
-           modify form1-gd-1(riga, 7),  cell-data col-int-desc.
-           modify form1-gd-1(riga, 8),  cell-data col-isMulti.
-           modify form1-gd-1(riga, 9),  cell-data col-setting.
-           modify form1-gd-1(riga, 10), cell-data col-restpause.
-           modify form1-gd-1(riga, 11), cell-data col-disab 
+           modify form1-gd-1(riga, 3),  cell-data col-des-stampa.  
+           modify form1-gd-1(riga, 4),  cell-data col-group.   
+           modify form1-gd-1(riga, 5),  cell-data col-grp-desc.
+           modify form1-gd-1(riga, 6),  cell-data col-mcg-desc.
+           modify form1-gd-1(riga, 7),  cell-data col-intensity.
+           modify form1-gd-1(riga, 8),  cell-data col-int-desc.
+           modify form1-gd-1(riga, 9),  cell-data col-isMulti.
+           modify form1-gd-1(riga, 10),  cell-data col-setting.
+           modify form1-gd-1(riga, 11), cell-data col-restpause.
+           modify form1-gd-1(riga, 12), cell-data col-disab 
            .
       * <TOTEM:END>
 
@@ -2722,13 +2742,14 @@
        VALORE-RIGA.
       * <TOTEM:PARA. VALORE-RIGA>
            inquire form1-gd-1(riga, 1),  cell-data exe-code.
-           inquire form1-gd-1(riga, 2),  cell-data exe-desc.
-           inquire form1-gd-1(riga, 3),  cell-data exe-grp-code.
-           inquire form1-gd-1(riga, 6),  cell-data exe-int-code.
-           inquire form1-gd-1(riga, 8),  cell-data exe-isMulti.
-           inquire form1-gd-1(riga, 9),  cell-data exe-setting.
-           inquire form1-gd-1(riga, 10), cell-data exe-restpause. 
-           inquire form1-gd-1(riga, 11), cell-data exe-disab  
+           inquire form1-gd-1(riga, 2),  cell-data exe-desc.  
+           inquire form1-gd-1(riga, 3),  cell-data exe-desc-stampa
+           inquire form1-gd-1(riga, 4),  cell-data exe-grp-code.
+           inquire form1-gd-1(riga, 7),  cell-data exe-int-code.
+           inquire form1-gd-1(riga, 9),  cell-data exe-isMulti.
+           inquire form1-gd-1(riga, 10),  cell-data exe-setting.
+           inquire form1-gd-1(riga, 11), cell-data exe-restpause. 
+           inquire form1-gd-1(riga, 12), cell-data exe-disab  
            .
       * <TOTEM:END>
 

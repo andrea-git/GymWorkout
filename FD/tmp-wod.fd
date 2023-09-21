@@ -1,0 +1,13 @@
+      *(( XFD FILE = tmp-wod ))
+       FD  tmp-wod.
+       01 tmpw-rec.
+           03 tmpw-key.
+               05 tmpw--day        PIC  9(3).
+               05 tmpw--prg        PIC  9(3).
+           03 tmpw-data.
+      *(( XFD NAME = csw--prg_1 ))
+               05 tmpw--exe-code   PIC  x(5).
+      *(( XFD NAME = csw--prg_1_1 ))
+               05 tmpw--series     PIC  99.
+      *(( XFD NAME = csw--prg_1_2 ))
+               05 tmpw-reps        PIC  x(10).

@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E791417259-829-723118987
+PROGRAM_UNIQUE_CODE=TOTEM-7E7915224228-392-238646934
 
 {{@DESCRIPTION:
 
@@ -223,9 +223,9 @@ m_bFixed=1
 
 @}}
 [FDITEM19_WK]
-m_strName=col-group
-m_strRawPic=x(5)
-m_strPic=x(5)
+m_strName=col-des-stampa
+m_strRawPic=X(20)
+m_strPic=X(20)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -233,9 +233,9 @@ m_bFixed=1
 
 @}}
 [FDITEM20_WK]
-m_strName=col-grp-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=col-group
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -243,7 +243,7 @@ m_bFixed=1
 
 @}}
 [FDITEM21_WK]
-m_strName=col-mcg-desc
+m_strName=col-grp-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=5
@@ -253,9 +253,9 @@ m_bFixed=1
 
 @}}
 [FDITEM22_WK]
-m_strName=col-intensity
-m_strRawPic=z9
-m_strPic=z9
+m_strName=col-mcg-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -263,9 +263,9 @@ m_bFixed=1
 
 @}}
 [FDITEM23_WK]
-m_strName=col-int-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=col-intensity
+m_strRawPic=z9
+m_strPic=z9
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -273,9 +273,9 @@ m_bFixed=1
 
 @}}
 [FDITEM24_WK]
-m_strName=col-isMulti
-m_strRawPic=9
-m_strPic=9
+m_strName=col-int-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -283,9 +283,9 @@ m_bFixed=1
 
 @}}
 [FDITEM25_WK]
-m_strName=col-setting
-m_strRawPic=z.zz9
-m_strPic=z.zz9
+m_strName=col-isMulti
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -293,9 +293,9 @@ m_bFixed=1
 
 @}}
 [FDITEM26_WK]
-m_strName=col-restpause
-m_strRawPic=9
-m_strPic=9
+m_strName=col-setting
+m_strRawPic=z.zz9
+m_strPic=z.zz9
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -303,7 +303,7 @@ m_bFixed=1
 
 @}}
 [FDITEM27_WK]
-m_strName=col-disab
+m_strName=col-restpause
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=5
@@ -313,19 +313,18 @@ m_bFixed=1
 
 @}}
 [FDITEM28_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
-m_nItemLevel=77
+m_strName=col-disab
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM28_WK
 
 @}}
 [FDITEM29_WK]
-m_strName=como-ord
-m_strRawPic=s9
-m_strPic=s9
-m_strDefaultValue=0
+m_strName=Screen1-Handle
+m_nUsage=24
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -333,26 +332,37 @@ m_bFixed=1
 
 @}}
 [FDITEM30_WK]
-m_strName=FILLER
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=1
+m_strName=como-ord
+m_strRawPic=s9
+m_strPic=s9
+m_strDefaultValue=0
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM30_WK
 
 @}}
 [FDITEM31_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM31_WK
+
+@}}
+[FDITEM32_WK]
 m_strName=ricarica
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM31_WK
+{{@DataItem_m_strDescriptionFDITEM32_WK
 
 @}}
-[FDITEM32_WK]
+[FDITEM33_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -361,22 +371,12 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM32_WK
-
-@}}
-[FDITEM33_WK]
-m_strName=Default-Font
-m_nUsage=38
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM33_WK
 
 @}}
 [FDITEM34_WK]
-m_strName=STATUS-exercises
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=Default-Font
+m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -384,24 +384,34 @@ m_bFixed=1
 
 @}}
 [FDITEM35_WK]
+m_strName=STATUS-exercises
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM35_WK
+
+@}}
+[FDITEM36_WK]
 m_strName=Valid-STATUS-exercises
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM35_WK
+{{@DataItem_m_strDescriptionFDITEM36_WK
 
 @}}
-[FDITEM36_WK]
+[FDITEM37_WK]
 m_strName=Calibri14-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM36_WK
+{{@DataItem_m_strDescriptionFDITEM37_WK
 
 @}}
-[FDITEM37_WK]
+[FDITEM38_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -410,80 +420,70 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM37_WK
+{{@DataItem_m_strDescriptionFDITEM38_WK
 
 @}}
-[FDITEM38_WK]
+[FDITEM39_WK]
 m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM38_WK
+{{@DataItem_m_strDescriptionFDITEM39_WK
 
 @}}
-[FDITEM39_WK]
+[FDITEM40_WK]
 m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM39_WK
+{{@DataItem_m_strDescriptionFDITEM40_WK
 
 @}}
-[FDITEM40_WK]
+[FDITEM41_WK]
 m_strName=STATUS-intexe
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM40_WK
+{{@DataItem_m_strDescriptionFDITEM41_WK
 
 @}}
-[FDITEM41_WK]
+[FDITEM42_WK]
 m_strName=Valid-STATUS-intexe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM41_WK
+{{@DataItem_m_strDescriptionFDITEM42_WK
 
 @}}
-[FDITEM42_WK]
+[FDITEM43_WK]
 m_strName=STATUS-macrogroups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM42_WK
+{{@DataItem_m_strDescriptionFDITEM43_WK
 
 @}}
-[FDITEM43_WK]
+[FDITEM44_WK]
 m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM43_WK
-
-@}}
-[FDITEM44_WK]
-m_strName=path-tmp-exe-mcg
-m_strRawPic=X(256)
-m_strPic=X(256)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM44_WK
 
 @}}
 [FDITEM45_WK]
-m_strName=STATUS-tmp-exe-mcg
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=path-tmp-exe-mcg
+m_strRawPic=X(256)
+m_strPic=X(256)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -491,12 +491,22 @@ m_bFixed=1
 
 @}}
 [FDITEM46_WK]
+m_strName=STATUS-tmp-exe-mcg
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM46_WK
+
+@}}
+[FDITEM47_WK]
 m_strName=Valid-STATUS-tmp-exe-mcg
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM46_WK
+{{@DataItem_m_strDescriptionFDITEM47_WK
 
 @}}
 
@@ -768,50 +778,54 @@ Begin Screen Form1
       Border            = Boxed
       Cells' Setting    = ( X = 1, Y = 1, Data = "Codice" )
       Cells' Setting    = ( X = 2, Y = 1, Data = "Descrizione" )
-      Cells' Setting    = ( X = 3, Y = 1, Data = "Gruppo" )
-      Cells' Setting    = ( X = 4, Y = 1, Data = "Descrizione" )
-      Cells' Setting    = ( X = 5, Y = 1, Data = "Macrogruppo" )
-      Cells' Setting    = ( X = 6, Y = 1, Data = "Intensità" )
-      Cells' Setting    = ( X = 7, Y = 1, Data = "Descrizione" )
-      Cells' Setting    = ( X = 8, Y = 1, Data = "Multi" )
-      Cells' Setting    = ( X = 9, Y = 1, Data = "Setting ("")" )
-      Cells' Setting    = ( X = 10, Y = 1, Data = "R/P" )
-      Cells' Setting    = ( X = 11, Y = 1, Data = "Disab" )
+      Cells' Setting    = ( X = 3, Y = 1, Data = "Desc. stampa" )
+      Cells' Setting    = ( X = 4, Y = 1, Data = "Gruppo" )
+      Cells' Setting    = ( X = 5, Y = 1, Data = "Descrizione" )
+      Cells' Setting    = ( X = 6, Y = 1, Data = "Macrogruppo" )
+      Cells' Setting    = ( X = 7, Y = 1, Data = "Intensità" )
+      Cells' Setting    = ( X = 8, Y = 1, Data = "Descrizione" )
+      Cells' Setting    = ( X = 9, Y = 1, Data = "Multi" )
+      Cells' Setting    = ( X = 10, Y = 1, Data = "Setting ("")" )
+      Cells' Setting    = ( X = 11, Y = 1, Data = "R/P" )
+      Cells' Setting    = ( X = 12, Y = 1, Data = "Disab" )
       Centered Headings = FALSE
       Color             = 0
       Column            = 2,60
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-codice, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(5)", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 8, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 2, Name = col-des, READONLY = 0 )
       Columns' Setting  = ( PIC = "X(50)", TYPE = "X(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 40, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 3, Name = col-groups, READONLY = 0 )
+      Columns' Setting  = ( DISP = 38, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 3, Name = col-des-stampa, READONLY = 0 )
+      Columns' Setting  = ( PIC = "X(20)", TYPE = "X(20)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
+      Columns' Setting  = ( DISP = 18, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 4, Name = col-groups, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(5)", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 4, Name = col-grp-desc, READONLY = 0 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 5, Name = col-grp-desc, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 30, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 5, Name = col-mgc-desc, READONLY = 0 )
+      Columns' Setting  = ( DISP = 25, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 6, Name = col-mgc-desc, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 20, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 6, Name = col-intensity, READONLY = 0 )
+      Columns' Setting  = ( DISP = 18, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 7, Name = col-intensity, READONLY = 0 )
       Columns' Setting  = ( PIC = "99", TYPE = "zz", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 7, Name = col-int-desc, READONLY = 0 )
+      Columns' Setting  = ( DISP = 8, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 8, Name = col-int-desc, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
       Columns' Setting  = ( DISP = 15, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 8, Name = col-isMulti, READONLY = 0 )
+      Columns' Setting  = ( X = 9, Name = col-isMulti, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 9, Name = col-setting, READONLY = 0 )
+      Columns' Setting  = ( X = 10, Name = col-setting, READONLY = 0 )
       Columns' Setting  = ( PIC = "z.zz9", TYPE = "z.zz9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 10, Name = col-restpause, READONLY = 0 )
+      Columns' Setting  = ( DISP = 8, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 11, Name = col-restpause, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 11, Name = col-disab, READONLY = 0 )
+      Columns' Setting  = ( X = 12, Name = col-disab, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
@@ -837,7 +851,7 @@ Begin Screen Form1
       Lines Unit        = Default
       No Tab            = FALSE
       Num Col Headings  = 1
-      Num Columns       = 11
+      Num Columns       = 12
       Num Rows          = 0
       Occurs            = 0
       Paged             = FALSE
@@ -1202,7 +1216,8 @@ BEGIN-TEXT
                10 old-exe-setting      PIC  9(4).
                10 old-exe-restpause    PIC  9.
                10 old-exe-disab        PIC  9.
-               10 old-exe-filler       PIC  x(998).
+               10 old-exe-desc-stampa  PIC  x(20).
+               10 old-exe-filler       PIC  x(978).
                10 old-exe-filler-n1    PIC  9(18).
                10 old-exe-filler-n2    PIC  9(18).
                10 old-exe-filler-n3    PIC  9(18).
@@ -1433,7 +1448,7 @@ BEGIN-DATA
    PARAGRAPH         = CERCA
 BEGIN-TEXT
            evaluate colonna
-           when 3
+           when 4
                 inquire form1-gd-1(riga, colonna), cell-data in grp-code
                 move "groups"       to Como-File
                 call   "zoom-gt" using como-file, grp-rec
@@ -1447,7 +1462,7 @@ BEGIN-TEXT
                    modify form1-gd-1(riga, 4), cell-data col-grp-desc
                    modify form1-gd-1(riga, 5), cell-data col-mcg-desc
                 end-if 
-           when 6
+           when 7
                 inquire form1-gd-1(riga, colonna), cell-data in int-code
                 move "intexe"    to Como-File
                 call   "zoom-gt" using como-file, int-rec
@@ -1471,7 +1486,7 @@ BEGIN-TEXT
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x     = 11,
+           modify form1-gd-1, start-x = 1, x     = 12,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,
@@ -1484,6 +1499,7 @@ BEGIN-DATA
    PARAGRAPH         = CONTROLLO
 BEGIN-TEXT
            set tutto-ok to true.
+           if mod = 0 exit paragraph end-if.
 
            inquire form1-gd-1, cursor-y in riga.
 
@@ -1515,8 +1531,18 @@ BEGIN-TEXT
                    display message box MSG-Descrizione-mancante|"Descrizione mancante"
                            title = tit-err
                            icon mb-warning-icon
-                end-if
+                else
+                   if exe-desc-stampa = spaces 
+                      move exe-desc to exe-desc-stampa
+                      modify form1-gd-1(riga, 3), cell-data = exe-desc-stampa
+                   end-if
+                end-if    
            when 3
+                if exe-desc-stampa = spaces 
+                   move exe-desc to exe-desc-stampa
+                   modify form1-gd-1(riga, 3), cell-data = exe-desc-stampa
+                end-if
+           when 4
                 move exe-grp-code to grp-code
                 read groups no lock 
                      invalid 
@@ -1529,9 +1555,9 @@ BEGIN-TEXT
                      move grp-mcg-code to mcg-code
                      read macrogroups no lock invalid move spaces to mcg-desc end-read
                 end-read                                      
-                modify form1-gd-1(riga, 4), cell-data grp-desc
-                modify form1-gd-1(riga, 5), cell-data mcg-desc  
-           when 6
+                modify form1-gd-1(riga, 5), cell-data grp-desc
+                modify form1-gd-1(riga, 6), cell-data mcg-desc  
+           when 5
                 move exe-int-code to int-code
                 read intexe no lock 
                      invalid 
@@ -1541,9 +1567,9 @@ BEGIN-TEXT
                            title = tit-err
                            icon mb-warning-icon
                 end-read                                      
-                modify form1-gd-1(riga, 7), cell-data int-desc  
+                modify form1-gd-1(riga, 8), cell-data int-desc  
 
-           when 8
+           when 9
                 if not (exe-isMulti = 0 or 1)
                    set errori to true
                    display message "Valori consentiti 1/0"
@@ -1551,7 +1577,7 @@ BEGIN-TEXT
                            icon mb-warning-icon
                 end-if
 
-           when 9
+           when 10
                 if exe-setting = 0
                    set errori to true
                    display message "Valore obbligatorio"
@@ -1559,7 +1585,7 @@ BEGIN-TEXT
                            icon mb-warning-icon
                 end-if    
 
-           when 10
+           when 11
                 if not (exe-restpause = 0 or 1)
                    set errori to true
                    display message "Valori consentiti 1/0"
@@ -1712,17 +1738,19 @@ BEGIN-TEXT
            move exe-setting   to col-setting
            move exe-restpause to col-restpause
            move exe-disab     to col-disab
+           move exe-desc-stampa to col-des-stampa.
            modify form1-gd-1(riga, 1),  cell-data col-codice.
            modify form1-gd-1(riga, 2),  cell-data col-des.  
-           modify form1-gd-1(riga, 3),  cell-data col-group.   
-           modify form1-gd-1(riga, 4),  cell-data col-grp-desc.
-           modify form1-gd-1(riga, 5),  cell-data col-mcg-desc.
-           modify form1-gd-1(riga, 6),  cell-data col-intensity.
-           modify form1-gd-1(riga, 7),  cell-data col-int-desc.
-           modify form1-gd-1(riga, 8),  cell-data col-isMulti.
-           modify form1-gd-1(riga, 9),  cell-data col-setting.
-           modify form1-gd-1(riga, 10), cell-data col-restpause.
-           modify form1-gd-1(riga, 11), cell-data col-disab.
+           modify form1-gd-1(riga, 3),  cell-data col-des-stampa.  
+           modify form1-gd-1(riga, 4),  cell-data col-group.   
+           modify form1-gd-1(riga, 5),  cell-data col-grp-desc.
+           modify form1-gd-1(riga, 6),  cell-data col-mcg-desc.
+           modify form1-gd-1(riga, 7),  cell-data col-intensity.
+           modify form1-gd-1(riga, 8),  cell-data col-int-desc.
+           modify form1-gd-1(riga, 9),  cell-data col-isMulti.
+           modify form1-gd-1(riga, 10),  cell-data col-setting.
+           modify form1-gd-1(riga, 11), cell-data col-restpause.
+           modify form1-gd-1(riga, 12), cell-data col-disab.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1932,13 +1960,14 @@ BEGIN-DATA
    PARAGRAPH         = VALORE-RIGA
 BEGIN-TEXT
            inquire form1-gd-1(riga, 1),  cell-data exe-code.
-           inquire form1-gd-1(riga, 2),  cell-data exe-desc.
-           inquire form1-gd-1(riga, 3),  cell-data exe-grp-code.
-           inquire form1-gd-1(riga, 6),  cell-data exe-int-code.
-           inquire form1-gd-1(riga, 8),  cell-data exe-isMulti.
-           inquire form1-gd-1(riga, 9),  cell-data exe-setting.
-           inquire form1-gd-1(riga, 10), cell-data exe-restpause. 
-           inquire form1-gd-1(riga, 11), cell-data exe-disab. 
+           inquire form1-gd-1(riga, 2),  cell-data exe-desc.  
+           inquire form1-gd-1(riga, 3),  cell-data exe-desc-stampa
+           inquire form1-gd-1(riga, 4),  cell-data exe-grp-code.
+           inquire form1-gd-1(riga, 7),  cell-data exe-int-code.
+           inquire form1-gd-1(riga, 9),  cell-data exe-isMulti.
+           inquire form1-gd-1(riga, 10),  cell-data exe-setting.
+           inquire form1-gd-1(riga, 11), cell-data exe-restpause. 
+           inquire form1-gd-1(riga, 12), cell-data exe-disab. 
 
 END-TEXT
 END-DATA

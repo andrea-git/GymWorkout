@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 21 settembre 2023 23:22:34.
+       DATE-WRITTEN.        venerdì 22 settembre 2023 00:27:46.
        REMARKS.
       *{TOTEM}END
 
@@ -385,7 +385,7 @@
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(217).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(230).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(105).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
@@ -5277,56 +5277,6 @@
            .
       * <TOTEM:END>
 
-       CREA-ZOOM-EXE-MCG.
-      * <TOTEM:PARA. CREA-ZOOM-EXE-MCG>
-           accept  como-data from century-date.
-           accept  como-ora  from time.
-           accept  path-zoom-exe-mcg from environment "PATH_ST".
-           inspect path-zoom-exe-mcg replacing trailing spaces by 
-           low-value.
-           string  path-zoom-exe-mcg delimited low-value
-                   "path-zoom-exe-mcg_"   delimited size
-                   como-data           delimited size
-                   "_"                 delimited size
-                   como-ora            delimited size
-              into path-zoom-exe-mcg
-           end-string.                                                  
-                 
-           inspect path-zoom-exe-mcg replacing trailing low-value by 
-           spaces.
-           open output zoom-exe-mcg.    
-           close       zoom-exe-mcg
-           open i-o    zoom-exe-mcg
-
-           move low-value to exe-code.
-           start exercises key >= exe-key
-                 invalid continue
-             not invalid
-                 perform until 1 = 2
-                    read exercises next at end exit perform end-read
-                    move exe-grp-code to grp-code
-                    read groups no lock
-                         invalid move spaces to grp-mcg-code
-                    end-read
-                    if grp-mcg-code not = s-mcg-code
-                       exit perform cycle
-                    end-if
-                    move exe-code to zem-exe-code
-                    move exe-desc to zem-exe-desc
-                    move exe-int-code to int-code
-                    read intexe
-                    move int-desc   to zem-int-desc
-                    move grp-desc   to zem-grp-desc
-                    move grp-code   to zem-grp-code
-                    move int-effort to zem-int-effort
-                    write zem-rec
-                 end-perform
-           end-start.
-           
-           close zoom-exe-mcg 
-           .
-      * <TOTEM:END>
-
        CURRENT-RECORD.
       * <TOTEM:PARA. CURRENT-RECORD>
       *     perform RIEMPI-CHIAVE.
@@ -5544,8 +5494,7 @@
            close       tmp-wod-exe.
            delete file tmp-wod-exe.
                             
-           close       tmp-exe.
-           delete file tmp-exe.    
+           close       tmp-exe.    
 
            close       tmp-exe-dupl.
            delete file tmp-exe-dupl.
@@ -5694,6 +5643,11 @@
            col-series
                     modify gd1(riga, 78-col-reps),     cell-data = 
            col-reps
+
+                    move col-reps   to tex-reps
+                    move col-series to tex-series
+                    rewrite tex-rec
+
                     move int-restpause to hid-restpause
                     move col-day       to hid-day
                     modify gd1(riga, 78-col-day), hidden-data hiddenData
@@ -6238,6 +6192,7 @@
 
        LOOKUP-EXE.
       * <TOTEM:PARA. LOOKUP-EXE>
+           perform X-Y.
            inquire gd1(riga, 78-col-exe-code), 
                    cell-data in exe-code
            inquire gd1(riga, 78-col-grp-code), 
@@ -6248,7 +6203,7 @@
            move int-effort to s-int-effort
            read groups no lock
            move grp-mcg-code to s-mcg-code
-           perform CREA-ZOOM-EXE-MCG
+           perform CREA-ZOOM-EXE-MCG.
            move low-value to zem-rec
            move s-int-effort to zem-int-effort
            move path-zoom-exe-mcg to ext-file
@@ -6269,7 +6224,56 @@
                      cell-data = col-grp-code
               modify gd1(riga, 78-col-grp-desc), 
                      cell-data = col-grp-desc
-           end-if 
+           end-if.    
+
+      ***---
+       CREA-ZOOM-EXE-MCG.          
+           accept  como-data from century-date.
+           accept  como-ora  from time.
+           accept  path-zoom-exe-mcg from environment "PATH_ST".
+           inspect path-zoom-exe-mcg replacing trailing spaces by 
+           low-value.
+           string  path-zoom-exe-mcg delimited low-value
+                   "path-zoom-exe-mcg_"   delimited size
+                   como-data           delimited size
+                   "_"                 delimited size
+                   como-ora            delimited size
+              into path-zoom-exe-mcg
+           end-string.                                                  
+                 
+           inspect path-zoom-exe-mcg replacing trailing low-value by 
+           spaces.
+           open output zoom-exe-mcg.    
+           close       zoom-exe-mcg
+           open i-o    zoom-exe-mcg
+
+           move low-value to exe-code.
+           start exercises key >= exe-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read exercises next at end exit perform end-read
+                    if exe-disab = 1 exit perform cycle end-if
+                    move exe-grp-code to grp-code
+                    read groups no lock
+                         invalid move spaces to grp-mcg-code
+                    end-read
+                    if grp-mcg-code not = s-mcg-code
+                       exit perform cycle
+                    end-if
+                    move exe-code to zem-exe-code
+                    move exe-desc to zem-exe-desc
+                    move exe-int-code to int-code
+                    read intexe
+                    move int-desc   to zem-int-desc
+                    move grp-desc   to zem-grp-desc
+                    move grp-code   to zem-grp-code
+                    move int-effort to zem-int-effort
+                    write zem-rec
+                 end-perform
+           end-start.
+           
+           close zoom-exe-mcg 
            .
       * <TOTEM:END>
 
@@ -6538,9 +6542,9 @@
       -    "A"
            else
               move spaces to link-stampante
-           end-if
-      *     call   "st-schedacli" using tsc-codice, link-stampante
-      *     cancel "st-schedacli"
+           end-if.
+           call   "st-wod" using path-tmp-exe, link-stampante
+           cancel "st-wod"
            .
       * <TOTEM:END>
 

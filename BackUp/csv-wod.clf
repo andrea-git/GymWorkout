@@ -3,7 +3,7 @@
 
 [DATALAYOUT_CONTENT]
 DIRTY_AFTER_GEN=1
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7915102444-931-2886322013
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7915213241-165-254715801
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -15,7 +15,7 @@ m_strPrefix=csv-wod
 
 @}}
 [FDITEM0_]
-m_strName=cwod-rec
+m_strName=csw-rec
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
@@ -23,9 +23,9 @@ m_bFixed=1
 
 @}}
 [FDITEM1_]
-m_strName=cwod-day
-m_strRawPic=9
-m_strPic=9
+m_strName=csw--day
+m_strRawPic=9(3)
+m_strPic=9(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -33,7 +33,7 @@ m_bFixed=1
 
 @}}
 [FDITEM2_]
-m_strName=cwod-ex
+m_strName=csw--prg
 m_strRawPic=9(3)
 m_strPic=9(3)
 m_nItemLevel=5
@@ -43,19 +43,43 @@ m_bFixed=1
 
 @}}
 [FDITEM3_]
-m_strName=cwod-exe-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=csw--exe-code
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
+m_strName_Xfd=csw--prg_1
 {{@DataItem_m_strDescriptionFDITEM3_
+
+@}}
+[FDITEM4_]
+m_strName=csw--series
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+m_strName_Xfd=csw--prg_1_1
+{{@DataItem_m_strDescriptionFDITEM4_
+
+@}}
+[FDITEM5_]
+m_strName=csw-reps
+m_strRawPic=x(10)
+m_strPic=x(10)
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+m_strName_Xfd=csw--prg_1_2
+{{@DataItem_m_strDescriptionFDITEM5_
 
 @}}
 [CStoAcucobolSL_]
 m_nType=1
 m_strAssignToName=path-csv-wod
-m_nFormat=1
+m_nFormat=3
+m_nAccessMode=3
 m_strFileStatus=STATUS-csv-wod
 m_nNumber=1
 m_nCompression=70

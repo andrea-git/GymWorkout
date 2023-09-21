@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 21 settembre 2023 17:04:58.
+       DATE-WRITTEN.        giovedì 21 settembre 2023 19:28:34.
        REMARKS.
       *{TOTEM}END
 
@@ -140,6 +140,9 @@
        77 como-dupl        PIC  x(100).
        77 colore           PIC  999.
        77 como-e           PIC  999.
+       01 tab-prim.
+           05 como-prim        PIC  9
+                      OCCURS 10 TIMES.
        77 BOTTONE-annulla-BMP          PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
@@ -195,19 +198,28 @@
        77 tot-durata       PIC  9(10).
        77 lastIdx          PIC  9(3).
        77 idx1 PIC  9(3).
+       77 idx1-p           PIC  9(3).
        77 idx2 PIC  9(3).
        77 idx-days         PIC  9(3).
        77 idx-split        PIC  9(3).
        77 como-range-from  PIC  xx.
        77 como-range-to    PIC  xx.
        77 como-x           PIC  x.
-       01 tot-mcg          PIC  99.
-       01 tot-exe          PIC  99.
+       77 primari-rimasti  PIC  99.
+       77 tot-mcg          PIC  99.
+       77 tot-mcg-p        PIC  99.
+       77 tot-exe          PIC  99.
        01 como-tab-mcg.
            05 como-el-mcg-desc PIC  x(100)
                       OCCURS 10 TIMES.
        01 tab-mcg.
            05 el-mcg-desc      PIC  x(100)
+                      OCCURS 10 TIMES.
+       01 como-tab-mcg-p.
+           05 como-el-mcg-desc-p           PIC  x(100)
+                      OCCURS 10 TIMES.
+       01 tab-mcg-p.
+           05 el-mcg-desc-p    PIC  x(100)
                       OCCURS 10 TIMES.
        77 tot-gruppi       PIC  999.
        77 idx-gruppi       PIC  999.
@@ -320,6 +332,8 @@
                   USAGE IS HANDLE OF FONT.
        01 hiddenData.
            05 hid-restpause    PIC  9(3).
+       77 Calibri14BU-Occidentale
+                  USAGE IS HANDLE OF FONT.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -764,6 +778,7 @@
            BITMAP-NUMBER 1,
            FRAMED,
            SQUARE,
+           ENABLED 0,
            EXCEPTION-VALUE 1002,
            FONT IS Small-Font,
            ID IS 25,
@@ -842,7 +857,8 @@
            COL 3,00, 
            LINE 1,70,
            LINES 1,30 ,
-           SIZE 13,00 ,
+           SIZE 14,00 ,
+           FONT IS Calibri14-Occidentale,
            ID IS 2,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -856,7 +872,8 @@
            COL 3,00, 
            LINE 3,17,
            LINES 1,30 ,
-           SIZE 13,00 ,
+           SIZE 14,00 ,
+           FONT IS Calibri14-Occidentale,
            ID IS 3,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -870,7 +887,8 @@
            COL 3,00, 
            LINE 4,70,
            LINES 1,30 ,
-           SIZE 13,00 ,
+           SIZE 14,00 ,
+           FONT IS Calibri14-Occidentale,
            ID IS 4,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -884,7 +902,8 @@
            COL 3,00, 
            LINE 6,17,
            LINES 1,30 ,
-           SIZE 13,00 ,
+           SIZE 14,00 ,
+           FONT IS Calibri14-Occidentale,
            ID IS 5,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -898,7 +917,8 @@
            COL 3,00, 
            LINE 7,70,
            LINES 1,30 ,
-           SIZE 13,00 ,
+           SIZE 14,00 ,
+           FONT IS Calibri14-Occidentale,
            ID IS 6,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -987,7 +1007,8 @@
            COL 3,00, 
            LINE 9,17,
            LINES 1,30 ,
-           SIZE 13,00 ,
+           SIZE 14,00 ,
+           FONT IS Calibri14-Occidentale,
            ID IS 27,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1001,7 +1022,8 @@
            COL 3,00, 
            LINE 10,70,
            LINES 1,30 ,
-           SIZE 13,00 ,
+           SIZE 14,00 ,
+           FONT IS Calibri14-Occidentale,
            ID IS 29,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1226,7 +1248,7 @@
            LINE 1,13,
            LINES 1,35 ,
            SIZE 3,10 ,
-           FONT IS Calibri10-Occidentale,
+           FONT IS Calibri14BU-Occidentale,
            ID IS 41,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1305,9 +1327,9 @@
       * <TOTEM:EPT. INIT:gwod, INIT:gwod, BeforeDestroyResource>
       * <TOTEM:END>
            DESTROY Calibri12-Occidentale
-           DESTROY Calibri10B-Occidentale
            DESTROY Calibri14-Occidentale
-           DESTROY Calibri10-Occidentale
+           DESTROY Calibri10B-Occidentale
+           DESTROY Calibri14BU-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, genera-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, random-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
@@ -1351,19 +1373,6 @@
            MOVE 0 TO WFONT-CHAR-SET
            CALL "W$FONT" USING WFONT-GET-FONT, 
                      Calibri12-Occidentale, WFONT-DATA
-      * Calibri10B-Occidentale
-           INITIALIZE WFONT-DATA Calibri10B-Occidentale
-           MOVE 10 TO WFONT-SIZE
-           MOVE "Calibri" TO WFONT-NAME
-           SET WFCHARSET-DONT-CARE TO TRUE
-           SET WFONT-BOLD TO TRUE
-           SET WFONT-ITALIC TO FALSE
-           SET WFONT-UNDERLINE TO FALSE
-           SET WFONT-STRIKEOUT TO FALSE
-           SET WFONT-FIXED-PITCH TO FALSE
-           MOVE 0 TO WFONT-CHAR-SET
-           CALL "W$FONT" USING WFONT-GET-FONT, 
-                     Calibri10B-Occidentale, WFONT-DATA
       * Calibri14-Occidentale
            INITIALIZE WFONT-DATA Calibri14-Occidentale
            MOVE 14 TO WFONT-SIZE
@@ -1377,19 +1386,31 @@
            MOVE 0 TO WFONT-CHAR-SET
            CALL "W$FONT" USING WFONT-GET-FONT, 
                      Calibri14-Occidentale, WFONT-DATA
-      * Calibri10-Occidentale
-           INITIALIZE WFONT-DATA Calibri10-Occidentale
+      * Calibri10B-Occidentale
+           INITIALIZE WFONT-DATA Calibri10B-Occidentale
            MOVE 10 TO WFONT-SIZE
            MOVE "Calibri" TO WFONT-NAME
            SET WFCHARSET-DONT-CARE TO TRUE
-           SET WFONT-BOLD TO FALSE
+           SET WFONT-BOLD TO TRUE
            SET WFONT-ITALIC TO FALSE
            SET WFONT-UNDERLINE TO FALSE
            SET WFONT-STRIKEOUT TO FALSE
            SET WFONT-FIXED-PITCH TO FALSE
            MOVE 0 TO WFONT-CHAR-SET
            CALL "W$FONT" USING WFONT-GET-FONT, 
-                     Calibri10-Occidentale, WFONT-DATA
+                     Calibri10B-Occidentale, WFONT-DATA
+      * Calibri14BU-Occidentale
+           INITIALIZE WFONT-DATA Calibri14BU-Occidentale
+           MOVE 14 TO WFONT-SIZE
+           MOVE "Calibri" TO WFONT-NAME
+           SET WFONT-BOLD TO TRUE
+           SET WFONT-ITALIC TO FALSE
+           SET WFONT-UNDERLINE TO TRUE
+           SET WFONT-STRIKEOUT TO FALSE
+           SET WFONT-FIXED-PITCH TO FALSE
+           MOVE 0 TO WFONT-CHAR-SET
+           CALL "W$FONT" USING WFONT-GET-FONT, 
+                     Calibri14BU-Occidentale, WFONT-DATA
            .
 
        INIT-BMP.
@@ -3667,9 +3688,7 @@
              not invalid
                  perform until 1 = 2
                     read macrogroups next at end exit perform end-read
-
-                    add 1 to tot-mcg 
-
+                                                   
                     modify cb-mg1, item-to-add = mcg-desc
                     modify cb-mg2, item-to-add = mcg-desc
                     modify cb-mg3, item-to-add = mcg-desc
@@ -3677,8 +3696,14 @@
                     modify cb-mg5, item-to-add = mcg-desc
                     modify cb-mg6, item-to-add = mcg-desc
                     modify cb-mg7, item-to-add = mcg-desc
-
-                    move mcg-desc to el-mcg-desc(tot-mcg)
+                                      
+                    if mcg-primary = 1             
+                       add 1         to tot-mcg-p
+                       move mcg-desc to el-mcg-desc-p(tot-mcg-p)
+                    else                           
+                       add 1         to tot-mcg
+                       move mcg-desc to el-mcg-desc(tot-mcg)
+                    end-if
                  end-perform
            end-start. 
            move low-value to dur-rec.
@@ -4224,6 +4249,17 @@
 
        ABILITA-MACROGRUPPI.
       * <TOTEM:PARA. ABILITA-MACROGRUPPI>
+           move 0 to como-prim(1).
+           move 0 to como-prim(2).
+           move 0 to como-prim(3).
+           move 0 to como-prim(4).
+           move 0 to como-prim(5).
+           move 0 to como-prim(6).
+           move 0 to como-prim(7).
+           move 0 to como-prim(8).
+           move 0 to como-prim(9).
+           move 0 to como-prim(10).
+
            inquire cb-mg1, value cb-mg1-buf.
            inquire cb-mg2, value cb-mg2-buf.
            inquire cb-mg3, value cb-mg3-buf.
@@ -4251,7 +4287,15 @@
               cb-wod-buf = s-cb-wod-buf
               exit paragraph 
            end-if.
-
+           
+           modify lab-a, font Calibri14-Occidentale.
+           modify lab-b, font Calibri14-Occidentale.
+           modify lab-c, font Calibri14-Occidentale.
+           modify lab-d, font Calibri14-Occidentale.
+           modify lab-e, font Calibri14-Occidentale.
+           modify lab-f, font Calibri14-Occidentale.
+           modify lab-g, font Calibri14-Occidentale.
+           
            inquire cb-wod, value in wom-desc.
            modify cb-mg1, enabled false.
            modify cb-mg2, enabled false.
@@ -4263,13 +4307,13 @@
 
            read wodmap key wom-k-desc
                 invalid
-                modify cb-mg1, value "Nessuno"
-                modify cb-mg2, value "Nessuno"
-                modify cb-mg3, value "Nessuno"
-                modify cb-mg4, value "Nessuno"
-                modify cb-mg5, value "Nessuno"
-                modify cb-mg6, value "Nessuno"
-                modify cb-mg7, value "Nessuno"
+                modify cb-mg1, value "Nessuno", 
+                modify cb-mg2, value "Nessuno"  
+                modify cb-mg3, value "Nessuno"  
+                modify cb-mg4, value "Nessuno"  
+                modify cb-mg5, value "Nessuno"  
+                modify cb-mg6, value "Nessuno"  
+                modify cb-mg7, value "Nessuno"  
                 initialize wom-data replacing numeric data by zeroes
                                          alphanumeric data by spaces
                 exit paragraph
@@ -4299,13 +4343,55 @@
                     exit perform
                  end-if                                
                  evaluate wom-split-el-split-sigla(idx-days, idx-split)
-                 when "A" inquire cb-mg1, value = mcg-desc
-                 when "B" inquire cb-mg2, value = mcg-desc
-                 when "C" inquire cb-mg3, value = mcg-desc
-                 when "D" inquire cb-mg4, value = mcg-desc
-                 when "E" inquire cb-mg5, value = mcg-desc
-                 when "F" inquire cb-mg6, value = mcg-desc
-                 when "G" inquire cb-mg7, value = mcg-desc
+                 when "A" 
+                      if wom-split-el-split-primary(idx-days, 
+           idx-split) = 1
+                         modify lab-a, font Calibri14BU-Occidentale
+                         move 1 to como-prim(1)
+                      end-if
+                      inquire cb-mg1, value = mcg-desc
+                 when "B" 
+                      inquire cb-mg2, value = mcg-desc
+                      if wom-split-el-split-primary(idx-days, 
+           idx-split) = 1
+                         modify lab-b, font Calibri14BU-Occidentale
+                         move 1 to como-prim(2)
+                      end-if
+                 when "C" 
+                      inquire cb-mg3, value = mcg-desc
+                      if wom-split-el-split-primary(idx-days, 
+           idx-split) = 1
+                         modify lab-c, font Calibri14BU-Occidentale
+                         move 1 to como-prim(3)
+                      end-if
+                 when "D"  
+                      inquire cb-mg4, value = mcg-desc
+                      if wom-split-el-split-primary(idx-days, 
+           idx-split) = 1
+                         modify lab-d, font Calibri14BU-Occidentale
+                         move 1 to como-prim(4)
+                      end-if
+                 when "E"  
+                      inquire cb-mg5, value = mcg-desc
+                      if wom-split-el-split-primary(idx-days, 
+           idx-split) = 1
+                         modify lab-e, font Calibri14BU-Occidentale
+                         move 1 to como-prim(5)
+                      end-if
+                 when "F" 
+                      inquire cb-mg6, value = mcg-desc
+                      if wom-split-el-split-primary(idx-days, 
+           idx-split) = 1
+                         modify lab-f, font Calibri14BU-Occidentale
+                         move 1 to como-prim(6)
+                      end-if
+                 when "G" 
+                      inquire cb-mg7, value = mcg-desc
+                      if wom-split-el-split-primary(idx-days, 
+           idx-split) = 1
+                         modify lab-g, font Calibri14BU-Occidentale
+                         move 1 to como-prim(7)
+                      end-if
                  end-evaluate
                  read macrogroups key mcg-k-desc
                       invalid move spaces to mcg-desc mcg-code
@@ -4397,7 +4483,8 @@
               modify gd-schema(riga, 11), cell-data = mcg-10
               modify gd-schema(riga, 12), cell-data = spaces
               modify gd-schema(riga), row-color = colore    
-           end-perform.             
+           end-perform.        
+        
 
            evaluate wom-macrogroups
            when 1                          
@@ -4449,7 +4536,48 @@
            move cb-int-buf to s-cb-int-buf.
            move cb-dur-buf to s-cb-dur-buf.
            move cb-gio-buf to s-cb-gio-buf.
-           move cb-wod-buf to s-cb-wod-buf 
+           move cb-wod-buf to s-cb-wod-buf.
+           
+           inquire cb-mg1, enabled in como-e, value in como-nome.
+           if como-e = 1 and como-nome = "Nessuno"
+              modify pb-genera, enabled false
+           end-if.             
+           
+           inquire cb-mg2, enabled in como-e, value in como-nome.
+           if como-e = 1 and como-nome = "Nessuno"
+              modify pb-genera, enabled false
+           end-if.
+           
+           inquire cb-mg3, enabled in como-e, value in como-nome.
+           if como-e = 1 and como-nome = "Nessuno"
+              modify pb-genera, enabled false
+           end-if.
+           
+           inquire cb-mg4, enabled in como-e, value in como-nome.
+           if como-e = 1 and como-nome = "Nessuno"
+              modify pb-genera, enabled false
+           end-if.
+           
+           inquire cb-mg5, enabled in como-e, value in como-nome.
+           if como-e = 1 and como-nome = "Nessuno"
+              modify pb-genera, enabled false
+           end-if.
+           
+           inquire cb-mg6, enabled in como-e, value in como-nome.
+           if como-e = 1 and como-nome = "Nessuno"
+              modify pb-genera, enabled false
+           end-if.
+           
+           inquire cb-mg7, enabled in como-e, value in como-nome.
+           if como-e = 1 and como-nome = "Nessuno"
+              modify pb-genera, enabled false
+           end-if.
+
+           if cb-wod-buf = "Nessuno"         
+              modify pb-random, enabled false
+           else
+              modify pb-random, enabled true
+           end-if 
            .
       * <TOTEM:END>
 
@@ -4749,9 +4877,9 @@
                 invalid continue
             not invalid 
                 add 1 to idx-gruppi                   
-                move mcg-desc to el-mgroup(idx-gruppi)
-                move mcg-code to el-mcg-code(idx-gruppi)
-                move 0        to el-mcg-hit(idx-gruppi)
+                move mcg-desc    to el-mgroup(idx-gruppi)  
+                move mcg-code    to el-mcg-code(idx-gruppi)
+                move 0           to el-mcg-hit(idx-gruppi)
            end-read.
            move idx-gruppi to tot-gruppi 
            .
@@ -4822,19 +4950,19 @@
        DATI-DEFAULT.
       * <TOTEM:PARA. DATI-DEFAULT>
            modify cb-mg1, value "Nessuno".
-           modify lab-a, color  513
+           modify lab-a, color  513, font Calibri14-Occidentale.
            modify cb-mg2, value "Nessuno".
-           modify lab-b, color  513
+           modify lab-b, color  513, font Calibri14-Occidentale.
            modify cb-mg3, value "Nessuno".
-           modify lab-c, color  513
+           modify lab-c, color  513, font Calibri14-Occidentale.
            modify cb-mg4, value "Nessuno".
-           modify lab-d, color  513
+           modify lab-d, color  513, font Calibri14-Occidentale.
            modify cb-mg5, value "Nessuno".
-           modify lab-e, color  513
+           modify lab-e, color  513, font Calibri14-Occidentale.
            modify cb-mg6, value "Nessuno".
-           modify lab-f, color  513
+           modify lab-f, color  513, font Calibri14-Occidentale.
            modify cb-mg7, value "Nessuno".
-           modify lab-g, color  513
+           modify lab-g, color  513, font Calibri14-Occidentale.
 
            modify cb-mul,  value "Si".
                                           
@@ -5679,21 +5807,6 @@
       * <TOTEM:END>
        pb-genera-LinkTo.
       * <TOTEM:PARA. pb-genera-LinkTo>
-           inquire cb-mg1, enabled in como-e, value in como-nome.
-           if como-e = 1 and como-nome = "Nessuno"
-              display message "Valorizzare tutti i macrogruppi"
-                        title titolo
-                         icon 2
-              exit paragraph
-           end-if.
-           inquire cb-wod, value in como-nome.
-           if como-nome = "Nessuno"
-              display message "Selezionare un modello"
-                        title titolo
-                         icon 2
-              exit paragraph
-           end-if.
-           
            perform CREA-OCCURS-GRUPPI.
                                          
            move 0 to int-effort.
@@ -6466,8 +6579,9 @@
       * <TOTEM:PARA. pb-random-LinkTo>
            inquire cb-wod, value in wom-desc.
            read wodmap key wom-k-desc.
-
-           move tab-mcg to como-tab-mcg.
+                                      
+           move tab-mcg   to como-tab-mcg.
+           move tab-mcg-p to como-tab-mcg-p.
 
            perform varying idx1 from 1 by 1 
                      until idx1 > 10
@@ -6477,39 +6591,83 @@
               end-if
            end-perform.
 
-           if idx1 = 0
-              exit paragraph
-           end-if.
-           
-           move 0 to riga.
-           perform until 1 = 2
-              if riga = wom-macrogroups
+           perform varying idx1-p from 1 by 1 
+                     until idx1-p > 10
+              if como-el-mcg-desc-p(idx1-p) = spaces
+                 subtract 1 from idx1-p
                  exit perform
               end-if
-              compute idx = function random * (tot-mcg)
-              add 1 to idx
-              if como-el-mcg-desc(idx) not = spaces
-                 add 1 to riga
-                 if riga > wom-macrogroups
-                    exit perform
-                 end-if
-                 evaluate riga
-                 when 1 modify cb-mg1, value = como-el-mcg-desc(idx)
-                 when 2 modify cb-mg2, value = como-el-mcg-desc(idx)
-                 when 3 modify cb-mg3, value = como-el-mcg-desc(idx)
-                 when 4 modify cb-mg4, value = como-el-mcg-desc(idx)
-                 when 5 modify cb-mg5, value = como-el-mcg-desc(idx)
-                 when 6 modify cb-mg6, value = como-el-mcg-desc(idx)
-                 when 7 modify cb-mg7, value = como-el-mcg-desc(idx)
-                 end-evaluate
-                 move spaces to como-el-mcg-desc(idx) 
-                 if idx1 = 1 |Ho finito i gruppi e riparto
-                    move tab-mcg to como-tab-mcg
-                 else
-                    subtract 1 from idx1
-                 end-if
+           end-perform.
 
-              end-if
+           if idx1 = 0 or idx1-p = 0
+              exit paragraph
+           end-if.
+
+           perform varying riga from 1 by 1 
+                     until riga > 7
+              perform until 1 = 2
+                 if como-prim(riga) = 1
+                    compute idx = function random * (tot-mcg-p)
+                    add 1 to idx
+                    if como-el-mcg-desc-p(idx) not = spaces
+                       move como-el-mcg-desc(idx) to mcg-desc
+                       read macrogroups key mcg-k-desc
+                       evaluate riga
+                       when 1 modify cb-mg1, value = 
+           como-el-mcg-desc-p(idx)
+                       when 2 modify cb-mg2, value = 
+           como-el-mcg-desc-p(idx)
+                       when 3 modify cb-mg3, value = 
+           como-el-mcg-desc-p(idx)
+                       when 4 modify cb-mg4, value = 
+           como-el-mcg-desc-p(idx)
+                       when 5 modify cb-mg5, value = 
+           como-el-mcg-desc-p(idx)
+                       when 6 modify cb-mg6, value = 
+           como-el-mcg-desc-p(idx)
+                       when 7 modify cb-mg7, value = 
+           como-el-mcg-desc-p(idx)
+                       end-evaluate
+                       move spaces to como-el-mcg-desc-p(idx) 
+                       if idx1-p = 1 |Ho finito i gruppi e riparto
+                          move tab-mcg-p to como-tab-mcg-p
+                       else
+                          subtract 1 from idx1-p
+                       end-if
+                       exit perform
+                    end-if
+                 else
+                    compute idx = function random * (tot-mcg)
+                    add 1 to idx
+                    if como-el-mcg-desc(idx) not = spaces
+                       move como-el-mcg-desc(idx) to mcg-desc
+                       read macrogroups key mcg-k-desc
+                       evaluate riga
+                       when 1 modify cb-mg1, value = 
+           como-el-mcg-desc(idx)
+                       when 2 modify cb-mg2, value = 
+           como-el-mcg-desc(idx)
+                       when 3 modify cb-mg3, value = 
+           como-el-mcg-desc(idx)
+                       when 4 modify cb-mg4, value = 
+           como-el-mcg-desc(idx)
+                       when 5 modify cb-mg5, value = 
+           como-el-mcg-desc(idx)
+                       when 6 modify cb-mg6, value = 
+           como-el-mcg-desc(idx)
+                       when 7 modify cb-mg7, value = 
+           como-el-mcg-desc(idx)
+                       end-evaluate
+                       move spaces to como-el-mcg-desc(idx) 
+                       if idx1 = 1 |Ho finito i gruppi e riparto
+                          move tab-mcg to como-tab-mcg
+                       else
+                          subtract 1 from idx1
+                       end-if      
+                       exit perform
+                    end-if
+                 end-if
+              end-perform
            end-perform.
 
            perform ABILITA-MACROGRUPPI 

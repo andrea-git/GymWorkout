@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 21 settembre 2023 19:28:34.
+       DATE-WRITTEN.        giovedì 21 settembre 2023 20:35:04.
        REMARKS.
       *{TOTEM}END
 
@@ -38,6 +38,7 @@
            COPY "tmp-exe.sl".
            COPY "intexe.sl".
            COPY "tmp-exe-dupl.sl".
+           COPY "zoom-exe-mcg.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
@@ -53,6 +54,7 @@
            COPY "tmp-exe.fd".
            COPY "intexe.fd".
            COPY "tmp-exe-dupl.fd".
+           COPY "zoom-exe-mcg.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -79,6 +81,7 @@
           88 Screen-Time-Out VALUE 99.
       * Properties & User defined Working Stoarge
        78 titolo VALUE IS "Gestione WOD". 
+           COPY  "EXTERNALS.DEF".
        77 num-param        PIC  9
                   USAGE IS COMP-1
                   VALUE IS 0.
@@ -140,6 +143,8 @@
        77 como-dupl        PIC  x(100).
        77 colore           PIC  999.
        77 como-e           PIC  999.
+       77 s-mcg-code       PIC  x(5).
+       77 s-int-effort     PIC  99.
        01 tab-prim.
            05 como-prim        PIC  9
                       OCCURS 10 TIMES.
@@ -331,9 +336,13 @@
        77 Calibri10B-Occidentale
                   USAGE IS HANDLE OF FONT.
        01 hiddenData.
-           05 hid-restpause    PIC  9(3).
+           05 hid-restpause    PIC  9.
+           05 hid-day          PIC  9.
        77 Calibri14BU-Occidentale
                   USAGE IS HANDLE OF FONT.
+       77 path-zoom-exe-mcg            PIC  X(256).
+       77 STATUS-zoom-exe-mcg          PIC  X(2).
+           88 Valid-STATUS-zoom-exe-mcg VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -355,6 +364,7 @@
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(217).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(105).
+       77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -415,6 +425,11 @@
        77 DataSet1-tmp-exe-dupl-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-tmp-exe-dupl-KEY-Asc  VALUE "A".
           88 DataSet1-tmp-exe-dupl-KEY-Desc VALUE "D".
+       77 DataSet1-zoom-exe-mcg-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-zoom-exe-mcg-LOCK  VALUE "Y".
+       77 DataSet1-zoom-exe-mcg-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-zoom-exe-mcg-KEY-Asc  VALUE "A".
+          88 DataSet1-zoom-exe-mcg-KEY-Desc VALUE "D".
 
        77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
@@ -428,6 +443,7 @@
        77 intexe-int-k-desc-SPLITBUF  PIC X(101).
        77 intexe-int-k-effort-SPLITBUF  PIC X(3).
        77 tmp-exe-dupl-ted-k-num-SPLITBUF  PIC X(106).
+       77 zoom-exe-mcg-zem-k-int-SPLITBUF  PIC X(103).
 
        01                 pic 9.
            88 s-excell    value 1.
@@ -1072,7 +1088,7 @@
            SIZE 3,80 ,
            EXCEPTION-VALUE 1004,
            FONT IS Small-Font,
-           ID IS 36,
+           ID IS 38,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "&S",
@@ -1403,6 +1419,7 @@
            INITIALIZE WFONT-DATA Calibri14BU-Occidentale
            MOVE 14 TO WFONT-SIZE
            MOVE "Calibri" TO WFONT-NAME
+           SET WFCHARSET-DONT-CARE TO TRUE
            SET WFONT-BOLD TO TRUE
            SET WFONT-ITALIC TO FALSE
            SET WFONT-UNDERLINE TO TRUE
@@ -1451,6 +1468,8 @@
            PERFORM OPEN-intexe
       *    tmp-exe-dupl OPEN MODE IS FALSE
       *    PERFORM OPEN-tmp-exe-dupl
+      *    zoom-exe-mcg OPEN MODE IS FALSE
+      *    PERFORM OPEN-zoom-exe-mcg
       *    After Open
            .
 
@@ -1593,6 +1612,18 @@
       * <TOTEM:END>
            .
 
+       OPEN-zoom-exe-mcg.
+      * <TOTEM:EPT. INIT:gwod, FD:zoom-exe-mcg, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  OUTPUT zoom-exe-mcg
+           IF NOT Valid-STATUS-zoom-exe-mcg
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:zoom-exe-mcg, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-exercises
@@ -1610,6 +1641,8 @@
            PERFORM CLOSE-intexe
       *    tmp-exe-dupl CLOSE MODE IS FALSE
       *    PERFORM CLOSE-tmp-exe-dupl
+      *    zoom-exe-mcg CLOSE MODE IS FALSE
+      *    PERFORM CLOSE-zoom-exe-mcg
       *    After Close
            .
 
@@ -1672,6 +1705,11 @@
 
        CLOSE-tmp-exe-dupl.
       * <TOTEM:EPT. INIT:gwod, FD:tmp-exe-dupl, BeforeClose>
+      * <TOTEM:END>
+           .
+
+       CLOSE-zoom-exe-mcg.
+      * <TOTEM:EPT. INIT:gwod, FD:zoom-exe-mcg, BeforeClose>
       * <TOTEM:END>
            .
 
@@ -3350,6 +3388,127 @@
       * <TOTEM:END>
            .
 
+       zoom-exe-mcg-zem-k-int-MERGE-SPLITBUF.
+           INITIALIZE zoom-exe-mcg-zem-k-int-SPLITBUF
+           MOVE zem-int-effort(1:2) TO 
+           zoom-exe-mcg-zem-k-int-SPLITBUF(1:2)
+           MOVE zem-exe-desc(1:100) TO 
+           zoom-exe-mcg-zem-k-int-SPLITBUF(3:100)
+           .
+
+       DataSet1-zoom-exe-mcg-INITSTART.
+           IF DataSet1-zoom-exe-mcg-KEY-Asc
+              MOVE Low-Value TO zem-key
+           ELSE
+              MOVE High-Value TO zem-key
+           END-IF
+           .
+
+       DataSet1-zoom-exe-mcg-INITEND.
+           IF DataSet1-zoom-exe-mcg-KEY-Asc
+              MOVE High-Value TO zem-key
+           ELSE
+              MOVE Low-Value TO zem-key
+           END-IF
+           .
+
+      * zoom-exe-mcg
+       DataSet1-zoom-exe-mcg-START.
+           IF DataSet1-zoom-exe-mcg-KEY-Asc
+              START zoom-exe-mcg KEY >= zem-key
+           ELSE
+              START zoom-exe-mcg KEY <= zem-key
+           END-IF
+           .
+
+       DataSet1-zoom-exe-mcg-START-NOTGREATER.
+           IF DataSet1-zoom-exe-mcg-KEY-Asc
+              START zoom-exe-mcg KEY <= zem-key
+           ELSE
+              START zoom-exe-mcg KEY >= zem-key
+           END-IF
+           .
+
+       DataSet1-zoom-exe-mcg-START-GREATER.
+           IF DataSet1-zoom-exe-mcg-KEY-Asc
+              START zoom-exe-mcg KEY > zem-key
+           ELSE
+              START zoom-exe-mcg KEY < zem-key
+           END-IF
+           .
+
+       DataSet1-zoom-exe-mcg-START-LESS.
+           IF DataSet1-zoom-exe-mcg-KEY-Asc
+              START zoom-exe-mcg KEY < zem-key
+           ELSE
+              START zoom-exe-mcg KEY > zem-key
+           END-IF
+           .
+
+       DataSet1-zoom-exe-mcg-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, BeforeReadRecord>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-zoom-exe-mcg-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, BeforeReadNext>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-zoom-exe-mcg-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, BeforeReadPrev>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-zoom-exe-mcg-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, BeforeWrite>
+      * <TOTEM:END>
+           WRITE zem-rec OF zoom-exe-mcg.
+           MOVE STATUS-zoom-exe-mcg TO TOTEM-ERR-STAT
+           MOVE "zoom-exe-mcg" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-zoom-exe-mcg-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-zoom-exe-mcg TO TOTEM-ERR-STAT
+           MOVE "zoom-exe-mcg" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-zoom-exe-mcg-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-zoom-exe-mcg TO TOTEM-ERR-STAT
+           MOVE "zoom-exe-mcg" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-exe-mcg, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE grp-rec OF groups
@@ -3362,6 +3521,7 @@
            INITIALIZE tex-rec OF tmp-exe
            INITIALIZE int-rec OF intexe
            INITIALIZE ted-rec OF tmp-exe-dupl
+           INITIALIZE zem-rec OF zoom-exe-mcg
            .
 
 
@@ -3564,6 +3724,14 @@
       * FD's Initialize Paragraph
        DataSet1-tmp-exe-dupl-INITREC.
            INITIALIZE ted-rec OF tmp-exe-dupl
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-zoom-exe-mcg-INITREC.
+           INITIALIZE zem-rec OF zoom-exe-mcg
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -4638,25 +4806,41 @@
       *          end-if
       *
            when 78-ID-gd1
-                display message "K"
-      *          perform X-Y
-      *          evaluate colonna
-      *          when 78-col-art
-      *               inquire gd1(riga, 78-col-art), 
-      *                                         cell-data in art-codice
-      *               move "articoli"     to Como-File
-      *               call   "zoom-gt" using  como-file, art-rec
-      *                                giving stato-zoom
-      *               cancel "zoom-gt"
-      *               if stato-zoom = 0
-      *                  move art-codice        to col-art
-      *                  move art-descrizione   to col-des
-      *                  modify gd1(riga, 78-col-art), 
-      *                         cell-data = col-art
-      *                  modify gd1(riga, 78-col-des), 
-      *                         cell-data = col-des
-      *                  perform CONTROLLO-RIGA
-      *               end-if
+                perform X-Y
+                evaluate colonna
+                when 78-col-exe-code              
+                     inquire gd1(riga, 78-col-exe-code), 
+                             cell-data in exe-code
+                     inquire gd1(riga, 78-col-grp-code), 
+                             cell-data in grp-code
+                     read exercises no lock
+                     move exe-int-code to int-code
+                     read intexe
+                     move int-effort to s-int-effort
+                     read groups no lock
+                     move grp-mcg-code to s-mcg-code
+                     perform CREA-ZOOM-EXE-MCG
+                     move low-value to zem-rec
+                     move s-int-effort to zem-int-effort
+                     move path-zoom-exe-mcg to ext-file
+                     move "zoom-exe-mcg"  to Como-File
+                     call   "zoom-gt"  using  como-file, zem-rec
+                                      giving stato-zoom
+                     cancel "zoom-gt"
+                     if stato-zoom = 0
+                        move zem-exe-code to col-exe-code
+                        move zem-exe-desc to col-exe-desc
+                        move zem-grp-desc to col-grp-desc
+                        move zem-grp-code to col-grp-code
+                        modify gd1(riga, 78-col-exe-code), 
+                               cell-data = col-exe-code
+                        modify gd1(riga, 78-col-exe-desc), 
+                               cell-data = col-exe-desc
+                        modify gd1(riga, 78-col-grp-code), 
+                               cell-data = col-grp-code
+                        modify gd1(riga, 78-col-grp-desc), 
+                               cell-data = col-grp-desc
+                     end-if
       *
       *          when 78-col-prz
       *               perform VALORE-RIGA
@@ -4778,61 +4962,33 @@
 
        CONTROLLO-RIGA.
       * <TOTEM:PARA. CONTROLLO-RIGA>
-      *     set tutto-ok to true.
-      *     if mod = 0 
-      *        exit paragraph 
-      *     end-if.
-      *
-      *     evaluate colonna
-      *     when 78-col-data
-      *          move como-col-data to como-data
-      *          perform DATE-FORMAT
-      *          move como-data to col-data
-      *          modify gd1(riga, 78-col-data), cell-data col-data
-      *     when 78-col-art
-      *          move col-art to art-codice
-      *          if art-codice not = spaces
-      *             read articoli no lock
-      *                  invalid
-      *                  move spaces to art-descrizione
-      *                  set errori to true
-      *                  display message "Articolo NON valido"
-      *                            title tit-err
-      *                          icon 2
-      *             end-read
-      *             modify gd1(riga, 78-col-des), cell-data art-descrizione
-      *          end-if
-      *     when 78-col-des
-      *          if col-art = spaces and col-des = spaces
-      *             set errori to true
-      *             display message "Articolo o Descrizione obbligatorio"
-      *                       title tit-err
-      *                        icon 2
-      *          end-if
-      *
-      *     when 78-col-prz
-      *          if como-col-prz = 0 and col-art not = spaces
-      *             set errori to true
-      *             display message "Prezzo obbligatorio"
-      *                       title tit-err
-      *                        icon 2
-      *          end-if
-      *          if tutto-ok
-      *             perform CALCOLA-NETTO
-      *          end-if
-      *
-      *     when 78-col-sc1
-      ******     when 78-col-sc2
-      *          perform CALCOLA-NETTO
-      *     end-evaluate.
-      *
-      *
-      ****** 78  78-col-qta        value 4. 
-      ****** 78  78-col-prz        value 5. 
-      ****** 78  78-col-sc         value 6. 
-      ****** 78  78-col-note       value 8. 
-      ****** 78  78-col-numdoc     value 9. 
-      ****** 78  78-col-datadoc    value 10  
+           set tutto-ok to true.
+           if mod = 0 
+              exit paragraph 
+           end-if.
+      
+           evaluate colonna
+           when 78-col-day
+                inquire gd1(riga, 78-col-day), hidden-data hiddenData
+                inquire gd1(riga, 78-col-day), cell-data col-day
+                if col-day = 0
+                   modify gd1(riga, 78-col-day),      cell-data = spaces
+                   modify gd1(riga, 78-col-prg),      cell-data = spaces
+                   modify gd1(riga, 78-col-grp-code), cell-data = spaces
+                   modify gd1(riga, 78-col-grp-desc), cell-data = spaces
+                   modify gd1(riga, 78-col-exe-code), cell-data = spaces
+                   modify gd1(riga, 78-col-exe-desc), cell-data = spaces
+                   modify gd1(riga, 78-col-series),   cell-data = 
+           spaces 
+                   modify gd1(riga, 78-col-reps),     cell-data = 
+           spaces 
+                else
+                   if col-day not = hid-day
+                      move hid-day to col-day
+                      modify gd1(riga, 78-col-day), cell-data col-day
+                   end-if
+                end-if
+           end-evaluate 
            .
       * <TOTEM:END>
 
@@ -4882,6 +5038,56 @@
                 move 0           to el-mcg-hit(idx-gruppi)
            end-read.
            move idx-gruppi to tot-gruppi 
+           .
+      * <TOTEM:END>
+
+       CREA-ZOOM-EXE-MCG.
+      * <TOTEM:PARA. CREA-ZOOM-EXE-MCG>
+           accept  como-data from century-date.
+           accept  como-ora  from time.
+           accept  path-zoom-exe-mcg from environment "PATH_ST".
+           inspect path-zoom-exe-mcg replacing trailing spaces by 
+           low-value.
+           string  path-zoom-exe-mcg delimited low-value
+                   "path-zoom-exe-mcg_"   delimited size
+                   como-data           delimited size
+                   "_"                 delimited size
+                   como-ora            delimited size
+              into path-zoom-exe-mcg
+           end-string.                                                  
+                 
+           inspect path-zoom-exe-mcg replacing trailing low-value by 
+           spaces.
+           open output zoom-exe-mcg.    
+           close       zoom-exe-mcg
+           open i-o    zoom-exe-mcg
+
+           move low-value to exe-code.
+           start exercises key >= exe-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read exercises next at end exit perform end-read
+                    move exe-grp-code to grp-code
+                    read groups no lock
+                         invalid move spaces to grp-mcg-code
+                    end-read
+                    if grp-mcg-code not = s-mcg-code
+                       exit perform cycle
+                    end-if
+                    move exe-code to zem-exe-code
+                    move exe-desc to zem-exe-desc
+                    move exe-int-code to int-code
+                    read intexe
+                    move int-desc   to zem-int-desc
+                    move grp-desc   to zem-grp-desc
+                    move grp-code   to zem-grp-code
+                    move int-effort to zem-int-effort
+                    write zem-rec
+                 end-perform
+           end-start.
+           
+           close zoom-exe-mcg 
            .
       * <TOTEM:END>
 
@@ -5521,8 +5727,10 @@
       * <TOTEM:END>
        gd1-Ev-Msg-Begin-Entry.
       * <TOTEM:PARA. gd1-Ev-Msg-Begin-Entry>
-      *     if mod = 0                       
-      *        set  event-action to event-action-fail-terminate
+           if event-data-1 = 2 or 3 or 4 or 5 or 6
+              set  event-action to event-action-fail-terminate
+           end-if.
+           
       *        inquire gd1(riga, 78-col-numdoc),  cell-data OLD-col-numdoc
       *        inquire gd1(riga, 78-col-datadoc), cell-data OLD-col-datadoc
       *
@@ -5605,9 +5813,10 @@
       * <TOTEM:END>
        gd1-Ev-Msg-Finish-Entry.
       * <TOTEM:PARA. gd1-Ev-Msg-Finish-Entry>
-      *     set tutto-ok to true.
-      *     perform X-Y.
-      *     perform VALORE-RIGA.
+           set tutto-ok to true.
+           perform X-Y.
+           perform VALORE-RIGA.
+           perform CONTROLLO-RIGA.
       *
       *     evaluate colonna
       *     when 78-col-data
@@ -6057,7 +6266,8 @@
            col-series
                     modify gd1(riga, 78-col-reps),     cell-data = 
            col-reps
-                    move int-restpause to int-restpause
+                    move int-restpause to hid-restpause
+                    move col-day       to hid-day
                     modify gd1(riga, 78-col-day), hidden-data hiddenData
 
                     compute tot-durata  = tot-durata +

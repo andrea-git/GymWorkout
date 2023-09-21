@@ -2,7 +2,6 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-Adesk-andre=169.254.95.20
 
 
 [WORKSPACE_CONTENT]
@@ -114,6 +113,9 @@ RELATIVE_PATH=FD\tmp-exe-mcg.clf
 
 [DATALAYOUT_CONTENT-GymWorkout:DATALAYOUT12]
 RELATIVE_PATH=FD\tmp-exe-dupl.clf
+
+[DATALAYOUT_CONTENT-GymWorkout:DATALAYOUT13]
+RELATIVE_PATH=FD\zoom-exe-mcg.clf
 
 [FOLDER_CONTENT-GymWorkout:Source]
 ACCEPTED_FILE_EXTENSION=*.cbl;*.cob
@@ -1268,6 +1270,18 @@ FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-exe-dupl.clf
 ATTRIBUTE=0
 
+[FILE_CONTENT-GymWorkout:FILE208]
+RELATIVE_PATH=FD\zoom-exe-mcg.fd
+FOLDER_NAME=FD
+OWNER_PATH=FD\zoom-exe-mcg.clf
+ATTRIBUTE=0
+
+[FILE_CONTENT-GymWorkout:FILE209]
+RELATIVE_PATH=FD\zoom-exe-mcg.sl
+FOLDER_NAME=FD
+OWNER_PATH=FD\zoom-exe-mcg.clf
+ATTRIBUTE=0
+
 [PROJECT_COMPILE_SETTING-GymWorkout:Debug Mode]
 ADDITIONAL_OPTIONS=-x -Fxa -Di -Ga -Zd -Za -Zn -Zz -C61
 ; Standard Options
@@ -1638,7 +1652,7 @@ DEBUGGING=1
 CODE_VERSION_NUMBER=16
 
 [FILE_COMPILE_OPTION-GymWorkout:Debug Mode:Source\gwod.cbl]
-COPY_DEPENDENCE=FD\exercises.sl;FD\groups.sl;FD\macrogroups.sl;FD\duration.sl;FD\tmp-exe-effort.sl;FD\wodbook.sl;FD\wodmap.sl;FD\tmp-wod-exe.sl;FD\tmp-exe.sl;FD\intexe.sl;FD\tmp-exe-dupl.sl;FD\exercises.fd;FD\groups.fd;FD\macrogroups.fd;FD\duration.fd;FD\tmp-exe-effort.fd;FD\wodbook.fd;FD\wodmap.fd;FD\tmp-wod-exe.fd;FD\tmp-exe.fd;FD\intexe.fd;FD\tmp-exe-dupl.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;\StudioPostura\Copylib\blockpgm.lks;Resource\genera.bmp;Resource\random.bmp;Resource\toolbar.bmp;Resource\excel.bmp;Copylib\ABILITA-TOOLBAR.CPY;Copylib\COLOR-CUSTOM.CPY;Copylib\status.cpy;Copylib\utydata.cpy
+COPY_DEPENDENCE=FD\exercises.sl;FD\groups.sl;FD\macrogroups.sl;FD\duration.sl;FD\tmp-exe-effort.sl;FD\wodbook.sl;FD\wodmap.sl;FD\tmp-wod-exe.sl;FD\tmp-exe.sl;FD\intexe.sl;FD\tmp-exe-dupl.sl;FD\exercises.fd;FD\groups.fd;FD\macrogroups.fd;FD\duration.fd;FD\tmp-exe-effort.fd;FD\wodbook.fd;FD\wodmap.fd;FD\tmp-wod-exe.fd;FD\tmp-exe.fd;FD\intexe.fd;FD\tmp-exe-dupl.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;\StudioPostura\Copylib\blockpgm.lks;Resource\genera.bmp;Resource\random.bmp;Resource\toolbar.bmp;Copylib\ABILITA-TOOLBAR.CPY;Copylib\COLOR-CUSTOM.CPY;Copylib\status.cpy;Copylib\utydata.cpy
 ADDITIONAL_OPTIONS=-x -Fxa -Di -Ga -Zd -Za -Zn -Zz -C61
 FOLLOW_PROJECT=1
 ; Standard Options
@@ -1673,7 +1687,7 @@ DEBUGGING=1
 CODE_VERSION_NUMBER=16
 
 [FILE_COMPILE_OPTION-GymWorkout:Debug Mode:Source\gwodmap.cbl]
-COPY_DEPENDENCE=FD\wodmap.sl;FD\duration.sl;FD\intexe.sl;FD\wodmap.fd;FD\duration.fd;FD\intexe.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;\StudioPostura\Copylib\blockpgm.lks;Resource\toolbar.bmp;Copylib\ABILITA-TOOLBAR.CPY;Copylib\COLOR-CUSTOM.CPY;Copylib\status.cpy
+COPY_DEPENDENCE=FD\wodmap.sl;FD\duration.sl;FD\intexe.sl;FD\macrogroups.sl;FD\wodmap.fd;FD\duration.fd;FD\intexe.fd;FD\macrogroups.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;\StudioPostura\Copylib\blockpgm.lks;Resource\toolbar.bmp;Copylib\ABILITA-TOOLBAR.CPY;Copylib\COLOR-CUSTOM.CPY;Copylib\status.cpy
 ADDITIONAL_OPTIONS=-x -Fxa -Di -Ga -Zd -Za -Zn -Zz -C61
 FOLLOW_PROJECT=1
 ; Standard Options
@@ -2058,7 +2072,7 @@ DEBUGGING=1
 CODE_VERSION_NUMBER=16
 
 [FILE_COMPILE_OPTION-GymWorkout:Debug Mode:Source\tgroups.cbl]
-COPY_DEPENDENCE=FD\groups.sl;FD\macrogroups.sl;FD\groups.fd;FD\macrogroups.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;\StudioPostura\Copylib\blockpgm.lks;Resource\toolbar.bmp;Resource\logo_piccolo.bmp;Copylib\ABILITA-TOOLBAR.CPY;Copylib\COLOR-CUSTOM.CPY
+COPY_DEPENDENCE=FD\groups.sl;FD\macrogroups.sl;FD\groups.fd;FD\macrogroups.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;\StudioPostura\Copylib\blockpgm.lks;Resource\toolbar.bmp;Copylib\ABILITA-TOOLBAR.CPY;Copylib\COLOR-CUSTOM.CPY
 ADDITIONAL_OPTIONS=-x -Fxa -Di -Ga -Zd -Za -Zn -Zz -C61
 FOLLOW_PROJECT=1
 ; Standard Options
@@ -2163,7 +2177,7 @@ DEBUGGING=1
 CODE_VERSION_NUMBER=16
 
 [FILE_COMPILE_OPTION-GymWorkout:Debug Mode:Source\tmgroups.cbl]
-COPY_DEPENDENCE=FD\macrogroups.sl;FD\macrogroups.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;\StudioPostura\Copylib\blockpgm.lks;Resource\toolbar.bmp;Resource\logo_piccolo.bmp;Copylib\ABILITA-TOOLBAR.CPY;Copylib\COLOR-CUSTOM.CPY
+COPY_DEPENDENCE=FD\macrogroups.sl;FD\macrogroups.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;\StudioPostura\Copylib\blockpgm.lks;Resource\toolbar.bmp;Copylib\ABILITA-TOOLBAR.CPY;Copylib\COLOR-CUSTOM.CPY
 ADDITIONAL_OPTIONS=-x -Fxa -Di -Ga -Zd -Za -Zn -Zz -C61
 FOLLOW_PROJECT=1
 ; Standard Options

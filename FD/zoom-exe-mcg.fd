@@ -1,0 +1,11 @@
+      *(( XFD FILE = zoom-exe-mcg ))
+       FD  zoom-exe-mcg.
+       01 zem-rec.
+           05 zem-key.
+               10 zem-exe-code     PIC  x(5).
+           05 zem-data.
+               10 zem-exe-desc     PIC  x(100).
+               10 zem-int-desc     PIC  x(100).
+               10 zem-grp-desc     PIC  x(100).
+               10 zem-int-effort   PIC  99.
+               10 zem-grp-code     PIC  x(5).

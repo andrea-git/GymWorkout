@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 20 settembre 2023 19:09:18.
+       DATE-WRITTEN.        giovedì 21 settembre 2023 09:39:24.
        REMARKS.
       *{TOTEM}END
 
@@ -312,6 +312,9 @@
                   USAGE IS HANDLE OF FONT.
        01 hiddenData.
            05 hid-restpause    PIC  9(3).
+       77 riparti-bmp      PIC  S9(9)
+                  USAGE IS COMP-4
+                  VALUE IS 0.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -776,7 +779,7 @@
        05
            Screen1-Pb-1a, 
            Push-Button, 
-           COL 9,10, 
+           COL 7,10, 
            LINE 23,83,
            LINES 1,48 ,
            SIZE 3,80 ,
@@ -882,7 +885,6 @@
            ID IS 2,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TRANSPARENT,
            TITLE "Macrogruppo A",
            .
 
@@ -897,7 +899,6 @@
            ID IS 3,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TRANSPARENT,
            TITLE "Macrogruppo B",
            .
 
@@ -912,7 +913,6 @@
            ID IS 4,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TRANSPARENT,
            TITLE "Macrogruppo C",
            .
 
@@ -927,7 +927,6 @@
            ID IS 5,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TRANSPARENT,
            TITLE "Macrogruppo D",
            .
 
@@ -942,7 +941,6 @@
            ID IS 6,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TRANSPARENT,
            TITLE "Macrogruppo E",
            .
 
@@ -1032,7 +1030,6 @@
            ID IS 27,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TRANSPARENT,
            TITLE "Macrogruppo F",
            .
 
@@ -1047,7 +1044,6 @@
            ID IS 29,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TRANSPARENT,
            TITLE "Macrogruppo G",
            .
 
@@ -1077,11 +1073,46 @@
            ID IS 37,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           NUM-ROWS 15,
            TILED-HEADINGS,
            VIRTUAL-WIDTH 80,
            VPADDING 5,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
+           .
+
+      * PUSH BUTTON
+       05
+           Screen1-Pb-1aa, 
+           Push-Button, 
+           COL 12,10, 
+           LINE 23,83,
+           LINES 1,48 ,
+           SIZE 3,80 ,
+           EXCEPTION-VALUE 1004,
+           FONT IS Small-Font,
+           ID IS 36,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "&S",
+           .
+
+      * PUSH BUTTON
+       05
+           pb-default, 
+           Push-Button, 
+           COL 33,80, 
+           LINE 23,35,
+           LINES 55 PIXELS,
+           SIZE 148 PIXELS,
+           BITMAP-HANDLE riparti-bmp,
+           BITMAP-NUMBER 1,
+           FRAMED,
+           SQUARE,
+           EXCEPTION-VALUE 1005,
+           FONT IS Small-Font,
+           ID IS 1,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Ri&parti",
            .
 
       * TOOLBAR
@@ -1338,6 +1369,7 @@
            DESTROY Calibri10-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, genera-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, random-bmp
+           CALL "w$bitmap" USING WBITMAP-DESTROY, riparti-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
       *    After-Program
            PERFORM ginqui-Ev-After-Program
@@ -1429,6 +1461,10 @@
            COPY RESOURCE "random.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "random.bmp", 
                    GIVING random-bmp.
+      * pb-default
+           COPY RESOURCE "riparti.bmp".
+           CALL "w$bitmap" USING WBITMAP-LOAD "riparti.bmp", 
+                   GIVING riparti-bmp.
       * TOOL-ESCI
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
@@ -3723,31 +3759,7 @@
            modify cb-int, item-to-add "Medium wod effort".
            modify cb-int, item-to-add "Heavy wod effort".
 
-           modify cb-mg1, value "Nessuno".
-           modify cb-mg2, value "Nessuno".
-           modify cb-mg3, value "Nessuno".
-           modify cb-mg4, value "Nessuno".
-           modify cb-mg5, value "Nessuno".
-           modify cb-mg6, value "Nessuno".
-           modify cb-mg7, value "Nessuno".
-
-           modify cb-mul,  value "Si".
-                                          
-           modify cb-int, value "Tutto".
-           modify cb-dur, value "Tutto".
-           modify cb-wod, value "Nessuno".
-
-           modify cb-gio, value "Tutto".
-                                        
-           modify cb-mg1, enabled false.
-           modify cb-mg2, enabled false.
-           modify cb-mg3, enabled false.
-           modify cb-mg4, enabled false.
-           modify cb-mg5, enabled false.
-           modify cb-mg6, enabled false.
-           modify cb-mg7, enabled false.
-           
-           perform VALORIZZA-WOD.
+           perform DATI-DEFAULT.
 
            .
       * <TOTEM:END>
@@ -3784,6 +3796,10 @@
                  PERFORM Screen1-Pb-1a-LinkTo
               WHEN Key-Status = 1002
                  PERFORM pb-random-LinkTo
+              WHEN Key-Status = 1004
+                 PERFORM Screen1-Pb-1aa-LinkTo
+              WHEN Key-Status = 1005
+                 PERFORM pb-default-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 3
@@ -4806,6 +4822,48 @@
       *           end-if
       *        end-if
       *     end-if 
+           .
+      * <TOTEM:END>
+
+       DATI-DEFAULT.
+      * <TOTEM:PARA. DATI-DEFAULT>
+           modify cb-mg1, value "Nessuno".
+           modify lab-a, color  513
+           modify cb-mg2, value "Nessuno".
+           modify lab-b, color  513
+           modify cb-mg3, value "Nessuno".
+           modify lab-c, color  513
+           modify cb-mg4, value "Nessuno".
+           modify lab-d, color  513
+           modify cb-mg5, value "Nessuno".
+           modify lab-e, color  513
+           modify cb-mg6, value "Nessuno".
+           modify lab-f, color  513
+           modify cb-mg7, value "Nessuno".
+           modify lab-g, color  513
+
+           modify cb-mul,  value "Si".
+                                          
+           modify cb-int, value "Tutto".
+           modify cb-dur, value "Tutto".
+           modify cb-wod, value "Nessuno".
+
+           modify cb-gio, value "Tutto".
+                                        
+           modify cb-mg1, enabled false.
+           modify cb-mg2, enabled false.
+           modify cb-mg3, enabled false.
+           modify cb-mg4, enabled false.
+           modify cb-mg5, enabled false.
+           modify cb-mg6, enabled false.
+           modify cb-mg7, enabled false.
+           
+           perform VALORIZZA-WOD.
+                               
+           modify gd1, reset-grid = 1.
+           perform GD1-CONTENT.
+           modify gd-schema, reset-grid = 1.
+           perform GD-SCHEMA-CONTENT 
            .
       * <TOTEM:END>
 
@@ -5837,8 +5895,9 @@
                        modify gd1(riga, 4), cell-data = spaces
                        modify gd1(riga, 5), cell-data = spaces
                        modify gd1(riga, 6), cell-data = spaces
-                       modify gd1(riga, 7), cell-data = spaces
+                       modify gd1(riga, 7), cell-data = spaces 
                        modify gd1(riga, 8), cell-data = spaces 
+                       modify gd1(riga), row-color 288
                     end-if          
                     add 1 to col-exe-prg
                     move tex-day to col-day
@@ -5925,7 +5984,6 @@
                             exe-setting +
                           ( col-series * int-time  ) +
                           ( int-rest   * ( col-series - 1 ) )
-
                     perform varying idx from 1 by 1 
                               until idx > tot-gruppi
                        if el-mcg-code(idx) = tex-mcg-code
@@ -5941,33 +5999,33 @@
               evaluate el-mcg-hit(idx)
               when 0     
                    evaluate idx
-                   when 1 modify lab-a, color 513
-                   when 2 modify lab-b, color 513
-                   when 3 modify lab-c, color 513
-                   when 4 modify lab-d, color 513
-                   when 5 modify lab-e, color 513
-                   when 6 modify lab-f, color 513
-                   when 7 modify lab-g, color 513
+                   when 1 modify lab-a, color 176
+                   when 2 modify lab-b, color 176
+                   when 3 modify lab-c, color 176
+                   when 4 modify lab-d, color 176
+                   when 5 modify lab-e, color 176
+                   when 6 modify lab-f, color 176
+                   when 7 modify lab-g, color 176
                    end-evaluate
               when 1     
                    evaluate idx
-                   when 1 modify lab-a, color 13
-                   when 2 modify lab-b, color 13
-                   when 3 modify lab-c, color 13
-                   when 4 modify lab-d, color 13
-                   when 5 modify lab-e, color 13
-                   when 6 modify lab-f, color 13
-                   when 7 modify lab-g, color 13
+                   when 1 modify lab-a, color 481
+                   when 2 modify lab-b, color 481
+                   when 3 modify lab-c, color 481
+                   when 4 modify lab-d, color 481
+                   when 5 modify lab-e, color 481
+                   when 6 modify lab-f, color 481
+                   when 7 modify lab-g, color 481
                    end-evaluate
               when other 
                    evaluate idx
-                   when 1 modify lab-a, color 11
-                   when 2 modify lab-b, color 11
-                   when 3 modify lab-c, color 11
-                   when 4 modify lab-d, color 11
-                   when 5 modify lab-e, color 11
-                   when 6 modify lab-f, color 11
-                   when 7 modify lab-g, color 11
+                   when 1 modify lab-a, color 112
+                   when 2 modify lab-b, color 112
+                   when 3 modify lab-c, color 112
+                   when 4 modify lab-d, color 112
+                   when 5 modify lab-e, color 112
+                   when 6 modify lab-f, color 112
+                   when 7 modify lab-g, color 112
                    end-evaluate
               end-evaluate
            end-perform.
@@ -6492,8 +6550,10 @@
                                  
            modify cb-int, value = "Tutto".
            modify cb-dur, value = "Medium".
-
-           modify cb-wod, value "HATFIELD".
+                                           
+           move 2 to wom-code.
+           read wodmap no lock.
+           modify cb-wod, value = wom-desc.
 
            perform ABILITA-MACROGRUPPI 
            .
@@ -6523,6 +6583,31 @@
        gd-schema-Ev-Msg-Begin-Entry.
       * <TOTEM:PARA. gd-schema-Ev-Msg-Begin-Entry>
            set event-action to event-action-fail 
+           .
+      * <TOTEM:END>
+       Screen1-Pb-1aa-LinkTo.
+      * <TOTEM:PARA. Screen1-Pb-1aa-LinkTo>
+           modify cb-mg1, value "Legs".
+           modify cb-mg2, value "Shoulder".
+           modify cb-mg3, value "Pectoral".
+           modify cb-mg4, value "Back".
+           modify cb-mg5, value "Arms".
+           modify cb-mg6, value "Abs".
+           modify cb-mg7, value "Nessuno".
+                                 
+           modify cb-int, value = "Tutto".
+           modify cb-dur, value = "Medium".
+
+           move 3 to wom-code.
+           read wodmap no lock.
+           modify cb-wod, value = wom-desc.
+
+           perform ABILITA-MACROGRUPPI 
+           .
+      * <TOTEM:END>
+       pb-default-LinkTo.
+      * <TOTEM:PARA. pb-default-LinkTo>
+           perform DATI-DEFAULT 
            .
       * <TOTEM:END>
 

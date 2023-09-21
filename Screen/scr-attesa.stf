@@ -1,0 +1,129 @@
+*   Screen Painter STF File
+*   Version 6.0
+*   Generated Time : giovedì 21 settembre 2023 23:03:01
+*
+
+BEGIN-SPDATA-6.0A
+
+GRAPHICAL-SCREEN
+
+Begin Screen scr-attesa
+   PREFIX            = scr-attesa
+   IMPORTED-SCREEN   = FALSE
+   LOCK-CONTROL      = TRUE
+   LEVEL             = 1
+   (Name)            = scr-attesa
+   Absolute Column   = 0
+   Absolute Line     = 0
+   Action            = (None)
+   Auto Minimize     = FALSE
+   Auto Resize       = FALSE
+   Bind To Thread    = FALSE
+   Boxed             = FALSE
+   Cell              = FALSE
+   Cell Height       = 26
+   Cell Width        = 11
+   Color             = 131329
+   Confirm Delete    = TRUE
+   Confirm Insert    = FALSE
+   Confirm Update    = FALSE
+   Controls Uncropped = FALSE
+   Data Set          = "(None)"
+   Erase Screen      = FALSE
+   Font              = Calibri/16/B/C0/@Occidentale
+   Font Variable     = Calibri16B-Occidentale
+   Handle Variable   = scr-attesa-Handle
+   Height in Cells   = TRUE
+   Help ID           = 0
+   Label Offset      = 20
+   Lines             = 4,96
+   Link To Thread    = TRUE
+   Max Lines         = 0,00
+   Max Size          = 0,00
+   Message Process   = (Type = 0, Color = 0)
+   Min Lines         = 0,00
+   Min Size          = 0,00
+   Modeless          = TRUE
+   Operation Mode    = Interactive Mode
+   Resizable         = FALSE
+   Scroll            = FALSE
+   Size              = 44,27
+   System Menu       = FALSE
+   Title Bar         = FALSE
+   Unit              = Cells
+   User Gray         = FALSE
+   User White        = FALSE
+   Visible           = NONE
+   Width in Cells    = TRUE
+   Window Type       = Floating
+   Wrap              = FALSE
+   Event Procedure   = scr-attesa-Event-Proc
+   Begin Label scr-attesa-La-1
+      SCREEN-COL        = 7,55
+      SCREEN-LINE       = 2,23
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = scr-attesa-La-1
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 7,55
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Calibri/24/B/C0/@Occidentale
+      Font Variable     = Calibri24B-Occidentale
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 1
+      Justification     = Center
+      Label Offset      = 20
+      Line              = 2,23
+      Lines             = 1,85
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 31,18
+      Size Unit         = Default
+      Tab Order         = 1
+      Title             = "ATTENDERE PREGO...."
+      Transparent       = TRUE
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
+   Begin Label lab-attesa
+      SCREEN-COL        = 13,73
+      SCREEN-LINE       = 4,27
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = lab-attesa
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 13,73
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 2
+      Justification     = Center
+      Label Offset      = 20
+      Line              = 4,27
+      Lines             = 1,08
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 18,73
+      Size Unit         = Default
+      Tab Order         = 2
+      Title Picture     = zzz.zzz9
+      Title Variable    = lab-attesa-buf
+      Transparent       = TRUE
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
+End

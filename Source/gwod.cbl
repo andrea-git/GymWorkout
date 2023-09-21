@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 21 settembre 2023 20:35:04.
+       DATE-WRITTEN.        giovedì 21 settembre 2023 23:22:34.
        REMARKS.
       *{TOTEM}END
 
@@ -153,6 +153,8 @@
                   VALUE IS 0.
        77 Form1-Tb-1-Handlea
                   USAGE IS HANDLE OF WINDOW.
+       01 FILLER           PIC  9.
+           88 ApriLookup VALUE IS 1    WHEN SET TO FALSE  0. 
        77 Form1-Tb-1-Handlea
                   USAGE IS HANDLE OF WINDOW.
        01 rec-schema.
@@ -343,6 +345,26 @@
        77 path-zoom-exe-mcg            PIC  X(256).
        77 STATUS-zoom-exe-mcg          PIC  X(2).
            88 Valid-STATUS-zoom-exe-mcg VALUE IS "00" THRU "09". 
+       77 Screen2-Handle
+                  USAGE IS HANDLE OF WINDOW.
+       77 Verdana12-Occidentale
+                  USAGE IS HANDLE OF FONT.
+       77 scr-stampa-Handle
+                  USAGE IS HANDLE OF WINDOW.
+       77 78-ID-ef-st-tipo PIC  9(6)
+                  VALUE IS 0.
+       77 ef-ricerca-piva-buf          PIC  X(11).
+       77 BOTTONE-OK-BMP   PIC  S9(9)
+                  USAGE IS COMP-4
+                  VALUE IS 0.
+       77 BOTTONE-CANCEL-BMP           PIC  S9(9)
+                  USAGE IS COMP-4
+                  VALUE IS 0.
+       77 scr-attesa-Handle
+                  USAGE IS HANDLE OF WINDOW.
+       77 Calibri24B-Occidentale
+                  USAGE IS HANDLE OF FONT.
+       77 lab-attesa-buf   PIC  x(50).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -353,6 +375,8 @@
        77 TMP-Form1-wodbook-RESTOREBUF  PIC X(2447).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
        77 Form1-MULKEY-TMPBUF   PIC X(2447).
+       77 STATUS-scr-attesa-FLAG-REFRESH PIC  9.
+          88 scr-attesa-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-DataSet1-exercises-BUF     PIC X(1189).
        77 TMP-DataSet1-groups-BUF     PIC X(1182).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
@@ -817,7 +841,7 @@
            ALIGNMENT ("C", "R", "U", "L", "U", "L", "U", "U"),
            SEPARATION (5, 5, 5, 5, 5, 5, 5, 5),
            DATA-TYPES ("9(1)", "z9", "X(5)", "X(100)", "X(5)", "X(100)"
-           , "z9", "z9"),
+           , "9(2)", "x(20)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
@@ -1272,6 +1296,44 @@
            VISIBLE 0,
            .
 
+      * FORM
+       01 
+           scr-attesa, 
+           .
+
+      * LABEL
+       05
+           scr-attesa-La-1, 
+           Label, 
+           COL 4,00, 
+           LINE 1,46,
+           LINES 1,85 ,
+           SIZE 38,18 ,
+           FONT IS Calibri24B-Occidentale,
+           ID IS 1,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           CENTER,
+           TRANSPARENT,
+           TITLE "Sto generando l'allenamento...",
+           .
+
+      * LABEL
+       05
+           lab-attesa, 
+           Label, 
+           COL 4,00, 
+           LINE 3,50,
+           LINES 1,08 ,
+           SIZE 38,18 ,
+           ID IS 2,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           CENTER,
+           TRANSPARENT,
+           TITLE lab-attesa-buf,
+           .
+
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
@@ -1346,6 +1408,8 @@
            DESTROY Calibri14-Occidentale
            DESTROY Calibri10B-Occidentale
            DESTROY Calibri14BU-Occidentale
+           DESTROY Calibri24B-Occidentale
+           DESTROY Calibri16B-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, genera-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, random-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
@@ -1428,6 +1492,32 @@
            MOVE 0 TO WFONT-CHAR-SET
            CALL "W$FONT" USING WFONT-GET-FONT, 
                      Calibri14BU-Occidentale, WFONT-DATA
+      * Calibri24B-Occidentale
+           INITIALIZE WFONT-DATA Calibri24B-Occidentale
+           MOVE 24 TO WFONT-SIZE
+           MOVE "Calibri" TO WFONT-NAME
+           SET WFCHARSET-DONT-CARE TO TRUE
+           SET WFONT-BOLD TO TRUE
+           SET WFONT-ITALIC TO FALSE
+           SET WFONT-UNDERLINE TO FALSE
+           SET WFONT-STRIKEOUT TO FALSE
+           SET WFONT-FIXED-PITCH TO FALSE
+           MOVE 0 TO WFONT-CHAR-SET
+           CALL "W$FONT" USING WFONT-GET-FONT, 
+                     Calibri24B-Occidentale, WFONT-DATA
+      * Calibri16B-Occidentale
+           INITIALIZE WFONT-DATA Calibri16B-Occidentale
+           MOVE 16 TO WFONT-SIZE
+           MOVE "Calibri" TO WFONT-NAME
+           SET WFCHARSET-DONT-CARE TO TRUE
+           SET WFONT-BOLD TO TRUE
+           SET WFONT-ITALIC TO FALSE
+           SET WFONT-UNDERLINE TO FALSE
+           SET WFONT-STRIKEOUT TO FALSE
+           SET WFONT-FIXED-PITCH TO FALSE
+           MOVE 0 TO WFONT-CHAR-SET
+           CALL "W$FONT" USING WFONT-GET-FONT, 
+                     Calibri16B-Occidentale, WFONT-DATA
            .
 
        INIT-BMP.
@@ -3899,6 +3989,12 @@
                  MOVE 1 TO TOTEM-Form-Index
               END-ACCEPT
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterEndAccept>
+           evaluate true
+           when ApriLookup
+                set ApriLookup to false
+                perform LOOKUP-EXE
+           end-evaluate
+
       * <TOTEM:END>
            END-PERFORM
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeDestroyWindow>
@@ -4370,6 +4466,176 @@
            END-PERFORM
            .
 
+       scr-attesa-Open-Routine.
+           PERFORM scr-attesa-Scrn
+           PERFORM scr-attesa-Proc
+           .
+
+       scr-attesa-Scrn.
+           PERFORM scr-attesa-Create-Win
+           PERFORM scr-attesa-Init-Value
+           PERFORM scr-attesa-Init-Data
+      * Tab keystrok settings
+      * Tool Bar
+           PERFORM scr-attesa-DISPLAY
+           .
+
+       scr-attesa-Create-Win.
+           Display Floating GRAPHICAL WINDOW
+              LINES 3,85,
+              SIZE 44,27,
+              HEIGHT-IN-CELLS,
+              WIDTH-IN-CELLS,
+              COLOR 131329,
+              CONTROL FONT Calibri16B-Occidentale,
+              LINK TO THREAD,
+              MODELESS,
+              NO SCROLL,
+              No WRAP,
+              EVENT PROCEDURE scr-attesa-Event-Proc,
+              HANDLE IS scr-attesa-Handle,
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, AfterCreateWin>
+      * <TOTEM:END>
+
+
+      * Tool Bar    
+      * Status-bar
+           DISPLAY scr-attesa UPON scr-attesa-Handle
+      * DISPLAY-COLUMNS settings
+           .
+
+       scr-attesa-PROC.
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, BeforeAccept>
+           perform GENERA-WOD.
+           move 27 to key-status.
+
+           .
+      * <TOTEM:END>
+           PERFORM UNTIL Exit-Pushed
+              ACCEPT OMITTED LINE 1 COL 1
+                 ON EXCEPTION
+                    PERFORM scr-attesa-Evaluate-Func
+                 MOVE 2 TO TOTEM-Form-Index
+              END-ACCEPT
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, AfterEndAccept>
+      * <TOTEM:END>
+           END-PERFORM
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, BeforeDestroyWindow>
+      * <TOTEM:END>
+           DESTROY scr-attesa-Handle
+           INITIALIZE Key-Status
+           .
+
+       scr-attesa-Evaluate-Func.
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, AfterAccept>
+      * <TOTEM:END>
+           EVALUATE TRUE
+              WHEN Exit-Pushed
+                 PERFORM scr-attesa-Exit
+              WHEN Event-Occurred
+                 IF Event-Type = Cmd-Close
+                    PERFORM scr-attesa-Exit
+                 END-IF
+           END-EVALUATE
+      * avoid changing focus
+           MOVE 4 TO Accept-Control
+           .
+
+       scr-attesa-CLEAR.
+           PERFORM scr-attesa-INIT-VALUE
+           PERFORM scr-attesa-DISPLAY
+           .
+
+       scr-attesa-DISPLAY.
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, BeforeDisplay>
+      * <TOTEM:END>
+           DISPLAY scr-attesa UPON scr-attesa-Handle
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, AfterDisplay>
+           SET LK-BL-SCRITTURA     TO TRUE.
+           MOVE COMO-PROG-ID       TO LK-BL-PROG-ID.
+           MOVE FORM1-HANDLE       TO LK-HND-WIN.
+           CALL "BLOCKPGM"  USING LK-BLOCKPGM.
+           CANCEL "BLOCKPGM".
+
+           .
+      * <TOTEM:END>
+           .
+
+       scr-attesa-Exit.
+      * for main screen
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, BeforeExit>
+      * <TOTEM:END>
+           MOVE 27 TO Key-Status
+           .
+
+       scr-attesa-Init-Data.
+           MOVE 2 TO TOTEM-Form-Index
+           MOVE 0 TO TOTEM-Frame-Index
+           .
+
+       scr-attesa-Init-Value.
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, SetDefault>
+      * <TOTEM:END>
+           PERFORM scr-attesa-FLD-TO-BUF
+           .
+
+
+       scr-attesa-ALLGRID-RESET.
+           .
+
+      * for Form's Validation
+       scr-attesa-VALIDATION-ROUTINE.
+           SET TOTEM-CHECK-OK TO TRUE
+           .
+
+
+       scr-attesa-Buf-To-Fld.
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, BeforeBufToFld>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, AfterBufToFld>
+      * <TOTEM:END>
+           .
+
+       scr-attesa-Fld-To-Buf.
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, BeforeFldToBuf>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, AfterFldToBuf>
+      * <TOTEM:END>
+           .
+
+       scr-attesa-CONTROLLO-OLD.
+           set SiSalvato to true.
+           if mod = 0 exit paragraph end-if.
+           perform scr-attesa-BUF-TO-FLD.
+           move 0 to scelta.
+           .
+       scr-attesa-EXTENDED-FILE-STATUS.
+           CALL "C$RERRNAME" USING TOTEM-MSG-ERR-FILE
+           CALL "C$RERR" USING EXTEND-STAT, TEXT-MESSAGE
+           MOVE PRIMARY-ERROR TO TOTEM-MSG-ID
+           PERFORM scr-attesa-SHOW-MSG-ROUTINE
+           .
+
+       scr-attesa-SHOW-MSG-ROUTINE.
+           PERFORM SHOW-MSG-ROUTINE
+           PERFORM scr-attesa-DISPLAY-MESSAGE
+           .
+
+       scr-attesa-DISPLAY-MESSAGE.
+           PERFORM MESSAGE-BOX-ROUTINE
+           DISPLAY MESSAGE BOX TOTEM-MSG-TEXT
+               TITLE IS TOTEM-MSG-TITLE
+               TYPE  IS TOTEM-MSG-BUTTON-TYPE
+               ICON  IS TOTEM-MSG-DEFAULT-BUTTON
+               RETURNING TOTEM-MSG-RETURN-VALUE
+           .
+
+       scr-attesa-Save-Status.
+           .             
+
+       scr-attesa-Restore-Status.
+           .
+
 
 
        Screen1-Event-Proc.
@@ -4405,6 +4671,9 @@
            END-EVALUATE
            .
 
+       scr-attesa-Event-Proc.
+           .
+
       * USER DEFINE PARAGRAPH
        PARAGRAFO-COPY.
       * <TOTEM:PARA. PARAGRAFO-COPY>
@@ -4417,17 +4686,6 @@
 
        ABILITA-MACROGRUPPI.
       * <TOTEM:PARA. ABILITA-MACROGRUPPI>
-           move 0 to como-prim(1).
-           move 0 to como-prim(2).
-           move 0 to como-prim(3).
-           move 0 to como-prim(4).
-           move 0 to como-prim(5).
-           move 0 to como-prim(6).
-           move 0 to como-prim(7).
-           move 0 to como-prim(8).
-           move 0 to como-prim(9).
-           move 0 to como-prim(10).
-
            inquire cb-mg1, value cb-mg1-buf.
            inquire cb-mg2, value cb-mg2-buf.
            inquire cb-mg3, value cb-mg3-buf.
@@ -4454,24 +4712,8 @@
               cb-gio-buf = s-cb-gio-buf and
               cb-wod-buf = s-cb-wod-buf
               exit paragraph 
-           end-if.
-           
-           modify lab-a, font Calibri14-Occidentale.
-           modify lab-b, font Calibri14-Occidentale.
-           modify lab-c, font Calibri14-Occidentale.
-           modify lab-d, font Calibri14-Occidentale.
-           modify lab-e, font Calibri14-Occidentale.
-           modify lab-f, font Calibri14-Occidentale.
-           modify lab-g, font Calibri14-Occidentale.
-           
+           end-if.                           
            inquire cb-wod, value in wom-desc.
-           modify cb-mg1, enabled false.
-           modify cb-mg2, enabled false.
-           modify cb-mg3, enabled false.
-           modify cb-mg4, enabled false.
-           modify cb-mg5, enabled false.
-           modify cb-mg6, enabled false.
-           modify cb-mg7, enabled false. 
 
            read wodmap key wom-k-desc
                 invalid
@@ -4484,8 +4726,33 @@
                 modify cb-mg7, value "Nessuno"  
                 initialize wom-data replacing numeric data by zeroes
                                          alphanumeric data by spaces
-                exit paragraph
-           end-read.
+           end-read.                         
+           move 0 to como-prim(1).
+           move 0 to como-prim(2).
+           move 0 to como-prim(3).
+           move 0 to como-prim(4).
+           move 0 to como-prim(5).
+           move 0 to como-prim(6).
+           move 0 to como-prim(7).
+           move 0 to como-prim(8).
+           move 0 to como-prim(9).
+           move 0 to como-prim(10).
+
+           modify lab-a, font Calibri14-Occidentale.
+           modify lab-b, font Calibri14-Occidentale.
+           modify lab-c, font Calibri14-Occidentale.
+           modify lab-d, font Calibri14-Occidentale.
+           modify lab-e, font Calibri14-Occidentale.
+           modify lab-f, font Calibri14-Occidentale.
+           modify lab-g, font Calibri14-Occidentale.
+                                             
+           modify cb-mg1, enabled false.
+           modify cb-mg2, enabled false.
+           modify cb-mg3, enabled false.
+           modify cb-mg4, enabled false.
+           modify cb-mg5, enabled false.
+           modify cb-mg6, enabled false.
+           modify cb-mg7, enabled false. 
                                        
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
@@ -4808,39 +5075,8 @@
            when 78-ID-gd1
                 perform X-Y
                 evaluate colonna
-                when 78-col-exe-code              
-                     inquire gd1(riga, 78-col-exe-code), 
-                             cell-data in exe-code
-                     inquire gd1(riga, 78-col-grp-code), 
-                             cell-data in grp-code
-                     read exercises no lock
-                     move exe-int-code to int-code
-                     read intexe
-                     move int-effort to s-int-effort
-                     read groups no lock
-                     move grp-mcg-code to s-mcg-code
-                     perform CREA-ZOOM-EXE-MCG
-                     move low-value to zem-rec
-                     move s-int-effort to zem-int-effort
-                     move path-zoom-exe-mcg to ext-file
-                     move "zoom-exe-mcg"  to Como-File
-                     call   "zoom-gt"  using  como-file, zem-rec
-                                      giving stato-zoom
-                     cancel "zoom-gt"
-                     if stato-zoom = 0
-                        move zem-exe-code to col-exe-code
-                        move zem-exe-desc to col-exe-desc
-                        move zem-grp-desc to col-grp-desc
-                        move zem-grp-code to col-grp-code
-                        modify gd1(riga, 78-col-exe-code), 
-                               cell-data = col-exe-code
-                        modify gd1(riga, 78-col-exe-desc), 
-                               cell-data = col-exe-desc
-                        modify gd1(riga, 78-col-grp-code), 
-                               cell-data = col-grp-code
-                        modify gd1(riga, 78-col-grp-desc), 
-                               cell-data = col-grp-desc
-                     end-if
+                when 78-col-exe-code
+                     perform LOOKUP-EXE
       *
       *          when 78-col-prz
       *               perform VALORE-RIGA
@@ -5200,6 +5436,786 @@
            .
       * <TOTEM:END>
 
+       GENERA-WOD.
+      * <TOTEM:PARA. GENERA-WOD>
+           move "Creo i gruppi" to lab-attesa-buf.
+           display lab-attesa
+           perform CREA-OCCURS-GRUPPI.
+                                         
+           move 0 to int-effort.
+           inquire cb-int, value in cb-int-buf.
+           evaluate cb-int-buf
+           when "Light wod effort" move 1  to effort-wod
+           when "Light wod effort" move 2  to effort-wod
+           when "Light wod effort" move 3  to effort-wod
+           when other              move 99 to effort-wod
+           end-evaluate.
+           
+           inquire cb-dur, value in dur-desc.
+           read duration key dur-k-desc.
+           
+           inquire cb-wod, value in wom-desc.
+           read wodmap key wom-k-desc.
+                 
+           accept  como-data from century-date.
+           accept  como-ora  from time.
+           accept  path-tmp-exe-effort from environment "PATH_ST".
+           inspect path-tmp-exe-effort replacing trailing spaces by 
+           low-value.
+           string  path-tmp-exe-effort delimited low-value
+                   "tmp-exe-effort_"   delimited size
+                   como-data           delimited size
+                   "_"                 delimited size
+                   como-ora            delimited size
+              into path-tmp-exe-effort
+           end-string.                                                  
+                 
+           inspect path-tmp-exe-effort replacing trailing low-value by 
+           spaces.
+           open output tmp-exe-effort.    
+           close       tmp-exe-effort.
+           open i-o    tmp-exe-effort.
+                 
+           accept  path-tmp-wod-exe from environment "PATH_ST".
+           inspect path-tmp-wod-exe replacing trailing spaces by 
+           low-value.
+           string  path-tmp-wod-exe delimited low-value
+                   "tmp-wod-exe_"   delimited size
+                   como-data        delimited size
+                   "_"              delimited size
+                   como-ora         delimited size
+              into path-tmp-wod-exe
+           end-string.                                                  
+                 
+           inspect path-tmp-wod-exe replacing trailing low-value by 
+           spaces.
+           open output tmp-wod-exe.
+           close       tmp-wod-exe.
+           open i-o    tmp-wod-exe.
+                 
+           accept  path-tmp-exe from environment "PATH_ST".
+           inspect path-tmp-exe replacing trailing spaces by low-value.
+           string  path-tmp-exe delimited low-value
+                   "tmp-exe_"   delimited size
+                   como-data    delimited size
+                   "_"          delimited size
+                   como-ora     delimited size
+              into path-tmp-exe
+           end-string.                                                  
+                 
+           inspect path-tmp-exe replacing trailing low-value by spaces.
+           open output tmp-exe.
+           close       tmp-exe.
+           open i-o    tmp-exe. 
+
+           accept  path-tmp-exe-dupl from environment "PATH_ST".
+           inspect path-tmp-exe-dupl replacing trailing spaces by 
+           low-value.
+           string  path-tmp-exe-dupl delimited low-value
+                   "path-tmp-exe-dupl_"   delimited size
+                   como-data           delimited size
+                   "_"                 delimited size
+                   como-ora            delimited size
+              into path-tmp-exe-dupl
+           end-string.                                                  
+                 
+           inspect path-tmp-exe-dupl replacing trailing low-value by 
+           spaces.
+           open output tmp-exe-dupl.    
+           close       tmp-exe-dupl.
+           open i-o    tmp-exe-dupl.
+                                 
+           modify gd1, mass-update = 1.  
+           modify gd1, reset-grid = 1.
+           perform GD1-CONTENT.
+                                     
+           initialize tex-rec replacing numeric data by zeroes 
+                                   alphanumeric data by spaces.         
+                                 
+           perform LOAD-EXERCISES-ALLOWED-BY-EFFORT. 
+           perform LOAD-EXERCISES-MULTIJOINT.
+           perform LOAD-EXERCISES.              
+           perform REMOVE-DUPLICATES.           
+           perform LOAD-GRID.                   
+                                      
+           close       tmp-exe-effort.
+           delete file tmp-exe-effort.
+
+           close       tmp-wod-exe.
+           delete file tmp-wod-exe.
+                            
+           close       tmp-exe.
+           delete file tmp-exe.    
+
+           close       tmp-exe-dupl.
+           delete file tmp-exe-dupl.
+                                  
+           move cb-mg1-buf to s-cb-mg1-buf.
+           move cb-mg2-buf to s-cb-mg2-buf.
+           move cb-mg3-buf to s-cb-mg3-buf.
+           move cb-mg4-buf to s-cb-mg4-buf.
+           move cb-mg5-buf to s-cb-mg5-buf.
+           move cb-mg6-buf to s-cb-mg6-buf.
+           move cb-mg7-buf to s-cb-mg7-buf.
+           move cb-mul-buf to s-cb-mul-buf.
+           move cb-int-buf to s-cb-int-buf.
+           move cb-dur-buf to s-cb-dur-buf.
+           move cb-gio-buf to s-cb-gio-buf.
+           move cb-wod-buf to s-cb-wod-buf.
+      
+      ***---
+       LOAD-GRID.
+           move "Carico la griglia" to lab-attesa-buf.
+           display lab-attesa
+           
+           move low-value to tex-rec.
+           move 0 to save-day col-exe-prg.
+           start tmp-exe key >= tex-key
+                 invalid continue 
+             not invalid
+                 move 1 to riga
+                 perform until 1 = 2
+                    read tmp-exe next 
+                      at end 
+                         perform DISPLAY-DURATA
+                         exit perform 
+                    end-read          
+
+                    if save-day = 0                    
+                       move 0 to tot-durata
+                       move tex-day to save-day
+                    end-if
+                    if tex-day not = save-day
+                       perform DISPLAY-DURATA
+                       move 0 to col-exe-prg tot-durata
+                       move tex-day to save-day
+                       add 1 to riga                           
+                       modify gd1(riga, 78-col-day),      cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-prg),      cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-grp-code), cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-grp-desc), cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-exe-code), cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-exe-desc), cell-data = 
+           spaces
+                       modify gd1(riga, 78-col-series),   cell-data = 
+           spaces 
+                       modify gd1(riga, 78-col-reps),     cell-data = 
+           spaces 
+                       modify gd1(riga), row-color 288
+                    end-if          
+                    add 1 to col-exe-prg
+                    move tex-day to col-day
+                    move tex-exe-code to exe-code
+                    read exercises
+                    move exe-grp-code to col-grp-code grp-code
+                    read groups
+                    move grp-desc to col-grp-desc
+                    move tex-exe-code to col-exe-code
+                    move tex-exe-desc to col-exe-desc
+
+                    move wom-split-el-split-int-code(tex-day, tex-split)
+                      to int-code
+                    read intexe
+                    if exe-isMulti-yes
+                       evaluate wom-effort
+                       when 1 move  5 to col-series
+                              move  5 to col-reps
+                       when 2 move  6 to col-series
+                              move 10 to col-reps
+                       when 3 move 10 to col-series
+                              move  8 to col-reps
+                       end-evaluate                               
+                       inspect col-reps replacing leading x"30" by x"20"
+                       call "C$JUSTIFY" using col-reps, "L"
+                    else                  
+                       move int-series to col-series
+                                             
+                       initialize col-reps
+                       if int-restpause > 0  
+                          move int-restpause to como-range-from
+                          inspect como-range-from replacing leading x"30
+      -    "" by x"20"
+                          call "C$JUSTIFY" using como-range-from, "L"
+                          inspect como-range-from replacing trailing 
+           spaces by low-value
+                          string "Rest/pause (" delimited size
+                                 int-restpause  delimited low-value
+                                 ")"            delimited size
+                            into col-reps
+                          end-string
+                       else
+                          if int-range-from = 99 and int-range-to = 99
+                             move "Max" to col-reps
+                          else
+                             move int-range-from to como-range-from
+                             inspect como-range-from replacing leading 
+           x"30" by x"20"
+                             call "C$JUSTIFY" using como-range-from, "L"
+                             inspect como-range-from replacing trailing 
+           spaces by low-value
+                          
+                             move int-range-to to como-range-to         
+                      
+                             inspect como-range-to replacing leading x"3
+      -    "0" by x"20"  
+                             call "C$JUSTIFY" using como-range-to, "L"  
+                   
+                             inspect como-range-to replacing trailing 
+           spaces by low-value
+                          
+                             initialize col-reps
+                             string como-range-from delimited low-value
+                                    "-"             delimited size
+                                    como-range-to   delimited low-value
+                               into col-reps
+                             end-string
+                          end-if
+                       end-if
+                    end-if
+                    add 1 to riga                                
+                    modify gd1(riga, 78-col-day),      cell-data = 
+           col-day
+                    modify gd1(riga, 78-col-prg),      cell-data = 
+           col-exe-prg
+                    modify gd1(riga, 78-col-grp-code), cell-data = 
+           col-grp-code
+                    modify gd1(riga, 78-col-grp-desc), cell-data = 
+           col-grp-desc
+                    modify gd1(riga, 78-col-exe-code), cell-data = 
+           col-exe-code
+                    modify gd1(riga, 78-col-exe-desc), cell-data = 
+           col-exe-desc
+                    modify gd1(riga, 78-col-series),   cell-data = 
+           col-series
+                    modify gd1(riga, 78-col-reps),     cell-data = 
+           col-reps
+                    move int-restpause to hid-restpause
+                    move col-day       to hid-day
+                    modify gd1(riga, 78-col-day), hidden-data hiddenData
+
+                    compute tot-durata  = tot-durata +
+                            exe-setting +
+                          ( col-series * int-time  ) +
+                          ( int-rest   * ( col-series - 1 ) )
+                    perform varying idx from 1 by 1 
+                              until idx > tot-gruppi
+                       if el-mcg-code(idx) = tex-mcg-code
+                          add 1 to el-mcg-hit(idx)
+                       end-if
+                    end-perform
+
+                 end-perform
+           end-start.
+
+           perform varying idx from 1 by 1 
+                     until idx > tot-gruppi
+              evaluate el-mcg-hit(idx)
+              when 0     
+                   evaluate idx
+                   when 1 modify lab-a, color 176
+                   when 2 modify lab-b, color 176
+                   when 3 modify lab-c, color 176
+                   when 4 modify lab-d, color 176
+                   when 5 modify lab-e, color 176
+                   when 6 modify lab-f, color 176
+                   when 7 modify lab-g, color 176
+                   end-evaluate
+              when 1     
+                   evaluate idx
+                   when 1 modify lab-a, color 481
+                   when 2 modify lab-b, color 481
+                   when 3 modify lab-c, color 481
+                   when 4 modify lab-d, color 481
+                   when 5 modify lab-e, color 481
+                   when 6 modify lab-f, color 481
+                   when 7 modify lab-g, color 481
+                   end-evaluate
+              when other 
+                   evaluate idx
+                   when 1 modify lab-a, color 112
+                   when 2 modify lab-b, color 112
+                   when 3 modify lab-c, color 112
+                   when 4 modify lab-d, color 112
+                   when 5 modify lab-e, color 112
+                   when 6 modify lab-f, color 112
+                   when 7 modify lab-g, color 112
+                   end-evaluate
+              end-evaluate
+           end-perform.
+
+           modify gd1, mass-update = 0.
+
+           inquire gd1, last-row in tot-righe.
+           if tot-righe > 1
+              move 1 to mod
+           else
+              move 0 to mod
+           end-if.         
+           perform ABILITAZIONI.
+
+      ***---
+       DISPLAY-DURATA.
+           initialize como-durata.
+           if tot-durata > 3600
+              divide tot-durata by 3600 giving hh remainder resto
+              if resto > 0
+                 if resto > 60
+                    compute mm = resto / 60
+                 else
+                    move resto to mm
+                 end-if
+              else
+                 move 0 to mm 
+              end-if
+              move mm to como-mm
+              inspect como-mm replacing leading x"30" by x"20"
+              call "C$JUSTIFY" using como-mm, "L"                   
+              inspect como-mm replacing trailing spaces by low-value
+
+              move hh to como-hh
+              inspect como-hh replacing leading x"30" by x"20"
+              call "C$JUSTIFY" using como-hh, "L"
+              inspect como-hh replacing trailing spaces by low-value
+                    
+              if hh = 1             
+                 move "ora" to como-ora-e
+              else
+                 move "ore" to como-ora-e
+              end-if
+
+              if mm = 1             
+                 move "minuto" to como-minuto-i
+              else
+                 move "minuti" to como-minuto-i
+              end-if
+
+              string  como-hh       delimited low-value
+                      " "           delimited size
+                      como-ora-e    delimited size
+                      " "           delimited size
+                      como-mm       delimited low-value
+                      " "           delimited size
+                      como-minuto-i delimited size
+                 into como-durata
+              end-string
+           else
+              compute mm = tot-durata / 60
+              move mm to como-mm
+              inspect como-mm replacing leading x"30" by x"20"
+              call "C$JUSTIFY" using como-mm, "L"
+              inspect como-mm replacing trailing spaces by low-value
+
+              if mm = 1             
+                 move "minuto" to como-minuto-i
+              else
+                 move "minuti" to como-minuto-i
+              end-if
+
+              string  como-mm       delimited low-value
+                      " "           delimited size
+                      como-minuto-i delimited size
+                 into como-durata
+              end-string
+           end-if.
+
+           evaluate save-day
+           when 1 modify gd-schema( 2, 12), cell-data como-durata
+           when 2 modify gd-schema( 4, 12), cell-data como-durata
+           when 3 modify gd-schema( 6, 12), cell-data como-durata
+           when 4 modify gd-schema( 8, 12), cell-data como-durata
+           when 5 modify gd-schema(10, 12), cell-data como-durata
+           when 6 modify gd-schema(12, 12), cell-data como-durata
+           when 7 modify gd-schema(14, 12), cell-data como-durata
+           end-evaluate.
+                                                    
+      ***---     
+       LOAD-EXERCISES-ALLOWED-BY-EFFORT.
+           move "Carico gli esercizi" to lab-attesa-buf.
+           display lab-attesa
+           
+           move low-value to exe-key.
+           start exercises key >= exe-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read exercises next at end exit perform end-read
+                                                    
+                    if exe-disab = 1 exit perform cycle end-if
+                    move exe-int-code to int-code
+                    read intexe no lock
+                    move exe-grp-code to grp-code
+                    read groups no lock                                 
+                    if exe-isMulti-yes and cb-mul-buf = "No"
+                       exit perform cycle
+                    end-if
+                    if int-effort <= effort-wod or 
+                       exe-isMulti-yes and cb-mul-buf = "Si"
+                       perform varying idx-gruppi from 1 by 1 
+                                 until idx-gruppi > tot-gruppi          
+                      
+                                                    
+                          if el-mcg-code(idx-gruppi) = grp-mcg-code
+                             move exe-code      to twe-exe-code
+                             move exe-desc      to twe-exe-desc
+                             move grp-mcg-code  to twe-mcg-code
+                             move int-effort    to twe-effort
+                             move exe-isMulti   to twe-exe-isMulti
+                             move exe-int-code  to twe-int-code
+                             move exe-restpause to twe-exe-restpause
+                             write twe-rec 
+                          end-if
+                       end-perform
+                    end-if
+                 end-perform
+           end-start.           
+       
+      ***---
+       LOAD-EXERCISES-MULTIJOINT.                  
+           if cb-mul-buf = "No" exit paragraph end-if.
+           
+           move "Carico i multiarticolari" to lab-attesa-buf.
+           display lab-attesa
+           
+                                    
+           perform varying idx-gruppi from 1 by 1 
+                     until idx-gruppi > tot-gruppi
+              move low-value to twe-rec
+              move el-mcg-code(idx-gruppi) to twe-mcg-code
+              set twe-exe-isMulti-yes to true
+              move 0 to tot-exe
+
+              start tmp-wod-exe key >= twe-key
+                    invalid continue
+                not invalid
+                    perform until 1 = 2        
+                       read tmp-wod-exe next
+                         at end exit perform 
+                       end-read           
+                                                 
+                       if twe-mcg-code not = el-mcg-code(idx-gruppi) or
+                          twe-exe-isMulti-no
+                          exit perform
+                       end-if
+                       add 1 to tot-exe    
+                       move twe-exe-code      to el-exe-code(tot-exe)
+                       move twe-exe-desc      to el-exe-desc(tot-exe)
+                       move 0                 to el-exe-used(tot-exe)
+                    end-perform
+              end-start
+
+             |Phase 2
+              if tot-exe > 0
+                 move tot-exe to ex-remain  
+                 perform varying idx-days from 1 by 1 
+                           until idx-days > wom-days
+                    perform varying idx-split from 1 by 1 
+                              until idx-split > 20
+                                                 
+                       evaluate wom-split-el-split-sigla(idx-days, 
+           idx-split)
+                       when "A"   move el-mcg-code(1) to mcg-code
+                       when "B"   move el-mcg-code(2) to mcg-code
+                       when "C"   move el-mcg-code(3) to mcg-code
+                       when "D"   move el-mcg-code(4) to mcg-code
+                       when "E"   move el-mcg-code(5) to mcg-code
+                       when "F"   move el-mcg-code(6) to mcg-code
+                       when other exit perform
+                       end-evaluate
+
+                       move wom-split-el-split-int-code(idx-days, 
+           idx-split)
+                         to int-code
+                       read intexe no lock
+                       if int-effort not = 4
+                          exit perform
+                       end-if
+
+                       if el-mcg-code(idx-gruppi) = mcg-code
+                          perform until 1 = 2
+                             compute idx = function random * (tot-exe)
+                             add 1 to idx
+                             if el-exe-used(idx) = 0 or
+                                ex-remain = 0
+                                move idx-days         to tex-day
+                                move idx-split        to tex-split
+                                move mcg-code         to tex-mcg-code
+                                move el-exe-code(idx) to tex-exe-code
+                                move el-exe-desc(idx) to tex-exe-desc
+                                move int-code         to tex-int-code
+                                set tex-exe-isMulti-yes to true
+                                write tex-rec
+
+                                move 1                to 
+           el-exe-used(idx)
+                                if ex-remain > 0
+                                   subtract 1 from ex-remain
+                                end-if
+                                exit perform
+                             end-if
+                          end-perform
+                          exit perform
+                       end-if
+                    end-perform
+                 end-perform
+              end-if
+           end-perform.
+
+      ***---
+       LOAD-EXERCISES.      
+           move "Dispongo gli esercizi" to lab-attesa-buf.
+           display lab-attesa
+           
+           perform varying idx-days from 1 by 1 
+                     until idx-days > wom-days    
+              perform varying idx-split from 1 by 1 
+                        until idx-split > 20 
+                                           
+                 move idx-days  to tex-day
+                 move idx-split to tex-split
+                 read tmp-exe
+                      invalid continue
+                  not invalid exit perform cycle |Salto i multi se già messi
+                 end-read                           
+
+                 move low-value to twe-rec
+                 evaluate wom-split-el-split-sigla(idx-days, idx-split)
+                 when "A" move el-mcg-code(1) to mcg-code twe-mcg-code
+                 when "B" move el-mcg-code(2) to mcg-code twe-mcg-code
+                 when "C" move el-mcg-code(3) to mcg-code twe-mcg-code
+                 when "D" move el-mcg-code(4) to mcg-code twe-mcg-code
+                 when "E" move el-mcg-code(5) to mcg-code twe-mcg-code
+                 when "F" move el-mcg-code(6) to mcg-code twe-mcg-code
+                 when other exit perform
+                 end-evaluate       
+
+                 move wom-split-el-split-int-code(idx-days, idx-split)
+                   to int-code  
+
+                 move spaces to como-dupl
+                 perform ADD-RANDOM-EXERCISE
+
+              end-perform
+           end-perform.
+
+      ***---
+       ADD-RANDOM-EXERCISE.
+           set twe-exe-isMulti-no to true.    
+                                              
+           read intexe no lock.
+           move int-effort to twe-effort.     
+
+           move 0 to tot-exe.
+                              
+           start tmp-wod-exe key >= twe-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-wod-exe next at end exit perform end-read
+                                              
+                    if twe-mcg-code  not = mcg-code or
+                       twe-exe-isMulti-yes          or
+                       twe-effort    not = int-effort
+                       exit perform
+                    end-if
+
+                    if twe-exe-restpause = 0 and
+                       int-restpause > 0         
+                       exit perform cycle
+                    end-if             
+                       
+                    add 1 to tot-exe    
+                    move twe-exe-code      to el-exe-code(tot-exe)
+                    move twe-exe-desc      to el-exe-desc(tot-exe)
+                    move twe-effort        to el-exe-effort(tot-exe)
+                    move 0                 to el-exe-used(tot-exe)
+                    move twe-exe-restpause to el-exe-restpause(tot-exe)
+                 end-perform
+           end-start.      
+           
+           if ( como-dupl not = spaces and tot-exe > 1 ) or
+              ( como-dupl     = spaces and tot-exe > 0 )
+              move tot-exe to ex-remain  
+              perform until 1 = 2
+                                           
+                 compute idx = function random * (tot-exe)
+                 add 1 to idx
+                 if el-exe-used(idx) = 0 or
+                    ex-remain = 0
+
+                    if como-dupl not = spaces
+                       if como-dupl not = el-exe-desc(idx)
+                          move idx-days         to tex-day
+                          move idx-split        to tex-split     
+                          move mcg-code         to tex-mcg-code
+                          move el-exe-code(idx) to tex-exe-code
+                          move el-exe-desc(idx) to tex-exe-desc
+                          move int-code         to tex-int-code
+                          set tex-exe-isMulti-no to true
+                          write tex-rec invalid rewrite tex-rec 
+           end-write
+                    
+                          move 1                to el-exe-used(idx)
+                          if ex-remain > 0
+                             subtract 1 from ex-remain
+                          end-if  
+                                                     
+                          if ted-num > 0 and 
+                             como-dupl not = el-exe-desc(idx)
+                             subtract 1 from ted-num 
+                          end-if
+                          exit perform
+                       end-if
+                    else               
+                       move idx-days         to tex-day
+                       move idx-split        to tex-split     
+                       move mcg-code         to tex-mcg-code
+                       move el-exe-code(idx) to tex-exe-code
+                       move el-exe-desc(idx) to tex-exe-desc
+                       move int-code         to tex-int-code
+                       set tex-exe-isMulti-no to true
+                       write tex-rec invalid rewrite tex-rec end-write
+                    
+                       move 1                to el-exe-used(idx)
+                       if ex-remain > 0
+                          subtract 1 from ex-remain
+                       end-if   
+                       exit perform
+                    end-if
+                 end-if
+              end-perform 
+           end-if.
+
+      ***---
+       REMOVE-DUPLICATES.
+           move "Rimuovo i duplicati" to lab-attesa-buf.
+           display lab-attesa
+           
+           perform 5 times |Se non riesco dopo 5 tentativi esco, significa che non ho esercizi sufficienti
+              move 0 to tot-subst
+
+              perform varying como-giorno from 1 by 1 
+                        until como-giorno > wom-days  
+
+                 close       tmp-exe-dupl
+                 open output tmp-exe-dupl
+                 close       tmp-exe-dupl
+                 open i-o    tmp-exe-dupl
+                 move low-value to tex-rec
+                 move como-giorno  to tex-day
+                 move 0 to col-exe-prg
+                 start tmp-exe key >= tex-key
+                       invalid continue 
+                   not invalid
+                       move 1 to riga
+                       perform until 1 = 2
+                          read tmp-exe next 
+                            at end exit perform 
+                          end-read 
+                          if tex-day not = como-giorno
+                             exit perform
+                          end-if                      
+                                                    
+                          if tex-exe-isMulti-yes exit perform cycle 
+           end-if
+                          initialize como-nome counter
+                          inspect tex-exe-desc replacing trailing 
+           spaces by low-value
+                          inspect tex-exe-desc tallying counter for 
+           characters before low-value
+                          if tex-exe-desc(counter - 3 : 4) = "HARD"
+                             move tex-exe-desc(1:counter - 4)to 
+           como-nome
+                          end-if 
+                          if tex-exe-desc(counter - 5 : 6) = "MEDIUM"
+                             move tex-exe-desc(1:counter - 6)to 
+           como-nome
+                          end-if
+                          if tex-exe-desc(counter - 4 : 5) = "LIGHT"
+                             move tex-exe-desc(1:counter - 5)to 
+           como-nome
+                          end-if
+                          if como-nome = spaces
+                             move tex-exe-desc to como-nome
+                          end-if
+                          inspect tex-exe-desc replacing trailing 
+           low-value by spaces
+                          move tex-day   to ted-day
+                          move como-nome to ted-nome-dupl
+                          read tmp-exe-dupl
+                               invalid 
+                               move 1 to ted-num
+                               write ted-rec end-write
+                           not invalid
+                               add  1 to ted-num
+                               add  1 to tot-subst
+                               rewrite ted-rec end-rewrite
+                          end-read
+                          move como-nome to tex-nome-dupl
+                          rewrite tex-rec
+                       end-perform
+                 end-start
+                                                                    
+                 move low-value to ted-key
+                 move 2         to ted-num
+                 start tmp-exe-dupl key >= ted-k-num
+                       invalid continue
+                   not invalid
+                       perform until 1 = 2
+                          read tmp-exe-dupl next at end exit perform 
+           end-read 
+                          if ted-num < 2
+                             exit perform
+                          end-if
+                          move ted-day       to tex-day
+                          move ted-nome-dupl to tex-nome-dupl
+                          start tmp-exe key >= tex-k-dupl
+                                invalid continue
+                            not invalid
+                                perform until 1 = 2
+                                   read tmp-exe next 
+                                     at end exit perform 
+                                   end-read
+                                   if tex-day       not = ted-day    or
+                                      tex-nome-dupl not = ted-nome-dupl
+                                      exit perform
+                                   end-if    
+                                                             
+                                   move low-value to twe-rec
+                                   move tex-mcg-code to mcg-code 
+           twe-mcg-code
+                                   move tex-int-code to int-code
+                                                                    
+                                   initialize tab-exe 
+                                              replacing numeric data by 
+           zeroes
+                                                   alphanumeric data by 
+           spaces
+                                   move tex-day      to idx-days   
+                                   move tex-split    to idx-split 
+                                   move tex-exe-desc to como-dupl
+                                   perform ADD-RANDOM-EXERCISE
+
+                                   if ted-num < 2
+                                      exit perform
+                                   end-if
+              
+                                end-perform
+                          end-start
+                       end-perform
+                 end-start  
+              end-perform 
+              if tot-subst = 0
+                 exit perform
+              end-if
+           end-perform 
+           .
+      * <TOTEM:END>
+
        INIT.
       * <TOTEM:PARA. INIT>
            move 0 to StatusHelp.
@@ -5217,6 +6233,43 @@
       *                                 alphanumeric data by spaces.
       *
       *     move tsc-cliente to old-tsc-cliente 
+           .
+      * <TOTEM:END>
+
+       LOOKUP-EXE.
+      * <TOTEM:PARA. LOOKUP-EXE>
+           inquire gd1(riga, 78-col-exe-code), 
+                   cell-data in exe-code
+           inquire gd1(riga, 78-col-grp-code), 
+                   cell-data in grp-code
+           read exercises no lock
+           move exe-int-code to int-code
+           read intexe
+           move int-effort to s-int-effort
+           read groups no lock
+           move grp-mcg-code to s-mcg-code
+           perform CREA-ZOOM-EXE-MCG
+           move low-value to zem-rec
+           move s-int-effort to zem-int-effort
+           move path-zoom-exe-mcg to ext-file
+           move "zoom-exe-mcg"  to Como-File
+           call   "zoom-gt"  using  como-file, zem-rec
+                            giving stato-zoom
+           cancel "zoom-gt"
+           if stato-zoom = 0
+              move zem-exe-code to col-exe-code
+              move zem-exe-desc to col-exe-desc
+              move zem-grp-desc to col-grp-desc
+              move zem-grp-code to col-grp-code
+              modify gd1(riga, 78-col-exe-code), 
+                     cell-data = col-exe-code
+              modify gd1(riga, 78-col-exe-desc), 
+                     cell-data = col-exe-desc
+              modify gd1(riga, 78-col-grp-code), 
+                     cell-data = col-grp-code
+              modify gd1(riga, 78-col-grp-desc), 
+                     cell-data = col-grp-desc
+           end-if 
            .
       * <TOTEM:END>
 
@@ -5332,6 +6385,29 @@
       *     move rsc-rec      to old-rsc-rec.
       *     move rsc-data     to como-old-rsc-data.
       *     move rsc-articolo to como-old-rsc-articolo 
+           .
+      * <TOTEM:END>
+
+       SALV-MOD.
+      * <TOTEM:PARA. SALV-MOD>
+           set tutto-ok to true.
+           set SiSalvato to true.
+
+           inquire gd1, last-row in tot-righe.
+           if tot-righe > 1
+              set NoSalvato to true
+           end-if.
+
+           if NoSalvato
+              display message "Vuoi resettare il lavoro fatto?"
+                        title titolo
+                         type mb-yes-no
+                       giving scelta       
+       
+              if scelta = mb-no
+                 set errori to true
+              end-if
+           end-if 
            .
       * <TOTEM:END>
 
@@ -5628,29 +6704,6 @@
            .
       * <TOTEM:END>
 
-       SALV-MOD.
-      * <TOTEM:PARA. SALV-MOD>
-           set tutto-ok to true.
-           set SiSalvato to true.
-
-           inquire gd1, last-row in tot-righe.
-           if tot-righe > 1
-              set NoSalvato to true
-           end-if.
-
-           if NoSalvato
-              display message "Vuoi reettare il lavoro fatto?"
-                        title titolo
-                         type mb-yes-no
-                       giving scelta       
-       
-              if scelta = mb-no
-                 set errori to true
-              end-if
-           end-if 
-           .
-      * <TOTEM:END>
-
       * EVENT PARAGRAPH
        TOOL-SALVA-LinkTo.
       * <TOTEM:PARA. TOOL-SALVA-LinkTo>
@@ -5727,28 +6780,21 @@
       * <TOTEM:END>
        gd1-Ev-Msg-Begin-Entry.
       * <TOTEM:PARA. gd1-Ev-Msg-Begin-Entry>
-           if event-data-1 = 2 or 3 or 4 or 5 or 6
+           if event-data-1 = 78-col-prg or 
+                             78-col-grp-code or 
+                             78-col-grp-desc or 
+                             78-col-exe-code or 
+                             78-col-exe-desc
               set  event-action to event-action-fail-terminate
            end-if.
-           
-      *        inquire gd1(riga, 78-col-numdoc),  cell-data OLD-col-numdoc
-      *        inquire gd1(riga, 78-col-datadoc), cell-data OLD-col-datadoc
-      *
-      *        move OLD-col-numdoc to como-col-numdoc
-      *        if como-col-numdoc not = 0
-      *           if colonna >= 78-col-numdoc
-      *              inquire gd1, entry-reason in como-x
-      *              evaluate como-x
-      *              when X"00"|doppio click
-      *              when X"0D"|invio
-      ******                   move OLD-col-numdoc  to tfa-numero
-      ******                   move OLD-col-datadoc to como-data
-      ******                   perform DATE-TO-FILE
-      ******                   move como-data(1:4)  to tfa-numero
-      *                   set VediFattura to true
-      *              end-evaluate
-      *           end-if
-      *        end-if
+
+           if event-data-1 = 78-col-exe-code
+              inquire gd1, entry-reason in como-x
+              if como-x = x"00" or x"0d" or x"0D"
+                 set ApriLookup to true
+              end-if
+           end-if.
+
       *     else
       *        perform X-Y
       *        inquire gd1(riga, 78-col-data), cell-data OLD-col-data
@@ -6016,752 +7062,7 @@
       * <TOTEM:END>
        pb-genera-LinkTo.
       * <TOTEM:PARA. pb-genera-LinkTo>
-           perform CREA-OCCURS-GRUPPI.
-                                         
-           move 0 to int-effort.
-           inquire cb-int, value in cb-int-buf.
-           evaluate cb-int-buf
-           when "Light wod effort" move 1  to effort-wod
-           when "Light wod effort" move 2  to effort-wod
-           when "Light wod effort" move 3  to effort-wod
-           when other              move 99 to effort-wod
-           end-evaluate.
-           
-           inquire cb-dur, value in dur-desc.
-           read duration key dur-k-desc.
-           
-           inquire cb-wod, value in wom-desc.
-           read wodmap key wom-k-desc.
-                 
-           accept  como-data from century-date.
-           accept  como-ora  from time.
-           accept  path-tmp-exe-effort from environment "PATH_ST".
-           inspect path-tmp-exe-effort replacing trailing spaces by 
-           low-value.
-           string  path-tmp-exe-effort delimited low-value
-                   "tmp-exe-effort_"   delimited size
-                   como-data           delimited size
-                   "_"                 delimited size
-                   como-ora            delimited size
-              into path-tmp-exe-effort
-           end-string.                                                  
-                 
-           inspect path-tmp-exe-effort replacing trailing low-value by 
-           spaces.
-           open output tmp-exe-effort.    
-           close       tmp-exe-effort.
-           open i-o    tmp-exe-effort.
-                 
-           accept  path-tmp-wod-exe from environment "PATH_ST".
-           inspect path-tmp-wod-exe replacing trailing spaces by 
-           low-value.
-           string  path-tmp-wod-exe delimited low-value
-                   "tmp-wod-exe_"   delimited size
-                   como-data        delimited size
-                   "_"              delimited size
-                   como-ora         delimited size
-              into path-tmp-wod-exe
-           end-string.                                                  
-                 
-           inspect path-tmp-wod-exe replacing trailing low-value by 
-           spaces.
-           open output tmp-wod-exe.
-           close       tmp-wod-exe.
-           open i-o    tmp-wod-exe.
-                 
-           accept  path-tmp-exe from environment "PATH_ST".
-           inspect path-tmp-exe replacing trailing spaces by low-value.
-           string  path-tmp-exe delimited low-value
-                   "tmp-exe_"   delimited size
-                   como-data    delimited size
-                   "_"          delimited size
-                   como-ora     delimited size
-              into path-tmp-exe
-           end-string.                                                  
-                 
-           inspect path-tmp-exe replacing trailing low-value by spaces.
-           open output tmp-exe.
-           close       tmp-exe.
-           open i-o    tmp-exe. 
-
-           accept  path-tmp-exe-dupl from environment "PATH_ST".
-           inspect path-tmp-exe-dupl replacing trailing spaces by 
-           low-value.
-           string  path-tmp-exe-dupl delimited low-value
-                   "path-tmp-exe-dupl_"   delimited size
-                   como-data           delimited size
-                   "_"                 delimited size
-                   como-ora            delimited size
-              into path-tmp-exe-dupl
-           end-string.                                                  
-                 
-           inspect path-tmp-exe-dupl replacing trailing low-value by 
-           spaces.
-           open output tmp-exe-dupl.    
-           close       tmp-exe-dupl.
-           open i-o    tmp-exe-dupl.
-                                 
-           modify gd1, mass-update = 1.  
-           modify gd1, reset-grid = 1.
-           perform GD1-CONTENT.
-                                     
-           initialize tex-rec replacing numeric data by zeroes 
-                                   alphanumeric data by spaces.         
-                                 
-           perform LOAD-EXERCISES-ALLOWED-BY-EFFORT. 
-           perform LOAD-EXERCISES-MULTIJOINT.
-           perform LOAD-EXERCISES.              
-           perform REMOVE-DUPLICATES.           
-           perform LOAD-GRID.                   
-                                      
-           close       tmp-exe-effort.
-           delete file tmp-exe-effort.
-
-           close       tmp-wod-exe.
-           delete file tmp-wod-exe.
-                            
-           close       tmp-exe.
-           delete file tmp-exe.    
-
-           close       tmp-exe-dupl.
-           delete file tmp-exe-dupl.
-                                  
-           move cb-mg1-buf to s-cb-mg1-buf.
-           move cb-mg2-buf to s-cb-mg2-buf.
-           move cb-mg3-buf to s-cb-mg3-buf.
-           move cb-mg4-buf to s-cb-mg4-buf.
-           move cb-mg5-buf to s-cb-mg5-buf.
-           move cb-mg6-buf to s-cb-mg6-buf.
-           move cb-mg7-buf to s-cb-mg7-buf.
-           move cb-mul-buf to s-cb-mul-buf.
-           move cb-int-buf to s-cb-int-buf.
-           move cb-dur-buf to s-cb-dur-buf.
-           move cb-gio-buf to s-cb-gio-buf.
-           move cb-wod-buf to s-cb-wod-buf.
-      
-      ***---
-       LOAD-GRID.
-           move low-value to tex-rec.
-           move 0 to save-day col-exe-prg.
-           start tmp-exe key >= tex-key
-                 invalid continue 
-             not invalid
-                 move 1 to riga
-                 perform until 1 = 2
-                    read tmp-exe next 
-                      at end 
-                         perform DISPLAY-DURATA
-                         exit perform 
-                    end-read
-                    if save-day = 0                    
-                       move 0 to tot-durata
-                       move tex-day to save-day
-                    end-if
-                    if tex-day not = save-day
-                       perform DISPLAY-DURATA
-                       move 0 to col-exe-prg tot-durata
-                       move tex-day to save-day
-                       add 1 to riga                           
-                       modify gd1(riga, 78-col-day),      cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-prg),      cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-grp-code), cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-grp-desc), cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-exe-code), cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-exe-desc), cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-series),   cell-data = 
-           spaces 
-                       modify gd1(riga, 78-col-reps),     cell-data = 
-           spaces 
-                       modify gd1(riga), row-color 288
-                    end-if          
-                    add 1 to col-exe-prg
-                    move tex-day to col-day
-                    move tex-exe-code to exe-code
-                    read exercises
-                    move exe-grp-code to col-grp-code grp-code
-                    read groups
-                    move grp-desc to col-grp-desc
-                    move tex-exe-code to col-exe-code
-                    move tex-exe-desc to col-exe-desc
-
-                    move wom-split-el-split-int-code(tex-day, tex-split)
-                      to int-code
-                    read intexe
-                    if exe-isMulti-yes
-                       evaluate wom-effort
-                       when 1 move  5 to col-series
-                              move  5 to col-reps
-                       when 2 move  6 to col-series
-                              move 10 to col-reps
-                       when 3 move 10 to col-series
-                              move  8 to col-reps
-                       end-evaluate                               
-                       inspect col-reps replacing leading x"30" by x"20"
-                       call "C$JUSTIFY" using col-reps, "L"
-                    else                  
-                       move int-series to col-series
-                                             
-                       initialize col-reps
-                       if int-restpause > 0  
-                          move int-restpause to como-range-from
-                          inspect como-range-from replacing leading x"30
-      -    "" by x"20"
-                          call "C$JUSTIFY" using como-range-from, "L"
-                          inspect como-range-from replacing trailing 
-           spaces by low-value
-                          string "Rest/pause (" delimited size
-                                 int-restpause  delimited low-value
-                                 ")"            delimited size
-                            into col-reps
-                          end-string
-                       else
-                          if int-range-from = 99 and int-range-to = 99
-                             move "Max" to col-reps
-                          else
-                             move int-range-from to como-range-from
-                             inspect como-range-from replacing leading 
-           x"30" by x"20"
-                             call "C$JUSTIFY" using como-range-from, "L"
-                             inspect como-range-from replacing trailing 
-           spaces by low-value
-                          
-                             move int-range-to to como-range-to         
-                      
-                             inspect como-range-to replacing leading x"3
-      -    "0" by x"20"  
-                             call "C$JUSTIFY" using como-range-to, "L"  
-                   
-                             inspect como-range-to replacing trailing 
-           spaces by low-value
-                          
-                             initialize col-reps
-                             string como-range-from delimited low-value
-                                    "-"             delimited size
-                                    como-range-to   delimited low-value
-                               into col-reps
-                             end-string
-                          end-if
-                       end-if
-                    end-if
-                    add 1 to riga                                
-                    modify gd1(riga, 78-col-day),      cell-data = 
-           col-day
-                    modify gd1(riga, 78-col-prg),      cell-data = 
-           col-exe-prg
-                    modify gd1(riga, 78-col-grp-code), cell-data = 
-           col-grp-code
-                    modify gd1(riga, 78-col-grp-desc), cell-data = 
-           col-grp-desc
-                    modify gd1(riga, 78-col-exe-code), cell-data = 
-           col-exe-code
-                    modify gd1(riga, 78-col-exe-desc), cell-data = 
-           col-exe-desc
-                    modify gd1(riga, 78-col-series),   cell-data = 
-           col-series
-                    modify gd1(riga, 78-col-reps),     cell-data = 
-           col-reps
-                    move int-restpause to hid-restpause
-                    move col-day       to hid-day
-                    modify gd1(riga, 78-col-day), hidden-data hiddenData
-
-                    compute tot-durata  = tot-durata +
-                            exe-setting +
-                          ( col-series * int-time  ) +
-                          ( int-rest   * ( col-series - 1 ) )
-                    perform varying idx from 1 by 1 
-                              until idx > tot-gruppi
-                       if el-mcg-code(idx) = tex-mcg-code
-                          add 1 to el-mcg-hit(idx)
-                       end-if
-                    end-perform
-
-                 end-perform
-           end-start.
-
-           perform varying idx from 1 by 1 
-                     until idx > tot-gruppi
-              evaluate el-mcg-hit(idx)
-              when 0     
-                   evaluate idx
-                   when 1 modify lab-a, color 176
-                   when 2 modify lab-b, color 176
-                   when 3 modify lab-c, color 176
-                   when 4 modify lab-d, color 176
-                   when 5 modify lab-e, color 176
-                   when 6 modify lab-f, color 176
-                   when 7 modify lab-g, color 176
-                   end-evaluate
-              when 1     
-                   evaluate idx
-                   when 1 modify lab-a, color 481
-                   when 2 modify lab-b, color 481
-                   when 3 modify lab-c, color 481
-                   when 4 modify lab-d, color 481
-                   when 5 modify lab-e, color 481
-                   when 6 modify lab-f, color 481
-                   when 7 modify lab-g, color 481
-                   end-evaluate
-              when other 
-                   evaluate idx
-                   when 1 modify lab-a, color 112
-                   when 2 modify lab-b, color 112
-                   when 3 modify lab-c, color 112
-                   when 4 modify lab-d, color 112
-                   when 5 modify lab-e, color 112
-                   when 6 modify lab-f, color 112
-                   when 7 modify lab-g, color 112
-                   end-evaluate
-              end-evaluate
-           end-perform.
-
-           modify gd1, mass-update = 0.
-
-           inquire gd1, last-row in tot-righe.
-           if tot-righe > 1
-              move 1 to mod
-           else
-              move 0 to mod
-           end-if.         
-           perform ABILITAZIONI.
-
-      ***---
-       DISPLAY-DURATA.
-           initialize como-durata.
-           if tot-durata > 3600
-              divide tot-durata by 3600 giving hh remainder resto
-              if resto > 0
-                 if resto > 60
-                    compute mm = resto / 60
-                 else
-                    move resto to mm
-                 end-if
-              else
-                 move 0 to mm 
-              end-if
-              move mm to como-mm
-              inspect como-mm replacing leading x"30" by x"20"
-              call "C$JUSTIFY" using como-mm, "L"                   
-              inspect como-mm replacing trailing spaces by low-value
-
-              move hh to como-hh
-              inspect como-hh replacing leading x"30" by x"20"
-              call "C$JUSTIFY" using como-hh, "L"
-              inspect como-hh replacing trailing spaces by low-value
-                    
-              if hh = 1             
-                 move "ora" to como-ora-e
-              else
-                 move "ore" to como-ora-e
-              end-if
-
-              if mm = 1             
-                 move "minuto" to como-minuto-i
-              else
-                 move "minuti" to como-minuto-i
-              end-if
-
-              string  como-hh       delimited low-value
-                      " "           delimited size
-                      como-ora-e    delimited size
-                      " "           delimited size
-                      como-mm       delimited low-value
-                      " "           delimited size
-                      como-minuto-i delimited size
-                 into como-durata
-              end-string
-           else
-              compute mm = tot-durata / 60
-              move mm to como-mm
-              inspect como-mm replacing leading x"30" by x"20"
-              call "C$JUSTIFY" using como-mm, "L"
-              inspect como-mm replacing trailing spaces by low-value
-
-              if mm = 1             
-                 move "minuto" to como-minuto-i
-              else
-                 move "minuti" to como-minuto-i
-              end-if
-
-              string  como-mm       delimited low-value
-                      " "           delimited size
-                      como-minuto-i delimited size
-                 into como-durata
-              end-string
-           end-if.
-
-           evaluate save-day
-           when 1 modify gd-schema( 2, 12), cell-data como-durata
-           when 2 modify gd-schema( 4, 12), cell-data como-durata
-           when 3 modify gd-schema( 6, 12), cell-data como-durata
-           when 4 modify gd-schema( 8, 12), cell-data como-durata
-           when 5 modify gd-schema(10, 12), cell-data como-durata
-           when 6 modify gd-schema(12, 12), cell-data como-durata
-           when 7 modify gd-schema(14, 12), cell-data como-durata
-           end-evaluate.
-                                                    
-      ***---     
-       LOAD-EXERCISES-ALLOWED-BY-EFFORT.
-           move low-value to exe-key.
-           start exercises key >= exe-key
-                 invalid continue
-             not invalid
-                 perform until 1 = 2
-                    read exercises next at end exit perform end-read
-                    if exe-disab = 1 exit perform cycle end-if
-                    move exe-int-code to int-code
-                    read intexe no lock
-                    move exe-grp-code to grp-code
-                    read groups no lock                                 
-                    if exe-isMulti-yes and cb-mul-buf = "No"
-                       exit perform cycle
-                    end-if
-                    if int-effort <= effort-wod or 
-                       exe-isMulti-yes and cb-mul-buf = "Si"
-                       perform varying idx-gruppi from 1 by 1 
-                                 until idx-gruppi > tot-gruppi          
-                      
-                          if el-mcg-code(idx-gruppi) = grp-mcg-code
-                             move exe-code      to twe-exe-code
-                             move exe-desc      to twe-exe-desc
-                             move grp-mcg-code  to twe-mcg-code
-                             move int-effort    to twe-effort
-                             move exe-isMulti   to twe-exe-isMulti
-                             move exe-int-code  to twe-int-code
-                             move exe-restpause to twe-exe-restpause
-                             write twe-rec 
-                          end-if
-                       end-perform
-                    end-if
-                 end-perform
-           end-start.           
-       
-      ***---
-       LOAD-EXERCISES-MULTIJOINT.                  
-           if cb-mul-buf = "No" exit paragraph end-if.
-                                    
-           perform varying idx-gruppi from 1 by 1 
-                     until idx-gruppi > tot-gruppi
-              move low-value to twe-rec
-              move el-mcg-code(idx-gruppi) to twe-mcg-code
-              set twe-exe-isMulti-yes to true
-              move 0 to tot-exe
-
-              start tmp-wod-exe key >= twe-key
-                    invalid continue
-                not invalid
-                    perform until 1 = 2        
-                       read tmp-wod-exe next
-                         at end exit perform 
-                       end-read        
-                       if twe-mcg-code not = el-mcg-code(idx-gruppi) or
-                          twe-exe-isMulti-no
-                          exit perform
-                       end-if
-                       add 1 to tot-exe    
-                       move twe-exe-code      to el-exe-code(tot-exe)
-                       move twe-exe-desc      to el-exe-desc(tot-exe)
-                       move 0                 to el-exe-used(tot-exe)
-                    end-perform
-              end-start
-
-             |Phase 2
-              if tot-exe > 0
-                 move tot-exe to ex-remain  
-                 perform varying idx-days from 1 by 1 
-                           until idx-days > wom-days
-                    perform varying idx-split from 1 by 1 
-                              until idx-split > 20
-
-                       evaluate wom-split-el-split-sigla(idx-days, 
-           idx-split)
-                       when "A"   move el-mcg-code(1) to mcg-code
-                       when "B"   move el-mcg-code(2) to mcg-code
-                       when "C"   move el-mcg-code(3) to mcg-code
-                       when "D"   move el-mcg-code(4) to mcg-code
-                       when "E"   move el-mcg-code(5) to mcg-code
-                       when "F"   move el-mcg-code(6) to mcg-code
-                       when other exit perform
-                       end-evaluate
-
-                       move wom-split-el-split-int-code(idx-days, 
-           idx-split)
-                         to int-code
-                       read intexe no lock
-                       if int-effort not = 4
-                          exit perform
-                       end-if
-
-                       if el-mcg-code(idx-gruppi) = mcg-code
-                          perform until 1 = 2
-                             compute idx = function random * (tot-exe)
-                             add 1 to idx
-                             if el-exe-used(idx) = 0 or
-                                ex-remain = 0
-                                move idx-days         to tex-day
-                                move idx-split        to tex-split
-                                move mcg-code         to tex-mcg-code
-                                move el-exe-code(idx) to tex-exe-code
-                                move el-exe-desc(idx) to tex-exe-desc
-                                move int-code         to tex-int-code
-                                set tex-exe-isMulti-yes to true
-                                write tex-rec
-
-                                move 1                to 
-           el-exe-used(idx)
-                                if ex-remain > 0
-                                   subtract 1 from ex-remain
-                                end-if
-                                exit perform
-                             end-if
-                          end-perform
-                          exit perform
-                       end-if
-                    end-perform
-                 end-perform
-              end-if
-           end-perform.
-
-      ***---
-       LOAD-EXERCISES.      
-           perform varying idx-days from 1 by 1 
-                     until idx-days > wom-days    
-              perform varying idx-split from 1 by 1 
-                        until idx-split > 20 
-                 move idx-days  to tex-day
-                 move idx-split to tex-split
-                 read tmp-exe
-                      invalid continue
-                  not invalid exit perform cycle |Salto i multi se già messi
-                 end-read                           
-
-                 move low-value to twe-rec
-                 evaluate wom-split-el-split-sigla(idx-days, idx-split)
-                 when "A" move el-mcg-code(1) to mcg-code twe-mcg-code
-                 when "B" move el-mcg-code(2) to mcg-code twe-mcg-code
-                 when "C" move el-mcg-code(3) to mcg-code twe-mcg-code
-                 when "D" move el-mcg-code(4) to mcg-code twe-mcg-code
-                 when "E" move el-mcg-code(5) to mcg-code twe-mcg-code
-                 when "F" move el-mcg-code(6) to mcg-code twe-mcg-code
-                 when other exit perform
-                 end-evaluate       
-
-                 move wom-split-el-split-int-code(idx-days, idx-split)
-                   to int-code  
-
-                 move spaces to como-dupl
-                 perform ADD-RANDOM-EXERCISE
-
-              end-perform
-           end-perform.
-
-      ***---
-       ADD-RANDOM-EXERCISE.
-           set twe-exe-isMulti-no to true.    
-                                              
-           read intexe no lock.
-           move int-effort to twe-effort.     
-
-           move 0 to tot-exe.
-                              
-           start tmp-wod-exe key >= twe-key
-                 invalid continue
-             not invalid
-                 perform until 1 = 2
-                    read tmp-wod-exe next at end exit perform end-read
-                    if twe-mcg-code  not = mcg-code or
-                       twe-exe-isMulti-yes          or
-                       twe-effort    not = int-effort
-                       exit perform
-                    end-if
-
-                    if twe-exe-restpause = 0 and
-                       int-restpause > 0         
-                       exit perform cycle
-                    end-if             
-                       
-                    add 1 to tot-exe    
-                    move twe-exe-code      to el-exe-code(tot-exe)
-                    move twe-exe-desc      to el-exe-desc(tot-exe)
-                    move twe-effort        to el-exe-effort(tot-exe)
-                    move 0                 to el-exe-used(tot-exe)
-                    move twe-exe-restpause to el-exe-restpause(tot-exe)
-                 end-perform
-           end-start.      
-           
-           if ( como-dupl not = spaces and tot-exe > 1 ) or
-              ( como-dupl     = spaces and tot-exe > 0 )
-              move tot-exe to ex-remain  
-              perform until 1 = 2
-                 compute idx = function random * (tot-exe)
-                 add 1 to idx
-                 if el-exe-used(idx) = 0 or
-                    ex-remain = 0
-
-                    if como-dupl not = spaces
-                       if como-dupl not = el-exe-desc(idx)
-                          move idx-days         to tex-day
-                          move idx-split        to tex-split     
-                          move mcg-code         to tex-mcg-code
-                          move el-exe-code(idx) to tex-exe-code
-                          move el-exe-desc(idx) to tex-exe-desc
-                          move int-code         to tex-int-code
-                          set tex-exe-isMulti-no to true
-                          write tex-rec invalid rewrite tex-rec 
-           end-write
-                    
-                          move 1                to el-exe-used(idx)
-                          if ex-remain > 0
-                             subtract 1 from ex-remain
-                          end-if  
-                                                     
-                          if ted-num > 0 and 
-                             como-dupl not = el-exe-desc(idx)
-                             subtract 1 from ted-num 
-                          end-if
-                          exit perform
-                       end-if
-                    else               
-                       move idx-days         to tex-day
-                       move idx-split        to tex-split     
-                       move mcg-code         to tex-mcg-code
-                       move el-exe-code(idx) to tex-exe-code
-                       move el-exe-desc(idx) to tex-exe-desc
-                       move int-code         to tex-int-code
-                       set tex-exe-isMulti-no to true
-                       write tex-rec invalid rewrite tex-rec end-write
-                    
-                       move 1                to el-exe-used(idx)
-                       if ex-remain > 0
-                          subtract 1 from ex-remain
-                       end-if   
-                       exit perform
-                    end-if
-                 end-if
-              end-perform 
-           end-if.
-
-      ***---
-       REMOVE-DUPLICATES.
-           perform 10 times |Se non riesco dopo 10 tentativi esco, significa che non ho esercizi sufficienti
-              move 0 to tot-subst
-              perform varying como-giorno from 1 by 1 
-                        until como-giorno > wom-days  
-                 close       tmp-exe-dupl
-                 open output tmp-exe-dupl
-                 close       tmp-exe-dupl
-                 open i-o    tmp-exe-dupl
-                 move low-value to tex-rec
-                 move como-giorno  to tex-day
-                 move 0 to col-exe-prg
-                 start tmp-exe key >= tex-key
-                       invalid continue 
-                   not invalid
-                       move 1 to riga
-                       perform until 1 = 2
-                          read tmp-exe next 
-                            at end exit perform 
-                          end-read 
-                          if tex-day not = como-giorno
-                             exit perform
-                          end-if
-                          if tex-exe-isMulti-yes exit perform cycle 
-           end-if
-                          initialize como-nome counter
-                          inspect tex-exe-desc replacing trailing 
-           spaces by low-value
-                          inspect tex-exe-desc tallying counter for 
-           characters before low-value
-                          if tex-exe-desc(counter - 3 : 4) = "HARD"
-                             move tex-exe-desc(1:counter - 4)to 
-           como-nome
-                          end-if 
-                          if tex-exe-desc(counter - 5 : 6) = "MEDIUM"
-                             move tex-exe-desc(1:counter - 6)to 
-           como-nome
-                          end-if
-                          if tex-exe-desc(counter - 4 : 5) = "LIGHT"
-                             move tex-exe-desc(1:counter - 5)to 
-           como-nome
-                          end-if
-                          if como-nome = spaces
-                             move tex-exe-desc to como-nome
-                          end-if
-                          inspect tex-exe-desc replacing trailing 
-           low-value by spaces
-                          move tex-day   to ted-day
-                          move como-nome to ted-nome-dupl
-                          read tmp-exe-dupl
-                               invalid 
-                               move 1 to ted-num
-                               write ted-rec end-write
-                           not invalid
-                               add  1 to ted-num
-                               add  1 to tot-subst
-                               rewrite ted-rec end-rewrite
-                          end-read
-                          move como-nome to tex-nome-dupl
-                          rewrite tex-rec
-                       end-perform
-                 end-start
-                                                                    
-                 move low-value to ted-key
-                 move 2         to ted-num
-                 start tmp-exe-dupl key >= ted-k-num
-                       invalid continue
-                   not invalid
-                       perform until 1 = 2
-                          read tmp-exe-dupl next at end exit perform 
-           end-read 
-                          if ted-num < 2
-                             exit perform
-                          end-if
-                          move ted-day       to tex-day
-                          move ted-nome-dupl to tex-nome-dupl
-                          start tmp-exe key >= tex-k-dupl
-                                invalid continue
-                            not invalid
-                                perform until 1 = 2
-                                   read tmp-exe next 
-                                     at end exit perform 
-                                   end-read
-                                   if tex-day       not = ted-day    or
-                                      tex-nome-dupl not = ted-nome-dupl
-                                      exit perform
-                                   end-if    
-                                   move low-value to twe-rec
-                                   move tex-mcg-code to mcg-code 
-           twe-mcg-code
-                                   move tex-int-code to int-code
-                                                                    
-                                   initialize tab-exe 
-                                              replacing numeric data by 
-           zeroes
-                                                   alphanumeric data by 
-           spaces
-                                   move tex-day      to idx-days   
-                                   move tex-split    to idx-split 
-                                   move tex-exe-desc to como-dupl
-                                   perform ADD-RANDOM-EXERCISE
-
-                                   if ted-num < 2
-                                      exit perform
-                                   end-if
-              
-                                end-perform
-                          end-start
-                       end-perform
-                 end-start  
-              end-perform 
-              if tot-subst = 0
-                 exit perform
-              end-if
-           end-perform 
+           perform SCR-ATTESA-OPEN-ROUTINE 
            .
       * <TOTEM:END>
        Screen1-Pb-1-LinkTo.
@@ -6815,7 +7116,21 @@
 
            perform varying riga from 1 by 1 
                      until riga > 7
-              perform until 1 = 2
+              evaluate riga
+              when 1 inquire cb-mg1, enabled = como-e
+              when 2 inquire cb-mg2, enabled = como-e
+              when 3 inquire cb-mg3, enabled = como-e
+              when 4 inquire cb-mg4, enabled = como-e
+              when 5 inquire cb-mg5, enabled = como-e
+              when 6 inquire cb-mg6, enabled = como-e
+              when 7 inquire cb-mg7, enabled = como-e
+              end-evaluate
+
+              if como-e = 0
+                 exit perform cycle
+              end-if
+
+              perform until 1 = 2 
                  if como-prim(riga) = 1
                     compute idx = function random * (tot-mcg-p)
                     add 1 to idx
@@ -6843,7 +7158,7 @@
                           move tab-mcg-p to como-tab-mcg-p
                        else
                           subtract 1 from idx1-p
-                       end-if
+                       end-if                                        
                        exit perform
                     end-if
                  else
@@ -6873,11 +7188,11 @@
                           move tab-mcg to como-tab-mcg
                        else
                           subtract 1 from idx1
-                       end-if      
+                       end-if                             
                        exit perform
                     end-if
                  end-if
-              end-perform
+              end-perform                
            end-perform.
 
            perform ABILITA-MACROGRUPPI 

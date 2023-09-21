@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 21 settembre 2023 17:58:33.
+       DATE-WRITTEN.        giovedì 21 settembre 2023 18:08:40.
        REMARKS.
       *{TOTEM}END
 
@@ -30,6 +30,7 @@
            COPY "wodmap.sl".
            COPY "duration.sl".
            COPY "intexe.sl".
+           COPY "macrogroups.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
@@ -37,6 +38,7 @@
            COPY "wodmap.fd".
            COPY "duration.fd".
            COPY "intexe.fd".
+           COPY "macrogroups.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -103,8 +105,8 @@
        77 tot-effort       PIC  999v999.
        77 resto            PIC  999.
        77 idx-gruppo       PIC  999.
-       77 mcg-code         PIC  x(5).
        77 como-value       PIC  x(20).
+       77 tot-primari-buf  PIC  99.
        77 grid-day         PIC  9.
        77 como-desc        PIC  x(200).
        77 bmpNum           PIC  999.
@@ -116,6 +118,7 @@
        77 como-prim        PIC  9.
        77 startX           PIC  99.
        77 cursorColor      PIC  999.
+       77 tot-primari      PIC  999.
        01 tab-mcg.
            05 el-mcg           PIC  x(5)
                       OCCURS 20 TIMES.
@@ -198,6 +201,8 @@
        77 lab-macro4-buf   PIC  X(20).
        77 lab-macro5-buf   PIC  X(20).
        77 lab-macro6-buf   PIC  X(20).
+       77 STATUS-macrogroups           PIC  X(2).
+           88 Valid-STATUS-macrogroups VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -223,6 +228,7 @@
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
+       77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -246,12 +252,18 @@
        77 DataSet1-intexe-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-intexe-KEY-Asc  VALUE "A".
           88 DataSet1-intexe-KEY-Desc VALUE "D".
+       77 DataSet1-macrogroups-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-macrogroups-LOCK  VALUE "Y".
+       77 DataSet1-macrogroups-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-macrogroups-KEY-Asc  VALUE "A".
+          88 DataSet1-macrogroups-KEY-Desc VALUE "D".
 
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-exercises-SPLITBUF  PIC X(3).
        77 intexe-int-k-desc-SPLITBUF  PIC X(101).
        77 intexe-int-k-effort-SPLITBUF  PIC X(3).
+       77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
       * FOR SPLIT KEY BUFFER
        77 DataSet1-wodmap-SPLIT-BUF2   PIC X(101).
 
@@ -602,7 +614,7 @@
            LINE 7,30,
            LINES 1,30 ,
            SIZE 18,00 ,
-           ID IS 12,
+           ID IS 17,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -617,7 +629,7 @@
            LINE 6,00,
            LINES 1,30 ,
            SIZE 100,00 ,
-           ID IS 14,
+           ID IS 19,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -632,7 +644,7 @@
            LINE 8,61,
            LINES 1,30 ,
            SIZE 18,00 ,
-           ID IS 15,
+           ID IS 20,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -894,7 +906,7 @@
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
-           ID IS 19,
+           ID IS 23,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -910,7 +922,7 @@
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
-           ID IS 20,
+           ID IS 24,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -926,7 +938,7 @@
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
-           ID IS 23,
+           ID IS 25,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -942,7 +954,7 @@
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
-           ID IS 24,
+           ID IS 26,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -958,7 +970,7 @@
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
-           ID IS 25,
+           ID IS 27,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -974,7 +986,7 @@
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
-           ID IS 26,
+           ID IS 28,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -990,7 +1002,7 @@
            LINE 11,04,
            LINES 1,30 ,
            SIZE 20,70 ,
-           ID IS 27,
+           ID IS 29,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -1006,7 +1018,7 @@
            LINE 7,30,
            LINES 1,30 ,
            SIZE 100,00 ,
-           ID IS 28,
+           ID IS 30,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -1021,7 +1033,7 @@
            LINE 8,61,
            LINES 1,30 ,
            SIZE 100,00 ,
-           ID IS 29,
+           ID IS 31,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -1036,7 +1048,7 @@
            LINE 4,70,
            LINES 1,30 ,
            SIZE 8,50 ,
-           ID IS 14,
+           ID IS 32,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -1052,7 +1064,7 @@
            LINE 4,70,
            LINES 1,30 ,
            SIZE 8,50 ,
-           ID IS 14,
+           ID IS 34,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -1068,7 +1080,7 @@
            LINE 4,70,
            LINES 1,30 ,
            SIZE 8,50 ,
-           ID IS 14,
+           ID IS 35,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -1084,7 +1096,7 @@
            LINE 4,70,
            LINES 1,30 ,
            SIZE 8,50 ,
-           ID IS 14,
+           ID IS 36,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -1100,7 +1112,7 @@
            LINE 4,70,
            LINES 1,30 ,
            SIZE 8,50 ,
-           ID IS 14,
+           ID IS 37,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -1116,7 +1128,7 @@
            LINE 4,70,
            LINES 1,30 ,
            SIZE 8,50 ,
-           ID IS 14,
+           ID IS 38,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -1132,7 +1144,7 @@
            LINE 4,70,
            LINES 1,30 ,
            SIZE 8,50 ,
-           ID IS 14,
+           ID IS 39,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -1623,6 +1635,7 @@
            PERFORM OPEN-wodmap
            PERFORM OPEN-duration
            PERFORM OPEN-intexe
+           PERFORM OPEN-macrogroups
       *    After Open
            .
 
@@ -1669,11 +1682,24 @@
       * <TOTEM:END>
            .
 
+       OPEN-macrogroups.
+      * <TOTEM:EPT. INIT:gwodmap, FD:macrogroups, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  INPUT macrogroups
+           IF NOT Valid-STATUS-macrogroups
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwodmap, FD:macrogroups, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-wodmap
            PERFORM CLOSE-duration
            PERFORM CLOSE-intexe
+           PERFORM CLOSE-macrogroups
       *    After Close
            .
 
@@ -1693,6 +1719,12 @@
       * <TOTEM:EPT. INIT:gwodmap, FD:intexe, BeforeClose>
       * <TOTEM:END>
            CLOSE intexe
+           .
+
+       CLOSE-macrogroups.
+      * <TOTEM:EPT. INIT:gwodmap, FD:macrogroups, BeforeClose>
+      * <TOTEM:END>
+           CLOSE macrogroups
            .
 
        wodmap-wom-k-desc-MERGE-SPLITBUF.
@@ -2349,10 +2381,174 @@
       * <TOTEM:END>
            .
 
+       macrogroups-mcg-k-desc-MERGE-SPLITBUF.
+           INITIALIZE macrogroups-mcg-k-desc-SPLITBUF
+           MOVE mcg-desc(1:100) TO 
+           macrogroups-mcg-k-desc-SPLITBUF(1:100)
+           .
+
+       DataSet1-macrogroups-INITSTART.
+           IF DataSet1-macrogroups-KEY-Asc
+              MOVE Low-Value TO mcg-key
+           ELSE
+              MOVE High-Value TO mcg-key
+           END-IF
+           .
+
+       DataSet1-macrogroups-INITEND.
+           IF DataSet1-macrogroups-KEY-Asc
+              MOVE High-Value TO mcg-key
+           ELSE
+              MOVE Low-Value TO mcg-key
+           END-IF
+           .
+
+      * macrogroups
+       DataSet1-macrogroups-START.
+           IF DataSet1-macrogroups-KEY-Asc
+              START macrogroups KEY >= mcg-key
+           ELSE
+              START macrogroups KEY <= mcg-key
+           END-IF
+           .
+
+       DataSet1-macrogroups-START-NOTGREATER.
+           IF DataSet1-macrogroups-KEY-Asc
+              START macrogroups KEY <= mcg-key
+           ELSE
+              START macrogroups KEY >= mcg-key
+           END-IF
+           .
+
+       DataSet1-macrogroups-START-GREATER.
+           IF DataSet1-macrogroups-KEY-Asc
+              START macrogroups KEY > mcg-key
+           ELSE
+              START macrogroups KEY < mcg-key
+           END-IF
+           .
+
+       DataSet1-macrogroups-START-LESS.
+           IF DataSet1-macrogroups-KEY-Asc
+              START macrogroups KEY < mcg-key
+           ELSE
+              START macrogroups KEY > mcg-key
+           END-IF
+           .
+
+       DataSet1-macrogroups-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, BeforeReadRecord>
+      * <TOTEM:END>
+           IF DataSet1-macrogroups-LOCK
+              READ macrogroups WITH LOCK 
+              KEY mcg-key
+           ELSE
+              READ macrogroups WITH NO LOCK 
+              KEY mcg-key
+           END-IF
+           PERFORM macrogroups-mcg-k-desc-MERGE-SPLITBUF
+           MOVE STATUS-macrogroups TO TOTEM-ERR-STAT 
+           MOVE "macrogroups" TO TOTEM-ERR-FILE
+           MOVE "READ" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-macrogroups-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, BeforeReadNext>
+      * <TOTEM:END>
+           IF DataSet1-macrogroups-KEY-Asc
+              IF DataSet1-macrogroups-LOCK
+                 READ macrogroups NEXT WITH LOCK
+              ELSE
+                 READ macrogroups NEXT WITH NO LOCK
+              END-IF
+           ELSE
+              IF DataSet1-macrogroups-LOCK
+                 READ macrogroups PREVIOUS WITH LOCK
+              ELSE
+                 READ macrogroups PREVIOUS WITH NO LOCK
+              END-IF
+           END-IF
+           PERFORM macrogroups-mcg-k-desc-MERGE-SPLITBUF
+           MOVE STATUS-macrogroups TO TOTEM-ERR-STAT
+           MOVE "macrogroups" TO TOTEM-ERR-FILE
+           MOVE "READ NEXT" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-macrogroups-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, BeforeReadPrev>
+      * <TOTEM:END>
+           IF DataSet1-macrogroups-KEY-Asc
+              IF DataSet1-macrogroups-LOCK
+                 READ macrogroups PREVIOUS WITH LOCK
+              ELSE
+                 READ macrogroups PREVIOUS WITH NO LOCK
+              END-IF
+           ELSE
+              IF DataSet1-macrogroups-LOCK
+                 READ macrogroups NEXT WITH LOCK
+              ELSE
+                 READ macrogroups NEXT WITH NO LOCK
+              END-IF
+           END-IF
+           PERFORM macrogroups-mcg-k-desc-MERGE-SPLITBUF
+           MOVE STATUS-macrogroups TO TOTEM-ERR-STAT
+           MOVE "macrogroups" TO TOTEM-ERR-FILE
+           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-macrogroups-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, BeforeWrite>
+      * <TOTEM:END>
+           MOVE STATUS-macrogroups TO TOTEM-ERR-STAT
+           MOVE "macrogroups" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-macrogroups-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-macrogroups TO TOTEM-ERR-STAT
+           MOVE "macrogroups" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-macrogroups-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-macrogroups TO TOTEM-ERR-STAT
+           MOVE "macrogroups" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:macrogroups, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE wom-rec OF wodmap
            INITIALIZE dur-rec OF duration
            INITIALIZE int-rec OF intexe
+           INITIALIZE mcg-rec OF macrogroups
            .
 
 
@@ -2471,6 +2667,14 @@
                          ALPHABETIC    DATA BY SPACES
            .
 
+      * FD's Initialize Paragraph
+       DataSet1-macrogroups-INITREC.
+           INITIALIZE mcg-rec OF macrogroups
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
       *
        DataSet1-DISPATCH-BUFTOFLD.
            EVALUATE TOTEM-Form-Index ALSO TOTEM-Frame-Index
@@ -2566,6 +2770,16 @@
       *****     move como-anno to data-maggiorenne(1:4).
       *****     |||||||
 
+           move 0 to tot-primari.
+           move low-value to mcg-key.
+           start macrogroups key >= mcg-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read macrogroups next at end exit perform end-read
+                    add mcg-primary to tot-primari
+                 end-perform
+           end-start.
 
            perform INIT.
            perform ABILITA-TOOLBAR.
@@ -4420,6 +4634,29 @@
            .
       * <TOTEM:END>
 
+       CONTROLLO-CHECK.
+      * <TOTEM:PARA. CONTROLLO-CHECK>
+           set tutto-ok to true.
+           move 0 to tot-primari-buf.
+           add chk-prim1-buf to tot-primari-buf.
+           add chk-prim2-buf to tot-primari-buf.
+           add chk-prim3-buf to tot-primari-buf.
+           add chk-prim4-buf to tot-primari-buf.
+           add chk-prim5-buf to tot-primari-buf.
+           add chk-prim6-buf to tot-primari-buf.
+           add chk-prim7-buf to tot-primari-buf.
+
+           if tot-primari-buf > tot-primari
+              display message "Non ci sono macrogruppi primari a suffici
+      -    "enza ("
+                              tot-primari ")"
+                        title tit-err
+                         icon 2 
+              set errori to true
+           end-if 
+           .
+      * <TOTEM:END>
+
        CONTROLLO-GRIDS.
       * <TOTEM:PARA. CONTROLLO-GRIDS>
            set tutto-ok to true.
@@ -5129,6 +5366,10 @@
                  exit perform 
               end-if
            end-perform.
+
+           if tutto-ok
+              perform CONTROLLO-CHECK
+           end-if.
 
            if tutto-ok
               perform CONTROLLO-GRIDS

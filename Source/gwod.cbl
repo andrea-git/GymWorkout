@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 22 settembre 2023 00:27:46.
+       DATE-WRITTEN.        venerdì 22 settembre 2023 13:32:26.
        REMARKS.
       *{TOTEM}END
 
@@ -95,7 +95,6 @@
        77 store-ini        PIC  9(8).
        77 store-codice     PIC  9(5).
        77 data-oggi        PIC  9(8).
-       77 effort-xx        PIC  xx.
        77 toolbar-bmp      PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
@@ -514,7 +513,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 1,70,
-           LINES 6,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -534,7 +533,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 3,17,
-           LINES 6,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -554,7 +553,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 4,70,
-           LINES 6,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -574,7 +573,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 6,17,
-           LINES 6,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -594,7 +593,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 7,70,
-           LINES 6,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -614,7 +613,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 9,17,
-           LINES 6,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -634,7 +633,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 10,70,
-           LINES 6,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -654,7 +653,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 15,09,
-           LINES 4,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -675,7 +674,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 17,09,
-           LINES 6,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -696,7 +695,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 18,57,
-           LINES 6,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -717,7 +716,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 20,09,
-           LINES 6,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -738,7 +737,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 21,57,
-           LINES 6,00 ,
+           LINES 10,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
@@ -4837,20 +4836,10 @@
                  read intexe no lock
                  
                  initialize como-day
-                 move int-effort to effort-xx
-                 inspect effort-xx replacing leading x"30" by x"20"
-                 call "C$JUSTIFY" using effort-xx, "L"
-                 inspect effort-xx replacing trailing spaces by 
-           low-value
-
                  inspect como-day replacing trailing spaces by low-value
-                 string  como-day delimited low-value
-                         wom-split-el-split-sigla(idx-days, idx-split)
-                         wom-split-el-split-int-code(idx-days, 
-           idx-split)
-                         "-"          
-                         effort-xx delimited low-value
-                         int-desc(1:1)
+                 string  wom-split-el-split-sigla(idx-days, idx-split)
+                         " - "          
+                         int-desc(1:3)
                     into como-day
                  end-string
                  evaluate idx-split
@@ -5589,10 +5578,13 @@
                           move int-restpause to como-range-from
                           inspect como-range-from replacing leading x"30
       -    "" by x"20"
+                          inspect int-desc replacing trailing spaces by 
+           low-value
                           call "C$JUSTIFY" using como-range-from, "L"
                           inspect como-range-from replacing trailing 
            spaces by low-value
-                          string "Rest/pause (" delimited size
+                          string int-desc       delimited low-value
+                                 " ("           delimited size
                                  int-restpause  delimited low-value
                                  ")"            delimited size
                             into col-reps

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 22 settembre 2023 16:55:38.
+       DATE-WRITTEN.        venerdì 22 settembre 2023 17:54:16.
        REMARKS.
       *{TOTEM}END
 
@@ -5559,7 +5559,7 @@
                     move wom-split-el-split-int-code(tex-day, tex-split)
                       to int-code
                     read intexe
-                    if exe-isMulti-yes
+                    if exe-isMulti = 1
                        evaluate wom-effort
                        when 1 move  5 to col-series
                               move  5 to col-reps
@@ -5791,16 +5791,16 @@
                  perform until 1 = 2
                     read exercises next at end exit perform end-read
                                                     
-                    if exe-disab = 1 exit perform cycle end-if
+                    if exe-isDisable = 1 exit perform cycle end-if
                     move exe-int-code to int-code
                     read intexe no lock
                     move exe-grp-code to grp-code
                     read groups no lock                                 
-                    if exe-isMulti-yes and cb-mul-buf = "No"
+                    if exe-isMulti = 1 and cb-mul-buf = "No"
                        exit perform cycle
                     end-if
                     if int-effort <= effort-wod or 
-                       exe-isMulti-yes and cb-mul-buf = "Si"
+                       exe-isMulti = 1 and cb-mul-buf = "Si"
                        perform varying idx-gruppi from 1 by 1 
                                  until idx-gruppi > tot-gruppi          
                       
@@ -5812,7 +5812,7 @@
                              move int-effort    to twe-effort
                              move exe-isMulti   to twe-exe-isMulti
                              move exe-int-code  to twe-int-code
-                             move exe-restpause to twe-exe-restpause
+                             move exe-isRestpause to twe-exe-restpause
                              write twe-rec 
                           end-if
                        end-perform
@@ -5844,7 +5844,7 @@
                        end-read           
                                                  
                        if twe-mcg-code not = el-mcg-code(idx-gruppi) or
-                          twe-exe-isMulti-no
+                          twe-exe-isMulti = 0
                           exit perform
                        end-if
                        add 1 to tot-exe    
@@ -6260,7 +6260,7 @@
              not invalid
                  perform until 1 = 2
                     read exercises next at end exit perform end-read
-                    if exe-disab = 1 exit perform cycle end-if
+                    if exe-isDisable = 1 exit perform cycle end-if
                     move exe-grp-code to grp-code
                     read groups no lock
                          invalid move spaces to grp-mcg-code

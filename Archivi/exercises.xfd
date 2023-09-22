@@ -172,7 +172,7 @@
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
-         xfd:field-name="EXE-RESTPAUSE"/>
+         xfd:field-name="EXE-ISRESTPAUSE"/>
     <xfd:field
          xfd:field-offset="118"
          xfd:field-bytes="1"
@@ -182,7 +182,7 @@
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
-         xfd:field-name="EXE-DISAB"/>
+         xfd:field-name="EXE-ISDISABLE"/>
     <xfd:field
          xfd:field-offset="119"
          xfd:field-bytes="20"

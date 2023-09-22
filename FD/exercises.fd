@@ -7,11 +7,9 @@
                10 exe-grp-code     PIC  x(5).
                10 exe-int-code     PIC  99.
                10 exe-isMulti      PIC  9.
-                   88 exe-isMulti-no VALUE IS 0. 
-                   88 exe-isMulti-yes VALUE IS 1. 
                10 exe-setting      PIC  9(4).
-               10 exe-restpause    PIC  9.
-               10 exe-disab        PIC  9.
+               10 exe-isRestPause  PIC  9.
+               10 exe-isDisable    PIC  9.
                10 exe-desc-stampa  PIC  x(20).
                10 exe-filler       PIC  x(978).
                10 exe-filler-n1    PIC  9(18).

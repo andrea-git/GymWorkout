@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7915224228-392-238646934
+PROGRAM_UNIQUE_CODE=TOTEM-7E791615438-629-93628367
 
 {{@DESCRIPTION:
 
@@ -195,174 +196,389 @@ m_bFixed=1
 
 @}}
 [FDITEM16_WK]
-m_strName=rec-grid
-m_nItemLevel=1
+m_strName=78-col-code
+m_strDefaultValue=1
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM16_WK
 
 @}}
 [FDITEM17_WK]
-m_strName=col-codice
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=5
+m_strName=78-col-desc
+m_strDefaultValue=2
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM17_WK
 
 @}}
 [FDITEM18_WK]
-m_strName=col-des
-m_strRawPic=X(50)
-m_strPic=X(50)
-m_nItemLevel=5
+m_strName=78-col-desc-stampa
+m_strDefaultValue=3
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM18_WK
 
 @}}
 [FDITEM19_WK]
-m_strName=col-des-stampa
-m_strRawPic=X(20)
-m_strPic=X(20)
-m_nItemLevel=5
+m_strName=78-col-grp-code
+m_strDefaultValue=4
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM19_WK
 
 @}}
 [FDITEM20_WK]
-m_strName=col-group
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=5
+m_strName=78-col-grp-desc
+m_strDefaultValue=5
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM20_WK
 
 @}}
 [FDITEM21_WK]
-m_strName=col-grp-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
-m_nItemLevel=5
+m_strName=78-col-mcg-desc
+m_strDefaultValue=6
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM21_WK
 
 @}}
 [FDITEM22_WK]
-m_strName=col-mcg-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
-m_nItemLevel=5
+m_strName=78-col-int-code
+m_strDefaultValue=7
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM22_WK
 
 @}}
 [FDITEM23_WK]
-m_strName=col-intensity
-m_strRawPic=z9
-m_strPic=z9
-m_nItemLevel=5
+m_strName=78-col-int-desc
+m_strDefaultValue=8
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM23_WK
 
 @}}
 [FDITEM24_WK]
-m_strName=col-int-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
-m_nItemLevel=5
+m_strName=78-col-ismulti
+m_strDefaultValue=9
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM24_WK
 
 @}}
 [FDITEM25_WK]
-m_strName=col-isMulti
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=5
+m_strName=78-col-setting
+m_strDefaultValue=10
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM25_WK
 
 @}}
 [FDITEM26_WK]
-m_strName=col-setting
-m_strRawPic=z.zz9
-m_strPic=z.zz9
-m_nItemLevel=5
+m_strName=78-col-restpause
+m_strDefaultValue=11
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM26_WK
 
 @}}
 [FDITEM27_WK]
-m_strName=col-restpause
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=5
+m_strName=78-col-disable
+m_strDefaultValue=12
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM27_WK
 
 @}}
 [FDITEM28_WK]
-m_strName=col-disab
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=5
+m_strName=rec-grid
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM28_WK
 
 @}}
 [FDITEM29_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
-m_nItemLevel=77
+m_strName=col-codice
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM29_WK
 
 @}}
 [FDITEM30_WK]
-m_strName=como-ord
-m_strRawPic=s9
-m_strPic=s9
-m_strDefaultValue=0
-m_nItemLevel=77
+m_strName=col-des
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM30_WK
 
 @}}
 [FDITEM31_WK]
-m_strName=FILLER
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=1
+m_strName=col-des-stampa
+m_strRawPic=X(20)
+m_strPic=X(20)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM31_WK
 
 @}}
 [FDITEM32_WK]
+m_strName=col-group
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM32_WK
+
+@}}
+[FDITEM33_WK]
+m_strName=col-grp-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM33_WK
+
+@}}
+[FDITEM34_WK]
+m_strName=col-mcg-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM34_WK
+
+@}}
+[FDITEM35_WK]
+m_strName=col-intensity
+m_strRawPic=z9
+m_strPic=z9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM35_WK
+
+@}}
+[FDITEM36_WK]
+m_strName=col-int-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM36_WK
+
+@}}
+[FDITEM37_WK]
+m_strName=col-isMulti
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM37_WK
+
+@}}
+[FDITEM38_WK]
+m_strName=col-setting
+m_strRawPic=z.zz9
+m_strPic=z.zz9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM38_WK
+
+@}}
+[FDITEM39_WK]
+m_strName=col-restpause
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM39_WK
+
+@}}
+[FDITEM40_WK]
+m_strName=col-disab
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM40_WK
+
+@}}
+[FDITEM41_WK]
+m_strName=Screen1-Handle
+m_nUsage=24
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM41_WK
+
+@}}
+[FDITEM42_WK]
+m_strName=como-ord
+m_strRawPic=xx
+m_strPic=xx
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM42_WK
+
+@}}
+[FDITEM43_WK]
+m_strName=ord-code-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="CA"
+{{@DataItem_m_strDescriptionFDITEM43_WK
+
+@}}
+[FDITEM44_WK]
+m_strName=ord-code-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="CD"
+{{@DataItem_m_strDescriptionFDITEM44_WK
+
+@}}
+[FDITEM45_WK]
+m_strName=ord-desc-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="DA"
+{{@DataItem_m_strDescriptionFDITEM45_WK
+
+@}}
+[FDITEM46_WK]
+m_strName=ord-desc-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="DD"
+{{@DataItem_m_strDescriptionFDITEM46_WK
+
+@}}
+[FDITEM47_WK]
+m_strName=ord-mcg-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="MA"
+{{@DataItem_m_strDescriptionFDITEM47_WK
+
+@}}
+[FDITEM48_WK]
+m_strName=ord-mcg-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="MD"
+{{@DataItem_m_strDescriptionFDITEM48_WK
+
+@}}
+[FDITEM49_WK]
+m_strName=ord-multi-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="UA"
+{{@DataItem_m_strDescriptionFDITEM49_WK
+
+@}}
+[FDITEM50_WK]
+m_strName=ord-multi-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="UD"
+{{@DataItem_m_strDescriptionFDITEM50_WK
+
+@}}
+[FDITEM51_WK]
+m_strName=ord-disable-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="IA"
+{{@DataItem_m_strDescriptionFDITEM51_WK
+
+@}}
+[FDITEM52_WK]
+m_strName=ord-rp-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="RU"
+{{@DataItem_m_strDescriptionFDITEM52_WK
+
+@}}
+[FDITEM53_WK]
+m_strName=ord-rp-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="RA"
+{{@DataItem_m_strDescriptionFDITEM53_WK
+
+@}}
+[FDITEM54_WK]
+m_strName=ord-disable-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="IU"
+{{@DataItem_m_strDescriptionFDITEM54_WK
+
+@}}
+[FDITEM55_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM55_WK
+
+@}}
+[FDITEM56_WK]
 m_strName=ricarica
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM32_WK
+{{@DataItem_m_strDescriptionFDITEM56_WK
 
 @}}
-[FDITEM33_WK]
+[FDITEM57_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -371,47 +587,47 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM33_WK
+{{@DataItem_m_strDescriptionFDITEM57_WK
 
 @}}
-[FDITEM34_WK]
+[FDITEM58_WK]
 m_strName=Default-Font
 m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM34_WK
+{{@DataItem_m_strDescriptionFDITEM58_WK
 
 @}}
-[FDITEM35_WK]
+[FDITEM59_WK]
 m_strName=STATUS-exercises
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM35_WK
+{{@DataItem_m_strDescriptionFDITEM59_WK
 
 @}}
-[FDITEM36_WK]
+[FDITEM60_WK]
 m_strName=Valid-STATUS-exercises
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM36_WK
+{{@DataItem_m_strDescriptionFDITEM60_WK
 
 @}}
-[FDITEM37_WK]
+[FDITEM61_WK]
 m_strName=Calibri14-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM37_WK
+{{@DataItem_m_strDescriptionFDITEM61_WK
 
 @}}
-[FDITEM38_WK]
+[FDITEM62_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -420,93 +636,93 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM38_WK
+{{@DataItem_m_strDescriptionFDITEM62_WK
 
 @}}
-[FDITEM39_WK]
+[FDITEM63_WK]
 m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM39_WK
+{{@DataItem_m_strDescriptionFDITEM63_WK
 
 @}}
-[FDITEM40_WK]
+[FDITEM64_WK]
 m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM40_WK
+{{@DataItem_m_strDescriptionFDITEM64_WK
 
 @}}
-[FDITEM41_WK]
+[FDITEM65_WK]
 m_strName=STATUS-intexe
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM41_WK
+{{@DataItem_m_strDescriptionFDITEM65_WK
 
 @}}
-[FDITEM42_WK]
+[FDITEM66_WK]
 m_strName=Valid-STATUS-intexe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM42_WK
+{{@DataItem_m_strDescriptionFDITEM66_WK
 
 @}}
-[FDITEM43_WK]
+[FDITEM67_WK]
 m_strName=STATUS-macrogroups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM43_WK
+{{@DataItem_m_strDescriptionFDITEM67_WK
 
 @}}
-[FDITEM44_WK]
+[FDITEM68_WK]
 m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM44_WK
+{{@DataItem_m_strDescriptionFDITEM68_WK
 
 @}}
-[FDITEM45_WK]
+[FDITEM69_WK]
 m_strName=path-tmp-exe-mcg
 m_strRawPic=X(256)
 m_strPic=X(256)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM45_WK
+{{@DataItem_m_strDescriptionFDITEM69_WK
 
 @}}
-[FDITEM46_WK]
+[FDITEM70_WK]
 m_strName=STATUS-tmp-exe-mcg
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM46_WK
+{{@DataItem_m_strDescriptionFDITEM70_WK
 
 @}}
-[FDITEM47_WK]
+[FDITEM71_WK]
 m_strName=Valid-STATUS-tmp-exe-mcg
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM47_WK
+{{@DataItem_m_strDescriptionFDITEM71_WK
 
 @}}
 
@@ -682,7 +898,7 @@ GRAPHICAL-SCREEN
 Begin Screen Form1
    PREFIX            = Form1
    IMPORTED-SCREEN   = FALSE
-   LOCK-CONTROL      = TRUE
+   LOCK-CONTROL      = FALSE
    LEVEL             = 1
    (Name)            = Form1
    Absolute Column   = 0
@@ -719,7 +935,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 165,10
+   Size              = 172,90
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -768,7 +984,7 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Grid form1-gd-1
-      SCREEN-COL        = 2,60
+      SCREEN-COL        = 1,40
       SCREEN-LINE       = 1,43
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -787,10 +1003,10 @@ Begin Screen Form1
       Cells' Setting    = ( X = 9, Y = 1, Data = "Multi" )
       Cells' Setting    = ( X = 10, Y = 1, Data = "Setting ("")" )
       Cells' Setting    = ( X = 11, Y = 1, Data = "R/P" )
-      Cells' Setting    = ( X = 12, Y = 1, Data = "Disab" )
+      Cells' Setting    = ( X = 12, Y = 1, Data = "Disable" )
       Centered Headings = FALSE
       Color             = 0
-      Column            = 2,60
+      Column            = 1,40
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-codice, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(5)", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
@@ -818,16 +1034,16 @@ Begin Screen Form1
       Columns' Setting  = ( DISP = 15, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 9, Name = col-isMulti, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 8, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 10, Name = col-setting, READONLY = 0 )
       Columns' Setting  = ( PIC = "z.zz9", TYPE = "z.zz9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 8, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 11, Name = col-restpause, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 12, Name = col-disab, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 2
       Cursor X          = 0
@@ -858,12 +1074,12 @@ Begin Screen Form1
       Record Data       = rec-grid
       Row Dividers      = 1
       Row Headings      = FALSE
-      Size              = 161,90
+      Size              = 172,00
       Size Unit         = Default
       Tab Order         = 2
       Tiled Headings    = TRUE
       Use Tab           = TRUE
-      Virtual Width     = 160
+      Virtual Width     = 170
       Visible           = NONE
       Vpadding          = 10
       Vscroll           = TRUE
@@ -1243,7 +1459,7 @@ BEGIN-TEXT
            perform ABILITA-TOOLBAR.
 
            perform INTESTAZIONE.
-           move 5 to como-ord.  
+           set ord-mcg-asc to true.
            perform LOAD-TMP-EXE-MCG.
            perform LOAD-RECORD.
 
@@ -1448,7 +1664,7 @@ BEGIN-DATA
    PARAGRAPH         = CERCA
 BEGIN-TEXT
            evaluate colonna
-           when 4
+           when 78-col-grp-code
                 inquire form1-gd-1(riga, colonna), cell-data in grp-code
                 move "groups"       to Como-File
                 call   "zoom-gt" using como-file, grp-rec
@@ -1458,11 +1674,11 @@ BEGIN-TEXT
                    move grp-code to col-group mcg-code 
                    move grp-desc to col-grp-desc                     
                    read macrogroups no lock invalid move spaces to mcg-desc end-read
-                   modify form1-gd-1(riga, 3), cell-data col-group   
-                   modify form1-gd-1(riga, 4), cell-data col-grp-desc
-                   modify form1-gd-1(riga, 5), cell-data col-mcg-desc
+                   modify form1-gd-1(riga, 78-col-grp-code), cell-data col-group   
+                   modify form1-gd-1(riga, 78-col-grp-desc), cell-data col-grp-desc
+                   modify form1-gd-1(riga, 78-col-mcg-desc), cell-data col-mcg-desc
                 end-if 
-           when 7
+           when 78-col-int-code
                 inquire form1-gd-1(riga, colonna), cell-data in int-code
                 move "intexe"    to Como-File
                 call   "zoom-gt" using como-file, int-rec
@@ -1471,8 +1687,8 @@ BEGIN-TEXT
                 if stato-zoom = 0
                    move int-code to col-intensity
                    move int-desc to col-int-desc                     
-                   modify form1-gd-1(riga, 6), cell-data col-intensity
-                   modify form1-gd-1(riga, 7), cell-data col-int-desc
+                   modify form1-gd-1(riga, 78-col-int-code), cell-data col-intensity
+                   modify form1-gd-1(riga, 78-col-int-desc), cell-data col-int-desc
                 end-if 
            end-evaluate. 
 
@@ -1506,11 +1722,10 @@ BEGIN-TEXT
            perform VALORE-RIGA.
 
            evaluate colonna
-           when 1
+           when 78-col-code
                 if nuovo
                    if exe-code = zero or spaces 
                       set errori to true
-                      move 1     to colonna
                       display message box MSG-Codice-obbligatorio
                               title = tit-err
                               icon mb-warning-icon
@@ -1524,25 +1739,24 @@ BEGIN-TEXT
                       end-read
                    end-if
                 end-if     
-           when 2
+           when 78-col-desc
                 if exe-desc = spaces
-                   set errori to true
-                   move 2 to colonna
+                   set errori to true   
                    display message box MSG-Descrizione-mancante|"Descrizione mancante"
                            title = tit-err
                            icon mb-warning-icon
                 else
                    if exe-desc-stampa = spaces 
                       move exe-desc to exe-desc-stampa
-                      modify form1-gd-1(riga, 3), cell-data = exe-desc-stampa
+                      modify form1-gd-1(riga, 78-col-desc-stampa), cell-data = exe-desc-stampa
                    end-if
                 end-if    
-           when 3
+           when 78-col-desc-stampa
                 if exe-desc-stampa = spaces 
                    move exe-desc to exe-desc-stampa
-                   modify form1-gd-1(riga, 3), cell-data = exe-desc-stampa
+                   modify form1-gd-1(riga, 78-col-desc-stampa), cell-data = exe-desc-stampa
                 end-if
-           when 4
+           when 78-col-grp-code
                 move exe-grp-code to grp-code
                 read groups no lock 
                      invalid 
@@ -1555,9 +1769,9 @@ BEGIN-TEXT
                      move grp-mcg-code to mcg-code
                      read macrogroups no lock invalid move spaces to mcg-desc end-read
                 end-read                                      
-                modify form1-gd-1(riga, 5), cell-data grp-desc
-                modify form1-gd-1(riga, 6), cell-data mcg-desc  
-           when 5
+                modify form1-gd-1(riga, 78-col-grp-desc), cell-data grp-desc
+                modify form1-gd-1(riga, 78-col-mcg-desc), cell-data mcg-desc  
+           when 78-col-grp-desc
                 move exe-int-code to int-code
                 read intexe no lock 
                      invalid 
@@ -1567,9 +1781,9 @@ BEGIN-TEXT
                            title = tit-err
                            icon mb-warning-icon
                 end-read                                      
-                modify form1-gd-1(riga, 8), cell-data int-desc  
+                modify form1-gd-1(riga, 78-col-int-desc), cell-data int-desc  
 
-           when 9
+           when 78-col-isMulti
                 if not (exe-isMulti = 0 or 1)
                    set errori to true
                    display message "Valori consentiti 1/0"
@@ -1577,7 +1791,7 @@ BEGIN-TEXT
                            icon mb-warning-icon
                 end-if
 
-           when 10
+           when 78-col-setting
                 if exe-setting = 0
                    set errori to true
                    display message "Valore obbligatorio"
@@ -1585,8 +1799,16 @@ BEGIN-TEXT
                            icon mb-warning-icon
                 end-if    
 
-           when 11
-                if not (exe-restpause = 0 or 1)
+           when 78-col-restpause
+                if not (exe-isRestpause = 0 or 1)
+                   set errori to true
+                   display message "Valori consentiti 1/0"
+                           title = tit-err
+                           icon mb-warning-icon
+                end-if
+
+           when 78-col-disable
+                if not (exe-isDisable = 0 or 1)
                    set errori to true
                    display message "Valori consentiti 1/0"
                            title = tit-err
@@ -1621,14 +1843,14 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = LOAD-RECORD
 BEGIN-TEXT
-           modify form1-gd-1, mass-update = 1.
+           modify form1-gd-1, mass-update = 1, reset-grid = 1.
 
            perform FORM1-GD-1-CONTENT.
 
-           evaluate como-ord 
-           when  1                    
+           evaluate true 
+           when ord-code-asc
                 move low-value to exe-rec
-                modify form1-gd-1(1, 1), cell-data = "Codice <<"
+                modify form1-gd-1(1, 78-col-code), cell-data = "Codice <<"
                 start exercises key is >= exe-key
                       invalid continue
                   not invalid 
@@ -1640,9 +1862,9 @@ BEGIN-TEXT
                          end-read
                       end-perform
                 end-start
-           when -1                       
+           when ord-code-disc
                 move high-value to exe-rec
-                modify form1-gd-1(1, 1), cell-data = "Codice >>"
+                modify form1-gd-1(1, 78-col-code), cell-data = "Codice >>"
                 start exercises key is <= exe-key
                       invalid continue
                   not invalid 
@@ -1654,9 +1876,9 @@ BEGIN-TEXT
                          end-read
                       end-perform
                 end-start                           
-           when  2                    
+           when ord-desc-asc                 
                 move low-value to exe-rec
-                modify form1-gd-1(1, 2), cell-data = "Descrizione <<"
+                modify form1-gd-1(1, 78-col-desc), cell-data = "Descrizione <<"
                 start exercises key is >= exe-k-desc
                       invalid continue
                   not invalid 
@@ -1668,9 +1890,9 @@ BEGIN-TEXT
                          end-read
                       end-perform
                 end-start
-           when -2                       
+           when ord-desc-disc
                 move high-value to exe-rec
-                modify form1-gd-1(1, 2), cell-data = "Descrizione >>"
+                modify form1-gd-1(1, 78-col-desc), cell-data = "Descrizione >>"
                 start exercises key is <= exe-k-desc
                       invalid continue
                   not invalid 
@@ -1682,9 +1904,9 @@ BEGIN-TEXT
                          end-read
                       end-perform
                 end-start
-           when  5                  
+           when ord-mcg-asc
                 move low-value to tem-rec
-                modify form1-gd-1(1, 5), cell-data = "Macrogruppo <<"
+                modify form1-gd-1(1, 78-col-mcg-desc), cell-data = "Macrogruppo <<"
                 start tmp-exe-mcg key is >= tem-key
                       invalid continue
                   not invalid 
@@ -1698,11 +1920,113 @@ BEGIN-TEXT
                               perform RECORD-TO-GRID
                          end-read
                       end-perform
-                end-start
-           when -5                       
+                end-start 
+           when ord-mcg-disc                       
                 move high-value to tem-rec
-                modify form1-gd-1(1, 5), cell-data = "Macrogruppo >>"
+                modify form1-gd-1(1, 78-col-mcg-desc), cell-data = "Macrogruppo >>"
                 start tmp-exe-mcg key is <= tem-key
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg previous
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+           when ord-multi-asc
+                move low-value to tem-rec
+                modify form1-gd-1(1, 78-col-ismulti), cell-data = "Multi <<"
+                start tmp-exe-mcg key is >= tem-k-multi
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg next
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+           when ord-multi-disc                       
+                move high-value to tem-rec
+                modify form1-gd-1(1, 78-col-ismulti), cell-data = "Multi >>"
+                start tmp-exe-mcg key is <= tem-k-multi
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg previous
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+           when ord-rp-asc
+                move low-value to tem-rec
+                modify form1-gd-1(1, 78-col-restpause), cell-data = "R/P <<"
+                start tmp-exe-mcg key is >= tem-k-rp
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg next
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+           when ord-rp-disc                       
+                move high-value to tem-rec
+                modify form1-gd-1(1, 78-col-restpause), cell-data = "R/P >>"
+                start tmp-exe-mcg key is <= tem-k-rp
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg previous
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+           when ord-disable-asc                       
+                move low-value to tem-rec
+                modify form1-gd-1(1, 78-col-disable), cell-data = "Disable <<"
+                start tmp-exe-mcg key is >= tem-k-disab
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg next
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+           when ord-disable-disc                       
+                move high-value to tem-rec
+                modify form1-gd-1(1, 78-col-disable), cell-data = "Disable >>"
+                start tmp-exe-mcg key is <= tem-k-disab
                       invalid continue
                   not invalid 
                       move 1 to riga
@@ -1736,21 +2060,63 @@ BEGIN-TEXT
            move int-desc      to col-int-desc
            move exe-isMulti   to col-isMulti
            move exe-setting   to col-setting
-           move exe-restpause to col-restpause
-           move exe-disab     to col-disab
+           move exe-isRestpause to col-restpause
+           move exe-isDisable   to col-disab
            move exe-desc-stampa to col-des-stampa.
-           modify form1-gd-1(riga, 1),  cell-data col-codice.
-           modify form1-gd-1(riga, 2),  cell-data col-des.  
-           modify form1-gd-1(riga, 3),  cell-data col-des-stampa.  
-           modify form1-gd-1(riga, 4),  cell-data col-group.   
-           modify form1-gd-1(riga, 5),  cell-data col-grp-desc.
-           modify form1-gd-1(riga, 6),  cell-data col-mcg-desc.
-           modify form1-gd-1(riga, 7),  cell-data col-intensity.
-           modify form1-gd-1(riga, 8),  cell-data col-int-desc.
-           modify form1-gd-1(riga, 9),  cell-data col-isMulti.
-           modify form1-gd-1(riga, 10),  cell-data col-setting.
-           modify form1-gd-1(riga, 11), cell-data col-restpause.
-           modify form1-gd-1(riga, 12), cell-data col-disab.
+           modify form1-gd-1(riga, 78-col-code),        cell-data col-codice.
+           modify form1-gd-1(riga, 78-col-desc),        cell-data col-des.  
+           modify form1-gd-1(riga, 78-col-desc-stampa), cell-data col-des-stampa.  
+           modify form1-gd-1(riga, 78-col-grp-code),    cell-data col-group.   
+           modify form1-gd-1(riga, 78-col-grp-desc),    cell-data col-grp-desc.
+           modify form1-gd-1(riga, 78-col-mcg-desc),    cell-data col-mcg-desc.
+           modify form1-gd-1(riga, 78-col-int-code),    cell-data col-intensity.
+           modify form1-gd-1(riga, 78-col-int-desc),    cell-data col-int-desc.
+           modify form1-gd-1(riga, 78-col-ismulti),     cell-data col-isMulti.
+           modify form1-gd-1(riga, 78-col-setting),     cell-data col-setting.
+           modify form1-gd-1(riga, 78-col-restpause),   cell-data col-restpause.
+           modify form1-gd-1(riga, 78-col-disable),     cell-data col-disab.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = LOAD-TMP-EXE-MCG
+BEGIN-TEXT
+           accept  como-data from century-date.
+           accept  como-ora  from time.
+           accept  path-tmp-exe-mcg from environment "PATH_ST".
+           inspect path-tmp-exe-mcg replacing trailing spaces by 
+           low-value.
+           string  path-tmp-exe-mcg delimited low-value
+                   "tmp-exe-mcg_"   delimited size
+                   como-data           delimited size
+                   "_"                 delimited size
+                   como-ora            delimited size
+              into path-tmp-exe-mcg
+           end-string.                                                  
+                 
+           inspect path-tmp-exe-mcg replacing trailing low-value by 
+           spaces.
+           open output tmp-exe-mcg.    
+           close       tmp-exe-mcg.
+           open i-o    tmp-exe-mcg.
+
+           move low-value to exe-key.
+           start exercises key >= exe-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read exercises next at end exit perform end-read
+                    move exe-code     to tem-exe-code
+                    move exe-int-code to tem-int-code
+                    move exe-grp-code to grp-code         
+                    move exe-isDisable    to tem-exe-isDisable
+                    move exe-isRestPause  to tem-exe-isRestPause
+                    move exe-isMulti      to tem-exe-isMulti
+                    read groups no lock
+                    move grp-mcg-code to tem-mcg-code
+                    write tem-rec
+                 end-perform
+           end-start.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1882,8 +2248,8 @@ BEGIN-TEXT
            inquire form1-gd-1, cursor-x in colonna, 
                                cursor-y in riga.
 
-           perform varying colonna from 1 by 1
-                     until colonna > 9
+           perform varying colonna from 78-col-code by 1
+                     until colonna > 78-col-disable
               perform CONTROLLO
               if errori exit perform end-if
            end-perform.
@@ -1938,7 +2304,7 @@ BEGIN-TEXT
       * COLORAZIONE RIGA IN GRID
            perform COLORE-RIGA.
 
-           if mod = 1 and ( colonna = 3 or 6)
+           if mod = 1 and ( colonna = 78-col-int-code or 78-col-grp-code)
               move BitmapZoomEnabled to bmpNum
               modify tool-cerca, bitmap-number = bmpNum, enabled true
            else
@@ -1959,16 +2325,15 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = VALORE-RIGA
 BEGIN-TEXT
-           inquire form1-gd-1(riga, 1),  cell-data exe-code.
-           inquire form1-gd-1(riga, 2),  cell-data exe-desc.  
-           inquire form1-gd-1(riga, 3),  cell-data exe-desc-stampa
-           inquire form1-gd-1(riga, 4),  cell-data exe-grp-code.
-           inquire form1-gd-1(riga, 7),  cell-data exe-int-code.
-           inquire form1-gd-1(riga, 9),  cell-data exe-isMulti.
-           inquire form1-gd-1(riga, 10),  cell-data exe-setting.
-           inquire form1-gd-1(riga, 11), cell-data exe-restpause. 
-           inquire form1-gd-1(riga, 12), cell-data exe-disab. 
-
+           inquire form1-gd-1(riga, 78-col-code),        cell-data exe-code.
+           inquire form1-gd-1(riga, 78-col-desc),        cell-data exe-desc.  
+           inquire form1-gd-1(riga, 78-col-desc-stampa), cell-data exe-desc-stampa
+           inquire form1-gd-1(riga, 78-col-grp-code),    cell-data exe-grp-code.
+           inquire form1-gd-1(riga, 78-col-int-code),    cell-data exe-int-code.
+           inquire form1-gd-1(riga, 78-col-ismulti),     cell-data exe-isMulti.
+           inquire form1-gd-1(riga, 78-col-setting),     cell-data exe-setting.
+           inquire form1-gd-1(riga, 78-col-restpause),   cell-data exe-isRestpause. 
+           inquire form1-gd-1(riga, 78-col-disable),     cell-data exe-isDisable. 
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1976,7 +2341,7 @@ BEGIN-DATA
    PARAGRAPH         = VALORE-OLD-RIGA
 BEGIN-TEXT
            if vecchio
-              inquire form1-gd-1(riga, 1) cell-data old-exe-code
+              inquire form1-gd-1(riga, 78-col-code) cell-data old-exe-code
               move old-exe-code           to exe-code
               read exercises              no lock
               move exe-rec                to old-exe-rec
@@ -1986,45 +2351,6 @@ BEGIN-TEXT
            end-if.
 
 
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 3
-   PARAGRAPH         = LOAD-TMP-EXE-MCG
-BEGIN-TEXT
-           accept  como-data from century-date.
-           accept  como-ora  from time.
-           accept  path-tmp-exe-mcg from environment "PATH_ST".
-           inspect path-tmp-exe-mcg replacing trailing spaces by 
-           low-value.
-           string  path-tmp-exe-mcg delimited low-value
-                   "tmp-exe-mcg_"   delimited size
-                   como-data           delimited size
-                   "_"                 delimited size
-                   como-ora            delimited size
-              into path-tmp-exe-mcg
-           end-string.                                                  
-                 
-           inspect path-tmp-exe-mcg replacing trailing low-value by 
-           spaces.
-           open output tmp-exe-mcg.    
-           close       tmp-exe-mcg.
-           open i-o    tmp-exe-mcg.
-
-           move low-value to exe-key.
-           start exercises key >= exe-key
-                 invalid continue
-             not invalid
-                 perform until 1 = 2
-                    read exercises next at end exit perform end-read
-                    move exe-code     to tem-exe-code
-                    move exe-int-code to tem-int-code
-                    move exe-grp-code to grp-code
-                    read groups no lock
-                    move grp-mcg-code to tem-mcg-code
-                    write tem-rec
-                 end-perform
-           end-start.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2203,24 +2529,76 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = form1-gd-1-Ev-Msg-Heading-Clicked
 BEGIN-TEXT
-           evaluate event-data-1
-           when 1
-           when 2            
-                if como-ord = event-data-1
-                   compute como-ord = como-ord * -1
-                else
-                   move event-data-1 to como-ord
+           evaluate event-data-1         
+           when 78-col-code
+                if ord-code-asc
+                   set ord-code-disc to true
+                else                        
+                   set ord-code-asc to true
                 end-if
                 perform LOAD-RECORD
-           when 5            
-                if como-ord = event-data-1
-                   compute como-ord = como-ord * -1
-                else
-                   move event-data-1 to como-ord
+
+           when 78-col-desc       
+                if ord-desc-asc
+                   set ord-desc-disc to true
+                else                        
+                   set ord-desc-asc to true
                 end-if
+                perform LOAD-RECORD
+
+           when 78-col-mcg-desc
+                if ord-mcg-asc
+                   set ord-mcg-disc to true
+                else                        
+                   set ord-mcg-asc to true
+                end-if                  
                 perform LOAD-TMP-EXE-MCG
                 perform LOAD-RECORD
-                close  tmp-exe-mcg
+                close       tmp-exe-mcg
+                delete file tmp-exe-mcg 
+
+           when 78-col-restpause
+                if ord-rp-asc
+                   set ord-rp-disc to true
+                else                        
+                   set ord-rp-asc to true
+                end-if                  
+                perform LOAD-TMP-EXE-MCG
+                perform LOAD-RECORD
+                close       tmp-exe-mcg     
+                delete file tmp-exe-mcg
+
+           when 78-col-isMulti
+                if ord-multi-asc
+                   set ord-multi-disc to true
+                else                        
+                   set ord-multi-asc to true
+                end-if                 
+                perform LOAD-TMP-EXE-MCG
+                perform LOAD-RECORD
+                close       tmp-exe-mcg
+                delete file tmp-exe-mcg 
+
+           when 78-col-restPause
+                if ord-multi-asc
+                   set ord-multi-disc to true
+                else                        
+                   set ord-multi-asc to true
+                end-if                 
+                perform LOAD-TMP-EXE-MCG
+                perform LOAD-RECORD
+                close       tmp-exe-mcg
+                delete file tmp-exe-mcg 
+
+           when 78-col-disable
+                if ord-disable-asc
+                   set ord-disable-disc to true
+                else                        
+                   set ord-disable-asc to true
+                end-if                 
+                perform LOAD-TMP-EXE-MCG
+                perform LOAD-RECORD
+                close       tmp-exe-mcg
                 delete file tmp-exe-mcg 
            end-evaluate.                        
 END-TEXT

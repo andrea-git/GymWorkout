@@ -6,7 +6,7 @@ Adesk-andre=169.254.95.20
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791615438-611-159322335
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7916163330-530-2238921969
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -102,6 +102,16 @@ m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM8_
 
 @}}
+[FDITEM9_]
+m_strName=tem-exe-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM9_
+
+@}}
 [CStoAcucobolSL_]
 m_nType=1
 m_strAssignToName=path-tmp-exe-mcg
@@ -148,3 +158,12 @@ m_strName=tem-k-rp
 m_strName=tem-exe-isRestPause
 [SLKEYATOM1_SLINDEX2_]
 m_strName=tem-key
+[SLINDEX3_]
+m_strName=tem-k-int
+{{@Key_m_strDescriptionSLINDEX3_
+
+@}}
+[SLKEYATOM0_SLINDEX3_]
+m_strName=tem-int-code
+[SLKEYATOM1_SLINDEX3_]
+m_strName=tem-exe-desc

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 22 settembre 2023 18:02:00.
+       DATE-WRITTEN.        venerdì 22 settembre 2023 18:32:51.
        REMARKS.
       *{TOTEM}END
 
@@ -121,21 +121,24 @@
            05 col-setting      PIC  z.zz9.
            05 col-restpause    PIC  9.
            05 col-disab        PIC  9.
+       77 como-titolo      PIC  x(50).
        77 Screen1-Handle
                   USAGE IS HANDLE OF WINDOW.
-       77 como-ord         PIC  xx.
-           88 ord-code-asc VALUE IS "CA". 
-           88 ord-code-disc VALUE IS "CD". 
-           88 ord-desc-asc VALUE IS "DA". 
-           88 ord-desc-disc VALUE IS "DD". 
-           88 ord-mcg-asc VALUE IS "MA". 
-           88 ord-mcg-disc VALUE IS "MD". 
-           88 ord-multi-asc VALUE IS "UA". 
-           88 ord-multi-disc VALUE IS "UD". 
-           88 ord-disable-asc VALUE IS "IA". 
-           88 ord-rp-disc VALUE IS "RU". 
-           88 ord-rp-asc VALUE IS "RA". 
-           88 ord-disable-disc VALUE IS "IU". 
+       77 como-ord         PIC  99.
+           88 ord-code-asc VALUE IS 1. 
+           88 ord-code-disc VALUE IS 2. 
+           88 ord-desc-asc VALUE IS 3. 
+           88 ord-desc-disc VALUE IS 4. 
+           88 ord-mcg-asc VALUE IS 5. 
+           88 ord-mcg-disc VALUE IS 6. 
+           88 ord-multi-asc VALUE IS 7. 
+           88 ord-multi-disc VALUE IS 8. 
+           88 ord-disable-asc VALUE IS 9. 
+           88 ord-disable-disc VALUE IS 10. 
+           88 ord-rp-asc VALUE IS 11. 
+           88 ord-rp-disc VALUE IS 12. 
+           88 ord-int-asc VALUE IS 13. 
+           88 ord-int-disc VALUE IS 14. 
        01 FILLER           PIC  9.
            88 ricarica VALUE IS 1    WHEN SET TO FALSE  0. 
        77 esegui-73x21-bmp PIC  S9(9)
@@ -159,6 +162,26 @@
        77 path-tmp-exe-mcg PIC  X(256).
        77 STATUS-tmp-exe-mcg           PIC  X(2).
            88 Valid-STATUS-tmp-exe-mcg VALUE IS "00" THRU "09". 
+       77 chk-mcg1-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-mcg2-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-mcg3-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-mcg4-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-mcg5-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-mcg6-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-mcg7-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-mcg8-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-mcg9-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-mcg10-buf    PIC  9
+                  VALUE IS 0.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -173,7 +196,7 @@
        77 TMP-DataSet1-groups-BUF     PIC X(1182).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
-       77 TMP-DataSet1-tmp-exe-mcg-BUF     PIC X(15).
+       77 TMP-DataSet1-tmp-exe-mcg-BUF     PIC X(115).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -215,6 +238,7 @@
        77 tmp-exe-mcg-tem-k-multi-SPLITBUF  PIC X(14).
        77 tmp-exe-mcg-tem-k-disab-SPLITBUF  PIC X(14).
        77 tmp-exe-mcg-tem-k-rp-SPLITBUF  PIC X(14).
+       77 tmp-exe-mcg-tem-k-int-SPLITBUF  PIC X(103).
 
        01 old-exe-rec.
            05 old-exe-key.
@@ -276,8 +300,8 @@
            form1-gd-1, 
            Grid, 
            COL 1,40, 
-           LINE 1,43,
-           LINES 36,26 ,
+           LINE 3,17,
+           LINES 35,13 ,
            SIZE 172,00 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
@@ -294,7 +318,6 @@
            DIVIDER-COLOR 1,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
-           HSCROLL,
            ID IS 1,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -307,6 +330,186 @@
            EVENT PROCEDURE Form1-Gd-1-Event-Proc,
            .
 
+      * CHECK BOX
+       05
+           chk-mcg1, 
+           Check-Box, 
+           COL 2,30, 
+           LINE 1,43,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg1-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-mcg2, 
+           Check-Box, 
+           COL 13,30, 
+           LINE 1,43,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg2-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-mcg3, 
+           Check-Box, 
+           COL 24,30, 
+           LINE 1,43,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg3-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-mcg4, 
+           Check-Box, 
+           COL 35,30, 
+           LINE 1,43,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg4-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-mcg5, 
+           Check-Box, 
+           COL 46,30, 
+           LINE 1,43,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg5-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-mcg6, 
+           Check-Box, 
+           COL 57,30, 
+           LINE 1,43,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg6-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-mcg7, 
+           Check-Box, 
+           COL 68,30, 
+           LINE 1,43,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg7-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-mcg8, 
+           Check-Box, 
+           COL 79,30, 
+           LINE 1,43,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg8-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-mcg9, 
+           Check-Box, 
+           COL 90,30, 
+           LINE 1,43,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg9-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-mcg10, 
+           Check-Box, 
+           COL 101,30, 
+           LINE 1,43,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg10-buf,
+           VISIBLE 0,
+           .
       * TOOLBAR
        01
            Form1-Tb-1,
@@ -1429,6 +1632,13 @@
            MOVE tem-key(1:12) TO tmp-exe-mcg-tem-k-rp-SPLITBUF(2:12)
            .
 
+       tmp-exe-mcg-tem-k-int-MERGE-SPLITBUF.
+           INITIALIZE tmp-exe-mcg-tem-k-int-SPLITBUF
+           MOVE tem-int-code(1:2) TO tmp-exe-mcg-tem-k-int-SPLITBUF(1:2)
+           MOVE tem-exe-desc(1:100) TO 
+           tmp-exe-mcg-tem-k-int-SPLITBUF(3:100)
+           .
+
        DataSet1-tmp-exe-mcg-INITSTART.
            IF DataSet1-tmp-exe-mcg-KEY-Asc
               MOVE Low-Value TO tem-key
@@ -1695,13 +1905,46 @@
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAccept>
            perform ABILITA-TOOLBAR.
 
+           move 0 to riga.
+           move low-value to mcg-rec.
+           start macrogroups key >= mcg-k-desc
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    add 1 to riga
+                    read macrogroups next at end exit perform end-read
+                    evaluate riga                           
+                    when 1  modify chk-mcg1,  title = mcg-desc, visible 
+           = 1, value 1
+                    when 2  modify chk-mcg2,  title = mcg-desc, visible 
+           = 1, value 1
+                    when 3  modify chk-mcg3,  title = mcg-desc, visible 
+           = 1, value 1
+                    when 4  modify chk-mcg4,  title = mcg-desc, visible 
+           = 1, value 1
+                    when 5  modify chk-mcg5,  title = mcg-desc, visible 
+           = 1, value 1
+                    when 6  modify chk-mcg6,  title = mcg-desc, visible 
+           = 1, value 1
+                    when 7  modify chk-mcg7,  title = mcg-desc, visible 
+           = 1, value 1
+                    when 8  modify chk-mcg8,  title = mcg-desc, visible 
+           = 1, value 1
+                    when 9  modify chk-mcg9,  title = mcg-desc, visible 
+           = 1, value 1
+                    when 10 modify chk-mcg10, title = mcg-desc, visible 
+           = 1, value 1
+                    end-evaluate
+                 end-perform
+           end-start.
+
            perform INTESTAZIONE.
            set ord-mcg-asc to true.
            perform LOAD-TMP-EXE-MCG.
            perform LOAD-RECORD.
 
            move 2  to event-data-2.
-           perform SPOSTAMENTO.
+           perform SPOSTAMENTO.    
 
            perform INIT.
 
@@ -1750,6 +1993,26 @@
                  IF Event-Type = Cmd-Close
                     PERFORM Form1-Exit
                  END-IF
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 4
@@ -2572,6 +2835,42 @@
                               perform RECORD-TO-GRID
                          end-read
                       end-perform
+                end-start    
+           when ord-int-asc
+                move low-value to tem-rec
+                modify form1-gd-1(1, 78-col-int-code), cell-data = "Inte
+      -    "nsità <<"
+                start tmp-exe-mcg key is >= tem-k-int
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg next
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+           when ord-int-disc                       
+                move high-value to tem-rec
+                modify form1-gd-1(1, 78-col-int-code), cell-data = "Inte
+      -    "nsità >>"
+                start tmp-exe-mcg key is <= tem-k-int
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg previous
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
                 end-start
            when ord-multi-asc
                 move low-value to tem-rec
@@ -2687,7 +2986,6 @@
 
       ***---
        RECORD-TO-GRID.
-           add 1 to riga.
            move exe-code        to col-codice
            move exe-desc        to col-des
            move exe-grp-code    to col-group grp-code
@@ -2706,6 +3004,60 @@
            move exe-isRestpause to col-restpause
            move exe-isDisable   to col-disab
            move exe-desc-stampa to col-des-stampa.
+
+           inquire chk-mcg1, value in chk-mcg1-buf, title in como-titolo
+           if chk-mcg1-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg2, value in chk-mcg2-buf, title in como-titolo
+           if chk-mcg2-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg3, value in chk-mcg3-buf, title in como-titolo
+           if chk-mcg3-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg4, value in chk-mcg4-buf, title in como-titolo
+           if chk-mcg4-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg5, value in chk-mcg5-buf, title in como-titolo
+           if chk-mcg5-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg6, value in chk-mcg6-buf, title in como-titolo
+           if chk-mcg6-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg7, value in chk-mcg7-buf, title in como-titolo
+           if chk-mcg7-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg8, value in chk-mcg8-buf, title in como-titolo
+           if chk-mcg8-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg9, value in chk-mcg9-buf, title in como-titolo
+           if chk-mcg9-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg10, value in chk-mcg10-buf, title in 
+           como-titolo
+           if chk-mcg10-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           add 1 to riga.
+           
            modify form1-gd-1(riga, 78-col-code),        cell-data 
            col-codice.
            modify form1-gd-1(riga, 78-col-desc),        cell-data 
@@ -2766,6 +3118,7 @@
                     move exe-isDisable    to tem-exe-isDisable
                     move exe-isRestPause  to tem-exe-isRestPause
                     move exe-isMulti      to tem-exe-isMulti
+                    move exe-desc         to tem-exe-desc
                     read groups no lock
                     move grp-mcg-code to tem-mcg-code
                     write tem-rec
@@ -3171,13 +3524,24 @@
                 perform LOAD-TMP-EXE-MCG
                 perform LOAD-RECORD
                 close       tmp-exe-mcg
-                delete file tmp-exe-mcg 
+                delete file tmp-exe-mcg   
 
            when 78-col-restpause
                 if ord-rp-asc
                    set ord-rp-disc to true
                 else                        
                    set ord-rp-asc to true
+                end-if                  
+                perform LOAD-TMP-EXE-MCG
+                perform LOAD-RECORD
+                close       tmp-exe-mcg     
+                delete file tmp-exe-mcg
+
+           when 78-col-int-code
+                if ord-int-asc
+                   set ord-int-disc to true
+                else                        
+                   set ord-int-asc to true
                 end-if                  
                 perform LOAD-TMP-EXE-MCG
                 perform LOAD-RECORD
@@ -3217,6 +3581,11 @@
                 close       tmp-exe-mcg
                 delete file tmp-exe-mcg 
            end-evaluate                         
+           .
+      * <TOTEM:END>
+       Form1-Cb-1-LinkTo.
+      * <TOTEM:PARA. Form1-Cb-1-LinkTo>
+           perform LOAD-RECORD 
            .
       * <TOTEM:END>
 

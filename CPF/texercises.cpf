@@ -2,7 +2,6 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -432,8 +431,9 @@ m_bFixed=1
 
 @}}
 [FDITEM41_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
+m_strName=como-titolo
+m_strRawPic=x(50)
+m_strPic=x(50)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -441,9 +441,8 @@ m_bFixed=1
 
 @}}
 [FDITEM42_WK]
-m_strName=como-ord
-m_strRawPic=xx
-m_strPic=xx
+m_strName=Screen1-Handle
+m_nUsage=24
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -451,134 +450,162 @@ m_bFixed=1
 
 @}}
 [FDITEM43_WK]
-m_strName=ord-code-asc
-m_nItemLevel=88
+m_strName=como-ord
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="CA"
 {{@DataItem_m_strDescriptionFDITEM43_WK
 
 @}}
 [FDITEM44_WK]
-m_strName=ord-code-disc
+m_strName=ord-code-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
-m_strTrue="CD"
+m_strTrue=1
 {{@DataItem_m_strDescriptionFDITEM44_WK
 
 @}}
 [FDITEM45_WK]
-m_strName=ord-desc-asc
+m_strName=ord-code-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
-m_strTrue="DA"
+m_strTrue=2
 {{@DataItem_m_strDescriptionFDITEM45_WK
 
 @}}
 [FDITEM46_WK]
-m_strName=ord-desc-disc
+m_strName=ord-desc-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
-m_strTrue="DD"
+m_strTrue=3
 {{@DataItem_m_strDescriptionFDITEM46_WK
 
 @}}
 [FDITEM47_WK]
-m_strName=ord-mcg-asc
+m_strName=ord-desc-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
-m_strTrue="MA"
+m_strTrue=4
 {{@DataItem_m_strDescriptionFDITEM47_WK
 
 @}}
 [FDITEM48_WK]
-m_strName=ord-mcg-disc
+m_strName=ord-mcg-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
-m_strTrue="MD"
+m_strTrue=5
 {{@DataItem_m_strDescriptionFDITEM48_WK
 
 @}}
 [FDITEM49_WK]
-m_strName=ord-multi-asc
+m_strName=ord-mcg-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
-m_strTrue="UA"
+m_strTrue=6
 {{@DataItem_m_strDescriptionFDITEM49_WK
 
 @}}
 [FDITEM50_WK]
-m_strName=ord-multi-disc
+m_strName=ord-multi-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
-m_strTrue="UD"
+m_strTrue=7
 {{@DataItem_m_strDescriptionFDITEM50_WK
 
 @}}
 [FDITEM51_WK]
-m_strName=ord-disable-asc
+m_strName=ord-multi-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
-m_strTrue="IA"
+m_strTrue=8
 {{@DataItem_m_strDescriptionFDITEM51_WK
 
 @}}
 [FDITEM52_WK]
-m_strName=ord-rp-disc
+m_strName=ord-disable-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
-m_strTrue="RU"
+m_strTrue=9
 {{@DataItem_m_strDescriptionFDITEM52_WK
 
 @}}
 [FDITEM53_WK]
-m_strName=ord-rp-asc
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="RA"
-{{@DataItem_m_strDescriptionFDITEM53_WK
-
-@}}
-[FDITEM54_WK]
 m_strName=ord-disable-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
-m_strTrue="IU"
+m_strTrue=10
+{{@DataItem_m_strDescriptionFDITEM53_WK
+
+@}}
+[FDITEM54_WK]
+m_strName=ord-rp-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=11
 {{@DataItem_m_strDescriptionFDITEM54_WK
 
 @}}
 [FDITEM55_WK]
+m_strName=ord-rp-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=12
+{{@DataItem_m_strDescriptionFDITEM55_WK
+
+@}}
+[FDITEM56_WK]
+m_strName=ord-int-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=13
+{{@DataItem_m_strDescriptionFDITEM56_WK
+
+@}}
+[FDITEM57_WK]
+m_strName=ord-int-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=14
+{{@DataItem_m_strDescriptionFDITEM57_WK
+
+@}}
+[FDITEM58_WK]
 m_strName=FILLER
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM55_WK
+{{@DataItem_m_strDescriptionFDITEM58_WK
 
 @}}
-[FDITEM56_WK]
+[FDITEM59_WK]
 m_strName=ricarica
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM56_WK
+{{@DataItem_m_strDescriptionFDITEM59_WK
 
 @}}
-[FDITEM57_WK]
+[FDITEM60_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -587,40 +614,12 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM57_WK
-
-@}}
-[FDITEM58_WK]
-m_strName=Default-Font
-m_nUsage=38
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM58_WK
-
-@}}
-[FDITEM59_WK]
-m_strName=STATUS-exercises
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM59_WK
-
-@}}
-[FDITEM60_WK]
-m_strName=Valid-STATUS-exercises
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM60_WK
 
 @}}
 [FDITEM61_WK]
-m_strName=Calibri14-Occidentale
-m_nUsage=26
+m_strName=Default-Font
+m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -628,6 +627,34 @@ m_bFixed=1
 
 @}}
 [FDITEM62_WK]
+m_strName=STATUS-exercises
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM62_WK
+
+@}}
+[FDITEM63_WK]
+m_strName=Valid-STATUS-exercises
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM63_WK
+
+@}}
+[FDITEM64_WK]
+m_strName=Calibri14-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM64_WK
+
+@}}
+[FDITEM65_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -636,78 +663,49 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM62_WK
+{{@DataItem_m_strDescriptionFDITEM65_WK
 
 @}}
-[FDITEM63_WK]
+[FDITEM66_WK]
 m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM63_WK
+{{@DataItem_m_strDescriptionFDITEM66_WK
 
 @}}
-[FDITEM64_WK]
+[FDITEM67_WK]
 m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM64_WK
+{{@DataItem_m_strDescriptionFDITEM67_WK
 
 @}}
-[FDITEM65_WK]
+[FDITEM68_WK]
 m_strName=STATUS-intexe
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM65_WK
+{{@DataItem_m_strDescriptionFDITEM68_WK
 
 @}}
-[FDITEM66_WK]
+[FDITEM69_WK]
 m_strName=Valid-STATUS-intexe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM66_WK
-
-@}}
-[FDITEM67_WK]
-m_strName=STATUS-macrogroups
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM67_WK
-
-@}}
-[FDITEM68_WK]
-m_strName=Valid-STATUS-macrogroups
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM68_WK
-
-@}}
-[FDITEM69_WK]
-m_strName=path-tmp-exe-mcg
-m_strRawPic=X(256)
-m_strPic=X(256)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM69_WK
 
 @}}
 [FDITEM70_WK]
-m_strName=STATUS-tmp-exe-mcg
+m_strName=STATUS-macrogroups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -717,12 +715,151 @@ m_bFixed=1
 
 @}}
 [FDITEM71_WK]
-m_strName=Valid-STATUS-tmp-exe-mcg
+m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM71_WK
+
+@}}
+[FDITEM72_WK]
+m_strName=path-tmp-exe-mcg
+m_strRawPic=X(256)
+m_strPic=X(256)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM72_WK
+
+@}}
+[FDITEM73_WK]
+m_strName=STATUS-tmp-exe-mcg
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM73_WK
+
+@}}
+[FDITEM74_WK]
+m_strName=Valid-STATUS-tmp-exe-mcg
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM74_WK
+
+@}}
+[FDITEM75_WK]
+m_strName=chk-mcg1-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM75_WK
+
+@}}
+[FDITEM76_WK]
+m_strName=chk-mcg2-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM76_WK
+
+@}}
+[FDITEM77_WK]
+m_strName=chk-mcg3-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM77_WK
+
+@}}
+[FDITEM78_WK]
+m_strName=chk-mcg4-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM78_WK
+
+@}}
+[FDITEM79_WK]
+m_strName=chk-mcg5-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM79_WK
+
+@}}
+[FDITEM80_WK]
+m_strName=chk-mcg6-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM80_WK
+
+@}}
+[FDITEM81_WK]
+m_strName=chk-mcg7-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM81_WK
+
+@}}
+[FDITEM82_WK]
+m_strName=chk-mcg8-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM82_WK
+
+@}}
+[FDITEM83_WK]
+m_strName=chk-mcg9-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM83_WK
+
+@}}
+[FDITEM84_WK]
+m_strName=chk-mcg10-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM84_WK
 
 @}}
 
@@ -985,7 +1122,7 @@ Begin Screen Form1
    End
    Begin Grid form1-gd-1
       SCREEN-COL        = 1,40
-      SCREEN-LINE       = 1,43
+      SCREEN-LINE       = 3,17
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = form1-gd-1
@@ -1059,11 +1196,11 @@ Begin Screen Form1
       Heading Font      = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      Hscroll           = TRUE
+      Hscroll           = FALSE
       ID                = 1
       Last Row          = 0
-      Line              = 1,43
-      Lines             = 36,26
+      Line              = 3,17
+      Lines             = 35,13
       Lines Unit        = Default
       No Tab            = FALSE
       Num Col Headings  = 1
@@ -1094,6 +1231,436 @@ Begin Screen Form1
       Msg-Goto-Cell-Mouse = form1-gd-1-Ev-Msg-Goto-Cell-Mouse
       Msg-Heading-Clicked = form1-gd-1-Ev-Msg-Heading-Clicked
    End
+   Begin Check-Box chk-mcg1
+      SCREEN-COL        = 2,30
+      SCREEN-LINE       = 1,43
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-mcg1
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 2,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 3
+      Left Text         = FALSE
+      Line              = 1,43
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 3
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-mcg1-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Check-Box chk-mcg2
+      SCREEN-COL        = 13,30
+      SCREEN-LINE       = 1,43
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-mcg2
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 13,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 3
+      Left Text         = FALSE
+      Line              = 1,43
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 4
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-mcg2-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Check-Box chk-mcg3
+      SCREEN-COL        = 24,30
+      SCREEN-LINE       = 1,43
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-mcg3
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 24,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 3
+      Left Text         = FALSE
+      Line              = 1,43
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 5
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-mcg3-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Check-Box chk-mcg4
+      SCREEN-COL        = 35,30
+      SCREEN-LINE       = 1,43
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-mcg4
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 35,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 3
+      Left Text         = FALSE
+      Line              = 1,43
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 6
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-mcg4-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Check-Box chk-mcg5
+      SCREEN-COL        = 46,30
+      SCREEN-LINE       = 1,43
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-mcg5
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 46,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 3
+      Left Text         = FALSE
+      Line              = 1,43
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 7
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-mcg5-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Check-Box chk-mcg6
+      SCREEN-COL        = 57,30
+      SCREEN-LINE       = 1,43
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-mcg6
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 57,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 3
+      Left Text         = FALSE
+      Line              = 1,43
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 8
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-mcg6-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Check-Box chk-mcg7
+      SCREEN-COL        = 68,30
+      SCREEN-LINE       = 1,43
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-mcg7
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 68,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 3
+      Left Text         = FALSE
+      Line              = 1,43
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 9
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-mcg7-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Check-Box chk-mcg8
+      SCREEN-COL        = 79,30
+      SCREEN-LINE       = 1,43
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-mcg8
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 79,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 3
+      Left Text         = FALSE
+      Line              = 1,43
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 10
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-mcg8-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Check-Box chk-mcg9
+      SCREEN-COL        = 90,30
+      SCREEN-LINE       = 1,43
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-mcg9
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 90,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 3
+      Left Text         = FALSE
+      Line              = 1,43
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 11
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-mcg9-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Check-Box chk-mcg10
+      SCREEN-COL        = 101,30
+      SCREEN-LINE       = 1,43
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-mcg10
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 101,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 3
+      Left Text         = FALSE
+      Line              = 1,43
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 12
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-mcg10-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Link To           = Form1-Cb-1-LinkTo
+   End
    Begin Toolbar Form1-Tb-1
       SCREEN-LINE       = 1,00
       LOCK-CONTROL      = TRUE
@@ -1106,7 +1673,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 3
+      Tab Order         = 13
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -1458,13 +2025,36 @@ BEGIN-DATA
 BEGIN-TEXT
            perform ABILITA-TOOLBAR.
 
+           move 0 to riga.
+           move low-value to mcg-rec.
+           start macrogroups key >= mcg-k-desc
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    add 1 to riga
+                    read macrogroups next at end exit perform end-read
+                    evaluate riga                           
+                    when 1  modify chk-mcg1,  title = mcg-desc, visible = 1, value 1
+                    when 2  modify chk-mcg2,  title = mcg-desc, visible = 1, value 1
+                    when 3  modify chk-mcg3,  title = mcg-desc, visible = 1, value 1
+                    when 4  modify chk-mcg4,  title = mcg-desc, visible = 1, value 1
+                    when 5  modify chk-mcg5,  title = mcg-desc, visible = 1, value 1
+                    when 6  modify chk-mcg6,  title = mcg-desc, visible = 1, value 1
+                    when 7  modify chk-mcg7,  title = mcg-desc, visible = 1, value 1
+                    when 8  modify chk-mcg8,  title = mcg-desc, visible = 1, value 1
+                    when 9  modify chk-mcg9,  title = mcg-desc, visible = 1, value 1
+                    when 10 modify chk-mcg10, title = mcg-desc, visible = 1, value 1
+                    end-evaluate
+                 end-perform
+           end-start.
+
            perform INTESTAZIONE.
            set ord-mcg-asc to true.
            perform LOAD-TMP-EXE-MCG.
            perform LOAD-RECORD.
 
            move 2  to event-data-2.
-           perform SPOSTAMENTO.
+           perform SPOSTAMENTO.    
 
            perform INIT.
 
@@ -1937,6 +2527,40 @@ BEGIN-TEXT
                               perform RECORD-TO-GRID
                          end-read
                       end-perform
+                end-start    
+           when ord-int-asc
+                move low-value to tem-rec
+                modify form1-gd-1(1, 78-col-int-code), cell-data = "Intensità <<"
+                start tmp-exe-mcg key is >= tem-k-int
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg next
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+           when ord-int-disc                       
+                move high-value to tem-rec
+                modify form1-gd-1(1, 78-col-int-code), cell-data = "Intensità >>"
+                start tmp-exe-mcg key is <= tem-k-int
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg previous
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
                 end-start
            when ord-multi-asc
                 move low-value to tem-rec
@@ -2046,7 +2670,6 @@ BEGIN-TEXT
 
       ***---
        RECORD-TO-GRID.
-           add 1 to riga.
            move exe-code        to col-codice
            move exe-desc        to col-des
            move exe-grp-code    to col-group grp-code
@@ -2063,6 +2686,59 @@ BEGIN-TEXT
            move exe-isRestpause to col-restpause
            move exe-isDisable   to col-disab
            move exe-desc-stampa to col-des-stampa.
+
+           inquire chk-mcg1, value in chk-mcg1-buf, title in como-titolo
+           if chk-mcg1-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg2, value in chk-mcg2-buf, title in como-titolo
+           if chk-mcg2-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg3, value in chk-mcg3-buf, title in como-titolo
+           if chk-mcg3-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg4, value in chk-mcg4-buf, title in como-titolo
+           if chk-mcg4-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg5, value in chk-mcg5-buf, title in como-titolo
+           if chk-mcg5-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg6, value in chk-mcg6-buf, title in como-titolo
+           if chk-mcg6-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg7, value in chk-mcg7-buf, title in como-titolo
+           if chk-mcg7-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg8, value in chk-mcg8-buf, title in como-titolo
+           if chk-mcg8-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg9, value in chk-mcg9-buf, title in como-titolo
+           if chk-mcg9-buf = 0 and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-mcg10, value in chk-mcg10-buf, title in como-titolo
+           if chk-mcg10-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           add 1 to riga.
+           
            modify form1-gd-1(riga, 78-col-code),        cell-data col-codice.
            modify form1-gd-1(riga, 78-col-desc),        cell-data col-des.  
            modify form1-gd-1(riga, 78-col-desc-stampa), cell-data col-des-stampa.  
@@ -2112,6 +2788,7 @@ BEGIN-TEXT
                     move exe-isDisable    to tem-exe-isDisable
                     move exe-isRestPause  to tem-exe-isRestPause
                     move exe-isMulti      to tem-exe-isMulti
+                    move exe-desc         to tem-exe-desc
                     read groups no lock
                     move grp-mcg-code to tem-mcg-code
                     write tem-rec
@@ -2555,13 +3232,24 @@ BEGIN-TEXT
                 perform LOAD-TMP-EXE-MCG
                 perform LOAD-RECORD
                 close       tmp-exe-mcg
-                delete file tmp-exe-mcg 
+                delete file tmp-exe-mcg   
 
            when 78-col-restpause
                 if ord-rp-asc
                    set ord-rp-disc to true
                 else                        
                    set ord-rp-asc to true
+                end-if                  
+                perform LOAD-TMP-EXE-MCG
+                perform LOAD-RECORD
+                close       tmp-exe-mcg     
+                delete file tmp-exe-mcg
+
+           when 78-col-int-code
+                if ord-int-asc
+                   set ord-int-disc to true
+                else                        
+                   set ord-int-asc to true
                 end-if                  
                 perform LOAD-TMP-EXE-MCG
                 perform LOAD-RECORD
@@ -2601,6 +3289,13 @@ BEGIN-TEXT
                 close       tmp-exe-mcg
                 delete file tmp-exe-mcg 
            end-evaluate.                        
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = Form1-Cb-1-LinkTo
+BEGIN-TEXT
+           perform LOAD-RECORD.
 END-TEXT
 END-DATA
 

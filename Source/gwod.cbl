@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 22 settembre 2023 13:32:26.
+       DATE-WRITTEN.        venerdì 22 settembre 2023 16:55:38.
        REMARKS.
       *{TOTEM}END
 
@@ -6204,7 +6204,9 @@
                             giving stato-zoom
            cancel "zoom-gt"
            if stato-zoom = 0
-              move zem-exe-code to col-exe-code
+              move zem-exe-code to col-exe-code exe-code
+              read exercises
+
               move zem-exe-desc to col-exe-desc
               move zem-grp-desc to col-grp-desc
               move zem-grp-code to col-grp-code
@@ -6216,6 +6218,19 @@
                      cell-data = col-grp-code
               modify gd1(riga, 78-col-grp-desc), 
                      cell-data = col-grp-desc
+                                        
+              inquire gd1(riga, 78-col-day), 
+                     cell-data = tex-day
+              inquire gd1(riga, 78-col-prg), 
+                     cell-data = tex-split
+              open i-o tmp-exe
+              read tmp-exe 
+              move exe-code     to tex-exe-code
+              move exe-desc     to tex-exe-desc
+              move exe-int-code to tex-int-code
+              move exe-isMulti  to tex-exe-isMulti
+              rewrite tex-rec
+              close tmp-exe
            end-if.    
 
       ***---

@@ -81,7 +81,8 @@
        77  font-size-dply        pic z(5).      
        77  WFONT-STATUS          pic s9(5)  value zero.
                                  
-       77  ArialNarrow11         handle of font.
+       77  ArialNarrow11         handle of font.           
+       77  ArialNarrow11B        handle of font.
        77  ArialNarrow8          handle of font.
        77  save-altezza-pagina   pic 9(7)v99.
        77  como-data             pic 9(8).
@@ -94,6 +95,8 @@
        
        77  pagina-z              pic z(3).
        77  tot-pagine-z          pic z(3). 
+
+       77  prg-xx                pic xxx.
 
        LINKAGE SECTION.
        77  link-path             pic x(256).
@@ -130,7 +133,6 @@
            start tmp-exe key >= tex-key
                  invalid continue
              not invalid                           
-                 move ArialNarrow11 to spl-hfont
                  perform until 1 = 2
                     read tmp-exe next at end exit perform end-read
                     add 1 to num-righe
@@ -184,6 +186,7 @@
            end-if.
 
            if tutto-ok
+              move 0 to como-day 
               perform INTESTAZIONE
               move low-value to tex-rec
               start tmp-exe key >= tex-key
@@ -195,22 +198,42 @@
                        if num-righe > 78-max-righe
                           perform SALTO-PAGINA
                           perform INTESTAZIONE
-                       end-if
-                       if tex-day not = como-day
-                          compute sw-gray = sw-gray * -1
+                       end-if         
+                       move 78-pen-light to spl-pen-width
+                       if como-day = 0
                           move tex-day to como-day
-                          perform STAMPA-LINEE
                        end-if
+                       if tex-day not = como-day           
+                          compute sw-gray = sw-gray * -1
+                          move 78-pen-heavy to spl-pen-width
+                          perform STAMPA-LINEA-ORIZZONTALE
+                          move tex-day to como-day
+                       end-if          
+
                        move tex-exe-code to exe-code
                        read exercises               
-                       move exe-desc-stampa to r-exe-desc
+
+                       initialize r-exe-desc
+                       move tex-split to prg-xx
+                       inspect prg-xx replacing leading x"30" by x"20"
+                       call "C$JUSTIFY" using prg-xx, "L"
+                       string prg-xx delimited space
+                              " - "  delimited size
+                              exe-desc-stampa 
+                         into r-exe-desc
+                       end-string
                        move tex-reps        to r-reps 
-                                                    
+                       
+                       perform STAMPA-FRAME-RIGA
+                                               
                        move r-riga          to spl-riga-stampa
                        move 2               to spl-tipo-colonna
                        perform SCRIVI  
                                             
-                    end-perform    
+                    end-perform  
+                                             
+                    move 78-pen-heavy to spl-pen-width
+                    perform STAMPA-LINEA-ORIZZONTALE  
       
                     set spl-chiusura to true
                     call   "spooler" using spooler-link
@@ -219,27 +242,12 @@
            end-if.
 
       ***---
-       INTESTAZIONE.
-           perform STAMPA-FRAMES.         
-           perform STAMPA-PIE-DI-PAGINA.
-           move 0,0       to spl-colonna.    
-
-           move ArialNarrow11 to spl-hfont.
-           move 0,2       to spl-riga.
-           move -1        to sw-gray.
-           move tex-day   to como-day.
-           move r-intesta to spl-riga-stampa.
-           move 1         to spl-tipo-colonna.
-           perform SCRIVI.
-
-           move 0,7 to spl-riga.
-
-           move 0 to num-righe.
-
-      ***---
-       STAMPA-FRAMES.
-           move 0,1      to spl-riga.
-           add 0,2 to 78-passo giving spl-riga-fine.
+       INTESTAZIONE.           
+            move 1 to sw-gray.
+           |FRAME
+           move 78-pen-heavy to spl-pen-width.
+           move 0,2      to spl-riga.   
+           move 78-margine-basso  to spl-riga-fine.
 
            move 0,5   to spl-colonna
            move 28,7  to spl-colonna-fine
@@ -248,50 +256,50 @@
            set  spl-rettangolo    to true
            set  spl-brush-null    to true
            set  spl-nero          to true
-           call "spooler"         using spooler-link   
+           call "spooler"         using spooler-link.
+                                 
+           move 0,2 to spl-riga
+           perform STAMPA-FRAME-RIGA.                
+      
+           perform STAMPA-PIE-DI-PAGINA.
+                   
+           move 0,25 to spl-riga.
+           move ArialNarrow11B to spl-hfont.
+           move r-intesta to spl-riga-stampa.
+           move 1         to spl-tipo-colonna.
+           perform SCRIVI.    
+           move ArialNarrow11 to spl-hfont
 
-           set  spl-brush-ltgray  to true
-           call "spooler"         using spooler-link
+           move 0 to num-righe.  
+           move 0,7 to spl-riga.
 
-           move 78-pen-heavy   to spl-pen-width.
-           move 0,7   to spl-riga spl-riga-fine.
-           move 0,5   to spl-colonna.
-           move 28,7  to spl-colonna-fine.
-                 
-           move 0,1   to spl-riga.
-           
-           move 78-margine-basso  to spl-riga-fine.
+           move -1 to sw-gray.
 
-           move 0,5   to spl-colonna.
-           move 28,7  to spl-colonna-fine.
+      ***---
+       STAMPA-FRAME-RIGA.
+           perform STAMPA-QUADRATO-GRAY.
+           perform LINEE-VERTICALI.
+
+      ***---     
+       STAMPA-QUADRATO-GRAY.                                  
+           compute spl-riga-fine = 78-passo + spl-riga.
+           move 0,55  to spl-colonna.
+           move 28,65 to spl-colonna-fine.
+
+           move 78-pen-light to spl-pen-width.
 
            set  spl-oggetto       to true.
            set  spl-rettangolo    to true.
-           set  spl-brush-null    to true.
-           set  spl-nero          to true.
-           call "spooler"         using spooler-link.         
-                                                                             
-           compute spl-riga-fine =
-                   spl-riga + 78-passo * num-righe + 78-passo + 0,1.
-
-           perform LINEE-VERTICALI.   
-
-           add 0,1 to spl-riga.
-                                      
-           move 78-pen-light to spl-pen-width.
-           perform num-righe times    
-              add 78-passo to spl-riga
-              perform STAMPA-LINEA-ORIZZONTALE
-           end-perform.               
-
-           move 78-pen-heavy to spl-pen-width.
-           add 78-passo to spl-riga.  
-           perform STAMPA-LINEA-ORIZZONTALE.     
-           add 78-passo to 0,2 giving spl-riga.  
-           perform STAMPA-LINEA-ORIZZONTALE.
+           if sw-gray = 1
+              set spl-brush-ltgray to true
+           else
+              set spl-brush-null   to true
+           end-if.
+           call "spooler"         using spooler-link.
 
       ***---
        LINEE-VERTICALI.
+           add 78-passo to spl-riga giving spl-riga-fine.
            move 78-pen-heavy to spl-pen-width.
            move 4,1 to spl-colonna spl-colonna-fine.
            perform STAMPA-LINEA-VERTICALE.
@@ -300,7 +308,7 @@
            move 5,4 to spl-colonna spl-colonna-fine.
            perform STAMPA-LINEA-VERTICALE.
                        
-           move 0 to resto                            
+           move 0 to resto.                            
            perform 15 times
               add 1 to resto                    
               move 78-pen-light to spl-pen-width
@@ -311,53 +319,6 @@
               perform STAMPA-LINEA-VERTICALE
            end-perform.                         
            move 78-pen-light to spl-pen-width.
-            
-      ***---
-       STAMPA-LINEA.
-           move 1,5                to spl-colonna.
-           move 19,0               to spl-colonna-fine.
-           move 78-margine-basso   to spl-riga spl-riga-fine.
-           set  spl-oggetto        to true.
-           set  spl-linea          to true.
-           set  spl-pen-solid      to true.
-           set  spl-nero           to true.
-           call "spooler"       using spooler-link.
-
-      ***---
-       STAMPA-LINEE.
-           if sw-gray = 1
-              compute spl-riga-fine = spl-riga + 
-                                     78-passo * el-num-exe(como-day)
-
-              move 0,5   to spl-colonna
-              move 28,7  to spl-colonna-fine
-              move 78-pen-heavy to spl-pen-width
-
-              set  spl-oggetto       to true
-              set  spl-rettangolo    to true
-              set  spl-brush-null    to true
-              set  spl-nero          to true
-              call "spooler"         using spooler-link
-
-              set  spl-brush-ltgray  to true
-              call "spooler"         using spooler-link
-              subtract 78-passo from spl-riga
-
-              perform LINEE-VERTICALI
-
-              add 78-passo to spl-riga
-                              
-              perform el-num-exe(como-day) times
-                 perform STAMPA-LINEA-ORIZZONTALE
-                 add 78-passo to spl-riga
-              end-perform
-
-              perform el-num-exe(como-day) times
-                 subtract 78-passo from spl-riga
-              end-perform
-              move 1 to num-righe
-
-           end-if. 
                                   
                          
       ***---
@@ -451,6 +412,28 @@
            move 0                    to wfont-char-set.
            set  wfdevice-win-printer to true. |E' un carattere per la stampante
            call "W$FONT" using wfont-get-font, ArialNarrow11, 
+                               wfont-data
+                        giving wfont-status.
+      
+      * ISACCO (QUESTI TEST CONTROLLANO L'ESISTENZA DEL FONT)
+           if wfont-status not = 1
+              set errori to true
+              perform MESSAGGIO-ERR-FONT
+              exit paragraph
+           end-if. 
+
+           initialize wfont-data ArialNarrow11B.
+           move 11 to wfont-size.
+           move "Arial Narrow"            to wfont-name.
+           set  wfcharset-dont-care  to true.
+           set  wfont-bold           to true.
+           set  wfont-italic         to false.
+           set  wfont-underline      to false.
+           set  wfont-strikeout      to false.
+           set  wfont-fixed-pitch    to false.
+           move 0                    to wfont-char-set.
+           set  wfdevice-win-printer to true. |E' un carattere per la stampante
+           call "W$FONT" using wfont-get-font, ArialNarrow11B, 
                                wfont-data
                         giving wfont-status.
       

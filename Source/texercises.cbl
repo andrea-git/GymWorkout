@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 22 settembre 2023 18:32:51.
+       DATE-WRITTEN.        domenica 24 settembre 2023 00:16:49.
        REMARKS.
       *{TOTEM}END
 
@@ -121,6 +121,7 @@
            05 col-setting      PIC  z.zz9.
            05 col-restpause    PIC  9.
            05 col-disab        PIC  9.
+       77 como-v           PIC  9.
        77 como-titolo      PIC  x(50).
        77 Screen1-Handle
                   USAGE IS HANDLE OF WINDOW.
@@ -182,6 +183,30 @@
                   VALUE IS 0.
        77 chk-mcg10-buf    PIC  9
                   VALUE IS 0.
+       77 chk-int1-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-int10-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int9-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-int8-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-int7-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-int6-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-int5-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-int4-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-int3-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-int2-buf     PIC  9
+                  VALUE IS 0.
+       77 chk-mcgall-buf   PIC  9
+                  VALUE IS 0.
+       77 chk-intall-buf   PIC  9
+                  VALUE IS 1.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -279,28 +304,12 @@
            Form1, 
            .
 
-      * LABEL
-       05
-           CST-BLOCKPGM, 
-           Label, 
-           COL 49,57, 
-           LINE 1,00,
-           LINES 0,48 ,
-           SIZE 2,10 ,
-           ID IS 12,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE "BlockPgm",
-           VISIBLE v-custom,
-           .
-
       * GRID
        05
            form1-gd-1, 
            Grid, 
            COL 1,40, 
-           LINE 3,17,
+           LINE 4,04,
            LINES 35,13 ,
            SIZE 172,00 ,
            ADJUSTABLE-COLUMNS,
@@ -332,10 +341,28 @@
 
       * CHECK BOX
        05
-           chk-mcg1, 
+           chk-mcgall, 
            Check-Box, 
            COL 2,30, 
-           LINE 1,43,
+           LINE 1,30,
+           LINES 1,13 ,
+           SIZE 15,00 ,
+           EXCEPTION-VALUE 1001
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Tutti i gruppi",
+           VALUE chk-mcgall-buf,
+           VISIBLE 1,
+           .
+      * CHECK BOX
+       05
+           chk-mcg1, 
+           Check-Box, 
+           COL 18,30, 
+           LINE 1,30,
            LINES 1,13 ,
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
@@ -352,13 +379,13 @@
        05
            chk-mcg2, 
            Check-Box, 
-           COL 13,30, 
-           LINE 1,43,
+           COL 29,30, 
+           LINE 1,30,
            LINES 1,13 ,
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 3,
+           ID IS 4,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -366,17 +393,33 @@
            VALUE chk-mcg2-buf,
            VISIBLE 0,
            .
+      * LABEL
+       05
+           CST-BLOCKPGM, 
+           Label, 
+           COL 49,57, 
+           LINE 1,00,
+           LINES 0,48 ,
+           SIZE 2,10 ,
+           ID IS 12,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "BlockPgm",
+           VISIBLE v-custom,
+           .
+
       * CHECK BOX
        05
            chk-mcg3, 
            Check-Box, 
-           COL 24,30, 
-           LINE 1,43,
+           COL 40,30, 
+           LINE 1,30,
            LINES 1,13 ,
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 3,
+           ID IS 5,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -388,13 +431,13 @@
        05
            chk-mcg4, 
            Check-Box, 
-           COL 35,30, 
-           LINE 1,43,
+           COL 51,30, 
+           LINE 1,30,
            LINES 1,13 ,
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 3,
+           ID IS 6,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -406,13 +449,13 @@
        05
            chk-mcg5, 
            Check-Box, 
-           COL 46,30, 
-           LINE 1,43,
+           COL 62,30, 
+           LINE 1,30,
            LINES 1,13 ,
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 3,
+           ID IS 7,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -424,13 +467,13 @@
        05
            chk-mcg6, 
            Check-Box, 
-           COL 57,30, 
-           LINE 1,43,
+           COL 73,30, 
+           LINE 1,30,
            LINES 1,13 ,
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 3,
+           ID IS 8,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -442,13 +485,13 @@
        05
            chk-mcg7, 
            Check-Box, 
-           COL 68,30, 
-           LINE 1,43,
+           COL 84,30, 
+           LINE 1,30,
            LINES 1,13 ,
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 3,
+           ID IS 9,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -460,13 +503,13 @@
        05
            chk-mcg8, 
            Check-Box, 
-           COL 79,30, 
-           LINE 1,43,
+           COL 95,30, 
+           LINE 1,30,
            LINES 1,13 ,
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 3,
+           ID IS 10,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -478,13 +521,13 @@
        05
            chk-mcg9, 
            Check-Box, 
-           COL 90,30, 
-           LINE 1,43,
+           COL 106,30, 
+           LINE 1,30,
            LINES 1,13 ,
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 3,
+           ID IS 11,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -496,8 +539,44 @@
        05
            chk-mcg10, 
            Check-Box, 
-           COL 101,30, 
-           LINE 1,43,
+           COL 117,30, 
+           LINE 1,30,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 13,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg10-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-intall, 
+           Check-Box, 
+           COL 2,30, 
+           LINE 2,61,
+           LINES 1,13 ,
+           SIZE 15,00 ,
+           EXCEPTION-VALUE 1002
+           FLAT,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Tutte le intensità",
+           VALUE chk-intall-buf,
+           VISIBLE 1,
+           .
+      * CHECK BOX
+       05
+           chk-int1, 
+           Check-Box, 
+           COL 18,30, 
+           LINE 2,61,
            LINES 1,13 ,
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
@@ -507,7 +586,169 @@
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
-           VALUE chk-mcg10-buf,
+           VALUE chk-int1-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-int2, 
+           Check-Box, 
+           COL 29,30, 
+           LINE 2,61,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 4,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int2-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-int3, 
+           Check-Box, 
+           COL 40,30, 
+           LINE 2,61,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 5,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int3-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-int4, 
+           Check-Box, 
+           COL 51,30, 
+           LINE 2,61,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 6,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int4-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-int5, 
+           Check-Box, 
+           COL 62,30, 
+           LINE 2,61,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 7,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int5-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-int6, 
+           Check-Box, 
+           COL 73,30, 
+           LINE 2,61,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 8,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int6-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-int7, 
+           Check-Box, 
+           COL 84,30, 
+           LINE 2,61,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 9,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int7-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-int8, 
+           Check-Box, 
+           COL 95,30, 
+           LINE 2,61,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 10,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int8-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-int9, 
+           Check-Box, 
+           COL 106,30, 
+           LINE 2,61,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 11,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int9-buf,
+           VISIBLE 0,
+           .
+      * CHECK BOX
+       05
+           chk-int10, 
+           Check-Box, 
+           COL 117,30, 
+           LINE 2,61,
+           LINES 1,13 ,
+           SIZE 9,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           ID IS 13,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int10-buf,
            VISIBLE 0,
            .
       * TOOLBAR
@@ -551,7 +792,7 @@
            ENABLED E-NUOVO,
            EXCEPTION-VALUE 2,
            FLAT,
-           ID IS 6,
+           ID IS 14,
            SELF-ACT,
            TITLE "Nuovo (F2)",
            .
@@ -570,7 +811,7 @@
            ENABLED E-CANCELLA,
            EXCEPTION-VALUE 4,
            FLAT,
-           ID IS 5,
+           ID IS 15,
            SELF-ACT,
            TITLE "Cancella (F4)",
            BITMAP-NUMBER BitmapNumDelete
@@ -590,7 +831,7 @@
            ENABLED E-SALVA,
            EXCEPTION-VALUE 3,
            FLAT,
-           ID IS 8,
+           ID IS 16,
            SELF-ACT,
            TITLE "Salva (F3)",
            BITMAP-NUMBER BitmapNumSave
@@ -611,7 +852,7 @@
            ENABLED E-MODIFICA,
            EXCEPTION-VALUE 1005
            FLAT,
-           ID IS 7,
+           ID IS 17,
            SELF-ACT,
            TITLE "Modifica (F5)",
            VALUE MOD,
@@ -632,7 +873,7 @@
            ENABLED E-CERCA,
            EXCEPTION-VALUE 8,
            FLAT,
-           ID IS 11,
+           ID IS 18,
            SELF-ACT,
            TITLE "Cerca (F8)",
            VISIBLE 1,
@@ -1868,7 +2109,7 @@
            Display Independent GRAPHICAL WINDOW
               SCREEN LINE 1,
               SCREEN COLUMN 0,
-              LINES 37,91,
+              LINES 39,17,
               SIZE 172,90,
               COLOR 131329,
               CONTROL FONT Calibri14-Occidentale,
@@ -1938,6 +2179,42 @@
                  end-perform
            end-start.
 
+           move 0 to riga.
+           move low-value to int-rec.
+           start intexe key >= int-k-desc
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    add 1 to riga
+                    read intexe next at end exit perform end-read
+                    evaluate riga                           
+                    when 1  modify chk-int1,  title = int-desc, visible 
+           = 1, value 1
+                    when 2  modify chk-int2,  title = int-desc, visible 
+           = 1, value 1
+                    when 3  modify chk-int3,  title = int-desc, visible 
+           = 1, value 1
+                    when 4  modify chk-int4,  title = int-desc, visible 
+           = 1, value 1
+                    when 5  modify chk-int5,  title = int-desc, visible 
+           = 1, value 1
+                    when 6  modify chk-int6,  title = int-desc, visible 
+           = 1, value 1
+                    when 7  modify chk-int7,  title = int-desc, visible 
+           = 1, value 1
+                    when 8  modify chk-int8,  title = int-desc, visible 
+           = 1, value 1
+                    when 9  modify chk-int9,  title = int-desc, visible 
+           = 1, value 1
+                    when 10 modify chk-int10, title = int-desc, visible 
+           = 1, value 1
+                    end-evaluate
+                 end-perform
+           end-start.
+
+           move 1 to chk-mcgall-buf chk-intall-buf.
+           display chk-mcgall chk-intall.
+
            perform INTESTAZIONE.
            set ord-mcg-asc to true.
            perform LOAD-TMP-EXE-MCG.
@@ -1993,6 +2270,30 @@
                  IF Event-Type = Cmd-Close
                     PERFORM Form1-Exit
                  END-IF
+              WHEN Key-Status = 1001
+                 PERFORM chk-mcgall-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1002
+                 PERFORM chk-intall-LinkTo
               WHEN Key-Status = 1000
                  PERFORM Form1-Cb-1-LinkTo
               WHEN Key-Status = 1000
@@ -3056,6 +3357,59 @@
               exit paragraph 
            end-if.
 
+           
+
+           inquire chk-int1, value in chk-int1-buf, title in como-titolo
+           if chk-int1-buf = 0 and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-int2, value in chk-int2-buf, title in como-titolo
+           if chk-int2-buf = 0 and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-int3, value in chk-int3-buf, title in como-titolo
+           if chk-int3-buf = 0 and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-int4, value in chk-int4-buf, title in como-titolo
+           if chk-int4-buf = 0 and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-int5, value in chk-int5-buf, title in como-titolo
+           if chk-int5-buf = 0 and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-int6, value in chk-int6-buf, title in como-titolo
+           if chk-int6-buf = 0 and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-int7, value in chk-int7-buf, title in como-titolo
+           if chk-int7-buf = 0 and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-int8, value in chk-int8-buf, title in como-titolo
+           if chk-int8-buf = 0 and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-int9, value in chk-int9-buf, title in como-titolo
+           if chk-int9-buf = 0 and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-int10, value in chk-int10-buf, title in 
+           como-titolo
+           if chk-int10-buf = 0   and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
            add 1 to riga.
            
            modify form1-gd-1(riga, 78-col-code),        cell-data 
@@ -3081,7 +3435,109 @@
            modify form1-gd-1(riga, 78-col-restpause),   cell-data 
            col-restpause.
            modify form1-gd-1(riga, 78-col-disable),     cell-data 
-           col-disab 
+           col-disab.
+                       
+           inquire chk-mcg1, visible in como-v
+           if como-v = 1 and chk-mcg1-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if      
+           inquire chk-mcg2, visible in como-v
+           if como-v = 1 and chk-mcg2-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if      
+           inquire chk-mcg3, visible in como-v
+           if como-v = 1 and chk-mcg3-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if      
+           inquire chk-mcg4, visible in como-v
+           if como-v = 1 and chk-mcg4-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if      
+           inquire chk-mcg5, visible in como-v
+           if como-v = 1 and chk-mcg5-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if      
+           inquire chk-mcg6, visible in como-v
+           if como-v = 1 and chk-mcg6-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if      
+           inquire chk-mcg7, visible in como-v
+           if como-v = 1 and chk-mcg7-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if      
+           inquire chk-mcg8, visible in como-v
+           if como-v = 1 and chk-mcg8-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if      
+           inquire chk-mcg9, visible in como-v
+           if como-v = 1 and chk-mcg9-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if      
+           inquire chk-mcg10, visible in como-v
+           if como-v = 1 and chk-mcg10-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if
+                                        
+           inquire chk-int1, visible in como-v
+           if como-v = 1 and chk-int1-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
+           inquire chk-int2, visible in como-v
+           if como-v = 1 and chk-int2-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
+           inquire chk-int3, visible in como-v
+           if como-v = 1 and chk-int3-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
+           inquire chk-int4, visible in como-v
+           if como-v = 1 and chk-int4-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
+           inquire chk-int5, visible in como-v
+           if como-v = 1 and chk-int5-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
+           inquire chk-int6, visible in como-v
+           if como-v = 1 and chk-int6-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
+           inquire chk-int7, visible in como-v
+           if como-v = 1 and chk-int7-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
+           inquire chk-int8, visible in como-v
+           if como-v = 1 and chk-int8-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
+           inquire chk-int9, visible in como-v
+           if como-v = 1 and chk-int9-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
+           inquire chk-int10, visible in como-v
+           if como-v = 1 and chk-int10-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
            .
       * <TOTEM:END>
 
@@ -3585,6 +4041,128 @@
       * <TOTEM:END>
        Form1-Cb-1-LinkTo.
       * <TOTEM:PARA. Form1-Cb-1-LinkTo>
+           perform LOAD-RECORD 
+           .
+      * <TOTEM:END>
+       chk-mcgall-LinkTo.
+      * <TOTEM:PARA. chk-mcgall-LinkTo>
+           if chk-mcgall-buf = 0
+              move 1 to chk-mcgall-buf
+              modify chk-mcgall, value chk-mcgall-buf
+              exit paragraph
+           end-if.
+           inquire chk-mcg1, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg1-buf
+              modify chk-mcg1, value chk-mcg1-buf
+           end-if.
+           inquire chk-mcg2, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg2-buf
+              modify chk-mcg2, value chk-mcg2-buf
+           end-if.
+           inquire chk-mcg3, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg3-buf
+              modify chk-mcg3, value chk-mcg3-buf
+           end-if.
+           inquire chk-mcg4, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg4-buf
+              modify chk-mcg4, value chk-mcg4-buf
+           end-if.
+           inquire chk-mcg5, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg5-buf
+              modify chk-mcg5, value chk-mcg5-buf
+           end-if.
+           inquire chk-mcg6, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg6-buf
+              modify chk-mcg6, value chk-mcg6-buf
+           end-if.
+           inquire chk-mcg7, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg7-buf
+              modify chk-mcg7, value chk-mcg7-buf
+           end-if.
+           inquire chk-mcg8, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg8-buf
+              modify chk-mcg8, value chk-mcg8-buf
+           end-if.
+           inquire chk-mcg9, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg9-buf
+              modify chk-mcg9, value chk-mcg9-buf
+           end-if.
+           inquire chk-mcg10, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg10-buf
+              modify chk-mcg10, value chk-mcg10-buf
+           end-if.                           
+
+           perform LOAD-RECORD 
+           .
+      * <TOTEM:END>
+       chk-intall-LinkTo.
+      * <TOTEM:PARA. chk-intall-LinkTo>
+           if chk-intall-buf = 0
+              move 1 to chk-intall-buf
+              modify chk-intall, value chk-intall-buf
+              exit paragraph
+           end-if.
+           inquire chk-int1, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int1-buf
+              modify chk-int1, value chk-int1-buf
+           end-if.
+           inquire chk-int2, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int2-buf
+              modify chk-int2, value chk-int2-buf
+           end-if.
+           inquire chk-int3, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int3-buf
+              modify chk-int3, value chk-int3-buf
+           end-if.
+           inquire chk-int4, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int4-buf
+              modify chk-int4, value chk-int4-buf
+           end-if.
+           inquire chk-int5, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int5-buf
+              modify chk-int5, value chk-int5-buf
+           end-if.
+           inquire chk-int6, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int6-buf
+              modify chk-int6, value chk-int6-buf
+           end-if.
+           inquire chk-int7, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int7-buf
+              modify chk-int7, value chk-int7-buf
+           end-if.
+           inquire chk-int8, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int8-buf
+              modify chk-int8, value chk-int8-buf
+           end-if.
+           inquire chk-int9, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int9-buf
+              modify chk-int9, value chk-int9-buf
+           end-if.
+           inquire chk-int10, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int10-buf
+              modify chk-int10, value chk-int10-buf
+           end-if.                      
+
            perform LOAD-RECORD 
            .
       * <TOTEM:END>

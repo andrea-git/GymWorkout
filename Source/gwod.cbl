@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 22 settembre 2023 17:54:16.
+       DATE-WRITTEN.        domenica 24 settembre 2023 01:23:42.
        REMARKS.
       *{TOTEM}END
 
@@ -39,6 +39,8 @@
            COPY "intexe.sl".
            COPY "tmp-exe-dupl.sl".
            COPY "zoom-exe-mcg.sl".
+           COPY "tmp-hit.sl".
+           COPY "tmp-grp-exe.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
@@ -55,6 +57,8 @@
            COPY "intexe.fd".
            COPY "tmp-exe-dupl.fd".
            COPY "zoom-exe-mcg.fd".
+           COPY "tmp-hit.fd".
+           COPY "tmp-grp-exe.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -122,7 +126,7 @@
                   USAGE IS HANDLE OF STATUS-BAR.
        77 form1-Handle
                   USAGE IS HANDLE OF WINDOW.
-       77 como-qta         PIC  9(6).
+       77 como-hit         PIC  xxx.
        77 link-stampante   PIC  x(200).
        77 como-effort      PIC  99.
        77 como-giorno      PIC  99.
@@ -158,16 +162,16 @@
                   USAGE IS HANDLE OF WINDOW.
        01 rec-schema.
            05 sigle-effort.
-               10 sigle-effort-1   PIC  x(7).
-               10 sigle-effort-2   PIC  x(7).
-               10 sigle-effort-3   PIC  x(7).
-               10 sigle-effort-4   PIC  x(7).
-               10 sigle-effort-5   PIC  x(7).
-               10 sigle-effort-6   PIC  x(7).
-               10 sigle-effort-7   PIC  x(7).
-               10 sigle-effort-8   PIC  x(7).
-               10 sigle-effort-9   PIC  x(7).
-               10 sigle-effort-10  PIC  x(7).
+               10 sigle-effort-1   PIC  x(8).
+               10 sigle-effort-2   PIC  x(8).
+               10 sigle-effort-3   PIC  x(8).
+               10 sigle-effort-4   PIC  x(8).
+               10 sigle-effort-5   PIC  x(8).
+               10 sigle-effort-6   PIC  x(8).
+               10 sigle-effort-7   PIC  x(8).
+               10 sigle-effort-8   PIC  x(8).
+               10 sigle-effort-9   PIC  x(8).
+               10 sigle-effort-10  PIC  x(8).
            05 mcg.
                10 mcg-1            PIC  x(5).
                10 mcg-2            PIC  x(5).
@@ -228,13 +232,14 @@
            05 el-mcg-desc-p    PIC  x(100)
                       OCCURS 10 TIMES.
        77 tot-gruppi       PIC  999.
+       77 tot-hit          PIC  999.
        77 idx-gruppi       PIC  999.
        01 tab-mgroups.
            05 el-mgroups
                       OCCURS 10 TIMES.
                10 el-mgroup        PIC  x(100).
                10 el-mcg-code      PIC  x(5).
-               10 el-mcg-hit       PIC  9(3).
+               10 el-mcg-color     PIC  999.
        01 rec-grid.
            05 col-day          PIC  9.
            05 col-exe-prg      PIC  99.
@@ -339,6 +344,7 @@
        01 hiddenData.
            05 hid-restpause    PIC  9.
            05 hid-day          PIC  9.
+           05 hid-mcg-code     PIC  x(5).
        77 Calibri14BU-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 path-zoom-exe-mcg            PIC  X(256).
@@ -364,6 +370,14 @@
        77 Calibri24B-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 lab-attesa-buf   PIC  x(50).
+       77 path-tmp-hit     PIC  X(256).
+       77 STATUS-tmp-hit   PIC  X(2).
+           88 Valid-STATUS-tmp-hit VALUE IS "00" THRU "09". 
+       77 path-tmp-grp-exe PIC  X(256).
+       77 STATUS-tmp-grp-exe           PIC  X(2).
+           88 Valid-STATUS-tmp-grp-exe VALUE IS "00" THRU "09". 
+       77 Calibri12BU-Occidentale
+                  USAGE IS HANDLE OF FONT.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -388,6 +402,8 @@
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(105).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
+       77 TMP-DataSet1-tmp-hit-BUF     PIC X(6).
+       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(201).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -453,6 +469,16 @@
        77 DataSet1-zoom-exe-mcg-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-zoom-exe-mcg-KEY-Asc  VALUE "A".
           88 DataSet1-zoom-exe-mcg-KEY-Desc VALUE "D".
+       77 DataSet1-tmp-hit-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-tmp-hit-LOCK  VALUE "Y".
+       77 DataSet1-tmp-hit-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-tmp-hit-KEY-Asc  VALUE "A".
+          88 DataSet1-tmp-hit-KEY-Desc VALUE "D".
+       77 DataSet1-tmp-grp-exe-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-tmp-grp-exe-LOCK  VALUE "Y".
+       77 DataSet1-tmp-grp-exe-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-tmp-grp-exe-KEY-Asc  VALUE "A".
+          88 DataSet1-tmp-grp-exe-KEY-Desc VALUE "D".
 
        77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
@@ -463,6 +489,7 @@
        77 duration-dur-k-exercises-SPLITBUF  PIC X(3).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 tmp-exe-tex-k-dupl-SPLITBUF  PIC X(102).
+       77 tmp-exe-tex-k-mcg-SPLITBUF  PIC X(10).
        77 intexe-int-k-desc-SPLITBUF  PIC X(101).
        77 intexe-int-k-effort-SPLITBUF  PIC X(3).
        77 tmp-exe-dupl-ted-k-num-SPLITBUF  PIC X(106).
@@ -489,7 +516,14 @@
 
       *{TOTEM}ID-LOGICI
       ***** Elenco ID Logici *****
-       78  78-ID-gd1 VALUE 5001.
+       78  78-ID-cb-mg1 VALUE 5001.
+       78  78-ID-cb-mg2 VALUE 5002.
+       78  78-ID-cb-mg3 VALUE 5003.
+       78  78-ID-cb-mg4 VALUE 5004.
+       78  78-ID-cb-mg5 VALUE 5005.
+       78  78-ID-cb-mg6 VALUE 5006.
+       78  78-ID-cb-mg7 VALUE 5007.
+       78  78-ID-gd1 VALUE 5008.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -517,7 +551,7 @@
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 7,
+           ID IS 78-ID-cb-mg1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
@@ -537,7 +571,7 @@
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 8,
+           ID IS 78-ID-cb-mg2,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
@@ -557,7 +591,7 @@
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 9,
+           ID IS 78-ID-cb-mg3,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
@@ -577,7 +611,7 @@
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 11,
+           ID IS 78-ID-cb-mg4,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
@@ -597,7 +631,7 @@
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 13,
+           ID IS 78-ID-cb-mg5,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
@@ -617,15 +651,15 @@
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 28,
+           ID IS 78-ID-cb-mg6,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
            DROP-LIST,
            UNSORTED,
            VALUE cb-mg6-buf,
-           AFTER PROCEDURE cb-mg5-AfterProcedure, 
-           BEFORE PROCEDURE cb-mg5-BeforeProcedure, 
+           AFTER PROCEDURE cb-mg6-AfterProcedure, 
+           BEFORE PROCEDURE cb-mg6-BeforeProcedure, 
            .
       * COMBO-BOX
        05
@@ -637,15 +671,15 @@
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,
-           ID IS 35,
+           ID IS 78-ID-cb-mg7,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            MASS-UPDATE 0,
            DROP-LIST,
            UNSORTED,
            VALUE cb-mg7-buf,
-           AFTER PROCEDURE cb-mg5-AfterProcedure, 
-           BEFORE PROCEDURE cb-mg5-BeforeProcedure, 
+           AFTER PROCEDURE cb-mg7-AfterProcedure, 
+           BEFORE PROCEDURE cb-mg7-BeforeProcedure, 
            .
       * COMBO-BOX
        05
@@ -830,7 +864,7 @@
        05
            gd1, 
            Grid, 
-           COL 63,00, 
+           COL 71,00, 
            LINE 1,70,
            LINES 34,87 ,
            SIZE 75,50 ,
@@ -1076,7 +1110,7 @@
            COL 2,30, 
            LINE 26,13,
            LINES 10,52 ,
-           SIZE 58,50 ,
+           SIZE 66,70 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
            DATA-COLUMNS (1, 3, 8, 13, 18, 23, 28, 33, 38, 43, 48, 53),
@@ -1096,7 +1130,7 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 80,
+           VIRTUAL-WIDTH 90,
            VPADDING 5,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
            .
@@ -1115,6 +1149,118 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "&S",
+           .
+
+      * PUSH BUTTON
+       05
+           pb-mcg1, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 1,70,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1005,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
+      * PUSH BUTTON
+       05
+           pb-mcg2, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 3,17,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1006,
+           ID IS 15,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
+      * PUSH BUTTON
+       05
+           pb-mcg3, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 4,70,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1011,
+           ID IS 20,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
+      * PUSH BUTTON
+       05
+           pb-mcg4, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 6,17,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1010,
+           ID IS 21,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
+      * PUSH BUTTON
+       05
+           pb-mcg5, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 7,70,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1009,
+           ID IS 22,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
+      * PUSH BUTTON
+       05
+           pb-mcg6, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 9,17,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1008,
+           ID IS 39,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
+      * PUSH BUTTON
+       05
+           pb-mcg7, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 10,70,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1007,
+           ID IS 40,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
            .
 
       * TOOLBAR
@@ -1255,8 +1401,8 @@
            LINE 1,09,
            LINES 1,35 ,
            SIZE 3,10 ,
-           FONT IS Small-Font,
-           ID IS 39,
+           FONT IS Calibri12B-Occidentale,
+           ID IS 112,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Push Button",
@@ -1272,7 +1418,7 @@
            LINES 1,35 ,
            SIZE 3,10 ,
            FONT IS Small-Font,
-           ID IS 40,
+           ID IS 113,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Push Button",
@@ -1406,6 +1552,7 @@
            DESTROY Calibri12-Occidentale
            DESTROY Calibri14-Occidentale
            DESTROY Calibri10B-Occidentale
+           DESTROY Calibri12B-Occidentale
            DESTROY Calibri14BU-Occidentale
            DESTROY Calibri24B-Occidentale
            DESTROY Calibri16B-Occidentale
@@ -1478,6 +1625,19 @@
            MOVE 0 TO WFONT-CHAR-SET
            CALL "W$FONT" USING WFONT-GET-FONT, 
                      Calibri10B-Occidentale, WFONT-DATA
+      * Calibri12B-Occidentale
+           INITIALIZE WFONT-DATA Calibri12B-Occidentale
+           MOVE 12 TO WFONT-SIZE
+           MOVE "Calibri" TO WFONT-NAME
+           SET WFCHARSET-DONT-CARE TO TRUE
+           SET WFONT-BOLD TO TRUE
+           SET WFONT-ITALIC TO FALSE
+           SET WFONT-UNDERLINE TO FALSE
+           SET WFONT-STRIKEOUT TO FALSE
+           SET WFONT-FIXED-PITCH TO FALSE
+           MOVE 0 TO WFONT-CHAR-SET
+           CALL "W$FONT" USING WFONT-GET-FONT, 
+                     Calibri12B-Occidentale, WFONT-DATA
       * Calibri14BU-Occidentale
            INITIALIZE WFONT-DATA Calibri14BU-Occidentale
            MOVE 14 TO WFONT-SIZE
@@ -1559,6 +1719,10 @@
       *    PERFORM OPEN-tmp-exe-dupl
       *    zoom-exe-mcg OPEN MODE IS FALSE
       *    PERFORM OPEN-zoom-exe-mcg
+      *    tmp-hit OPEN MODE IS FALSE
+      *    PERFORM OPEN-tmp-hit
+      *    tmp-grp-exe OPEN MODE IS FALSE
+      *    PERFORM OPEN-tmp-grp-exe
       *    After Open
            .
 
@@ -1713,6 +1877,30 @@
       * <TOTEM:END>
            .
 
+       OPEN-tmp-hit.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-hit, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  OUTPUT tmp-hit
+           IF NOT Valid-STATUS-tmp-hit
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-hit, AfterOpen>
+      * <TOTEM:END>
+           .
+
+       OPEN-tmp-grp-exe.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-grp-exe, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  OUTPUT tmp-grp-exe
+           IF NOT Valid-STATUS-tmp-grp-exe
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-grp-exe, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-exercises
@@ -1732,6 +1920,10 @@
       *    PERFORM CLOSE-tmp-exe-dupl
       *    zoom-exe-mcg CLOSE MODE IS FALSE
       *    PERFORM CLOSE-zoom-exe-mcg
+      *    tmp-hit CLOSE MODE IS FALSE
+      *    PERFORM CLOSE-tmp-hit
+      *    tmp-grp-exe CLOSE MODE IS FALSE
+      *    PERFORM CLOSE-tmp-grp-exe
       *    After Close
            .
 
@@ -1799,6 +1991,16 @@
 
        CLOSE-zoom-exe-mcg.
       * <TOTEM:EPT. INIT:gwod, FD:zoom-exe-mcg, BeforeClose>
+      * <TOTEM:END>
+           .
+
+       CLOSE-tmp-hit.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-hit, BeforeClose>
+      * <TOTEM:END>
+           .
+
+       CLOSE-tmp-grp-exe.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-grp-exe, BeforeClose>
       * <TOTEM:END>
            .
 
@@ -3075,6 +3277,12 @@
            tmp-exe-tex-k-dupl-SPLITBUF(2:100)
            .
 
+       tmp-exe-tex-k-mcg-MERGE-SPLITBUF.
+           INITIALIZE tmp-exe-tex-k-mcg-SPLITBUF
+           MOVE tex-mcg-code(1:5) TO tmp-exe-tex-k-mcg-SPLITBUF(1:5)
+           MOVE tex-key(1:4) TO tmp-exe-tex-k-mcg-SPLITBUF(6:4)
+           .
+
        DataSet1-tmp-exe-INITSTART.
            IF DataSet1-tmp-exe-KEY-Asc
               MOVE Low-Value TO tex-key
@@ -3598,6 +3806,232 @@
       * <TOTEM:END>
            .
 
+       DataSet1-tmp-hit-INITSTART.
+           IF DataSet1-tmp-hit-KEY-Asc
+              MOVE Low-Value TO th-key
+           ELSE
+              MOVE High-Value TO th-key
+           END-IF
+           .
+
+       DataSet1-tmp-hit-INITEND.
+           IF DataSet1-tmp-hit-KEY-Asc
+              MOVE High-Value TO th-key
+           ELSE
+              MOVE Low-Value TO th-key
+           END-IF
+           .
+
+      * tmp-hit
+       DataSet1-tmp-hit-START.
+           IF DataSet1-tmp-hit-KEY-Asc
+              START tmp-hit KEY >= th-key
+           ELSE
+              START tmp-hit KEY <= th-key
+           END-IF
+           .
+
+       DataSet1-tmp-hit-START-NOTGREATER.
+           IF DataSet1-tmp-hit-KEY-Asc
+              START tmp-hit KEY <= th-key
+           ELSE
+              START tmp-hit KEY >= th-key
+           END-IF
+           .
+
+       DataSet1-tmp-hit-START-GREATER.
+           IF DataSet1-tmp-hit-KEY-Asc
+              START tmp-hit KEY > th-key
+           ELSE
+              START tmp-hit KEY < th-key
+           END-IF
+           .
+
+       DataSet1-tmp-hit-START-LESS.
+           IF DataSet1-tmp-hit-KEY-Asc
+              START tmp-hit KEY < th-key
+           ELSE
+              START tmp-hit KEY > th-key
+           END-IF
+           .
+
+       DataSet1-tmp-hit-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, BeforeReadRecord>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-hit-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, BeforeReadNext>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-hit-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, BeforeReadPrev>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-hit-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, BeforeWrite>
+      * <TOTEM:END>
+           WRITE th-rec OF tmp-hit.
+           MOVE STATUS-tmp-hit TO TOTEM-ERR-STAT
+           MOVE "tmp-hit" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-hit-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-hit TO TOTEM-ERR-STAT
+           MOVE "tmp-hit" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-hit-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-hit TO TOTEM-ERR-STAT
+           MOVE "tmp-hit" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, AfterDelete>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-grp-exe-INITSTART.
+           IF DataSet1-tmp-grp-exe-KEY-Asc
+              MOVE Low-Value TO tge-key
+           ELSE
+              MOVE High-Value TO tge-key
+           END-IF
+           .
+
+       DataSet1-tmp-grp-exe-INITEND.
+           IF DataSet1-tmp-grp-exe-KEY-Asc
+              MOVE High-Value TO tge-key
+           ELSE
+              MOVE Low-Value TO tge-key
+           END-IF
+           .
+
+      * tmp-grp-exe
+       DataSet1-tmp-grp-exe-START.
+           IF DataSet1-tmp-grp-exe-KEY-Asc
+              START tmp-grp-exe KEY >= tge-key
+           ELSE
+              START tmp-grp-exe KEY <= tge-key
+           END-IF
+           .
+
+       DataSet1-tmp-grp-exe-START-NOTGREATER.
+           IF DataSet1-tmp-grp-exe-KEY-Asc
+              START tmp-grp-exe KEY <= tge-key
+           ELSE
+              START tmp-grp-exe KEY >= tge-key
+           END-IF
+           .
+
+       DataSet1-tmp-grp-exe-START-GREATER.
+           IF DataSet1-tmp-grp-exe-KEY-Asc
+              START tmp-grp-exe KEY > tge-key
+           ELSE
+              START tmp-grp-exe KEY < tge-key
+           END-IF
+           .
+
+       DataSet1-tmp-grp-exe-START-LESS.
+           IF DataSet1-tmp-grp-exe-KEY-Asc
+              START tmp-grp-exe KEY < tge-key
+           ELSE
+              START tmp-grp-exe KEY > tge-key
+           END-IF
+           .
+
+       DataSet1-tmp-grp-exe-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, BeforeReadRecord>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-grp-exe-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, BeforeReadNext>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-grp-exe-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, BeforeReadPrev>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-grp-exe-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, BeforeWrite>
+      * <TOTEM:END>
+           WRITE tge-rec OF tmp-grp-exe.
+           MOVE STATUS-tmp-grp-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-grp-exe" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-grp-exe-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-grp-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-grp-exe" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-grp-exe-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-grp-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-grp-exe" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE grp-rec OF groups
@@ -3611,6 +4045,8 @@
            INITIALIZE int-rec OF intexe
            INITIALIZE ted-rec OF tmp-exe-dupl
            INITIALIZE zem-rec OF zoom-exe-mcg
+           INITIALIZE th-rec OF tmp-hit
+           INITIALIZE tge-rec OF tmp-grp-exe
            .
 
 
@@ -3826,6 +4262,22 @@
                          ALPHABETIC    DATA BY SPACES
            .
 
+      * FD's Initialize Paragraph
+       DataSet1-tmp-hit-INITREC.
+           INITIALIZE th-rec OF tmp-hit
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-tmp-grp-exe-INITREC.
+           INITIALIZE tge-rec OF tmp-grp-exe
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
       *
        DataSet1-DISPATCH-BUFTOFLD.
            EVALUATE TOTEM-Form-Index ALSO TOTEM-Frame-Index
@@ -3865,7 +4317,7 @@
               SCREEN LINE 2,
               SCREEN COLUMN 2,
               LINES 38,39,
-              SIZE 139,90,
+              SIZE 147,90,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -3905,8 +4357,8 @@
            DISPLAY Form1 UPON form1-Handle
       * DISPLAY-COLUMNS settings
               MODIFY gd1, DISPLAY-COLUMNS (1, 6, 9, 16, 36, 43, 73, 78)
-              MODIFY gd-schema, DISPLAY-COLUMNS (1, 6, 12, 18, 24, 30, 
-           36, 42, 48, 54, 60, 66)
+              MODIFY gd-schema, DISPLAY-COLUMNS (1, 6, 13, 20, 27, 34, 
+           41, 48, 55, 62, 69, 76)
            .
 
        Form1-PROC.
@@ -4022,6 +4474,20 @@
                  PERFORM pb-random-LinkTo
               WHEN Key-Status = 1004
                  PERFORM Screen1-Pb-1aa-LinkTo
+              WHEN Key-Status = 1005
+                 PERFORM pb-mcg1-LinkTo
+              WHEN Key-Status = 1006
+                 PERFORM pb-mcg2-LinkTo
+              WHEN Key-Status = 1011
+                 PERFORM pb-mcg3-LinkTo
+              WHEN Key-Status = 1010
+                 PERFORM pb-mcg4-LinkTo
+              WHEN Key-Status = 1009
+                 PERFORM pb-mcg5-LinkTo
+              WHEN Key-Status = 1008
+                 PERFORM pb-mcg6-LinkTo
+              WHEN Key-Status = 1007
+                 PERFORM pb-mcg7-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 3
@@ -4643,25 +5109,25 @@
        Screen1-Gd-1-Event-Proc.
            EVALUATE Event-Type ALSO Event-Control-Id ALSO
                                     Event-Window-Handle
-           WHEN Msg-Begin-Drag ALSO 5001 ALSO
+           WHEN Msg-Begin-Drag ALSO 5008 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5001 ALSO
+           WHEN Msg-Begin-Entry ALSO 5008 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5001 ALSO
+           WHEN Msg-End-Drag ALSO 5008 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5001 ALSO
+           WHEN Msg-Finish-Entry ALSO 5008 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5001 ALSO
+           WHEN Msg-Goto-Cell ALSO 5008 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5001 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5008 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5001 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5008 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Goto-Cell-Mouse
            WHEN Msg-Begin-Entry ALSO 37 ALSO
@@ -4745,14 +5211,30 @@
            modify lab-f, font Calibri14-Occidentale.
            modify lab-g, font Calibri14-Occidentale.
                                              
-           modify cb-mg1, enabled false.
-           modify cb-mg2, enabled false.
-           modify cb-mg3, enabled false.
-           modify cb-mg4, enabled false.
-           modify cb-mg5, enabled false.
-           modify cb-mg6, enabled false.
-           modify cb-mg7, enabled false. 
-                                       
+           modify cb-mg1, enabled false, value "Nessuno".
+           modify cb-mg2, enabled false, value "Nessuno".
+           modify cb-mg3, enabled false, value "Nessuno".
+           modify cb-mg4, enabled false, value "Nessuno".
+           modify cb-mg5, enabled false, value "Nessuno".
+           modify cb-mg6, enabled false, value "Nessuno".
+           modify cb-mg7, enabled false, value "Nessuno". 
+                                                      
+           modify pb-mcg1, enabled false, title "Mai".
+           modify pb-mcg2, enabled false, title "Mai".
+           modify pb-mcg3, enabled false, title "Mai".
+           modify pb-mcg4, enabled false, title "Mai".
+           modify pb-mcg5, enabled false, title "Mai".
+           modify pb-mcg6, enabled false, title "Mai".
+           modify pb-mcg7, enabled false, title "Mai".
+                                          
+           modify lab-a, color = 513.
+           modify lab-b, color = 513.
+           modify lab-c, color = 513.
+           modify lab-d, color = 513.
+           modify lab-e, color = 513.
+           modify lab-f, color = 513.
+           modify lab-g, color = 513.
+
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
            move 0 to mod.
@@ -4762,7 +5244,7 @@
            perform GD-SCHEMA-CONTENT.
            move 1 to riga.
            move 304 to colore. 
-
+                                            
            modify pb-genera, enabled false.
 
            perform varying idx-days from 1 by 1
@@ -4839,7 +5321,7 @@
                  inspect como-day replacing trailing spaces by low-value
                  string  wom-split-el-split-sigla(idx-days, idx-split)
                          " - "          
-                         int-desc(1:3)
+                         int-desc(1:4)
                     into como-day
                  end-string
                  evaluate idx-split
@@ -4890,7 +5372,7 @@
                  mcg-7 not = spaces
                  inquire pb-genera, enabled in como-e
                  if como-e = 0
-                    move 1 to como-e
+                    move 1 to como-e              
                     modify pb-genera, enabled true
                  end-if
               end-if
@@ -4946,8 +5428,7 @@
                 modify cb-mg5, enabled true
                 modify cb-mg6, enabled true
                 modify cb-mg7, enabled true
-           end-evaluate.
-
+           end-evaluate.    
            
            move cb-mg1-buf to s-cb-mg1-buf.
            move cb-mg2-buf to s-cb-mg2-buf.
@@ -5260,9 +5741,78 @@
                 add 1 to idx-gruppi                   
                 move mcg-desc    to el-mgroup(idx-gruppi)  
                 move mcg-code    to el-mcg-code(idx-gruppi)
-                move 0           to el-mcg-hit(idx-gruppi)
            end-read.
            move idx-gruppi to tot-gruppi 
+           .
+      * <TOTEM:END>
+
+       CREA-TMP-GRP-EXE.
+      * <TOTEM:PARA. CREA-TMP-GRP-EXE>
+           perform EVIDENZIA-GRUPPI.
+
+           evaluate idx
+           when 1 move 78-ID-cb-mg1 to control-id
+           when 2 move 78-ID-cb-mg2 to control-id
+           when 3 move 78-ID-cb-mg3 to control-id
+           when 4 move 78-ID-cb-mg4 to control-id
+           when 5 move 78-ID-cb-mg5 to control-id
+           when 6 move 78-ID-cb-mg6 to control-id
+           when 7 move 78-ID-cb-mg7 to control-id
+           end-evaluate.
+
+           move 4 to accept-control.
+
+           accept  path-tmp-grp-exe from environment "PATH_ST".
+           inspect path-tmp-grp-exe replacing trailing spaces by 
+           low-value.
+           string  path-tmp-grp-exe delimited low-value
+                   "tmp-grp-exe_"   delimited size
+                   como-data        delimited size
+                   "_"              delimited size
+                   como-ora         delimited size
+              into path-tmp-grp-exe
+           end-string.                                                  
+                 
+           inspect path-tmp-grp-exe replacing trailing low-value by 
+           spaces.
+           open output tmp-grp-exe.    
+           close       tmp-grp-exe.
+           open i-o    tmp-grp-exe.
+
+           move el-mcg-code(idx) to mcg-code.
+           
+           open input tmp-exe.
+           move low-value to tex-rec.
+           move mcg-code  to tex-mcg-code.
+           start tmp-exe key >= tex-k-mcg
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-exe next at end exit perform end-read
+                    if tex-mcg-code not = mcg-code
+                       exit perform
+                    end-if
+                    move tex-exe-code to exe-code
+                    read exercises
+                    move exe-grp-code to grp-code
+                    read groups 
+                    move tex-day  to tge-day
+                    move grp-desc to tge-grp-desc
+                    move exe-desc to tge-exe-desc
+                    write tge-rec invalid rewrite tge-rec end-write
+                 end-perform
+           end-start.         
+           close tmp-exe.  
+
+           move path-tmp-grp-exe to ext-file
+           move "tmp-grp-exe"    to Como-File
+           call   "zoom-gt"   using como-file, tge-rec
+                             giving stato-zoom
+           cancel "zoom-gt".
+
+           close       tmp-grp-exe.
+           delete file tmp-grp-exe 
+                                   
            .
       * <TOTEM:END>
 
@@ -5362,7 +5912,23 @@
            modify cb-mg7, enabled false.
            
            perform VALORIZZA-WOD.
-                               
+                                         
+           modify pb-mcg1, enabled false, title "Mai".
+           modify pb-mcg2, enabled false, title "Mai".
+           modify pb-mcg3, enabled false, title "Mai".
+           modify pb-mcg4, enabled false, title "Mai".
+           modify pb-mcg5, enabled false, title "Mai".
+           modify pb-mcg6, enabled false, title "Mai".
+           modify pb-mcg7, enabled false, title "Mai". 
+                                     
+           modify lab-a, color = 513.
+           modify lab-b, color = 513.
+           modify lab-c, color = 513.
+           modify lab-d, color = 513.
+           modify lab-e, color = 513.
+           modify lab-f, color = 513.
+           modify lab-g, color = 513.
+
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
            move 0 to mod.
@@ -5372,6 +5938,22 @@
            perform GD-SCHEMA-CONTENT.    
 
            modify pb-genera, enabled false 
+           .
+      * <TOTEM:END>
+
+       EVIDENZIA-GRUPPI.
+      * <TOTEM:PARA. EVIDENZIA-GRUPPI>
+           inquire gd1, last-row in tot-righe, 
+           modify gd1, mass-update = 1.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd1(riga, 1), hidden-data in hiddenData
+              if hid-mcg-code = el-mcg-code(idx)
+                 modify gd1(riga), row-font = Calibri12B-Occidentale,
+                                   row-color = el-mcg-color(idx)
+              end-if
+           end-perform.
+           modify gd1, mass-update = 0 
            .
       * <TOTEM:END>
 
@@ -5395,7 +5977,55 @@
            
            inquire cb-wod, value in wom-desc.
            read wodmap key wom-k-desc.
-                 
+
+           perform OPEN-TMP.
+                                         
+           modify pb-mcg1, enabled false, title "Mai".
+           modify pb-mcg2, enabled false, title "Mai".
+           modify pb-mcg3, enabled false, title "Mai".
+           modify pb-mcg4, enabled false, title "Mai".
+           modify pb-mcg5, enabled false, title "Mai".
+           modify pb-mcg6, enabled false, title "Mai".
+           modify pb-mcg7, enabled false, title "Mai".  
+                                     
+           modify lab-a, color = 513.
+           modify lab-b, color = 513.
+           modify lab-c, color = 513.
+           modify lab-d, color = 513.
+           modify lab-e, color = 513.
+           modify lab-f, color = 513.
+           modify lab-g, color = 513.
+
+           modify gd1, mass-update = 1.  
+           modify gd1, reset-grid = 1.
+           perform GD1-CONTENT.
+                                     
+           initialize tex-rec replacing numeric data by zeroes 
+                                   alphanumeric data by spaces.         
+                                 
+           perform LOAD-EXERCISES-ALLOWED-BY-EFFORT. 
+           perform LOAD-EXERCISES-MULTIJOINT.
+           perform LOAD-EXERCISES.              
+           perform REMOVE-DUPLICATES.           
+           perform LOAD-GRID.       
+
+           perform CLOSE-TMP.
+                                  
+           move cb-mg1-buf to s-cb-mg1-buf.
+           move cb-mg2-buf to s-cb-mg2-buf.
+           move cb-mg3-buf to s-cb-mg3-buf.
+           move cb-mg4-buf to s-cb-mg4-buf.
+           move cb-mg5-buf to s-cb-mg5-buf.
+           move cb-mg6-buf to s-cb-mg6-buf.
+           move cb-mg7-buf to s-cb-mg7-buf.
+           move cb-mul-buf to s-cb-mul-buf.
+           move cb-int-buf to s-cb-int-buf.
+           move cb-dur-buf to s-cb-dur-buf.
+           move cb-gio-buf to s-cb-gio-buf.
+           move cb-wod-buf to s-cb-wod-buf.
+            
+      ***---
+       OPEN-TMP. 
            accept  como-data from century-date.
            accept  como-ora  from time.
            accept  path-tmp-exe-effort from environment "PATH_ST".
@@ -5463,20 +6093,24 @@
            open output tmp-exe-dupl.    
            close       tmp-exe-dupl.
            open i-o    tmp-exe-dupl.
-                                 
-           modify gd1, mass-update = 1.  
-           modify gd1, reset-grid = 1.
-           perform GD1-CONTENT.
-                                     
-           initialize tex-rec replacing numeric data by zeroes 
-                                   alphanumeric data by spaces.         
-                                 
-           perform LOAD-EXERCISES-ALLOWED-BY-EFFORT. 
-           perform LOAD-EXERCISES-MULTIJOINT.
-           perform LOAD-EXERCISES.              
-           perform REMOVE-DUPLICATES.           
-           perform LOAD-GRID.                   
-                                      
+
+           accept  path-tmp-hit from environment "PATH_ST".
+           inspect path-tmp-hit replacing trailing spaces by low-value.
+           string  path-tmp-hit delimited low-value
+                   "tmp-exe-hit_"   delimited size
+                   como-data        delimited size
+                   "_"              delimited size
+                   como-ora         delimited size
+              into path-tmp-hit
+           end-string.                                                  
+                 
+           inspect path-tmp-hit replacing trailing low-value by spaces.
+           open output tmp-hit.    
+           close       tmp-hit.
+           open i-o    tmp-hit.                                    
+
+      ***---
+       CLOSE-TMP.                  
            close       tmp-exe-effort.
            delete file tmp-exe-effort.
 
@@ -5484,22 +6118,12 @@
            delete file tmp-wod-exe.
                             
            close       tmp-exe.    
-
+                                        
            close       tmp-exe-dupl.
            delete file tmp-exe-dupl.
-                                  
-           move cb-mg1-buf to s-cb-mg1-buf.
-           move cb-mg2-buf to s-cb-mg2-buf.
-           move cb-mg3-buf to s-cb-mg3-buf.
-           move cb-mg4-buf to s-cb-mg4-buf.
-           move cb-mg5-buf to s-cb-mg5-buf.
-           move cb-mg6-buf to s-cb-mg6-buf.
-           move cb-mg7-buf to s-cb-mg7-buf.
-           move cb-mul-buf to s-cb-mul-buf.
-           move cb-int-buf to s-cb-int-buf.
-           move cb-dur-buf to s-cb-dur-buf.
-           move cb-gio-buf to s-cb-gio-buf.
-           move cb-wod-buf to s-cb-wod-buf.
+
+           close       tmp-hit.
+           delete file tmp-hit.    
       
       ***---
        LOAD-GRID.
@@ -5517,8 +6141,7 @@
                       at end 
                          perform DISPLAY-DURATA
                          exit perform 
-                    end-read          
-
+                    end-read    
                     if save-day = 0                    
                        move 0 to tot-durata
                        move tex-day to save-day
@@ -5555,7 +6178,7 @@
                     move grp-desc to col-grp-desc
                     move tex-exe-code to col-exe-code
                     move tex-exe-desc to col-exe-desc
-
+                                         
                     move wom-split-el-split-int-code(tex-day, tex-split)
                       to int-code
                     read intexe
@@ -5642,56 +6265,143 @@
 
                     move int-restpause to hid-restpause
                     move col-day       to hid-day
+                    move grp-mcg-code  to hid-mcg-code
                     modify gd1(riga, 78-col-day), hidden-data hiddenData
 
                     compute tot-durata  = tot-durata +
                             exe-setting +
                           ( col-series * int-time  ) +
                           ( int-rest   * ( col-series - 1 ) )
-                    perform varying idx from 1 by 1 
-                              until idx > tot-gruppi
-                       if el-mcg-code(idx) = tex-mcg-code
-                          add 1 to el-mcg-hit(idx)
-                       end-if
-                    end-perform
+
+                    move tex-day      to th-day
+                    move tex-mcg-code to th-mcg-code
+                    write th-rec invalid rewrite th-rec end-write
 
                  end-perform
            end-start.
 
            perform varying idx from 1 by 1 
                      until idx > tot-gruppi
-              evaluate el-mcg-hit(idx)
-              when 0     
-                   evaluate idx
-                   when 1 modify lab-a, color 176
-                   when 2 modify lab-b, color 176
-                   when 3 modify lab-c, color 176
-                   when 4 modify lab-d, color 176
-                   when 5 modify lab-e, color 176
-                   when 6 modify lab-f, color 176
-                   when 7 modify lab-g, color 176
+              move el-mcg-code(idx) to th-mcg-code
+              move 0 to tot-hit
+              move low-value to th-day
+              start tmp-hit key >= th-key
+                    invalid continue
+                not invalid
+                    perform until 1 = 2
+                       read tmp-hit next at end exit perform end-read
+                       if th-mcg-code not = el-mcg-code(idx)
+                          exit perform
+                       end-if
+                       add 1 to tot-hit
+                    end-perform
+              end-start
+
+                                      
+              evaluate tot-hit
+              when 0
+                   evaluate idx                                       
+                   when 1 modify pb-mcg1, enabled, false, title = "Mai" 
+                                        
+                   when 2 modify pb-mcg2, enabled, false, title = "Mai" 
+                                        
+                   when 3 modify pb-mcg3, enabled, false, title = "Mai" 
+                                        
+                   when 4 modify pb-mcg4, enabled, false, title = "Mai" 
+                                        
+                   when 5 modify pb-mcg5, enabled, false, title = "Mai" 
+                                        
+                   when 6 modify pb-mcg6, enabled, false, title = "Mai" 
+                                        
+                   when 7 modify pb-mcg7, enabled, false, title = "Mai"
                    end-evaluate
-              when 1     
-                   evaluate idx
-                   when 1 modify lab-a, color 481
-                   when 2 modify lab-b, color 481
-                   when 3 modify lab-c, color 481
-                   when 4 modify lab-d, color 481
-                   when 5 modify lab-e, color 481
-                   when 6 modify lab-f, color 481
-                   when 7 modify lab-g, color 481
+              when 1
+                   evaluate idx         
+                   when 1 modify pb-mcg1, enabled, true, title = "1 volt
+      -    "a"
+                   when 2 modify pb-mcg2, enabled, true, title = "1 volt
+      -    "a"
+                   when 3 modify pb-mcg3, enabled, true, title = "1 volt
+      -    "a"
+                   when 4 modify pb-mcg4, enabled, true, title = "1 volt
+      -    "a"
+                   when 5 modify pb-mcg5, enabled, true, title = "1 volt
+      -    "a"
+                   when 6 modify pb-mcg6, enabled, true, title = "1 volt
+      -    "a"
+                   when 7 modify pb-mcg7, enabled, true, title = "1 volt
+      -    "a"
                    end-evaluate
-              when other 
+              when other                                        
+                   move tot-hit to como-hit
+                   inspect como-hit replacing leading x"30" by x"20"
+                   call "C$JUSTIFY" using como-hit, "L"
+                   inspect como-hit replacing trailing spaces by 
+           low-value
+                   initialize como-day
+                   string como-hit delimited low-value
+                          " volte" delimited size
+                     into como-day
+                   end-string
                    evaluate idx
-                   when 1 modify lab-a, color 112
-                   when 2 modify lab-b, color 112
-                   when 3 modify lab-c, color 112
-                   when 4 modify lab-d, color 112
-                   when 5 modify lab-e, color 112
-                   when 6 modify lab-f, color 112
-                   when 7 modify lab-g, color 112
+                   when 1 modify pb-mcg1, enabled, true, title como-day
+                   when 2 modify pb-mcg2, enabled, true, title como-day
+                   when 3 modify pb-mcg3, enabled, true, title como-day
+                   when 4 modify pb-mcg4, enabled, true, title como-day
+                   when 5 modify pb-mcg5, enabled, true, title como-day
+                   when 6 modify pb-mcg6, enabled, true, title como-day
+                   when 7 modify pb-mcg7, enabled, true, title como-day
                    end-evaluate
               end-evaluate
+                 
+              evaluate idx                            
+              when 1 inquire cb-mg1, enabled in como-e
+              when 2 inquire cb-mg2, enabled in como-e
+              when 3 inquire cb-mg3, enabled in como-e
+              when 4 inquire cb-mg4, enabled in como-e
+              when 5 inquire cb-mg5, enabled in como-e
+              when 6 inquire cb-mg6, enabled in como-e
+              when 7 inquire cb-mg7, enabled in como-e
+              end-evaluate
+
+              if como-e = 1
+                 evaluate tot-hit
+                 when 0
+                      evaluate idx
+                      when 1 modify lab-a, color 176
+                      when 2 modify lab-b, color 176
+                      when 3 modify lab-c, color 176
+                      when 4 modify lab-d, color 176
+                      when 5 modify lab-e, color 176
+                      when 6 modify lab-f, color 176
+                      when 7 modify lab-g, color 176
+                      end-evaluate
+                      move 176 to el-mcg-color(idx)
+                 when 1
+                      evaluate idx
+                      when 1 modify lab-a, color 481
+                      when 2 modify lab-b, color 481
+                      when 3 modify lab-c, color 481
+                      when 4 modify lab-d, color 481
+                      when 5 modify lab-e, color 481
+                      when 6 modify lab-f, color 481
+                      when 7 modify lab-g, color 481
+                      end-evaluate
+                      move 481 to el-mcg-color(idx)
+                 when other
+                      evaluate idx
+                      when 1 modify lab-a, color 112
+                      when 2 modify lab-b, color 112
+                      when 3 modify lab-c, color 112
+                      when 4 modify lab-d, color 112
+                      when 5 modify lab-e, color 112
+                      when 6 modify lab-f, color 112
+                      when 7 modify lab-g, color 112
+                      end-evaluate
+                      move 112 to el-mcg-color(idx)
+                 end-evaluate
+              end-if
+
            end-perform.
 
            modify gd1, mass-update = 0.
@@ -6291,6 +7001,20 @@
            if tutto-ok  
               perform DATI-DEFAULT
            end-if 
+           .
+      * <TOTEM:END>
+
+       RESETTA-FONT.
+      * <TOTEM:PARA. RESETTA-FONT>
+           inquire gd1, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire gd1(riga, 78-col-day), cell-data in col-day
+              if col-day > 0
+                 modify gd1(riga), row-font = Calibri12-Occidentale,
+                                   row-color 0
+              end-if
+           end-perform 
            .
       * <TOTEM:END>
 
@@ -6987,56 +7711,71 @@
        cb-mg1-BeforeProcedure.
       * <TOTEM:PARA. cb-mg1-BeforeProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 1 to idx.
+           perform EVIDENZIA-GRUPPI 
            .
       * <TOTEM:END>
        cb-mg2-BeforeProcedure.
       * <TOTEM:PARA. cb-mg2-BeforeProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 2 to idx.
+           perform EVIDENZIA-GRUPPI 
            .
       * <TOTEM:END>
        cb-mg3-BeforeProcedure.
       * <TOTEM:PARA. cb-mg3-BeforeProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 3 to idx.
+           perform EVIDENZIA-GRUPPI 
            .
       * <TOTEM:END>
        cb-mg4-BeforeProcedure.
       * <TOTEM:PARA. cb-mg4-BeforeProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 4 to idx.
+           perform EVIDENZIA-GRUPPI 
            .
       * <TOTEM:END>
        cb-mg5-BeforeProcedure.
       * <TOTEM:PARA. cb-mg5-BeforeProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 5 to idx.
+           perform EVIDENZIA-GRUPPI 
            .
       * <TOTEM:END>
        cb-mg1-AfterProcedure.
       * <TOTEM:PARA. cb-mg1-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-           perform ABILITA-MACROGRUPPI 
+           perform ABILITA-MACROGRUPPI.
+           perform RESETTA-FONT 
            .
       * <TOTEM:END>
        cb-mg2-AfterProcedure.
       * <TOTEM:PARA. cb-mg2-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-           perform ABILITA-MACROGRUPPI 
+           perform ABILITA-MACROGRUPPI.
+           perform RESETTA-FONT 
            .
       * <TOTEM:END>
        cb-mg3-AfterProcedure.
       * <TOTEM:PARA. cb-mg3-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-           perform ABILITA-MACROGRUPPI 
+           perform ABILITA-MACROGRUPPI.
+           perform RESETTA-FONT 
            .
       * <TOTEM:END>
        cb-mg4-AfterProcedure.
       * <TOTEM:PARA. cb-mg4-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-           perform ABILITA-MACROGRUPPI 
+           perform ABILITA-MACROGRUPPI.
+           perform RESETTA-FONT 
            .
       * <TOTEM:END>
        cb-mg5-AfterProcedure.
       * <TOTEM:PARA. cb-mg5-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-           perform ABILITA-MACROGRUPPI 
+           perform ABILITA-MACROGRUPPI.
+           perform RESETTA-FONT 
            .
       * <TOTEM:END>
        cb-int-BeforeProcedure.
@@ -7093,6 +7832,14 @@
            read wodmap no lock.
            modify cb-wod, value = wom-desc.
            perform ABILITA-MACROGRUPPI.
+
+           modify cb-mg1, value "Legs".
+           modify cb-mg2, value "Shoulder".
+           modify cb-mg3, value "Pectoral".
+           modify cb-mg4, value "Back".    
+           modify cb-mg5, value "Arms".
+           modify cb-mg6, value "Abs".
+           modify cb-mg7, value "Nessuno".
 
            modify pb-genera, enabled true 
            .
@@ -7228,6 +7975,14 @@
 
            perform ABILITA-MACROGRUPPI. 
 
+           modify cb-mg1, value "Legs".
+           modify cb-mg2, value "Abs".
+           modify cb-mg3, value "Pectoral".
+           modify cb-mg4, value "Arms".
+           modify cb-mg5, value "Shoulder".
+           modify cb-mg6, value "Back".
+           modify cb-mg7, value "Nessuno".
+
            modify pb-genera, enabled true 
            .
       * <TOTEM:END>
@@ -7277,12 +8032,90 @@
 
            perform ABILITA-MACROGRUPPI. 
 
-           modify pb-genera, enabled true 
+           modify pb-genera, enabled true.
+
+           modify cb-mg1, value "Legs".
+           modify cb-mg2, value "Shoulder".
+           modify cb-mg3, value "Pectoral".
+           modify cb-mg4, value "Back".
+           modify cb-mg5, value "Arms".
+           modify cb-mg6, value "Abs".
+           modify cb-mg7, value "Nessuno" 
            .
       * <TOTEM:END>
        NUOVO-LinkTo.
       * <TOTEM:PARA. NUOVO-LinkTo>
            perform NUOVO 
+           .
+      * <TOTEM:END>
+       pb-mcg1-LinkTo.
+      * <TOTEM:PARA. pb-mcg1-LinkTo>
+           move 1 to idx.               
+           perform CREA-TMP-GRP-EXE     
+           .
+      * <TOTEM:END>
+       pb-mcg2-LinkTo.
+      * <TOTEM:PARA. pb-mcg2-LinkTo>
+           move 2 to idx.
+           perform CREA-TMP-GRP-EXE     
+           .
+      * <TOTEM:END>
+       pb-mcg7-LinkTo.
+      * <TOTEM:PARA. pb-mcg7-LinkTo>
+           move 7 to idx.
+           perform CREA-TMP-GRP-EXE     
+           .
+      * <TOTEM:END>
+       pb-mcg6-LinkTo.
+      * <TOTEM:PARA. pb-mcg6-LinkTo>
+           move 6 to idx.
+           perform CREA-TMP-GRP-EXE     
+           .
+      * <TOTEM:END>
+       pb-mcg5-LinkTo.
+      * <TOTEM:PARA. pb-mcg5-LinkTo>
+           move 5 to idx.
+           perform CREA-TMP-GRP-EXE     
+           .
+      * <TOTEM:END>
+       pb-mcg4-LinkTo.
+      * <TOTEM:PARA. pb-mcg4-LinkTo>
+           move 4 to idx.
+           perform CREA-TMP-GRP-EXE     
+           .
+      * <TOTEM:END>
+       pb-mcg3-LinkTo.
+      * <TOTEM:PARA. pb-mcg3-LinkTo>
+           move 3 to idx.
+           perform CREA-TMP-GRP-EXE     
+           .
+      * <TOTEM:END>
+       cb-mg6-BeforeProcedure.
+      * <TOTEM:PARA. cb-mg6-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 6 to idx.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mg6-AfterProcedure.
+      * <TOTEM:PARA. cb-mg6-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform ABILITA-MACROGRUPPI.
+           perform RESETTA-FONT 
+           .
+      * <TOTEM:END>
+       cb-mg7-BeforeProcedure.
+      * <TOTEM:PARA. cb-mg7-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 7 to idx.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mg7-AfterProcedure.
+      * <TOTEM:PARA. cb-mg7-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform ABILITA-MACROGRUPPI.
+           perform RESETTA-FONT 
            .
       * <TOTEM:END>
 

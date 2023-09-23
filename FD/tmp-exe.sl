@@ -6,4 +6,6 @@
            FILE STATUS  IS STATUS-tmp-exe
            RECORD KEY   IS tex-key
            ALTERNATE RECORD KEY IS tex-k-dupl = tex-day, tex-nome-dupl
+           WITH DUPLICATES 
+           ALTERNATE RECORD KEY IS tex-k-mcg = tex-mcg-code, tex-key
            WITH DUPLICATES .

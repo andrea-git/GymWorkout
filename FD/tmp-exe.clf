@@ -2,10 +2,11 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+aNote-andre=192.168.56.1
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7916151435-155-1517817606
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7917232420-587-1577611062
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -196,3 +197,12 @@ m_strName=tex-k-dupl
 m_strName=tex-day
 [SLKEYATOM1_SLINDEX0_]
 m_strName=tex-nome-dupl
+[SLINDEX1_]
+m_strName=tex-k-mcg
+{{@Key_m_strDescriptionSLINDEX1_
+
+@}}
+[SLKEYATOM0_SLINDEX1_]
+m_strName=tex-mcg-code
+[SLKEYATOM1_SLINDEX1_]
+m_strName=tex-key

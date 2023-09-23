@@ -1,0 +1,6 @@
+      *(( XFD FILE = tmp-hit ))
+       FD  tmp-hit.
+       01 th-rec.
+           05 th-key.
+               10 th-mcg-code      PIC  x(5).
+               10 th-day           PIC  9.

@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E79152139-921-3242819326
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791720531-891-16704543
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -193,3 +193,12 @@ m_strName=tex-k-dupl
 m_strName=tex-day
 [SLKEYATOM1_SLINDEX0_]
 m_strName=tex-nome-dupl
+[SLINDEX1_]
+m_strName=tex-k-mcg
+{{@Key_m_strDescriptionSLINDEX1_
+
+@}}
+[SLKEYATOM0_SLINDEX1_]
+m_strName=tex-mcg-code
+[SLKEYATOM1_SLINDEX1_]
+m_strName=tex-key

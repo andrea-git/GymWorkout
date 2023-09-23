@@ -1,0 +1,9 @@
+      *(( XFD FILE = tmp-grp-exe ))
+       FD  tmp-grp-exe.
+       01 tge-rec.
+           05 tge-key.
+      *(( XFD NAME = tge-day_1_1 ))
+               10 tge-grp-desc     PIC  x(100).
+               10 tge-day          PIC  9.
+      *(( XFD NAME = tge-day_1_1_1 ))
+               10 tge-exe-desc     PIC  x(100).

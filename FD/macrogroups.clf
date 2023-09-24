@@ -2,11 +2,10 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-aNote-andre=192.168.56.1
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7917232420-461-664612122
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791822427-147-222282845
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -62,7 +61,7 @@ m_bFixed=1
 
 @}}
 [FDITEM5_]
-m_strName=mcg-primary
+m_strName=mcg-isPrimary
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=10

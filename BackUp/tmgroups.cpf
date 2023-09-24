@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7915124013-176-210931775
+PROGRAM_UNIQUE_CODE=TOTEM-7E7918195429-982-964228582
 
 {{@DESCRIPTION:
 
@@ -1276,7 +1276,7 @@ BEGIN-TEXT
                            icon mb-warning-icon
                 end-if
            when 3
-                if mcg-primary not = 1 and not = 0
+                if mcg-isPrimary not = 1 and not = 0
                    set errori to true
                    move 2 to colonna
                    display message "Valori consentiti 0/1"
@@ -1322,9 +1322,9 @@ BEGIN-TEXT
                      read macrogroups next
                           at end exit perform
                       not at end
-                          move mcg-code    to col-codice
-                          move mcg-desc    to col-des  
-                          move mcg-primary to col-prim
+                          move mcg-code      to col-codice
+                          move mcg-desc      to col-des  
+                          move mcg-isPrimary to col-prim
                           modify form1-gd-1(riga, 1), cell-data col-codice
                           modify form1-gd-1(riga, 2), cell-data col-des  
                           modify form1-gd-1(riga, 3), cell-data col-prim 
@@ -1535,7 +1535,7 @@ BEGIN-DATA
 BEGIN-TEXT
            inquire form1-gd-1(riga, 1), cell-data mcg-code.
            inquire form1-gd-1(riga, 2), cell-data mcg-desc.
-           inquire form1-gd-1(riga, 3), cell-data mcg-primary.   
+           inquire form1-gd-1(riga, 3), cell-data mcg-isPrimary.   
 END-TEXT
 END-DATA
 BEGIN-DATA

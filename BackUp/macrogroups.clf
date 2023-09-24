@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791571234-833-1893125328
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7918191128-224-148258676
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -58,7 +58,7 @@ m_bFixed=1
 
 @}}
 [FDITEM5_]
-m_strName=mcg-primary
+m_strName=mcg-isPrimary
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=10

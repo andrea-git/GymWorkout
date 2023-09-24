@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 21 settembre 2023 18:08:40.
+       DATE-WRITTEN.        domenica 24 settembre 2023 23:46:53.
        REMARKS.
       *{TOTEM}END
 
@@ -203,6 +203,13 @@
        77 lab-macro6-buf   PIC  X(20).
        77 STATUS-macrogroups           PIC  X(2).
            88 Valid-STATUS-macrogroups VALUE IS "00" THRU "09". 
+       77 cb-mcg1-buf      PIC  X(50).
+       77 cb-mcg2-buf      PIC  X(50).
+       77 cb-mcg3-buf      PIC  X(50).
+       77 cb-mcg4-buf      PIC  X(50).
+       77 cb-mcg5-buf      PIC  X(50).
+       77 cb-mcg6-buf      PIC  X(50).
+       77 cb-mcg7-buf      PIC  X(50).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -281,14 +288,23 @@
                               OCCURS 7 TIMES.
                        20 old-wom-split-el-days-split
                                   OCCURS 20 TIMES.
+      *(( XFD NAME = old-wom-split-el-sp-si ))
                            25 old-wom-split-el-split-sigla     PIC  x.
+      *(( XFD NAME = old-wom-split-el-sp-ic ))
                            25 old-wom-split-el-split-int-code  PIC  9.
+      *(( XFD NAME = old-wom-split-el-sp-ss ))
                            25 old-wom-split-el-split-ss        PIC  9.
+      *(( XFD NAME = old-wom-split-el-sp-p ))
                            25 old-wom-split-el-split-primary   PIC  9.
                            25 FILLER           PIC  x(99).
                            25 FILLER           PIC  9(18).
                10 old-wom-dur-code     PIC  99.
-               10 old-wom-filler       PIC  x(1000).
+               10 old-wom-mcg-default-tab.
+                   12 old-wom-el-mcg-default
+                              OCCURS 15 TIMES.
+                       15 old-wom-sigla-default            PIC  x.
+                       15 old-wom-mcg-code-default         PIC  x(5).
+               10 old-wom-filler       PIC  x(910).
                10 old-wom-filler-n1    PIC  9(18).
                10 old-wom-filler-n2    PIC  9(18).
                10 old-wom-filler-n3    PIC  9(18).
@@ -305,13 +321,20 @@
        78  78-ID-chk-prim5 VALUE 5007.
        78  78-ID-chk-prim6 VALUE 5008.
        78  78-ID-chk-prim7 VALUE 5009.
-       78  78-ID-gd1 VALUE 5010.
-       78  78-ID-gd2 VALUE 5011.
-       78  78-ID-gd3 VALUE 5012.
-       78  78-ID-gd4 VALUE 5013.
-       78  78-ID-gd5 VALUE 5014.
-       78  78-ID-gd6 VALUE 5015.
-       78  78-ID-gd7 VALUE 5016.
+       78  78-ID-cb-mcg1 VALUE 5010.
+       78  78-ID-cb-mcg2 VALUE 5011.
+       78  78-ID-cb-mcg3 VALUE 5012.
+       78  78-ID-cb-mcg4 VALUE 5013.
+       78  78-ID-cb-mcg5 VALUE 5014.
+       78  78-ID-cb-mcg6 VALUE 5015.
+       78  78-ID-cb-mcg7 VALUE 5016.
+       78  78-ID-gd1 VALUE 5017.
+       78  78-ID-gd2 VALUE 5018.
+       78  78-ID-gd3 VALUE 5019.
+       78  78-ID-gd4 VALUE 5020.
+       78  78-ID-gd5 VALUE 5021.
+       78  78-ID-gd6 VALUE 5022.
+       78  78-ID-gd7 VALUE 5023.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -515,6 +538,160 @@
            AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
            BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
            .
+      * COMBO-BOX
+       05
+           cb-mcg1, 
+           Combo-Box, 
+           COL 21,00, 
+           LINE 6,17,
+           LINES 12,00 ,
+           SIZE 17,00 ,
+           3-D,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 78-ID-cb-mcg1,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mcg1-buf,
+           VISIBLE v-macro1,
+           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           .
+      * COMBO-BOX
+       05
+           cb-mcg2, 
+           Combo-Box, 
+           COL 40,00, 
+           LINE 6,17,
+           LINES 12,00 ,
+           SIZE 17,00 ,
+           3-D,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 78-ID-cb-mcg2,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mcg2-buf,
+           VISIBLE v-macro2,
+           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           .
+      * COMBO-BOX
+       05
+           cb-mcg3, 
+           Combo-Box, 
+           COL 59,00, 
+           LINE 6,17,
+           LINES 12,00 ,
+           SIZE 17,00 ,
+           3-D,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 78-ID-cb-mcg3,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mcg3-buf,
+           VISIBLE v-macro3,
+           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           .
+      * COMBO-BOX
+       05
+           cb-mcg4, 
+           Combo-Box, 
+           COL 78,00, 
+           LINE 6,17,
+           LINES 12,00 ,
+           SIZE 17,00 ,
+           3-D,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 78-ID-cb-mcg4,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mcg4-buf,
+           VISIBLE v-macro4,
+           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           .
+      * COMBO-BOX
+       05
+           cb-mcg5, 
+           Combo-Box, 
+           COL 98,00, 
+           LINE 6,17,
+           LINES 12,00 ,
+           SIZE 17,00 ,
+           3-D,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 78-ID-cb-mcg5,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mcg5-buf,
+           VISIBLE v-macro5,
+           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           .
+      * COMBO-BOX
+       05
+           cb-mcg6, 
+           Combo-Box, 
+           COL 117,00, 
+           LINE 6,17,
+           LINES 12,00 ,
+           SIZE 17,00 ,
+           3-D,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 78-ID-cb-mcg6,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mcg6-buf,
+           VISIBLE v-macro6,
+           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           .
+      * COMBO-BOX
+       05
+           cb-mcg7, 
+           Combo-Box, 
+           COL 136,00, 
+           LINE 6,17,
+           LINES 12,00 ,
+           SIZE 17,00 ,
+           3-D,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 78-ID-cb-mcg7,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mcg7-buf,
+           VISIBLE v-macro7,
+           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           .
       * LABEL
        05
            Screen1-La-1, 
@@ -549,8 +726,8 @@
        05
            Screen1-blockpgm-2, 
            Label, 
-           COL 85,71, 
-           LINE 2,62,
+           COL 80,70, 
+           LINE 1,00,
            LINES 1,00 ,
            SIZE 2,43 ,
            ID IS 21,
@@ -596,7 +773,7 @@
            Screen1-La-2aa, 
            Label, 
            COL 2,90, 
-           LINE 6,00,
+           LINE 7,52,
            LINES 1,30 ,
            SIZE 18,00 ,
            ID IS 9,
@@ -611,7 +788,7 @@
            Screen1-La-2aaa, 
            Label, 
            COL 2,90, 
-           LINE 7,30,
+           LINE 8,83,
            LINES 1,30 ,
            SIZE 18,00 ,
            ID IS 17,
@@ -626,7 +803,7 @@
            lab-days, 
            Label, 
            COL 21,30, 
-           LINE 6,00,
+           LINE 7,52,
            LINES 1,30 ,
            SIZE 100,00 ,
            ID IS 19,
@@ -641,7 +818,7 @@
            Screen1-La-2aaaa, 
            Label, 
            COL 2,90, 
-           LINE 8,61,
+           LINE 10,13,
            LINES 1,30 ,
            SIZE 18,00 ,
            ID IS 20,
@@ -656,7 +833,7 @@
            Screen1-Fr-1, 
            Frame, 
            COL 2,30, 
-           LINE 9,74,
+           LINE 11,26,
            LINES 18,13 ,
            SIZE 153,80 ,
            ENGRAVED,
@@ -672,7 +849,7 @@
            gd1, 
            Grid, 
            COL 3,70, 
-           LINE 12,57,
+           LINE 14,09,
            LINES 13,96 ,
            SIZE 20,70 ,
            3-D,
@@ -705,7 +882,7 @@
            gd2, 
            Grid, 
            COL 25,50, 
-           LINE 12,57,
+           LINE 14,09,
            LINES 13,96 ,
            SIZE 20,70 ,
            3-D,
@@ -738,7 +915,7 @@
            gd3, 
            Grid, 
            COL 47,20, 
-           LINE 12,57,
+           LINE 14,09,
            LINES 13,96 ,
            SIZE 20,70 ,
            3-D,
@@ -771,7 +948,7 @@
            gd4, 
            Grid, 
            COL 68,90, 
-           LINE 12,57,
+           LINE 14,09,
            LINES 13,96 ,
            SIZE 20,70 ,
            3-D,
@@ -804,7 +981,7 @@
            gd5, 
            Grid, 
            COL 90,70, 
-           LINE 12,57,
+           LINE 14,09,
            LINES 13,96 ,
            SIZE 20,70 ,
            3-D,
@@ -837,7 +1014,7 @@
            gd6, 
            Grid, 
            COL 112,50, 
-           LINE 12,57,
+           LINE 14,09,
            LINES 13,96 ,
            SIZE 20,70 ,
            3-D,
@@ -870,7 +1047,7 @@
            gd7, 
            Grid, 
            COL 134,20, 
-           LINE 12,57,
+           LINE 14,09,
            LINES 13,96 ,
            SIZE 20,70 ,
            3-D,
@@ -903,7 +1080,7 @@
            Screen1-La-2aab, 
            Label, 
            COL 134,20, 
-           LINE 11,04,
+           LINE 12,56,
            LINES 1,30 ,
            SIZE 20,70 ,
            ID IS 23,
@@ -919,7 +1096,7 @@
            Screen1-La-2aaba, 
            Label, 
            COL 3,70, 
-           LINE 11,04,
+           LINE 12,56,
            LINES 1,30 ,
            SIZE 20,70 ,
            ID IS 24,
@@ -935,7 +1112,7 @@
            Screen1-La-2aabb, 
            Label, 
            COL 25,50, 
-           LINE 11,04,
+           LINE 12,56,
            LINES 1,30 ,
            SIZE 20,70 ,
            ID IS 25,
@@ -951,7 +1128,7 @@
            Screen1-La-2aabba, 
            Label, 
            COL 68,90, 
-           LINE 11,04,
+           LINE 12,56,
            LINES 1,30 ,
            SIZE 20,70 ,
            ID IS 26,
@@ -967,7 +1144,7 @@
            Screen1-La-2aabaa, 
            Label, 
            COL 47,20, 
-           LINE 11,04,
+           LINE 12,56,
            LINES 1,30 ,
            SIZE 20,70 ,
            ID IS 27,
@@ -983,7 +1160,7 @@
            Screen1-La-2aabbb, 
            Label, 
            COL 112,50, 
-           LINE 11,04,
+           LINE 12,56,
            LINES 1,30 ,
            SIZE 20,70 ,
            ID IS 28,
@@ -999,7 +1176,7 @@
            Screen1-La-2aabab, 
            Label, 
            COL 90,70, 
-           LINE 11,04,
+           LINE 12,56,
            LINES 1,30 ,
            SIZE 20,70 ,
            ID IS 29,
@@ -1015,7 +1192,7 @@
            lab-durata, 
            Label, 
            COL 21,30, 
-           LINE 7,30,
+           LINE 8,83,
            LINES 1,30 ,
            SIZE 100,00 ,
            ID IS 30,
@@ -1030,7 +1207,7 @@
            lab-int, 
            Label, 
            COL 21,30, 
-           LINE 8,61,
+           LINE 10,13,
            LINES 1,30 ,
            SIZE 100,00 ,
            ID IS 31,
@@ -1150,6 +1327,21 @@
            TRANSPARENT,
            TITLE lab-macro7-buf,
            VISIBLE v-macro7,
+           .
+
+      * LABEL
+       05
+           Screen1-La-2ab, 
+           Label, 
+           COL 2,90, 
+           LINE 6,22,
+           LINES 1,30 ,
+           SIZE 18,00 ,
+           ID IS 8,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Default",
            .
 
       * TOOLBAR
@@ -2552,6 +2744,34 @@
            .
 
 
+      * COMBO-BOX
+       cb-mcg1-Content.
+           .
+
+      * COMBO-BOX
+       cb-mcg2-Content.
+           .
+
+      * COMBO-BOX
+       cb-mcg3-Content.
+           .
+
+      * COMBO-BOX
+       cb-mcg4-Content.
+           .
+
+      * COMBO-BOX
+       cb-mcg5-Content.
+           .
+
+      * COMBO-BOX
+       cb-mcg6-Content.
+           .
+
+      * COMBO-BOX
+       cb-mcg7-Content.
+           .
+
       * GRID
        gd1-Content.
       * CELLS' SETTING
@@ -2711,7 +2931,7 @@
 
        Form1-Create-Win.
            Display Independent GRAPHICAL WINDOW
-              LINES 29,30,
+              LINES 30,52,
               SIZE 156,40,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
@@ -2769,6 +2989,14 @@
       *****     move data-oggi to data-maggiorenne.
       *****     move como-anno to data-maggiorenne(1:4).
       *****     |||||||
+                                                   
+           modify cb-mcg1, item-to-add = "Nessuno".
+           modify cb-mcg2, item-to-add = "Nessuno".
+           modify cb-mcg3, item-to-add = "Nessuno".
+           modify cb-mcg4, item-to-add = "Nessuno".
+           modify cb-mcg5, item-to-add = "Nessuno".
+           modify cb-mcg6, item-to-add = "Nessuno".
+           modify cb-mcg7, item-to-add = "Nessuno".
 
            move 0 to tot-primari.
            move low-value to mcg-key.
@@ -2777,9 +3005,23 @@
              not invalid
                  perform until 1 = 2
                     read macrogroups next at end exit perform end-read
-                    add mcg-primary to tot-primari
-                 end-perform
-           end-start.
+                    add mcg-isPrimary to tot-primari
+                    modify cb-mcg1, item-to-add = mcg-desc
+                    modify cb-mcg2, item-to-add = mcg-desc
+                    modify cb-mcg3, item-to-add = mcg-desc
+                    modify cb-mcg4, item-to-add = mcg-desc
+                    modify cb-mcg5, item-to-add = mcg-desc
+                    modify cb-mcg6, item-to-add = mcg-desc
+                    modify cb-mcg7, item-to-add = mcg-desc
+                 end-perform                       
+           end-start.                              
+           modify cb-mcg1, value = "Nessuno".                 
+           modify cb-mcg2, value = "Nessuno".                 
+           modify cb-mcg3, value = "Nessuno".                 
+           modify cb-mcg4, value = "Nessuno".                 
+           modify cb-mcg5, value = "Nessuno".                 
+           modify cb-mcg6, value = "Nessuno".                 
+           modify cb-mcg7, value = "Nessuno".
 
            perform INIT.
            perform ABILITA-TOOLBAR.
@@ -2923,6 +3165,20 @@
        Form1-Init-Data.
            MOVE 1 TO TOTEM-Form-Index
            MOVE 0 TO TOTEM-Frame-Index
+      * COMBO-BOX
+           PERFORM cb-mcg1-Content
+      * COMBO-BOX
+           PERFORM cb-mcg2-Content
+      * COMBO-BOX
+           PERFORM cb-mcg3-Content
+      * COMBO-BOX
+           PERFORM cb-mcg4-Content
+      * COMBO-BOX
+           PERFORM cb-mcg5-Content
+      * COMBO-BOX
+           PERFORM cb-mcg6-Content
+      * COMBO-BOX
+           PERFORM cb-mcg7-Content
       * GRID
            PERFORM gd1-Content
       * GRID
@@ -3501,151 +3757,151 @@
        Screen1-Gd-1-Event-Proc.
            EVALUATE Event-Type ALSO Event-Control-Id ALSO
                                     Event-Window-Handle
-           WHEN Msg-Begin-Drag ALSO 5010 ALSO
+           WHEN Msg-Begin-Drag ALSO 5017 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5010 ALSO
+           WHEN Msg-Begin-Entry ALSO 5017 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5010 ALSO
+           WHEN Msg-End-Drag ALSO 5017 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5010 ALSO
+           WHEN Msg-Finish-Entry ALSO 5017 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5010 ALSO
+           WHEN Msg-Goto-Cell ALSO 5017 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5010 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5017 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5010 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5017 ALSO
                     form1-Handle 
               PERFORM gd1-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5011 ALSO
+           WHEN Msg-Begin-Drag ALSO 5018 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5011 ALSO
+           WHEN Msg-Begin-Entry ALSO 5018 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5011 ALSO
+           WHEN Msg-End-Drag ALSO 5018 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5011 ALSO
+           WHEN Msg-Finish-Entry ALSO 5018 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5011 ALSO
+           WHEN Msg-Goto-Cell ALSO 5018 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5011 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5018 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5011 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5018 ALSO
                     form1-Handle 
               PERFORM gd2-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5012 ALSO
+           WHEN Msg-Begin-Drag ALSO 5019 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5012 ALSO
+           WHEN Msg-Begin-Entry ALSO 5019 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5012 ALSO
+           WHEN Msg-End-Drag ALSO 5019 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5012 ALSO
+           WHEN Msg-Finish-Entry ALSO 5019 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5012 ALSO
+           WHEN Msg-Goto-Cell ALSO 5019 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5012 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5019 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5012 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5019 ALSO
                     form1-Handle 
               PERFORM gd3-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5013 ALSO
+           WHEN Msg-Begin-Drag ALSO 5020 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5013 ALSO
+           WHEN Msg-Begin-Entry ALSO 5020 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5013 ALSO
+           WHEN Msg-End-Drag ALSO 5020 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5013 ALSO
+           WHEN Msg-Finish-Entry ALSO 5020 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5013 ALSO
+           WHEN Msg-Goto-Cell ALSO 5020 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5013 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5020 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5013 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5020 ALSO
                     form1-Handle 
               PERFORM gd4-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5014 ALSO
+           WHEN Msg-Begin-Drag ALSO 5021 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5014 ALSO
+           WHEN Msg-Begin-Entry ALSO 5021 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5014 ALSO
+           WHEN Msg-End-Drag ALSO 5021 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5014 ALSO
+           WHEN Msg-Finish-Entry ALSO 5021 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5014 ALSO
+           WHEN Msg-Goto-Cell ALSO 5021 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5014 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5021 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5014 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5021 ALSO
                     form1-Handle 
               PERFORM gd5-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5015 ALSO
+           WHEN Msg-Begin-Drag ALSO 5022 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5015 ALSO
+           WHEN Msg-Begin-Entry ALSO 5022 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5015 ALSO
+           WHEN Msg-End-Drag ALSO 5022 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5015 ALSO
+           WHEN Msg-Finish-Entry ALSO 5022 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5015 ALSO
+           WHEN Msg-Goto-Cell ALSO 5022 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5015 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5022 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5015 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5022 ALSO
                     form1-Handle 
               PERFORM gd6-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Begin-Drag ALSO 5016 ALSO
+           WHEN Msg-Begin-Drag ALSO 5023 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 5016 ALSO
+           WHEN Msg-Begin-Entry ALSO 5023 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 5016 ALSO
+           WHEN Msg-End-Drag ALSO 5023 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 5016 ALSO
+           WHEN Msg-Finish-Entry ALSO 5023 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 5016 ALSO
+           WHEN Msg-Goto-Cell ALSO 5023 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 5016 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5023 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 5016 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5023 ALSO
                     form1-Handle 
               PERFORM gd7-Ev-Msg-Goto-Cell-Mouse
            END-EVALUATE
@@ -4122,6 +4378,14 @@
            perform FORM1-FLD-TO-BUF. 
 
            perform INIT-OLD-REC.
+                                                             
+           modify cb-mcg1, value "Nessuno", visible v-macro1.
+           modify cb-mcg2, value "Nessuno", visible v-macro2.
+           modify cb-mcg3, value "Nessuno", visible v-macro3.
+           modify cb-mcg4, value "Nessuno", visible v-macro4.
+           modify cb-mcg5, value "Nessuno", visible v-macro5.
+           modify cb-mcg6, value "Nessuno", visible v-macro6.
+           modify cb-mcg7, value "Nessuno", visible v-macro7.
                                           
            display form1. 
 
@@ -4657,6 +4921,156 @@
            .
       * <TOTEM:END>
 
+       CONTROLLO-DEFAULT.
+      * <TOTEM:PARA. CONTROLLO-DEFAULT>
+           inquire chk-prim1, value in chk-prim1-buf.
+           inquire cb-mcg1, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim1-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 1 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim1-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 1 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.
+           inquire chk-prim2, value in chk-prim2-buf.
+           inquire cb-mcg2, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim2-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 2 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim2-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 2 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.                           
+           
+           inquire chk-prim3, value in chk-prim3-buf.
+           inquire cb-mcg3, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim3-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 3 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim3-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 3 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.                           
+           
+           inquire chk-prim4, value in chk-prim4-buf.
+           inquire cb-mcg4, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim4-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 4 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim4-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 4 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.                 
+           
+           inquire chk-prim5, value in chk-prim5-buf.
+           inquire cb-mcg5, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim5-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 5 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim5-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 5 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.                                            
+           
+           inquire chk-prim6, value in chk-prim6-buf.
+           inquire cb-mcg6, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim6-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 6 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim6-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 6 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.                           
+           
+           inquire chk-prim7, value in chk-prim7-buf.
+           inquire cb-mcg7, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim7-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 7 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim7-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 7 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read 
+           .
+      * <TOTEM:END>
+
        CONTROLLO-GRIDS.
       * <TOTEM:PARA. CONTROLLO-GRIDS>
            set tutto-ok to true.
@@ -5163,7 +5577,73 @@
                         end-if                                     
                  end-evaluate
               end-perform
-           end-perform            
+           end-perform.               
+           if wom-mcg-code-default(1) not = spaces
+              move wom-mcg-code-default(1) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg1-buf
+              modify cb-mcg1, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg1-buf    
+              modify cb-mcg1, value = "Nessuno"
+           end-if.
+
+           if wom-mcg-code-default(2) not = spaces
+              move wom-mcg-code-default(2) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg2-buf
+              modify cb-mcg2, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg2-buf    
+              modify cb-mcg2, value = "Nessuno"
+           end-if.
+
+           if wom-mcg-code-default(3) not = spaces
+              move wom-mcg-code-default(3) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg3-buf
+              modify cb-mcg3, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg3-buf    
+              modify cb-mcg3, value = "Nessuno"
+           end-if.                
+                                       
+           if wom-mcg-code-default(4) not = spaces
+              move wom-mcg-code-default(4) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg4-buf
+              modify cb-mcg4, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg4-buf    
+              modify cb-mcg4, value = "Nessuno"
+           end-if.
+           if wom-mcg-code-default(5) not = spaces
+              move wom-mcg-code-default(5) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg5-buf
+              modify cb-mcg5, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg5-buf    
+              modify cb-mcg5, value = "Nessuno"
+           end-if.
+           if wom-mcg-code-default(6) not = spaces
+              move wom-mcg-code-default(6) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg6-buf
+              modify cb-mcg6, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg6-buf    
+              modify cb-mcg6, value = "Nessuno"
+           end-if.
+           if wom-mcg-code-default(7) not = spaces
+              move wom-mcg-code-default(7) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg7-buf
+              modify cb-mcg7, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg7-buf    
+              modify cb-mcg7, value = "Nessuno"
+           end-if                   
            .
       * <TOTEM:END>
 
@@ -5369,10 +5849,14 @@
 
            if tutto-ok
               perform CONTROLLO-CHECK
-           end-if.
+           end-if.      
 
            if tutto-ok
               perform CONTROLLO-GRIDS
+           end-if.
+
+           if tutto-ok
+              perform CONTROLLO-DEFAULT
            end-if.
 
            if errori
@@ -5901,7 +6385,71 @@
                  move como-prim  to wom-split-el-split-primary(7, 
            idx-ok)
               end-if
-           end-perform.
+           end-perform.   
+
+           inquire cb-mcg1, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(1).
+           if v-macro1 = 1
+              move lab-macro1-buf(1:1) to wom-sigla-default(1)
+           end-if.
+
+           inquire cb-mcg2, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(2).
+           if v-macro2 = 1
+              move lab-macro2-buf(1:1) to wom-sigla-default(2)
+           end-if.
+
+           inquire cb-mcg3, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(3).
+           if v-macro3 = 1
+              move lab-macro3-buf(1:1) to wom-sigla-default(3)
+           end-if.
+
+           inquire cb-mcg4, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(4).
+           if v-macro4 = 1
+              move lab-macro4-buf(1:1) to wom-sigla-default(4)
+           end-if.
+
+           inquire cb-mcg5, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(5).
+           if v-macro5 = 1
+              move lab-macro5-buf(1:1) to wom-sigla-default(5)
+           end-if.
+
+           inquire cb-mcg6, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.                                
+           move mcg-code to wom-mcg-code-default(6).
+           if v-macro6 = 1
+              move lab-macro6-buf(1:1) to wom-sigla-default(6)
+           end-if.
+
+           inquire cb-mcg7, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(7).
+           if v-macro7 = 1
+              move lab-macro7-buf(1:1) to wom-sigla-default(7)
+           end-if.
+
 
       ***---
        VALORIZZA-PRIMARY.
@@ -6534,6 +7082,16 @@
       * <TOTEM:PARA. chk-prim7-LinkTo>
            move 7 to check-mcg.
            perform COLORA-PRIMARY 
+           .
+      * <TOTEM:END>
+       Screen1-Cm-1-BeforeProcedure.
+      * <TOTEM:PARA. Screen1-Cm-1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       Screen1-Cm-1-AfterProcedure.
+      * <TOTEM:PARA. Screen1-Cm-1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
            .
       * <TOTEM:END>
 

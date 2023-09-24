@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        domenica 24 settembre 2023 01:23:42.
+       DATE-WRITTEN.        lunedì 25 settembre 2023 00:04:03.
        REMARKS.
       *{TOTEM}END
 
@@ -129,12 +129,19 @@
        77 como-hit         PIC  xxx.
        77 link-stampante   PIC  x(200).
        77 como-effort      PIC  99.
+       77 tot-series       PIC  999.
        77 como-giorno      PIC  99.
+       77 como-tit-macro   PIC  x(13).
        77 save-day         PIC  9.
+       01 mcg-sigle-tab.
+           05 el-mcg-sigla     PIC  x
+                      OCCURS 10 TIMES.
        77 s-int-buf        PIC  x(100).
        77 s-dur-desc       PIC  x(100).
        77 como-mm          PIC  xx.
        77 como-hh          PIC  xx.
+       77 como-xx1         PIC  xxx.
+       77 como-xx2         PIC  xxx.
        77 como-durata      PIC  x(100).
        77 s-gio-buf        PIC  x(100).
        77 como-nome        PIC  x(100).
@@ -334,6 +341,7 @@
                   VALUE IS 0.
        77 como-day         PIC  X(200).
        77 counter          PIC  9(3).
+       77 schema-exe       PIC  999.
        77 path-tmp-exe-dupl            PIC  X(256).
        77 STATUS-tmp-exe-dupl          PIC  X(2).
            88 Valid-STATUS-tmp-exe-dupl VALUE IS "00" THRU "09". 
@@ -343,8 +351,10 @@
                   USAGE IS HANDLE OF FONT.
        01 hiddenData.
            05 hid-restpause    PIC  9.
-           05 hid-day          PIC  9.
            05 hid-mcg-code     PIC  x(5).
+           05 hid-tex-key.
+               10 hid-tex-day      PIC  9.
+               10 hid-tex-split    PIC  9(3).
        77 Calibri14BU-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 path-zoom-exe-mcg            PIC  X(256).
@@ -809,38 +819,6 @@
 
       * PUSH BUTTON
        05
-           Screen1-Pb-1, 
-           Push-Button, 
-           COL 2,30, 
-           LINE 23,83,
-           LINES 1,48 ,
-           SIZE 3,80 ,
-           EXCEPTION-VALUE 1001,
-           FONT IS Small-Font,
-           ID IS 30,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TITLE "&C",
-           .
-
-      * PUSH BUTTON
-       05
-           Screen1-Pb-1a, 
-           Push-Button, 
-           COL 7,10, 
-           LINE 23,83,
-           LINES 1,48 ,
-           SIZE 3,80 ,
-           EXCEPTION-VALUE 1003,
-           FONT IS Small-Font,
-           ID IS 36,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TITLE "&H",
-           .
-
-      * PUSH BUTTON
-       05
            pb-random, 
            Push-Button, 
            COL 17,80, 
@@ -1133,22 +1111,6 @@
            VIRTUAL-WIDTH 90,
            VPADDING 5,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
-           .
-
-      * PUSH BUTTON
-       05
-           Screen1-Pb-1aa, 
-           Push-Button, 
-           COL 12,10, 
-           LINE 23,83,
-           LINES 1,48 ,
-           SIZE 3,80 ,
-           EXCEPTION-VALUE 1004,
-           FONT IS Small-Font,
-           ID IS 38,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TITLE "&S",
            .
 
       * PUSH BUTTON
@@ -4406,7 +4368,7 @@
                     modify cb-mg6, item-to-add = mcg-desc
                     modify cb-mg7, item-to-add = mcg-desc
                                       
-                    if mcg-primary = 1             
+                    if mcg-isPrimary = 1             
                        add 1         to tot-mcg-p
                        move mcg-desc to el-mcg-desc-p(tot-mcg-p)
                     else                           
@@ -4466,14 +4428,8 @@
                  END-IF
               WHEN Key-Status = 1000
                  PERFORM pb-genera-LinkTo
-              WHEN Key-Status = 1001
-                 PERFORM Screen1-Pb-1-LinkTo
-              WHEN Key-Status = 1003
-                 PERFORM Screen1-Pb-1a-LinkTo
               WHEN Key-Status = 1002
                  PERFORM pb-random-LinkTo
-              WHEN Key-Status = 1004
-                 PERFORM Screen1-Pb-1aa-LinkTo
               WHEN Key-Status = 1005
                  PERFORM pb-mcg1-LinkTo
               WHEN Key-Status = 1006
@@ -5178,20 +5134,131 @@
               cb-wod-buf = s-cb-wod-buf
               exit paragraph 
            end-if.                           
-           inquire cb-wod, value in wom-desc.
+           inquire cb-wod, value in wom-desc.     
 
            read wodmap key wom-k-desc
-                invalid
-                modify cb-mg1, value "Nessuno", 
+                invalid                           
+                initialize wom-data replacing numeric data by zeroes
+                                         alphanumeric data by spaces
+                modify cb-mg1, value "Nessuno"
                 modify cb-mg2, value "Nessuno"  
                 modify cb-mg3, value "Nessuno"  
                 modify cb-mg4, value "Nessuno"  
                 modify cb-mg5, value "Nessuno"  
                 modify cb-mg6, value "Nessuno"  
                 modify cb-mg7, value "Nessuno"  
-                initialize wom-data replacing numeric data by zeroes
-                                         alphanumeric data by spaces
-           end-read.                         
+
+            not invalid                     
+                if cb-wod-buf not = s-cb-wod-buf            
+                                   
+                   initialize mcg-sigle-tab replacing numeric data by 
+           zeroes
+                                                 alphanumeric data by 
+           spaces
+
+                   modify cb-mg1, value "Nessuno", 
+                   modify cb-mg2, value "Nessuno"  
+                   modify cb-mg3, value "Nessuno"  
+                   modify cb-mg4, value "Nessuno"  
+                   modify cb-mg5, value "Nessuno"  
+                   modify cb-mg6, value "Nessuno"  
+                   modify cb-mg7, value "Nessuno"  
+
+                   move wom-sigla-default(1) to el-mcg-sigla(1)
+                   move wom-sigla-default(2) to el-mcg-sigla(2)
+                   move wom-sigla-default(3) to el-mcg-sigla(3)
+                   move wom-sigla-default(4) to el-mcg-sigla(4)
+                   move wom-sigla-default(5) to el-mcg-sigla(5)
+                   move wom-sigla-default(6) to el-mcg-sigla(6)
+                   move wom-sigla-default(7) to el-mcg-sigla(7)
+                
+                   move wom-mcg-code-default(1) to mcg-code
+                   read macrogroups 
+                        invalid continue
+                    not invalid modify cb-mg1, value mcg-desc
+                   end-read
+                   move wom-mcg-code-default(2) to mcg-code
+                   read macrogroups 
+                        invalid continue
+                    not invalid modify cb-mg2, value mcg-desc
+                   end-read
+                   move wom-mcg-code-default(3) to mcg-code
+                   read macrogroups 
+                        invalid continue
+                    not invalid modify cb-mg3, value mcg-desc
+                   end-read
+                   move wom-mcg-code-default(4) to mcg-code
+                   read macrogroups 
+                        invalid continue
+                    not invalid modify cb-mg4, value mcg-desc
+                   end-read
+                   move wom-mcg-code-default(5) to mcg-code
+                   read macrogroups 
+                        invalid continue
+                    not invalid modify cb-mg5, value mcg-desc
+                   end-read
+                   move wom-mcg-code-default(6) to mcg-code
+                   read macrogroups 
+                        invalid continue
+                    not invalid modify cb-mg6, value mcg-desc
+                   end-read
+                   move wom-mcg-code-default(7) to mcg-code
+                   read macrogroups 
+                        invalid continue
+                    not invalid modify cb-mg7, value mcg-desc
+                   end-read  
+                end-if
+           end-read.                          
+
+           initialize como-tit-macro.
+           string "Macrogruppo "  delimited size
+                  el-mcg-sigla(1) delimited size
+             into como-tit-macro
+           end-string
+           modify lab-a, title como-tit-macro.
+
+           initialize como-tit-macro.
+           string "Macrogruppo "  delimited size
+                  el-mcg-sigla(2) delimited size
+             into como-tit-macro
+           end-string
+           modify lab-b, title como-tit-macro.
+
+           initialize como-tit-macro.
+           string "Macrogruppo "  delimited size
+                  el-mcg-sigla(3) delimited size
+             into como-tit-macro
+           end-string
+           modify lab-c, title como-tit-macro.
+
+           initialize como-tit-macro.
+           string "Macrogruppo "  delimited size
+                  el-mcg-sigla(4) delimited size
+             into como-tit-macro
+           end-string
+           modify lab-d, title como-tit-macro.
+
+           initialize como-tit-macro.
+           string "Macrogruppo "  delimited size
+                  el-mcg-sigla(5) delimited size
+             into como-tit-macro
+           end-string
+           modify lab-e, title como-tit-macro.
+
+           initialize como-tit-macro.
+           string "Macrogruppo "  delimited size
+                  el-mcg-sigla(6) delimited size
+             into como-tit-macro
+           end-string
+           modify lab-f, title como-tit-macro.
+
+           initialize como-tit-macro.
+           string "Macrogruppo "  delimited size
+                  el-mcg-sigla(7) delimited size
+             into como-tit-macro
+           end-string
+           modify lab-g, title como-tit-macro.
+
            move 0 to como-prim(1).
            move 0 to como-prim(2).
            move 0 to como-prim(3).
@@ -5209,15 +5276,7 @@
            modify lab-d, font Calibri14-Occidentale.
            modify lab-e, font Calibri14-Occidentale.
            modify lab-f, font Calibri14-Occidentale.
-           modify lab-g, font Calibri14-Occidentale.
-                                             
-           modify cb-mg1, enabled false, value "Nessuno".
-           modify cb-mg2, enabled false, value "Nessuno".
-           modify cb-mg3, enabled false, value "Nessuno".
-           modify cb-mg4, enabled false, value "Nessuno".
-           modify cb-mg5, enabled false, value "Nessuno".
-           modify cb-mg6, enabled false, value "Nessuno".
-           modify cb-mg7, enabled false, value "Nessuno". 
+           modify lab-g, font Calibri14-Occidentale.      
                                                       
            modify pb-mcg1, enabled false, title "Mai".
            modify pb-mcg2, enabled false, title "Mai".
@@ -5259,49 +5318,49 @@
                     exit perform
                  end-if                                
                  evaluate wom-split-el-split-sigla(idx-days, idx-split)
-                 when "A" 
+                 when el-mcg-sigla(1) 
                       if wom-split-el-split-primary(idx-days, 
            idx-split) = 1
                          modify lab-a, font Calibri14BU-Occidentale
                          move 1 to como-prim(1)
                       end-if
                       inquire cb-mg1, value = mcg-desc
-                 when "B" 
+                 when el-mcg-sigla(2) 
                       inquire cb-mg2, value = mcg-desc
                       if wom-split-el-split-primary(idx-days, 
            idx-split) = 1
                          modify lab-b, font Calibri14BU-Occidentale
                          move 1 to como-prim(2)
                       end-if
-                 when "C" 
+                 when el-mcg-sigla(3) 
                       inquire cb-mg3, value = mcg-desc
                       if wom-split-el-split-primary(idx-days, 
            idx-split) = 1
                          modify lab-c, font Calibri14BU-Occidentale
                          move 1 to como-prim(3)
                       end-if
-                 when "D"  
+                 when el-mcg-sigla(4)  
                       inquire cb-mg4, value = mcg-desc
                       if wom-split-el-split-primary(idx-days, 
            idx-split) = 1
                          modify lab-d, font Calibri14BU-Occidentale
                          move 1 to como-prim(4)
                       end-if
-                 when "E"  
+                 when el-mcg-sigla(5)  
                       inquire cb-mg5, value = mcg-desc
                       if wom-split-el-split-primary(idx-days, 
            idx-split) = 1
                          modify lab-e, font Calibri14BU-Occidentale
                          move 1 to como-prim(5)
                       end-if
-                 when "F" 
+                 when el-mcg-sigla(6) 
                       inquire cb-mg6, value = mcg-desc
                       if wom-split-el-split-primary(idx-days, 
            idx-split) = 1
                          modify lab-f, font Calibri14BU-Occidentale
                          move 1 to como-prim(6)
                       end-if
-                 when "G" 
+                 when el-mcg-sigla(7) 
                       inquire cb-mg7, value = mcg-desc
                       if wom-split-el-split-primary(idx-days, 
            idx-split) = 1
@@ -5677,7 +5736,12 @@
            when 78-col-day
                 inquire gd1(riga, 78-col-day), hidden-data hiddenData
                 inquire gd1(riga, 78-col-day), cell-data col-day
-                if col-day = 0
+                if col-day = 0                 
+                   open i-o tmp-exe
+                   move hid-tex-key to tex-key
+                   delete tmp-exe record
+                   close tmp-exe
+
                    modify gd1(riga, 78-col-day),      cell-data = spaces
                    modify gd1(riga, 78-col-prg),      cell-data = spaces
                    modify gd1(riga, 78-col-grp-code), cell-data = spaces
@@ -5689,8 +5753,8 @@
                    modify gd1(riga, 78-col-reps),     cell-data = 
            spaces 
                 else
-                   if col-day not = hid-day
-                      move hid-day to col-day
+                   if col-day not = hid-tex-day
+                      move hid-tex-day to col-day
                       modify gd1(riga, 78-col-day), cell-data col-day
                    end-if
                 end-if
@@ -6139,37 +6203,22 @@
                  perform until 1 = 2
                     read tmp-exe next 
                       at end 
+                         perform RIGA-DIV
                          perform DISPLAY-DURATA
                          exit perform 
                     end-read    
                     if save-day = 0                    
-                       move 0 to tot-durata
+                       move 0 to tot-durata tot-exe tot-series
                        move tex-day to save-day
                     end-if
-                    if tex-day not = save-day
+                    if tex-day not = save-day  
+                       perform RIGA-DIV
+                       move 0 to tot-exe tot-series
                        perform DISPLAY-DURATA
                        move 0 to col-exe-prg tot-durata
                        move tex-day to save-day
-                       add 1 to riga                           
-                       modify gd1(riga, 78-col-day),      cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-prg),      cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-grp-code), cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-grp-desc), cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-exe-code), cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-exe-desc), cell-data = 
-           spaces
-                       modify gd1(riga, 78-col-series),   cell-data = 
-           spaces 
-                       modify gd1(riga, 78-col-reps),     cell-data = 
-           spaces 
-                       modify gd1(riga), row-color 288
                     end-if          
-                    add 1 to col-exe-prg
+                    add 1 to col-exe-prg tot-exe
                     move tex-day to col-day
                     move tex-exe-code to exe-code
                     read exercises
@@ -6259,12 +6308,15 @@
                     modify gd1(riga, 78-col-reps),     cell-data = 
            col-reps
 
+                    add col-series to tot-series
+
                     move col-reps   to tex-reps
                     move col-series to tex-series
                     rewrite tex-rec
 
                     move int-restpause to hid-restpause
-                    move col-day       to hid-day
+                    move col-day       to hid-tex-day
+                    move tex-split     to hid-tex-split
                     move grp-mcg-code  to hid-mcg-code
                     modify gd1(riga, 78-col-day), hidden-data hiddenData
 
@@ -6415,6 +6467,50 @@
            perform ABILITAZIONI.
 
       ***---
+       RIGA-DIV.                 
+           move 0 to schema-exe.
+           perform varying idx from 1 by 1 
+                     until idx > 20
+              if wom-split-el-split-sigla(save-day, idx) = spaces
+                 exit perform
+              end-if
+              add 1 to schema-exe
+           end-perform.
+                                                                  
+           move tot-exe to como-xx1.
+           inspect como-xx1 replacing leading x"30" by x"20"
+           call "C$JUSTIFY" using como-xx1, "L"
+           inspect como-xx1 replacing trailing spaces by low-value
+           move schema-exe to como-xx2.
+           inspect como-xx2 replacing leading x"30" by x"20"
+           call "C$JUSTIFY" using como-xx2, "L"
+           inspect como-xx2 replacing trailing spaces by low-value
+
+           initialize como-nome.
+           string como-xx1 delimited low-value
+                  "/"      delimited size
+                  como-xx2 delimited low-value
+             into como-nome
+           end-string.
+
+           add 1 to riga.
+           modify gd1(riga, 78-col-day),      cell-data = como-nome
+           modify gd1(riga, 78-col-prg),      cell-data = spaces
+           modify gd1(riga, 78-col-grp-code), cell-data = spaces
+           modify gd1(riga, 78-col-grp-desc), cell-data = spaces
+           modify gd1(riga, 78-col-exe-code), cell-data = spaces
+           modify gd1(riga, 78-col-exe-desc), cell-data = spaces
+           
+           move tot-series to como-xx1                    
+           inspect como-xx1 replacing leading x"30" by x"20"
+           call "C$JUSTIFY" using como-xx1, "L"
+
+           modify gd1(riga, 78-col-series),   cell-data = como-xx1 
+           modify gd1(riga, 78-col-reps),     cell-data = spaces 
+           modify gd1(riga), row-color 304, row-font = 
+           Calibri12B-Occidentale.
+
+      ***---
        DISPLAY-DURATA.
            initialize como-durata.
            if tot-durata > 3600
@@ -6543,7 +6639,7 @@
               move low-value to twe-rec
               move el-mcg-code(idx-gruppi) to twe-mcg-code
               set twe-exe-isMulti-yes to true
-              move 0 to tot-exe
+              move 0 to tot-exe 
 
               start tmp-wod-exe key >= twe-key
                     invalid continue
@@ -6574,12 +6670,20 @@
                                                  
                        evaluate wom-split-el-split-sigla(idx-days, 
            idx-split)
-                       when "A"   move el-mcg-code(1) to mcg-code
-                       when "B"   move el-mcg-code(2) to mcg-code
-                       when "C"   move el-mcg-code(3) to mcg-code
-                       when "D"   move el-mcg-code(4) to mcg-code
-                       when "E"   move el-mcg-code(5) to mcg-code
-                       when "F"   move el-mcg-code(6) to mcg-code
+                       when el-mcg-sigla(1) move el-mcg-code(1) to 
+           mcg-code
+                       when el-mcg-sigla(2) move el-mcg-code(2) to 
+           mcg-code
+                       when el-mcg-sigla(3) move el-mcg-code(3) to 
+           mcg-code
+                       when el-mcg-sigla(4) move el-mcg-code(4) to 
+           mcg-code
+                       when el-mcg-sigla(5) move el-mcg-code(5) to 
+           mcg-code
+                       when el-mcg-sigla(6) move el-mcg-code(6) to 
+           mcg-code
+                       when el-mcg-sigla(7) move el-mcg-code(7) to 
+           mcg-code
                        when other exit perform
                        end-evaluate
 
@@ -6640,12 +6744,20 @@
 
                  move low-value to twe-rec
                  evaluate wom-split-el-split-sigla(idx-days, idx-split)
-                 when "A" move el-mcg-code(1) to mcg-code twe-mcg-code
-                 when "B" move el-mcg-code(2) to mcg-code twe-mcg-code
-                 when "C" move el-mcg-code(3) to mcg-code twe-mcg-code
-                 when "D" move el-mcg-code(4) to mcg-code twe-mcg-code
-                 when "E" move el-mcg-code(5) to mcg-code twe-mcg-code
-                 when "F" move el-mcg-code(6) to mcg-code twe-mcg-code
+                 when el-mcg-sigla(1) move el-mcg-code(1) to mcg-code 
+           twe-mcg-code
+                 when el-mcg-sigla(2) move el-mcg-code(2) to mcg-code 
+           twe-mcg-code
+                 when el-mcg-sigla(3) move el-mcg-code(3) to mcg-code 
+           twe-mcg-code
+                 when el-mcg-sigla(4) move el-mcg-code(4) to mcg-code 
+           twe-mcg-code
+                 when el-mcg-sigla(5) move el-mcg-code(5) to mcg-code 
+           twe-mcg-code
+                 when el-mcg-sigla(6) move el-mcg-code(6) to mcg-code 
+           twe-mcg-code
+                 when el-mcg-sigla(7) move el-mcg-code(7) to mcg-code 
+           twe-mcg-code
                  when other exit perform
                  end-evaluate       
 
@@ -7523,6 +7635,11 @@
               set  event-action to event-action-fail-terminate
            end-if.
 
+           inquire gd1(event-data-2, 78-col-day), cell-data in col-day
+           if col-day = 0                   
+              set  event-action to event-action-fail-terminate
+           end-if.
+
            if event-data-1 = 78-col-exe-code
               inquire gd1, entry-reason in como-x
               if como-x = x"00" or x"0d" or x"0D"
@@ -7815,35 +7932,6 @@
            perform SCR-ATTESA-OPEN-ROUTINE 
            .
       * <TOTEM:END>
-       Screen1-Pb-1-LinkTo.
-      * <TOTEM:PARA. Screen1-Pb-1-LinkTo>
-           modify cb-mg1, value "Legs".
-           modify cb-mg2, value "Shoulder".
-           modify cb-mg3, value "Pectoral".
-           modify cb-mg4, value "Back".    
-           modify cb-mg5, value "Arms".
-           modify cb-mg6, value "Abs".
-           modify cb-mg7, value "Nessuno".
-                                 
-           modify cb-int, value = "Tutto".
-           modify cb-dur, value = "Medium".
-
-           move 1 to wom-code.
-           read wodmap no lock.
-           modify cb-wod, value = wom-desc.
-           perform ABILITA-MACROGRUPPI.
-
-           modify cb-mg1, value "Legs".
-           modify cb-mg2, value "Shoulder".
-           modify cb-mg3, value "Pectoral".
-           modify cb-mg4, value "Back".    
-           modify cb-mg5, value "Arms".
-           modify cb-mg6, value "Abs".
-           modify cb-mg7, value "Nessuno".
-
-           modify pb-genera, enabled true 
-           .
-      * <TOTEM:END>
        pb-random-LinkTo.
       * <TOTEM:PARA. pb-random-LinkTo>
            inquire cb-wod, value in wom-desc.
@@ -7956,36 +8044,6 @@
            perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
-       Screen1-Pb-1a-LinkTo.
-      * <TOTEM:PARA. Screen1-Pb-1a-LinkTo>
-           modify cb-mg1, value "Legs".
-           modify cb-mg2, value "Abs".
-           modify cb-mg3, value "Pectoral".
-           modify cb-mg4, value "Arms".
-           modify cb-mg5, value "Shoulder".
-           modify cb-mg6, value "Back".
-           modify cb-mg7, value "Nessuno".
-                                 
-           modify cb-int, value = "Tutto".
-           modify cb-dur, value = "Medium".
-                                           
-           move 2 to wom-code.
-           read wodmap no lock.
-           modify cb-wod, value = wom-desc.
-
-           perform ABILITA-MACROGRUPPI. 
-
-           modify cb-mg1, value "Legs".
-           modify cb-mg2, value "Abs".
-           modify cb-mg3, value "Pectoral".
-           modify cb-mg4, value "Arms".
-           modify cb-mg5, value "Shoulder".
-           modify cb-mg6, value "Back".
-           modify cb-mg7, value "Nessuno".
-
-           modify pb-genera, enabled true 
-           .
-      * <TOTEM:END>
        cb-wod-AfterProcedure.
       * <TOTEM:PARA. cb-wod-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
@@ -8011,36 +8069,6 @@
        gd-schema-Ev-Msg-Begin-Entry.
       * <TOTEM:PARA. gd-schema-Ev-Msg-Begin-Entry>
            set event-action to event-action-fail 
-           .
-      * <TOTEM:END>
-       Screen1-Pb-1aa-LinkTo.
-      * <TOTEM:PARA. Screen1-Pb-1aa-LinkTo>
-           modify cb-mg1, value "Legs".
-           modify cb-mg2, value "Shoulder".
-           modify cb-mg3, value "Pectoral".
-           modify cb-mg4, value "Back".
-           modify cb-mg5, value "Arms".
-           modify cb-mg6, value "Abs".
-           modify cb-mg7, value "Nessuno".
-                                 
-           modify cb-int, value = "Tutto".
-           modify cb-dur, value = "Medium".
-
-           move 3 to wom-code.
-           read wodmap no lock.
-           modify cb-wod, value = wom-desc.
-
-           perform ABILITA-MACROGRUPPI. 
-
-           modify pb-genera, enabled true.
-
-           modify cb-mg1, value "Legs".
-           modify cb-mg2, value "Shoulder".
-           modify cb-mg3, value "Pectoral".
-           modify cb-mg4, value "Back".
-           modify cb-mg5, value "Arms".
-           modify cb-mg6, value "Abs".
-           modify cb-mg7, value "Nessuno" 
            .
       * <TOTEM:END>
        NUOVO-LinkTo.

@@ -23,7 +23,12 @@
                            25 FILLER           PIC  x(99).
                            25 FILLER           PIC  9(18).
                10 wom-dur-code     PIC  99.
-               10 wom-filler       PIC  x(1000).
+               10 wom-mcg-default-tab.
+                   12 wom-el-mcg-default
+                              OCCURS 15 TIMES.
+                       15 wom-sigla-default            PIC  x.
+                       15 wom-mcg-code-default         PIC  x(5).
+               10 wom-filler       PIC  x(910).
                10 wom-filler-n1    PIC  9(18).
                10 wom-filler-n2    PIC  9(18).
                10 wom-filler-n3    PIC  9(18).

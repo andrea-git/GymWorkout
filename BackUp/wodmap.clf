@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791571234-864-3181112370
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7918191128-255-271453589
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -192,9 +192,7 @@ m_bFixed=1
 
 @}}
 [FDITEM18_]
-m_strName=wom-filler
-m_strRawPic=x(1000)
-m_strPic=x(1000)
+m_strName=wom-mcg-default-tab
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -202,33 +200,78 @@ m_bFixed=1
 
 @}}
 [FDITEM19_]
+m_strName=wom-el-mcg-default
+m_nItemLevel=12
+m_nSync=-1
+m_bOccurs=1
+m_bFixed=1
+m_strRawSize=15
+m_nSize=15
+{{@DataItem_m_strDescriptionFDITEM19_
+
+@}}
+[FDITEM20_]
+m_strName=wom-sigla-default
+m_strRawPic=x
+m_strPic=x
+m_nItemLevel=15
+m_nSync=-1
+m_bFixed=1
+m_strRawSize=15
+m_nSize=15
+{{@DataItem_m_strDescriptionFDITEM20_
+
+@}}
+[FDITEM21_]
+m_strName=wom-mcg-code-default
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=15
+m_nSync=-1
+m_bFixed=1
+m_strRawSize=15
+m_nSize=15
+{{@DataItem_m_strDescriptionFDITEM21_
+
+@}}
+[FDITEM22_]
+m_strName=wom-filler
+m_strRawPic=x(910)
+m_strPic=x(910)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM22_
+
+@}}
+[FDITEM23_]
 m_strName=wom-filler-n1
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM19_
+{{@DataItem_m_strDescriptionFDITEM23_
 
 @}}
-[FDITEM20_]
+[FDITEM24_]
 m_strName=wom-filler-n2
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM20_
+{{@DataItem_m_strDescriptionFDITEM24_
 
 @}}
-[FDITEM21_]
+[FDITEM25_]
 m_strName=wom-filler-n3
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM21_
+{{@DataItem_m_strDescriptionFDITEM25_
 
 @}}
 [CStoAcucobolSL_]

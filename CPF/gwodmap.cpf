@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7916151643-509-31788473
+PROGRAM_UNIQUE_CODE=TOTEM-7E7918191128-317-2107628515
 
 {{@DESCRIPTION:
 
@@ -1016,6 +1016,76 @@ m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM97_WK
 
 @}}
+[FDITEM98_WK]
+m_strName=cb-mcg1-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM98_WK
+
+@}}
+[FDITEM99_WK]
+m_strName=cb-mcg2-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM99_WK
+
+@}}
+[FDITEM100_WK]
+m_strName=cb-mcg3-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM100_WK
+
+@}}
+[FDITEM101_WK]
+m_strName=cb-mcg4-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM101_WK
+
+@}}
+[FDITEM102_WK]
+m_strName=cb-mcg5-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM102_WK
+
+@}}
+[FDITEM103_WK]
+m_strName=cb-mcg6-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM103_WK
+
+@}}
+[FDITEM104_WK]
+m_strName=cb-mcg7-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM104_WK
+
+@}}
 
 
 [LINKAGE_SECTION]
@@ -1189,7 +1259,7 @@ GRAPHICAL-SCREEN
 Begin Screen Form1
    PREFIX            = Screen1
    IMPORTED-SCREEN   = FALSE
-   LOCK-CONTROL      = TRUE
+   LOCK-CONTROL      = FALSE
    LEVEL             = 1
    (Name)            = Form1
    Absolute Column   = 0
@@ -1215,7 +1285,7 @@ Begin Screen Form1
    Height in Cells   = TRUE
    Help ID           = 0
    Label Offset      = 23
-   Lines             = 29,30
+   Lines             = 30,52
    Link To Thread    = TRUE
    Max Lines         = 0,00
    Max Size          = 0,00
@@ -1698,6 +1768,328 @@ Begin Screen Form1
       After Procedure   = Screen1-Cb-1-AfterProcedure
       Link To           = chk-prim7-LinkTo
    End
+   Begin Combo-Box cb-mcg1
+      SCREEN-COL        = 21,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg1
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 21,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 40
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 10
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg1-buf
+      Visible           = NONE
+      Visible Variable  = v-macro1
+      Width in Cells    = TRUE
+      Before Procedure  = Screen1-Cm-1-BeforeProcedure
+      After Procedure   = Screen1-Cm-1-AfterProcedure
+   End
+   Begin Combo-Box cb-mcg2
+      SCREEN-COL        = 40,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg2
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 40,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 40
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 11
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg2-buf
+      Visible           = NONE
+      Visible Variable  = v-macro2
+      Width in Cells    = TRUE
+      Before Procedure  = Screen1-Cm-1-BeforeProcedure
+      After Procedure   = Screen1-Cm-1-AfterProcedure
+   End
+   Begin Combo-Box cb-mcg3
+      SCREEN-COL        = 59,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg3
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 59,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 40
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 12
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg3-buf
+      Visible           = NONE
+      Visible Variable  = v-macro3
+      Width in Cells    = TRUE
+      Before Procedure  = Screen1-Cm-1-BeforeProcedure
+      After Procedure   = Screen1-Cm-1-AfterProcedure
+   End
+   Begin Combo-Box cb-mcg4
+      SCREEN-COL        = 78,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg4
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 78,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 40
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 13
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg4-buf
+      Visible           = NONE
+      Visible Variable  = v-macro4
+      Width in Cells    = TRUE
+      Before Procedure  = Screen1-Cm-1-BeforeProcedure
+      After Procedure   = Screen1-Cm-1-AfterProcedure
+   End
+   Begin Combo-Box cb-mcg5
+      SCREEN-COL        = 98,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg5
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 98,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 40
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 14
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg5-buf
+      Visible           = NONE
+      Visible Variable  = v-macro5
+      Width in Cells    = TRUE
+      Before Procedure  = Screen1-Cm-1-BeforeProcedure
+      After Procedure   = Screen1-Cm-1-AfterProcedure
+   End
+   Begin Combo-Box cb-mcg6
+      SCREEN-COL        = 117,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg6
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 117,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 40
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 15
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg6-buf
+      Visible           = NONE
+      Visible Variable  = v-macro6
+      Width in Cells    = TRUE
+      Before Procedure  = Screen1-Cm-1-BeforeProcedure
+      After Procedure   = Screen1-Cm-1-AfterProcedure
+   End
+   Begin Combo-Box cb-mcg7
+      SCREEN-COL        = 136,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg7
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 136,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 40
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 16
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg7-buf
+      Visible           = NONE
+      Visible Variable  = v-macro7
+      Width in Cells    = TRUE
+      Before Procedure  = Screen1-Cm-1-BeforeProcedure
+      After Procedure   = Screen1-Cm-1-AfterProcedure
+   End
    Begin Label Screen1-La-1
       SCREEN-COL        = 2,90
       SCREEN-LINE       = 1,50
@@ -1725,7 +2117,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 10,00
       Size Unit         = Default
-      Tab Order         = 10
+      Tab Order         = 17
       Title             = "Codice"
       Transparent       = TRUE
       Visible           = NONE
@@ -1763,7 +2155,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 3,29
       Size Unit         = Default
-      Tab Order         = 11
+      Tab Order         = 18
       Title             = "CUSTOM CONTROL"
       Transparent       = TRUE
       Visible           = NONE
@@ -1773,15 +2165,15 @@ Begin Screen Form1
    Begin CsCtrl.blockpgm Label Screen1-blockpgm-2
       CUST-SYMBOL       = blockpgm
       CUST-MODIFYFLAG   = 100000000000000000000000000000001000000000000000000
-      SCREEN-COL        = 85,71
-      SCREEN-LINE       = 2,62
+      SCREEN-COL        = 80,70
+      SCREEN-LINE       = 1,00
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-blockpgm-2
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 85,71
+      Column            = 80,70
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -1792,14 +2184,14 @@ Begin Screen Form1
       ID                = 21
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 2,62
+      Line              = 1,00
       Lines             = 1,00
       Lines Unit        = Default
       No Key Letter     = FALSE
       Occurs            = 0
       Size              = 2,43
       Size Unit         = Default
-      Tab Order         = 12
+      Tab Order         = 19
       Title             = "BlockPgm"
       Transparent       = TRUE
       Visible           = NONE
@@ -1833,7 +2225,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 10,00
       Size Unit         = Default
-      Tab Order         = 13
+      Tab Order         = 20
       Title             = "Descrizione"
       Transparent       = TRUE
       Visible           = NONE
@@ -1866,7 +2258,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 18,00
       Size Unit         = Default
-      Tab Order         = 14
+      Tab Order         = 21
       Title             = "Macrogruppi coinvolti"
       Transparent       = TRUE
       Visible           = NONE
@@ -1874,7 +2266,7 @@ Begin Screen Form1
    End
    Begin Label Screen1-La-2aa
       SCREEN-COL        = 2,90
-      SCREEN-LINE       = 6,00
+      SCREEN-LINE       = 7,52
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-La-2aa
@@ -1892,14 +2284,14 @@ Begin Screen Form1
       ID                = 9
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 6,00
+      Line              = 7,52
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
       Occurs            = 0
       Size              = 18,00
       Size Unit         = Default
-      Tab Order         = 15
+      Tab Order         = 22
       Title             = "Giorni per settimana"
       Transparent       = TRUE
       Visible           = NONE
@@ -1907,7 +2299,7 @@ Begin Screen Form1
    End
    Begin Label Screen1-La-2aaa
       SCREEN-COL        = 2,90
-      SCREEN-LINE       = 7,30
+      SCREEN-LINE       = 8,83
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-La-2aaa
@@ -1925,14 +2317,14 @@ Begin Screen Form1
       ID                = 17
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 7,30
+      Line              = 8,83
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
       Occurs            = 0
       Size              = 18,00
       Size Unit         = Default
-      Tab Order         = 16
+      Tab Order         = 23
       Title             = "Durata complessiva"
       Transparent       = TRUE
       Visible           = NONE
@@ -1940,7 +2332,7 @@ Begin Screen Form1
    End
    Begin Label lab-days
       SCREEN-COL        = 21,30
-      SCREEN-LINE       = 6,00
+      SCREEN-LINE       = 7,52
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = lab-days
@@ -1958,14 +2350,14 @@ Begin Screen Form1
       ID                = 19
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 6,00
+      Line              = 7,52
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
       Occurs            = 0
       Size              = 100,00
       Size Unit         = Default
-      Tab Order         = 17
+      Tab Order         = 24
       Title Picture     = X(100)
       Title Variable    = lab-days-buf
       Transparent       = TRUE
@@ -1974,7 +2366,7 @@ Begin Screen Form1
    End
    Begin Label Screen1-La-2aaaa
       SCREEN-COL        = 2,90
-      SCREEN-LINE       = 8,61
+      SCREEN-LINE       = 10,13
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-La-2aaaa
@@ -1992,14 +2384,14 @@ Begin Screen Form1
       ID                = 20
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 8,61
+      Line              = 10,13
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
       Occurs            = 0
       Size              = 18,00
       Size Unit         = Default
-      Tab Order         = 18
+      Tab Order         = 25
       Title             = "Intensità media"
       Transparent       = TRUE
       Visible           = NONE
@@ -2007,7 +2399,7 @@ Begin Screen Form1
    End
    Begin Frame Screen1-Fr-1
       SCREEN-COL        = 2,30
-      SCREEN-LINE       = 9,74
+      SCREEN-LINE       = 11,26
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-Fr-1
@@ -2026,13 +2418,13 @@ Begin Screen Form1
       Help ID           = 0
       High Color        = 0
       ID                = 7
-      Line              = 9,74
+      Line              = 11,26
       Lines             = 18,13
       Lines Unit        = Default
       Low Color         = 0
       Size              = 153,80
       Size Unit         = Default
-      Tab Order         = 19
+      Tab Order         = 26
       Thickness         = Default
       Title             = "Giorni di allenamento"
       Title Position    = 2:Top center
@@ -2040,7 +2432,7 @@ Begin Screen Form1
       Width in Cells    = TRUE
       Begin Grid gd1
          SCREEN-COL        = 3,70
-         SCREEN-LINE       = 12,57
+         SCREEN-LINE       = 14,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd1
@@ -2116,7 +2508,7 @@ Begin Screen Form1
       End
       Begin Grid gd2
          SCREEN-COL        = 25,50
-         SCREEN-LINE       = 12,57
+         SCREEN-LINE       = 14,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd2
@@ -2192,7 +2584,7 @@ Begin Screen Form1
       End
       Begin Grid gd3
          SCREEN-COL        = 47,20
-         SCREEN-LINE       = 12,57
+         SCREEN-LINE       = 14,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd3
@@ -2268,7 +2660,7 @@ Begin Screen Form1
       End
       Begin Grid gd4
          SCREEN-COL        = 68,90
-         SCREEN-LINE       = 12,57
+         SCREEN-LINE       = 14,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd4
@@ -2344,7 +2736,7 @@ Begin Screen Form1
       End
       Begin Grid gd5
          SCREEN-COL        = 90,70
-         SCREEN-LINE       = 12,57
+         SCREEN-LINE       = 14,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd5
@@ -2420,7 +2812,7 @@ Begin Screen Form1
       End
       Begin Grid gd6
          SCREEN-COL        = 112,50
-         SCREEN-LINE       = 12,57
+         SCREEN-LINE       = 14,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd6
@@ -2496,7 +2888,7 @@ Begin Screen Form1
       End
       Begin Grid gd7
          SCREEN-COL        = 134,20
-         SCREEN-LINE       = 12,57
+         SCREEN-LINE       = 14,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd7
@@ -2572,7 +2964,7 @@ Begin Screen Form1
       End
       Begin Label Screen1-La-2aab
          SCREEN-COL        = 134,20
-         SCREEN-LINE       = 11,04
+         SCREEN-LINE       = 12,56
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aab
@@ -2605,7 +2997,7 @@ Begin Screen Form1
       End
       Begin Label Screen1-La-2aaba
          SCREEN-COL        = 3,70
-         SCREEN-LINE       = 11,04
+         SCREEN-LINE       = 12,56
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aaba
@@ -2638,7 +3030,7 @@ Begin Screen Form1
       End
       Begin Label Screen1-La-2aabb
          SCREEN-COL        = 25,50
-         SCREEN-LINE       = 11,04
+         SCREEN-LINE       = 12,56
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aabb
@@ -2671,7 +3063,7 @@ Begin Screen Form1
       End
       Begin Label Screen1-La-2aabba
          SCREEN-COL        = 68,90
-         SCREEN-LINE       = 11,04
+         SCREEN-LINE       = 12,56
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aabba
@@ -2704,7 +3096,7 @@ Begin Screen Form1
       End
       Begin Label Screen1-La-2aabaa
          SCREEN-COL        = 47,20
-         SCREEN-LINE       = 11,04
+         SCREEN-LINE       = 12,56
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aabaa
@@ -2737,7 +3129,7 @@ Begin Screen Form1
       End
       Begin Label Screen1-La-2aabbb
          SCREEN-COL        = 112,50
-         SCREEN-LINE       = 11,04
+         SCREEN-LINE       = 12,56
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aabbb
@@ -2770,7 +3162,7 @@ Begin Screen Form1
       End
       Begin Label Screen1-La-2aabab
          SCREEN-COL        = 90,70
-         SCREEN-LINE       = 11,04
+         SCREEN-LINE       = 12,56
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aabab
@@ -2804,7 +3196,7 @@ Begin Screen Form1
    End
    Begin Label lab-durata
       SCREEN-COL        = 21,30
-      SCREEN-LINE       = 7,30
+      SCREEN-LINE       = 8,83
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = lab-durata
@@ -2822,14 +3214,14 @@ Begin Screen Form1
       ID                = 30
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 7,30
+      Line              = 8,83
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
       Occurs            = 0
       Size              = 100,00
       Size Unit         = Default
-      Tab Order         = 20
+      Tab Order         = 27
       Title Picture     = X(100)
       Title Variable    = lab-durata-buf
       Transparent       = TRUE
@@ -2838,7 +3230,7 @@ Begin Screen Form1
    End
    Begin Label lab-int
       SCREEN-COL        = 21,30
-      SCREEN-LINE       = 8,61
+      SCREEN-LINE       = 10,13
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = lab-int
@@ -2856,14 +3248,14 @@ Begin Screen Form1
       ID                = 31
       Justification     = Unaligned
       Label Offset      = 20
-      Line              = 8,61
+      Line              = 10,13
       Lines             = 1,30
       Lines Unit        = Default
       No Key Letter     = FALSE
       Occurs            = 0
       Size              = 100,00
       Size Unit         = Default
-      Tab Order         = 21
+      Tab Order         = 28
       Title Picture     = X(100)
       Title Variable    = lab-int-buf
       Transparent       = TRUE
@@ -2897,7 +3289,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 22
+      Tab Order         = 29
       Title Picture     = X(20)
       Title Variable    = lab-macro1-buf
       Transparent       = TRUE
@@ -2932,7 +3324,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 23
+      Tab Order         = 30
       Title Picture     = X(20)
       Title Variable    = lab-macro2-buf
       Transparent       = TRUE
@@ -2967,7 +3359,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 24
+      Tab Order         = 31
       Title Picture     = X(20)
       Title Variable    = lab-macro3-buf
       Transparent       = TRUE
@@ -3002,7 +3394,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 25
+      Tab Order         = 32
       Title Picture     = X(20)
       Title Variable    = lab-macro4-buf
       Transparent       = TRUE
@@ -3037,7 +3429,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 26
+      Tab Order         = 33
       Title Picture     = X(20)
       Title Variable    = lab-macro5-buf
       Transparent       = TRUE
@@ -3072,7 +3464,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 27
+      Tab Order         = 34
       Title Picture     = X(20)
       Title Variable    = lab-macro6-buf
       Transparent       = TRUE
@@ -3107,12 +3499,45 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 28
+      Tab Order         = 35
       Title Picture     = X(20)
       Title Variable    = lab-macro7-buf
       Transparent       = TRUE
       Visible           = FALSE
       Visible Variable  = v-macro7
+      Width in Cells    = TRUE
+   End
+   Begin Label Screen1-La-2ab
+      SCREEN-COL        = 2,90
+      SCREEN-LINE       = 6,22
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = Screen1-La-2ab
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 2,90
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 8
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 6,22
+      Lines             = 1,30
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 18,00
+      Size Unit         = Default
+      Tab Order         = 36
+      Title             = "Default"
+      Transparent       = TRUE
+      Visible           = NONE
       Width in Cells    = TRUE
    End
    Begin Toolbar Form1-Tb-1
@@ -3127,7 +3552,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 29
+      Tab Order         = 37
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -3815,7 +4240,7 @@ Begin Screen Form1
       Handle Variable   = Form1-St-1-Handle
       PANEL-WIDTHS      = ( 45, 23, 999 )
       PANEL-STYLE       = ( 1, 1, 1 )
-      Tab Order         = 30
+      Tab Order         = 38
    End
 End
 
@@ -3852,14 +4277,23 @@ BEGIN-TEXT
                               OCCURS 7 TIMES.
                        20 old-wom-split-el-days-split
                                   OCCURS 20 TIMES.
+      *(( XFD NAME = old-wom-split-el-sp-si ))
                            25 old-wom-split-el-split-sigla     PIC  x.
+      *(( XFD NAME = old-wom-split-el-sp-ic ))
                            25 old-wom-split-el-split-int-code  PIC  9.
+      *(( XFD NAME = old-wom-split-el-sp-ss ))
                            25 old-wom-split-el-split-ss        PIC  9.
+      *(( XFD NAME = old-wom-split-el-sp-p ))
                            25 old-wom-split-el-split-primary   PIC  9.
                            25 FILLER           PIC  x(99).
                            25 FILLER           PIC  9(18).
                10 old-wom-dur-code     PIC  99.
-               10 old-wom-filler       PIC  x(1000).
+               10 old-wom-mcg-default-tab.
+                   12 old-wom-el-mcg-default
+                              OCCURS 15 TIMES.
+                       15 old-wom-sigla-default            PIC  x.
+                       15 old-wom-mcg-code-default         PIC  x(5).
+               10 old-wom-filler       PIC  x(910).
                10 old-wom-filler-n1    PIC  9(18).
                10 old-wom-filler-n2    PIC  9(18).
                10 old-wom-filler-n3    PIC  9(18).
@@ -3900,6 +4334,14 @@ BEGIN-TEXT
       *****     move data-oggi to data-maggiorenne.
       *****     move como-anno to data-maggiorenne(1:4).
       *****     |||||||
+                                                   
+           modify cb-mcg1, item-to-add = "Nessuno".
+           modify cb-mcg2, item-to-add = "Nessuno".
+           modify cb-mcg3, item-to-add = "Nessuno".
+           modify cb-mcg4, item-to-add = "Nessuno".
+           modify cb-mcg5, item-to-add = "Nessuno".
+           modify cb-mcg6, item-to-add = "Nessuno".
+           modify cb-mcg7, item-to-add = "Nessuno".
 
            move 0 to tot-primari.
            move low-value to mcg-key.
@@ -3908,9 +4350,23 @@ BEGIN-TEXT
              not invalid
                  perform until 1 = 2
                     read macrogroups next at end exit perform end-read
-                    add mcg-primary to tot-primari
-                 end-perform
-           end-start.
+                    add mcg-isPrimary to tot-primari
+                    modify cb-mcg1, item-to-add = mcg-desc
+                    modify cb-mcg2, item-to-add = mcg-desc
+                    modify cb-mcg3, item-to-add = mcg-desc
+                    modify cb-mcg4, item-to-add = mcg-desc
+                    modify cb-mcg5, item-to-add = mcg-desc
+                    modify cb-mcg6, item-to-add = mcg-desc
+                    modify cb-mcg7, item-to-add = mcg-desc
+                 end-perform                       
+           end-start.                              
+           modify cb-mcg1, value = "Nessuno".                 
+           modify cb-mcg2, value = "Nessuno".                 
+           modify cb-mcg3, value = "Nessuno".                 
+           modify cb-mcg4, value = "Nessuno".                 
+           modify cb-mcg5, value = "Nessuno".                 
+           modify cb-mcg6, value = "Nessuno".                 
+           modify cb-mcg7, value = "Nessuno".
 
            perform INIT.
            perform ABILITA-TOOLBAR.
@@ -4537,6 +4993,14 @@ BEGIN-TEXT
            perform FORM1-FLD-TO-BUF. 
 
            perform INIT-OLD-REC.
+                                                             
+           modify cb-mcg1, value "Nessuno", visible v-macro1.
+           modify cb-mcg2, value "Nessuno", visible v-macro2.
+           modify cb-mcg3, value "Nessuno", visible v-macro3.
+           modify cb-mcg4, value "Nessuno", visible v-macro4.
+           modify cb-mcg5, value "Nessuno", visible v-macro5.
+           modify cb-mcg6, value "Nessuno", visible v-macro6.
+           modify cb-mcg7, value "Nessuno", visible v-macro7.
                                           
            display form1. 
 
@@ -5077,6 +5541,157 @@ END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 3
+   PARAGRAPH         = CONTROLLO-DEFAULT
+BEGIN-TEXT
+           inquire chk-prim1, value in chk-prim1-buf.
+           inquire cb-mcg1, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim1-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 1 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim1-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 1 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.
+           inquire chk-prim2, value in chk-prim2-buf.
+           inquire cb-mcg2, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim2-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 2 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim2-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 2 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.                           
+           
+           inquire chk-prim3, value in chk-prim3-buf.
+           inquire cb-mcg3, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim3-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 3 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim3-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 3 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.                           
+           
+           inquire chk-prim4, value in chk-prim4-buf.
+           inquire cb-mcg4, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim4-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 4 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim4-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 4 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.                 
+           
+           inquire chk-prim5, value in chk-prim5-buf.
+           inquire cb-mcg5, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim5-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 5 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim5-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 5 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.                                            
+           
+           inquire chk-prim6, value in chk-prim6-buf.
+           inquire cb-mcg6, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim6-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 6 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim6-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 6 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.                           
+           
+           inquire chk-prim7, value in chk-prim7-buf.
+           inquire cb-mcg7, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim7-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 7 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim7-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 7 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
    PARAGRAPH         = CONTROLLO-GRIDS
 BEGIN-TEXT
            set tutto-ok to true.
@@ -5553,7 +6168,73 @@ BEGIN-TEXT
                         end-if                                     
                  end-evaluate
               end-perform
-           end-perform.           
+           end-perform.               
+           if wom-mcg-code-default(1) not = spaces
+              move wom-mcg-code-default(1) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg1-buf
+              modify cb-mcg1, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg1-buf    
+              modify cb-mcg1, value = "Nessuno"
+           end-if.
+
+           if wom-mcg-code-default(2) not = spaces
+              move wom-mcg-code-default(2) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg2-buf
+              modify cb-mcg2, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg2-buf    
+              modify cb-mcg2, value = "Nessuno"
+           end-if.
+
+           if wom-mcg-code-default(3) not = spaces
+              move wom-mcg-code-default(3) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg3-buf
+              modify cb-mcg3, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg3-buf    
+              modify cb-mcg3, value = "Nessuno"
+           end-if.                
+                                       
+           if wom-mcg-code-default(4) not = spaces
+              move wom-mcg-code-default(4) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg4-buf
+              modify cb-mcg4, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg4-buf    
+              modify cb-mcg4, value = "Nessuno"
+           end-if.
+           if wom-mcg-code-default(5) not = spaces
+              move wom-mcg-code-default(5) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg5-buf
+              modify cb-mcg5, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg5-buf    
+              modify cb-mcg5, value = "Nessuno"
+           end-if.
+           if wom-mcg-code-default(6) not = spaces
+              move wom-mcg-code-default(6) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg6-buf
+              modify cb-mcg6, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg6-buf    
+              modify cb-mcg6, value = "Nessuno"
+           end-if.
+           if wom-mcg-code-default(7) not = spaces
+              move wom-mcg-code-default(7) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg7-buf
+              modify cb-mcg7, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg7-buf    
+              modify cb-mcg7, value = "Nessuno"
+           end-if.                  
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -5769,10 +6450,14 @@ BEGIN-TEXT
 
            if tutto-ok
               perform CONTROLLO-CHECK
-           end-if.
+           end-if.      
 
            if tutto-ok
               perform CONTROLLO-GRIDS
+           end-if.
+
+           if tutto-ok
+              perform CONTROLLO-DEFAULT
            end-if.
 
            if errori
@@ -6291,7 +6976,71 @@ BEGIN-TEXT
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(7, idx-ok)
               end-if
-           end-perform.
+           end-perform.   
+
+           inquire cb-mcg1, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(1).
+           if v-macro1 = 1
+              move lab-macro1-buf(1:1) to wom-sigla-default(1)
+           end-if.
+
+           inquire cb-mcg2, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(2).
+           if v-macro2 = 1
+              move lab-macro2-buf(1:1) to wom-sigla-default(2)
+           end-if.
+
+           inquire cb-mcg3, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(3).
+           if v-macro3 = 1
+              move lab-macro3-buf(1:1) to wom-sigla-default(3)
+           end-if.
+
+           inquire cb-mcg4, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(4).
+           if v-macro4 = 1
+              move lab-macro4-buf(1:1) to wom-sigla-default(4)
+           end-if.
+
+           inquire cb-mcg5, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(5).
+           if v-macro5 = 1
+              move lab-macro5-buf(1:1) to wom-sigla-default(5)
+           end-if.
+
+           inquire cb-mcg6, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.                                
+           move mcg-code to wom-mcg-code-default(6).
+           if v-macro6 = 1
+              move lab-macro6-buf(1:1) to wom-sigla-default(6)
+           end-if.
+
+           inquire cb-mcg7, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(7).
+           if v-macro7 = 1
+              move lab-macro7-buf(1:1) to wom-sigla-default(7)
+           end-if.
+
 
       ***---
        VALORIZZA-PRIMARY.
@@ -7089,6 +7838,20 @@ BEGIN-DATA
 BEGIN-TEXT
            move 7 to check-mcg.
            perform COLORA-PRIMARY.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = Screen1-Cm-1-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = Screen1-Cm-1-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
 END-TEXT
 END-DATA
 

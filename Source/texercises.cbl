@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 25 settembre 2023 14:46:19.
+       DATE-WRITTEN.        lunedì 25 settembre 2023 15:18:49.
        REMARKS.
       *{TOTEM}END
 
@@ -211,6 +211,8 @@
                   VALUE IS 1.
        77 AUTO-ID          PIC  9(6)
                   VALUE IS 32.
+       77 E-SELEZIONA      PIC  9
+                  VALUE IS 1.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -982,6 +984,27 @@
            TITLE "Cerca (F8)",
            VISIBLE 1,
            BITMAP-NUMBER BitmapNumZoom
+           .
+
+      * PUSH BUTTON
+       05
+           TOOL-SELEZIONA, 
+           Push-Button, 
+           COL 33,40, 
+           LINE 1,09,
+           LINES 64,00 ,
+           SIZE 48,00 ,
+           BITMAP-HANDLE toolbar-bmp,
+           BITMAP-NUMBER 9,
+           FRAMED,
+           SQUARE,
+           ENABLED E-SELEZIONA,
+           EXCEPTION-VALUE 9,
+           FLAT,
+           FONT IS Calibri14-Occidentale,
+           ID IS 112,
+           SELF-ACT,
+           TITLE "Seleziona (F9)",
            .
 
       *{TOTEM}END
@@ -2432,6 +2455,8 @@
                  PERFORM TOOL-MODIFICA-LinkTo
               WHEN Key-Status = 8
                  PERFORM TOOL-CERCA-LinkTo
+              WHEN Key-Status = 9
+                 PERFORM TOOL-SELEZIONA-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -3742,6 +3767,12 @@
                  open i-o exercises allowing readers
               else
                  set tutto-ok to true
+
+                 inquire ef-note, value in exe-note
+                 if exe-note not = old-exe-note
+                    set NoSalvato to true
+                 end-if
+
                  if NoSalvato
                     move 1 to mod
                     perform SALV-MOD
@@ -3824,6 +3855,11 @@
               else
                  set SiSalvato to true
               end-if
+           else
+               inquire ef-note, value in exe-note
+               if exe-note not = old-exe-note
+                  set NoSalvato to true
+               end-if
            end-if.
 
            set tutto-ok to true.
@@ -4572,6 +4608,34 @@
        chk-int10-AfterProcedure.
       * <TOTEM:PARA. chk-int10-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       TOOL-SELEZIONA-LinkTo.
+      * <TOTEM:PARA. TOOL-SELEZIONA-LinkTo>
+           inquire form1-gd-1(riga, 1), cell-data in exe-code
+           move "exercises"    to Como-File
+           call   "zoom-gt" using como-file, exe-rec
+                           giving stato-zoom
+           cancel "zoom-gt"
+           if stato-zoom = 0
+              inquire form1-gd-1, last-row in tot-righe
+              if tot-righe > 1
+                 perform varying riga from 1 by 1 
+                           until riga > tot-righe
+                    inquire form1-gd-1(riga, 1), cell-data in col-codice
+                    if col-codice = exe-code  
+                       modify form1-gd-1, cursor-y riga
+                       perform VALORE-RIGA
+                       move hid-note to ef-note-buf
+                       display ef-note
+                       perform COLORE-RIGA
+                       move riga to event-data-2
+                       perform SPOSTAMENTO
+                       exit perform
+                    end-if
+                 end-perform
+              end-if
+           end-if 
            .
       * <TOTEM:END>
 

@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7919124010-610-1512224141
+PROGRAM_UNIQUE_CODE=TOTEM-7E7919125836-242-1718826927
 
 {{@DESCRIPTION:
 
@@ -1028,6 +1028,17 @@ m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM100_WK
+
+@}}
+[FDITEM101_WK]
+m_strName=E-SELEZIONA
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM101_WK
 
 @}}
 
@@ -2823,6 +2834,54 @@ Begin Screen Form1
          Additional Properties = "BITMAP-NUMBER BitmapNumZoom"
          Link To           = TOOL-CERCA-LinkTo
       End
+      Begin Push-Button TOOL-SELEZIONA
+         SCREEN-COL        = 33,40
+         SCREEN-LINE       = 1,09
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = TOOL-SELEZIONA
+         Bitmap            = "..\resource\toolbar.bmp"
+         Bitmap Frame      = TRUE
+         Bitmap Handle     = toolbar-bmp
+         Bitmap Number     = 9
+         Bitmap Square     = TRUE
+         Ccol              = 0
+         Cline             = 0
+         Clines            = 0
+         Clines Unit       = Default
+         Column            = 33,40
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Enable Variable   = E-SELEZIONA
+         Exception Value   = 9
+         Flat              = TRUE
+         Font              = Calibri/14/C0/@Occidentale
+         Font Variable     = Calibri14-Occidentale
+         Height in Cells   = FALSE
+         Help ID           = 0
+         ID                = 112
+         Line              = 1,09
+         Lines             = 2,59
+         Lines in Pixels   = 64
+         Lines Unit        = Default
+         No Auto Default   = FALSE
+         No Tab            = FALSE
+         Occurs            = 0
+         Self Act          = TRUE
+         Size              = 4,60
+         Size in Pixels    = 48
+         Size Unit         = Default
+         Style             = Other
+         Tab Order         = 7
+         Termination Value = 0
+         Title             = "Seleziona (F9)"
+         Visible           = NONE
+         Width in Cells    = FALSE
+         Link To           = TOOL-SELEZIONA-LinkTo
+      End
    End
 End
 
@@ -3850,6 +3909,12 @@ BEGIN-TEXT
                  open i-o exercises allowing readers
               else
                  set tutto-ok to true
+
+                 inquire ef-note, value in exe-note
+                 if exe-note not = old-exe-note
+                    set NoSalvato to true
+                 end-if
+
                  if NoSalvato
                     move 1 to mod
                     perform SALV-MOD
@@ -3936,6 +4001,11 @@ BEGIN-TEXT
               else
                  set SiSalvato to true
               end-if
+           else
+               inquire ef-note, value in exe-note
+               if exe-note not = old-exe-note
+                  set NoSalvato to true
+               end-if
            end-if.
 
            set tutto-ok to true.
@@ -4801,6 +4871,36 @@ BEGIN-DATA
    PARAGRAPH         = chk-int10-AfterProcedure
 BEGIN-TEXT
       *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = TOOL-SELEZIONA-LinkTo
+BEGIN-TEXT
+           inquire form1-gd-1(riga, 1), cell-data in exe-code
+           move "exercises"    to Como-File
+           call   "zoom-gt" using como-file, exe-rec
+                           giving stato-zoom
+           cancel "zoom-gt"
+           if stato-zoom = 0
+              inquire form1-gd-1, last-row in tot-righe
+              if tot-righe > 1
+                 perform varying riga from 1 by 1 
+                           until riga > tot-righe
+                    inquire form1-gd-1(riga, 1), cell-data in col-codice
+                    if col-codice = exe-code  
+                       modify form1-gd-1, cursor-y riga
+                       perform VALORE-RIGA
+                       move hid-note to ef-note-buf
+                       display ef-note
+                       perform COLORE-RIGA
+                       move riga to event-data-2
+                       perform SPOSTAMENTO
+                       exit perform
+                    end-if
+                 end-perform
+              end-if
+           end-if 
 END-TEXT
 END-DATA
 

@@ -95,6 +95,8 @@
                 perform PREPARA-ZOOM-EXE-MCG
            when "tmp-grp-exe"             
                 perform PREPARA-TMP-GRP-EXE
+           when "exercises"
+                perform PREPARA-EXERCISES
 
            when other
                 display message box "guarda che non è ancora stato fatto
@@ -926,6 +928,45 @@
            move  204                     to xzoom-field-offset(idx).
            move  10                      to xzoom-field-column(idx).
            move "Reps"                   to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true. 
+
+           move  -1                      to xzoom-delimiter-offset.
+           move  5                       to xzoom-delimiter-length.
+           move "000"                    to xzoom-from-value.
+           move "000"                    to xzoom-to-value.
+
+      ***---
+       PREPARA-EXERCISES.
+           initialize xzoom-linkage xzoom-ext-info(1).
+      
+           move  0   to xzoom-file-key.
+      *
+           move  0                       to idx.
+           move  0                       to xzoom-row.
+           move  0                       to xzoom-cln.
+           move  10                      to xzoom-lw.
+           move  61                      to xzoom-sw. 
+           move "exercises"              to xzoom-file-name(1).
+           move  5                       to xzoom-fields.
+
+      * CAMPO 1   
+           add 1 to idx
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  5                       to xzoom-field-length(idx).
+           move  0                       to xzoom-field-offset(idx).
+           move  10                      to xzoom-field-column(idx).
+           move "Codice"                 to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true. 
+      
+      * CAMPO 2
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  100                     to xzoom-field-length(idx).
+           move  5                       to xzoom-field-offset(idx).
+           move  35                      to xzoom-field-column(idx).
+           move "Descrizione"            to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 
 
            move  -1                      to xzoom-delimiter-offset.

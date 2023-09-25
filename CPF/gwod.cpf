@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E791983927-507-157426233
+PROGRAM_UNIQUE_CODE=TOTEM-7E7919161942-713-1855927644
 
 {{@DESCRIPTION:
 
@@ -2583,7 +2583,7 @@ GRAPHICAL-SCREEN
 Begin Screen Form1
    PREFIX            = Screen1
    IMPORTED-SCREEN   = FALSE
-   LOCK-CONTROL      = TRUE
+   LOCK-CONTROL      = FALSE
    LEVEL             = 1
    (Name)            = Form1
    Absolute Column   = 2
@@ -2620,7 +2620,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 147,90
+   Size              = 149,10
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -4201,6 +4201,164 @@ Begin Screen Form1
       Event Procedure   = Screen1-Gd-1-Event-Proc
       Msg-Begin-Entry   = gd-schema-Ev-Msg-Begin-Entry
    End
+   Begin Push-Button Screen1-Pb-1
+      SCREEN-COL        = 147,30
+      SCREEN-LINE       = 1,70
+      LOCK-CONTROL      = FALSE
+      LEVEL             = 5
+      (Name)            = Screen1-Pb-1
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Column            = 147,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 0
+      Flat              = FALSE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 30
+      Line              = 1,70
+      Lines             = 0,74
+      Lines Unit        = Default
+      No Auto Default   = FALSE
+      No Tab            = FALSE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 2,00
+      Size Unit         = Default
+      Style             = Other
+      Tab Order         = 38
+      Termination Value = 0
+      Title             = "+"
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
+   Begin Push-Button Screen1-Pb-1a
+      SCREEN-COL        = 147,30
+      SCREEN-LINE       = 2,57
+      LOCK-CONTROL      = FALSE
+      LEVEL             = 5
+      (Name)            = Screen1-Pb-1a
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Column            = 147,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 0
+      Flat              = FALSE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 30
+      Line              = 2,57
+      Lines             = 0,74
+      Lines Unit        = Default
+      No Auto Default   = FALSE
+      No Tab            = FALSE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 2,00
+      Size Unit         = Default
+      Style             = Other
+      Tab Order         = 39
+      Termination Value = 0
+      Title             = "-"
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
+   Begin Push-Button pb-su
+      SCREEN-COL        = 147,30
+      SCREEN-LINE       = 3,70
+      LOCK-CONTROL      = FALSE
+      LEVEL             = 5
+      (Name)            = pb-su
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Column            = 147,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1001
+      Flat              = FALSE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 30
+      Line              = 3,70
+      Lines             = 0,74
+      Lines Unit        = Default
+      No Auto Default   = FALSE
+      No Tab            = FALSE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 2,00
+      Size Unit         = Default
+      Style             = Other
+      Tab Order         = 40
+      Termination Value = 0
+      Title             = "SU"
+      Visible           = NONE
+      Width in Cells    = TRUE
+      Link To           = pb-su-LinkTo
+   End
+   Begin Push-Button pb-giu
+      SCREEN-COL        = 147,10
+      SCREEN-LINE       = 5,09
+      LOCK-CONTROL      = FALSE
+      LEVEL             = 5
+      (Name)            = pb-giu
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Column            = 147,10
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1003
+      Flat              = FALSE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 30
+      Line              = 5,09
+      Lines             = 0,74
+      Lines Unit        = Default
+      No Auto Default   = FALSE
+      No Tab            = FALSE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 2,00
+      Size Unit         = Default
+      Style             = Other
+      Tab Order         = 41
+      Termination Value = 0
+      Title             = "GIU"
+      Visible           = NONE
+      Width in Cells    = TRUE
+      Link To           = pb-giu-LinkTo
+   End
    Begin Toolbar Form1-Tb-1
       SCREEN-LINE       = 1,00
       LOCK-CONTROL      = FALSE
@@ -4213,7 +4371,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,30
-      Tab Order         = 38
+      Tab Order         = 42
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -4633,7 +4791,7 @@ Begin Screen Form1
       Handle Variable   = Form1-St-1-Handle
       PANEL-WIDTHS      = ( 65, 28, 999 )
       PANEL-STYLE       = ( 1, 1, 1 )
-      Tab Order         = 39
+      Tab Order         = 43
    End
 End
 
@@ -6032,7 +6190,7 @@ BEGIN-TEXT
                                    alphanumeric data by spaces.                               
            perform LOAD-EXERCISES-ALLOWED-BY-EFFORT. 
            perform LOAD-EXERCISES-MULTIJOINT.
-           perform LOAD-EXERCISES.              
+           perform LOAD-EXERCISES.           
            perform REMOVE-DUPLICATES.           
            perform LOAD-GRID.       
 
@@ -6869,7 +7027,7 @@ BEGIN-TEXT
                                 end-perform
                           end-start
                        end-perform
-                 end-start  
+                 end-start 
               end-perform 
               if tot-subst = 0
                  exit perform
@@ -8133,6 +8291,36 @@ BEGIN-TEXT
       *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
            perform ABILITA-MACROGRUPPI.
            perform RESETTA-FONT.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-su-LinkTo
+BEGIN-TEXT
+           inquire gd1, cursor-y in riga.
+
+           inquire gd1(riga, 78-col-exe-code), cell-data exe-code.
+           inquire gd1(riga - 1, 78-col-exe-code), cell-data tex-exe-code.
+
+           modify gd1(riga, 78-col-exe-code), cell-data tex-exe-code.    
+           modify gd1(riga - 1, 78-col-exe-code), cell-data exe-code.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-giu-LinkTo
+BEGIN-TEXT
+           inquire gd1, cursor-y in riga.
+
+           inquire gd1(riga, 78-col-exe-code), cell-data exe-code.
+           inquire gd1(riga + 1, 78-col-exe-code), cell-data tex-exe-code.
+
+           modify gd1(riga, 78-col-exe-code), cell-data tex-exe-code.    
+           modify gd1(riga + 1, 78-col-exe-code), cell-data exe-code.
+
+           add 1 to riga giving event-data-2.
+           perform SPOSTAMENTO.
+           modify gd1, cursor-y event-data-2.
 END-TEXT
 END-DATA
 

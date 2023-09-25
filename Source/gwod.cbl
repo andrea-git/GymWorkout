@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 25 settembre 2023 12:17:13.
+       DATE-WRITTEN.        lunedì 25 settembre 2023 18:36:47.
        REMARKS.
       *{TOTEM}END
 
@@ -1224,6 +1224,64 @@
            VIRTUAL-WIDTH 90,
            VPADDING 5,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
+           .
+
+      * PUSH BUTTON
+       05
+           Screen1-Pb-1, 
+           Push-Button, 
+           COL 147,30, 
+           LINE 1,70,
+           LINES 0,74 ,
+           SIZE 2,00 ,
+           ID IS 30,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "+",
+           .
+
+      * PUSH BUTTON
+       05
+           Screen1-Pb-1a, 
+           Push-Button, 
+           COL 147,30, 
+           LINE 2,57,
+           LINES 0,74 ,
+           SIZE 2,00 ,
+           ID IS 30,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "-",
+           .
+
+      * PUSH BUTTON
+       05
+           pb-su, 
+           Push-Button, 
+           COL 147,30, 
+           LINE 3,70,
+           LINES 0,74 ,
+           SIZE 2,00 ,
+           EXCEPTION-VALUE 1001,
+           ID IS 30,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "SU",
+           .
+
+      * PUSH BUTTON
+       05
+           pb-giu, 
+           Push-Button, 
+           COL 147,10, 
+           LINE 5,09,
+           LINES 0,74 ,
+           SIZE 2,00 ,
+           EXCEPTION-VALUE 1003,
+           ID IS 30,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "GIU",
            .
 
       * TOOLBAR
@@ -4284,7 +4342,7 @@
               SCREEN LINE 2,
               SCREEN COLUMN 2,
               LINES 38,39,
-              SIZE 147,90,
+              SIZE 149,10,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -4449,6 +4507,10 @@
                  PERFORM pb-genera-LinkTo
               WHEN Key-Status = 1002
                  PERFORM pb-random-LinkTo
+              WHEN Key-Status = 1001
+                 PERFORM pb-su-LinkTo
+              WHEN Key-Status = 1003
+                 PERFORM pb-giu-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 3
@@ -6157,7 +6219,7 @@
                                  
            perform LOAD-EXERCISES-ALLOWED-BY-EFFORT. 
            perform LOAD-EXERCISES-MULTIJOINT.
-           perform LOAD-EXERCISES.              
+           perform LOAD-EXERCISES.           
            perform REMOVE-DUPLICATES.           
            perform LOAD-GRID.       
 
@@ -7068,7 +7130,7 @@
                                 end-perform
                           end-start
                        end-perform
-                 end-start  
+                 end-start 
               end-perform 
               if tot-subst = 0
                  exit perform
@@ -8238,6 +8300,36 @@
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
            perform ABILITA-MACROGRUPPI.
            perform RESETTA-FONT 
+           .
+      * <TOTEM:END>
+       pb-su-LinkTo.
+      * <TOTEM:PARA. pb-su-LinkTo>
+           inquire gd1, cursor-y in riga.
+
+           inquire gd1(riga, 78-col-exe-code), cell-data exe-code.
+           inquire gd1(riga - 1, 78-col-exe-code), cell-data 
+           tex-exe-code.
+
+           modify gd1(riga, 78-col-exe-code), cell-data tex-exe-code.   
+            
+           modify gd1(riga - 1, 78-col-exe-code), cell-data exe-code 
+           .
+      * <TOTEM:END>
+       pb-giu-LinkTo.
+      * <TOTEM:PARA. pb-giu-LinkTo>
+           inquire gd1, cursor-y in riga.
+
+           inquire gd1(riga, 78-col-exe-code), cell-data exe-code.
+           inquire gd1(riga + 1, 78-col-exe-code), cell-data 
+           tex-exe-code.
+
+           modify gd1(riga, 78-col-exe-code), cell-data tex-exe-code.   
+            
+           modify gd1(riga + 1, 78-col-exe-code), cell-data exe-code.
+
+           add 1 to riga giving event-data-2.
+           perform SPOSTAMENTO.
+           modify gd1, cursor-y event-data-2 
            .
       * <TOTEM:END>
 

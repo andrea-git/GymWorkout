@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7918194033-592-2720019722
+PROGRAM_UNIQUE_CODE=TOTEM-7E791971713-27-2443116680
 
 {{@DESCRIPTION:
 
@@ -5087,6 +5087,11 @@ BEGIN-TEXT
              into como-tit-macro
            end-string
            modify lab-a, title como-tit-macro.
+           if el-mcg-sigla(1) = space     
+              modify cb-mg1, enabled false
+           else
+              modify cb-mg1, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5094,6 +5099,11 @@ BEGIN-TEXT
              into como-tit-macro
            end-string
            modify lab-b, title como-tit-macro.
+           if el-mcg-sigla(2) = space     
+              modify cb-mg2, enabled false
+           else
+              modify cb-mg2, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5101,6 +5111,11 @@ BEGIN-TEXT
              into como-tit-macro
            end-string
            modify lab-c, title como-tit-macro.
+           if el-mcg-sigla(3) = space     
+              modify cb-mg3, enabled false
+           else
+              modify cb-mg3, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5108,6 +5123,11 @@ BEGIN-TEXT
              into como-tit-macro
            end-string
            modify lab-d, title como-tit-macro.
+           if el-mcg-sigla(4) = space     
+              modify cb-mg4, enabled false
+           else
+              modify cb-mg4, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5115,6 +5135,11 @@ BEGIN-TEXT
              into como-tit-macro
            end-string
            modify lab-e, title como-tit-macro.
+           if el-mcg-sigla(5) = space     
+              modify cb-mg5, enabled false
+           else
+              modify cb-mg5, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5122,6 +5147,11 @@ BEGIN-TEXT
              into como-tit-macro
            end-string
            modify lab-f, title como-tit-macro.
+           if el-mcg-sigla(6) = space     
+              modify cb-mg6, enabled false
+           else
+              modify cb-mg6, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5129,6 +5159,11 @@ BEGIN-TEXT
              into como-tit-macro
            end-string
            modify lab-g, title como-tit-macro.
+           if el-mcg-sigla(7) = space     
+              modify cb-mg7, enabled false
+           else
+              modify cb-mg7, enabled true
+           end-if.
 
            move 0 to como-prim(1).
            move 0 to como-prim(2).
@@ -5727,9 +5762,13 @@ BEGIN-TEXT
                     read exercises
                     move exe-grp-code to grp-code
                     read groups 
-                    move tex-day  to tge-day
-                    move grp-desc to tge-grp-desc
-                    move exe-desc to tge-exe-desc
+                    move tex-day    to tge-day
+                    move grp-desc   to tge-grp-desc
+                    move exe-desc   to tge-exe-desc
+                    move tex-series to tge-series
+                    inspect tge-series replacing leading x"30" by x"20"
+                    call "C$JUSTIFY" using tge-series, "L"
+                    move tex-reps   to tge-reps
                     write tge-rec invalid rewrite tge-rec end-write
                  end-perform
            end-start.         
@@ -6494,7 +6533,11 @@ BEGIN-TEXT
                            until idx-days > wom-days
                     perform varying idx-split from 1 by 1 
                               until idx-split > 20
-                                                 
+                       
+                       if wom-split-el-split-sigla(idx-days, idx-split)  = space
+                          exit perform
+                       end-if
+
                        evaluate wom-split-el-split-sigla(idx-days, idx-split)
                        when el-mcg-sigla(1) move el-mcg-code(1) to mcg-code
                        when el-mcg-sigla(2) move el-mcg-code(2) to mcg-code
@@ -6843,9 +6886,8 @@ BEGIN-TEXT
                      cell-data = col-grp-desc
                                         
               inquire gd1(riga, 78-col-day), 
-                     cell-data = tex-day
-              inquire gd1(riga, 78-col-prg), 
-                     cell-data = tex-split
+                     hidden-data = hiddenData
+              move hid-tex-key to tex-key
               open i-o tmp-exe
               read tmp-exe 
               move exe-code     to tex-exe-code
@@ -6921,8 +6963,9 @@ BEGIN-TEXT
            inquire gd1, last-row in tot-righe.
            perform varying riga from 2 by 1 
                      until riga > tot-righe
-              inquire gd1(riga, 78-col-day), cell-data in col-day
-              if col-day > 0
+              inquire gd1(riga, 78-col-day), 
+                     hidden-data = hiddenData
+              if hid-tex-day > 0
                  modify gd1(riga), row-font = Calibri12-Occidentale,
                                    row-color 0
               end-if
@@ -7469,8 +7512,8 @@ BEGIN-TEXT
               set  event-action to event-action-fail-terminate
            end-if.
 
-           inquire gd1(event-data-2, 78-col-day), cell-data in col-day
-           if col-day = 0                   
+           inquire gd1(event-data-2, 78-col-day), hidden-data in hiddenData
+           if hid-tex-day = 0                   
               set  event-action to event-action-fail-terminate
            end-if.
 

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 25 settembre 2023 00:04:03.
+       DATE-WRITTEN.        lunedì 25 settembre 2023 10:22:04.
        REMARKS.
       *{TOTEM}END
 
@@ -413,7 +413,7 @@
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(105).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
        77 TMP-DataSet1-tmp-hit-BUF     PIC X(6).
-       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(201).
+       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(214).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -5216,6 +5216,11 @@
              into como-tit-macro
            end-string
            modify lab-a, title como-tit-macro.
+           if el-mcg-sigla(1) = space     
+              modify cb-mg1, enabled false
+           else
+              modify cb-mg1, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5223,6 +5228,11 @@
              into como-tit-macro
            end-string
            modify lab-b, title como-tit-macro.
+           if el-mcg-sigla(2) = space     
+              modify cb-mg2, enabled false
+           else
+              modify cb-mg2, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5230,6 +5240,11 @@
              into como-tit-macro
            end-string
            modify lab-c, title como-tit-macro.
+           if el-mcg-sigla(3) = space     
+              modify cb-mg3, enabled false
+           else
+              modify cb-mg3, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5237,6 +5252,11 @@
              into como-tit-macro
            end-string
            modify lab-d, title como-tit-macro.
+           if el-mcg-sigla(4) = space     
+              modify cb-mg4, enabled false
+           else
+              modify cb-mg4, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5244,6 +5264,11 @@
              into como-tit-macro
            end-string
            modify lab-e, title como-tit-macro.
+           if el-mcg-sigla(5) = space     
+              modify cb-mg5, enabled false
+           else
+              modify cb-mg5, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5251,6 +5276,11 @@
              into como-tit-macro
            end-string
            modify lab-f, title como-tit-macro.
+           if el-mcg-sigla(6) = space     
+              modify cb-mg6, enabled false
+           else
+              modify cb-mg6, enabled true
+           end-if.
 
            initialize como-tit-macro.
            string "Macrogruppo "  delimited size
@@ -5258,6 +5288,11 @@
              into como-tit-macro
            end-string
            modify lab-g, title como-tit-macro.
+           if el-mcg-sigla(7) = space     
+              modify cb-mg7, enabled false
+           else
+              modify cb-mg7, enabled true
+           end-if.
 
            move 0 to como-prim(1).
            move 0 to como-prim(2).
@@ -5860,9 +5895,13 @@
                     read exercises
                     move exe-grp-code to grp-code
                     read groups 
-                    move tex-day  to tge-day
-                    move grp-desc to tge-grp-desc
-                    move exe-desc to tge-exe-desc
+                    move tex-day    to tge-day
+                    move grp-desc   to tge-grp-desc
+                    move exe-desc   to tge-exe-desc
+                    move tex-series to tge-series
+                    inspect tge-series replacing leading x"30" by x"20"
+                    call "C$JUSTIFY" using tge-series, "L"
+                    move tex-reps   to tge-reps
                     write tge-rec invalid rewrite tge-rec end-write
                  end-perform
            end-start.         
@@ -6667,7 +6706,12 @@
                            until idx-days > wom-days
                     perform varying idx-split from 1 by 1 
                               until idx-split > 20
-                                                 
+                       
+                       if wom-split-el-split-sigla(idx-days, idx-split) 
+            = space
+                          exit perform
+                       end-if
+
                        evaluate wom-split-el-split-sigla(idx-days, 
            idx-split)
                        when el-mcg-sigla(1) move el-mcg-code(1) to 
@@ -7042,9 +7086,8 @@
                      cell-data = col-grp-desc
                                         
               inquire gd1(riga, 78-col-day), 
-                     cell-data = tex-day
-              inquire gd1(riga, 78-col-prg), 
-                     cell-data = tex-split
+                     hidden-data = hiddenData
+              move hid-tex-key to tex-key
               open i-o tmp-exe
               read tmp-exe 
               move exe-code     to tex-exe-code
@@ -7121,8 +7164,9 @@
            inquire gd1, last-row in tot-righe.
            perform varying riga from 2 by 1 
                      until riga > tot-righe
-              inquire gd1(riga, 78-col-day), cell-data in col-day
-              if col-day > 0
+              inquire gd1(riga, 78-col-day), 
+                     hidden-data = hiddenData
+              if hid-tex-day > 0
                  modify gd1(riga), row-font = Calibri12-Occidentale,
                                    row-color 0
               end-if
@@ -7635,8 +7679,9 @@
               set  event-action to event-action-fail-terminate
            end-if.
 
-           inquire gd1(event-data-2, 78-col-day), cell-data in col-day
-           if col-day = 0                   
+           inquire gd1(event-data-2, 78-col-day), hidden-data in 
+           hiddenData
+           if hid-tex-day = 0                   
               set  event-action to event-action-fail-terminate
            end-if.
 

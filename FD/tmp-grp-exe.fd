@@ -7,3 +7,7 @@
                10 tge-day          PIC  9.
       *(( XFD NAME = tge-day_1_1_1 ))
                10 tge-exe-desc     PIC  x(100).
+      *(( XFD NAME = tge-day_1_1_1 ))
+           05 tge-data.
+               10 tge-series       PIC  x(3).
+               10 tge-reps         PIC  x(10).

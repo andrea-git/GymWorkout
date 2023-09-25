@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        domenica 24 settembre 2023 23:46:53.
+       DATE-WRITTEN.        lunedì 25 settembre 2023 09:46:40.
        REMARKS.
       *{TOTEM}END
 
@@ -287,14 +287,10 @@
                    15 old-wom-split-el-days
                               OCCURS 7 TIMES.
                        20 old-wom-split-el-days-split
-                                  OCCURS 20 TIMES.
-      *(( XFD NAME = old-wom-split-el-sp-si ))
+                                  OCCURS 20 TIMES.  
                            25 old-wom-split-el-split-sigla     PIC  x.
-      *(( XFD NAME = old-wom-split-el-sp-ic ))
                            25 old-wom-split-el-split-int-code  PIC  9.
-      *(( XFD NAME = old-wom-split-el-sp-ss ))
                            25 old-wom-split-el-split-ss        PIC  9.
-      *(( XFD NAME = old-wom-split-el-sp-p ))
                            25 old-wom-split-el-split-primary   PIC  9.
                            25 FILLER           PIC  x(99).
                            25 FILLER           PIC  9(18).
@@ -1337,7 +1333,7 @@
            LINE 6,22,
            LINES 1,30 ,
            SIZE 18,00 ,
-           ID IS 8,
+           ID IS 47,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -5933,6 +5929,22 @@
               end-perform
            end-if.
 
+           if SiSalvato
+              perform varying idx from 1 by 1 
+                        until idx > 15
+                 if wom-sigla-default(idx) not = 
+           old-wom-sigla-default(idx)
+                    set NoSalvato to true
+                    exit perform
+                 end-if
+                 if wom-mcg-code-default(idx) not = 
+           old-wom-mcg-code-default(idx)
+                    set NoSalvato to true
+                    exit perform
+                 end-if
+              end-perform
+           end-if.
+
            if NoSalvato
               display message box MSG-Salvare-le-modifiche
                             title titolo
@@ -6394,6 +6406,8 @@
            move mcg-code to wom-mcg-code-default(1).
            if v-macro1 = 1
               move lab-macro1-buf(1:1) to wom-sigla-default(1)
+           else                                               
+              move space to wom-sigla-default(1)
            end-if.
 
            inquire cb-mcg2, value = mcg-desc.
@@ -6402,7 +6416,9 @@
            end-read.
            move mcg-code to wom-mcg-code-default(2).
            if v-macro2 = 1
-              move lab-macro2-buf(1:1) to wom-sigla-default(2)
+              move lab-macro2-buf(1:1) to wom-sigla-default(2) 
+           else                                               
+              move space to wom-sigla-default(2)
            end-if.
 
            inquire cb-mcg3, value = mcg-desc.
@@ -6412,6 +6428,8 @@
            move mcg-code to wom-mcg-code-default(3).
            if v-macro3 = 1
               move lab-macro3-buf(1:1) to wom-sigla-default(3)
+           else                                               
+              move space to wom-sigla-default(3)
            end-if.
 
            inquire cb-mcg4, value = mcg-desc.
@@ -6420,7 +6438,9 @@
            end-read.
            move mcg-code to wom-mcg-code-default(4).
            if v-macro4 = 1
-              move lab-macro4-buf(1:1) to wom-sigla-default(4)
+              move lab-macro4-buf(1:1) to wom-sigla-default(4) 
+           else                                               
+              move space to wom-sigla-default(4)
            end-if.
 
            inquire cb-mcg5, value = mcg-desc.
@@ -6429,7 +6449,9 @@
            end-read.
            move mcg-code to wom-mcg-code-default(5).
            if v-macro5 = 1
-              move lab-macro5-buf(1:1) to wom-sigla-default(5)
+              move lab-macro5-buf(1:1) to wom-sigla-default(5)  
+           else                                               
+              move space to wom-sigla-default(5)
            end-if.
 
            inquire cb-mcg6, value = mcg-desc.
@@ -6438,7 +6460,9 @@
            end-read.                                
            move mcg-code to wom-mcg-code-default(6).
            if v-macro6 = 1
-              move lab-macro6-buf(1:1) to wom-sigla-default(6)
+              move lab-macro6-buf(1:1) to wom-sigla-default(6)    
+           else                                               
+              move space to wom-sigla-default(6)
            end-if.
 
            inquire cb-mcg7, value = mcg-desc.
@@ -6448,6 +6472,8 @@
            move mcg-code to wom-mcg-code-default(7).
            if v-macro7 = 1
               move lab-macro7-buf(1:1) to wom-sigla-default(7)
+           else                                               
+              move space to wom-sigla-default(7)
            end-if.
 
 

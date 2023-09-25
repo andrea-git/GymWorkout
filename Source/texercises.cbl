@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 25 settembre 2023 15:18:49.
+       DATE-WRITTEN.        lunedì 25 settembre 2023 17:17:09.
        REMARKS.
       *{TOTEM}END
 
@@ -3131,7 +3131,7 @@
            grp-desc
                 modify form1-gd-1(riga, 78-col-mcg-desc), cell-data 
            mcg-desc  
-           when 78-col-grp-desc
+           when 78-col-int-code
                 move exe-int-code to int-code
                 read intexe no lock 
                      invalid 
@@ -3831,6 +3831,9 @@
 
               perform ABILITAZIONI
 
+              move spaces to ef-note-buf
+              display ef-note
+
               initialize old-exe-rec replacing numeric data by zeroes
                                           alphanumeric data by spaces
               add 1 to tot-righe giving event-data-2
@@ -4107,7 +4110,8 @@
                     set event-action to event-action-fail
                     modify form1-gd-1, cursor-y = riga, cursor-x = 1
                  else
-                    if colonna = 4 or 5 or 7                           
+                    if colonna = 78-col-grp-desc or 78-col-mcg-desc or 
+           78-col-int-desc
                        set event-action to event-action-fail
                     end-if
                  end-if   
@@ -4635,7 +4639,7 @@
                     end-if
                  end-perform
               end-if
-           end-if 
+           end-if  
            .
       * <TOTEM:END>
 

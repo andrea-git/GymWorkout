@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 25 settembre 2023 10:22:04.
+       DATE-WRITTEN.        lunedì 25 settembre 2023 12:17:13.
        REMARKS.
       *{TOTEM}END
 
@@ -133,6 +133,7 @@
        77 como-giorno      PIC  99.
        77 como-tit-macro   PIC  x(13).
        77 save-day         PIC  9.
+       77 como-series      PIC  999.
        01 mcg-sigle-tab.
            05 el-mcg-sigla     PIC  x
                       OCCURS 10 TIMES.
@@ -571,6 +572,22 @@
            AFTER PROCEDURE cb-mg1-AfterProcedure, 
            BEFORE PROCEDURE cb-mg1-BeforeProcedure, 
            .
+      * PUSH BUTTON
+       05
+           pb-mcg1, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 1,70,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1005,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
       * COMBO-BOX
        05
            cb-mg2, 
@@ -591,6 +608,22 @@
            AFTER PROCEDURE cb-mg2-AfterProcedure, 
            BEFORE PROCEDURE cb-mg2-BeforeProcedure, 
            .
+      * PUSH BUTTON
+       05
+           pb-mcg2, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 3,17,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1006,
+           ID IS 15,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
       * COMBO-BOX
        05
            cb-mg3, 
@@ -611,6 +644,22 @@
            AFTER PROCEDURE cb-mg3-AfterProcedure, 
            BEFORE PROCEDURE cb-mg3-BeforeProcedure, 
            .
+      * PUSH BUTTON
+       05
+           pb-mcg3, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 4,70,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1011,
+           ID IS 20,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
       * COMBO-BOX
        05
            cb-mg4, 
@@ -631,6 +680,22 @@
            AFTER PROCEDURE cb-mg4-AfterProcedure, 
            BEFORE PROCEDURE cb-mg4-BeforeProcedure, 
            .
+      * PUSH BUTTON
+       05
+           pb-mcg4, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 6,17,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1010,
+           ID IS 21,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
       * COMBO-BOX
        05
            cb-mg5, 
@@ -651,6 +716,22 @@
            AFTER PROCEDURE cb-mg5-AfterProcedure, 
            BEFORE PROCEDURE cb-mg5-BeforeProcedure, 
            .
+      * PUSH BUTTON
+       05
+           pb-mcg5, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 7,70,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1009,
+           ID IS 22,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
       * COMBO-BOX
        05
            cb-mg6, 
@@ -671,6 +752,22 @@
            AFTER PROCEDURE cb-mg6-AfterProcedure, 
            BEFORE PROCEDURE cb-mg6-BeforeProcedure, 
            .
+      * PUSH BUTTON
+       05
+           pb-mcg6, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 9,17,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1008,
+           ID IS 39,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
       * COMBO-BOX
        05
            cb-mg7, 
@@ -691,6 +788,22 @@
            AFTER PROCEDURE cb-mg7-AfterProcedure, 
            BEFORE PROCEDURE cb-mg7-BeforeProcedure, 
            .
+      * PUSH BUTTON
+       05
+           pb-mcg7, 
+           Push-Button, 
+           COL 62,00, 
+           LINE 10,70,
+           LINES 1,30 ,
+           SIZE 7,00 ,
+           ENABLED 0,
+           EXCEPTION-VALUE 1007,
+           ID IS 40,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Mai",
+           .
+
       * COMBO-BOX
        05
            cb-mul, 
@@ -1111,118 +1224,6 @@
            VIRTUAL-WIDTH 90,
            VPADDING 5,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
-           .
-
-      * PUSH BUTTON
-       05
-           pb-mcg1, 
-           Push-Button, 
-           COL 62,00, 
-           LINE 1,70,
-           LINES 1,30 ,
-           SIZE 7,00 ,
-           ENABLED 0,
-           EXCEPTION-VALUE 1005,
-           ID IS 14,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TITLE "Mai",
-           .
-
-      * PUSH BUTTON
-       05
-           pb-mcg2, 
-           Push-Button, 
-           COL 62,00, 
-           LINE 3,17,
-           LINES 1,30 ,
-           SIZE 7,00 ,
-           ENABLED 0,
-           EXCEPTION-VALUE 1006,
-           ID IS 15,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TITLE "Mai",
-           .
-
-      * PUSH BUTTON
-       05
-           pb-mcg3, 
-           Push-Button, 
-           COL 62,00, 
-           LINE 4,70,
-           LINES 1,30 ,
-           SIZE 7,00 ,
-           ENABLED 0,
-           EXCEPTION-VALUE 1011,
-           ID IS 20,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TITLE "Mai",
-           .
-
-      * PUSH BUTTON
-       05
-           pb-mcg4, 
-           Push-Button, 
-           COL 62,00, 
-           LINE 6,17,
-           LINES 1,30 ,
-           SIZE 7,00 ,
-           ENABLED 0,
-           EXCEPTION-VALUE 1010,
-           ID IS 21,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TITLE "Mai",
-           .
-
-      * PUSH BUTTON
-       05
-           pb-mcg5, 
-           Push-Button, 
-           COL 62,00, 
-           LINE 7,70,
-           LINES 1,30 ,
-           SIZE 7,00 ,
-           ENABLED 0,
-           EXCEPTION-VALUE 1009,
-           ID IS 22,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TITLE "Mai",
-           .
-
-      * PUSH BUTTON
-       05
-           pb-mcg6, 
-           Push-Button, 
-           COL 62,00, 
-           LINE 9,17,
-           LINES 1,30 ,
-           SIZE 7,00 ,
-           ENABLED 0,
-           EXCEPTION-VALUE 1008,
-           ID IS 39,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TITLE "Mai",
-           .
-
-      * PUSH BUTTON
-       05
-           pb-mcg7, 
-           Push-Button, 
-           COL 62,00, 
-           LINE 10,70,
-           LINES 1,30 ,
-           SIZE 7,00 ,
-           ENABLED 0,
-           EXCEPTION-VALUE 1007,
-           ID IS 40,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TITLE "Mai",
            .
 
       * TOOLBAR
@@ -3930,6 +3931,10 @@
            END-IF
            .
 
+       DataSet1-tmp-grp-exe-START-EQUAL.
+           START tmp-grp-exe KEY = tge-key
+           .
+
        DataSet1-tmp-grp-exe-Read.
       * <TOTEM:EPT. FD:DataSet1, FD:tmp-grp-exe, BeforeRead>
       * <TOTEM:END>
@@ -4426,10 +4431,6 @@
                  IF Event-Type = Cmd-Close
                     PERFORM Form1-Exit
                  END-IF
-              WHEN Key-Status = 1000
-                 PERFORM pb-genera-LinkTo
-              WHEN Key-Status = 1002
-                 PERFORM pb-random-LinkTo
               WHEN Key-Status = 1005
                  PERFORM pb-mcg1-LinkTo
               WHEN Key-Status = 1006
@@ -4444,6 +4445,10 @@
                  PERFORM pb-mcg6-LinkTo
               WHEN Key-Status = 1007
                  PERFORM pb-mcg7-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM pb-genera-LinkTo
+              WHEN Key-Status = 1002
+                 PERFORM pb-random-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 3
@@ -5879,7 +5884,7 @@
            open i-o    tmp-grp-exe.
 
            move el-mcg-code(idx) to mcg-code.
-           
+                       
            open input tmp-exe.
            move low-value to tex-rec.
            move mcg-code  to tex-mcg-code.
@@ -5887,25 +5892,58 @@
                  invalid continue
              not invalid
                  perform until 1 = 2
-                    read tmp-exe next at end exit perform end-read
+                    read tmp-exe next at end exit perform end-read   
+                    
                     if tex-mcg-code not = mcg-code
                        exit perform
                     end-if
+
                     move tex-exe-code to exe-code
                     read exercises
                     move exe-grp-code to grp-code
-                    read groups 
+                    read groups                                   
+
                     move tex-day    to tge-day
                     move grp-desc   to tge-grp-desc
                     move exe-desc   to tge-exe-desc
                     move tex-series to tge-series
                     inspect tge-series replacing leading x"30" by x"20"
                     call "C$JUSTIFY" using tge-series, "L"
-                    move tex-reps   to tge-reps
+                    move tex-reps   to tge-reps  
                     write tge-rec invalid rewrite tge-rec end-write
                  end-perform
            end-start.         
            close tmp-exe.  
+                    
+           move spaces to como-nome.
+           move 0      to tot-series.  
+           move low-value to tge-key.
+           start tmp-grp-exe key >= tge-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-grp-exe next 
+                      at end perform RIGA-TOT
+                             exit perform
+                    end-read
+                    if como-nome = spaces
+                       move tge-grp-desc to como-nome
+                    end-if
+                    if como-nome not = tge-grp-desc
+                       move tge-grp-desc to grp-desc
+                       move tge-series   to como-xx1
+                       perform RIGA-TOT             
+                       move grp-desc   to tge-grp-desc  
+                       move como-xx1   to tge-series
+                       move 0 to tot-series
+                       move tge-grp-desc to como-nome
+                    end-if
+                    call "C$JUSTIFY" using tge-series; "R"
+                    inspect tge-series replacing leading x"20" by x"30"
+                    move tge-series  to como-series
+                    add como-series  to tot-series
+                 end-perform
+           end-start.
 
            move path-tmp-grp-exe to ext-file
            move "tmp-grp-exe"    to Como-File
@@ -5914,8 +5952,19 @@
            cancel "zoom-gt".
 
            close       tmp-grp-exe.
-           delete file tmp-grp-exe 
-                                   
+           delete file tmp-grp-exe.
+
+      ***---
+       RIGA-TOT.
+           initialize tge-rec replacing numeric data by zeroes
+                                   alphanumeric data by spaces.
+           move como-nome  to tge-grp-desc.
+           move high-value to tge-day.
+           move "TOTALE "  to tge-exe-desc.
+           move tot-series to tge-series.
+           inspect tge-series replacing leading x"30" by x"20".
+           call "C$JUSTIFY" using tge-series, "L".
+           write tge-rec invalid rewrite tge-rec end-write 
            .
       * <TOTEM:END>
 

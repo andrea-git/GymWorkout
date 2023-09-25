@@ -28,11 +28,11 @@
       <xfd:key-columns
            xfd:key-column-count="3">
         <xfd:key-column
-             xfd:key-column-name="TGE-DAY-1-1"/>
+             xfd:key-column-name="TGE-GRP-DESC"/>
         <xfd:key-column
              xfd:key-column-name="TGE-DAY"/>
         <xfd:key-column
-             xfd:key-column-name="TGE-DAY-1-1-1"/>
+             xfd:key-column-name="TGE-EXE-DESC"/>
       </xfd:key-columns>
     </xfd:key>
   </xfd:keys>
@@ -73,11 +73,11 @@
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
-         xfd:field-name="TGE-DAY-1-1"/>
+         xfd:field-name="TGE-GRP-DESC"/>
     <xfd:field
          xfd:field-offset="100"
          xfd:field-bytes="1"
-         xfd:field-type="1"
+         xfd:field-type="16"
          xfd:field-length="1"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
@@ -93,7 +93,7 @@
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
-         xfd:field-name="TGE-DAY-1-1-1"/>
+         xfd:field-name="TGE-EXE-DESC"/>
     <xfd:field
          xfd:field-offset="201"
          xfd:field-bytes="13"
@@ -103,7 +103,7 @@
          xfd:field-user-flags="0"
          xfd:field-condition="999"
          xfd:field-level="5"
-         xfd:field-name="TGE-DAY-1-1-1"/>
+         xfd:field-name="TGE-DATA"/>
     <xfd:field
          xfd:field-offset="201"
          xfd:field-bytes="3"

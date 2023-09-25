@@ -388,8 +388,8 @@
 
            initialize spl-riga-stampa.
            move 0 to spl-tipo-colonna.
-                      
-           move 27,2 to spl-colonna
+                                       
+           move 27,3 to spl-colonna
            move pagina     to pagina-z.
            move tot-pagine to tot-pagine-z.
            initialize spl-riga-stampa.

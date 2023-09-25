@@ -60,6 +60,7 @@
        01  r-riga.
            05 r-exe-desc         pic x(20).
            05 r-reps             pic x(10).
+           05 r-note             pic x(50).
 
       * FLAGS
        77  controlli             pic xx.
@@ -222,7 +223,8 @@
                               exe-desc-stampa 
                          into r-exe-desc
                        end-string
-                       move tex-reps        to r-reps 
+                       move tex-reps        to r-reps
+                       move exe-note        to r-note
                        
                        perform STAMPA-FRAME-RIGA
                                                

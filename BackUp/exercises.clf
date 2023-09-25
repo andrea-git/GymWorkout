@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791615438-608-3240812638
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7919114148-574-103022614
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -128,9 +128,9 @@ m_bFixed=1
 
 @}}
 [FDITEM12_]
-m_strName=exe-filler
-m_strRawPic=x(978)
-m_strPic=x(978)
+m_strName=exe-note
+m_strRawPic=x(278)
+m_strPic=x(278)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -138,9 +138,9 @@ m_bFixed=1
 
 @}}
 [FDITEM13_]
-m_strName=exe-filler-n1
-m_strRawPic=9(18)
-m_strPic=9(18)
+m_strName=exe-filler
+m_strRawPic=x(700)
+m_strPic=x(700)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -148,7 +148,7 @@ m_bFixed=1
 
 @}}
 [FDITEM14_]
-m_strName=exe-filler-n2
+m_strName=exe-filler-n1
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
@@ -158,7 +158,7 @@ m_bFixed=1
 
 @}}
 [FDITEM15_]
-m_strName=exe-filler-n3
+m_strName=exe-filler-n2
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
@@ -168,13 +168,23 @@ m_bFixed=1
 
 @}}
 [FDITEM16_]
-m_strName=exe-filler-n4
+m_strName=exe-filler-n3
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM16_
+
+@}}
+[FDITEM17_]
+m_strName=exe-filler-n4
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM17_
 
 @}}
 [CStoAcucobolSL_]

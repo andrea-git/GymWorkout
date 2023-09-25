@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        domenica 24 settembre 2023 00:16:49.
+       DATE-WRITTEN.        lunedì 25 settembre 2023 14:46:19.
        REMARKS.
       *{TOTEM}END
 
@@ -95,6 +95,8 @@
        77 toolbar-bmp      PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
+       01 hiddenData.
+           05 hid-note         PIC  x(278).
        77 bmpNum           PIC  999.
        78 78-col-code VALUE IS 1. 
        78 78-col-desc VALUE IS 2. 
@@ -207,12 +209,19 @@
                   VALUE IS 0.
        77 chk-intall-buf   PIC  9
                   VALUE IS 1.
+       77 AUTO-ID          PIC  9(6)
+                  VALUE IS 32.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
       ***********************************************************
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
+      * DATA CONTROL BUFFER
+       01 Form1-BUF.
+      * Data.Entry-Field
+              05 ef-note-BUF PIC x(278).
+
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
        77 TMP-Form1-exercises-RESTOREBUF  PIC X(1189).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
@@ -279,7 +288,8 @@
                10 old-exe-restpause    PIC  9.
                10 old-exe-disab        PIC  9.
                10 old-exe-desc-stampa  PIC  x(20).
-               10 old-exe-filler       PIC  x(978).
+               10 old-exe-note         PIC  x(278).
+               10 old-exe-filler       PIC  x(700).
                10 old-exe-filler-n1    PIC  9(18).
                10 old-exe-filler-n2    PIC  9(18).
                10 old-exe-filler-n3    PIC  9(18).
@@ -288,6 +298,7 @@
 
       *{TOTEM}ID-LOGICI
       ***** Elenco ID Logici *****
+       78  78-ID-ef-note VALUE 5001.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -302,6 +313,7 @@
       * FORM
        01 
            Form1, 
+           AFTER PROCEDURE Form1-AfterProcedure,
            .
 
       * GRID
@@ -309,8 +321,8 @@
            form1-gd-1, 
            Grid, 
            COL 1,40, 
-           LINE 4,04,
-           LINES 35,13 ,
+           LINE 4,00,
+           LINES 34,00 ,
            SIZE 172,00 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
@@ -339,6 +351,24 @@
            EVENT PROCEDURE Form1-Gd-1-Event-Proc,
            .
 
+      * ENTRY FIELD
+       05
+           ef-note, 
+           Entry-Field, 
+           COL 8,40, 
+           LINE 38,30,
+           LINES 1,35 ,
+           SIZE 165,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 78-ID-ef-note,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MAX-TEXT 278,
+           VALUE ef-note-BUF,
+           BEFORE PROCEDURE ef-note-BeforeProcedure, 
+           .
       * CHECK BOX
        05
            chk-mcgall, 
@@ -356,6 +386,8 @@
            TITLE "Tutti i gruppi",
            VALUE chk-mcgall-buf,
            VISIBLE 1,
+           AFTER PROCEDURE chk-mcgall-AfterProcedure,
+           BEFORE PROCEDURE chk-mcgall-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -367,13 +399,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 3,
+           ID IS 4,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-mcg1-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-mcg1-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg1-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -385,30 +419,16 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 4,
+           ID IS 5,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-mcg2-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-mcg2-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg2-BeforeProcedure, 
            .
-      * LABEL
-       05
-           CST-BLOCKPGM, 
-           Label, 
-           COL 49,57, 
-           LINE 1,00,
-           LINES 0,48 ,
-           SIZE 2,10 ,
-           ID IS 12,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE "BlockPgm",
-           VISIBLE v-custom,
-           .
-
       * CHECK BOX
        05
            chk-mcg3, 
@@ -419,13 +439,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 5,
+           ID IS 13,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-mcg3-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-mcg3-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg3-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -444,6 +466,8 @@
            TITLE "Check Box",
            VALUE chk-mcg4-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-mcg4-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg4-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -462,6 +486,8 @@
            TITLE "Check Box",
            VALUE chk-mcg5-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-mcg5-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg5-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -480,6 +506,8 @@
            TITLE "Check Box",
            VALUE chk-mcg6-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-mcg6-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg6-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -498,6 +526,8 @@
            TITLE "Check Box",
            VALUE chk-mcg7-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-mcg7-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg7-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -516,6 +546,8 @@
            TITLE "Check Box",
            VALUE chk-mcg8-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-mcg8-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg8-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -534,6 +566,8 @@
            TITLE "Check Box",
            VALUE chk-mcg9-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-mcg9-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg9-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -545,13 +579,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 13,
+           ID IS 14,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-mcg10-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-mcg10-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg10-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -563,13 +599,15 @@
            SIZE 15,00 ,
            EXCEPTION-VALUE 1002
            FLAT,
-           ID IS 3,
+           ID IS 15,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Tutte le intensità",
            VALUE chk-intall-buf,
            VISIBLE 1,
+           AFTER PROCEDURE chk-intall-AfterProcedure,
+           BEFORE PROCEDURE chk-intall-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -581,13 +619,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 3,
+           ID IS 16,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-int1-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-int1-AfterProcedure,
+           BEFORE PROCEDURE chk-int1-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -599,13 +639,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 4,
+           ID IS 17,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-int2-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-int2-AfterProcedure,
+           BEFORE PROCEDURE chk-int2-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -617,13 +659,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 5,
+           ID IS 18,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-int3-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-int3-AfterProcedure,
+           BEFORE PROCEDURE chk-int3-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -635,13 +679,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 6,
+           ID IS 19,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-int4-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-int4-AfterProcedure,
+           BEFORE PROCEDURE chk-int4-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -653,13 +699,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 7,
+           ID IS 20,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-int5-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-int5-AfterProcedure,
+           BEFORE PROCEDURE chk-int5-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -671,13 +719,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 8,
+           ID IS 21,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-int6-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-int6-AfterProcedure,
+           BEFORE PROCEDURE chk-int6-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -689,13 +739,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 9,
+           ID IS 22,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-int7-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-int7-AfterProcedure,
+           BEFORE PROCEDURE chk-int7-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -707,13 +759,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 10,
+           ID IS 23,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-int8-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-int8-AfterProcedure,
+           BEFORE PROCEDURE chk-int8-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -725,13 +779,15 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 11,
+           ID IS 24,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-int9-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-int9-AfterProcedure,
+           BEFORE PROCEDURE chk-int9-BeforeProcedure, 
            .
       * CHECK BOX
        05
@@ -743,14 +799,62 @@
            SIZE 9,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 13,
+           ID IS 25,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
            VALUE chk-int10-buf,
            VISIBLE 0,
+           AFTER PROCEDURE chk-int10-AfterProcedure,
+           BEFORE PROCEDURE chk-int10-BeforeProcedure, 
            .
+      * LABEL
+       05
+           Form1-La-1, 
+           Label, 
+           COL 1,90, 
+           LINE 38,30,
+           LINES 1,22 ,
+           SIZE 5,00 ,
+           ID IS 31,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Note",
+           .
+
+      * LABEL
+       05
+           Form1-blockpgm-1, 
+           Label, 
+           COL 134,50, 
+           LINE 1,70,
+           LINES 1,00 ,
+           SIZE 1,00 ,
+           ID IS 12,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "BlockPgm",
+           VISIBLE v-custom,
+           .
+
+      * LABEL
+       05
+           Form1-Custom1-1, 
+           Label, 
+           COL 130,50, 
+           LINE 1,22,
+           LINES 0,70 ,
+           SIZE 1,00 ,
+           FONT IS Default-Font,
+           ID IS 33,
+           TRANSPARENT,
+           TITLE "CUSTOM CONTROL",
+           VISIBLE v-custom,
+           .
+
       * TOOLBAR
        01
            Form1-Tb-1,
@@ -792,7 +896,7 @@
            ENABLED E-NUOVO,
            EXCEPTION-VALUE 2,
            FLAT,
-           ID IS 14,
+           ID IS 26,
            SELF-ACT,
            TITLE "Nuovo (F2)",
            .
@@ -811,7 +915,7 @@
            ENABLED E-CANCELLA,
            EXCEPTION-VALUE 4,
            FLAT,
-           ID IS 15,
+           ID IS 27,
            SELF-ACT,
            TITLE "Cancella (F4)",
            BITMAP-NUMBER BitmapNumDelete
@@ -831,7 +935,7 @@
            ENABLED E-SALVA,
            EXCEPTION-VALUE 3,
            FLAT,
-           ID IS 16,
+           ID IS 28,
            SELF-ACT,
            TITLE "Salva (F3)",
            BITMAP-NUMBER BitmapNumSave
@@ -852,7 +956,7 @@
            ENABLED E-MODIFICA,
            EXCEPTION-VALUE 1005
            FLAT,
-           ID IS 17,
+           ID IS 29,
            SELF-ACT,
            TITLE "Modifica (F5)",
            VALUE MOD,
@@ -873,7 +977,7 @@
            ENABLED E-CERCA,
            EXCEPTION-VALUE 8,
            FLAT,
-           ID IS 18,
+           ID IS 30,
            SELF-ACT,
            TITLE "Cerca (F8)",
            VISIBLE 1,
@@ -2221,7 +2325,11 @@
            perform LOAD-RECORD.
 
            move 2  to event-data-2.
-           perform SPOSTAMENTO.    
+           perform SPOSTAMENTO. 
+ 
+           inquire form1-gd-1(2, 1), hidden-data hiddenData.
+           move hid-note to ef-note-buf.
+           display ef-note.
 
            perform INIT.
 
@@ -2340,11 +2448,7 @@
            DISPLAY Form1-Tb-1
            DISPLAY Form1 UPON Form1-Handle
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterDisplay>
-           SET LK-BL-SCRITTURA     TO TRUE.
-           MOVE COMO-PROG-ID       TO LK-BL-PROG-ID.
-           MOVE FORM1-HANDLE       TO LK-HND-WIN.
-           CALL "BLOCKPGM"  USING LK-BLOCKPGM.
-           CANCEL "BLOCKPGM".
+
            SET LK-BL-SCRITTURA     TO TRUE.
            MOVE COMO-PROG-ID       TO LK-BL-PROG-ID.
            MOVE FORM1-HANDLE       TO LK-HND-WIN.
@@ -2655,6 +2759,7 @@
 
        Form1-Init-Value.
            MOVE titolo TO TOTEM-MSG-TITLE
+           INITIALIZE Form1-BUF
       * FORM : Form1
            PERFORM DataSet1-INIT-RECORD
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, SetDefault>
@@ -2669,12 +2774,39 @@
       * for Form's Validation
        Form1-VALIDATION-ROUTINE.
            SET TOTEM-CHECK-OK TO TRUE
+      * ef-note's Validation
+           SET TOTEM-CHECK-OK TO FALSE
+           PERFORM ef-note-VALIDATION
+           IF NOT TOTEM-CHECK-OK
+               MOVE 4 TO ACCEPT-CONTROL
+               MOVE 5001 TO CONTROL-ID
+               EXIT PARAGRAPH
+           END-IF
+           .
+
+       ef-note-BEFORE-VALIDATION.
+      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-note, BeforeValidation>
+      * <TOTEM:END>
+           .
+
+       ef-note-AFTER-VALIDATION.
+      * <TOTEM:EPT. FORM:Form1, Data.Entry-Field:ef-note, AfterValidation>
+      * <TOTEM:END>
+           .
+
+      * ef-note's Validation
+       ef-note-VALIDATION.
+           PERFORM ef-note-BEFORE-VALIDATION
+           SET TOTEM-CHECK-OK TO TRUE
+           PERFORM ef-note-AFTER-VALIDATION
            .
 
 
        Form1-Buf-To-Fld.
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeBufToFld>
       * <TOTEM:END>
+      * DB_Entry-Field : ef-note
+           MOVE ef-note-BUF TO exe-note
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterBufToFld>
       * <TOTEM:END>
            .
@@ -2685,6 +2817,8 @@
 
            .
       * <TOTEM:END>
+      * DB_Entry-Field : ef-note
+           MOVE exe-note TO ef-note-BUF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterFldToBuf>
       * <TOTEM:END>
            .
@@ -2743,6 +2877,12 @@
            .
 
 
+
+       Form1-AfterProcedure.
+           EVALUATE Control-Id
+           When 5001 PERFORM ef-note-AfterProcedure
+           END-EVALUATE
+           .
 
        Form1-Event-Proc.
            .
@@ -3411,7 +3551,12 @@
            end-if.
 
            add 1 to riga.
-           
+
+           move exe-note to hid-note.
+                                 
+           modify form1-gd-1(riga, 78-col-code),      hidden-data 
+           hiddenData.
+
            modify form1-gd-1(riga, 78-col-code),        cell-data 
            col-codice.
            modify form1-gd-1(riga, 78-col-desc),        cell-data 
@@ -3623,7 +3768,9 @@
 
            perform ABILITAZIONI.
 
-           modify tool-modifica, value mod 
+           modify tool-modifica, value mod.
+
+           display ef-note 
            .
       * <TOTEM:END>
 
@@ -3700,6 +3847,11 @@
 
        SALVA.
       * <TOTEM:PARA. SALVA>
+           inquire ef-note, value in ef-note-buf.
+           if siSalvato and ef-note-buf not = old-exe-note and mod = 1
+              set NoSalvato to true
+           end-if.
+
            if sisalvato or mod = 0 exit paragraph end-if.
 
            inquire form1-gd-1, cursor-x in colonna, 
@@ -3711,7 +3863,10 @@
               if errori exit perform end-if
            end-perform.
 
-           if tutto-ok
+           if tutto-ok                                                  
+                           
+              move ef-note-buf to exe-note hid-note
+              modify form1-gd-1(riga, 1), hidden-data hiddenData
               write exe-rec
                     invalid rewrite exe-rec
               end-write
@@ -3741,7 +3896,15 @@
                     move colonna to event-data-1 | (isacco)
                     set event-action to event-action-fail
                  end-if
+              end-if                 
+
+              if tutto-ok
+                 inquire form1-gd-1(event-data-2, 1) hidden-data 
+           hiddenData
+                 move hid-note to ef-note-buf
+                 display ef-note
               end-if
+
            else
               if colonna not = event-data-1
                  perform CONTROLLO
@@ -3754,7 +3917,7 @@
       * VALORIZZO L'OLD DELLA RIGA SU CUI SONO ANDATO
            move event-data-2 to riga.
            move event-data-1 to colonna.
-           perform VALORE-OLD-RIGA.
+           perform VALORE-OLD-RIGA.  
 
       * COLORAZIONE RIGA IN GRID
            perform COLORE-RIGA.
@@ -3766,7 +3929,7 @@
            else
               move BitmapZoomDisabled to bmpNum
               modify tool-cerca, bitmap-number = bmpNum, enabled false
-           end-if               
+           end-if        
            .
       * <TOTEM:END>
 
@@ -3779,6 +3942,9 @@
 
        VALORE-RIGA.
       * <TOTEM:PARA. VALORE-RIGA>
+           inquire form1-gd-1(riga, 78-col-code),      hidden-data 
+           hiddenData.
+
            inquire form1-gd-1(riga, 78-col-code),        cell-data 
            exe-code.
            inquire form1-gd-1(riga, 78-col-desc),        cell-data 
@@ -3796,7 +3962,9 @@
            inquire form1-gd-1(riga, 78-col-restpause),   cell-data 
            exe-isRestpause. 
            inquire form1-gd-1(riga, 78-col-disable),     cell-data 
-           exe-isDisable  
+           exe-isDisable. 
+
+           move ef-note-buf to exe-note 
            .
       * <TOTEM:END>
 
@@ -3938,10 +4106,12 @@
       * <TOTEM:END>
        TOOL-MODIFICA-BeforeProcedure.
       * <TOTEM:PARA. TOOL-MODIFICA-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
            .
       * <TOTEM:END>
        TOOL-MODIFICA-AfterProcedure.
       * <TOTEM:PARA. TOOL-MODIFICA-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
            .
       * <TOTEM:END>
        TOOL-CERCA-LinkTo.
@@ -4164,6 +4334,244 @@
            end-if.                      
 
            perform LOAD-RECORD 
+           .
+      * <TOTEM:END>
+       ef-note-BeforeProcedure.
+      * <TOTEM:PARA. ef-note-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-note-AfterProcedure.
+      * <TOTEM:PARA. ef-note-AfterProcedure>
+              INQUIRE ef-note, VALUE IN exe-note
+              SET TOTEM-CHECK-OK TO FALSE
+              PERFORM ef-note-VALIDATION
+              IF NOT TOTEM-CHECK-OK
+                 MOVE 1 TO ACCEPT-CONTROL
+              END-IF
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+
+           .
+      * <TOTEM:END>
+
+       chk-mcgall-BeforeProcedure.
+      * <TOTEM:PARA. chk-mcgall-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-mcg1-BeforeProcedure.
+      * <TOTEM:PARA. chk-mcg1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-mcg2-BeforeProcedure.
+      * <TOTEM:PARA. chk-mcg2-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-mcg3-BeforeProcedure.
+      * <TOTEM:PARA. chk-mcg3-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-mcg4-BeforeProcedure.
+      * <TOTEM:PARA. chk-mcg4-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-mcg5-BeforeProcedure.
+      * <TOTEM:PARA. chk-mcg5-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-mcg6-BeforeProcedure.
+      * <TOTEM:PARA. chk-mcg6-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-mcg7-BeforeProcedure.
+      * <TOTEM:PARA. chk-mcg7-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-mcg8-BeforeProcedure.
+      * <TOTEM:PARA. chk-mcg8-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-mcg9-BeforeProcedure.
+      * <TOTEM:PARA. chk-mcg9-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-mcg10-BeforeProcedure.
+      * <TOTEM:PARA. chk-mcg10-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-intall-BeforeProcedure.
+      * <TOTEM:PARA. chk-intall-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-int1-BeforeProcedure.
+      * <TOTEM:PARA. chk-int1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-int2-BeforeProcedure.
+      * <TOTEM:PARA. chk-int2-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-int3-BeforeProcedure.
+      * <TOTEM:PARA. chk-int3-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-int4-BeforeProcedure.
+      * <TOTEM:PARA. chk-int4-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-int5-BeforeProcedure.
+      * <TOTEM:PARA. chk-int5-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-int6-BeforeProcedure.
+      * <TOTEM:PARA. chk-int6-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-int7-BeforeProcedure.
+      * <TOTEM:PARA. chk-int7-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-int8-BeforeProcedure.
+      * <TOTEM:PARA. chk-int8-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-int9-BeforeProcedure.
+      * <TOTEM:PARA. chk-int9-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-int10-BeforeProcedure.
+      * <TOTEM:PARA. chk-int10-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       chk-mcgall-AfterProcedure.
+      * <TOTEM:PARA. chk-mcgall-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-mcg1-AfterProcedure.
+      * <TOTEM:PARA. chk-mcg1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-mcg2-AfterProcedure.
+      * <TOTEM:PARA. chk-mcg2-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-mcg3-AfterProcedure.
+      * <TOTEM:PARA. chk-mcg3-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-mcg4-AfterProcedure.
+      * <TOTEM:PARA. chk-mcg4-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-mcg5-AfterProcedure.
+      * <TOTEM:PARA. chk-mcg5-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-mcg6-AfterProcedure.
+      * <TOTEM:PARA. chk-mcg6-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-mcg7-AfterProcedure.
+      * <TOTEM:PARA. chk-mcg7-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-mcg8-AfterProcedure.
+      * <TOTEM:PARA. chk-mcg8-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-mcg9-AfterProcedure.
+      * <TOTEM:PARA. chk-mcg9-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-mcg10-AfterProcedure.
+      * <TOTEM:PARA. chk-mcg10-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-intall-AfterProcedure.
+      * <TOTEM:PARA. chk-intall-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-int1-AfterProcedure.
+      * <TOTEM:PARA. chk-int1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-int2-AfterProcedure.
+      * <TOTEM:PARA. chk-int2-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-int3-AfterProcedure.
+      * <TOTEM:PARA. chk-int3-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-int4-AfterProcedure.
+      * <TOTEM:PARA. chk-int4-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-int5-AfterProcedure.
+      * <TOTEM:PARA. chk-int5-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-int6-AfterProcedure.
+      * <TOTEM:PARA. chk-int6-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-int7-AfterProcedure.
+      * <TOTEM:PARA. chk-int7-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-int8-AfterProcedure.
+      * <TOTEM:PARA. chk-int8-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-int9-AfterProcedure.
+      * <TOTEM:PARA. chk-int9-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-int10-AfterProcedure.
+      * <TOTEM:PARA. chk-int10-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
            .
       * <TOTEM:END>
 

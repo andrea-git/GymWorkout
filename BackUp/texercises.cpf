@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7917191923-90-1880031070
+PROGRAM_UNIQUE_CODE=TOTEM-7E7919124010-610-1512224141
 
 {{@DESCRIPTION:
 
@@ -182,36 +182,36 @@ m_bFixed=1
 
 @}}
 [FDITEM15_WK]
-m_strName=bmpNum
-m_strRawPic=999
-m_strPic=999
-m_nItemLevel=77
+m_strName=hiddenData
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM15_WK
 
 @}}
 [FDITEM16_WK]
-m_strName=78-col-code
-m_strDefaultValue=1
-m_nItemLevel=78
+m_strName=hid-note
+m_strRawPic=x(278)
+m_strPic=x(278)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM16_WK
 
 @}}
 [FDITEM17_WK]
-m_strName=78-col-desc
-m_strDefaultValue=2
-m_nItemLevel=78
+m_strName=bmpNum
+m_strRawPic=999
+m_strPic=999
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM17_WK
 
 @}}
 [FDITEM18_WK]
-m_strName=78-col-desc-stampa
-m_strDefaultValue=3
+m_strName=78-col-code
+m_strDefaultValue=1
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -219,8 +219,8 @@ m_bFixed=1
 
 @}}
 [FDITEM19_WK]
-m_strName=78-col-grp-code
-m_strDefaultValue=4
+m_strName=78-col-desc
+m_strDefaultValue=2
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -228,8 +228,8 @@ m_bFixed=1
 
 @}}
 [FDITEM20_WK]
-m_strName=78-col-grp-desc
-m_strDefaultValue=5
+m_strName=78-col-desc-stampa
+m_strDefaultValue=3
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -237,8 +237,8 @@ m_bFixed=1
 
 @}}
 [FDITEM21_WK]
-m_strName=78-col-mcg-desc
-m_strDefaultValue=6
+m_strName=78-col-grp-code
+m_strDefaultValue=4
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -246,8 +246,8 @@ m_bFixed=1
 
 @}}
 [FDITEM22_WK]
-m_strName=78-col-int-code
-m_strDefaultValue=7
+m_strName=78-col-grp-desc
+m_strDefaultValue=5
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -255,8 +255,8 @@ m_bFixed=1
 
 @}}
 [FDITEM23_WK]
-m_strName=78-col-int-desc
-m_strDefaultValue=8
+m_strName=78-col-mcg-desc
+m_strDefaultValue=6
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -264,8 +264,8 @@ m_bFixed=1
 
 @}}
 [FDITEM24_WK]
-m_strName=78-col-ismulti
-m_strDefaultValue=9
+m_strName=78-col-int-code
+m_strDefaultValue=7
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -273,8 +273,8 @@ m_bFixed=1
 
 @}}
 [FDITEM25_WK]
-m_strName=78-col-setting
-m_strDefaultValue=10
+m_strName=78-col-int-desc
+m_strDefaultValue=8
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -282,8 +282,8 @@ m_bFixed=1
 
 @}}
 [FDITEM26_WK]
-m_strName=78-col-restpause
-m_strDefaultValue=11
+m_strName=78-col-ismulti
+m_strDefaultValue=9
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -291,8 +291,8 @@ m_bFixed=1
 
 @}}
 [FDITEM27_WK]
-m_strName=78-col-disable
-m_strDefaultValue=12
+m_strName=78-col-setting
+m_strDefaultValue=10
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -300,37 +300,35 @@ m_bFixed=1
 
 @}}
 [FDITEM28_WK]
-m_strName=rec-grid
-m_nItemLevel=1
+m_strName=78-col-restpause
+m_strDefaultValue=11
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM28_WK
 
 @}}
 [FDITEM29_WK]
-m_strName=col-codice
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=5
+m_strName=78-col-disable
+m_strDefaultValue=12
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM29_WK
 
 @}}
 [FDITEM30_WK]
-m_strName=col-des
-m_strRawPic=X(50)
-m_strPic=X(50)
-m_nItemLevel=5
+m_strName=rec-grid
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM30_WK
 
 @}}
 [FDITEM31_WK]
-m_strName=col-des-stampa
-m_strRawPic=X(20)
-m_strPic=X(20)
+m_strName=col-codice
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -338,9 +336,9 @@ m_bFixed=1
 
 @}}
 [FDITEM32_WK]
-m_strName=col-group
-m_strRawPic=x(5)
-m_strPic=x(5)
+m_strName=col-des
+m_strRawPic=X(50)
+m_strPic=X(50)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -348,9 +346,9 @@ m_bFixed=1
 
 @}}
 [FDITEM33_WK]
-m_strName=col-grp-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=col-des-stampa
+m_strRawPic=X(20)
+m_strPic=X(20)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -358,9 +356,9 @@ m_bFixed=1
 
 @}}
 [FDITEM34_WK]
-m_strName=col-mcg-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=col-group
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -368,9 +366,9 @@ m_bFixed=1
 
 @}}
 [FDITEM35_WK]
-m_strName=col-intensity
-m_strRawPic=z9
-m_strPic=z9
+m_strName=col-grp-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -378,7 +376,7 @@ m_bFixed=1
 
 @}}
 [FDITEM36_WK]
-m_strName=col-int-desc
+m_strName=col-mcg-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=5
@@ -388,9 +386,9 @@ m_bFixed=1
 
 @}}
 [FDITEM37_WK]
-m_strName=col-isMulti
-m_strRawPic=9
-m_strPic=9
+m_strName=col-intensity
+m_strRawPic=z9
+m_strPic=z9
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -398,9 +396,9 @@ m_bFixed=1
 
 @}}
 [FDITEM38_WK]
-m_strName=col-setting
-m_strRawPic=z.zz9
-m_strPic=z.zz9
+m_strName=col-int-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -408,7 +406,7 @@ m_bFixed=1
 
 @}}
 [FDITEM39_WK]
-m_strName=col-restpause
+m_strName=col-isMulti
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=5
@@ -418,9 +416,9 @@ m_bFixed=1
 
 @}}
 [FDITEM40_WK]
-m_strName=col-disab
-m_strRawPic=9
-m_strPic=9
+m_strName=col-setting
+m_strRawPic=z.zz9
+m_strPic=z.zz9
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -428,28 +426,29 @@ m_bFixed=1
 
 @}}
 [FDITEM41_WK]
-m_strName=como-v
+m_strName=col-restpause
 m_strRawPic=9
 m_strPic=9
-m_nItemLevel=77
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM41_WK
 
 @}}
 [FDITEM42_WK]
-m_strName=como-titolo
-m_strRawPic=x(50)
-m_strPic=x(50)
-m_nItemLevel=77
+m_strName=col-disab
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM42_WK
 
 @}}
 [FDITEM43_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
+m_strName=como-v
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -457,9 +456,9 @@ m_bFixed=1
 
 @}}
 [FDITEM44_WK]
-m_strName=como-ord
-m_strRawPic=99
-m_strPic=99
+m_strName=como-titolo
+m_strRawPic=x(50)
+m_strPic=x(50)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -467,152 +466,171 @@ m_bFixed=1
 
 @}}
 [FDITEM45_WK]
+m_strName=Screen1-Handle
+m_nUsage=24
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM45_WK
+
+@}}
+[FDITEM46_WK]
+m_strName=como-ord
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM46_WK
+
+@}}
+[FDITEM47_WK]
 m_strName=ord-code-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
-{{@DataItem_m_strDescriptionFDITEM45_WK
+{{@DataItem_m_strDescriptionFDITEM47_WK
 
 @}}
-[FDITEM46_WK]
+[FDITEM48_WK]
 m_strName=ord-code-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=2
-{{@DataItem_m_strDescriptionFDITEM46_WK
+{{@DataItem_m_strDescriptionFDITEM48_WK
 
 @}}
-[FDITEM47_WK]
+[FDITEM49_WK]
 m_strName=ord-desc-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=3
-{{@DataItem_m_strDescriptionFDITEM47_WK
+{{@DataItem_m_strDescriptionFDITEM49_WK
 
 @}}
-[FDITEM48_WK]
+[FDITEM50_WK]
 m_strName=ord-desc-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=4
-{{@DataItem_m_strDescriptionFDITEM48_WK
+{{@DataItem_m_strDescriptionFDITEM50_WK
 
 @}}
-[FDITEM49_WK]
+[FDITEM51_WK]
 m_strName=ord-mcg-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=5
-{{@DataItem_m_strDescriptionFDITEM49_WK
+{{@DataItem_m_strDescriptionFDITEM51_WK
 
 @}}
-[FDITEM50_WK]
+[FDITEM52_WK]
 m_strName=ord-mcg-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=6
-{{@DataItem_m_strDescriptionFDITEM50_WK
+{{@DataItem_m_strDescriptionFDITEM52_WK
 
 @}}
-[FDITEM51_WK]
+[FDITEM53_WK]
 m_strName=ord-multi-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=7
-{{@DataItem_m_strDescriptionFDITEM51_WK
+{{@DataItem_m_strDescriptionFDITEM53_WK
 
 @}}
-[FDITEM52_WK]
+[FDITEM54_WK]
 m_strName=ord-multi-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=8
-{{@DataItem_m_strDescriptionFDITEM52_WK
+{{@DataItem_m_strDescriptionFDITEM54_WK
 
 @}}
-[FDITEM53_WK]
+[FDITEM55_WK]
 m_strName=ord-disable-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=9
-{{@DataItem_m_strDescriptionFDITEM53_WK
+{{@DataItem_m_strDescriptionFDITEM55_WK
 
 @}}
-[FDITEM54_WK]
+[FDITEM56_WK]
 m_strName=ord-disable-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=10
-{{@DataItem_m_strDescriptionFDITEM54_WK
+{{@DataItem_m_strDescriptionFDITEM56_WK
 
 @}}
-[FDITEM55_WK]
+[FDITEM57_WK]
 m_strName=ord-rp-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=11
-{{@DataItem_m_strDescriptionFDITEM55_WK
+{{@DataItem_m_strDescriptionFDITEM57_WK
 
 @}}
-[FDITEM56_WK]
+[FDITEM58_WK]
 m_strName=ord-rp-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=12
-{{@DataItem_m_strDescriptionFDITEM56_WK
+{{@DataItem_m_strDescriptionFDITEM58_WK
 
 @}}
-[FDITEM57_WK]
+[FDITEM59_WK]
 m_strName=ord-int-asc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=13
-{{@DataItem_m_strDescriptionFDITEM57_WK
+{{@DataItem_m_strDescriptionFDITEM59_WK
 
 @}}
-[FDITEM58_WK]
+[FDITEM60_WK]
 m_strName=ord-int-disc
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=14
-{{@DataItem_m_strDescriptionFDITEM58_WK
+{{@DataItem_m_strDescriptionFDITEM60_WK
 
 @}}
-[FDITEM59_WK]
+[FDITEM61_WK]
 m_strName=FILLER
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM59_WK
+{{@DataItem_m_strDescriptionFDITEM61_WK
 
 @}}
-[FDITEM60_WK]
+[FDITEM62_WK]
 m_strName=ricarica
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM60_WK
+{{@DataItem_m_strDescriptionFDITEM62_WK
 
 @}}
-[FDITEM61_WK]
+[FDITEM63_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -621,40 +639,22 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM61_WK
+{{@DataItem_m_strDescriptionFDITEM63_WK
 
 @}}
-[FDITEM62_WK]
+[FDITEM64_WK]
 m_strName=Default-Font
 m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM62_WK
-
-@}}
-[FDITEM63_WK]
-m_strName=STATUS-exercises
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM63_WK
-
-@}}
-[FDITEM64_WK]
-m_strName=Valid-STATUS-exercises
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM64_WK
 
 @}}
 [FDITEM65_WK]
-m_strName=Calibri14-Occidentale
-m_nUsage=26
+m_strName=STATUS-exercises
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -662,6 +662,24 @@ m_bFixed=1
 
 @}}
 [FDITEM66_WK]
+m_strName=Valid-STATUS-exercises
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM66_WK
+
+@}}
+[FDITEM67_WK]
+m_strName=Calibri14-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM67_WK
+
+@}}
+[FDITEM68_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -670,30 +688,11 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM66_WK
-
-@}}
-[FDITEM67_WK]
-m_strName=STATUS-groups
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM67_WK
-
-@}}
-[FDITEM68_WK]
-m_strName=Valid-STATUS-groups
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM68_WK
 
 @}}
 [FDITEM69_WK]
-m_strName=STATUS-intexe
+m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -703,7 +702,7 @@ m_bFixed=1
 
 @}}
 [FDITEM70_WK]
-m_strName=Valid-STATUS-intexe
+m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -712,7 +711,7 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM71_WK]
-m_strName=STATUS-macrogroups
+m_strName=STATUS-intexe
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -722,7 +721,7 @@ m_bFixed=1
 
 @}}
 [FDITEM72_WK]
-m_strName=Valid-STATUS-macrogroups
+m_strName=Valid-STATUS-intexe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -731,9 +730,9 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM73_WK]
-m_strName=path-tmp-exe-mcg
-m_strRawPic=X(256)
-m_strPic=X(256)
+m_strName=STATUS-macrogroups
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -741,29 +740,28 @@ m_bFixed=1
 
 @}}
 [FDITEM74_WK]
-m_strName=STATUS-tmp-exe-mcg
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM74_WK
-
-@}}
-[FDITEM75_WK]
-m_strName=Valid-STATUS-tmp-exe-mcg
+m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM74_WK
+
+@}}
+[FDITEM75_WK]
+m_strName=path-tmp-exe-mcg
+m_strRawPic=X(256)
+m_strPic=X(256)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM75_WK
 
 @}}
 [FDITEM76_WK]
-m_strName=chk-mcg1-buf
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
+m_strName=STATUS-tmp-exe-mcg
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -771,18 +769,16 @@ m_bFixed=1
 
 @}}
 [FDITEM77_WK]
-m_strName=chk-mcg2-buf
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
-m_nItemLevel=77
+m_strName=Valid-STATUS-tmp-exe-mcg
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM77_WK
 
 @}}
 [FDITEM78_WK]
-m_strName=chk-mcg3-buf
+m_strName=chk-mcg1-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -793,7 +789,7 @@ m_bFixed=1
 
 @}}
 [FDITEM79_WK]
-m_strName=chk-mcg4-buf
+m_strName=chk-mcg2-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -804,7 +800,7 @@ m_bFixed=1
 
 @}}
 [FDITEM80_WK]
-m_strName=chk-mcg5-buf
+m_strName=chk-mcg3-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -815,7 +811,7 @@ m_bFixed=1
 
 @}}
 [FDITEM81_WK]
-m_strName=chk-mcg6-buf
+m_strName=chk-mcg4-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -826,7 +822,7 @@ m_bFixed=1
 
 @}}
 [FDITEM82_WK]
-m_strName=chk-mcg7-buf
+m_strName=chk-mcg5-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -837,7 +833,7 @@ m_bFixed=1
 
 @}}
 [FDITEM83_WK]
-m_strName=chk-mcg8-buf
+m_strName=chk-mcg6-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -848,7 +844,7 @@ m_bFixed=1
 
 @}}
 [FDITEM84_WK]
-m_strName=chk-mcg9-buf
+m_strName=chk-mcg7-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -859,7 +855,7 @@ m_bFixed=1
 
 @}}
 [FDITEM85_WK]
-m_strName=chk-mcg10-buf
+m_strName=chk-mcg8-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -870,7 +866,7 @@ m_bFixed=1
 
 @}}
 [FDITEM86_WK]
-m_strName=chk-int1-buf
+m_strName=chk-mcg9-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -881,7 +877,7 @@ m_bFixed=1
 
 @}}
 [FDITEM87_WK]
-m_strName=chk-int10-buf
+m_strName=chk-mcg10-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -892,7 +888,7 @@ m_bFixed=1
 
 @}}
 [FDITEM88_WK]
-m_strName=chk-int9-buf
+m_strName=chk-int1-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -903,7 +899,7 @@ m_bFixed=1
 
 @}}
 [FDITEM89_WK]
-m_strName=chk-int8-buf
+m_strName=chk-int10-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -914,7 +910,7 @@ m_bFixed=1
 
 @}}
 [FDITEM90_WK]
-m_strName=chk-int7-buf
+m_strName=chk-int9-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -925,7 +921,7 @@ m_bFixed=1
 
 @}}
 [FDITEM91_WK]
-m_strName=chk-int6-buf
+m_strName=chk-int8-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -936,7 +932,7 @@ m_bFixed=1
 
 @}}
 [FDITEM92_WK]
-m_strName=chk-int5-buf
+m_strName=chk-int7-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -947,7 +943,7 @@ m_bFixed=1
 
 @}}
 [FDITEM93_WK]
-m_strName=chk-int4-buf
+m_strName=chk-int6-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -958,7 +954,7 @@ m_bFixed=1
 
 @}}
 [FDITEM94_WK]
-m_strName=chk-int3-buf
+m_strName=chk-int5-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -969,7 +965,7 @@ m_bFixed=1
 
 @}}
 [FDITEM95_WK]
-m_strName=chk-int2-buf
+m_strName=chk-int4-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -980,7 +976,7 @@ m_bFixed=1
 
 @}}
 [FDITEM96_WK]
-m_strName=chk-mcgall-buf
+m_strName=chk-int3-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -991,6 +987,28 @@ m_bFixed=1
 
 @}}
 [FDITEM97_WK]
+m_strName=chk-int2-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM97_WK
+
+@}}
+[FDITEM98_WK]
+m_strName=chk-mcgall-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM98_WK
+
+@}}
+[FDITEM99_WK]
 m_strName=chk-intall-buf
 m_strRawPic=9
 m_strPic=9
@@ -998,7 +1016,18 @@ m_strDefaultValue=1
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM97_WK
+{{@DataItem_m_strDescriptionFDITEM99_WK
+
+@}}
+[FDITEM100_WK]
+m_strName=AUTO-ID
+m_strRawPic=9(6)
+m_strPic=9(6)
+m_strDefaultValue=32
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM100_WK
 
 @}}
 
@@ -1225,8 +1254,8 @@ Begin Screen Form1
    Event Procedure   = Form1-Event-Proc
    Begin Grid form1-gd-1
       SCREEN-COL        = 1,40
-      SCREEN-LINE       = 4,04
-      LOCK-CONTROL      = FALSE
+      SCREEN-LINE       = 4,00
+      LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = form1-gd-1
       Action            = (None)
@@ -1302,8 +1331,8 @@ Begin Screen Form1
       Hscroll           = FALSE
       ID                = 1
       Last Row          = 0
-      Line              = 4,04
-      Lines             = 35,13
+      Line              = 4,00
+      Lines             = 34,00
       Lines Unit        = Default
       No Tab            = FALSE
       Num Col Headings  = 1
@@ -1333,6 +1362,66 @@ Begin Screen Form1
       Msg-Goto-Cell-Drag = form1-gd-1-Ev-Msg-Goto-Cell-Drag
       Msg-Goto-Cell-Mouse = form1-gd-1-Ev-Msg-Goto-Cell-Mouse
       Msg-Heading-Clicked = form1-gd-1-Ev-Msg-Heading-Clicked
+   End
+   Begin Data.Entry-Field ef-note
+      SCREEN-COL        = 8,40
+      SCREEN-LINE       = 38,30
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = ef-note
+      Auto              = FALSE
+      Auto Decimal      = 0
+      Border            = Boxed
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 8,40
+      Csize             = 0
+      Csize Unit        = Default
+      Cursor            = 0
+      Cursor Col        = 0
+      Cursor Row        = 0
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Field Edited (Style) = 0
+      Field Edited Format = x(278)
+      Field Picture     = x(278)
+      Field Variable    = exe-note
+      File              = exercises
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 32
+      ID Variable       = AUTO-ID
+      Justification     = Unaligned
+      Line              = 38,30
+      Lines             = 1,35
+      Lines Unit        = Default
+      Max Lines         = 0
+      Max Text          = 278
+      Max Value         = 0
+      Min Value         = 0
+      No AutoSel        = FALSE
+      No Tab            = FALSE
+      Notify Change     = FALSE
+      Numeric           = FALSE
+      Occurs            = 0
+      Read Only         = FALSE
+      Required          = FALSE
+      Secure            = FALSE
+      Size              = 165,00
+      Size Unit         = Default
+      Style             = Singleline
+      Tab Order         = 2
+      Use Return        = FALSE
+      Use Tab           = FALSE
+      Value Multiple    = FALSE
+      Visible           = NONE
+      Width in Cells    = TRUE
+      Before Procedure  = ef-note-BeforeProcedure
+      After Procedure   = ef-note-AfterProcedure
    End
    Begin Check-Box chk-mcgall
       SCREEN-COL        = 2,30
@@ -1368,13 +1457,15 @@ Begin Screen Form1
       Self Act          = FALSE
       Size              = 15,00
       Size Unit         = Default
-      Tab Order         = 2
+      Tab Order         = 3
       Termination Value = 0
       Title             = "Tutti i gruppi"
       Value             = 1:TRUE
       Value Variable    = chk-mcgall-buf
       Visible           = TRUE
       Width in Cells    = TRUE
+      Before Procedure  = chk-mcgall-BeforeProcedure
+      After Procedure   = chk-mcgall-AfterProcedure
       Link To           = chk-mcgall-LinkTo
    End
    Begin Check-Box chk-mcg1
@@ -1400,7 +1491,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 3
+      ID                = 4
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1411,13 +1502,15 @@ Begin Screen Form1
       Self Act          = FALSE
       Size              = 9,00
       Size Unit         = Default
-      Tab Order         = 3
+      Tab Order         = 4
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
       Value Variable    = chk-mcg1-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-mcg1-BeforeProcedure
+      After Procedure   = chk-mcg1-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg2
@@ -1443,7 +1536,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 4
+      ID                = 5
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1454,50 +1547,16 @@ Begin Screen Form1
       Self Act          = FALSE
       Size              = 9,00
       Size Unit         = Default
-      Tab Order         = 4
+      Tab Order         = 5
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
       Value Variable    = chk-mcg2-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-mcg2-BeforeProcedure
+      After Procedure   = chk-mcg2-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
-   End
-   Begin CsCtrl.blockpgm Label CST-BLOCKPGM
-      CUST-SYMBOL       = blockpgm
-      CUST-MODIFYFLAG   = 100000000000000000000000000000001000000000000000000
-      SCREEN-COL        = 49,57
-      SCREEN-LINE       = 1,00
-      LOCK-CONTROL      = FALSE
-      LEVEL             = 5
-      (Name)            = CST-BLOCKPGM
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 49,57
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 12
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 1.00
-      Lines             = 0,48
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 2,10
-      Size Unit         = Default
-      Tab Order         = 5
-      Title             = "BlockPgm"
-      Transparent       = TRUE
-      Visible           = NONE
-      Visible Variable  = v-custom
-      Width in Cells    = TRUE
    End
    Begin Check-Box chk-mcg3
       SCREEN-COL        = 40,30
@@ -1522,7 +1581,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 5
+      ID                = 13
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1540,6 +1599,8 @@ Begin Screen Form1
       Value Variable    = chk-mcg3-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-mcg3-BeforeProcedure
+      After Procedure   = chk-mcg3-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg4
@@ -1583,6 +1644,8 @@ Begin Screen Form1
       Value Variable    = chk-mcg4-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-mcg4-BeforeProcedure
+      After Procedure   = chk-mcg4-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg5
@@ -1626,6 +1689,8 @@ Begin Screen Form1
       Value Variable    = chk-mcg5-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-mcg5-BeforeProcedure
+      After Procedure   = chk-mcg5-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg6
@@ -1669,6 +1734,8 @@ Begin Screen Form1
       Value Variable    = chk-mcg6-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-mcg6-BeforeProcedure
+      After Procedure   = chk-mcg6-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg7
@@ -1712,6 +1779,8 @@ Begin Screen Form1
       Value Variable    = chk-mcg7-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-mcg7-BeforeProcedure
+      After Procedure   = chk-mcg7-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg8
@@ -1755,6 +1824,8 @@ Begin Screen Form1
       Value Variable    = chk-mcg8-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-mcg8-BeforeProcedure
+      After Procedure   = chk-mcg8-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg9
@@ -1798,6 +1869,8 @@ Begin Screen Form1
       Value Variable    = chk-mcg9-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-mcg9-BeforeProcedure
+      After Procedure   = chk-mcg9-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg10
@@ -1823,7 +1896,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 13
+      ID                = 14
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1841,6 +1914,8 @@ Begin Screen Form1
       Value Variable    = chk-mcg10-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-mcg10-BeforeProcedure
+      After Procedure   = chk-mcg10-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-intall
@@ -1866,7 +1941,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 3
+      ID                = 15
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -1884,6 +1959,8 @@ Begin Screen Form1
       Value Variable    = chk-intall-buf
       Visible           = TRUE
       Width in Cells    = TRUE
+      Before Procedure  = chk-intall-BeforeProcedure
+      After Procedure   = chk-intall-AfterProcedure
       Link To           = chk-intall-LinkTo
    End
    Begin Check-Box chk-int1
@@ -1909,7 +1986,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 3
+      ID                = 16
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -1927,6 +2004,8 @@ Begin Screen Form1
       Value Variable    = chk-int1-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-int1-BeforeProcedure
+      After Procedure   = chk-int1-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int2
@@ -1952,7 +2031,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 4
+      ID                = 17
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -1970,6 +2049,8 @@ Begin Screen Form1
       Value Variable    = chk-int2-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-int2-BeforeProcedure
+      After Procedure   = chk-int2-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int3
@@ -1995,7 +2076,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 5
+      ID                = 18
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2013,6 +2094,8 @@ Begin Screen Form1
       Value Variable    = chk-int3-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-int3-BeforeProcedure
+      After Procedure   = chk-int3-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int4
@@ -2038,7 +2121,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 6
+      ID                = 19
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2056,6 +2139,8 @@ Begin Screen Form1
       Value Variable    = chk-int4-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-int4-BeforeProcedure
+      After Procedure   = chk-int4-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int5
@@ -2081,7 +2166,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 7
+      ID                = 20
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2099,6 +2184,8 @@ Begin Screen Form1
       Value Variable    = chk-int5-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-int5-BeforeProcedure
+      After Procedure   = chk-int5-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int6
@@ -2124,7 +2211,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 8
+      ID                = 21
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2142,6 +2229,8 @@ Begin Screen Form1
       Value Variable    = chk-int6-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-int6-BeforeProcedure
+      After Procedure   = chk-int6-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int7
@@ -2167,7 +2256,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 9
+      ID                = 22
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2185,6 +2274,8 @@ Begin Screen Form1
       Value Variable    = chk-int7-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-int7-BeforeProcedure
+      After Procedure   = chk-int7-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int8
@@ -2210,7 +2301,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 10
+      ID                = 23
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2228,6 +2319,8 @@ Begin Screen Form1
       Value Variable    = chk-int8-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-int8-BeforeProcedure
+      After Procedure   = chk-int8-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int9
@@ -2253,7 +2346,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 11
+      ID                = 24
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2271,6 +2364,8 @@ Begin Screen Form1
       Value Variable    = chk-int9-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-int9-BeforeProcedure
+      After Procedure   = chk-int9-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int10
@@ -2296,7 +2391,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 13
+      ID                = 25
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2314,7 +2409,117 @@ Begin Screen Form1
       Value Variable    = chk-int10-buf
       Visible           = FALSE
       Width in Cells    = TRUE
+      Before Procedure  = chk-int10-BeforeProcedure
+      After Procedure   = chk-int10-AfterProcedure
       Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Label Form1-La-1
+      SCREEN-COL        = 1,90
+      SCREEN-LINE       = 38,30
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = Form1-La-1
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 1,90
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 31
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 38,30
+      Lines             = 1,22
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 5,00
+      Size Unit         = Default
+      Tab Order         = 25
+      Title             = "Note"
+      Transparent       = TRUE
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
+   Begin CsCtrl.blockpgm Label Form1-blockpgm-1
+      CUST-SYMBOL       = blockpgm
+      CUST-MODIFYFLAG   = 000000000000000000000000000000000000000000000000000
+      SCREEN-COL        = 134,50
+      SCREEN-LINE       = 1,70
+      LOCK-CONTROL      = FALSE
+      LEVEL             = 5
+      (Name)            = Form1-blockpgm-1
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 134,50
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 12
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 1,70
+      Lines             = 1,00
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 1,00
+      Size Unit         = Default
+      Tab Order         = 26
+      Title             = "BlockPgm"
+      Transparent       = TRUE
+      Visible           = NONE
+      Visible Variable  = v-custom
+      Width in Cells    = TRUE
+   End
+   Begin CsCtrl.Custom1 Label Form1-Custom1-1
+      CUST-SYMBOL       = Custom1
+      CUST-MODIFYFLAG   = 000000000000000000000000000000000000000000000000000
+      SCREEN-COL        = 130,50
+      SCREEN-LINE       = 1,22
+      LOCK-CONTROL      = FALSE
+      LEVEL             = 5
+      (Name)            = Form1-Custom1-1
+      Ccol              = 0
+      Cline             = 0
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 130,50
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Font Variable     = Default-Font
+      Height in Cells   = FALSE
+      Help ID           = 0
+      ID                = 33
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 1,22
+      Lines             = 0,70
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 1,00
+      Size Unit         = Default
+      Tab Order         = 27
+      Title             = "CUSTOM CONTROL"
+      Transparent       = TRUE
+      Visible           = NONE
+      Visible Variable  = v-custom
+      Width in Cells    = FALSE
    End
    Begin Toolbar Form1-Tb-1
       SCREEN-LINE       = 1,00
@@ -2328,7 +2533,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 25
+      Tab Order         = 28
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -2402,7 +2607,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 14
+         ID                = 26
          Line              = 1,09
          Lines             = 2,59
          Lines in Pixels   = 64
@@ -2449,7 +2654,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 15
+         ID                = 27
          Line              = 1,09
          Lines             = 2,59
          Lines in Pixels   = 64
@@ -2497,7 +2702,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 16
+         ID                = 28
          Line              = 1,09
          Lines             = 2,59
          Lines in Pixels   = 64
@@ -2546,7 +2751,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 17
+         ID                = 29
          Left Text         = FALSE
          Line              = 1,09
          Lines             = 2,13
@@ -2597,7 +2802,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 18
+         ID                = 30
          Line              = 1,09
          Lines             = 2,59
          Lines in Pixels   = 64
@@ -2655,7 +2860,8 @@ BEGIN-TEXT
                10 old-exe-restpause    PIC  9.
                10 old-exe-disab        PIC  9.
                10 old-exe-desc-stampa  PIC  x(20).
-               10 old-exe-filler       PIC  x(978).
+               10 old-exe-note         PIC  x(278).
+               10 old-exe-filler       PIC  x(700).
                10 old-exe-filler-n1    PIC  9(18).
                10 old-exe-filler-n2    PIC  9(18).
                10 old-exe-filler-n3    PIC  9(18).
@@ -2735,7 +2941,11 @@ BEGIN-TEXT
            perform LOAD-RECORD.
 
            move 2  to event-data-2.
-           perform SPOSTAMENTO.    
+           perform SPOSTAMENTO. 
+ 
+           inquire form1-gd-1(2, 1), hidden-data hiddenData.
+           move hid-note to ef-note-buf.
+           display ef-note.
 
            perform INIT.
 
@@ -2838,20 +3048,9 @@ BEGIN-DATA
    TEXTMODE          = 0
    ENTRYPOINT        = AfterDisplay
 BEGIN-TEXT
-      **<<** Customized_Default, SP-G, CST-BLOCKPGM **>>
       *<<** Customized_Default, SP-G, CST-BLOCKPGM **>>
 
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 1
-   NODESTYLE         = 2
-   PARENT            = Form1
-   ACTOBJ            = Form1
-   TEXTMODE          = 0
-   ENTRYPOINT        = AfterCreateWin
-BEGIN-TEXT
-      *<<** Customized_Default, SP-G, CST-BLOCKPGM **>>
+      *<<** Customized_Default, SP-G, Form1-blockpgm-1 **>>
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -3471,7 +3670,11 @@ BEGIN-TEXT
            end-if.
 
            add 1 to riga.
-           
+
+           move exe-note to hid-note.
+                                 
+           modify form1-gd-1(riga, 78-col-code),      hidden-data hiddenData.
+
            modify form1-gd-1(riga, 78-col-code),        cell-data col-codice.
            modify form1-gd-1(riga, 78-col-desc),        cell-data col-des.  
            modify form1-gd-1(riga, 78-col-desc-stampa), cell-data col-des-stampa.  
@@ -3674,6 +3877,8 @@ BEGIN-TEXT
            perform ABILITAZIONI.
 
            modify tool-modifica, value mod.
+
+           display ef-note.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -3755,6 +3960,11 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = SALVA
 BEGIN-TEXT
+           inquire ef-note, value in ef-note-buf.
+           if siSalvato and ef-note-buf not = old-exe-note and mod = 1
+              set NoSalvato to true
+           end-if.
+
            if sisalvato or mod = 0 exit paragraph end-if.
 
            inquire form1-gd-1, cursor-x in colonna, 
@@ -3766,7 +3976,9 @@ BEGIN-TEXT
               if errori exit perform end-if
            end-perform.
 
-           if tutto-ok
+           if tutto-ok                                                                  
+              move ef-note-buf to exe-note hid-note
+              modify form1-gd-1(riga, 1), hidden-data hiddenData
               write exe-rec
                     invalid rewrite exe-rec
               end-write
@@ -3798,7 +4010,14 @@ BEGIN-TEXT
                     move colonna to event-data-1 | (isacco)
                     set event-action to event-action-fail
                  end-if
+              end-if                 
+
+              if tutto-ok
+                 inquire form1-gd-1(event-data-2, 1) hidden-data hiddenData
+                 move hid-note to ef-note-buf
+                 display ef-note
               end-if
+
            else
               if colonna not = event-data-1
                  perform CONTROLLO
@@ -3811,7 +4030,7 @@ BEGIN-TEXT
       * VALORIZZO L'OLD DELLA RIGA SU CUI SONO ANDATO
            move event-data-2 to riga.
            move event-data-1 to colonna.
-           perform VALORE-OLD-RIGA.
+           perform VALORE-OLD-RIGA.  
 
       * COLORAZIONE RIGA IN GRID
            perform COLORE-RIGA.
@@ -3822,7 +4041,7 @@ BEGIN-TEXT
            else
               move BitmapZoomDisabled to bmpNum
               modify tool-cerca, bitmap-number = bmpNum, enabled false
-           end-if.              
+           end-if.       
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -3837,6 +4056,8 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = VALORE-RIGA
 BEGIN-TEXT
+           inquire form1-gd-1(riga, 78-col-code),      hidden-data hiddenData.
+
            inquire form1-gd-1(riga, 78-col-code),        cell-data exe-code.
            inquire form1-gd-1(riga, 78-col-desc),        cell-data exe-desc.  
            inquire form1-gd-1(riga, 78-col-desc-stampa), cell-data exe-desc-stampa
@@ -3846,6 +4067,8 @@ BEGIN-TEXT
            inquire form1-gd-1(riga, 78-col-setting),     cell-data exe-setting.
            inquire form1-gd-1(riga, 78-col-restpause),   cell-data exe-isRestpause. 
            inquire form1-gd-1(riga, 78-col-disable),     cell-data exe-isDisable. 
+
+           move ef-note-buf to exe-note.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -3913,16 +4136,14 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = I-O-BLOCCO
 BEGIN-TEXT
-      *<<** Customized_Default, SP-G, CST-BLOCKPGM **>>
-
+      *<<** Customized_Default, SP-G, Form1-blockpgm-1 **>>
 END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = PAS004P-Ev-Before-Program
 BEGIN-TEXT
-      *<<** Customized_Default, SP-G, CST-BLOCKPGM **>>
-
+      *<<** Customized_Default, SP-G, Form1-blockpgm-1 **>>
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -4017,14 +4238,14 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = TOOL-MODIFICA-BeforeProcedure
 BEGIN-TEXT
-
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
 END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = TOOL-MODIFICA-AfterProcedure
 BEGIN-TEXT
-
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -4257,6 +4478,329 @@ BEGIN-TEXT
            end-if.                      
 
            perform LOAD-RECORD.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-note-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-note-AfterProcedure
+BEGIN-TEXT
+      *<<** Default_Code **>>
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcgall-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg1-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg2-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg3-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg4-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg5-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg6-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg7-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg8-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg9-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg10-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-intall-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int1-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int2-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int3-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int4-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int5-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int6-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int7-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int8-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int9-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int10-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcgall-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg1-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg2-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg3-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg4-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg5-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg6-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg7-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg8-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg9-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-mcg10-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-intall-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int1-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int2-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int3-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int4-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int5-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int6-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int7-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int8-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int9-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-int10-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
 END-TEXT
 END-DATA
 

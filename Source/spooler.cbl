@@ -570,14 +570,20 @@
                                    giving return-code
            when 2
                 call "WIN$PRINTER"  using winprint-set-data-columns,
-                                           21, 31
+                                           21, 31, 131
                                     giving return-code
                 move 0,6               to winprint-col-start
                 move wprtalign-left  to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
-                                   giving return-code
+                                   giving return-code 
                 move 4,1               to winprint-col-start 
+                move 0,1               to winprint-col-indent
+                move wprtalign-left    to winprint-col-alignment
+                call "WIN$PRINTER"  using winprint-set-page-column,
+                                          winprint-column
+                                   giving return-code
+                move 19,7              to winprint-col-start 
                 move 0,1               to winprint-col-indent
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,

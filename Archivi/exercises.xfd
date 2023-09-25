@@ -69,10 +69,10 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="14"
-       xfd:elementary-items-with-occurs="14"
-       xfd:total-items="17"
-       xfd:total-items-with-occurs="17">
+       xfd:elementary-items="15"
+       xfd:elementary-items-with-occurs="15"
+       xfd:total-items="18"
+       xfd:total-items-with-occurs="18">
     <xfd:field
          xfd:field-offset="0"
          xfd:field-bytes="1189"
@@ -195,9 +195,19 @@
          xfd:field-name="EXE-DESC-STAMPA"/>
     <xfd:field
          xfd:field-offset="139"
-         xfd:field-bytes="978"
+         xfd:field-bytes="278"
          xfd:field-type="16"
-         xfd:field-length="978"
+         xfd:field-length="278"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="10"
+         xfd:field-name="EXE-NOTE"/>
+    <xfd:field
+         xfd:field-offset="417"
+         xfd:field-bytes="700"
+         xfd:field-type="16"
+         xfd:field-length="700"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="0"

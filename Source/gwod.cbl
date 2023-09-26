@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 25 settembre 2023 18:36:47.
+       DATE-WRITTEN.        martedì 26 settembre 2023 20:13:57.
        REMARKS.
       *{TOTEM}END
 
@@ -134,6 +134,8 @@
        77 como-tit-macro   PIC  x(13).
        77 save-day         PIC  9.
        77 como-series      PIC  999.
+       77 como-grp-desc    PIC  x(100).
+       77 como-grp-code    PIC  x(5).
        01 mcg-sigle-tab.
            05 el-mcg-sigla     PIC  x
                       OCCURS 10 TIMES.
@@ -1248,7 +1250,7 @@
            LINE 2,57,
            LINES 0,74 ,
            SIZE 2,00 ,
-           ID IS 30,
+           ID IS 36,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "-",
@@ -1263,7 +1265,7 @@
            LINES 0,74 ,
            SIZE 2,00 ,
            EXCEPTION-VALUE 1001,
-           ID IS 30,
+           ID IS 38,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "SU",
@@ -1278,7 +1280,7 @@
            LINES 0,74 ,
            SIZE 2,00 ,
            EXCEPTION-VALUE 1003,
-           ID IS 30,
+           ID IS 41,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "GIU",
@@ -1455,7 +1457,7 @@
            LINES 1,35 ,
            SIZE 3,10 ,
            FONT IS Calibri14BU-Occidentale,
-           ID IS 41,
+           ID IS 114,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Push Button",
@@ -8305,27 +8307,119 @@
        pb-su-LinkTo.
       * <TOTEM:PARA. pb-su-LinkTo>
            inquire gd1, cursor-y in riga.
+           if riga = 2
+              exit paragraph 
+           end-if.  
+                                                                      
+           inquire gd1(riga - 1, 78-col-exe-code), cell-data exe-code.
+           read exercises no lock
+                invalid move spaces to grp-mcg-code exe-desc grp-desc 
+           grp-code
+            not invalid
+                move exe-grp-code to grp-code
+                read groups no lock
+                     invalid move spaces to grp-mcg-code exe-desc 
+           grp-desc grp-code
+                end-read
+           end-read.
+           move exe-code     to tex-exe-code.
+           move grp-mcg-code to tex-mcg-code
+           move exe-desc     to tex-exe-desc
+           move grp-desc     to como-grp-desc.
+           move grp-code     to como-grp-code.
 
            inquire gd1(riga, 78-col-exe-code), cell-data exe-code.
-           inquire gd1(riga - 1, 78-col-exe-code), cell-data 
-           tex-exe-code.
+           read exercises no lock
+                invalid move spaces to grp-mcg-code exe-desc grp-desc 
+           grp-code
+            not invalid
+                move exe-grp-code to grp-code
+                read groups no lock
+                     invalid move spaces to grp-mcg-code exe-desc 
+           grp-desc grp-code
+                end-read
+           end-read.
+           move grp-mcg-code to mcg-code
+           move exe-desc     to exe-desc
 
-           modify gd1(riga, 78-col-exe-code), cell-data tex-exe-code.   
-            
-           modify gd1(riga - 1, 78-col-exe-code), cell-data exe-code 
+           if tex-mcg-code not = mcg-code
+              exit paragraph
+           end-if.
+                                                                      
+           modify gd1(riga, 78-col-grp-code),     cell-data 
+           como-grp-code.
+           modify gd1(riga, 78-col-grp-desc),     cell-data 
+           como-grp-desc.
+           modify gd1(riga, 78-col-exe-code),     cell-data 
+           tex-exe-code.
+           modify gd1(riga, 78-col-exe-desc),     cell-data 
+           tex-exe-desc.
+
+           modify gd1(riga - 1, 78-col-grp-code), cell-data grp-code.
+           modify gd1(riga - 1, 78-col-grp-desc), cell-data grp-desc.
+           modify gd1(riga - 1, 78-col-exe-code), cell-data exe-code.
+           modify gd1(riga - 1, 78-col-exe-desc), cell-data exe-desc.
+
+           subtract 1 from riga giving event-data-2.
+           perform SPOSTAMENTO.
+           modify gd1, cursor-y event-data-2 
            .
       * <TOTEM:END>
        pb-giu-LinkTo.
       * <TOTEM:PARA. pb-giu-LinkTo>
-           inquire gd1, cursor-y in riga.
+           inquire gd1, cursor-y in riga, last-row in tot-righe.
+           if riga = tot-righe
+              exit paragraph 
+           end-if.  
+                                                                      
+           inquire gd1(riga + 1, 78-col-exe-code), cell-data exe-code.
+           read exercises no lock
+                invalid move spaces to grp-mcg-code exe-desc grp-desc 
+           grp-code
+            not invalid
+                move exe-grp-code to grp-code
+                read groups no lock
+                     invalid move spaces to grp-mcg-code exe-desc 
+           grp-desc grp-code
+                end-read
+           end-read.
+           move exe-code     to tex-exe-code.
+           move grp-mcg-code to tex-mcg-code
+           move exe-desc     to tex-exe-desc
+           move grp-desc     to como-grp-desc.
+           move grp-code     to como-grp-code.
 
            inquire gd1(riga, 78-col-exe-code), cell-data exe-code.
-           inquire gd1(riga + 1, 78-col-exe-code), cell-data 
-           tex-exe-code.
+           read exercises no lock
+                invalid move spaces to grp-mcg-code exe-desc grp-desc 
+           grp-code
+            not invalid
+                move exe-grp-code to grp-code
+                read groups no lock
+                     invalid move spaces to grp-mcg-code exe-desc 
+           grp-desc grp-code
+                end-read
+           end-read.
+           move grp-mcg-code to mcg-code
+           move exe-desc     to exe-desc
 
-           modify gd1(riga, 78-col-exe-code), cell-data tex-exe-code.   
-            
+           if tex-mcg-code not = mcg-code
+              exit paragraph
+           end-if.
+                                                                      
+           modify gd1(riga, 78-col-grp-code),     cell-data 
+           como-grp-code.
+           modify gd1(riga, 78-col-grp-desc),     cell-data 
+           como-grp-desc.
+           modify gd1(riga, 78-col-exe-code),     cell-data 
+           tex-exe-code.
+           modify gd1(riga, 78-col-exe-desc),     cell-data 
+           tex-exe-desc.
+
+           modify gd1(riga + 1, 78-col-grp-code), cell-data grp-code.
+           modify gd1(riga + 1, 78-col-grp-desc), cell-data grp-desc.
            modify gd1(riga + 1, 78-col-exe-code), cell-data exe-code.
+           modify gd1(riga + 1, 78-col-exe-desc), cell-data exe-desc.
 
            add 1 to riga giving event-data-2.
            perform SPOSTAMENTO.

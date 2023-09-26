@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 26 settembre 2023 20:13:57.
+       DATE-WRITTEN.        martedì 26 settembre 2023 23:41:23.
        REMARKS.
       *{TOTEM}END
 
@@ -136,6 +136,22 @@
        77 como-series      PIC  999.
        77 como-grp-desc    PIC  x(100).
        77 como-grp-code    PIC  x(5).
+       01 como-tex-rec.
+           05 como-tex-key.
+               10 como-tex-day     PIC  9.
+               10 como-tex-split   PIC  9(3).
+           05 como-tex-data.
+               10 como-tex-mcg-code            PIC  x(5).
+               10 como-tex-exe-code            PIC  x(5).
+               10 como-tex-exe-desc            PIC  x(100).
+               10 como-tex-nome-dupl           PIC  x(100).
+               10 como-tex-int-code            PIC  99.
+               10 como-tex-exe-isMulti         PIC  9.
+                   88 como-tex-exe-isMulti-no VALUE IS 0. 
+                   88 como-tex-exe-isMulti-yes VALUE IS 1. 
+               10 como-tex-reps    PIC  x(10).
+               10 como-tex-series  PIC  99.
+               10 como-tex-restpause           PIC  9.
        01 mcg-sigle-tab.
            05 el-mcg-sigla     PIC  x
                       OCCURS 10 TIMES.
@@ -391,6 +407,12 @@
            88 Valid-STATUS-tmp-grp-exe VALUE IS "00" THRU "09". 
        77 Calibri12BU-Occidentale
                   USAGE IS HANDLE OF FONT.
+       77 up-down-bmp      PIC  S9(9)
+                  USAGE IS COMP-4
+                  VALUE IS 0.
+       77 piu-meno-bmp     PIC  S9(9)
+                  USAGE IS COMP-4
+                  VALUE IS 0.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -524,7 +546,11 @@
        77  s-cb-int-buf   pic x(100).
        77  s-cb-dur-buf   pic x(100).
        77  s-cb-gio-buf   pic x(100).
-       77  s-cb-wod-buf   pic x(100).
+       77  s-cb-wod-buf   pic x(100). 
+
+       77  s-tex-exe-code     pic x(5).  
+       77  s-tex-exe-desc     pic x(100).   
+       77  s-tex-exe-isMulti  pic 9.
       *{TOTEM}END
 
       *{TOTEM}ID-LOGICI
@@ -1230,12 +1256,16 @@
 
       * PUSH BUTTON
        05
-           Screen1-Pb-1, 
+           pb-aggiungi, 
            Push-Button, 
-           COL 147,30, 
+           COL 147,10, 
            LINE 1,70,
-           LINES 0,74 ,
-           SIZE 2,00 ,
+           LINES 1,17 ,
+           SIZE 28 PIXELS,
+           BITMAP-HANDLE PIU-MENO-BMP,
+           BITMAP-NUMBER 1,
+           FRAMED,
+           SQUARE,
            ID IS 30,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1244,12 +1274,17 @@
 
       * PUSH BUTTON
        05
-           Screen1-Pb-1a, 
+           pb-elimina, 
            Push-Button, 
-           COL 147,30, 
-           LINE 2,57,
-           LINES 0,74 ,
-           SIZE 2,00 ,
+           COL 147,10, 
+           LINE 2,96,
+           LINES 1,17 ,
+           SIZE 28 PIXELS,
+           BITMAP-HANDLE PIU-MENO-BMP,
+           BITMAP-NUMBER 2,
+           FRAMED,
+           SQUARE,
+           EXCEPTION-VALUE 1004,
            ID IS 36,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1260,10 +1295,14 @@
        05
            pb-su, 
            Push-Button, 
-           COL 147,30, 
-           LINE 3,70,
-           LINES 0,74 ,
-           SIZE 2,00 ,
+           COL 147,10, 
+           LINE 4,26,
+           LINES 1,17 ,
+           SIZE 28 PIXELS,
+           BITMAP-HANDLE UP-DOWN-BMP,
+           BITMAP-NUMBER 1,
+           FRAMED,
+           SQUARE,
            EXCEPTION-VALUE 1001,
            ID IS 38,
            HEIGHT-IN-CELLS,
@@ -1276,9 +1315,13 @@
            pb-giu, 
            Push-Button, 
            COL 147,10, 
-           LINE 5,09,
-           LINES 0,74 ,
-           SIZE 2,00 ,
+           LINE 5,52,
+           LINES 1,17 ,
+           SIZE 28 PIXELS,
+           BITMAP-HANDLE UP-DOWN-BMP,
+           BITMAP-NUMBER 2,
+           FRAMED,
+           SQUARE,
            EXCEPTION-VALUE 1003,
            ID IS 41,
            HEIGHT-IN-CELLS,
@@ -1581,6 +1624,8 @@
            DESTROY Calibri16B-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, genera-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, random-bmp
+           CALL "w$bitmap" USING WBITMAP-DESTROY, PIU-MENO-BMP
+           CALL "w$bitmap" USING WBITMAP-DESTROY, UP-DOWN-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
       *    After-Program
            PERFORM ginqui-Ev-After-Program
@@ -1711,6 +1756,14 @@
            COPY RESOURCE "random.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "random.bmp", 
                    GIVING random-bmp.
+      * pb-aggiungi
+           COPY RESOURCE "PIU-MENO.BMP".
+           CALL "w$bitmap" USING WBITMAP-LOAD "PIU-MENO.BMP", 
+                   GIVING PIU-MENO-BMP.
+      * pb-su
+           COPY RESOURCE "UP-DOWN.BMP".
+           CALL "w$bitmap" USING WBITMAP-LOAD "UP-DOWN.BMP", 
+                   GIVING UP-DOWN-BMP.
       * TOOL-ESCI
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
@@ -4344,7 +4397,7 @@
               SCREEN LINE 2,
               SCREEN COLUMN 2,
               LINES 38,39,
-              SIZE 149,10,
+              SIZE 149,50,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -4509,6 +4562,8 @@
                  PERFORM pb-genera-LinkTo
               WHEN Key-Status = 1002
                  PERFORM pb-random-LinkTo
+              WHEN Key-Status = 1004
+                 PERFORM pb-elimina-LinkTo
               WHEN Key-Status = 1001
                  PERFORM pb-su-LinkTo
               WHEN Key-Status = 1003
@@ -5657,12 +5712,20 @@
               move BitmapPrintEnabled   to BitmapNumPrint
               move BitmapPreviewEnabled to BitmapNumPreview
               move 1 to e-salva e-cancella e-stampa e-anteprima 
+              modify pb-aggiungi, enabled true
+              modify pb-elimina,  enabled true
+              modify pb-su,       enabled true
+              modify pb-giu,      enabled true
            else           
               move BitmapDeleteDisabled  to BitmapNumDelete
               move BitmapSaveDisabled    to BitmapNumSave   
               move BitmapPrintDisabled   to BitmapNumPrint
               move BitmapPreviewDisabled to BitmapNumPreview
               move 0 to e-salva e-cancella e-stampa e-anteprima 
+              modify pb-aggiungi, enabled false
+              modify pb-elimina,  enabled false
+              modify pb-su,       enabled false
+              modify pb-giu,      enabled false
            end-if.      
 
                                          
@@ -8358,7 +8421,37 @@
            modify gd1(riga - 1, 78-col-grp-code), cell-data grp-code.
            modify gd1(riga - 1, 78-col-grp-desc), cell-data grp-desc.
            modify gd1(riga - 1, 78-col-exe-code), cell-data exe-code.
-           modify gd1(riga - 1, 78-col-exe-desc), cell-data exe-desc.
+           modify gd1(riga - 1, 78-col-exe-desc), cell-data exe-desc.  
+           
+           open i-o tmp-exe.               
+
+           inquire gd1(riga - 1, 78-col-day), cell-data in tex-day.
+           inquire gd1(riga - 1, 78-col-prg), cell-data in tex-split.
+           read tmp-exe no lock.       
+           move tex-rec to como-tex-rec
+
+           inquire gd1(riga, 78-col-day), cell-data in tex-day.
+           inquire gd1(riga, 78-col-prg), cell-data in tex-split.    
+           read tmp-exe no lock.    
+           
+           move tex-exe-code    to s-tex-exe-code.  
+           move tex-exe-desc    to s-tex-exe-desc.   
+           move tex-exe-isMulti to s-tex-exe-isMulti. 
+           
+           move como-tex-exe-code    to tex-exe-code.   
+           move como-tex-exe-desc    to tex-exe-desc.   
+           move como-tex-exe-isMulti to tex-exe-isMulti.
+           rewrite tex-rec.                              
+
+           move como-tex-key to tex-key.
+           read tmp-exe no lock.
+
+           move s-tex-exe-code    to tex-exe-code.   
+           move s-tex-exe-desc    to tex-exe-desc.   
+           move s-tex-exe-isMulti to tex-exe-isMulti.
+           rewrite tex-rec.                
+
+           close tmp-exe.               
 
            subtract 1 from riga giving event-data-2.
            perform SPOSTAMENTO.
@@ -8405,25 +8498,77 @@
 
            if tex-mcg-code not = mcg-code
               exit paragraph
-           end-if.
+           end-if.  
                                                                       
-           modify gd1(riga, 78-col-grp-code),     cell-data 
-           como-grp-code.
-           modify gd1(riga, 78-col-grp-desc),     cell-data 
-           como-grp-desc.
-           modify gd1(riga, 78-col-exe-code),     cell-data 
-           tex-exe-code.
-           modify gd1(riga, 78-col-exe-desc),     cell-data 
-           tex-exe-desc.
+           modify gd1(riga, 78-col-grp-code), cell-data como-grp-code.
+           modify gd1(riga, 78-col-grp-desc), cell-data como-grp-desc.
+           modify gd1(riga, 78-col-exe-code), cell-data tex-exe-code.
+           modify gd1(riga, 78-col-exe-desc), cell-data tex-exe-desc.
 
            modify gd1(riga + 1, 78-col-grp-code), cell-data grp-code.
            modify gd1(riga + 1, 78-col-grp-desc), cell-data grp-desc.
            modify gd1(riga + 1, 78-col-exe-code), cell-data exe-code.
            modify gd1(riga + 1, 78-col-exe-desc), cell-data exe-desc.
+           
+           open i-o tmp-exe.               
+
+           inquire gd1(riga + 1, 78-col-day), cell-data in tex-day.
+           inquire gd1(riga + 1, 78-col-prg), cell-data in tex-split.
+           read tmp-exe no lock.       
+           move tex-rec to como-tex-rec
+
+           inquire gd1(riga, 78-col-day), cell-data in tex-day.
+           inquire gd1(riga, 78-col-prg), cell-data in tex-split.    
+           read tmp-exe no lock.    
+           
+           move tex-exe-code    to s-tex-exe-code.  
+           move tex-exe-desc    to s-tex-exe-desc.   
+           move tex-exe-isMulti to s-tex-exe-isMulti. 
+           
+           move como-tex-exe-code    to tex-exe-code.   
+           move como-tex-exe-desc    to tex-exe-desc.   
+           move como-tex-exe-isMulti to tex-exe-isMulti.
+           rewrite tex-rec.                              
+
+           move como-tex-key to tex-key.
+           read tmp-exe no lock.
+
+           move s-tex-exe-code    to tex-exe-code.   
+           move s-tex-exe-desc    to tex-exe-desc.   
+           move s-tex-exe-isMulti to tex-exe-isMulti.
+           rewrite tex-rec.                
+
+           close tmp-exe.               
 
            add 1 to riga giving event-data-2.
            perform SPOSTAMENTO.
            modify gd1, cursor-y event-data-2 
+           .
+      * <TOTEM:END>
+       pb-elimina-LinkTo.
+      * <TOTEM:PARA. pb-elimina-LinkTo>
+           inquire gd1, cursor-y in riga.                       
+           inquire gd1(riga, 78-col-prg), cell-data tex-split.
+           if riga < 2 or tex-split = 0
+              exit paragraph
+           end-if.
+
+           inquire gd1(riga, 78-col-day), hidden-data hiddenData
+           inquire gd1(riga, 78-col-day), cell-data col-day
+           open i-o tmp-exe
+           move hid-tex-key to tex-key
+           delete tmp-exe record
+           close tmp-exe
+
+           modify gd1(riga, 78-col-day),      cell-data = spaces
+           modify gd1(riga, 78-col-prg),      cell-data = spaces
+           modify gd1(riga, 78-col-grp-code), cell-data = spaces
+           modify gd1(riga, 78-col-grp-desc), cell-data = spaces
+           modify gd1(riga, 78-col-exe-code), cell-data = spaces
+           modify gd1(riga, 78-col-exe-desc), cell-data = spaces
+           modify gd1(riga, 78-col-series),   cell-data = spaces 
+           modify gd1(riga, 78-col-reps),     cell-data = spaces
+           modify gd1, record-to-delete = riga
            .
       * <TOTEM:END>
 

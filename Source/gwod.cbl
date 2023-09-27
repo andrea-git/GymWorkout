@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 27 settembre 2023 10:34:32.
+       DATE-WRITTEN.        mercoledì 27 settembre 2023 16:53:24.
        REMARKS.
       *{TOTEM}END
 
@@ -137,6 +137,12 @@
        77 como-grp-desc    PIC  x(100).
        77 riga-div         PIC  999.
        77 como-grp-code    PIC  x(5).
+       77 riga-aggiunta    PIC  999.
+       01 FILLER           PIC  9.
+           88 fromAggiungi VALUE IS 1    WHEN SET TO FALSE  0. 
+       01 s-tex-key.
+           05 s-tex-day        PIC  9.
+           05 s-tex-split      PIC  9(3).
        01 como-tex-rec.
            05 como-tex-key.
                10 como-tex-day     PIC  9.
@@ -152,7 +158,6 @@
                    88 como-tex-exe-isMulti-yes VALUE IS 1. 
                10 como-tex-reps    PIC  x(10).
                10 como-tex-series  PIC  99.
-               10 como-tex-restpause           PIC  9.
        01 mcg-sigle-tab.
            05 el-mcg-sigla     PIC  x
                       OCCURS 10 TIMES.
@@ -435,12 +440,12 @@
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(230).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(229).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(105).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
        77 TMP-DataSet1-tmp-hit-BUF     PIC X(6).
-       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(214).
+       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(216).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -1268,6 +1273,7 @@
            BITMAP-NUMBER 1,
            FRAMED,
            SQUARE,
+           EXCEPTION-VALUE 1012,
            ID IS 30,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -4524,7 +4530,12 @@
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterEndAccept>
            evaluate true
            when ApriLookup
-                set ApriLookup to false
+                set ApriLookup to false            
+                perform X-Y
+                inquire gd1(riga, 78-col-exe-code), 
+                        cell-data in exe-code
+                inquire gd1(riga, 78-col-grp-code), 
+                        cell-data in grp-code
                 perform LOOKUP-EXE
            end-evaluate
 
@@ -4564,6 +4575,8 @@
                  PERFORM pb-genera-LinkTo
               WHEN Key-Status = 1002
                  PERFORM pb-random-LinkTo
+              WHEN Key-Status = 1012
+                 PERFORM pb-aggiungi-LinkTo
               WHEN Key-Status = 1004
                  PERFORM pb-elimina-LinkTo
               WHEN Key-Status = 1001
@@ -5906,6 +5919,11 @@
                 perform X-Y
                 evaluate colonna
                 when 78-col-exe-code
+                     perform X-Y
+                     inquire gd1(riga, 78-col-exe-code), 
+                             cell-data in exe-code
+                     inquire gd1(riga, 78-col-grp-code), 
+                             cell-data in grp-code
                      perform LOOKUP-EXE
       *
       *          when 78-col-prz
@@ -6063,6 +6081,14 @@
                 inquire gd1(riga, 78-col-reps), cell-data in col-reps
                 if col-reps = spaces
                    set event-action to event-action-fail
+                else                        
+                   inquire gd1(riga, 78-col-day), hidden-data hiddenData
+                   move hid-tex-key to tex-key
+                   open i-o tmp-exe
+                   read tmp-exe
+                   move col-reps to tex-reps
+                   rewrite tex-rec
+                   close tmp-exe            
                 end-if
 
            end-evaluate 
@@ -6177,7 +6203,13 @@
                     inspect tge-series replacing leading x"30" by x"20"
                     call "C$JUSTIFY" using tge-series, "L"
                     move tex-reps   to tge-reps  
-                    write tge-rec invalid rewrite tge-rec end-write
+                    move 0 to tge-prg
+                    perform until 1 = 2
+                       write tge-rec 
+                             invalid add 1 to tge-prg        
+                         not invalid exit perform
+                       end-write
+                    end-perform
                  end-perform
            end-start.         
            close tmp-exe.  
@@ -6367,16 +6399,7 @@
            open i-o tmp-exe.
            move hid-tex-key to tex-key.
            delete tmp-exe record.
-           close tmp-exe.
-
-           modify gd1(riga, 78-col-day),      cell-data = spaces.
-           modify gd1(riga, 78-col-prg),      cell-data = spaces.
-           modify gd1(riga, 78-col-grp-code), cell-data = spaces.
-           modify gd1(riga, 78-col-grp-desc), cell-data = spaces.
-           modify gd1(riga, 78-col-exe-code), cell-data = spaces.
-           modify gd1(riga, 78-col-exe-desc), cell-data = spaces.
-           modify gd1(riga, 78-col-series),   cell-data = spaces.
-           modify gd1(riga, 78-col-reps),     cell-data = spaces.
+           close tmp-exe.  
            modify gd1, record-to-delete = riga.
 
            perform RICALCOLA-HIT-DIV.
@@ -6447,6 +6470,9 @@
            perform LOAD-EXERCISES-MULTIJOINT.
            perform LOAD-EXERCISES.           
            perform REMOVE-DUPLICATES.           
+           move "Carico la griglia" to lab-attesa-buf.
+           display lab-attesa.
+           set fromAggiungi to false.
            perform LOAD-GRID.          
            move "Calcolo coperture" to lab-attesa-buf.
            display lab-attesa
@@ -6567,9 +6593,6 @@
       
       ***---
        LOAD-GRID.
-           move "Carico la griglia" to lab-attesa-buf.
-           display lab-attesa
-           
            move low-value to tex-rec.
            move 0 to save-day col-exe-prg.
            start tmp-exe key >= tex-key
@@ -6593,8 +6616,9 @@
                        perform DISPLAY-DURATA
                        move 0 to col-exe-prg tot-durata
                        move tex-day to save-day
-                    end-if          
-                    add 1 to col-exe-prg tot-exe
+                    end-if   
+                    move tex-split to col-exe-prg
+                    add 1 to tot-exe
                     move tex-day to col-day
                     move tex-exe-code to exe-code
                     read exercises
@@ -6607,62 +6631,73 @@
                     move wom-split-el-split-int-code(tex-day, tex-split)
                       to int-code
                     read intexe
-                    if exe-isMulti = 1
-                       evaluate wom-effort
-                       when 1 move  5 to col-series
-                              move  5 to col-reps
-                       when 2 move  6 to col-series
-                              move 10 to col-reps
-                       when 3 move 10 to col-series
-                              move  8 to col-reps
-                       end-evaluate                               
-                       inspect col-reps replacing leading x"30" by x"20"
-                       call "C$JUSTIFY" using col-reps, "L"
-                    else                  
-                       move int-series to col-series
-                                             
-                       initialize col-reps
-                       if int-restpause > 0  
-                          move int-restpause to como-range-from
-                          inspect como-range-from replacing leading x"30
-      -    "" by x"20"
-                          inspect int-desc replacing trailing spaces by 
-           low-value
-                          call "C$JUSTIFY" using como-range-from, "L"
-                          inspect como-range-from replacing trailing 
-           spaces by low-value
-                          string int-desc       delimited low-value
-                                 " ("           delimited size
-                                 int-restpause  delimited low-value
-                                 ")"            delimited size
-                            into col-reps
-                          end-string
-                       else
-                          if int-range-from = 99 and int-range-to = 99
-                             move "Max" to col-reps
-                          else
-                             move int-range-from to como-range-from
-                             inspect como-range-from replacing leading 
-           x"30" by x"20"
+
+                    if fromAggiungi
+                       move tex-series to col-series
+                       move tex-reps   to col-reps
+                    else
+                       if exe-isMulti = 1
+                          evaluate wom-effort
+                          when 1 move  5 to col-series
+                                 move  5 to col-reps
+                          when 2 move  6 to col-series
+                                 move 10 to col-reps
+                          when 3 move 10 to col-series
+                                 move  8 to col-reps
+                          end-evaluate                               
+                          inspect col-reps 
+                                  replacing leading x"30" by x"20"
+                          call "C$JUSTIFY" using col-reps, "L"
+                       else                  
+                          move int-series to col-series
+                                                
+                          initialize col-reps
+                          if int-restpause > 0  
+                             move int-restpause to como-range-from
+                             inspect como-range-from 
+                                     replacing leading x"30" by x"20"
+                             inspect int-desc replacing trailing spaces 
+           by low-value
                              call "C$JUSTIFY" using como-range-from, "L"
                              inspect como-range-from replacing trailing 
            spaces by low-value
-                          
-                             move int-range-to to como-range-to         
-                      
-                             inspect como-range-to replacing leading x"3
-      -    "0" by x"20"  
-                             call "C$JUSTIFY" using como-range-to, "L"  
-                   
-                             inspect como-range-to replacing trailing 
-           spaces by low-value
-                          
-                             initialize col-reps
-                             string como-range-from delimited low-value
-                                    "-"             delimited size
-                                    como-range-to   delimited low-value
+                             string int-desc       delimited low-value
+                                    " ("           delimited size
+                                    int-restpause  delimited low-value
+                                    ")"            delimited size
                                into col-reps
                              end-string
+                          else
+                             if int-range-from = 99 and int-range-to = 
+           99
+                                move "Max" to col-reps
+                             else
+                                move int-range-from to como-range-from
+                                inspect como-range-from replacing 
+           leading x"30" by x"20"
+                                call "C$JUSTIFY" using como-range-from, 
+           "L"
+                                inspect como-range-from replacing 
+           trailing spaces by low-value
+                             
+                                move int-range-to to como-range-to      
+                         
+                                inspect como-range-to replacing leading 
+           x"30" by x"20"  
+                                call "C$JUSTIFY" using como-range-to, "L
+      -    ""          
+                                inspect como-range-to replacing 
+           trailing spaces by low-value
+                             
+                                initialize col-reps
+                                string como-range-from delimited 
+           low-value
+                                       "-"             delimited size
+                                       como-range-to   delimited 
+           low-value
+                                  into col-reps
+                                end-string
+                             end-if
                           end-if
                        end-if
                     end-if
@@ -6679,8 +6714,13 @@
            col-exe-code
                     modify gd1(riga, 78-col-exe-desc), cell-data = 
            col-exe-desc
-                    modify gd1(riga, 78-col-series),   cell-data = 
+                    if col-series = 0
+                       modify gd1(riga, 78-col-series),   cell-data = 
+           spaces
+                    else
+                       modify gd1(riga, 78-col-series),   cell-data = 
            col-series
+                    end-if
                     modify gd1(riga, 78-col-reps),     cell-data = 
            col-reps
 
@@ -7237,11 +7277,6 @@
 
        LOOKUP-EXE.
       * <TOTEM:PARA. LOOKUP-EXE>
-           perform X-Y.
-           inquire gd1(riga, 78-col-exe-code), 
-                   cell-data in exe-code
-           inquire gd1(riga, 78-col-grp-code), 
-                   cell-data in grp-code
            read exercises no lock
            move exe-int-code to int-code
            read intexe
@@ -7255,10 +7290,13 @@
            move "zoom-exe-mcg"  to Como-File
            call   "zoom-gt"  using  como-file, zem-rec
                             giving stato-zoom
-           cancel "zoom-gt"
+           cancel "zoom-gt".
            if stato-zoom = 0
               move zem-exe-code to col-exe-code exe-code
               read exercises
+              move exe-int-code to int-code
+              read intexe 
+              move int-restpause to hid-restpause
 
               move zem-exe-desc to col-exe-desc
               move zem-grp-desc to col-grp-desc
@@ -7409,6 +7447,11 @@
               inquire gd1(store-riga, 78-col-day), hidden-data 
            hiddenData
               if hid-mcg-code not = spaces
+                 exit perform cycle
+              end-if
+              inquire gd1(store-riga, 78-col-day), hidden-data 
+           hid-tot-exe
+              if hid-tot-exe = 0
                  exit perform cycle
               end-if
               inquire gd1(store-riga, 78-col-series), cell-data in 
@@ -7645,6 +7688,14 @@
       * <TOTEM:PARA. SPOSTAMENTO>
            set tutto-ok to true.
            perform X-Y.
+
+           |Se abbandono una riga nuova
+           if riga not = event-data-2
+              inquire gd1(riga, 78-col-day), cell-data col-day
+              if col-day = 0
+                 modify gd1, record-to-delete = riga
+              end-if
+           end-if.
 
            move 0 to StatusHelp
                              
@@ -8662,12 +8713,165 @@
        pb-elimina-LinkTo.
       * <TOTEM:PARA. pb-elimina-LinkTo>
            inquire gd1, cursor-y in riga.                       
-           inquire gd1(riga, 78-col-prg), cell-data tex-split.
-           if riga < 2 or tex-split = 0
+           if riga < 2 exit paragraph end-if.
+
+           inquire gd1(riga, 78-col-day), hidden-data hiddenData.
+           if hid-tex-day = 0
+              inquire gd1(riga, 78-col-day), hidden-data hid-tot-exe
+              if hid-tot-exe = 0
+                 modify gd1, record-to-delete = riga
+              end-if                                
               exit paragraph
            end-if.
 
-           perform ELIMINA-RIGA 
+           perform ELIMINA-RIGA.
+
+           inquire gd1, last-row in tot-righe.
+           if tot-righe = 1
+              move 0 to mod
+              perform ABILITAZIONI
+           end-if 
+           
+           .
+      * <TOTEM:END>
+       pb-aggiungi-LinkTo.
+      * <TOTEM:PARA. pb-aggiungi-LinkTo>
+           inquire gd1, cursor-y riga, last-row in tot-righe.
+
+           inquire gd1(riga, 78-col-day) hidden-data hiddenData
+           if hid-tex-day = 0                                  
+              inquire gd1(riga, 78-col-day) hidden-data hid-tot-exe
+              if hid-tot-exe = 0
+                 modify gd1, record-to-delete riga
+              end-if
+           end-if.
+
+           if riga <= tot-righe
+              inquire gd1(riga, 78-col-day), cell-data in col-day
+              inquire gd1(riga, 78-col-prg), cell-data in col-exe-prg
+
+              inquire gd1(riga, 78-col-exe-code), cell-data in exe-code
+              inquire gd1(riga, 78-col-grp-code), cell-data in grp-code
+      
+              if col-exe-prg = 0
+                 inquire gd1(riga - 1, 78-col-day), cell-data in col-day
+                 inquire gd1(riga - 1, 78-col-prg), cell-data in 
+           col-exe-prg
+                 inquire gd1(riga - 1, 78-col-exe-code), cell-data in 
+           exe-code
+                 inquire gd1(riga - 1, 78-col-grp-code), cell-data in 
+           grp-code 
+                 add 1 to col-exe-prg
+              end-if
+           end-if.
+                              
+
+           modify gd1, insertion-index riga, record-to-add rec-grid.
+
+           modify gd1(riga, 78-col-day),    cell-data col-day, 
+                                          hidden-data hiddenData.
+           modify gd1(riga, 78-col-prg),    cell-data col-exe-prg.
+           modify gd1(riga, 78-col-reps),   cell-data spaces.
+           modify gd1(riga, 78-col-series), cell-data spaces.
+           modify gd1(riga, 78-col-grp-code), cell-data spaces.
+           modify gd1(riga, 78-col-grp-desc), cell-data spaces.
+           modify gd1(riga, 78-col-exe-code), cell-data spaces.
+           modify gd1(riga, 78-col-exe-desc), cell-data spaces.
+
+           move col-day     to s-tex-day.
+           move col-exe-prg to s-tex-split.
+
+           perform LOOKUP-EXE.
+           if stato-zoom not = 0
+              modify gd1, record-to-delete riga
+              exit paragraph
+           end-if. 
+
+           move riga to riga-aggiunta.
+                   
+           inquire gd1(event-data-2, 1), hidden-data hiddendata. 
+
+           open output tmp-hit.
+             
+           open i-o tmp-exe.
+           move low-value to tex-split.
+           start tmp-exe key >= tex-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-exe next at end exit perform end-read
+                    if tex-day not = s-tex-day
+                       exit perform
+                    end-if
+                    delete tmp-exe record
+                 end-perform
+           end-start.     
+
+           if riga > 2
+              perform varying riga from riga by -1 
+                        until riga = 2
+                 inquire gd1(riga, 78-col-prg), cell-data col-exe-prg
+                 if col-exe-prg = 0
+                    add 1 to riga
+                    exit perform
+                 end-if
+              end-perform
+           end-if.
+
+           perform varying riga from riga by 1 
+                     until riga > tot-righe
+              inquire gd1(riga, 78-col-prg), cell-data col-exe-prg
+              if col-exe-prg = 0
+                 inquire gd1(riga, 78-col-day), hidden-data hid-tot-exe
+                 add 1 to hid-tot-exe                                  
+                 modify gd1(riga, 78-col-day), hidden-data hid-tot-exe
+                 exit perform
+              end-if                             
+              inquire gd1(riga, 78-col-day),    cell-data tex-day      
+              inquire gd1(riga, 78-col-prg),    cell-data tex-split
+              inquire gd1(riga, 78-col-series), cell-data col-series
+              inquire gd1(riga, 78-col-reps),   cell-data col-reps
+
+              inquire gd1(riga, 78-col-exe-code), cell-data exe-code
+              read exercises no lock
+              move exe-grp-code to grp-code
+              read groups no lock
+
+              move exe-code     to tex-exe-code
+              move exe-desc     to tex-exe-desc
+              move grp-mcg-code to tex-mcg-code
+              move spaces       to tex-nome-dupl
+              move exe-int-code to tex-int-code
+              move exe-isMulti  to tex-exe-isMulti
+              move col-series   to tex-series 
+              move col-reps     to tex-reps
+              perform until 1 = 2
+                 write tex-rec
+                       invalid add 1 to tex-split
+                   not invalid exit perform
+                 end-write
+              end-perform
+           end-perform.
+                             
+           modify gd1, mass-update = 1.
+           modify gd1, reset-grid = 1.
+           perform GD1-CONTENT.
+
+           set fromAggiungi to true.
+           perform LOAD-GRID.       
+           set fromAggiungi to false.
+           close tmp-exe.  
+
+           perform RICALCOLA-HIT-DIV.
+           perform CALCOLA-HIT-BOTTONI.
+
+           move 78-ID-gd1 to control-id.
+           move 4         to accept-control.
+           move riga-aggiunta to event-data-2.
+           move 78-col-series to event-data-1.
+           modify gd1, cursor-x event-data-1, cursor-y riga-aggiunta.
+           perform SPOSTAMENTO.
+           set event-action to event-action-fail 
            .
       * <TOTEM:END>
 

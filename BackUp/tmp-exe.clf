@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791720531-891-16704543
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791B85740-761-115637979
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -153,16 +153,6 @@ m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM14_
-
-@}}
-[FDITEM15_]
-m_strName=tex-restpause
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=10
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM15_
 
 @}}
 [CStoAcucobolSL_]

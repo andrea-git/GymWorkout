@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791983927-419-175741738
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791B85740-722-688822169
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -60,31 +60,41 @@ m_bFixed=1
 
 @}}
 [FDITEM5_]
-m_strName=tge-data
-m_nItemLevel=5
+m_strName=tge-prg
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM5_
 
 @}}
 [FDITEM6_]
-m_strName=tge-series
-m_strRawPic=x(3)
-m_strPic=x(3)
-m_nItemLevel=10
+m_strName=tge-data
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM6_
 
 @}}
 [FDITEM7_]
+m_strName=tge-series
+m_strRawPic=x(3)
+m_strPic=x(3)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM7_
+
+@}}
+[FDITEM8_]
 m_strName=tge-reps
 m_strRawPic=x(10)
 m_strPic=x(10)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM7_
+{{@DataItem_m_strDescriptionFDITEM8_
 
 @}}
 [CStoAcucobolSL_]

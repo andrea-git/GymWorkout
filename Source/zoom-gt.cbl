@@ -915,7 +915,7 @@
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
            move  3                       to xzoom-field-length(idx).
-           move  201                     to xzoom-field-offset(idx).
+           move  203                     to xzoom-field-offset(idx).
            move  5                       to xzoom-field-column(idx).
            move "Series"                 to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 
@@ -925,7 +925,7 @@
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
            move  10                      to xzoom-field-length(idx).
-           move  204                     to xzoom-field-offset(idx).
+           move  206                     to xzoom-field-offset(idx).
            move  10                      to xzoom-field-column(idx).
            move "Reps"                   to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 

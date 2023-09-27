@@ -7,8 +7,8 @@
     <xfd:select-name>TMP-EXE</xfd:select-name>
     <xfd:table-name>TMP-EXE</xfd:table-name>
     <xfd:file-organization>Indexed</xfd:file-organization>
-    <xfd:maximum-record-size>230</xfd:maximum-record-size>
-    <xfd:minimum-record-size>230</xfd:minimum-record-size>
+    <xfd:maximum-record-size>229</xfd:maximum-record-size>
+    <xfd:minimum-record-size>229</xfd:minimum-record-size>
     <xfd:number-of-keys>3</xfd:number-of-keys>
     <xfd:sign-compatibility>0</xfd:sign-compatibility>
     <xfd:maximum-numeric-digits>18</xfd:maximum-numeric-digits>
@@ -78,15 +78,15 @@
        xfd:condition-count="0"/>
   <!-- Field Section -->
   <xfd:fields
-       xfd:elementary-items="11"
-       xfd:elementary-items-with-occurs="11"
-       xfd:total-items="14"
-       xfd:total-items-with-occurs="14">
+       xfd:elementary-items="10"
+       xfd:elementary-items-with-occurs="10"
+       xfd:total-items="13"
+       xfd:total-items-with-occurs="13">
     <xfd:field
          xfd:field-offset="0"
-         xfd:field-bytes="230"
+         xfd:field-bytes="229"
          xfd:field-type="16"
-         xfd:field-length="230"
+         xfd:field-length="229"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -124,9 +124,9 @@
          xfd:field-name="TEX-SPLIT"/>
     <xfd:field
          xfd:field-offset="4"
-         xfd:field-bytes="226"
+         xfd:field-bytes="225"
          xfd:field-type="16"
-         xfd:field-length="226"
+         xfd:field-length="225"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -212,15 +212,5 @@
          xfd:field-condition="0"
          xfd:field-level="10"
          xfd:field-name="TEX-SERIES"/>
-    <xfd:field
-         xfd:field-offset="229"
-         xfd:field-bytes="1"
-         xfd:field-type="1"
-         xfd:field-length="1"
-         xfd:field-scale="0"
-         xfd:field-user-flags="0"
-         xfd:field-condition="0"
-         xfd:field-level="10"
-         xfd:field-name="TEX-RESTPAUSE"/>
   </xfd:fields>
 </xfd:xfdfile>

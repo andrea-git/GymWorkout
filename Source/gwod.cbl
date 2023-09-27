@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 26 settembre 2023 23:41:23.
+       DATE-WRITTEN.        mercoledì 27 settembre 2023 10:34:32.
        REMARKS.
       *{TOTEM}END
 
@@ -135,6 +135,7 @@
        77 save-day         PIC  9.
        77 como-series      PIC  999.
        77 como-grp-desc    PIC  x(100).
+       77 riga-div         PIC  999.
        77 como-grp-code    PIC  x(5).
        01 como-tex-rec.
            05 como-tex-key.
@@ -368,6 +369,7 @@
                   USAGE IS HANDLE OF FONT.
        77 Calibri10B-Occidentale
                   USAGE IS HANDLE OF FONT.
+       77 hid-tot-exe      PIC  99.
        01 hiddenData.
            05 hid-restpause    PIC  9.
            05 hid-mcg-code     PIC  x(5).
@@ -5750,6 +5752,138 @@
            .
       * <TOTEM:END>
 
+       CALCOLA-HIT-BOTTONI.
+      * <TOTEM:PARA. CALCOLA-HIT-BOTTONI>
+           open input tmp-hit.
+
+           perform varying idx from 1 by 1 
+                     until idx > tot-gruppi
+              move el-mcg-code(idx) to th-mcg-code
+              move 0 to tot-hit
+              move low-value to th-day
+              start tmp-hit key >= th-key
+                    invalid continue
+                not invalid
+                    perform until 1 = 2
+                       read tmp-hit next at end exit perform end-read
+                       if th-mcg-code not = el-mcg-code(idx)
+                          exit perform
+                       end-if
+                       add 1 to tot-hit
+                    end-perform
+              end-start
+
+                                      
+              evaluate tot-hit
+              when 0
+                   evaluate idx                                       
+                   when 1 modify pb-mcg1, enabled, false, title = "Mai" 
+                                        
+                   when 2 modify pb-mcg2, enabled, false, title = "Mai" 
+                                        
+                   when 3 modify pb-mcg3, enabled, false, title = "Mai" 
+                                        
+                   when 4 modify pb-mcg4, enabled, false, title = "Mai" 
+                                        
+                   when 5 modify pb-mcg5, enabled, false, title = "Mai" 
+                                        
+                   when 6 modify pb-mcg6, enabled, false, title = "Mai" 
+                                        
+                   when 7 modify pb-mcg7, enabled, false, title = "Mai"
+                   end-evaluate
+              when 1
+                   evaluate idx         
+                   when 1 modify pb-mcg1, enabled, true, title = "1 volt
+      -    "a"
+                   when 2 modify pb-mcg2, enabled, true, title = "1 volt
+      -    "a"
+                   when 3 modify pb-mcg3, enabled, true, title = "1 volt
+      -    "a"
+                   when 4 modify pb-mcg4, enabled, true, title = "1 volt
+      -    "a"
+                   when 5 modify pb-mcg5, enabled, true, title = "1 volt
+      -    "a"
+                   when 6 modify pb-mcg6, enabled, true, title = "1 volt
+      -    "a"
+                   when 7 modify pb-mcg7, enabled, true, title = "1 volt
+      -    "a"
+                   end-evaluate
+              when other                                        
+                   move tot-hit to como-hit
+                   inspect como-hit replacing leading x"30" by x"20"
+                   call "C$JUSTIFY" using como-hit, "L"
+                   inspect como-hit replacing trailing spaces by 
+           low-value
+                   initialize como-day
+                   string como-hit delimited low-value
+                          " volte" delimited size
+                     into como-day
+                   end-string
+                   evaluate idx
+                   when 1 modify pb-mcg1, enabled, true, title como-day
+                   when 2 modify pb-mcg2, enabled, true, title como-day
+                   when 3 modify pb-mcg3, enabled, true, title como-day
+                   when 4 modify pb-mcg4, enabled, true, title como-day
+                   when 5 modify pb-mcg5, enabled, true, title como-day
+                   when 6 modify pb-mcg6, enabled, true, title como-day
+                   when 7 modify pb-mcg7, enabled, true, title como-day
+                   end-evaluate
+              end-evaluate
+                 
+              evaluate idx                            
+              when 1 inquire cb-mg1, enabled in como-e
+              when 2 inquire cb-mg2, enabled in como-e
+              when 3 inquire cb-mg3, enabled in como-e
+              when 4 inquire cb-mg4, enabled in como-e
+              when 5 inquire cb-mg5, enabled in como-e
+              when 6 inquire cb-mg6, enabled in como-e
+              when 7 inquire cb-mg7, enabled in como-e
+              end-evaluate
+
+              if como-e = 1
+                 evaluate tot-hit
+                 when 0
+                      evaluate idx
+                      when 1 modify lab-a, color 176
+                      when 2 modify lab-b, color 176
+                      when 3 modify lab-c, color 176
+                      when 4 modify lab-d, color 176
+                      when 5 modify lab-e, color 176
+                      when 6 modify lab-f, color 176
+                      when 7 modify lab-g, color 176
+                      end-evaluate
+                      move 176 to el-mcg-color(idx)
+                 when 1
+                      evaluate idx
+                      when 1 modify lab-a, color 481
+                      when 2 modify lab-b, color 481
+                      when 3 modify lab-c, color 481
+                      when 4 modify lab-d, color 481
+                      when 5 modify lab-e, color 481
+                      when 6 modify lab-f, color 481
+                      when 7 modify lab-g, color 481
+                      end-evaluate
+                      move 481 to el-mcg-color(idx)
+                 when other
+                      evaluate idx
+                      when 1 modify lab-a, color 112
+                      when 2 modify lab-b, color 112
+                      when 3 modify lab-c, color 112
+                      when 4 modify lab-d, color 112
+                      when 5 modify lab-e, color 112
+                      when 6 modify lab-f, color 112
+                      when 7 modify lab-g, color 112
+                      end-evaluate
+                      move 112 to el-mcg-color(idx)
+                 end-evaluate
+              end-if
+
+           end-perform.
+
+           close tmp-hit 
+           .
+      * <TOTEM:END>
+
        CERCA.
       * <TOTEM:PARA. CERCA>
            evaluate CONTROL-ID
@@ -5901,30 +6035,36 @@
       
            evaluate colonna
            when 78-col-day
-                inquire gd1(riga, 78-col-day), hidden-data hiddenData
                 inquire gd1(riga, 78-col-day), cell-data col-day
                 if col-day = 0                 
-                   open i-o tmp-exe
-                   move hid-tex-key to tex-key
-                   delete tmp-exe record
-                   close tmp-exe
-
-                   modify gd1(riga, 78-col-day),      cell-data = spaces
-                   modify gd1(riga, 78-col-prg),      cell-data = spaces
-                   modify gd1(riga, 78-col-grp-code), cell-data = spaces
-                   modify gd1(riga, 78-col-grp-desc), cell-data = spaces
-                   modify gd1(riga, 78-col-exe-code), cell-data = spaces
-                   modify gd1(riga, 78-col-exe-desc), cell-data = spaces
-                   modify gd1(riga, 78-col-series),   cell-data = 
-           spaces 
-                   modify gd1(riga, 78-col-reps),     cell-data = 
-           spaces 
+                   perform ELIMINA-RIGA
                 else
                    if col-day not = hid-tex-day
                       move hid-tex-day to col-day
                       modify gd1(riga, 78-col-day), cell-data col-day
                    end-if
                 end-if
+           when 78-col-series
+                inquire gd1(riga, 78-col-series), cell-data in 
+           col-series
+                if col-series = 0
+                   set event-action to event-action-fail
+                else
+                   inquire gd1(riga, 78-col-day), hidden-data hiddenData
+                   move hid-tex-key to tex-key
+                   open i-o tmp-exe
+                   read tmp-exe
+                   move col-series to tex-series
+                   rewrite tex-rec
+                   close tmp-exe
+                   perform RICALCOLA-HIT-DIV
+                end-if
+           when 78-col-reps
+                inquire gd1(riga, 78-col-reps), cell-data in col-reps
+                if col-reps = spaces
+                   set event-action to event-action-fail
+                end-if
+
            end-evaluate 
            .
       * <TOTEM:END>
@@ -6220,6 +6360,30 @@
            .
       * <TOTEM:END>
 
+       ELIMINA-RIGA.
+      * <TOTEM:PARA. ELIMINA-RIGA>
+           inquire gd1(riga, 78-col-day), hidden-data hiddenData.
+           inquire gd1(riga, 78-col-day), cell-data col-day.
+           open i-o tmp-exe.
+           move hid-tex-key to tex-key.
+           delete tmp-exe record.
+           close tmp-exe.
+
+           modify gd1(riga, 78-col-day),      cell-data = spaces.
+           modify gd1(riga, 78-col-prg),      cell-data = spaces.
+           modify gd1(riga, 78-col-grp-code), cell-data = spaces.
+           modify gd1(riga, 78-col-grp-desc), cell-data = spaces.
+           modify gd1(riga, 78-col-exe-code), cell-data = spaces.
+           modify gd1(riga, 78-col-exe-desc), cell-data = spaces.
+           modify gd1(riga, 78-col-series),   cell-data = spaces.
+           modify gd1(riga, 78-col-reps),     cell-data = spaces.
+           modify gd1, record-to-delete = riga.
+
+           perform RICALCOLA-HIT-DIV.
+           perform CALCOLA-HIT-BOTTONI         
+           .
+      * <TOTEM:END>
+
        EVIDENZIA-GRUPPI.
       * <TOTEM:PARA. EVIDENZIA-GRUPPI>
            inquire gd1, last-row in tot-righe, 
@@ -6250,9 +6414,6 @@
            when "Light wod effort" move 3  to effort-wod
            when other              move 99 to effort-wod
            end-evaluate.
-           
-           inquire cb-dur, value in dur-desc.
-           read duration key dur-k-desc.
            
            inquire cb-wod, value in wom-desc.
            read wodmap key wom-k-desc.
@@ -6286,7 +6447,10 @@
            perform LOAD-EXERCISES-MULTIJOINT.
            perform LOAD-EXERCISES.           
            perform REMOVE-DUPLICATES.           
-           perform LOAD-GRID.       
+           perform LOAD-GRID.          
+           move "Calcolo coperture" to lab-attesa-buf.
+           display lab-attesa
+           perform CALCOLA-HIT-BOTTONI.
 
            perform CLOSE-TMP.
                                   
@@ -6376,10 +6540,10 @@
            accept  path-tmp-hit from environment "PATH_ST".
            inspect path-tmp-hit replacing trailing spaces by low-value.
            string  path-tmp-hit delimited low-value
-                   "tmp-exe-hit_"   delimited size
-                   como-data        delimited size
-                   "_"              delimited size
-                   como-ora         delimited size
+                   "tmp-hit_"   delimited size
+                   como-data    delimited size
+                   "_"          delimited size
+                   como-ora     delimited size
               into path-tmp-hit
            end-string.                                                  
                  
@@ -6395,14 +6559,11 @@
 
            close       tmp-wod-exe.
            delete file tmp-wod-exe.
-                            
-           close       tmp-exe.    
                                         
            close       tmp-exe-dupl.
            delete file tmp-exe-dupl.
 
-           close       tmp-hit.
-           delete file tmp-hit.    
+           close       tmp-exe.
       
       ***---
        LOAD-GRID.
@@ -6547,129 +6708,7 @@
                  end-perform
            end-start.
 
-           perform varying idx from 1 by 1 
-                     until idx > tot-gruppi
-              move el-mcg-code(idx) to th-mcg-code
-              move 0 to tot-hit
-              move low-value to th-day
-              start tmp-hit key >= th-key
-                    invalid continue
-                not invalid
-                    perform until 1 = 2
-                       read tmp-hit next at end exit perform end-read
-                       if th-mcg-code not = el-mcg-code(idx)
-                          exit perform
-                       end-if
-                       add 1 to tot-hit
-                    end-perform
-              end-start
-
-                                      
-              evaluate tot-hit
-              when 0
-                   evaluate idx                                       
-                   when 1 modify pb-mcg1, enabled, false, title = "Mai" 
-                                        
-                   when 2 modify pb-mcg2, enabled, false, title = "Mai" 
-                                        
-                   when 3 modify pb-mcg3, enabled, false, title = "Mai" 
-                                        
-                   when 4 modify pb-mcg4, enabled, false, title = "Mai" 
-                                        
-                   when 5 modify pb-mcg5, enabled, false, title = "Mai" 
-                                        
-                   when 6 modify pb-mcg6, enabled, false, title = "Mai" 
-                                        
-                   when 7 modify pb-mcg7, enabled, false, title = "Mai"
-                   end-evaluate
-              when 1
-                   evaluate idx         
-                   when 1 modify pb-mcg1, enabled, true, title = "1 volt
-      -    "a"
-                   when 2 modify pb-mcg2, enabled, true, title = "1 volt
-      -    "a"
-                   when 3 modify pb-mcg3, enabled, true, title = "1 volt
-      -    "a"
-                   when 4 modify pb-mcg4, enabled, true, title = "1 volt
-      -    "a"
-                   when 5 modify pb-mcg5, enabled, true, title = "1 volt
-      -    "a"
-                   when 6 modify pb-mcg6, enabled, true, title = "1 volt
-      -    "a"
-                   when 7 modify pb-mcg7, enabled, true, title = "1 volt
-      -    "a"
-                   end-evaluate
-              when other                                        
-                   move tot-hit to como-hit
-                   inspect como-hit replacing leading x"30" by x"20"
-                   call "C$JUSTIFY" using como-hit, "L"
-                   inspect como-hit replacing trailing spaces by 
-           low-value
-                   initialize como-day
-                   string como-hit delimited low-value
-                          " volte" delimited size
-                     into como-day
-                   end-string
-                   evaluate idx
-                   when 1 modify pb-mcg1, enabled, true, title como-day
-                   when 2 modify pb-mcg2, enabled, true, title como-day
-                   when 3 modify pb-mcg3, enabled, true, title como-day
-                   when 4 modify pb-mcg4, enabled, true, title como-day
-                   when 5 modify pb-mcg5, enabled, true, title como-day
-                   when 6 modify pb-mcg6, enabled, true, title como-day
-                   when 7 modify pb-mcg7, enabled, true, title como-day
-                   end-evaluate
-              end-evaluate
-                 
-              evaluate idx                            
-              when 1 inquire cb-mg1, enabled in como-e
-              when 2 inquire cb-mg2, enabled in como-e
-              when 3 inquire cb-mg3, enabled in como-e
-              when 4 inquire cb-mg4, enabled in como-e
-              when 5 inquire cb-mg5, enabled in como-e
-              when 6 inquire cb-mg6, enabled in como-e
-              when 7 inquire cb-mg7, enabled in como-e
-              end-evaluate
-
-              if como-e = 1
-                 evaluate tot-hit
-                 when 0
-                      evaluate idx
-                      when 1 modify lab-a, color 176
-                      when 2 modify lab-b, color 176
-                      when 3 modify lab-c, color 176
-                      when 4 modify lab-d, color 176
-                      when 5 modify lab-e, color 176
-                      when 6 modify lab-f, color 176
-                      when 7 modify lab-g, color 176
-                      end-evaluate
-                      move 176 to el-mcg-color(idx)
-                 when 1
-                      evaluate idx
-                      when 1 modify lab-a, color 481
-                      when 2 modify lab-b, color 481
-                      when 3 modify lab-c, color 481
-                      when 4 modify lab-d, color 481
-                      when 5 modify lab-e, color 481
-                      when 6 modify lab-f, color 481
-                      when 7 modify lab-g, color 481
-                      end-evaluate
-                      move 481 to el-mcg-color(idx)
-                 when other
-                      evaluate idx
-                      when 1 modify lab-a, color 112
-                      when 2 modify lab-b, color 112
-                      when 3 modify lab-c, color 112
-                      when 4 modify lab-d, color 112
-                      when 5 modify lab-e, color 112
-                      when 6 modify lab-f, color 112
-                      when 7 modify lab-g, color 112
-                      end-evaluate
-                      move 112 to el-mcg-color(idx)
-                 end-evaluate
-              end-if
-
-           end-perform.
+           close tmp-hit.
 
            modify gd1, mass-update = 0.
 
@@ -6690,40 +6729,12 @@
                  exit perform
               end-if
               add 1 to schema-exe
-           end-perform.
-                                                                  
-           move tot-exe to como-xx1.
-           inspect como-xx1 replacing leading x"30" by x"20"
-           call "C$JUSTIFY" using como-xx1, "L"
-           inspect como-xx1 replacing trailing spaces by low-value
-           move schema-exe to como-xx2.
-           inspect como-xx2 replacing leading x"30" by x"20"
-           call "C$JUSTIFY" using como-xx2, "L"
-           inspect como-xx2 replacing trailing spaces by low-value
-
-           initialize como-nome.
-           string como-xx1 delimited low-value
-                  "/"      delimited size
-                  como-xx2 delimited low-value
-             into como-nome
-           end-string.
-
-           add 1 to riga.
-           modify gd1(riga, 78-col-day),      cell-data = como-nome
-           modify gd1(riga, 78-col-prg),      cell-data = spaces
-           modify gd1(riga, 78-col-grp-code), cell-data = spaces
-           modify gd1(riga, 78-col-grp-desc), cell-data = spaces
-           modify gd1(riga, 78-col-exe-code), cell-data = spaces
-           modify gd1(riga, 78-col-exe-desc), cell-data = spaces
-           
-           move tot-series to como-xx1                    
-           inspect como-xx1 replacing leading x"30" by x"20"
-           call "C$JUSTIFY" using como-xx1, "L"
-
-           modify gd1(riga, 78-col-series),   cell-data = como-xx1 
-           modify gd1(riga, 78-col-reps),     cell-data = spaces 
-           modify gd1(riga), row-color 304, row-font = 
-           Calibri12B-Occidentale.
+           end-perform.   
+           add 1 to riga.           
+           move riga to riga-div.
+           perform VALORI-RIGA-DIV.
+           move schema-exe to hid-tot-exe.
+           modify gd1(riga-div, 78-col-day), hidden-data hid-tot-exe.
 
       ***---
        DISPLAY-DURATA.
@@ -7350,6 +7361,66 @@
            .
       * <TOTEM:END>
 
+       RICALCOLA-HIT-DIV.
+      * <TOTEM:PARA. RICALCOLA-HIT-DIV>
+           modify gd1, mass-update = 1.
+           open output tmp-hit.
+           close       tmp-hit
+           open i-o    tmp-hit.
+           move 0 to save-day tot-series tot-exe.
+           inquire gd1, last-row in tot-righe.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe                       
+              
+              inquire gd1(store-riga, 78-col-day), hidden-data 
+           hiddenData
+                                                     cell-data th-day
+              if hid-mcg-code = spaces and tot-exe = 0
+                 move 0 to col-series
+                 modify gd1(store-riga, 78-col-series), cell-data 
+           col-series
+              end-if
+              if hid-mcg-code = spaces 
+                 if save-day not = 0 
+                    inquire gd1(store-riga, 78-col-day), hidden-data 
+           hid-tot-exe
+                    move hid-tot-exe to schema-exe
+                    move store-riga to riga-div
+                    perform VALORI-RIGA-DIV
+                    move 0 to tot-series tot-exe
+                 end-if
+                 exit perform cycle
+              end-if
+              if save-day = 0
+                 move th-day to save-day
+              end-if
+              add 1 to tot-exe
+              inquire gd1(store-riga, 78-col-series), cell-data 
+           col-series
+              add col-series to tot-series
+              move hid-mcg-code to th-mcg-code
+              write th-rec invalid rewrite th-rec end-write
+           end-perform.
+           close tmp-hit.
+
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe                       
+              
+              inquire gd1(store-riga, 78-col-day), hidden-data 
+           hiddenData
+              if hid-mcg-code not = spaces
+                 exit perform cycle
+              end-if
+              inquire gd1(store-riga, 78-col-series), cell-data in 
+           col-series
+              if col-series = 0
+                 modify gd1, record-to-delete store-riga
+              end-if
+           end-perform.
+           modify gd1, mass-update = 0 
+           .
+      * <TOTEM:END>
+
        RIEMPI-CHIAVE.
       * <TOTEM:PARA. RIEMPI-CHIAVE>
       *     inquire ef-cliente, value in ef-cliente-buf.
@@ -7771,6 +7842,42 @@
            .
       * <TOTEM:END>
 
+       VALORI-RIGA-DIV.
+      * <TOTEM:PARA. VALORI-RIGA-DIV>
+           move tot-exe to como-xx1.
+           inspect como-xx1 replacing leading x"30" by x"20"
+           call "C$JUSTIFY" using como-xx1, "L"
+           inspect como-xx1 replacing trailing spaces by low-value
+           move schema-exe to como-xx2.
+           inspect como-xx2 replacing leading x"30" by x"20"
+           call "C$JUSTIFY" using como-xx2, "L"
+           inspect como-xx2 replacing trailing spaces by low-value
+
+           initialize como-nome.
+           string como-xx1 delimited low-value
+                  "/"      delimited size
+                  como-xx2 delimited low-value
+             into como-nome
+           end-string.
+                                                                
+           modify gd1(riga-div, 78-col-day),      cell-data = como-nome
+           modify gd1(riga-div, 78-col-prg),      cell-data = spaces
+           modify gd1(riga-div, 78-col-grp-code), cell-data = spaces
+           modify gd1(riga-div, 78-col-grp-desc), cell-data = spaces
+           modify gd1(riga-div, 78-col-exe-code), cell-data = spaces
+           modify gd1(riga-div, 78-col-exe-desc), cell-data = spaces
+           
+           move tot-series to como-xx1                    
+           inspect como-xx1 replacing leading x"30" by x"20"
+           call "C$JUSTIFY" using como-xx1, "L"
+
+           modify gd1(riga-div, 78-col-series),   cell-data = como-xx1 
+           modify gd1(riga-div, 78-col-reps),     cell-data = spaces 
+           modify gd1(riga-div), row-color 304, row-font = 
+           Calibri12B-Occidentale 
+           .
+      * <TOTEM:END>
+
       * EVENT PARAGRAPH
        TOOL-SALVA-LinkTo.
       * <TOTEM:PARA. TOOL-SALVA-LinkTo>
@@ -7817,7 +7924,14 @@
            set environment "KEYSTROKE" to "DATA=46 46".
            SET LK-BL-CANCELLAZIONE TO TRUE.
            MOVE COMO-PROG-ID       TO LK-BL-PROG-ID.
-           CALL "BLOCKPGM"  USING LK-BLOCKPGM 
+           CALL "BLOCKPGM"  USING LK-BLOCKPGM.
+               
+           if path-tmp-hit not = spaces
+              delete file tmp-hit
+           end-if.
+           if path-tmp-exe not = spaces
+              delete file tmp-exe
+           end-if 
            .
       * <TOTEM:END>
        gd1-Ev-Msg-Begin-Drag.
@@ -8553,22 +8667,7 @@
               exit paragraph
            end-if.
 
-           inquire gd1(riga, 78-col-day), hidden-data hiddenData
-           inquire gd1(riga, 78-col-day), cell-data col-day
-           open i-o tmp-exe
-           move hid-tex-key to tex-key
-           delete tmp-exe record
-           close tmp-exe
-
-           modify gd1(riga, 78-col-day),      cell-data = spaces
-           modify gd1(riga, 78-col-prg),      cell-data = spaces
-           modify gd1(riga, 78-col-grp-code), cell-data = spaces
-           modify gd1(riga, 78-col-grp-desc), cell-data = spaces
-           modify gd1(riga, 78-col-exe-code), cell-data = spaces
-           modify gd1(riga, 78-col-exe-desc), cell-data = spaces
-           modify gd1(riga, 78-col-series),   cell-data = spaces 
-           modify gd1(riga, 78-col-reps),     cell-data = spaces
-           modify gd1, record-to-delete = riga
+           perform ELIMINA-RIGA 
            .
       * <TOTEM:END>
 

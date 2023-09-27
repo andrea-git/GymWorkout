@@ -5,7 +5,7 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791B85740-733-310752359
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791B161236-224-3228332331
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -125,6 +125,8 @@ m_strName=zem-k-int
 
 @}}
 [SLKEYATOM0_SLINDEX0_]
-m_strName=zem-int-effort
+m_strName=zem-grp-desc
 [SLKEYATOM1_SLINDEX0_]
+m_strName=zem-int-effort
+[SLKEYATOM2_SLINDEX0_]
 m_strName=zem-exe-desc

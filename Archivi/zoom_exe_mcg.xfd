@@ -32,9 +32,12 @@
       </xfd:key-columns>
     </xfd:key>
     <xfd:key
-         xfd:segment-count="2"
+         xfd:segment-count="3"
          xfd:duplicates-allowed="true">
       <xfd:segments>
+        <xfd:segment
+             xfd:segment-size="100"
+             xfd:segment-offset="205"/>
         <xfd:segment
              xfd:segment-size="2"
              xfd:segment-offset="305"/>
@@ -43,7 +46,9 @@
              xfd:segment-offset="5"/>
       </xfd:segments>
       <xfd:key-columns
-           xfd:key-column-count="2">
+           xfd:key-column-count="3">
+        <xfd:key-column
+             xfd:key-column-name="ZEM-GRP-DESC"/>
         <xfd:key-column
              xfd:key-column-name="ZEM-INT-EFFORT"/>
         <xfd:key-column

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 27 settembre 2023 16:53:24.
+       DATE-WRITTEN.        mercoledì 27 settembre 2023 18:19:09.
        REMARKS.
       *{TOTEM}END
 
@@ -7281,7 +7281,8 @@
            move exe-int-code to int-code
            read intexe
            move int-effort to s-int-effort
-           read groups no lock
+           read groups no lock invalid move spaces to grp-mcg-code 
+           end-read.
            move grp-mcg-code to s-mcg-code
            perform CREA-ZOOM-EXE-MCG.
            move low-value to zem-rec
@@ -7355,7 +7356,8 @@
                     read groups no lock
                          invalid move spaces to grp-mcg-code
                     end-read
-                    if grp-mcg-code not = s-mcg-code
+                    if grp-mcg-code not = s-mcg-code and 
+                       s-mcg-code   not = spaces
                        exit perform cycle
                     end-if
                     move exe-code to zem-exe-code
@@ -8783,8 +8785,12 @@
 
            perform LOOKUP-EXE.
            if stato-zoom not = 0
-              modify gd1, record-to-delete riga
-              exit paragraph
+              move 0 to grp-code
+              perform LOOKUP-EXE
+              if stato-zoom not = 0
+                 modify gd1, record-to-delete riga
+                 exit paragraph
+              end-if
            end-if. 
 
            move riga to riga-aggiunta.

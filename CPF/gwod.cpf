@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E791B161236-301-222938806
+PROGRAM_UNIQUE_CODE=TOTEM-7E791B21311-339-3222510342
 
 {{@DESCRIPTION:
 
@@ -2978,6 +2978,8 @@ Begin Screen Form1
       Title             = "Mai"
       Visible           = NONE
       Width in Cells    = TRUE
+      Before Procedure  = pb-mcg1-BeforeProcedure
+      After Procedure   = pb-mcg1-AfterProcedure
       Link To           = pb-mcg1-LinkTo
    End
    Begin Combo-Box cb-mg2
@@ -3062,6 +3064,8 @@ Begin Screen Form1
       Title             = "Mai"
       Visible           = NONE
       Width in Cells    = TRUE
+      Before Procedure  = pb-mcg2-BeforeProcedure
+      After Procedure   = pb-mcg2-AfterProcedure
       Link To           = pb-mcg2-LinkTo
    End
    Begin Combo-Box cb-mg3
@@ -3146,6 +3150,8 @@ Begin Screen Form1
       Title             = "Mai"
       Visible           = NONE
       Width in Cells    = TRUE
+      Before Procedure  = pb-mcg3-BeforeProcedure
+      After Procedure   = pb-mcg3-AfterProcedure
       Link To           = pb-mcg3-LinkTo
    End
    Begin Combo-Box cb-mg4
@@ -3230,6 +3236,8 @@ Begin Screen Form1
       Title             = "Mai"
       Visible           = NONE
       Width in Cells    = TRUE
+      Before Procedure  = pb-mcg4-BeforeProcedure
+      After Procedure   = pb-mcg4-AfterProcedure
       Link To           = pb-mcg4-LinkTo
    End
    Begin Combo-Box cb-mg5
@@ -3314,6 +3322,8 @@ Begin Screen Form1
       Title             = "Mai"
       Visible           = NONE
       Width in Cells    = TRUE
+      Before Procedure  = pb-mcg5-BeforeProcedure
+      After Procedure   = pb-mcg5-AfterProcedure
       Link To           = pb-mcg5-LinkTo
    End
    Begin Combo-Box cb-mg6
@@ -3398,6 +3408,8 @@ Begin Screen Form1
       Title             = "Mai"
       Visible           = NONE
       Width in Cells    = TRUE
+      Before Procedure  = pb-mcg6-BeforeProcedure
+      After Procedure   = pb-mcg6-AfterProcedure
       Link To           = pb-mcg6-LinkTo
    End
    Begin Combo-Box cb-mg7
@@ -3482,6 +3494,8 @@ Begin Screen Form1
       Title             = "Mai"
       Visible           = NONE
       Width in Cells    = TRUE
+      Before Procedure  = pb-mcg7-BeforeProcedure
+      After Procedure   = pb-mcg7-AfterProcedure
       Link To           = pb-mcg7-LinkTo
    End
    Begin Combo-Box cb-mul
@@ -3696,6 +3710,8 @@ Begin Screen Form1
       Value Variable    = cb-wod-buf
       Visible           = NONE
       Width in Cells    = TRUE
+      Exception Procedure = cb-wod-Exception-Proc
+      Ntf-Selchange(ex) = cb-wod-Ex-Ntf-Selchange
       Before Procedure  = cb-wod-BeforeProcedure
       After Procedure   = cb-wod-AfterProcedure
    End
@@ -6323,20 +6339,6 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = CREA-TMP-GRP-EXE
 BEGIN-TEXT
-           perform EVIDENZIA-GRUPPI.
-
-           evaluate idx
-           when 1 move 78-ID-cb-mg1 to control-id
-           when 2 move 78-ID-cb-mg2 to control-id
-           when 3 move 78-ID-cb-mg3 to control-id
-           when 4 move 78-ID-cb-mg4 to control-id
-           when 5 move 78-ID-cb-mg5 to control-id
-           when 6 move 78-ID-cb-mg6 to control-id
-           when 7 move 78-ID-cb-mg7 to control-id
-           end-evaluate.
-
-           move 4 to accept-control.
-
            accept  path-tmp-grp-exe from environment "PATH_ST".
            inspect path-tmp-grp-exe replacing trailing spaces by low-value.
            string  path-tmp-grp-exe delimited low-value
@@ -6379,18 +6381,13 @@ BEGIN-TEXT
                     call "C$JUSTIFY" using tge-series, "L"
                     move tex-reps   to tge-reps  
                     move 0 to tge-prg
-                    perform until 1 = 2
-                       write tge-rec 
-                             invalid add 1 to tge-prg        
-                         not invalid exit perform
-                       end-write
-                    end-perform
+                    write tge-rec 
                  end-perform
            end-start.         
            close tmp-exe.  
                     
            move spaces to como-nome.
-           move 0      to tot-series.  
+           move 0      to tot-series store-riga.  
            move low-value to tge-key.
            start tmp-grp-exe key >= tge-key
                  invalid continue
@@ -6399,46 +6396,57 @@ BEGIN-TEXT
                     read tmp-grp-exe next 
                       at end perform RIGA-TOT
                              exit perform
-                    end-read
+                    end-read                 
                     if como-nome = spaces
                        move tge-grp-desc to como-nome
                     end-if
-                    if como-nome not = tge-grp-desc
-                       move tge-grp-desc to grp-desc
-                       move tge-series   to como-xx1
-                       perform RIGA-TOT             
-                       move grp-desc   to tge-grp-desc  
-                       move como-xx1   to tge-series
+                    if como-nome not = tge-grp-desc     
+                       move tge-grp-desc to grp-desc  
+                       move tge-exe-desc to exe-desc
+                       move tge-day      to save-day
+                       perform RIGA-TOT                  
+                       move grp-desc to tge-grp-desc  
+                       move exe-desc to tge-exe-desc
+                       move save-day to tge-day  
+                       start tmp-grp-exe key >= tge-key
+                             invalid exit perform
+                       end-start
+                       read tmp-grp-exe next
                        move 0 to tot-series
                        move tge-grp-desc to como-nome
-                    end-if
+                    end-if                      
+                    add 1 to store-riga
+                    move store-riga to tge-prg
+                    rewrite tge-rec           
                     call "C$JUSTIFY" using tge-series; "R"
                     inspect tge-series replacing leading x"20" by x"30"
                     move tge-series  to como-series
                     add como-series  to tot-series
                  end-perform
-           end-start.
-
+           end-start.        
+                            
+           close       tmp-grp-exe.
            move path-tmp-grp-exe to ext-file
            move "tmp-grp-exe"    to Como-File
            call   "zoom-gt"   using como-file, tge-rec
                              giving stato-zoom
            cancel "zoom-gt".
-
-           close       tmp-grp-exe.
+                              
            delete file tmp-grp-exe.
 
       ***---
-       RIGA-TOT.
+       RIGA-TOT.                 
+           add 1 to store-riga.      
            initialize tge-rec replacing numeric data by zeroes
                                    alphanumeric data by spaces.
-           move como-nome  to tge-grp-desc.
-           move high-value to tge-day.
-           move "TOTALE "  to tge-exe-desc.
+           move store-riga to tge-prg.
+           move "TOTALE"   to tge-grp-desc.
+           move spaces     to tge-day.
+           move como-nome  to tge-exe-desc.                        
            move tot-series to tge-series.
            inspect tge-series replacing leading x"30" by x"20".
            call "C$JUSTIFY" using tge-series, "L".
-           write tge-rec invalid rewrite tge-rec end-write.
+           write tge-rec.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -8489,6 +8497,7 @@ BEGIN-DATA
    PARAGRAPH         = cb-rnd-AfterProcedure
 BEGIN-TEXT
       *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+           perform ABILITA-MACROGRUPPI.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -8602,8 +8611,7 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = cb-wod-AfterProcedure
 BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
-           perform ABILITA-MACROGRUPPI.
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>     
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -9072,6 +9080,119 @@ BEGIN-TEXT
            modify gd1, cursor-x event-data-1, cursor-y riga-aggiunta.
            perform SPOSTAMENTO.
            set event-action to event-action-fail.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg2-BeforeProcedure
+BEGIN-TEXT
+           move 2 to idx.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg1-BeforeProcedure
+BEGIN-TEXT
+           move 1 to idx.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg3-BeforeProcedure
+BEGIN-TEXT
+           move 3 to idx.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg4-BeforeProcedure
+BEGIN-TEXT
+           move 4 to idx.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg5-BeforeProcedure
+BEGIN-TEXT
+           move 5 to idx.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg6-BeforeProcedure
+BEGIN-TEXT
+           move 6 to idx.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg7-BeforeProcedure
+BEGIN-TEXT
+           move 7 to idx.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg7-AfterProcedure
+BEGIN-TEXT
+           perform RESETTA-FONT.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg6-AfterProcedure
+BEGIN-TEXT
+           perform RESETTA-FONT.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg5-AfterProcedure
+BEGIN-TEXT
+           perform RESETTA-FONT.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg4-AfterProcedure
+BEGIN-TEXT
+           perform RESETTA-FONT.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg3-AfterProcedure
+BEGIN-TEXT
+           perform RESETTA-FONT.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg2-AfterProcedure
+BEGIN-TEXT
+           perform RESETTA-FONT.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-mcg1-AfterProcedure
+BEGIN-TEXT
+           perform RESETTA-FONT.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-wod-Ex-Ntf-Selchange
+BEGIN-TEXT
+
+           perform ABILITA-MACROGRUPPI.
 END-TEXT
 END-DATA
 

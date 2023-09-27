@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 27 settembre 2023 18:19:09.
+       DATE-WRITTEN.        mercoledì 27 settembre 2023 23:49:39.
        REMARKS.
       *{TOTEM}END
 
@@ -445,7 +445,7 @@
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(105).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
        77 TMP-DataSet1-tmp-hit-BUF     PIC X(6).
-       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(216).
+       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(217).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -535,7 +535,8 @@
        77 intexe-int-k-desc-SPLITBUF  PIC X(101).
        77 intexe-int-k-effort-SPLITBUF  PIC X(3).
        77 tmp-exe-dupl-ted-k-num-SPLITBUF  PIC X(106).
-       77 zoom-exe-mcg-zem-k-int-SPLITBUF  PIC X(103).
+       77 zoom-exe-mcg-zem-k-int-SPLITBUF  PIC X(203).
+       77 tmp-grp-exe-tge-k-prg-SPLITBUF  PIC X(4).
 
        01                 pic 9.
            88 s-excell    value 1.
@@ -621,6 +622,8 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Mai",
+           AFTER PROCEDURE pb-mcg1-AfterProcedure, 
+           BEFORE PROCEDURE pb-mcg1-BeforeProcedure, 
            .
 
       * COMBO-BOX
@@ -657,6 +660,8 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Mai",
+           AFTER PROCEDURE pb-mcg2-AfterProcedure, 
+           BEFORE PROCEDURE pb-mcg2-BeforeProcedure, 
            .
 
       * COMBO-BOX
@@ -693,6 +698,8 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Mai",
+           AFTER PROCEDURE pb-mcg3-AfterProcedure, 
+           BEFORE PROCEDURE pb-mcg3-BeforeProcedure, 
            .
 
       * COMBO-BOX
@@ -729,6 +736,8 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Mai",
+           AFTER PROCEDURE pb-mcg4-AfterProcedure, 
+           BEFORE PROCEDURE pb-mcg4-BeforeProcedure, 
            .
 
       * COMBO-BOX
@@ -765,6 +774,8 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Mai",
+           AFTER PROCEDURE pb-mcg5-AfterProcedure, 
+           BEFORE PROCEDURE pb-mcg5-BeforeProcedure, 
            .
 
       * COMBO-BOX
@@ -801,6 +812,8 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Mai",
+           AFTER PROCEDURE pb-mcg6-AfterProcedure, 
+           BEFORE PROCEDURE pb-mcg6-BeforeProcedure, 
            .
 
       * COMBO-BOX
@@ -837,6 +850,8 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "Mai",
+           AFTER PROCEDURE pb-mcg7-AfterProcedure, 
+           BEFORE PROCEDURE pb-mcg7-BeforeProcedure, 
            .
 
       * COMBO-BOX
@@ -943,6 +958,7 @@
            VALUE cb-wod-buf,
            AFTER PROCEDURE cb-wod-AfterProcedure, 
            BEFORE PROCEDURE cb-wod-BeforeProcedure, 
+           EXCEPTION PROCEDURE cb-wod-Exception-Proc, 
            .
       * PUSH BUTTON
        05
@@ -3771,10 +3787,12 @@
 
        zoom-exe-mcg-zem-k-int-MERGE-SPLITBUF.
            INITIALIZE zoom-exe-mcg-zem-k-int-SPLITBUF
+           MOVE zem-grp-desc(1:100) TO 
+           zoom-exe-mcg-zem-k-int-SPLITBUF(1:100)
            MOVE zem-int-effort(1:2) TO 
-           zoom-exe-mcg-zem-k-int-SPLITBUF(1:2)
+           zoom-exe-mcg-zem-k-int-SPLITBUF(101:2)
            MOVE zem-exe-desc(1:100) TO 
-           zoom-exe-mcg-zem-k-int-SPLITBUF(3:100)
+           zoom-exe-mcg-zem-k-int-SPLITBUF(103:100)
            .
 
        DataSet1-zoom-exe-mcg-INITSTART.
@@ -4001,6 +4019,12 @@
            MOVE "DELETE" TO TOTEM-ERR-MODE
       * <TOTEM:EPT. FD:DataSet1, FD:tmp-hit, AfterDelete>
       * <TOTEM:END>
+           .
+
+       tmp-grp-exe-tge-k-prg-MERGE-SPLITBUF.
+           INITIALIZE tmp-grp-exe-tge-k-prg-SPLITBUF
+           MOVE tge-prg OF tge-data OF tge-rec(1:3) TO 
+           tmp-grp-exe-tge-k-prg-SPLITBUF(1:3)
            .
 
        DataSet1-tmp-grp-exe-INITSTART.
@@ -5201,6 +5225,17 @@
        Screen1-Event-Proc.
            .
 
+       cb-wod-Exception-Proc.
+           IF Event-Occurred
+              EVALUATE Event-Type ALSO Event-Control-Id ALSO
+                                    Event-Window-Handle
+              WHEN Ntf-Selchange ALSO 34 ALSO
+                    form1-Handle
+                 PERFORM cb-wod-Ex-Ntf-Selchange
+              END-EVALUATE
+           END-IF
+           .
+
        Screen1-Gd-1-Event-Proc.
            EVALUATE Event-Type ALSO Event-Control-Id ALSO
                                     Event-Window-Handle
@@ -6145,20 +6180,6 @@
 
        CREA-TMP-GRP-EXE.
       * <TOTEM:PARA. CREA-TMP-GRP-EXE>
-           perform EVIDENZIA-GRUPPI.
-
-           evaluate idx
-           when 1 move 78-ID-cb-mg1 to control-id
-           when 2 move 78-ID-cb-mg2 to control-id
-           when 3 move 78-ID-cb-mg3 to control-id
-           when 4 move 78-ID-cb-mg4 to control-id
-           when 5 move 78-ID-cb-mg5 to control-id
-           when 6 move 78-ID-cb-mg6 to control-id
-           when 7 move 78-ID-cb-mg7 to control-id
-           end-evaluate.
-
-           move 4 to accept-control.
-
            accept  path-tmp-grp-exe from environment "PATH_ST".
            inspect path-tmp-grp-exe replacing trailing spaces by 
            low-value.
@@ -6204,18 +6225,13 @@
                     call "C$JUSTIFY" using tge-series, "L"
                     move tex-reps   to tge-reps  
                     move 0 to tge-prg
-                    perform until 1 = 2
-                       write tge-rec 
-                             invalid add 1 to tge-prg        
-                         not invalid exit perform
-                       end-write
-                    end-perform
+                    write tge-rec 
                  end-perform
            end-start.         
            close tmp-exe.  
                     
            move spaces to como-nome.
-           move 0      to tot-series.  
+           move 0      to tot-series store-riga.  
            move low-value to tge-key.
            start tmp-grp-exe key >= tge-key
                  invalid continue
@@ -6224,46 +6240,57 @@
                     read tmp-grp-exe next 
                       at end perform RIGA-TOT
                              exit perform
-                    end-read
+                    end-read                 
                     if como-nome = spaces
                        move tge-grp-desc to como-nome
                     end-if
-                    if como-nome not = tge-grp-desc
-                       move tge-grp-desc to grp-desc
-                       move tge-series   to como-xx1
-                       perform RIGA-TOT             
-                       move grp-desc   to tge-grp-desc  
-                       move como-xx1   to tge-series
+                    if como-nome not = tge-grp-desc     
+                       move tge-grp-desc to grp-desc  
+                       move tge-exe-desc to exe-desc
+                       move tge-day      to save-day
+                       perform RIGA-TOT                  
+                       move grp-desc to tge-grp-desc  
+                       move exe-desc to tge-exe-desc
+                       move save-day to tge-day  
+                       start tmp-grp-exe key >= tge-key
+                             invalid exit perform
+                       end-start
+                       read tmp-grp-exe next
                        move 0 to tot-series
                        move tge-grp-desc to como-nome
-                    end-if
+                    end-if                      
+                    add 1 to store-riga
+                    move store-riga to tge-prg
+                    rewrite tge-rec           
                     call "C$JUSTIFY" using tge-series; "R"
                     inspect tge-series replacing leading x"20" by x"30"
                     move tge-series  to como-series
                     add como-series  to tot-series
                  end-perform
-           end-start.
-
+           end-start.        
+                            
+           close       tmp-grp-exe.
            move path-tmp-grp-exe to ext-file
            move "tmp-grp-exe"    to Como-File
            call   "zoom-gt"   using como-file, tge-rec
                              giving stato-zoom
            cancel "zoom-gt".
-
-           close       tmp-grp-exe.
+                              
            delete file tmp-grp-exe.
 
       ***---
-       RIGA-TOT.
+       RIGA-TOT.                 
+           add 1 to store-riga.      
            initialize tge-rec replacing numeric data by zeroes
                                    alphanumeric data by spaces.
-           move como-nome  to tge-grp-desc.
-           move high-value to tge-day.
-           move "TOTALE "  to tge-exe-desc.
+           move store-riga to tge-prg.
+           move "TOTALE"   to tge-grp-desc.
+           move spaces     to tge-day.
+           move como-nome  to tge-exe-desc.                        
            move tot-series to tge-series.
            inspect tge-series replacing leading x"30" by x"20".
            call "C$JUSTIFY" using tge-series, "L".
-           write tge-rec invalid rewrite tge-rec end-write 
+           write tge-rec 
            .
       * <TOTEM:END>
 
@@ -8313,6 +8340,7 @@
        cb-rnd-AfterProcedure.
       * <TOTEM:PARA. cb-rnd-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
        pb-genera-LinkTo.
@@ -8435,7 +8463,6 @@
        cb-wod-AfterProcedure.
       * <TOTEM:PARA. cb-wod-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
        cb-gio-AfterProcedure.
@@ -8878,6 +8905,89 @@
            modify gd1, cursor-x event-data-1, cursor-y riga-aggiunta.
            perform SPOSTAMENTO.
            set event-action to event-action-fail 
+           .
+      * <TOTEM:END>
+       pb-mcg2-BeforeProcedure.
+      * <TOTEM:PARA. pb-mcg2-BeforeProcedure>
+           move 2 to idx.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       pb-mcg1-BeforeProcedure.
+      * <TOTEM:PARA. pb-mcg1-BeforeProcedure>
+           move 1 to idx.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       pb-mcg3-BeforeProcedure.
+      * <TOTEM:PARA. pb-mcg3-BeforeProcedure>
+           move 3 to idx.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       pb-mcg4-BeforeProcedure.
+      * <TOTEM:PARA. pb-mcg4-BeforeProcedure>
+           move 4 to idx.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       pb-mcg5-BeforeProcedure.
+      * <TOTEM:PARA. pb-mcg5-BeforeProcedure>
+           move 5 to idx.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       pb-mcg6-BeforeProcedure.
+      * <TOTEM:PARA. pb-mcg6-BeforeProcedure>
+           move 6 to idx.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       pb-mcg7-BeforeProcedure.
+      * <TOTEM:PARA. pb-mcg7-BeforeProcedure>
+           move 7 to idx.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       pb-mcg7-AfterProcedure.
+      * <TOTEM:PARA. pb-mcg7-AfterProcedure>
+           perform RESETTA-FONT 
+           .
+      * <TOTEM:END>
+       pb-mcg6-AfterProcedure.
+      * <TOTEM:PARA. pb-mcg6-AfterProcedure>
+           perform RESETTA-FONT 
+           .
+      * <TOTEM:END>
+       pb-mcg5-AfterProcedure.
+      * <TOTEM:PARA. pb-mcg5-AfterProcedure>
+           perform RESETTA-FONT 
+           .
+      * <TOTEM:END>
+       pb-mcg4-AfterProcedure.
+      * <TOTEM:PARA. pb-mcg4-AfterProcedure>
+           perform RESETTA-FONT 
+           .
+      * <TOTEM:END>
+       pb-mcg3-AfterProcedure.
+      * <TOTEM:PARA. pb-mcg3-AfterProcedure>
+           perform RESETTA-FONT 
+           .
+      * <TOTEM:END>
+       pb-mcg2-AfterProcedure.
+      * <TOTEM:PARA. pb-mcg2-AfterProcedure>
+           perform RESETTA-FONT 
+           .
+      * <TOTEM:END>
+       pb-mcg1-AfterProcedure.
+      * <TOTEM:PARA. pb-mcg1-AfterProcedure>
+           perform RESETTA-FONT 
+           .
+      * <TOTEM:END>
+       cb-wod-Ex-Ntf-Selchange.
+      * <TOTEM:PARA. cb-wod-Ex-Ntf-Selchange>
+
+           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
 

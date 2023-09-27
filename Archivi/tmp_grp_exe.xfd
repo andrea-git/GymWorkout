@@ -7,9 +7,9 @@
     <xfd:select-name>TMP-GRP-EXE</xfd:select-name>
     <xfd:table-name>TMP-GRP-EXE</xfd:table-name>
     <xfd:file-organization>Indexed</xfd:file-organization>
-    <xfd:maximum-record-size>216</xfd:maximum-record-size>
-    <xfd:minimum-record-size>216</xfd:minimum-record-size>
-    <xfd:number-of-keys>1</xfd:number-of-keys>
+    <xfd:maximum-record-size>217</xfd:maximum-record-size>
+    <xfd:minimum-record-size>217</xfd:minimum-record-size>
+    <xfd:number-of-keys>2</xfd:number-of-keys>
     <xfd:sign-compatibility>0</xfd:sign-compatibility>
     <xfd:maximum-numeric-digits>18</xfd:maximum-numeric-digits>
     <xfd:period-character>,</xfd:period-character>
@@ -22,19 +22,31 @@
          xfd:duplicates-allowed="false">
       <xfd:segments>
         <xfd:segment
-             xfd:segment-size="203"
+             xfd:segment-size="201"
              xfd:segment-offset="0"/>
       </xfd:segments>
       <xfd:key-columns
-           xfd:key-column-count="4">
+           xfd:key-column-count="3">
         <xfd:key-column
              xfd:key-column-name="TGE-GRP-DESC"/>
         <xfd:key-column
              xfd:key-column-name="TGE-DAY"/>
         <xfd:key-column
              xfd:key-column-name="TGE-EXE-DESC"/>
+      </xfd:key-columns>
+    </xfd:key>
+    <xfd:key
+         xfd:segment-count="1"
+         xfd:duplicates-allowed="true">
+      <xfd:segments>
+        <xfd:segment
+             xfd:segment-size="3"
+             xfd:segment-offset="214"/>
+      </xfd:segments>
+      <xfd:key-columns
+           xfd:key-column-count="1">
         <xfd:key-column
-             xfd:key-column-name="TGE-PRG"/>
+             xfd:key-column-name="TGE-PRG-1"/>
       </xfd:key-columns>
     </xfd:key>
   </xfd:keys>
@@ -48,9 +60,9 @@
        xfd:total-items-with-occurs="9">
     <xfd:field
          xfd:field-offset="0"
-         xfd:field-bytes="216"
+         xfd:field-bytes="217"
          xfd:field-type="16"
-         xfd:field-length="216"
+         xfd:field-length="217"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -58,9 +70,9 @@
          xfd:field-name="TGE-REC"/>
     <xfd:field
          xfd:field-offset="0"
-         xfd:field-bytes="203"
+         xfd:field-bytes="201"
          xfd:field-type="16"
-         xfd:field-length="203"
+         xfd:field-length="201"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
@@ -98,26 +110,16 @@
          xfd:field-name="TGE-EXE-DESC"/>
     <xfd:field
          xfd:field-offset="201"
-         xfd:field-bytes="2"
-         xfd:field-type="1"
-         xfd:field-length="2"
-         xfd:field-scale="0"
-         xfd:field-user-flags="0"
-         xfd:field-condition="0"
-         xfd:field-level="10"
-         xfd:field-name="TGE-PRG"/>
-    <xfd:field
-         xfd:field-offset="203"
-         xfd:field-bytes="13"
+         xfd:field-bytes="16"
          xfd:field-type="16"
-         xfd:field-length="13"
+         xfd:field-length="16"
          xfd:field-scale="0"
          xfd:field-user-flags="0"
          xfd:field-condition="999"
          xfd:field-level="5"
          xfd:field-name="TGE-DATA"/>
     <xfd:field
-         xfd:field-offset="203"
+         xfd:field-offset="201"
          xfd:field-bytes="3"
          xfd:field-type="16"
          xfd:field-length="3"
@@ -127,7 +129,7 @@
          xfd:field-level="10"
          xfd:field-name="TGE-SERIES"/>
     <xfd:field
-         xfd:field-offset="206"
+         xfd:field-offset="204"
          xfd:field-bytes="10"
          xfd:field-type="16"
          xfd:field-length="10"
@@ -136,5 +138,15 @@
          xfd:field-condition="0"
          xfd:field-level="10"
          xfd:field-name="TGE-REPS"/>
+    <xfd:field
+         xfd:field-offset="214"
+         xfd:field-bytes="3"
+         xfd:field-type="1"
+         xfd:field-length="3"
+         xfd:field-scale="0"
+         xfd:field-user-flags="0"
+         xfd:field-condition="0"
+         xfd:field-level="10"
+         xfd:field-name="TGE-PRG-1"/>
   </xfd:fields>
 </xfd:xfdfile>

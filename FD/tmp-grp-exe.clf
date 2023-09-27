@@ -5,7 +5,7 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791B161236-213-762513939
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791B215044-67-290121699
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -63,27 +63,27 @@ m_bFixed=1
 
 @}}
 [FDITEM5_]
-m_strName=tge-prg
-m_strRawPic=99
-m_strPic=99
-m_nItemLevel=10
+m_strName=tge-data
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM5_
 
 @}}
 [FDITEM6_]
-m_strName=tge-data
-m_nItemLevel=5
+m_strName=tge-series
+m_strRawPic=x(3)
+m_strPic=x(3)
+m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM6_
 
 @}}
 [FDITEM7_]
-m_strName=tge-series
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strName=tge-reps
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -91,12 +91,13 @@ m_bFixed=1
 
 @}}
 [FDITEM8_]
-m_strName=tge-reps
-m_strRawPic=x(10)
-m_strPic=x(10)
+m_strName=tge-prg
+m_strRawPic=9(3)
+m_strPic=9(3)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
+m_strName_Xfd=tge-prg_1
 {{@DataItem_m_strDescriptionFDITEM8_
 
 @}}
@@ -118,3 +119,10 @@ m_strName=tge-key
 @}}
 [SLKEYATOM0_]
 m_strName=tge-key
+[SLINDEX0_]
+m_strName=tge-k-prg
+{{@Key_m_strDescriptionSLINDEX0_
+
+@}}
+[SLKEYATOM0_SLINDEX0_]
+m_strName=tge-prg OF tge-data OF tge-rec

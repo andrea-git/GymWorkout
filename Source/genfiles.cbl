@@ -12,6 +12,7 @@
            copy "intexe.sl".   
            copy "duration.sl".    
            copy "wodmap.sl".    
+           copy "tmp-grp-exe.sl".
       *
        SELECT FBLOCK
            ASSIGN       TO DISK "FBLOCK"
@@ -31,7 +32,8 @@
            copy "wodbook.fd".      
            copy "intexe.fd".    
            copy "duration.fd".    
-           copy "wodmap.fd".    
+           copy "wodmap.fd".     
+           copy "tmp-grp-exe.fd".
       *                               
        FD  FBLOCK
            LABEL RECORD IS STANDARD.
@@ -52,6 +54,8 @@
        77  status-intexe         pic xx.
        77  status-duration       pic xx.
        77  status-wodmap         pic xx.
+       77  status-tmp-grp-exe    pic xx.
+       77  path-tmp-grp-exe      pic x.
        77  stato-io              pic xx.  
 
        78  titolo            value "Generazione files".

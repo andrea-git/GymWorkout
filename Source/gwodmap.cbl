@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 25 settembre 2023 09:46:40.
+       DATE-WRITTEN.        giovedì 28 settembre 2023 09:53:43.
        REMARKS.
       *{TOTEM}END
 
@@ -5457,7 +5457,7 @@
                                            
               move 1 to riga
               perform varying idx-split from 1 by 1 
-                        until idx-split > 9
+                        until idx-split > 10
                  if wom-split-el-split-sigla(idx-day, idx-split) = 
            spaces
                     exit perform

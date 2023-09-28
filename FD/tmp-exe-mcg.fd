@@ -3,6 +3,7 @@
        01 tem-rec.
            05 tem-key.
                10 tem-mcg-code     PIC  x(5).
+               10 tem-grp-code     PIC  x(5).
       *(( XFD NAME = tem-mcg-code_1 ))
                10 tem-int-code     PIC  99.
                10 tem-exe-code     PIC  x(5).

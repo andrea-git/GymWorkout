@@ -16,4 +16,7 @@
            WITH DUPLICATES 
            ALTERNATE RECORD KEY IS tem-k-int = tem-int-code, 
            tem-exe-desc
+           WITH DUPLICATES 
+           ALTERNATE RECORD KEY IS tem-k-grp = tem-grp-code, 
+           tem-int-code
            WITH DUPLICATES .

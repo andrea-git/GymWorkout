@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E79197395-390-3248621602
+PROGRAM_UNIQUE_CODE=TOTEM-7E791C75155-378-1882913901
 
 {{@DESCRIPTION:
 
@@ -6080,7 +6081,7 @@ BEGIN-TEXT
                                            
               move 1 to riga
               perform varying idx-split from 1 by 1 
-                        until idx-split > 9
+                        until idx-split > 10
                  if wom-split-el-split-sigla(idx-day, idx-split) = spaces
                     exit perform
                  end-if

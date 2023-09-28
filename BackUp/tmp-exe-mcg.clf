@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791615438-611-159322335
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E791C75542-718-1516912262
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -40,6 +40,16 @@ m_bFixed=1
 
 @}}
 [FDITEM3_]
+m_strName=tem-grp-code
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM3_
+
+@}}
+[FDITEM4_]
 m_strName=tem-int-code
 m_strRawPic=99
 m_strPic=99
@@ -47,39 +57,29 @@ m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
 m_strName_Xfd=tem-mcg-code_1
-{{@DataItem_m_strDescriptionFDITEM3_
+{{@DataItem_m_strDescriptionFDITEM4_
 
 @}}
-[FDITEM4_]
+[FDITEM5_]
 m_strName=tem-exe-code
 m_strRawPic=x(5)
 m_strPic=x(5)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM4_
-
-@}}
-[FDITEM5_]
-m_strName=tem-data
-m_nItemLevel=5
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM5_
 
 @}}
 [FDITEM6_]
-m_strName=tem-exe-isDisable
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=10
+m_strName=tem-data
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM6_
 
 @}}
 [FDITEM7_]
-m_strName=tem-exe-isMulti
+m_strName=tem-exe-isDisable
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=10
@@ -89,7 +89,7 @@ m_bFixed=1
 
 @}}
 [FDITEM8_]
-m_strName=tem-exe-isRestPause
+m_strName=tem-exe-isMulti
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=10
@@ -99,13 +99,23 @@ m_bFixed=1
 
 @}}
 [FDITEM9_]
+m_strName=tem-exe-isRestPause
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM9_
+
+@}}
+[FDITEM10_]
 m_strName=tem-exe-desc
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM9_
+{{@DataItem_m_strDescriptionFDITEM10_
 
 @}}
 [CStoAcucobolSL_]
@@ -163,3 +173,12 @@ m_strName=tem-k-int
 m_strName=tem-int-code
 [SLKEYATOM1_SLINDEX3_]
 m_strName=tem-exe-desc
+[SLINDEX4_]
+m_strName=tem-k-grp
+{{@Key_m_strDescriptionSLINDEX4_
+
+@}}
+[SLKEYATOM0_SLINDEX4_]
+m_strName=tem-grp-code
+[SLKEYATOM1_SLINDEX4_]
+m_strName=tem-int-code

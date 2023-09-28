@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 27 settembre 2023 23:49:39.
+       DATE-WRITTEN.        giovedì 28 settembre 2023 09:43:28.
        REMARKS.
       *{TOTEM}END
 
@@ -6218,7 +6218,7 @@
                     read groups                                   
 
                     move tex-day    to tge-day
-                    move grp-desc   to tge-grp-desc
+                    move grp-desc   to tge-grp-desc 
                     move exe-desc   to tge-exe-desc
                     move tex-series to tge-series
                     inspect tge-series replacing leading x"30" by x"20"
@@ -6284,10 +6284,15 @@
            initialize tge-rec replacing numeric data by zeroes
                                    alphanumeric data by spaces.
            move store-riga to tge-prg.
-           move "TOTALE"   to tge-grp-desc.
+      *     move "TOTALE"   to tge-grp-desc.
            move spaces     to tge-day.
-           move como-nome  to tge-exe-desc.                        
-           move tot-series to tge-series.
+           initialize tge-exe-desc.
+           string "TOT "    delimited size
+                  como-nome delimited size
+             into tge-exe-desc
+           end-string.
+           call "C$TOUPPER" using tge-exe-desc, value 100
+           move tot-series to tge-series.                          
            inspect tge-series replacing leading x"30" by x"20".
            call "C$JUSTIFY" using tge-series, "L".
            write tge-rec 

@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7919125836-242-1718826927
+PROGRAM_UNIQUE_CODE=TOTEM-7E791C75542-746-1843316871
 
 {{@DESCRIPTION:
 
@@ -614,26 +615,44 @@ m_strTrue=14
 
 @}}
 [FDITEM61_WK]
+m_strName=ord-grp-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=15
+{{@DataItem_m_strDescriptionFDITEM61_WK
+
+@}}
+[FDITEM62_WK]
+m_strName=ord-grp-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=16
+{{@DataItem_m_strDescriptionFDITEM62_WK
+
+@}}
+[FDITEM63_WK]
 m_strName=FILLER
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM61_WK
+{{@DataItem_m_strDescriptionFDITEM63_WK
 
 @}}
-[FDITEM62_WK]
+[FDITEM64_WK]
 m_strName=ricarica
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM62_WK
+{{@DataItem_m_strDescriptionFDITEM64_WK
 
 @}}
-[FDITEM63_WK]
+[FDITEM65_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -642,40 +661,22 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM63_WK
+{{@DataItem_m_strDescriptionFDITEM65_WK
 
 @}}
-[FDITEM64_WK]
+[FDITEM66_WK]
 m_strName=Default-Font
 m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM64_WK
-
-@}}
-[FDITEM65_WK]
-m_strName=STATUS-exercises
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM65_WK
-
-@}}
-[FDITEM66_WK]
-m_strName=Valid-STATUS-exercises
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM66_WK
 
 @}}
 [FDITEM67_WK]
-m_strName=Calibri14-Occidentale
-m_nUsage=26
+m_strName=STATUS-exercises
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -683,6 +684,24 @@ m_bFixed=1
 
 @}}
 [FDITEM68_WK]
+m_strName=Valid-STATUS-exercises
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM68_WK
+
+@}}
+[FDITEM69_WK]
+m_strName=Calibri14-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM69_WK
+
+@}}
+[FDITEM70_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -691,30 +710,11 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM68_WK
-
-@}}
-[FDITEM69_WK]
-m_strName=STATUS-groups
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM69_WK
-
-@}}
-[FDITEM70_WK]
-m_strName=Valid-STATUS-groups
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM70_WK
 
 @}}
 [FDITEM71_WK]
-m_strName=STATUS-intexe
+m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -724,7 +724,7 @@ m_bFixed=1
 
 @}}
 [FDITEM72_WK]
-m_strName=Valid-STATUS-intexe
+m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -733,7 +733,7 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM73_WK]
-m_strName=STATUS-macrogroups
+m_strName=STATUS-intexe
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -743,7 +743,7 @@ m_bFixed=1
 
 @}}
 [FDITEM74_WK]
-m_strName=Valid-STATUS-macrogroups
+m_strName=Valid-STATUS-intexe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -752,9 +752,9 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM75_WK]
-m_strName=path-tmp-exe-mcg
-m_strRawPic=X(256)
-m_strPic=X(256)
+m_strName=STATUS-macrogroups
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -762,29 +762,28 @@ m_bFixed=1
 
 @}}
 [FDITEM76_WK]
-m_strName=STATUS-tmp-exe-mcg
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM76_WK
-
-@}}
-[FDITEM77_WK]
-m_strName=Valid-STATUS-tmp-exe-mcg
+m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM76_WK
+
+@}}
+[FDITEM77_WK]
+m_strName=path-tmp-exe-mcg
+m_strRawPic=X(256)
+m_strPic=X(256)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM77_WK
 
 @}}
 [FDITEM78_WK]
-m_strName=chk-mcg1-buf
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
+m_strName=STATUS-tmp-exe-mcg
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -792,18 +791,16 @@ m_bFixed=1
 
 @}}
 [FDITEM79_WK]
-m_strName=chk-mcg2-buf
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
-m_nItemLevel=77
+m_strName=Valid-STATUS-tmp-exe-mcg
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM79_WK
 
 @}}
 [FDITEM80_WK]
-m_strName=chk-mcg3-buf
+m_strName=chk-mcg1-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -814,7 +811,7 @@ m_bFixed=1
 
 @}}
 [FDITEM81_WK]
-m_strName=chk-mcg4-buf
+m_strName=chk-mcg2-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -825,7 +822,7 @@ m_bFixed=1
 
 @}}
 [FDITEM82_WK]
-m_strName=chk-mcg5-buf
+m_strName=chk-mcg3-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -836,7 +833,7 @@ m_bFixed=1
 
 @}}
 [FDITEM83_WK]
-m_strName=chk-mcg6-buf
+m_strName=chk-mcg4-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -847,7 +844,7 @@ m_bFixed=1
 
 @}}
 [FDITEM84_WK]
-m_strName=chk-mcg7-buf
+m_strName=chk-mcg5-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -858,7 +855,7 @@ m_bFixed=1
 
 @}}
 [FDITEM85_WK]
-m_strName=chk-mcg8-buf
+m_strName=chk-mcg6-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -869,7 +866,7 @@ m_bFixed=1
 
 @}}
 [FDITEM86_WK]
-m_strName=chk-mcg9-buf
+m_strName=chk-mcg7-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -880,7 +877,7 @@ m_bFixed=1
 
 @}}
 [FDITEM87_WK]
-m_strName=chk-mcg10-buf
+m_strName=chk-mcg8-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -891,7 +888,7 @@ m_bFixed=1
 
 @}}
 [FDITEM88_WK]
-m_strName=chk-int1-buf
+m_strName=chk-mcg9-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -902,7 +899,7 @@ m_bFixed=1
 
 @}}
 [FDITEM89_WK]
-m_strName=chk-int10-buf
+m_strName=chk-mcg10-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -913,7 +910,7 @@ m_bFixed=1
 
 @}}
 [FDITEM90_WK]
-m_strName=chk-int9-buf
+m_strName=chk-int1-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -924,7 +921,7 @@ m_bFixed=1
 
 @}}
 [FDITEM91_WK]
-m_strName=chk-int8-buf
+m_strName=chk-int10-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -935,7 +932,7 @@ m_bFixed=1
 
 @}}
 [FDITEM92_WK]
-m_strName=chk-int7-buf
+m_strName=chk-int9-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -946,7 +943,7 @@ m_bFixed=1
 
 @}}
 [FDITEM93_WK]
-m_strName=chk-int6-buf
+m_strName=chk-int8-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -957,7 +954,7 @@ m_bFixed=1
 
 @}}
 [FDITEM94_WK]
-m_strName=chk-int5-buf
+m_strName=chk-int7-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -968,7 +965,7 @@ m_bFixed=1
 
 @}}
 [FDITEM95_WK]
-m_strName=chk-int4-buf
+m_strName=chk-int6-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -979,7 +976,7 @@ m_bFixed=1
 
 @}}
 [FDITEM96_WK]
-m_strName=chk-int3-buf
+m_strName=chk-int5-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -990,7 +987,7 @@ m_bFixed=1
 
 @}}
 [FDITEM97_WK]
-m_strName=chk-int2-buf
+m_strName=chk-int4-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -1001,7 +998,7 @@ m_bFixed=1
 
 @}}
 [FDITEM98_WK]
-m_strName=chk-mcgall-buf
+m_strName=chk-int3-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -1012,10 +1009,10 @@ m_bFixed=1
 
 @}}
 [FDITEM99_WK]
-m_strName=chk-intall-buf
+m_strName=chk-int2-buf
 m_strRawPic=9
 m_strPic=9
-m_strDefaultValue=1
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1023,10 +1020,10 @@ m_bFixed=1
 
 @}}
 [FDITEM100_WK]
-m_strName=AUTO-ID
-m_strRawPic=9(6)
-m_strPic=9(6)
-m_strDefaultValue=32
+m_strName=chk-mcgall-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1034,7 +1031,7 @@ m_bFixed=1
 
 @}}
 [FDITEM101_WK]
-m_strName=E-SELEZIONA
+m_strName=chk-intall-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=1
@@ -1042,6 +1039,28 @@ m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM101_WK
+
+@}}
+[FDITEM102_WK]
+m_strName=AUTO-ID
+m_strRawPic=9(6)
+m_strPic=9(6)
+m_strDefaultValue=32
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM102_WK
+
+@}}
+[FDITEM103_WK]
+m_strName=E-SELEZIONA
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM103_WK
 
 @}}
 
@@ -1296,13 +1315,13 @@ Begin Screen Form1
       Columns' Setting  = ( DISP = 8, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 2, Name = col-des, READONLY = 0 )
       Columns' Setting  = ( PIC = "X(50)", TYPE = "X(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 38, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 34, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 3, Name = col-des-stampa, READONLY = 0 )
       Columns' Setting  = ( PIC = "X(20)", TYPE = "X(20)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
       Columns' Setting  = ( DISP = 18, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 4, Name = col-groups, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(5)", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 9, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 5, Name = col-grp-desc, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
       Columns' Setting  = ( DISP = 25, SEPA = 5, DIVI = 1 )
@@ -1311,7 +1330,7 @@ Begin Screen Form1
       Columns' Setting  = ( DISP = 18, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 7, Name = col-intensity, READONLY = 0 )
       Columns' Setting  = ( PIC = "99", TYPE = "zz", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 8, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 8, Name = col-int-desc, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
       Columns' Setting  = ( DISP = 15, SEPA = 5, DIVI = 1 )
@@ -2946,6 +2965,7 @@ BEGIN-DATA
    TEXTMODE          = 0
    ENTRYPOINT        = BeforeAccept
 BEGIN-TEXT
+           set vecchio to true.
            perform ABILITA-TOOLBAR.
 
            move 0 to riga.
@@ -3204,8 +3224,11 @@ BEGIN-TEXT
                 cancel "zoom-gt"
                 if stato-zoom = 0
                    move grp-code to col-group mcg-code 
+                   read groups no lock
+                   move grp-mcg-code to mcg-code
                    move grp-desc to col-grp-desc                     
                    read macrogroups no lock invalid move spaces to mcg-desc end-read
+                   move mcg-desc to col-mcg-desc
                    modify form1-gd-1(riga, 78-col-grp-code), cell-data col-group   
                    modify form1-gd-1(riga, 78-col-grp-desc), cell-data col-grp-desc
                    modify form1-gd-1(riga, 78-col-mcg-desc), cell-data col-mcg-desc
@@ -3571,7 +3594,7 @@ BEGIN-TEXT
                               perform RECORD-TO-GRID
                          end-read
                       end-perform
-                end-start
+                end-start  
            when ord-disable-asc                       
                 move low-value to tem-rec
                 modify form1-gd-1(1, 78-col-disable), cell-data = "Disable <<"
@@ -3593,6 +3616,41 @@ BEGIN-TEXT
                 move high-value to tem-rec
                 modify form1-gd-1(1, 78-col-disable), cell-data = "Disable >>"
                 start tmp-exe-mcg key is <= tem-k-disab
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg previous
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+
+           when ord-grp-asc                       
+                move low-value to tem-rec
+                modify form1-gd-1(1, 78-col-grp-code), cell-data = "Gruppo <<"
+                start tmp-exe-mcg key is >= tem-k-grp
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg next
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+           when ord-grp-disc                       
+                move high-value to tem-rec
+                modify form1-gd-1(1, 78-col-grp-code), cell-data = "Gruppo >>"
+                start tmp-exe-mcg key is <= tem-k-grp
                       invalid continue
                   not invalid 
                       move 1 to riga
@@ -3677,9 +3735,7 @@ BEGIN-TEXT
            inquire chk-mcg10, value in chk-mcg10-buf, title in como-titolo
            if chk-mcg10-buf = 0   and mcg-desc = como-titolo
               exit paragraph 
-           end-if.
-
-           
+           end-if.     
 
            inquire chk-int1, value in chk-int1-buf, title in como-titolo
            if chk-int1-buf = 0 and int-desc = como-titolo
@@ -3891,6 +3947,7 @@ BEGIN-TEXT
                     move exe-desc         to tem-exe-desc
                     read groups no lock
                     move grp-mcg-code to tem-mcg-code
+                    move grp-code     to tem-grp-code
                     write tem-rec
                  end-perform
            end-start.
@@ -4415,6 +4472,17 @@ BEGIN-TEXT
                    set ord-disable-disc to true
                 else                        
                    set ord-disable-asc to true
+                end-if                 
+                perform LOAD-TMP-EXE-MCG
+                perform LOAD-RECORD
+                close       tmp-exe-mcg
+                delete file tmp-exe-mcg 
+
+           when 78-col-grp-code
+                if ord-grp-asc
+                   set ord-grp-disc to true
+                else                        
+                   set ord-grp-asc to true
                 end-if                 
                 perform LOAD-TMP-EXE-MCG
                 perform LOAD-RECORD

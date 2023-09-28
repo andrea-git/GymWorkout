@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 25 settembre 2023 17:17:09.
+       DATE-WRITTEN.        giovedì 28 settembre 2023 11:07:29.
        REMARKS.
       *{TOTEM}END
 
@@ -142,6 +142,8 @@
            88 ord-rp-disc VALUE IS 12. 
            88 ord-int-asc VALUE IS 13. 
            88 ord-int-disc VALUE IS 14. 
+           88 ord-grp-asc VALUE IS 15. 
+           88 ord-grp-disc VALUE IS 16. 
        01 FILLER           PIC  9.
            88 ricarica VALUE IS 1    WHEN SET TO FALSE  0. 
        77 esegui-73x21-bmp PIC  S9(9)
@@ -232,7 +234,7 @@
        77 TMP-DataSet1-groups-BUF     PIC X(1182).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
-       77 TMP-DataSet1-tmp-exe-mcg-BUF     PIC X(115).
+       77 TMP-DataSet1-tmp-exe-mcg-BUF     PIC X(120).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -271,10 +273,11 @@
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
        77 intexe-int-k-desc-SPLITBUF  PIC X(101).
        77 intexe-int-k-effort-SPLITBUF  PIC X(3).
-       77 tmp-exe-mcg-tem-k-multi-SPLITBUF  PIC X(14).
-       77 tmp-exe-mcg-tem-k-disab-SPLITBUF  PIC X(14).
-       77 tmp-exe-mcg-tem-k-rp-SPLITBUF  PIC X(14).
+       77 tmp-exe-mcg-tem-k-multi-SPLITBUF  PIC X(19).
+       77 tmp-exe-mcg-tem-k-disab-SPLITBUF  PIC X(19).
+       77 tmp-exe-mcg-tem-k-rp-SPLITBUF  PIC X(19).
        77 tmp-exe-mcg-tem-k-int-SPLITBUF  PIC X(103).
+       77 tmp-exe-mcg-tem-k-grp-SPLITBUF  PIC X(11).
 
        01 old-exe-rec.
            05 old-exe-key.
@@ -1983,21 +1986,21 @@
            INITIALIZE tmp-exe-mcg-tem-k-multi-SPLITBUF
            MOVE tem-exe-isMulti(1:1) TO 
            tmp-exe-mcg-tem-k-multi-SPLITBUF(1:1)
-           MOVE tem-key(1:12) TO tmp-exe-mcg-tem-k-multi-SPLITBUF(2:12)
+           MOVE tem-key(1:17) TO tmp-exe-mcg-tem-k-multi-SPLITBUF(2:17)
            .
 
        tmp-exe-mcg-tem-k-disab-MERGE-SPLITBUF.
            INITIALIZE tmp-exe-mcg-tem-k-disab-SPLITBUF
            MOVE tem-exe-isDisable(1:1) TO 
            tmp-exe-mcg-tem-k-disab-SPLITBUF(1:1)
-           MOVE tem-key(1:12) TO tmp-exe-mcg-tem-k-disab-SPLITBUF(2:12)
+           MOVE tem-key(1:17) TO tmp-exe-mcg-tem-k-disab-SPLITBUF(2:17)
            .
 
        tmp-exe-mcg-tem-k-rp-MERGE-SPLITBUF.
            INITIALIZE tmp-exe-mcg-tem-k-rp-SPLITBUF
            MOVE tem-exe-isRestPause(1:1) TO 
            tmp-exe-mcg-tem-k-rp-SPLITBUF(1:1)
-           MOVE tem-key(1:12) TO tmp-exe-mcg-tem-k-rp-SPLITBUF(2:12)
+           MOVE tem-key(1:17) TO tmp-exe-mcg-tem-k-rp-SPLITBUF(2:17)
            .
 
        tmp-exe-mcg-tem-k-int-MERGE-SPLITBUF.
@@ -2005,6 +2008,12 @@
            MOVE tem-int-code(1:2) TO tmp-exe-mcg-tem-k-int-SPLITBUF(1:2)
            MOVE tem-exe-desc(1:100) TO 
            tmp-exe-mcg-tem-k-int-SPLITBUF(3:100)
+           .
+
+       tmp-exe-mcg-tem-k-grp-MERGE-SPLITBUF.
+           INITIALIZE tmp-exe-mcg-tem-k-grp-SPLITBUF
+           MOVE tem-grp-code(1:5) TO tmp-exe-mcg-tem-k-grp-SPLITBUF(1:5)
+           MOVE tem-exe-code(1:5) TO tmp-exe-mcg-tem-k-grp-SPLITBUF(6:5)
            .
 
        DataSet1-tmp-exe-mcg-INITSTART.
@@ -2265,12 +2274,13 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 9, 47, 65, 72, 97, 
-           115, 123, 138, 146, 154, 161)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 9, 43, 61, 70, 95, 
+           113, 123, 138, 146, 154, 161)
            .
 
        Form1-PROC.
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAccept>
+           set vecchio to true.
            perform ABILITA-TOOLBAR.
 
            move 0 to riga.
@@ -3025,9 +3035,12 @@
                 cancel "zoom-gt"
                 if stato-zoom = 0
                    move grp-code to col-group mcg-code 
+                   read groups no lock
+                   move grp-mcg-code to mcg-code
                    move grp-desc to col-grp-desc                     
                    read macrogroups no lock invalid move spaces to 
            mcg-desc end-read
+                   move mcg-desc to col-mcg-desc
                    modify form1-gd-1(riga, 78-col-grp-code), cell-data 
            col-group   
                    modify form1-gd-1(riga, 78-col-grp-desc), cell-data 
@@ -3409,7 +3422,7 @@
                               perform RECORD-TO-GRID
                          end-read
                       end-perform
-                end-start
+                end-start  
            when ord-disable-asc                       
                 move low-value to tem-rec
                 modify form1-gd-1(1, 78-col-disable), cell-data = "Disab
@@ -3433,6 +3446,43 @@
                 modify form1-gd-1(1, 78-col-disable), cell-data = "Disab
       -    "le >>"
                 start tmp-exe-mcg key is <= tem-k-disab
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg previous
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+
+           when ord-grp-asc                       
+                move low-value to tem-rec
+                modify form1-gd-1(1, 78-col-grp-code), cell-data = "Grup
+      -    "po <<"
+                start tmp-exe-mcg key is >= tem-k-grp
+                      invalid continue
+                  not invalid 
+                      move 1 to riga
+                      perform until 1 = 2
+                         read tmp-exe-mcg next
+                              at end exit perform
+                          not at end 
+                              move tem-exe-code to exe-code
+                              read exercises
+                              perform RECORD-TO-GRID
+                         end-read
+                      end-perform
+                end-start
+           when ord-grp-disc                       
+                move high-value to tem-rec
+                modify form1-gd-1(1, 78-col-grp-code), cell-data = "Grup
+      -    "po >>"
+                start tmp-exe-mcg key is <= tem-k-grp
                       invalid continue
                   not invalid 
                       move 1 to riga
@@ -3520,9 +3570,7 @@
            como-titolo
            if chk-mcg10-buf = 0   and mcg-desc = como-titolo
               exit paragraph 
-           end-if.
-
-           
+           end-if.     
 
            inquire chk-int1, value in chk-int1-buf, title in como-titolo
            if chk-int1-buf = 0 and int-desc = como-titolo
@@ -3747,6 +3795,7 @@
                     move exe-desc         to tem-exe-desc
                     read groups no lock
                     move grp-mcg-code to tem-mcg-code
+                    move grp-code     to tem-grp-code
                     write tem-rec
                  end-perform
            end-start 
@@ -4241,6 +4290,17 @@
                    set ord-disable-disc to true
                 else                        
                    set ord-disable-asc to true
+                end-if                 
+                perform LOAD-TMP-EXE-MCG
+                perform LOAD-RECORD
+                close       tmp-exe-mcg
+                delete file tmp-exe-mcg 
+
+           when 78-col-grp-code
+                if ord-grp-asc
+                   set ord-grp-disc to true
+                else                        
+                   set ord-grp-asc to true
                 end-if                 
                 perform LOAD-TMP-EXE-MCG
                 perform LOAD-RECORD

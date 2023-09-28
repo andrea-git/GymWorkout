@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 28 settembre 2023 11:07:29.
+       DATE-WRITTEN.        giovedì 28 settembre 2023 18:19:53.
        REMARKS.
       *{TOTEM}END
 
@@ -187,9 +187,13 @@
                   VALUE IS 0.
        77 chk-mcg10-buf    PIC  9
                   VALUE IS 0.
+       77 chk-mcg11-buf    PIC  9
+                  VALUE IS 0.
        77 chk-int1-buf     PIC  9
                   VALUE IS 0.
        77 chk-int10-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int11-buf    PIC  9
                   VALUE IS 0.
        77 chk-int9-buf     PIC  9
                   VALUE IS 0.
@@ -215,6 +219,8 @@
                   VALUE IS 32.
        77 E-SELEZIONA      PIC  9
                   VALUE IS 1.
+       77 Calibri12-Occidentale
+                  USAGE IS HANDLE OF FONT.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -277,7 +283,7 @@
        77 tmp-exe-mcg-tem-k-disab-SPLITBUF  PIC X(19).
        77 tmp-exe-mcg-tem-k-rp-SPLITBUF  PIC X(19).
        77 tmp-exe-mcg-tem-k-int-SPLITBUF  PIC X(103).
-       77 tmp-exe-mcg-tem-k-grp-SPLITBUF  PIC X(11).
+       77 tmp-exe-mcg-tem-k-grp-SPLITBUF  PIC X(8).
 
        01 old-exe-rec.
            05 old-exe-key.
@@ -303,7 +309,32 @@
 
       *{TOTEM}ID-LOGICI
       ***** Elenco ID Logici *****
-       78  78-ID-ef-note VALUE 5001.
+       78  78-ID-form1-gd-1 VALUE 5001.
+       78  78-ID-ef-note VALUE 5002.
+       78  78-ID-chk-mcgall VALUE 5003.
+       78  78-ID-chk-mcg1 VALUE 5004.
+       78  78-ID-chk-mcg2 VALUE 5005.
+       78  78-ID-chk-mcg3 VALUE 5006.
+       78  78-ID-chk-mcg4 VALUE 5007.
+       78  78-ID-chk-mcg5 VALUE 5008.
+       78  78-ID-chk-mcg6 VALUE 5009.
+       78  78-ID-chk-mcg7 VALUE 5010.
+       78  78-ID-chk-mcg8 VALUE 5011.
+       78  78-ID-chk-mcg9 VALUE 5012.
+       78  78-ID-chk-mcg10 VALUE 5013.
+       78  78-ID-chk-mcg11 VALUE 5014.
+       78  78-ID-chk-intall VALUE 5015.
+       78  78-ID-chk-int1 VALUE 5016.
+       78  78-ID-chk-int2 VALUE 5017.
+       78  78-ID-chk-int3 VALUE 5018.
+       78  78-ID-chk-int4 VALUE 5019.
+       78  78-ID-chk-int5 VALUE 5020.
+       78  78-ID-chk-int6 VALUE 5021.
+       78  78-ID-chk-int7 VALUE 5022.
+       78  78-ID-chk-int8 VALUE 5023.
+       78  78-ID-chk-int9 VALUE 5024.
+       78  78-ID-chk-int10 VALUE 5025.
+       78  78-ID-chk-int11 VALUE 5026.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -344,7 +375,7 @@
            DIVIDER-COLOR 1,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
-           ID IS 1,
+           ID IS 78-ID-form1-gd-1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            RECORD-DATA rec-grid,
@@ -384,7 +415,8 @@
            SIZE 15,00 ,
            EXCEPTION-VALUE 1001
            FLAT,
-           ID IS 3,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcgall,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -401,10 +433,11 @@
            COL 18,30, 
            LINE 1,30,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 4,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcg1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -418,13 +451,14 @@
        05
            chk-mcg2, 
            Check-Box, 
-           COL 29,30, 
+           COL 32,30, 
            LINE 1,30,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 5,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcg2,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -438,13 +472,14 @@
        05
            chk-mcg3, 
            Check-Box, 
-           COL 40,30, 
+           COL 46,30, 
            LINE 1,30,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 13,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcg3,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -458,13 +493,14 @@
        05
            chk-mcg4, 
            Check-Box, 
-           COL 51,30, 
+           COL 60,30, 
            LINE 1,30,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 6,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcg4,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -478,13 +514,14 @@
        05
            chk-mcg5, 
            Check-Box, 
-           COL 62,30, 
+           COL 74,30, 
            LINE 1,30,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 7,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcg5,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -498,13 +535,14 @@
        05
            chk-mcg6, 
            Check-Box, 
-           COL 73,30, 
+           COL 88,30, 
            LINE 1,30,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 8,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcg6,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -518,13 +556,14 @@
        05
            chk-mcg7, 
            Check-Box, 
-           COL 84,30, 
+           COL 102,30, 
            LINE 1,30,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 9,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcg7,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -538,13 +577,14 @@
        05
            chk-mcg8, 
            Check-Box, 
-           COL 95,30, 
+           COL 116,30, 
            LINE 1,30,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 10,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcg8,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -558,13 +598,14 @@
        05
            chk-mcg9, 
            Check-Box, 
-           COL 106,30, 
+           COL 130,30, 
            LINE 1,30,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 11,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcg9,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -578,13 +619,35 @@
        05
            chk-mcg10, 
            Check-Box, 
-           COL 117,30, 
+           COL 144,30, 
            LINE 1,30,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 14,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcg10,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg10-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg10-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg10-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg11, 
+           Check-Box, 
+           COL 158,30, 
+           LINE 1,30,
+           LINES 1,13 ,
+           SIZE 12,90 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-mcg11,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -604,7 +667,8 @@
            SIZE 15,00 ,
            EXCEPTION-VALUE 1002
            FLAT,
-           ID IS 15,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-intall,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -621,10 +685,11 @@
            COL 18,30, 
            LINE 2,61,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 16,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-int1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -638,13 +703,14 @@
        05
            chk-int2, 
            Check-Box, 
-           COL 29,30, 
+           COL 32,30, 
            LINE 2,61,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 17,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-int2,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -658,13 +724,14 @@
        05
            chk-int3, 
            Check-Box, 
-           COL 40,30, 
+           COL 46,30, 
            LINE 2,61,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 18,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-int3,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -678,13 +745,14 @@
        05
            chk-int4, 
            Check-Box, 
-           COL 51,30, 
+           COL 60,30, 
            LINE 2,61,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 19,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-int4,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -698,13 +766,14 @@
        05
            chk-int5, 
            Check-Box, 
-           COL 62,30, 
+           COL 74,30, 
            LINE 2,61,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 20,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-int5,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -718,13 +787,14 @@
        05
            chk-int6, 
            Check-Box, 
-           COL 73,30, 
+           COL 88,30, 
            LINE 2,61,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 21,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-int6,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -738,13 +808,14 @@
        05
            chk-int7, 
            Check-Box, 
-           COL 84,30, 
+           COL 102,30, 
            LINE 2,61,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 22,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-int7,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -758,13 +829,14 @@
        05
            chk-int8, 
            Check-Box, 
-           COL 95,30, 
+           COL 116,30, 
            LINE 2,61,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 23,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-int8,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -778,13 +850,14 @@
        05
            chk-int9, 
            Check-Box, 
-           COL 106,30, 
+           COL 130,30, 
            LINE 2,61,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 24,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-int9,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -798,13 +871,35 @@
        05
            chk-int10, 
            Check-Box, 
-           COL 117,30, 
+           COL 144,30, 
            LINE 2,61,
            LINES 1,13 ,
-           SIZE 9,00 ,
+           SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
-           ID IS 25,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-int10,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int10-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int10-AfterProcedure,
+           BEFORE PROCEDURE chk-int10-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int11, 
+           Check-Box, 
+           COL 158,20, 
+           LINE 2,61,
+           LINES 1,13 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 78-ID-chk-int11,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NOTIFY,
@@ -837,7 +932,8 @@
            LINE 1,70,
            LINES 1,00 ,
            SIZE 1,00 ,
-           ID IS 12,
+           FONT IS Calibri12-Occidentale,
+           ID IS AUTO-ID,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -1084,6 +1180,7 @@
            PERFORM CLOSE-FILE-RTN
       * <TOTEM:EPT. INIT:texercises, INIT:texercises, BeforeDestroyResource>
       * <TOTEM:END>
+           DESTROY Calibri12-Occidentale
            DESTROY Calibri14-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
       *    After-Program
@@ -1113,6 +1210,18 @@
            .
     
        INIT-FONT.
+      * Calibri12-Occidentale
+           INITIALIZE WFONT-DATA Calibri12-Occidentale
+           MOVE 12 TO WFONT-SIZE
+           MOVE "Calibri" TO WFONT-NAME
+           SET WFONT-BOLD TO FALSE
+           SET WFONT-ITALIC TO FALSE
+           SET WFONT-UNDERLINE TO FALSE
+           SET WFONT-STRIKEOUT TO FALSE
+           SET WFONT-FIXED-PITCH TO FALSE
+           MOVE 0 TO WFONT-CHAR-SET
+           CALL "W$FONT" USING WFONT-GET-FONT, 
+                     Calibri12-Occidentale, WFONT-DATA
       * Calibri14-Occidentale
            INITIALIZE WFONT-DATA Calibri14-Occidentale
            MOVE 14 TO WFONT-SIZE
@@ -2013,7 +2122,7 @@
        tmp-exe-mcg-tem-k-grp-MERGE-SPLITBUF.
            INITIALIZE tmp-exe-mcg-tem-k-grp-SPLITBUF
            MOVE tem-grp-code(1:5) TO tmp-exe-mcg-tem-k-grp-SPLITBUF(1:5)
-           MOVE tem-exe-code(1:5) TO tmp-exe-mcg-tem-k-grp-SPLITBUF(6:5)
+           MOVE tem-int-code(1:2) TO tmp-exe-mcg-tem-k-grp-SPLITBUF(6:2)
            .
 
        DataSet1-tmp-exe-mcg-INITSTART.
@@ -2312,6 +2421,8 @@
            = 1, value 1
                     when 10 modify chk-mcg10, title = mcg-desc, visible 
            = 1, value 1
+                    when 11 modify chk-mcg11, title = mcg-desc, visible 
+           = 1, value 1
                     end-evaluate
                  end-perform
            end-start.
@@ -2344,6 +2455,8 @@
                     when 9  modify chk-int9,  title = int-desc, visible 
            = 1, value 1
                     when 10 modify chk-int10, title = int-desc, visible 
+           = 1, value 1
+                    when 11 modify chk-int11, title = int-desc, visible 
            = 1, value 1
                     end-evaluate
                  end-perform
@@ -2433,8 +2546,12 @@
                  PERFORM Form1-Cb-1-LinkTo
               WHEN Key-Status = 1000
                  PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
               WHEN Key-Status = 1002
                  PERFORM chk-intall-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
               WHEN Key-Status = 1000
                  PERFORM Form1-Cb-1-LinkTo
               WHEN Key-Status = 1000
@@ -2814,7 +2931,7 @@
            PERFORM ef-note-VALIDATION
            IF NOT TOTEM-CHECK-OK
                MOVE 4 TO ACCEPT-CONTROL
-               MOVE 5001 TO CONTROL-ID
+               MOVE 5002 TO CONTROL-ID
                EXIT PARAGRAPH
            END-IF
            .
@@ -2915,7 +3032,7 @@
 
        Form1-AfterProcedure.
            EVALUATE Control-Id
-           When 5001 PERFORM ef-note-AfterProcedure
+           When 5002 PERFORM ef-note-AfterProcedure
            END-EVALUATE
            .
 
@@ -2925,28 +3042,28 @@
        Form1-Gd-1-Event-Proc.
            EVALUATE Event-Type ALSO Event-Control-Id ALSO
                                     Event-Window-Handle
-           WHEN Msg-Begin-Drag ALSO 1 ALSO
+           WHEN Msg-Begin-Drag ALSO 5001 ALSO
                     Form1-Handle 
               PERFORM form1-gd-1-Ev-Msg-Begin-Drag
-           WHEN Msg-Begin-Entry ALSO 1 ALSO
+           WHEN Msg-Begin-Entry ALSO 5001 ALSO
                     Form1-Handle 
               PERFORM form1-gd-1-Ev-Msg-Begin-Entry
-           WHEN Msg-End-Drag ALSO 1 ALSO
+           WHEN Msg-End-Drag ALSO 5001 ALSO
                     Form1-Handle 
               PERFORM form1-gd-1-Ev-Msg-End-Drag
-           WHEN Msg-Finish-Entry ALSO 1 ALSO
+           WHEN Msg-Finish-Entry ALSO 5001 ALSO
                     Form1-Handle 
               PERFORM form1-gd-1-Ev-Msg-Finish-Entry
-           WHEN Msg-Goto-Cell ALSO 1 ALSO
+           WHEN Msg-Goto-Cell ALSO 5001 ALSO
                     Form1-Handle 
               PERFORM form1-gd-1-Ev-Msg-Goto-Cell
-           WHEN Msg-Goto-Cell-Drag ALSO 1 ALSO
+           WHEN Msg-Goto-Cell-Drag ALSO 5001 ALSO
                     Form1-Handle 
               PERFORM form1-gd-1-Ev-Msg-Goto-Cell-Drag
-           WHEN Msg-Goto-Cell-Mouse ALSO 1 ALSO
+           WHEN Msg-Goto-Cell-Mouse ALSO 5001 ALSO
                     Form1-Handle 
               PERFORM form1-gd-1-Ev-Msg-Goto-Cell-Mouse
-           WHEN Msg-Heading-Clicked ALSO 1 ALSO
+           WHEN Msg-Heading-Clicked ALSO 5001 ALSO
                     Form1-Handle 
               PERFORM form1-gd-1-Ev-Msg-Heading-Clicked
            END-EVALUATE
@@ -3564,11 +3681,17 @@
            inquire chk-mcg9, value in chk-mcg9-buf, title in como-titolo
            if chk-mcg9-buf = 0 and mcg-desc = como-titolo
               exit paragraph 
-           end-if.
+           end-if.   
 
            inquire chk-mcg10, value in chk-mcg10-buf, title in 
            como-titolo
            if chk-mcg10-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg11, value in chk-mcg11-buf, title in 
+           como-titolo
+           if chk-mcg11-buf = 0   and mcg-desc = como-titolo
               exit paragraph 
            end-if.     
 
@@ -3615,11 +3738,17 @@
            inquire chk-int9, value in chk-int9-buf, title in como-titolo
            if chk-int9-buf = 0 and int-desc = como-titolo
               exit paragraph 
-           end-if.
+           end-if.     
 
            inquire chk-int10, value in chk-int10-buf, title in 
            como-titolo
            if chk-int10-buf = 0   and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-int11, value in chk-int11-buf, title in 
+           como-titolo
+           if chk-int11-buf = 0   and int-desc = como-titolo
               exit paragraph 
            end-if.
 
@@ -3705,6 +3834,11 @@
               move 0 to chk-mcgall-buf
               display chk-mcgall
            end-if
+           inquire chk-mcg11, visible in como-v
+           if como-v = 1 and chk-mcg11-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if
                                         
            inquire chk-int1, visible in como-v
            if como-v = 1 and chk-int1-buf = 0 
@@ -3753,6 +3887,11 @@
            end-if
            inquire chk-int10, visible in como-v
            if como-v = 1 and chk-int10-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
+           inquire chk-int11, visible in como-v
+           if como-v = 1 and chk-int11-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
            end-if
@@ -4370,6 +4509,11 @@
            if como-v = 1
               move 1 to chk-mcg10-buf
               modify chk-mcg10, value chk-mcg10-buf
+           end-if.
+           inquire chk-mcg11, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg11-buf
+              modify chk-mcg11, value chk-mcg11-buf
            end-if.                           
 
            perform LOAD-RECORD 
@@ -4431,6 +4575,11 @@
            if como-v = 1
               move 1 to chk-int10-buf
               modify chk-int10, value chk-int10-buf
+           end-if.
+           inquire chk-int11, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int11-buf
+              modify chk-int11, value chk-int11-buf
            end-if.                      
 
            perform LOAD-RECORD 

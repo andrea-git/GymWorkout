@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E791C75542-746-1843316871
+PROGRAM_UNIQUE_CODE=TOTEM-7E791C16237-504-1614613950
 
 {{@DESCRIPTION:
 
@@ -906,7 +906,7 @@ m_bFixed=1
 
 @}}
 [FDITEM90_WK]
-m_strName=chk-int1-buf
+m_strName=chk-mcg11-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -917,7 +917,7 @@ m_bFixed=1
 
 @}}
 [FDITEM91_WK]
-m_strName=chk-int10-buf
+m_strName=chk-int1-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -928,7 +928,7 @@ m_bFixed=1
 
 @}}
 [FDITEM92_WK]
-m_strName=chk-int9-buf
+m_strName=chk-int10-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -939,7 +939,7 @@ m_bFixed=1
 
 @}}
 [FDITEM93_WK]
-m_strName=chk-int8-buf
+m_strName=chk-int11-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -950,7 +950,7 @@ m_bFixed=1
 
 @}}
 [FDITEM94_WK]
-m_strName=chk-int7-buf
+m_strName=chk-int9-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -961,7 +961,7 @@ m_bFixed=1
 
 @}}
 [FDITEM95_WK]
-m_strName=chk-int6-buf
+m_strName=chk-int8-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -972,7 +972,7 @@ m_bFixed=1
 
 @}}
 [FDITEM96_WK]
-m_strName=chk-int5-buf
+m_strName=chk-int7-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -983,7 +983,7 @@ m_bFixed=1
 
 @}}
 [FDITEM97_WK]
-m_strName=chk-int4-buf
+m_strName=chk-int6-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -994,7 +994,7 @@ m_bFixed=1
 
 @}}
 [FDITEM98_WK]
-m_strName=chk-int3-buf
+m_strName=chk-int5-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -1005,7 +1005,7 @@ m_bFixed=1
 
 @}}
 [FDITEM99_WK]
-m_strName=chk-int2-buf
+m_strName=chk-int4-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -1016,7 +1016,7 @@ m_bFixed=1
 
 @}}
 [FDITEM100_WK]
-m_strName=chk-mcgall-buf
+m_strName=chk-int3-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -1027,10 +1027,10 @@ m_bFixed=1
 
 @}}
 [FDITEM101_WK]
-m_strName=chk-intall-buf
+m_strName=chk-int2-buf
 m_strRawPic=9
 m_strPic=9
-m_strDefaultValue=1
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1038,10 +1038,10 @@ m_bFixed=1
 
 @}}
 [FDITEM102_WK]
-m_strName=AUTO-ID
-m_strRawPic=9(6)
-m_strPic=9(6)
-m_strDefaultValue=32
+m_strName=chk-mcgall-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1049,7 +1049,7 @@ m_bFixed=1
 
 @}}
 [FDITEM103_WK]
-m_strName=E-SELEZIONA
+m_strName=chk-intall-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=1
@@ -1057,6 +1057,37 @@ m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM103_WK
+
+@}}
+[FDITEM104_WK]
+m_strName=AUTO-ID
+m_strRawPic=9(6)
+m_strPic=9(6)
+m_strDefaultValue=32
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM104_WK
+
+@}}
+[FDITEM105_WK]
+m_strName=E-SELEZIONA
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM105_WK
+
+@}}
+[FDITEM106_WK]
+m_strName=Calibri12-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM106_WK
 
 @}}
 
@@ -1359,6 +1390,7 @@ Begin Screen Form1
       Help ID           = 0
       Hscroll           = FALSE
       ID                = 1
+      ID Variable       = AUTO-ID
       Last Row          = 0
       Line              = 4,00
       Lines             = 34,00
@@ -1472,10 +1504,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1001
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 3
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1517,10 +1551,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 4
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1529,7 +1565,7 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
       Tab Order         = 4
       Termination Value = 0
@@ -1543,7 +1579,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg2
-      SCREEN-COL        = 29,30
+      SCREEN-COL        = 32,30
       SCREEN-LINE       = 1,30
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1554,7 +1590,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 29,30
+      Column            = 32,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -1562,10 +1598,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 5
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1574,7 +1612,7 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
       Tab Order         = 5
       Termination Value = 0
@@ -1588,7 +1626,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg3
-      SCREEN-COL        = 40,30
+      SCREEN-COL        = 46,30
       SCREEN-LINE       = 1,30
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1599,7 +1637,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 40,30
+      Column            = 46,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -1607,10 +1645,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 13
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1619,7 +1659,7 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
       Tab Order         = 6
       Termination Value = 0
@@ -1633,7 +1673,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg4
-      SCREEN-COL        = 51,30
+      SCREEN-COL        = 60,30
       SCREEN-LINE       = 1,30
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1644,7 +1684,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 51,30
+      Column            = 60,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -1652,10 +1692,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 6
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1664,7 +1706,7 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
       Tab Order         = 7
       Termination Value = 0
@@ -1678,7 +1720,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg5
-      SCREEN-COL        = 62,30
+      SCREEN-COL        = 74,30
       SCREEN-LINE       = 1,30
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1689,7 +1731,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 62,30
+      Column            = 74,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -1697,10 +1739,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 7
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1709,7 +1753,7 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
       Tab Order         = 8
       Termination Value = 0
@@ -1723,7 +1767,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg6
-      SCREEN-COL        = 73,30
+      SCREEN-COL        = 88,30
       SCREEN-LINE       = 1,30
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1734,7 +1778,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 73,30
+      Column            = 88,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -1742,10 +1786,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 8
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1754,7 +1800,7 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
       Tab Order         = 9
       Termination Value = 0
@@ -1768,7 +1814,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg7
-      SCREEN-COL        = 84,30
+      SCREEN-COL        = 102,30
       SCREEN-LINE       = 1,30
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1779,7 +1825,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 84,30
+      Column            = 102,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -1787,10 +1833,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 9
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1799,7 +1847,7 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
       Tab Order         = 10
       Termination Value = 0
@@ -1813,7 +1861,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg8
-      SCREEN-COL        = 95,30
+      SCREEN-COL        = 116,30
       SCREEN-LINE       = 1,30
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1824,7 +1872,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 95,30
+      Column            = 116,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -1832,10 +1880,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 10
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1844,7 +1894,7 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
       Tab Order         = 11
       Termination Value = 0
@@ -1858,7 +1908,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg9
-      SCREEN-COL        = 106,30
+      SCREEN-COL        = 130,30
       SCREEN-LINE       = 1,30
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1869,7 +1919,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 106,30
+      Column            = 130,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -1877,10 +1927,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 11
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1889,7 +1941,7 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
       Tab Order         = 12
       Termination Value = 0
@@ -1903,7 +1955,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-mcg10
-      SCREEN-COL        = 117,30
+      SCREEN-COL        = 144,30
       SCREEN-LINE       = 1,30
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1914,7 +1966,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 117,30
+      Column            = 144,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -1922,10 +1974,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 14
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 1,30
       Lines             = 1,13
@@ -1934,9 +1988,56 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
       Tab Order         = 13
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-mcg10-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Before Procedure  = chk-mcg10-BeforeProcedure
+      After Procedure   = chk-mcg10-AfterProcedure
+      Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Check-Box chk-mcg11
+      SCREEN-COL        = 158,30
+      SCREEN-LINE       = 1,30
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-mcg11
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 158,30
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 27
+      ID Variable       = AUTO-ID
+      Left Text         = FALSE
+      Line              = 1,30
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 12,90
+      Size Unit         = Default
+      Tab Order         = 14
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
@@ -1967,10 +2068,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1002
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 15
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -1981,7 +2084,7 @@ Begin Screen Form1
       Self Act          = FALSE
       Size              = 15,00
       Size Unit         = Default
-      Tab Order         = 14
+      Tab Order         = 15
       Termination Value = 0
       Title             = "Tutte le intensità"
       Value             = 1:TRUE
@@ -2012,10 +2115,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 16
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2024,9 +2129,9 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 15
+      Tab Order         = 16
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
@@ -2038,7 +2143,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int2
-      SCREEN-COL        = 29,30
+      SCREEN-COL        = 32,30
       SCREEN-LINE       = 2,61
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -2049,7 +2154,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 29,30
+      Column            = 32,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2057,10 +2162,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 17
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2069,9 +2176,9 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 16
+      Tab Order         = 17
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
@@ -2083,7 +2190,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int3
-      SCREEN-COL        = 40,30
+      SCREEN-COL        = 46,30
       SCREEN-LINE       = 2,61
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -2094,7 +2201,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 40,30
+      Column            = 46,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2102,10 +2209,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 18
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2114,9 +2223,9 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 17
+      Tab Order         = 18
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
@@ -2128,7 +2237,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int4
-      SCREEN-COL        = 51,30
+      SCREEN-COL        = 60,30
       SCREEN-LINE       = 2,61
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -2139,7 +2248,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 51,30
+      Column            = 60,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2147,10 +2256,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 19
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2159,9 +2270,9 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 18
+      Tab Order         = 19
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
@@ -2173,7 +2284,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int5
-      SCREEN-COL        = 62,30
+      SCREEN-COL        = 74,30
       SCREEN-LINE       = 2,61
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -2184,7 +2295,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 62,30
+      Column            = 74,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2192,10 +2303,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 20
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2204,9 +2317,9 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 19
+      Tab Order         = 20
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
@@ -2218,7 +2331,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int6
-      SCREEN-COL        = 73,30
+      SCREEN-COL        = 88,30
       SCREEN-LINE       = 2,61
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -2229,7 +2342,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 73,30
+      Column            = 88,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2237,10 +2350,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 21
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2249,9 +2364,9 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 20
+      Tab Order         = 21
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
@@ -2263,7 +2378,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int7
-      SCREEN-COL        = 84,30
+      SCREEN-COL        = 102,30
       SCREEN-LINE       = 2,61
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -2274,7 +2389,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 84,30
+      Column            = 102,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2282,10 +2397,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 22
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2294,9 +2411,9 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 21
+      Tab Order         = 22
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
@@ -2308,7 +2425,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int8
-      SCREEN-COL        = 95,30
+      SCREEN-COL        = 116,30
       SCREEN-LINE       = 2,61
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -2319,7 +2436,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 95,30
+      Column            = 116,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2327,10 +2444,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 23
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2339,9 +2458,9 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 22
+      Tab Order         = 23
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
@@ -2353,7 +2472,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int9
-      SCREEN-COL        = 106,30
+      SCREEN-COL        = 130,30
       SCREEN-LINE       = 2,61
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -2364,7 +2483,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 106,30
+      Column            = 130,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2372,10 +2491,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 24
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2384,9 +2505,9 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 23
+      Tab Order         = 24
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
@@ -2398,7 +2519,7 @@ Begin Screen Form1
       Link To           = Form1-Cb-1-LinkTo
    End
    Begin Check-Box chk-int10
-      SCREEN-COL        = 117,30
+      SCREEN-COL        = 144,30
       SCREEN-LINE       = 2,61
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -2409,7 +2530,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 117,30
+      Column            = 144,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2417,10 +2538,12 @@ Begin Screen Form1
       Enable            = NONE
       Exception Value   = 1000
       Flat              = TRUE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 25
+      ID Variable       = AUTO-ID
       Left Text         = FALSE
       Line              = 2,61
       Lines             = 1,13
@@ -2429,9 +2552,56 @@ Begin Screen Form1
       Notify            = TRUE
       Occurs            = 0
       Self Act          = FALSE
-      Size              = 9,00
+      Size              = 13,00
       Size Unit         = Default
-      Tab Order         = 24
+      Tab Order         = 25
+      Termination Value = 0
+      Title             = "Check Box"
+      Value             = 0:FALSE
+      Value Variable    = chk-int10-buf
+      Visible           = FALSE
+      Width in Cells    = TRUE
+      Before Procedure  = chk-int10-BeforeProcedure
+      After Procedure   = chk-int10-AfterProcedure
+      Link To           = Form1-Cb-1-LinkTo
+   End
+   Begin Check-Box chk-int11
+      SCREEN-COL        = 158,20
+      SCREEN-LINE       = 2,61
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-int11
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 158,20
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 1000
+      Flat              = TRUE
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 26
+      ID Variable       = AUTO-ID
+      Left Text         = FALSE
+      Line              = 2,61
+      Lines             = 1,13
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 13,00
+      Size Unit         = Default
+      Tab Order         = 26
       Termination Value = 0
       Title             = "Check Box"
       Value             = 0:FALSE
@@ -2469,7 +2639,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 5,00
       Size Unit         = Default
-      Tab Order         = 25
+      Tab Order         = 27
       Title             = "Note"
       Transparent       = TRUE
       Visible           = NONE
@@ -2477,10 +2647,10 @@ Begin Screen Form1
    End
    Begin CsCtrl.blockpgm Label Form1-blockpgm-1
       CUST-SYMBOL       = blockpgm
-      CUST-MODIFYFLAG   = 000000000000000000000000000000000000000000000000000
+      CUST-MODIFYFLAG   = 000000000000110000000000000000000000000000001000000
       SCREEN-COL        = 134,50
       SCREEN-LINE       = 1,70
-      LOCK-CONTROL      = FALSE
+      LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Form1-blockpgm-1
       Clines            = 0
@@ -2491,10 +2661,12 @@ Begin Screen Form1
       Csize Unit        = Default
       Destroy Type      = Automatic
       Enable            = NONE
-      Font              = Default Font
+      Font              = Calibri/12/C0/@Occidentale
+      Font Variable     = Calibri12-Occidentale
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 12
+      ID Variable       = AUTO-ID
       Justification     = Unaligned
       Label Offset      = 20
       Line              = 1,70
@@ -2504,7 +2676,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 1,00
       Size Unit         = Default
-      Tab Order         = 26
+      Tab Order         = 28
       Title             = "BlockPgm"
       Transparent       = TRUE
       Visible           = NONE
@@ -2516,7 +2688,7 @@ Begin Screen Form1
       CUST-MODIFYFLAG   = 000000000000000000000000000000000000000000000000000
       SCREEN-COL        = 130,50
       SCREEN-LINE       = 1,22
-      LOCK-CONTROL      = FALSE
+      LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Form1-Custom1-1
       Ccol              = 0
@@ -2543,7 +2715,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 1,00
       Size Unit         = Default
-      Tab Order         = 27
+      Tab Order         = 29
       Title             = "CUSTOM CONTROL"
       Transparent       = TRUE
       Visible           = NONE
@@ -2562,7 +2734,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 28
+      Tab Order         = 30
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -2983,6 +3155,7 @@ BEGIN-TEXT
                     when 8  modify chk-mcg8,  title = mcg-desc, visible = 1, value 1
                     when 9  modify chk-mcg9,  title = mcg-desc, visible = 1, value 1
                     when 10 modify chk-mcg10, title = mcg-desc, visible = 1, value 1
+                    when 11 modify chk-mcg11, title = mcg-desc, visible = 1, value 1
                     end-evaluate
                  end-perform
            end-start.
@@ -3006,6 +3179,7 @@ BEGIN-TEXT
                     when 8  modify chk-int8,  title = int-desc, visible = 1, value 1
                     when 9  modify chk-int9,  title = int-desc, visible = 1, value 1
                     when 10 modify chk-int10, title = int-desc, visible = 1, value 1
+                    when 11 modify chk-int11, title = int-desc, visible = 1, value 1
                     end-evaluate
                  end-perform
            end-start.
@@ -3726,10 +3900,15 @@ BEGIN-TEXT
            inquire chk-mcg9, value in chk-mcg9-buf, title in como-titolo
            if chk-mcg9-buf = 0 and mcg-desc = como-titolo
               exit paragraph 
-           end-if.
+           end-if.   
 
            inquire chk-mcg10, value in chk-mcg10-buf, title in como-titolo
            if chk-mcg10-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg11, value in chk-mcg11-buf, title in como-titolo
+           if chk-mcg11-buf = 0   and mcg-desc = como-titolo
               exit paragraph 
            end-if.     
 
@@ -3776,10 +3955,15 @@ BEGIN-TEXT
            inquire chk-int9, value in chk-int9-buf, title in como-titolo
            if chk-int9-buf = 0 and int-desc = como-titolo
               exit paragraph 
-           end-if.
+           end-if.     
 
            inquire chk-int10, value in chk-int10-buf, title in como-titolo
            if chk-int10-buf = 0   and int-desc = como-titolo
+              exit paragraph 
+           end-if.
+
+           inquire chk-int11, value in chk-int11-buf, title in como-titolo
+           if chk-int11-buf = 0   and int-desc = como-titolo
               exit paragraph 
            end-if.
 
@@ -3852,6 +4036,11 @@ BEGIN-TEXT
               move 0 to chk-mcgall-buf
               display chk-mcgall
            end-if
+           inquire chk-mcg11, visible in como-v
+           if como-v = 1 and chk-mcg11-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if
                                         
            inquire chk-int1, visible in como-v
            if como-v = 1 and chk-int1-buf = 0 
@@ -3900,6 +4089,11 @@ BEGIN-TEXT
            end-if
            inquire chk-int10, visible in como-v
            if como-v = 1 and chk-int10-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if
+           inquire chk-int11, visible in como-v
+           if como-v = 1 and chk-int11-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
            end-if
@@ -4552,6 +4746,11 @@ BEGIN-TEXT
            if como-v = 1
               move 1 to chk-mcg10-buf
               modify chk-mcg10, value chk-mcg10-buf
+           end-if.
+           inquire chk-mcg11, visible in como-v.
+           if como-v = 1
+              move 1 to chk-mcg11-buf
+              modify chk-mcg11, value chk-mcg11-buf
            end-if.                           
 
            perform LOAD-RECORD.
@@ -4615,6 +4814,11 @@ BEGIN-TEXT
            if como-v = 1
               move 1 to chk-int10-buf
               modify chk-int10, value chk-int10-buf
+           end-if.
+           inquire chk-int11, visible in como-v.
+           if como-v = 1
+              move 1 to chk-int11-buf
+              modify chk-int11, value chk-int11-buf
            end-if.                      
 
            perform LOAD-RECORD.

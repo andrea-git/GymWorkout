@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E791C7330-675-3191831684
+PROGRAM_UNIQUE_CODE=TOTEM-7E791C162314-814-2623225858
 
 {{@DESCRIPTION:
 
@@ -3692,7 +3692,7 @@ Begin Screen Form1
       Help ID           = 0
       ID                = 34
       Line              = 21,57
-      Lines             = 10,00
+      Lines             = 16,00
       Lines Unit        = Default
       Mass Update       = 0:Fast-Update
       Max Text          = 0

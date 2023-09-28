@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 28 settembre 2023 09:43:28.
+       DATE-WRITTEN.        giovedì 28 settembre 2023 18:23:35.
        REMARKS.
       *{TOTEM}END
 
@@ -944,7 +944,7 @@
            Combo-Box, 
            COL 17,80, 
            LINE 21,57,
-           LINES 10,00 ,
+           LINES 16,00 ,
            SIZE 43,00 ,
            BOXED,
            COLOR IS 513,

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 28 settembre 2023 18:23:35.
+       DATE-WRITTEN.        venerdì 29 settembre 2023 10:14:34.
        REMARKS.
       *{TOTEM}END
 
@@ -6704,31 +6704,49 @@
            99
                                 move "Max" to col-reps
                              else
-                                move int-range-from to como-range-from
-                                inspect como-range-from replacing 
-           leading x"30" by x"20"
-                                call "C$JUSTIFY" using como-range-from, 
-           "L"
-                                inspect como-range-from replacing 
-           trailing spaces by low-value
-                             
-                                move int-range-to to como-range-to      
-                         
-                                inspect como-range-to replacing leading 
-           x"30" by x"20"  
-                                call "C$JUSTIFY" using como-range-to, "L
-      -    ""          
-                                inspect como-range-to replacing 
-           trailing spaces by low-value
-                             
-                                initialize col-reps
-                                string como-range-from delimited 
+                                if int-isTime = 1
+                                   move int-time to como-hit
+                                   inspect como-hit 
+                                   replacing leading x"30" by x"20"
+                                   call "C$JUSTIFY" using como-hit, "L"
+                                   inspect como-hit 
+                                   replacing trailing spaces by 
            low-value
-                                       "-"             delimited size
-                                       como-range-to   delimited 
+                                   initialize col-reps
+                                   string como-hit delimited low-value
+                                          "''"     delimited size
+                                     into col-reps
+                                   end-string
+                                else
+                                   move int-range-from to 
+           como-range-from
+                                   inspect como-range-from 
+                                   replacing leading x"30" by x"20"
+                                   call "C$JUSTIFY" using 
+           como-range-from, "L"
+                                   inspect como-range-from 
+                                   replacing trailing spaces by 
            low-value
-                                  into col-reps
-                                end-string
+                                
+                                   move int-range-to to como-range-to   
+                            
+                                   inspect como-range-to 
+                                   replacing leading x"30" by x"20"  
+                                   call "C$JUSTIFY" using 
+           como-range-to, "L"          
+                                   inspect como-range-to 
+                                   replacing trailing spaces by 
+           low-value
+                                
+                                   initialize col-reps
+                                   string como-range-from delimited 
+           low-value
+                                          "-"             delimited size
+                                          como-range-to   delimited 
+           low-value
+                                     into col-reps
+                                   end-string
+                                end-if
                              end-if
                           end-if
                        end-if

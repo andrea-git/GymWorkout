@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tintexe.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 19 settembre 2023 18:41:37.
+       DATE-WRITTEN.        venerdì 29 settembre 2023 10:09:09.
        REMARKS.
       *{TOTEM}END
 
@@ -97,6 +97,7 @@
            05 col-range-to     PIC  z9.
            05 col-effort       PIC  z9.
            05 col-restpause    PIC  9.
+           05 col-isTime       PIC  9.
        77 Screen1-Handle
                   USAGE IS HANDLE OF WINDOW.
        01 FILLER           PIC  9.
@@ -155,7 +156,8 @@
                    15 old-int-range-to     PIC  99.
                10 old-int-effort       PIC  99.
                10 old-int-restpause    PIC  9.
-               10 old-int-filler       PIC  x(999).
+               10 old-int-isTime       PIC  9.
+               10 old-int-filler       PIC  x(998).
                10 old-int-filler-n1    PIC  9(18).
                10 old-int-filler-n2    PIC  9(18).
                10 old-int-filler-n3    PIC  9(18).
@@ -200,17 +202,17 @@
        05
            form1-gd-1, 
            Grid, 
-           COL 1,90, 
+           COL 2,10, 
            LINE 1,74,
            LINES 22,70 ,
-           SIZE 101,90 ,
+           SIZE 111,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           DATA-COLUMNS (1, 3, 53, 56, 58, 61, 63, 65, 67),
-           ALIGNMENT ("R", "U", "R", "R", "R", "R", "R", "R", "C"),
-           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5),
+           DATA-COLUMNS (1, 3, 53, 56, 58, 61, 63, 65, 67, 68),
+           ALIGNMENT ("R", "U", "R", "R", "R", "R", "R", "R", "C", "C"),
+           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
            DATA-TYPES ("z9", "X(50)", "zz9", "z9", "zz9", "z9", "z9", "z
-      -    "9", "U(1)"),
+      -    "9", "U(1)", "X"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
@@ -224,7 +226,7 @@
            RECORD-DATA rec-grid,
            TILED-HEADINGS,
            USE-TAB,
-           VIRTUAL-WIDTH 100,
+           VIRTUAL-WIDTH 110,
            VPADDING 10,
            VSCROLL,
            EVENT PROCEDURE Form1-Gd-1-Event-Proc,
@@ -778,6 +780,9 @@
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 9, Y = 1,
                 CELL-DATA = "Rest/pause",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 10, Y = 1,
+                CELL-DATA = "A tempo",
            .
 
       * FD's Initialize Paragraph
@@ -816,7 +821,7 @@
               SCREEN LINE 1,
               SCREEN COLUMN 0,
               LINES 24,13,
-              SIZE 103,90,
+              SIZE 114,20,
               COLOR 131329,
               CONTROL FONT Calibri14-Occidentale,
               LINK TO THREAD,
@@ -845,7 +850,7 @@
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
               MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 31, 41, 51, 
-           61, 71, 81, 91)
+           61, 71, 81, 91, 101)
            .
 
        Form1-PROC.
@@ -1449,7 +1454,7 @@
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x = 9,
+           modify form1-gd-1, start-x = 1, x = 10,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,
@@ -1514,32 +1519,50 @@
                            icon mb-warning-icon
                 end-if
            when 6
-                if int-range-from = 0
-                   set errori to true   
-                   display message "Valore obbligatorio"
-                           title = tit-err
-                           icon mb-warning-icon
-                end-if
-           when 7
-                if int-range-to = 0
-                   set errori to true   
-                   display message "Valore obbligatorio"
-                           title = tit-err
-                           icon mb-warning-icon
-                else
-                   if int-range-to < int-range-from
+                if int-isTime = 0
+                   if int-range-from = 0
                       set errori to true   
-                      display message "Range errato"
+                      display message "Valore obbligatorio"
                               title = tit-err
                               icon mb-warning-icon
                    end-if
-                end-if  
+                end-if
+           when 7
+                if int-isTime = 0
+                   if int-range-to = 0
+                      set errori to true   
+                      display message "Valore obbligatorio"
+                              title = tit-err
+                              icon mb-warning-icon
+                   else
+                      if int-range-to < int-range-from
+                         set errori to true   
+                         display message "Range errato"
+                                 title = tit-err
+                                 icon mb-warning-icon
+                      end-if
+                   end-if  
+                end-if
            when 8
                 if int-effort = 0
                    set errori to true   
                    display message "Valore obbligatorio"
                            title = tit-err
                            icon mb-warning-icon
+                end-if   
+           when 10
+                if int-isTime not = 0 and not = 1
+                   set errori to true   
+                   display message "Valori consentiti 1/0"
+                           title = tit-err
+                           icon mb-warning-icon
+                else
+                   if int-isTime = 1
+                      move 0 to col-range-from col-range-to
+                      modify form1-gd-1(riga, 6), cell-data 
+           col-range-from
+                      modify form1-gd-1(riga, 7), cell-data col-range-to
+                   end-if
                 end-if  
 
            end-evaluate.
@@ -1584,8 +1607,10 @@
                           move int-time       to col-duration
                           move int-range-from to col-range-from
                           move int-range-to   to col-range-to     
-                          move int-effort     to col-effort
+                          move int-effort     to col-effort             
+              
                           move int-restpause  to col-restpause
+                          move int-isTime     to col-isTime
                           modify form1-gd-1(riga, 1), cell-data 
            col-codice
                           modify form1-gd-1(riga, 2), cell-data col-des 
@@ -1604,6 +1629,8 @@
            col-effort
                           modify form1-gd-1(riga, 9), cell-data 
            col-restpause
+                          modify form1-gd-1(riga, 10), cell-data 
+           col-isTime
                      end-read                                           
                   end-perform
            end-start.
@@ -1734,7 +1761,7 @@
                                cursor-y in riga.
 
            perform varying colonna from 1 by 1
-                     until colonna > 9
+                     until colonna > 10
               perform CONTROLLO
               if errori exit perform end-if
            end-perform.
@@ -1805,8 +1832,9 @@
            inquire form1-gd-1(riga, 5), cell-data int-time.
            inquire form1-gd-1(riga, 6), cell-data int-range-from.
            inquire form1-gd-1(riga, 7), cell-data int-range-to.  
-           inquire form1-gd-1(riga, 8), cell-data int-effort.
-           inquire form1-gd-1(riga, 9), cell-data int-restpause 
+           inquire form1-gd-1(riga, 8), cell-data int-effort.    
+           inquire form1-gd-1(riga, 9), cell-data int-restpause.
+           inquire form1-gd-1(riga, 10), cell-data int-isTime 
            .
       * <TOTEM:END>
 
@@ -1911,6 +1939,10 @@
                  if int-code = zero or spaces
                     set event-action to event-action-fail
                     modify form1-gd-1, cursor-y = riga, cursor-x = 1
+                 else
+                    if ( colonna = 6 or 7 ) and int-isTime = 1
+                       set event-action to event-action-fail
+                    end-if
                  end-if   
               end-if
            end-if 

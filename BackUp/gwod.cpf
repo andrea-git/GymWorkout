@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E791C162314-814-2623225858
+PROGRAM_UNIQUE_CODE=TOTEM-7E791D75541-728-288735403
 
 {{@DESCRIPTION:
 
@@ -6847,22 +6847,40 @@ BEGIN-TEXT
                              if int-range-from = 99 and int-range-to = 99
                                 move "Max" to col-reps
                              else
-                                move int-range-from to como-range-from
-                                inspect como-range-from replacing leading x"30" by x"20"
-                                call "C$JUSTIFY" using como-range-from, "L"
-                                inspect como-range-from replacing trailing spaces by low-value
-                             
-                                move int-range-to to como-range-to                    
-                                inspect como-range-to replacing leading x"30" by x"20"  
-                                call "C$JUSTIFY" using como-range-to, "L"          
-                                inspect como-range-to replacing trailing spaces by low-value
-                             
-                                initialize col-reps
-                                string como-range-from delimited low-value
-                                       "-"             delimited size
-                                       como-range-to   delimited low-value
-                                  into col-reps
-                                end-string
+                                if int-isTime = 1
+                                   move int-time to como-hit
+                                   inspect como-hit 
+                                   replacing leading x"30" by x"20"
+                                   call "C$JUSTIFY" using como-hit, "L"
+                                   inspect como-hit 
+                                   replacing trailing spaces by low-value
+                                   initialize col-reps
+                                   string como-hit delimited low-value
+                                          "''"     delimited size
+                                     into col-reps
+                                   end-string
+                                else
+                                   move int-range-from to como-range-from
+                                   inspect como-range-from 
+                                   replacing leading x"30" by x"20"
+                                   call "C$JUSTIFY" using como-range-from, "L"
+                                   inspect como-range-from 
+                                   replacing trailing spaces by low-value
+                                
+                                   move int-range-to to como-range-to                    
+                                   inspect como-range-to 
+                                   replacing leading x"30" by x"20"  
+                                   call "C$JUSTIFY" using como-range-to, "L"          
+                                   inspect como-range-to 
+                                   replacing trailing spaces by low-value
+                                
+                                   initialize col-reps
+                                   string como-range-from delimited low-value
+                                          "-"             delimited size
+                                          como-range-to   delimited low-value
+                                     into col-reps
+                                   end-string
+                                end-if
                              end-if
                           end-if
                        end-if

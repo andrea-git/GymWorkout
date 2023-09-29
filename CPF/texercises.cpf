@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E791C16237-504-1614613950
+PROGRAM_UNIQUE_CODE=TOTEM-7E791D82514-394-289938729
 
 {{@DESCRIPTION:
 
@@ -2811,7 +2812,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 26
+         ID                = 28
          Line              = 1,09
          Lines             = 2,59
          Lines in Pixels   = 64
@@ -2858,7 +2859,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 27
+         ID                = 29
          Line              = 1,09
          Lines             = 2,59
          Lines in Pixels   = 64
@@ -2906,7 +2907,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 28
+         ID                = 30
          Line              = 1,09
          Lines             = 2,59
          Lines in Pixels   = 64
@@ -2955,7 +2956,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 29
+         ID                = 34
          Left Text         = FALSE
          Line              = 1,09
          Lines             = 2,13
@@ -3006,7 +3007,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 30
+         ID                = 35
          Line              = 1,09
          Lines             = 2,59
          Lines in Pixels   = 64
@@ -3840,6 +3841,8 @@ BEGIN-TEXT
            end-evaluate.
                 
            modify form1-gd-1, mass-update = 0.
+           move 2 to riga.
+           perform SPOSTAMENTO.
 
       ***---
        RECORD-TO-GRID.
@@ -4339,7 +4342,9 @@ BEGIN-TEXT
               end-if                 
 
               if tutto-ok
-                 inquire form1-gd-1(event-data-2, 1) hidden-data hiddenData
+                 if event-data-2 not = 0
+                    inquire form1-gd-1(event-data-2, 1) hidden-data hiddenData
+                 end-if
                  move hid-note to ef-note-buf
                  display ef-note
               end-if
@@ -4696,66 +4701,118 @@ BEGIN-DATA
    PARAGRAPH         = chk-mcgall-LinkTo
 BEGIN-TEXT
            if chk-mcgall-buf = 0
-              move 1 to chk-mcgall-buf
-              modify chk-mcgall, value chk-mcgall-buf
-              exit paragraph
+              inquire chk-mcg1, visible in como-v
+              if como-v = 1
+                 move 0 to chk-mcg1-buf
+                 modify chk-mcg1, value chk-mcg1-buf
+              end-if
+              inquire chk-mcg2, visible in como-v
+              if como-v = 1
+                 move 0 to chk-mcg2-buf
+                 modify chk-mcg2, value chk-mcg2-buf
+              end-if
+              inquire chk-mcg3, visible in como-v
+              if como-v = 1
+                 move 0 to chk-mcg3-buf
+                 modify chk-mcg3, value chk-mcg3-buf
+              end-if
+              inquire chk-mcg4, visible in como-v
+              if como-v = 1
+                 move 0 to chk-mcg4-buf
+                 modify chk-mcg4, value chk-mcg4-buf
+              end-if
+              inquire chk-mcg5, visible in como-v
+              if como-v = 1
+                 move 0 to chk-mcg5-buf
+                 modify chk-mcg5, value chk-mcg5-buf
+              end-if
+              inquire chk-mcg6, visible in como-v
+              if como-v = 1
+                 move 0 to chk-mcg6-buf
+                 modify chk-mcg6, value chk-mcg6-buf
+              end-if
+              inquire chk-mcg7, visible in como-v
+              if como-v = 1
+                 move 0 to chk-mcg7-buf
+                 modify chk-mcg7, value chk-mcg7-buf
+              end-if
+              inquire chk-mcg8, visible in como-v
+              if como-v = 1
+                 move 0 to chk-mcg8-buf
+                 modify chk-mcg8, value chk-mcg8-buf
+              end-if
+              inquire chk-mcg9, visible in como-v
+              if como-v = 1
+                 move 0 to chk-mcg9-buf
+                 modify chk-mcg9, value chk-mcg9-buf
+              end-if
+              inquire chk-mcg10, visible in como-v
+              if como-v = 1
+                 move 0 to chk-mcg10-buf
+                 modify chk-mcg10, value chk-mcg10-buf
+              end-if
+              inquire chk-mcg11, visible in como-v
+              if como-v = 1
+                 move 0 to chk-mcg11-buf
+                 modify chk-mcg11, value chk-mcg11-buf
+              end-if
+           else
+              inquire chk-mcg1, visible in como-v
+              if como-v = 1
+                 move 1 to chk-mcg1-buf
+                 modify chk-mcg1, value chk-mcg1-buf
+              end-if
+              inquire chk-mcg2, visible in como-v
+              if como-v = 1
+                 move 1 to chk-mcg2-buf
+                 modify chk-mcg2, value chk-mcg2-buf
+              end-if
+              inquire chk-mcg3, visible in como-v
+              if como-v = 1
+                 move 1 to chk-mcg3-buf
+                 modify chk-mcg3, value chk-mcg3-buf
+              end-if
+              inquire chk-mcg4, visible in como-v
+              if como-v = 1
+                 move 1 to chk-mcg4-buf
+                 modify chk-mcg4, value chk-mcg4-buf
+              end-if
+              inquire chk-mcg5, visible in como-v
+              if como-v = 1
+                 move 1 to chk-mcg5-buf
+                 modify chk-mcg5, value chk-mcg5-buf
+              end-if
+              inquire chk-mcg6, visible in como-v
+              if como-v = 1
+                 move 1 to chk-mcg6-buf
+                 modify chk-mcg6, value chk-mcg6-buf
+              end-if
+              inquire chk-mcg7, visible in como-v
+              if como-v = 1
+                 move 1 to chk-mcg7-buf
+                 modify chk-mcg7, value chk-mcg7-buf
+              end-if
+              inquire chk-mcg8, visible in como-v
+              if como-v = 1
+                 move 1 to chk-mcg8-buf
+                 modify chk-mcg8, value chk-mcg8-buf
+              end-if
+              inquire chk-mcg9, visible in como-v
+              if como-v = 1
+                 move 1 to chk-mcg9-buf
+                 modify chk-mcg9, value chk-mcg9-buf
+              end-if
+              inquire chk-mcg10, visible in como-v
+              if como-v = 1
+                 move 1 to chk-mcg10-buf
+                 modify chk-mcg10, value chk-mcg10-buf
+              end-if
+              inquire chk-mcg11, visible in como-v
+              if como-v = 1
+                 move 1 to chk-mcg11-buf
+                 modify chk-mcg11, value chk-mcg11-buf
+              end-if
            end-if.
-           inquire chk-mcg1, visible in como-v.
-           if como-v = 1
-              move 1 to chk-mcg1-buf
-              modify chk-mcg1, value chk-mcg1-buf
-           end-if.
-           inquire chk-mcg2, visible in como-v.
-           if como-v = 1
-              move 1 to chk-mcg2-buf
-              modify chk-mcg2, value chk-mcg2-buf
-           end-if.
-           inquire chk-mcg3, visible in como-v.
-           if como-v = 1
-              move 1 to chk-mcg3-buf
-              modify chk-mcg3, value chk-mcg3-buf
-           end-if.
-           inquire chk-mcg4, visible in como-v.
-           if como-v = 1
-              move 1 to chk-mcg4-buf
-              modify chk-mcg4, value chk-mcg4-buf
-           end-if.
-           inquire chk-mcg5, visible in como-v.
-           if como-v = 1
-              move 1 to chk-mcg5-buf
-              modify chk-mcg5, value chk-mcg5-buf
-           end-if.
-           inquire chk-mcg6, visible in como-v.
-           if como-v = 1
-              move 1 to chk-mcg6-buf
-              modify chk-mcg6, value chk-mcg6-buf
-           end-if.
-           inquire chk-mcg7, visible in como-v.
-           if como-v = 1
-              move 1 to chk-mcg7-buf
-              modify chk-mcg7, value chk-mcg7-buf
-           end-if.
-           inquire chk-mcg8, visible in como-v.
-           if como-v = 1
-              move 1 to chk-mcg8-buf
-              modify chk-mcg8, value chk-mcg8-buf
-           end-if.
-           inquire chk-mcg9, visible in como-v.
-           if como-v = 1
-              move 1 to chk-mcg9-buf
-              modify chk-mcg9, value chk-mcg9-buf
-           end-if.
-           inquire chk-mcg10, visible in como-v.
-           if como-v = 1
-              move 1 to chk-mcg10-buf
-              modify chk-mcg10, value chk-mcg10-buf
-           end-if.
-           inquire chk-mcg11, visible in como-v.
-           if como-v = 1
-              move 1 to chk-mcg11-buf
-              modify chk-mcg11, value chk-mcg11-buf
-           end-if.                           
-
            perform LOAD-RECORD.
 END-TEXT
 END-DATA
@@ -4764,65 +4821,118 @@ BEGIN-DATA
    PARAGRAPH         = chk-intall-LinkTo
 BEGIN-TEXT
            if chk-intall-buf = 0
-              move 1 to chk-intall-buf
-              modify chk-intall, value chk-intall-buf
-              exit paragraph
+              inquire chk-int1, visible in como-v
+              if como-v = 1
+                 move 0 to chk-int1-buf
+                 modify chk-int1, value chk-int1-buf
+              end-if
+              inquire chk-int2, visible in como-v
+              if como-v = 1
+                 move 0 to chk-int2-buf
+                 modify chk-int2, value chk-int2-buf
+              end-if
+              inquire chk-int3, visible in como-v
+              if como-v = 1
+                 move 0 to chk-int3-buf
+                 modify chk-int3, value chk-int3-buf
+              end-if
+              inquire chk-int4, visible in como-v
+              if como-v = 1
+                 move 0 to chk-int4-buf
+                 modify chk-int4, value chk-int4-buf
+              end-if
+              inquire chk-int5, visible in como-v
+              if como-v = 1
+                 move 0 to chk-int5-buf
+                 modify chk-int5, value chk-int5-buf
+              end-if
+              inquire chk-int6, visible in como-v
+              if como-v = 1
+                 move 0 to chk-int6-buf
+                 modify chk-int6, value chk-int6-buf
+              end-if
+              inquire chk-int7, visible in como-v
+              if como-v = 1
+                 move 0 to chk-int7-buf
+                 modify chk-int7, value chk-int7-buf
+              end-if
+              inquire chk-int8, visible in como-v
+              if como-v = 1
+                 move 0 to chk-int8-buf
+                 modify chk-int8, value chk-int8-buf
+              end-if
+              inquire chk-int9, visible in como-v
+              if como-v = 1
+                 move 0 to chk-int9-buf
+                 modify chk-int9, value chk-int9-buf
+              end-if
+              inquire chk-int10, visible in como-v
+              if como-v = 1
+                 move 0 to chk-int10-buf
+                 modify chk-int10, value chk-int10-buf
+              end-if
+              inquire chk-int11, visible in como-v
+              if como-v = 1
+                 move 0 to chk-int11-buf
+                 modify chk-int11, value chk-int11-buf
+              end-if
+           else
+              inquire chk-int1, visible in como-v
+              if como-v = 1
+                 move 1 to chk-int1-buf
+                 modify chk-int1, value chk-int1-buf
+              end-if
+              inquire chk-int2, visible in como-v
+              if como-v = 1
+                 move 1 to chk-int2-buf
+                 modify chk-int2, value chk-int2-buf
+              end-if
+              inquire chk-int3, visible in como-v
+              if como-v = 1
+                 move 1 to chk-int3-buf
+                 modify chk-int3, value chk-int3-buf
+              end-if
+              inquire chk-int4, visible in como-v
+              if como-v = 1
+                 move 1 to chk-int4-buf
+                 modify chk-int4, value chk-int4-buf
+              end-if
+              inquire chk-int5, visible in como-v
+              if como-v = 1
+                 move 1 to chk-int5-buf
+                 modify chk-int5, value chk-int5-buf
+              end-if
+              inquire chk-int6, visible in como-v
+              if como-v = 1
+                 move 1 to chk-int6-buf
+                 modify chk-int6, value chk-int6-buf
+              end-if
+              inquire chk-int7, visible in como-v
+              if como-v = 1
+                 move 1 to chk-int7-buf
+                 modify chk-int7, value chk-int7-buf
+              end-if
+              inquire chk-int8, visible in como-v
+              if como-v = 1
+                 move 1 to chk-int8-buf
+                 modify chk-int8, value chk-int8-buf
+              end-if
+              inquire chk-int9, visible in como-v
+              if como-v = 1
+                 move 1 to chk-int9-buf
+                 modify chk-int9, value chk-int9-buf
+              end-if
+              inquire chk-int10, visible in como-v
+              if como-v = 1
+                 move 1 to chk-int10-buf
+                 modify chk-int10, value chk-int10-buf
+              end-if
+              inquire chk-int11, visible in como-v
+              if como-v = 1
+                 move 1 to chk-int11-buf
+                 modify chk-int11, value chk-int11-buf
+              end-if
            end-if.
-           inquire chk-int1, visible in como-v.
-           if como-v = 1
-              move 1 to chk-int1-buf
-              modify chk-int1, value chk-int1-buf
-           end-if.
-           inquire chk-int2, visible in como-v.
-           if como-v = 1
-              move 1 to chk-int2-buf
-              modify chk-int2, value chk-int2-buf
-           end-if.
-           inquire chk-int3, visible in como-v.
-           if como-v = 1
-              move 1 to chk-int3-buf
-              modify chk-int3, value chk-int3-buf
-           end-if.
-           inquire chk-int4, visible in como-v.
-           if como-v = 1
-              move 1 to chk-int4-buf
-              modify chk-int4, value chk-int4-buf
-           end-if.
-           inquire chk-int5, visible in como-v.
-           if como-v = 1
-              move 1 to chk-int5-buf
-              modify chk-int5, value chk-int5-buf
-           end-if.
-           inquire chk-int6, visible in como-v.
-           if como-v = 1
-              move 1 to chk-int6-buf
-              modify chk-int6, value chk-int6-buf
-           end-if.
-           inquire chk-int7, visible in como-v.
-           if como-v = 1
-              move 1 to chk-int7-buf
-              modify chk-int7, value chk-int7-buf
-           end-if.
-           inquire chk-int8, visible in como-v.
-           if como-v = 1
-              move 1 to chk-int8-buf
-              modify chk-int8, value chk-int8-buf
-           end-if.
-           inquire chk-int9, visible in como-v.
-           if como-v = 1
-              move 1 to chk-int9-buf
-              modify chk-int9, value chk-int9-buf
-           end-if.
-           inquire chk-int10, visible in como-v.
-           if como-v = 1
-              move 1 to chk-int10-buf
-              modify chk-int10, value chk-int10-buf
-           end-if.
-           inquire chk-int11, visible in como-v.
-           if como-v = 1
-              move 1 to chk-int11-buf
-              modify chk-int11, value chk-int11-buf
-           end-if.                      
 
            perform LOAD-RECORD.
 END-TEXT

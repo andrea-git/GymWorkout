@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 29 settembre 2023 10:14:34.
+       DATE-WRITTEN.        venerdì 29 settembre 2023 17:53:07.
        REMARKS.
       *{TOTEM}END
 
@@ -6088,13 +6088,16 @@
       
            evaluate colonna
            when 78-col-day
-                inquire gd1(riga, 78-col-day), cell-data col-day
-                if col-day = 0                 
-                   perform ELIMINA-RIGA
-                else
-                   if col-day not = hid-tex-day
-                      move hid-tex-day to col-day
-                      modify gd1(riga, 78-col-day), cell-data col-day
+                inquire gd1(riga, 78-col-day), hidden-data hiddenData
+                                                 cell-data col-day
+                if hid-tex-day not = 0
+                   if col-day = 0                 
+                      perform ELIMINA-RIGA
+                   else
+                      if col-day not = hid-tex-day
+                         move hid-tex-day to col-day
+                         modify gd1(riga, 78-col-day), cell-data col-day
+                      end-if
                    end-if
                 end-if
            when 78-col-series
@@ -7742,9 +7745,10 @@
            perform X-Y.
 
            |Se abbandono una riga nuova
-           if riga not = event-data-2
-              inquire gd1(riga, 78-col-day), cell-data col-day
-              if col-day = 0
+           if riga not = event-data-2          
+              inquire gd1(riga, 78-col-day), hidden-data hiddenData
+                                               cell-data col-day
+              if hid-tex-day not = 0 and col-day = 0
                  modify gd1, record-to-delete = riga
               end-if
            end-if.

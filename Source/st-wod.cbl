@@ -60,7 +60,9 @@
        01  r-riga.
            05 r-exe-desc         pic x(20).
            05 r-reps             pic x(10).
-           05 r-note             pic x(50).
+
+       01  riga-note.
+           05 r-note             pic x(110).
 
       * FLAGS
        77  controlli             pic xx.
@@ -82,10 +84,10 @@
        77  font-size-dply        pic z(5).      
        77  WFONT-STATUS          pic s9(5)  value zero.
                                  
-       77  ArialNarrow11         handle of font.           
+       77  ArialNarrow11         handle of font.                    
+       77  ArialNarrow8          handle of font.           
+       77  ArialNarrow7          handle of font.           
        77  ArialNarrow11B        handle of font.
-       77  ArialNarrow8          handle of font.
-       77  save-altezza-pagina   pic 9(7)v99.
        77  como-data             pic 9(8).
        77  como-ora              pic 9(8).
 
@@ -178,7 +180,6 @@
               if spl-sta-annu
                  set errori to true
               else
-                 move spl-altezza to save-altezza-pagina
                  perform CARICA-FONT
               end-if
            else
@@ -224,12 +225,19 @@
                          into r-exe-desc
                        end-string
                        move tex-reps        to r-reps
-                       move exe-note        to r-note
                        
                        perform STAMPA-FRAME-RIGA
-                                               
+                                          
+                       move ArialNarrow11 to spl-hfont     
                        move r-riga          to spl-riga-stampa
                        move 2               to spl-tipo-colonna
+                       perform SCRIVI  
+
+                       move ArialNarrow7 to spl-hfont     
+                       subtract 78-passo from spl-riga
+                       move exe-note        to r-note         
+                       move riga-note       to spl-riga-stampa
+                       move 2,5             to spl-tipo-colonna
                        perform SCRIVI  
                                             
                     end-perform  
@@ -378,6 +386,29 @@
       ***---
        CARICA-FONT.
                     
+      * Arial Narrow 7
+           initialize wfont-data ArialNarrow7.
+           move 7 to wfont-size.
+           move "Arial Narrow"            to wfont-name.
+           set  wfcharset-dont-care  to true.
+           set  wfont-bold           to false.
+           set  wfont-italic         to false.
+           set  wfont-underline      to false.
+           set  wfont-strikeout      to false.
+           set  wfont-fixed-pitch    to false.
+           move 0                    to wfont-char-set.
+           set  wfdevice-win-printer to true. |E' un carattere per la stampante
+           call "W$FONT" using wfont-get-font, ArialNarrow7, 
+                               wfont-data
+                        giving wfont-status.
+      
+      * ISACCO (QUESTI TEST CONTROLLANO L'ESISTENZA DEL FONT)
+           if wfont-status not = 1
+              set errori to true
+              perform MESSAGGIO-ERR-FONT
+              exit paragraph
+           end-if. 
+                    
       * Arial Narrow 8
            initialize wfont-data ArialNarrow8.
            move 8 to wfont-size.
@@ -475,9 +506,11 @@
       ***---
        EXIT-PGM.
            set environment "PRINTER" to "-P SPOOLER-DIRECT".
-
+                                 
            destroy ArialNarrow11.
            destroy ArialNarrow8.
+           destroy ArialNarrow7.
+           destroy ArialNarrow11B.
 
            cancel "spooler".
            initialize spooler-link.

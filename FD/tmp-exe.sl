@@ -8,4 +8,7 @@
            ALTERNATE RECORD KEY IS tex-k-dupl = tex-day, tex-nome-dupl
            WITH DUPLICATES 
            ALTERNATE RECORD KEY IS tex-k-mcg = tex-mcg-code, tex-key
+           WITH DUPLICATES 
+           ALTERNATE RECORD KEY IS tex-k-exe = tex-day, tex-mcg-code, 
+           tex-exe-code
            WITH DUPLICATES .

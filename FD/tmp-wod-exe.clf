@@ -6,7 +6,7 @@ Adesk-andre=169.254.95.20
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791D154638-285-139592349
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7A214831-942-260225340
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -128,7 +128,7 @@ m_nSize=20
 
 @}}
 [FDITEM11_]
-m_strName=twe-exe-restpause
+m_strName=twe-exe-isRestpause
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=10

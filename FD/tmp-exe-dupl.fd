@@ -3,6 +3,12 @@
        01 ted-rec.
            05 ted-key.
                10 ted-day          PIC  99.
+               10 ted-mcg-code     PIC  x(5).
                10 ted-nome-dupl    PIC  x(100).
            05 ted-data.
                10 ted-num          PIC  9(3).
+               10 ted-keys
+                          OCCURS 20 TIMES.
+                   15 ted-tex-key.
+                       20 ted-tex-day      PIC  9.
+                       20 ted-tex-split    PIC  9(3).

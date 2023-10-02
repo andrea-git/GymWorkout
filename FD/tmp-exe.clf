@@ -6,7 +6,7 @@ Adesk-andre=169.254.95.20
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791D154638-300-718817136
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7A2125938-372-361812143
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -122,41 +122,23 @@ m_bFixed=1
 
 @}}
 [FDITEM11_]
-m_strName=tex-exe-isMulti-no
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue=0
-{{@DataItem_m_strDescriptionFDITEM11_
-
-@}}
-[FDITEM12_]
-m_strName=tex-exe-isMulti-yes
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue=1
-{{@DataItem_m_strDescriptionFDITEM12_
-
-@}}
-[FDITEM13_]
 m_strName=tex-reps
 m_strRawPic=x(10)
 m_strPic=x(10)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM13_
+{{@DataItem_m_strDescriptionFDITEM11_
 
 @}}
-[FDITEM14_]
+[FDITEM12_]
 m_strName=tex-series
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM14_
+{{@DataItem_m_strDescriptionFDITEM12_
 
 @}}
 [CStoAcucobolSL_]
@@ -196,3 +178,14 @@ m_strName=tex-k-mcg
 m_strName=tex-mcg-code
 [SLKEYATOM1_SLINDEX1_]
 m_strName=tex-key
+[SLINDEX2_]
+m_strName=tex-k-exe
+{{@Key_m_strDescriptionSLINDEX2_
+
+@}}
+[SLKEYATOM0_SLINDEX2_]
+m_strName=tex-day
+[SLKEYATOM1_SLINDEX2_]
+m_strName=tex-mcg-code
+[SLKEYATOM2_SLINDEX2_]
+m_strName=tex-exe-code

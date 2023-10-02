@@ -8,12 +8,14 @@
        FILE-CONTROL.     
        copy "tmp-exe.sl".
        copy "exercises.sl".                
+       copy "intexe.sl".                
 
       *****************************************************************
        DATA DIVISION.
        FILE SECTION.                       
        copy "tmp-exe.fd".
        copy "exercises.fd".                   
+       copy "intexe.fd".
 
        WORKING-STORAGE SECTION.
       * COPY   
@@ -24,7 +26,8 @@
                            
        77  path-tmp-exe          pic x(256).      
        77  status-tmp-exe        pic xx.
-       77  status-exercises      pic xx.     
+       77  status-exercises      pic xx.
+       77  status-intexe         pic xx.     
 
       * COSTANTI
        78  titolo                value "Stampa WOD".
@@ -39,7 +42,9 @@
 
        01  r-intesta.                 
            05 pic x(8) value "EXERCISE".
+           05 pic x(1) value "S".
            05 pic x(4) value "REPS".
+           05 pic x(4) value "R ''".
            05 pic x(3) value "REP".
            05 pic x(2) value "KG".
            05 pic x(3) value "BUF".
@@ -57,9 +62,11 @@
            05 pic x(3) value "BUF".
            05 pic x(4) value "NOTE".
 
-       01  r-riga.
+       01  r-riga.                         
            05 r-exe-desc         pic x(20).
+           05 r-series           pic xx.        
            05 r-reps             pic x(10).
+           05 r-rest             pic xxx.
 
        01  riga-note.
            05 r-note             pic x(110).
@@ -88,6 +95,7 @@
        77  ArialNarrow8          handle of font.           
        77  ArialNarrow7          handle of font.           
        77  ArialNarrow11B        handle of font.
+
        77  como-data             pic 9(8).
        77  como-ora              pic 9(8).
 
@@ -128,7 +136,7 @@
       ***---
        OPEN-FILES.                          
            move link-path to path-tmp-exe.
-           open input tmp-exe exercises.
+           open input tmp-exe exercises intexe.
 
       ***---
        ELABORAZIONE.                  
@@ -193,44 +201,54 @@
               move low-value to tex-rec
               start tmp-exe key >= tex-key
                     invalid continue
-                not invalid                           
+                not invalid
                     perform until 1 = 2
                        read tmp-exe next at end exit perform end-read
                        add 1 to num-righe
                        if num-righe > 78-max-righe
                           perform SALTO-PAGINA
                           perform INTESTAZIONE
-                       end-if         
+                       end-if
                        move 78-pen-light to spl-pen-width
                        if como-day = 0
                           move tex-day to como-day
                        end-if
-                       if tex-day not = como-day           
+                       if tex-day not = como-day
                           compute sw-gray = sw-gray * -1
                           move 78-pen-heavy to spl-pen-width
                           perform STAMPA-LINEA-ORIZZONTALE
                           move tex-day to como-day
-                       end-if          
+                       end-if
 
                        move tex-exe-code to exe-code
-                       read exercises               
+                       read exercises
+                       move exe-int-code to int-code
+                       read intexe
 
                        initialize r-exe-desc
                        move tex-split to prg-xx
                        inspect prg-xx replacing leading x"30" by x"20"
                        call "C$JUSTIFY" using prg-xx, "L"
                        string prg-xx delimited space
-                              " - "  delimited size
+                              "-"    delimited size
                               exe-desc-stampa 
                          into r-exe-desc
                        end-string
-                       move tex-reps        to r-reps
-                       
+                       move tex-reps to r-reps
+
+                       move tex-series to r-series
+                       inspect r-series replacing leading x"30" by x"20"
+                       call "C$JUSTIFY" using r-series, "L"
+
+                       move int-rest to r-rest
+                       inspect r-rest replacing leading x"30" by x"20"
+                       call "C$JUSTIFY" using r-rest, "L"
+
                        perform STAMPA-FRAME-RIGA
-                                          
+
                        move ArialNarrow11 to spl-hfont     
-                       move r-riga          to spl-riga-stampa
-                       move 2               to spl-tipo-colonna
+                       move r-riga        to spl-riga-stampa
+                       move 2             to spl-tipo-colonna
                        perform SCRIVI  
 
                        move ArialNarrow7 to spl-hfont     
@@ -311,11 +329,19 @@
        LINEE-VERTICALI.
            add 78-passo to spl-riga giving spl-riga-fine.
            move 78-pen-heavy to spl-pen-width.
-           move 4,1 to spl-colonna spl-colonna-fine.
+           move 3,9 to spl-colonna spl-colonna-fine.
            perform STAMPA-LINEA-VERTICALE.
                        
            move 78-pen-heavy to spl-pen-width.
-           move 5,4 to spl-colonna spl-colonna-fine.
+           move 4,4 to spl-colonna spl-colonna-fine.
+           perform STAMPA-LINEA-VERTICALE.
+                       
+           move 78-pen-heavy to spl-pen-width.
+           move 5,8 to spl-colonna spl-colonna-fine.
+           perform STAMPA-LINEA-VERTICALE.
+                       
+           move 78-pen-heavy to spl-pen-width.
+           move 6,5 to spl-colonna spl-colonna-fine.
            perform STAMPA-LINEA-VERTICALE.
                        
            move 0 to resto.                            
@@ -501,7 +527,7 @@
 
       ***---
        CLOSE-FILES.                            
-           close tmp-exe exercises.
+           close tmp-exe exercises intexe.
 
       ***---
        EXIT-PGM.

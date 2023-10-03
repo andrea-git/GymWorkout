@@ -9,6 +9,8 @@
            WITH DUPLICATES 
            ALTERNATE RECORD KEY IS tex-k-mcg = tex-mcg-code, tex-key
            WITH DUPLICATES 
-           ALTERNATE RECORD KEY IS tex-k-exe = tex-day, tex-mcg-code, 
-           tex-exe-code
+           ALTERNATE RECORD KEY IS tex-k-day-exe = tex-day, 
+           tex-exe-desc-univoca
+           WITH DUPLICATES 
+           ALTERNATE RECORD KEY IS tex-k-exe = tex-exe-desc-univoca
            WITH DUPLICATES .

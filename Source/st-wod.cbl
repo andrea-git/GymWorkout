@@ -67,6 +67,7 @@
            05 r-series           pic xx.        
            05 r-reps             pic x(10).
            05 r-rest             pic xxx.
+           05 r-kg               pic x(3).
 
        01  riga-note.
            05 r-note             pic x(110).
@@ -246,6 +247,11 @@
 
                        perform STAMPA-FRAME-RIGA
 
+                       if tex-int-restpause = 0
+                          move spaces to r-kg
+                       else
+                          move "KG:"  to r-kg
+                       end-if
                        move ArialNarrow11 to spl-hfont     
                        move r-riga        to spl-riga-stampa
                        move 2             to spl-tipo-colonna

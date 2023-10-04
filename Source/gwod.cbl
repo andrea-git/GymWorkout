@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 3 ottobre 2023 18:17:35.
+       DATE-WRITTEN.        mercoledì 4 ottobre 2023 15:30:57.
        REMARKS.
       *{TOTEM}END
 
@@ -1366,7 +1366,7 @@
 
       * PUSH BUTTON
        05
-           pb-tec, 
+           pb-int, 
            Push-Button, 
            COL 147,10, 
            LINE 6,78,
@@ -1376,6 +1376,7 @@
            BITMAP-NUMBER 1,
            FRAMED,
            SQUARE,
+           EXCEPTION-VALUE 1013,
            ID IS 42,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1818,7 +1819,7 @@
            COPY RESOURCE "UP-DOWN.BMP".
            CALL "w$bitmap" USING WBITMAP-LOAD "UP-DOWN.BMP", 
                    GIVING UP-DOWN-BMP.
-      * pb-tec
+      * pb-int
            COPY RESOURCE "TECNICHE.BMP".
            CALL "w$bitmap" USING WBITMAP-LOAD "TECNICHE.BMP", 
                    GIVING TECNICHE-BMP.
@@ -4654,6 +4655,8 @@
                  PERFORM pb-su-LinkTo
               WHEN Key-Status = 1003
                  PERFORM pb-giu-LinkTo
+              WHEN Key-Status = 1013
+                 PERFORM pb-int-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 3
@@ -5843,7 +5846,6 @@
               modify pb-elimina,  enabled true
               modify pb-su,       enabled true
               modify pb-giu,      enabled true 
-              modify pb-tec,      enabled true
            else           
               move BitmapDeleteDisabled  to BitmapNumDelete
               move BitmapSaveDisabled    to BitmapNumSave   
@@ -5854,7 +5856,7 @@
               modify pb-elimina,  enabled false
               modify pb-su,       enabled false
               modify pb-giu,      enabled false
-              modify pb-tec,      enabled false
+              modify pb-int,      enabled false
            end-if.      
 
                                          
@@ -6754,88 +6756,7 @@
                        move tex-series to col-series
                        move tex-reps   to col-reps
                     else
-                       if exe-isMulti = 1
-                          evaluate wom-effort
-                          when 1 move  5 to col-series
-                                 move  5 to col-reps
-                          when 2 move  6 to col-series
-                                 move 10 to col-reps
-                          when 3 move 10 to col-series
-                                 move  8 to col-reps
-                          end-evaluate                               
-                          inspect col-reps 
-                                  replacing leading x"30" by x"20"
-                          call "C$JUSTIFY" using col-reps, "L"
-                       else                  
-                          move int-series to col-series
-                                                
-                          initialize col-reps
-                          if int-restpause > 0  
-                             move int-restpause to como-range-from
-                             inspect como-range-from 
-                                     replacing leading x"30" by x"20"
-                             inspect int-desc replacing trailing spaces 
-           by low-value
-                             call "C$JUSTIFY" using como-range-from, "L"
-                             inspect como-range-from replacing trailing 
-           spaces by low-value
-                             string int-desc       delimited low-value
-                                    " ("           delimited size
-                                    int-restpause  delimited low-value
-                                    ")"            delimited size
-                               into col-reps
-                             end-string
-                          else
-                             if int-range-from = 99 and int-range-to = 
-           99
-                                move "Max" to col-reps
-                             else
-                                if int-isTime = 1
-                                   move int-time to como-hit
-                                   inspect como-hit 
-                                   replacing leading x"30" by x"20"
-                                   call "C$JUSTIFY" using como-hit, "L"
-                                   inspect como-hit 
-                                   replacing trailing spaces by 
-           low-value
-                                   initialize col-reps
-                                   string como-hit delimited low-value
-                                          "''"     delimited size
-                                     into col-reps
-                                   end-string
-                                else
-                                   move int-range-from to 
-           como-range-from
-                                   inspect como-range-from 
-                                   replacing leading x"30" by x"20"
-                                   call "C$JUSTIFY" using 
-           como-range-from, "L"
-                                   inspect como-range-from 
-                                   replacing trailing spaces by 
-           low-value
-                                
-                                   move int-range-to to como-range-to   
-                            
-                                   inspect como-range-to 
-                                   replacing leading x"30" by x"20"  
-                                   call "C$JUSTIFY" using 
-           como-range-to, "L"          
-                                   inspect como-range-to 
-                                   replacing trailing spaces by 
-           low-value
-                                
-                                   initialize col-reps
-                                   string como-range-from delimited 
-           low-value
-                                          "-"             delimited size
-                                          como-range-to   delimited 
-           low-value
-                                     into col-reps
-                                   end-string
-                                end-if
-                             end-if
-                          end-if
-                       end-if
+                       perform IMPOSTA-SERIES-REPS
                     end-if
                     add 1 to riga                                
                     modify gd1(riga, 78-col-day),      cell-data = 
@@ -7475,6 +7396,86 @@
            .
       * <TOTEM:END>
 
+       IMPOSTA-SERIES-REPS.
+      * <TOTEM:PARA. IMPOSTA-SERIES-REPS>
+           if exe-isMulti = 1
+              evaluate wom-effort
+              when 1 move  5 to col-series
+                     move  5 to col-reps
+              when 2 move  6 to col-series
+                     move 10 to col-reps
+              when 3 move 10 to col-series
+                     move  8 to col-reps
+              end-evaluate                               
+              inspect col-reps 
+                      replacing leading x"30" by x"20"
+              call "C$JUSTIFY" using col-reps, "L"
+           else                  
+              move int-series to col-series
+                                    
+              initialize col-reps
+              if int-restpause > 0  
+                 move int-restpause to como-range-from
+                 inspect como-range-from 
+                         replacing leading x"30" by x"20"
+                 inspect int-desc replacing trailing spaces by low-value
+                 call "C$JUSTIFY" using como-range-from, "L"
+                 inspect como-range-from replacing trailing spaces by 
+           low-value
+                 string int-desc       delimited low-value
+                        " ("           delimited size
+                        int-restpause  delimited low-value
+                        ")"            delimited size
+                   into col-reps
+                 end-string
+              else
+                 perform IMPOSTA-SERIES-RANGE
+              end-if
+           end-if.
+                       
+      ***---
+       IMPOSTA-SERIES-RANGE.
+           if int-range-from = 99 and int-range-to = 99
+              move "Max" to col-reps
+           else
+              if int-isTime = 1
+                 move int-time to como-hit
+                 inspect como-hit 
+                 replacing leading x"30" by x"20"
+                 call "C$JUSTIFY" using como-hit, "L"
+                 inspect como-hit 
+                 replacing trailing spaces by low-value
+                 initialize col-reps
+                 string como-hit delimited low-value
+                        "''"     delimited size
+                   into col-reps
+                 end-string
+              else
+                 move int-range-from to como-range-from
+                 inspect como-range-from 
+                 replacing leading x"30" by x"20"
+                 call "C$JUSTIFY" using como-range-from, "L"
+                 inspect como-range-from 
+                 replacing trailing spaces by low-value
+              
+                 move int-range-to to como-range-to                    
+                 inspect como-range-to 
+                 replacing leading x"30" by x"20"  
+                 call "C$JUSTIFY" using como-range-to, "L"          
+                 inspect como-range-to 
+                 replacing trailing spaces by low-value
+              
+                 initialize col-reps
+                 string como-range-from delimited low-value
+                        "-"             delimited size
+                        como-range-to   delimited low-value
+                   into col-reps
+                 end-string
+              end-if
+           end-if 
+           .
+      * <TOTEM:END>
+
        INIT.
       * <TOTEM:PARA. INIT>
            move 0 to StatusHelp.
@@ -7928,9 +7929,12 @@
                              y = event-data-2,
                   region-color = 257,
                   cursor-color = colore-nu.
-
+                                                    
+           modify pb-int,      enabled false
            evaluate event-data-1
            when 78-col-exe-code move 1 to StatusHelp
+           when 78-col-series
+           when 78-col-reps     modify pb-int, enabled true
            end-evaluate.
            perform STATUS-HELP 
            .
@@ -9186,6 +9190,36 @@
       * <TOTEM:PARA. cb-wod-Ex-Ntf-Selchange>
 
            perform ABILITA-MACROGRUPPI 
+           .
+      * <TOTEM:END>
+       pb-int-LinkTo.
+      * <TOTEM:PARA. pb-int-LinkTo>
+           perform X-Y.
+           if riga > 1
+              move "intexe"    to Como-File
+              call   "zoom-gt" using como-file, int-rec
+                              giving stato-zoom
+              cancel "zoom-gt"
+              if stato-zoom = 0
+                 inquire gd1(riga, 78-col-day), hidden-data hiddenData
+                 move 0 to exe-isMulti |Non è mai multi ma è quello che scelgo
+                 perform IMPOSTA-SERIES-REPS
+                 modify gd1(riga, 78-col-reps),   cell-data col-reps
+                 modify gd1(riga, 78-col-series), cell-data int-series
+                 move hid-tex-key to tex-key
+                 open i-o tmp-exe
+                 read tmp-exe no lock
+                 move int-code      to tex-int-code
+                 move col-reps      to tex-reps
+                 move col-series    to tex-series
+                 move int-restpause to tex-int-restpause
+                 rewrite tex-rec         
+                 set fromAggiungi to true 
+                 open output tmp-hit
+                 perform LOAD-GRID
+                 set fromAggiungi to true
+              end-if 
+           end-if 
            .
       * <TOTEM:END>
 

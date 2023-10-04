@@ -734,9 +734,9 @@
            move  0                       to xzoom-row.
            move  0                       to xzoom-cln.
            move  10                      to xzoom-lw.
-           move  50                      to xzoom-sw.
-           move "intexe"              to xzoom-file-name(1).
-           move  2                       to xzoom-fields.
+           move  75                      to xzoom-sw.
+           move "intexe"                 to xzoom-file-name(1).
+           move  6                       to xzoom-fields.
 
       * CAMPO 1
            add 1 to idx
@@ -744,7 +744,7 @@
            move  0                       to xzoom-field-rel(Idx).    
            move  2                       to xzoom-field-length(idx).
            move  0                       to xzoom-field-offset(idx).
-           move  10                      to xzoom-field-column(idx).
+           move  6                       to xzoom-field-column(idx).
            move "Codice"                 to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 
       
@@ -754,8 +754,48 @@
            move  0                       to xzoom-field-rel(Idx).    
            move  40                      to xzoom-field-length(idx).
            move   2                      to xzoom-field-offset(idx).
-           move  100                     to xzoom-field-column(idx).
+           move  20                      to xzoom-field-column(idx).
            move "Descrizione"            to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true. 
+      
+      * CAMPO 3
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  2                       to xzoom-field-length(idx).
+           move  110                     to xzoom-field-offset(idx).
+           move  8                       to xzoom-field-column(idx).
+           move "Min reps"               to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true.     
+      
+      * CAMPO 4
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  2                       to xzoom-field-length(idx).
+           move  112                     to xzoom-field-offset(idx).
+           move  8                       to xzoom-field-column(idx).
+           move "Max reps"               to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true.     
+      
+      * CAMPO 5
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  1                       to xzoom-field-length(idx).
+           move  116                     to xzoom-field-offset(idx).
+           move  8                       to xzoom-field-column(idx).
+           move "Rest/Pause"             to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true.     
+      
+      * CAMPO 6
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  1                       to xzoom-field-length(idx).
+           move  117                     to xzoom-field-offset(idx).
+           move  8                       to xzoom-field-column(idx).
+           move "A tempo"                to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true.     
 
            move  -1                      to xzoom-delimiter-offset.

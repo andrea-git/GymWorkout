@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 4 ottobre 2023 15:30:57.
+       DATE-WRITTEN.        mercoledì 4 ottobre 2023 16:52:32.
        REMARKS.
       *{TOTEM}END
 
@@ -181,7 +181,6 @@
                   VALUE IS 0,00.
        77 como-minuto-i    PIC  x(6).
        77 como-ora-e       PIC  x(3).
-       77 como-dupl        PIC  x(100).
        77 colore           PIC  999.
        77 como-e           PIC  999.
        77 s-mcg-code       PIC  x(5).
@@ -5141,7 +5140,8 @@
        scr-attesa-PROC.
       * <TOTEM:EPT. FORM:scr-attesa, FORM:scr-attesa, BeforeAccept>
            move 0 to tentativo.
-           perform until 1 = 2 
+           modify gd1, mass-update 1.
+           perform 15 times |Se non riesco significa che non ho esercizi a sufficienza
               perform OPEN-TMP
               perform GENERA-WOD 
               move 0 to tot-subst
@@ -5172,6 +5172,7 @@
               end-if
            end-perform.
            move 27 to key-status.
+           modify gd1, mass-update 0.
 
            .
       * <TOTEM:END>
@@ -6580,8 +6581,7 @@
            modify lab-e, color = 513.
            modify lab-f, color = 513.
            modify lab-g, color = 513.
-
-           modify gd1, mass-update = 1.  
+                                  
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
                                      
@@ -6814,9 +6814,7 @@
            end-start.
 
       *     close tmp-hit.
-
-           modify gd1, mass-update = 0.
-
+                                  
            inquire gd1, last-row in tot-righe.
            if tot-righe > 1
               move 1 to mod
@@ -7067,6 +7065,7 @@
        LOAD-EXERCISES.      
            move "Dispongo gli esercizi" to lab-attesa-buf.
            display lab-attesa
+           move spaces to s-mcg-code.
            
            perform varying idx-days from 1 by 1 
                      until idx-days > wom-days    
@@ -7100,23 +7099,18 @@
                  end-evaluate       
 
                  move wom-split-el-split-int-code(idx-days, idx-split)
-                   to int-code  
-
-                 move spaces to como-dupl
+                   to int-code           
                  perform ADD-RANDOM-EXERCISE
-
+                           
               end-perform
            end-perform.
 
       ***---
        ADD-RANDOM-EXERCISE.
-           set twe-exe-isMulti-no to true.    
-                                              
+           set twe-exe-isMulti-no to true.
            read intexe no lock.
-           move int-effort to twe-effort.     
-
+           move int-effort to twe-effort .
            move 0 to tot-exe.
-                              
            start tmp-wod-exe key >= twe-key
                  invalid continue
              not invalid
@@ -7128,7 +7122,7 @@
                        twe-effort    not = int-effort
                        exit perform
                     end-if
-
+           
                     if twe-exe-isRestpause = 0 and
                        int-restpause > 0         
                        exit perform cycle
@@ -7142,64 +7136,35 @@
                     move twe-exe-isRestpause to 
            el-exe-isRestpause(tot-exe)
                  end-perform
-           end-start.      
-           
-           if ( como-dupl not = spaces and tot-exe > 1 ) or
-              ( como-dupl     = spaces and tot-exe > 0 )
-              move tot-exe to ex-remain  
+           end-start.
+
+           if tot-exe > 0
+              move tot-exe to ex-remain
               perform until 1 = 2
-                                           
+                                        
                  compute idx = function random * (tot-exe)
                  add 1 to idx
                  if el-exe-used(idx) = 0 or
                     ex-remain = 0
-
-                    if como-dupl not = spaces
-                       if como-dupl not = el-exe-desc(idx)
-                          move idx-days         to tex-day
-                          move idx-split        to tex-split     
-                          move mcg-code         to tex-mcg-code
-                          move el-exe-code(idx) to tex-exe-code exe-code
-                          read exercises
-                          move el-exe-desc(idx) to tex-exe-desc
-                          perform DES-UNIVOCA
-                          move int-code         to tex-int-code
-                          move 0                to tex-exe-isMulti
-                          write tex-rec invalid rewrite tex-rec 
-           end-write
+                    move idx-days         to tex-day
+                    move idx-split        to tex-split     
+                    move mcg-code         to tex-mcg-code
+                    move el-exe-code(idx) to tex-exe-code exe-code
+                    read exercises
+                    move el-exe-desc(idx) to tex-exe-desc
+                    perform DES-UNIVOCA
+                    move int-code         to tex-int-code
+                    move 0                to tex-exe-isMulti
+                    move int-restpause    to tex-int-restpause
+                    write tex-rec invalid rewrite tex-rec end-write
                     
-                          move 1                to el-exe-used(idx)
-                          if ex-remain > 0
-                             subtract 1 from ex-remain
-                          end-if  
-                                                     
-                          if ted-num > 0 and 
-                             como-dupl not = el-exe-desc(idx)
-                             subtract 1 from ted-num 
-                          end-if
-                          exit perform
-                       end-if
-                    else               
-                       move idx-days         to tex-day
-                       move idx-split        to tex-split     
-                       move mcg-code         to tex-mcg-code
-                       move el-exe-code(idx) to tex-exe-code exe-code
-                       read exercises
-                       move el-exe-desc(idx) to tex-exe-desc
-                       perform DES-UNIVOCA
-                       move int-code         to tex-int-code
-                       move 0                to tex-exe-isMulti
-                       move int-restpause    to tex-int-restpause
-                       write tex-rec invalid rewrite tex-rec end-write
-                    
-                       move 1                to el-exe-used(idx)
-                       if ex-remain > 0
-                          subtract 1 from ex-remain
-                       end-if   
-                       exit perform
-                    end-if
+                    move 1                to el-exe-used(idx)
+                    if ex-remain > 0
+                       subtract 1 from ex-remain
+                    end-if   
+                    exit perform
                  end-if
-              end-perform 
+              end-perform
            end-if.
 
       ***---
@@ -7224,7 +7189,9 @@
                     move 1 to riga
                     perform until 1 = 2
                        read tmp-exe next 
-                         at end exit perform 
+                         at end 
+                            perform TROVA-SOSTITUZIONI   
+                            exit perform
                        end-read 
                        if mcg-code = spaces
                           move tex-mcg-code to mcg-code

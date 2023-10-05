@@ -84,6 +84,8 @@
            88 record-ok          value 1 false 0.
                     
       * VARIABILI   
+       77  como-ss               pic 99.  
+       77  como-prg              pic 99 value 0.
        77  sw-gray               pic s9.                  
        01  tab-exe.
          05 el-num-exe           pic 99 occurs 10 value 0.
@@ -215,6 +217,7 @@
                           move tex-day to como-day
                        end-if
                        if tex-day not = como-day
+                          move 0 to como-prg
                           compute sw-gray = sw-gray * -1
                           move 78-pen-heavy to spl-pen-width
                           perform STAMPA-LINEA-ORIZZONTALE
@@ -227,14 +230,37 @@
                        read intexe
 
                        initialize r-exe-desc
-                       move tex-split to prg-xx
-                       inspect prg-xx replacing leading x"30" by x"20"
-                       call "C$JUSTIFY" using prg-xx, "L"
-                       string prg-xx delimited space
-                              "-"    delimited size
-                              exe-desc-stampa 
-                         into r-exe-desc
-                       end-string
+                       if tex-ss = 0        
+                          add 1 to como-prg
+                          move como-prg to prg-xx
+                          inspect prg-xx 
+                                  replacing leading x"30" by x"20"
+                          call "C$JUSTIFY" using prg-xx, "L"
+                          string prg-xx delimited space                              
+                                 "-"    delimited size
+                                 exe-desc-stampa 
+                            into r-exe-desc
+                          end-string
+                       else
+                          if como-ss not = tex-ss
+                             add 1 to como-prg
+                             move como-prg to prg-xx
+                             inspect prg-xx 
+                                     replacing leading x"30" by x"20"
+                             call "C$JUSTIFY" using prg-xx, "L"
+                             string prg-xx delimited space                              
+                                    "-"    delimited size
+                                    exe-desc-stampa 
+                               into r-exe-desc
+                             end-string
+                             move tex-ss to como-ss
+                          else                   
+                             string "+ "  delimited size
+                                    exe-desc-stampa 
+                               into r-exe-desc
+                             end-string
+                          end-if
+                       end-if
                        move tex-reps to r-reps
 
                        move tex-series to r-series

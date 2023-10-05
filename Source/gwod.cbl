@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 5 ottobre 2023 16:45:05.
+       DATE-WRITTEN.        giovedì 5 ottobre 2023 17:21:39.
        REMARKS.
       *{TOTEM}END
 
@@ -7828,11 +7828,14 @@
               move hid-tex-key to tex-key
               open i-o tmp-exe
               read tmp-exe 
-              move exe-code     to tex-exe-code
-              move exe-desc     to tex-exe-desc
-              move exe-int-code to tex-int-code
-              move exe-isMulti  to tex-exe-isMulti
-              rewrite tex-rec
+                   invalid continue
+               not invalid
+                   move exe-code     to tex-exe-code
+                   move exe-desc     to tex-exe-desc
+                   move exe-int-code to tex-int-code
+                   move exe-isMulti  to tex-exe-isMulti
+                   rewrite tex-rec
+              end-read
               close tmp-exe
            end-if.    
 

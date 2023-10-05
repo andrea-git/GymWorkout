@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 28 settembre 2023 09:53:43.
+       DATE-WRITTEN.        giovedì 5 ottobre 2023 11:59:38.
        REMARKS.
       *{TOTEM}END
 
@@ -129,6 +129,7 @@
            05 col-split        PIC  x.
            05 col-effort       PIC  z.
            05 col-int-desc     PIC  x(100).
+           05 col-ss           PIC  99.
        01 save-key.
            05 save-code        PIC  999.
        01 save-key-1.
@@ -183,6 +184,8 @@
                   VALUE IS 0.
        77 v-macro7         PIC  9
                   VALUE IS 0.
+       77 v-macro8         PIC  9
+                  VALUE IS 0.
        77 chk-prim7-buf    PIC  9
                   VALUE IS 0.
        77 lab-macro7-buf   PIC  X(20).
@@ -201,6 +204,7 @@
        77 lab-macro4-buf   PIC  X(20).
        77 lab-macro5-buf   PIC  X(20).
        77 lab-macro6-buf   PIC  X(20).
+       77 lab-macro8-buf   PIC  X(20).
        77 STATUS-macrogroups           PIC  X(2).
            88 Valid-STATUS-macrogroups VALUE IS "00" THRU "09". 
        77 cb-mcg1-buf      PIC  X(50).
@@ -210,6 +214,9 @@
        77 cb-mcg5-buf      PIC  X(50).
        77 cb-mcg6-buf      PIC  X(50).
        77 cb-mcg7-buf      PIC  X(50).
+       77 chk-prim8-buf    PIC  9
+                  VALUE IS 0.
+       77 cb-mcg8-buf      PIC  X(50).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -475,7 +482,7 @@
        05
            chk-prim5, 
            Check-Box, 
-           COL 105,60, 
+           COL 106,30, 
            LINE 4,78,
            LINES 1,39 ,
            SIZE 9,00 ,
@@ -496,7 +503,7 @@
        05
            chk-prim6, 
            Check-Box, 
-           COL 124,60, 
+           COL 125,20, 
            LINE 4,78,
            LINES 1,39 ,
            SIZE 9,00 ,
@@ -517,7 +524,7 @@
        05
            chk-prim7, 
            Check-Box, 
-           COL 143,60, 
+           COL 144,20, 
            LINE 4,78,
            LINES 1,39 ,
            SIZE 9,00 ,
@@ -828,10 +835,10 @@
        05
            Screen1-Fr-1, 
            Frame, 
-           COL 2,30, 
-           LINE 11,26,
+           COL 1,90, 
+           LINE 11,22,
            LINES 18,13 ,
-           SIZE 153,80 ,
+           SIZE 170,60 ,
            ENGRAVED,
            ID IS 7,
            HEIGHT-IN-CELLS,
@@ -844,15 +851,15 @@
        05
            gd1, 
            Grid, 
-           COL 3,70, 
-           LINE 14,09,
+           COL 3,50, 
+           LINE 14,04,
            LINES 13,96 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
+           DATA-COLUMNS (1, 2, 3, 103),
+           ALIGNMENT ("C", "C", "U", "R"),
+           SEPARATION (5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -864,9 +871,9 @@
            ID IS 78-ID-gd1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           NUM-ROWS 11,
+           NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 23,
+           VIRTUAL-WIDTH 25,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd1-BeforeProcedure, 
@@ -877,15 +884,15 @@
        05
            gd2, 
            Grid, 
-           COL 25,50, 
-           LINE 14,09,
+           COL 27,60, 
+           LINE 14,04,
            LINES 13,96 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
+           DATA-COLUMNS (1, 2, 3, 103),
+           ALIGNMENT ("C", "C", "U", "R"),
+           SEPARATION (5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -899,7 +906,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 23,
+           VIRTUAL-WIDTH 25,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd2-BeforeProcedure, 
@@ -910,15 +917,15 @@
        05
            gd3, 
            Grid, 
-           COL 47,20, 
-           LINE 14,09,
+           COL 51,70, 
+           LINE 14,04,
            LINES 13,96 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
+           DATA-COLUMNS (1, 2, 3, 103),
+           ALIGNMENT ("C", "C", "U", "R"),
+           SEPARATION (5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -932,7 +939,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 23,
+           VIRTUAL-WIDTH 25,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd3-BeforeProcedure, 
@@ -943,15 +950,15 @@
        05
            gd4, 
            Grid, 
-           COL 68,90, 
-           LINE 14,09,
+           COL 75,70, 
+           LINE 14,04,
            LINES 13,96 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
+           DATA-COLUMNS (1, 2, 3, 103),
+           ALIGNMENT ("C", "C", "U", "R"),
+           SEPARATION (5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -965,7 +972,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 23,
+           VIRTUAL-WIDTH 25,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd4-BeforeProcedure, 
@@ -976,15 +983,15 @@
        05
            gd5, 
            Grid, 
-           COL 90,70, 
-           LINE 14,09,
+           COL 100,10, 
+           LINE 14,04,
            LINES 13,96 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
+           DATA-COLUMNS (1, 2, 3, 103),
+           ALIGNMENT ("C", "C", "U", "R"),
+           SEPARATION (5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -998,7 +1005,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 23,
+           VIRTUAL-WIDTH 25,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd5-BeforeProcedure, 
@@ -1009,15 +1016,15 @@
        05
            gd6, 
            Grid, 
-           COL 112,50, 
-           LINE 14,09,
+           COL 124,30, 
+           LINE 14,00,
            LINES 13,96 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
+           DATA-COLUMNS (1, 2, 3, 103),
+           ALIGNMENT ("C", "C", "U", "R"),
+           SEPARATION (5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -1031,7 +1038,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 23,
+           VIRTUAL-WIDTH 25,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd6-BeforeProcedure, 
@@ -1042,15 +1049,15 @@
        05
            gd7, 
            Grid, 
-           COL 134,20, 
-           LINE 14,09,
+           COL 148,40, 
+           LINE 14,04,
            LINES 13,96 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3),
-           ALIGNMENT ("C", "C", "U"),
-           SEPARATION (5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)"),
+           DATA-COLUMNS (1, 2, 3, 103),
+           ALIGNMENT ("C", "C", "U", "R"),
+           SEPARATION (5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -1064,7 +1071,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 23,
+           VIRTUAL-WIDTH 25,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd7-BeforeProcedure, 
@@ -1075,10 +1082,10 @@
        05
            Screen1-La-2aab, 
            Label, 
-           COL 134,20, 
-           LINE 12,56,
+           COL 148,40, 
+           LINE 12,52,
            LINES 1,30 ,
-           SIZE 20,70 ,
+           SIZE 23,30 ,
            ID IS 23,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1091,10 +1098,10 @@
        05
            Screen1-La-2aaba, 
            Label, 
-           COL 3,70, 
-           LINE 12,56,
+           COL 3,50, 
+           LINE 12,43,
            LINES 1,30 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            ID IS 24,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1107,10 +1114,10 @@
        05
            Screen1-La-2aabb, 
            Label, 
-           COL 25,50, 
-           LINE 12,56,
+           COL 27,60, 
+           LINE 12,52,
            LINES 1,30 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            ID IS 25,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1123,10 +1130,10 @@
        05
            Screen1-La-2aabba, 
            Label, 
-           COL 68,90, 
-           LINE 12,56,
+           COL 75,70, 
+           LINE 12,52,
            LINES 1,30 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            ID IS 26,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1139,10 +1146,10 @@
        05
            Screen1-La-2aabaa, 
            Label, 
-           COL 47,20, 
-           LINE 12,56,
+           COL 51,70, 
+           LINE 12,48,
            LINES 1,30 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            ID IS 27,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1155,10 +1162,10 @@
        05
            Screen1-La-2aabbb, 
            Label, 
-           COL 112,50, 
-           LINE 12,56,
+           COL 124,30, 
+           LINE 12,52,
            LINES 1,30 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            ID IS 28,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1171,10 +1178,10 @@
        05
            Screen1-La-2aabab, 
            Label, 
-           COL 90,70, 
-           LINE 12,56,
+           COL 100,10, 
+           LINE 12,52,
            LINES 1,30 ,
-           SIZE 20,70 ,
+           SIZE 22,30 ,
            ID IS 29,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1281,7 +1288,7 @@
        05
            lab-macro5, 
            Label, 
-           COL 97,30, 
+           COL 98,10, 
            LINE 4,70,
            LINES 1,30 ,
            SIZE 8,50 ,
@@ -1297,7 +1304,7 @@
        05
            lab-macro6, 
            Label, 
-           COL 116,30, 
+           COL 117,00, 
            LINE 4,70,
            LINES 1,30 ,
            SIZE 8,50 ,
@@ -1313,7 +1320,7 @@
        05
            lab-macro7, 
            Label, 
-           COL 135,30, 
+           COL 136,00, 
            LINE 4,70,
            LINES 1,30 ,
            SIZE 8,50 ,
@@ -1338,6 +1345,65 @@
            WIDTH-IN-CELLS,
            TRANSPARENT,
            TITLE "Default",
+           .
+
+      * CHECK BOX
+       05
+           chk-prim8, 
+           Check-Box, 
+           COL 163,20, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1010
+           FLAT,
+           ID IS 16,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim8-buf,
+           VISIBLE v-macro8,
+           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
+           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
+           .
+      * COMBO-BOX
+       05
+           cb-mcg8, 
+           Combo-Box, 
+           COL 155,00, 
+           LINE 6,17,
+           LINES 12,00 ,
+           SIZE 17,00 ,
+           3-D,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 46,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mcg8-buf,
+           VISIBLE v-macro8,
+           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           .
+      * LABEL
+       05
+           lab-macro8, 
+           Label, 
+           COL 155,00, 
+           LINE 4,70,
+           LINES 1,30 ,
+           SIZE 8,50 ,
+           ID IS 39,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-macro8-buf,
+           VISIBLE v-macro8,
            .
 
       * TOOLBAR
@@ -2779,6 +2845,9 @@
       * CELLS' SETTING
               MODIFY gd1, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
+      * CELLS' SETTING
+              MODIFY gd1, X = 4, Y = 1,
+                CELL-DATA = "SS",
            .
 
       * GRID
@@ -2792,6 +2861,9 @@
       * CELLS' SETTING
               MODIFY gd2, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
+      * CELLS' SETTING
+              MODIFY gd2, X = 4, Y = 1,
+                CELL-DATA = "SS",
            .
 
       * GRID
@@ -2805,6 +2877,9 @@
       * CELLS' SETTING
               MODIFY gd3, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
+      * CELLS' SETTING
+              MODIFY gd3, X = 4, Y = 1,
+                CELL-DATA = "SS",
            .
 
       * GRID
@@ -2818,6 +2893,9 @@
       * CELLS' SETTING
               MODIFY gd4, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
+      * CELLS' SETTING
+              MODIFY gd4, X = 4, Y = 1,
+                CELL-DATA = "SS",
            .
 
       * GRID
@@ -2831,6 +2909,9 @@
       * CELLS' SETTING
               MODIFY gd5, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
+      * CELLS' SETTING
+              MODIFY gd5, X = 4, Y = 1,
+                CELL-DATA = "SS",
            .
 
       * GRID
@@ -2844,6 +2925,9 @@
       * CELLS' SETTING
               MODIFY gd6, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
+      * CELLS' SETTING
+              MODIFY gd6, X = 4, Y = 1,
+                CELL-DATA = "SS",
            .
 
       * GRID
@@ -2857,6 +2941,13 @@
       * CELLS' SETTING
               MODIFY gd7, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
+      * CELLS' SETTING
+              MODIFY gd7, X = 4, Y = 1,
+                CELL-DATA = "SS",
+           .
+
+      * COMBO-BOX
+       cb-mcg8-Content.
            .
 
       * FD's Initialize Paragraph
@@ -2928,7 +3019,7 @@
        Form1-Create-Win.
            Display Independent GRAPHICAL WINDOW
               LINES 30,52,
-              SIZE 156,40,
+              SIZE 172,50,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -2966,13 +3057,13 @@
               HANDLE IS Form1-St-1-Handle
            DISPLAY Form1 UPON form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY gd1, DISPLAY-COLUMNS (1, 6, 11)
-              MODIFY gd2, DISPLAY-COLUMNS (1, 6, 11)
-              MODIFY gd3, DISPLAY-COLUMNS (1, 6, 11)
-              MODIFY gd4, DISPLAY-COLUMNS (1, 6, 11)
-              MODIFY gd5, DISPLAY-COLUMNS (1, 6, 11)
-              MODIFY gd6, DISPLAY-COLUMNS (1, 6, 11)
-              MODIFY gd7, DISPLAY-COLUMNS (1, 6, 11)
+              MODIFY gd1, DISPLAY-COLUMNS (1, 5, 10, 23)
+              MODIFY gd2, DISPLAY-COLUMNS (1, 5, 10, 23)
+              MODIFY gd3, DISPLAY-COLUMNS (1, 5, 10, 23)
+              MODIFY gd4, DISPLAY-COLUMNS (1, 5, 10, 23)
+              MODIFY gd5, DISPLAY-COLUMNS (1, 5, 10, 23)
+              MODIFY gd6, DISPLAY-COLUMNS (1, 5, 10, 23)
+              MODIFY gd7, DISPLAY-COLUMNS (1, 5, 10, 23)
            .
 
        Form1-PROC.
@@ -2993,6 +3084,7 @@
            modify cb-mcg5, item-to-add = "Nessuno".
            modify cb-mcg6, item-to-add = "Nessuno".
            modify cb-mcg7, item-to-add = "Nessuno".
+           modify cb-mcg8, item-to-add = "Nessuno".
 
            move 0 to tot-primari.
            move low-value to mcg-key.
@@ -3009,6 +3101,7 @@
                     modify cb-mcg5, item-to-add = mcg-desc
                     modify cb-mcg6, item-to-add = mcg-desc
                     modify cb-mcg7, item-to-add = mcg-desc
+                    modify cb-mcg8, item-to-add = mcg-desc
                  end-perform                       
            end-start.                              
            modify cb-mcg1, value = "Nessuno".                 
@@ -3018,6 +3111,7 @@
            modify cb-mcg5, value = "Nessuno".                 
            modify cb-mcg6, value = "Nessuno".                 
            modify cb-mcg7, value = "Nessuno".
+           modify cb-mcg8, value = "Nessuno".
 
            perform INIT.
            perform ABILITA-TOOLBAR.
@@ -3091,6 +3185,8 @@
                  PERFORM chk-prim6-LinkTo
               WHEN Key-Status = 1009
                  PERFORM chk-prim7-LinkTo
+              WHEN Key-Status = 1010
+                 PERFORM chk-prim8-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 4
@@ -3189,6 +3285,8 @@
            PERFORM gd6-Content
       * GRID
            PERFORM gd7-Content
+      * COMBO-BOX
+           PERFORM cb-mcg8-Content
            .
 
        Form1-DataSet1-CHANGETO-KEY1.
@@ -3977,10 +4075,10 @@
        CALCOLA-VALORI.
       * <TOTEM:PARA. CALCOLA-VALORI>
            move 0 to v-macro1 v-macro2 v-macro3 v-macro4 
-                     v-macro5 v-macro6 v-macro7
+                     v-macro5 v-macro6 v-macro7 v-macro8
                      chk-prim1-buf chk-prim2-buf chk-prim3-buf 
                      chk-prim4-buf chk-prim5-buf chk-prim6-buf 
-                     chk-prim7-buf 
+                     chk-prim7-buf chk-prim8-buf
            initialize lab-durata-buf lab-macro-buf
 
            move 0 to tot-days.
@@ -4088,6 +4186,9 @@
                  when 7 
                       move como-desc to lab-macro7-buf
                       move 1 to v-macro7
+                 when 8
+                      move como-desc to lab-macro8-buf
+                      move 1 to v-macro8
                  end-evaluate
               end-perform
            end-if. 
@@ -4223,6 +4324,7 @@
                           when 5 move 1 to chk-prim5-buf
                           when 6 move 1 to chk-prim6-buf
                           when 7 move 1 to chk-prim7-buf
+                          when 8 move 1 to chk-prim8-buf
                           end-evaluate
                           exit perform
                        end-if
@@ -4356,13 +4458,13 @@
       * <TOTEM:PARA. CLEAR-SCREEN>
            move wom-key to old-wom-key.
            move 0 to v-macro1 v-macro2 v-macro3 v-macro4 
-                     v-macro5 v-macro6 v-macro7
+                     v-macro5 v-macro6 v-macro7 v-macro8
                      chk-prim1-buf chk-prim3-buf chk-prim3-buf 
                      chk-prim4-buf chk-prim5-buf
-                     chk-prim6-buf chk-prim7-buf.
+                     chk-prim6-buf chk-prim7-buf chk-prim8-buf.
            move spaces to lab-macro1-buf lab-macro2-buf lab-macro3-buf 
                           lab-macro4-buf lab-macro5-buf lab-macro6-buf 
-                          lab-macro7-buf. 
+                          lab-macro7-buf lab-macro8-buf. 
 
            initialize wom-data 
                       lab-int-buf
@@ -4382,6 +4484,7 @@
            modify cb-mcg5, value "Nessuno", visible v-macro5.
            modify cb-mcg6, value "Nessuno", visible v-macro6.
            modify cb-mcg7, value "Nessuno", visible v-macro7.
+           modify cb-mcg8, value "Nessuno", visible v-macro8.
                                           
            display form1. 
 
@@ -4463,6 +4566,12 @@
                    else                
                       modify gd1(riga, 1), cell-color = 0
                    end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim7-buf = 1
+                      modify gd1(riga, 1), cell-color = 176
+                   else                
+                      modify gd1(riga, 1), cell-color = 0
+                   end-if
               when other
                    modify gd1(riga, 1), cell-color = 0 
               end-evaluate
@@ -4511,6 +4620,12 @@
                    end-if
               when lab-macro7-buf(1:1)
                    if chk-prim7-buf = 1
+                      modify gd2(riga, 1), cell-color = 176
+                   else                
+                      modify gd2(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim8-buf = 1
                       modify gd2(riga, 1), cell-color = 176
                    else                
                       modify gd2(riga, 1), cell-color = 0
@@ -4567,6 +4682,12 @@
                    else                
                       modify gd3(riga, 1), cell-color = 0
                    end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim8-buf = 1
+                      modify gd3(riga, 1), cell-color = 176
+                   else                
+                      modify gd3(riga, 1), cell-color = 0
+                   end-if
               when other
                    modify gd3(riga, 1), cell-color = 0 
               end-evaluate
@@ -4615,6 +4736,12 @@
                    end-if
               when lab-macro7-buf(1:1)
                    if chk-prim7-buf = 1
+                      modify gd4(riga, 1), cell-color = 176
+                   else                
+                      modify gd4(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim8-buf = 1
                       modify gd4(riga, 1), cell-color = 176
                    else                
                       modify gd4(riga, 1), cell-color = 0
@@ -4671,6 +4798,12 @@
                    else                
                       modify gd5(riga, 1), cell-color = 0
                    end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim8-buf = 1
+                      modify gd5(riga, 1), cell-color = 176
+                   else                
+                      modify gd5(riga, 1), cell-color = 0
+                   end-if
               when other
                    modify gd5(riga, 1), cell-color = 0 
               end-evaluate
@@ -4719,6 +4852,12 @@
                    end-if
               when lab-macro7-buf(1:1)
                    if chk-prim7-buf = 1
+                      modify gd6(riga, 1), cell-color = 176
+                   else                
+                      modify gd6(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim8-buf = 1
                       modify gd6(riga, 1), cell-color = 176
                    else                
                       modify gd6(riga, 1), cell-color = 0
@@ -4772,6 +4911,12 @@
                    end-if
               when lab-macro7-buf(1:1)                     
                    if chk-prim7-buf = 1
+                      modify gd7(riga, 1), cell-color = 176
+                   else                
+                      modify gd7(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro8-buf(1:1)                     
+                   if chk-prim8-buf = 1
                       modify gd7(riga, 1), cell-color = 176
                    else                
                       modify gd7(riga, 1), cell-color = 0
@@ -4905,6 +5050,7 @@
            add chk-prim5-buf to tot-primari-buf.
            add chk-prim6-buf to tot-primari-buf.
            add chk-prim7-buf to tot-primari-buf.
+           add chk-prim8-buf to tot-primari-buf.
 
            if tot-primari-buf > tot-primari
               display message "Non ci sono macrogruppi primari a suffici
@@ -5063,6 +5209,27 @@
                    set errori to true
                    exit paragraph
                 end-if
+           end-read.
+           
+           inquire chk-prim8, value in chk-prim8-buf.
+           inquire cb-mcg8, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim8-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 8 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim8-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 8 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
            end-read 
            .
       * <TOTEM:END>
@@ -5092,6 +5259,7 @@
                  move spaces to col-int-desc              
                  modify gd1(riga, 2), cell-data col-effort
                  modify gd1(riga, 3), cell-data col-int-desc
+                 modify gd1(riga, 4), cell-data col-ss
               end-if                    
            end-perform.
            if errori exit paragraph end-if.
@@ -5113,8 +5281,9 @@
               else
                  move 0 to col-effort
                  move spaces to col-int-desc              
-                 modify gd2(riga, 2), cell-data col-effort
+                 modify gd2(riga, 2), cell-data col-effort   
                  modify gd2(riga, 3), cell-data col-int-desc
+                 modify gd2(riga, 4), cell-data col-ss
               end-if
            end-perform.           
            if errori exit paragraph end-if.
@@ -5137,7 +5306,8 @@
                  move 0 to col-effort
                  move spaces to col-int-desc              
                  modify gd3(riga, 2), cell-data col-effort
-                 modify gd3(riga, 3), cell-data col-int-desc
+                 modify gd3(riga, 3), cell-data col-int-desc  
+                 modify gd3(riga, 4), cell-data col-ss
               end-if                  
            end-perform.     
            if errori exit paragraph end-if.
@@ -5161,6 +5331,7 @@
                  move spaces to col-int-desc              
                  modify gd4(riga, 2), cell-data col-effort
                  modify gd4(riga, 3), cell-data col-int-desc
+                 modify gd4(riga, 4), cell-data col-ss
               end-if                  
            end-perform.    
            if errori exit paragraph end-if.
@@ -5184,6 +5355,7 @@
                  move spaces to col-int-desc              
                  modify gd5(riga, 2), cell-data col-effort
                  modify gd5(riga, 3), cell-data col-int-desc
+                 modify gd5(riga, 4), cell-data col-ss
               end-if                  
            end-perform.  
            if errori exit paragraph end-if.
@@ -5205,8 +5377,9 @@
               else
                  move 0 to col-effort
                  move spaces to col-int-desc              
-                 modify gd6(riga, 2), cell-data col-effort
+                 modify gd6(riga, 2), cell-data col-effort     
                  modify gd6(riga, 3), cell-data col-int-desc
+                 modify gd6(riga, 4), cell-data col-ss
               end-if                  
            end-perform.  
            if errori exit paragraph end-if.
@@ -5228,8 +5401,9 @@
               else
                  move 0 to col-effort
                  move spaces to col-int-desc              
-                 modify gd7(riga, 2), cell-data col-effort
+                 modify gd7(riga, 2), cell-data col-effort    
                  modify gd7(riga, 3), cell-data col-int-desc
+                 modify gd7(riga, 4), cell-data col-ss
               end-if                  
            end-perform.  
            if errori exit paragraph end-if 
@@ -5307,24 +5481,31 @@
            when 1 inquire gd1,(event-data-2, 1), cell-data col-split
                   inquire gd1,(event-data-2, 2), cell-data col-effort
                   inquire gd1,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd1,(event-data-2, 4), cell-data col-ss
            when 2 inquire gd2,(event-data-2, 1), cell-data col-split
                   inquire gd2,(event-data-2, 2), cell-data col-effort  
                   inquire gd2,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd2,(event-data-2, 4), cell-data col-ss
            when 3 inquire gd3,(event-data-2, 1), cell-data col-split
                   inquire gd3,(event-data-2, 2), cell-data col-effort  
                   inquire gd3,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd3,(event-data-2, 4), cell-data col-ss
            when 4 inquire gd4,(event-data-2, 1), cell-data col-split
                   inquire gd4,(event-data-2, 2), cell-data col-effort  
                   inquire gd4,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd4,(event-data-2, 4), cell-data col-ss
            when 5 inquire gd5,(event-data-2, 1), cell-data col-split
                   inquire gd5,(event-data-2, 2), cell-data col-effort  
                   inquire gd5,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd5,(event-data-2, 4), cell-data col-ss
            when 6 inquire gd6,(event-data-2, 1), cell-data col-split
                   inquire gd6,(event-data-2, 2), cell-data col-effort  
                   inquire gd6,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd6,(event-data-2, 4), cell-data col-ss
            when 7 inquire gd7,(event-data-2, 1), cell-data col-split
                   inquire gd7,(event-data-2, 2), cell-data col-effort  
                   inquire gd7,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd7,(event-data-2, 4), cell-data col-ss
            end-evaluate.
            evaluate event-data-1
            when 1 if col-split = spaces
@@ -5395,6 +5576,10 @@
                 if chk-prim7-buf = 1
                    move 176 to colore
                 end-if
+           when lab-macro8-buf(1:1)
+                if chk-prim8-buf = 1
+                   move 176 to colore
+                end-if
            end-evaluate.
 
            evaluate grid-day
@@ -5402,30 +5587,37 @@
                                                 cell-color colore
                   modify gd1,(event-data-2, 2), cell-data col-effort  
                   modify gd1,(event-data-2, 3), cell-data col-int-desc
+                  modify gd1,(event-data-2, 4), cell-data col-ss
            when 2 modify gd2,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd2,(event-data-2, 2), cell-data col-effort  
                   modify gd2,(event-data-2, 3), cell-data col-int-desc
+                  modify gd2,(event-data-2, 4), cell-data col-ss
            when 3 modify gd3,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd3,(event-data-2, 2), cell-data col-effort  
                   modify gd3,(event-data-2, 3), cell-data col-int-desc
+                  modify gd3,(event-data-2, 4), cell-data col-ss
            when 4 modify gd4,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore  
                   modify gd4,(event-data-2, 2), cell-data col-effort  
                   modify gd4,(event-data-2, 3), cell-data col-int-desc
+                  modify gd4,(event-data-2, 4), cell-data col-ss
            when 5 modify gd5,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd5,(event-data-2, 2), cell-data col-effort  
                   modify gd5,(event-data-2, 3), cell-data col-int-desc
+                  modify gd5,(event-data-2, 4), cell-data col-ss
            when 6 modify gd6,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd6,(event-data-2, 2), cell-data col-effort  
                   modify gd6,(event-data-2, 3), cell-data col-int-desc
+                  modify gd6,(event-data-2, 4), cell-data col-ss
            when 7 modify gd7,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd7,(event-data-2, 2), cell-data col-effort  
                   modify gd7,(event-data-2, 3), cell-data col-int-desc
+                  modify gd7,(event-data-2, 4), cell-data col-ss
            end-evaluate.
 
            if tutto-ok
@@ -5491,7 +5683,10 @@
            wom-split-el-split-sigla(idx-day, idx-split)   
                         modify gd1(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
-                        modify gd1(riga, 3), cell-data como-desc
+                        modify gd1(riga, 3), cell-data como-desc        
+                                         
+                        modify gd1(riga, 4), cell-data 
+           wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd1(riga, 1), cell-color 176
@@ -5503,7 +5698,9 @@
            wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd2(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
-                        modify gd2(riga, 3), cell-data como-desc
+                        modify gd2(riga, 3), cell-data como-desc     
+                        modify gd2(riga, 4), cell-data 
+           wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd2(riga, 1), cell-color 176
@@ -5516,6 +5713,8 @@
                         modify gd3(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd3(riga, 3), cell-data como-desc
+                        modify gd3(riga, 4), cell-data 
+           wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd3(riga, 1), cell-color 176
@@ -5528,6 +5727,8 @@
                         modify gd4(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd4(riga, 3), cell-data como-desc
+                        modify gd4(riga, 4), cell-data 
+           wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd4(riga, 1), cell-color 176
@@ -5540,6 +5741,8 @@
                         modify gd5(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd5(riga, 3), cell-data como-desc
+                        modify gd5(riga, 4), cell-data 
+           wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd5(riga, 1), cell-color 176
@@ -5552,6 +5755,8 @@
                         modify gd6(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd6(riga, 3), cell-data como-desc
+                        modify gd6(riga, 4), cell-data 
+           wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd6(riga, 1), cell-color 176
@@ -5564,6 +5769,8 @@
                         modify gd7(riga, 2), cell-data 
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd7(riga, 3), cell-data como-desc
+                        modify gd7(riga, 4), cell-data 
+           wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd7(riga, 1), cell-color 176
@@ -5639,6 +5846,15 @@
            else                           
               move "Nessuno" to cb-mcg7-buf    
               modify cb-mcg7, value = "Nessuno"
+           end-if.
+           if wom-mcg-code-default(8) not = spaces
+              move wom-mcg-code-default(8) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg8-buf
+              modify cb-mcg8, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg8-buf    
+              modify cb-mcg8, value = "Nessuno"
            end-if                   
            .
       * <TOTEM:END>
@@ -5919,6 +6135,11 @@
                 
                      old-wom-split-el-split-primary(idx-day, idx-split) 
              
+                       or
+                     wom-split-el-split-ss(idx-day, idx-split)   
+                       not =                                            
+                
+                     old-wom-split-el-split-ss(idx-day, idx-split)   
                        set NoSalvato to true
                        exit perform
                     end-if
@@ -6064,7 +6285,7 @@
                      end-if
                   end-if
                   modify gd1, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6078,7 +6299,7 @@
                      end-if
                   end-if
                   modify gd2, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6092,7 +6313,7 @@
                      end-if
                   end-if
                   modify gd3, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,                             
@@ -6106,7 +6327,7 @@
                      end-if
                   end-if
                   modify gd4, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6120,7 +6341,7 @@
                      end-if
                   end-if
                   modify gd5, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6134,7 +6355,7 @@
                      end-if
                   end-if
                   modify gd6, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6148,7 +6369,7 @@
                      end-if
                   end-if
                   modify gd7, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6272,8 +6493,9 @@
            inquire chk-prim3, value chk-prim3-buf.
            inquire chk-prim4, value chk-prim4-buf.
            inquire chk-prim5, value chk-prim5-buf.
-           inquire chk-prim6, value chk-prim6-buf.
+           inquire chk-prim6, value chk-prim6-buf. 
            inquire chk-prim7, value chk-prim7-buf.
+           inquire chk-prim8, value chk-prim8-buf.
 
            initialize wom-split-tab replacing numeric data by zeroes
                                          alphanumeric data by spaces.
@@ -6293,7 +6515,9 @@
            idx-ok)
                  perform VALORIZZA-PRIMARY
                  move como-prim  to wom-split-el-split-primary(1, 
-           idx-ok)
+           idx-ok)  
+                 inquire gd1(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(1, idx-ok)
               end-if
            end-perform.
            
@@ -6310,7 +6534,9 @@
            idx-ok)
                  perform VALORIZZA-PRIMARY 
                  move como-prim  to wom-split-el-split-primary(2, 
-           idx-ok)
+           idx-ok)  
+                 inquire gd2(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(2, idx-ok)
               end-if
            end-perform.
            
@@ -6327,7 +6553,9 @@
            idx-ok) 
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(3, 
-           idx-ok)
+           idx-ok) 
+                 inquire gd3(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(3, idx-ok)
               end-if
            end-perform.
            
@@ -6345,6 +6573,8 @@
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(4, 
            idx-ok)
+                 inquire gd4(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(4, idx-ok)
               end-if
            end-perform.
            
@@ -6361,7 +6591,9 @@
            idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(5, 
-           idx-ok)
+           idx-ok) 
+                 inquire gd5(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(5, idx-ok)
               end-if
            end-perform.
            
@@ -6378,7 +6610,9 @@
            idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(6, 
-           idx-ok)
+           idx-ok)  
+                 inquire gd6(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(6, idx-ok)
               end-if
            end-perform.
            
@@ -6395,7 +6629,9 @@
            idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(7, 
-           idx-ok)
+           idx-ok)  
+                 inquire gd7(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(7, idx-ok)
               end-if
            end-perform.   
 
@@ -6475,6 +6711,23 @@
            else                                               
               move space to wom-sigla-default(7)
            end-if.
+           move mcg-code to wom-mcg-code-default(8).
+           if v-macro8 = 1
+              move lab-macro8-buf(1:1) to wom-sigla-default(8)
+           else                                               
+              move space to wom-sigla-default(8)
+           end-if.
+
+           inquire cb-mcg8, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(8).
+           if v-macro8 = 1
+              move lab-macro8-buf(1:1) to wom-sigla-default(8)
+           else                                               
+              move space to wom-sigla-default(8)
+           end-if.
 
 
       ***---
@@ -6494,6 +6747,7 @@
                  when 5 move chk-prim5-buf to como-prim
                  when 6 move chk-prim6-buf to como-prim
                  when 7 move chk-prim7-buf to como-prim
+                 when 8 move chk-prim8-buf to como-prim
                  exit perform
               end-if
            end-perform       
@@ -7118,6 +7372,12 @@
        Screen1-Cm-1-AfterProcedure.
       * <TOTEM:PARA. Screen1-Cm-1-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-prim8-LinkTo.
+      * <TOTEM:PARA. chk-prim8-LinkTo>
+           move 8 to check-mcg.
+           perform COLORA-PRIMARY 
            .
       * <TOTEM:END>
 

@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E791C75155-378-1882913901
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A591032-488-73020652
 
 {{@DESCRIPTION:
 
@@ -500,75 +500,74 @@ m_bFixed=1
 
 @}}
 [FDITEM47_WK]
-m_strName=save-key
-m_nItemLevel=1
+m_strName=col-ss
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM47_WK
 
 @}}
 [FDITEM48_WK]
-m_strName=save-code
-m_strRawPic=999
-m_strPic=999
-m_nItemLevel=5
+m_strName=save-key
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM48_WK
 
 @}}
 [FDITEM49_WK]
-m_strName=save-key-1
-m_nItemLevel=1
+m_strName=save-code
+m_strRawPic=999
+m_strPic=999
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM49_WK
 
 @}}
 [FDITEM50_WK]
-m_strName=save-ragsoc-1
-m_strRawPic=x(50)
-m_strPic=x(50)
-m_nItemLevel=5
+m_strName=save-key-1
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM50_WK
 
 @}}
 [FDITEM51_WK]
-m_strName=STATUS-wodmap
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
+m_strName=save-ragsoc-1
+m_strRawPic=x(50)
+m_strPic=x(50)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM51_WK
 
 @}}
 [FDITEM52_WK]
+m_strName=STATUS-wodmap
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM52_WK
+
+@}}
+[FDITEM53_WK]
 m_strName=Valid-STATUS-wodmap
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM52_WK
-
-@}}
-[FDITEM53_WK]
-m_strName=como-volta-e
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM53_WK
 
 @}}
 [FDITEM54_WK]
-m_strName=AUTO-ID
-m_strRawPic=9(6)
-m_strPic=9(6)
-m_strDefaultValue=0
+m_strName=como-volta-e
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -576,8 +575,10 @@ m_bFixed=1
 
 @}}
 [FDITEM55_WK]
-m_strName=Calibri14-Occidentale
-m_nUsage=26
+m_strName=AUTO-ID
+m_strRawPic=9(6)
+m_strPic=9(6)
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -585,6 +586,15 @@ m_bFixed=1
 
 @}}
 [FDITEM56_WK]
+m_strName=Calibri14-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM56_WK
+
+@}}
+[FDITEM57_WK]
 m_strName=Screen1-Bt-1-Handle
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -593,19 +603,19 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM56_WK
+{{@DataItem_m_strDescriptionFDITEM57_WK
 
 @}}
-[FDITEM57_WK]
+[FDITEM58_WK]
 m_strName=Calibri14B-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM57_WK
+{{@DataItem_m_strDescriptionFDITEM58_WK
 
 @}}
-[FDITEM58_WK]
+[FDITEM59_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -614,23 +624,13 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM58_WK
-
-@}}
-[FDITEM59_WK]
-m_strName=wom-note
-m_strRawPic=x(200)
-m_strPic=x(200)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM59_WK
 
 @}}
 [FDITEM60_WK]
-m_strName=STATUS-duration
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=wom-note
+m_strRawPic=x(200)
+m_strPic=x(200)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -638,26 +638,26 @@ m_bFixed=1
 
 @}}
 [FDITEM61_WK]
+m_strName=STATUS-duration
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM61_WK
+
+@}}
+[FDITEM62_WK]
 m_strName=Valid-STATUS-duration
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM61_WK
-
-@}}
-[FDITEM62_WK]
-m_strName=lab-durata-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM62_WK
 
 @}}
 [FDITEM63_WK]
-m_strName=lab-int-buf
+m_strName=lab-durata-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -667,9 +667,9 @@ m_bFixed=1
 
 @}}
 [FDITEM64_WK]
-m_strName=STATUS-intensity
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=lab-int-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -677,28 +677,28 @@ m_bFixed=1
 
 @}}
 [FDITEM65_WK]
+m_strName=STATUS-intensity
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM65_WK
+
+@}}
+[FDITEM66_WK]
 m_strName=Valid-STATUS-intensity
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM65_WK
-
-@}}
-[FDITEM66_WK]
-m_strName=lab-stimata-buf
-m_strRawPic=X(20)
-m_strPic=X(20)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM66_WK
 
 @}}
 [FDITEM67_WK]
-m_strName=STATUS-intexe
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=lab-stimata-buf
+m_strRawPic=X(20)
+m_strPic=X(20)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -706,54 +706,54 @@ m_bFixed=1
 
 @}}
 [FDITEM68_WK]
+m_strName=STATUS-intexe
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM68_WK
+
+@}}
+[FDITEM69_WK]
 m_strName=Valid-STATUS-intexe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM68_WK
-
-@}}
-[FDITEM69_WK]
-m_strName=Calibri10-Occidentale
-m_nUsage=26
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM69_WK
 
 @}}
 [FDITEM70_WK]
-m_strName=hiddenData
-m_nItemLevel=1
+m_strName=Calibri10-Occidentale
+m_nUsage=26
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM70_WK
 
 @}}
 [FDITEM71_WK]
-m_strName=hid-primary
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=3
+m_strName=hiddenData
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM71_WK
 
 @}}
 [FDITEM72_WK]
-m_strName=Calibri12-Occidentale
-m_nUsage=26
-m_nItemLevel=77
+m_strName=hid-primary
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=3
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM72_WK
 
 @}}
 [FDITEM73_WK]
-m_strName=lab-macro-buf
-m_strRawPic=X(200)
-m_strPic=X(200)
+m_strName=Calibri12-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -761,9 +761,9 @@ m_bFixed=1
 
 @}}
 [FDITEM74_WK]
-m_strName=lab-days-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=lab-macro-buf
+m_strRawPic=X(200)
+m_strPic=X(200)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -771,10 +771,9 @@ m_bFixed=1
 
 @}}
 [FDITEM75_WK]
-m_strName=chk-prim1-buf
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
+m_strName=lab-days-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -782,9 +781,10 @@ m_bFixed=1
 
 @}}
 [FDITEM76_WK]
-m_strName=lab-macro1-buf
-m_strRawPic=X(20)
-m_strPic=X(20)
+m_strName=chk-prim1-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -792,10 +792,9 @@ m_bFixed=1
 
 @}}
 [FDITEM77_WK]
-m_strName=v-macro1
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
+m_strName=lab-macro1-buf
+m_strRawPic=X(20)
+m_strPic=X(20)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -803,7 +802,7 @@ m_bFixed=1
 
 @}}
 [FDITEM78_WK]
-m_strName=v-macro2
+m_strName=v-macro1
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -814,7 +813,7 @@ m_bFixed=1
 
 @}}
 [FDITEM79_WK]
-m_strName=v-macro6
+m_strName=v-macro2
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -825,7 +824,7 @@ m_bFixed=1
 
 @}}
 [FDITEM80_WK]
-m_strName=v-macro5
+m_strName=v-macro6
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -836,7 +835,7 @@ m_bFixed=1
 
 @}}
 [FDITEM81_WK]
-m_strName=v-macro4
+m_strName=v-macro5
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -847,7 +846,7 @@ m_bFixed=1
 
 @}}
 [FDITEM82_WK]
-m_strName=v-macro3
+m_strName=v-macro4
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -858,7 +857,7 @@ m_bFixed=1
 
 @}}
 [FDITEM83_WK]
-m_strName=v-macro7
+m_strName=v-macro3
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -869,7 +868,7 @@ m_bFixed=1
 
 @}}
 [FDITEM84_WK]
-m_strName=chk-prim7-buf
+m_strName=v-macro7
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -880,9 +879,10 @@ m_bFixed=1
 
 @}}
 [FDITEM85_WK]
-m_strName=lab-macro7-buf
-m_strRawPic=X(20)
-m_strPic=X(20)
+m_strName=v-macro8
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -890,7 +890,7 @@ m_bFixed=1
 
 @}}
 [FDITEM86_WK]
-m_strName=chk-prim6-buf
+m_strName=chk-prim7-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -901,10 +901,9 @@ m_bFixed=1
 
 @}}
 [FDITEM87_WK]
-m_strName=chk-prim5-buf
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
+m_strName=lab-macro7-buf
+m_strRawPic=X(20)
+m_strPic=X(20)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -912,7 +911,7 @@ m_bFixed=1
 
 @}}
 [FDITEM88_WK]
-m_strName=chk-prim4-buf
+m_strName=chk-prim6-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -923,7 +922,7 @@ m_bFixed=1
 
 @}}
 [FDITEM89_WK]
-m_strName=chk-prim3-buf
+m_strName=chk-prim5-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -934,7 +933,7 @@ m_bFixed=1
 
 @}}
 [FDITEM90_WK]
-m_strName=chk-prim2-buf
+m_strName=chk-prim4-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -945,9 +944,10 @@ m_bFixed=1
 
 @}}
 [FDITEM91_WK]
-m_strName=lab-macro2-buf
-m_strRawPic=X(20)
-m_strPic=X(20)
+m_strName=chk-prim3-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -955,9 +955,10 @@ m_bFixed=1
 
 @}}
 [FDITEM92_WK]
-m_strName=lab-macro3-buf
-m_strRawPic=X(20)
-m_strPic=X(20)
+m_strName=chk-prim2-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -965,7 +966,7 @@ m_bFixed=1
 
 @}}
 [FDITEM93_WK]
-m_strName=lab-macro4-buf
+m_strName=lab-macro2-buf
 m_strRawPic=X(20)
 m_strPic=X(20)
 m_nItemLevel=77
@@ -975,7 +976,7 @@ m_bFixed=1
 
 @}}
 [FDITEM94_WK]
-m_strName=lab-macro5-buf
+m_strName=lab-macro3-buf
 m_strRawPic=X(20)
 m_strPic=X(20)
 m_nItemLevel=77
@@ -985,7 +986,7 @@ m_bFixed=1
 
 @}}
 [FDITEM95_WK]
-m_strName=lab-macro6-buf
+m_strName=lab-macro4-buf
 m_strRawPic=X(20)
 m_strPic=X(20)
 m_nItemLevel=77
@@ -995,9 +996,9 @@ m_bFixed=1
 
 @}}
 [FDITEM96_WK]
-m_strName=STATUS-macrogroups
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=lab-macro5-buf
+m_strRawPic=X(20)
+m_strPic=X(20)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1005,18 +1006,19 @@ m_bFixed=1
 
 @}}
 [FDITEM97_WK]
-m_strName=Valid-STATUS-macrogroups
-m_nItemLevel=88
+m_strName=lab-macro6-buf
+m_strRawPic=X(20)
+m_strPic=X(20)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM97_WK
 
 @}}
 [FDITEM98_WK]
-m_strName=cb-mcg1-buf
-m_strRawPic=X(50)
-m_strPic=X(50)
+m_strName=lab-macro8-buf
+m_strRawPic=X(20)
+m_strPic=X(20)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1024,9 +1026,9 @@ m_bFixed=1
 
 @}}
 [FDITEM99_WK]
-m_strName=cb-mcg2-buf
-m_strRawPic=X(50)
-m_strPic=X(50)
+m_strName=STATUS-macrogroups
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1034,17 +1036,16 @@ m_bFixed=1
 
 @}}
 [FDITEM100_WK]
-m_strName=cb-mcg3-buf
-m_strRawPic=X(50)
-m_strPic=X(50)
-m_nItemLevel=77
+m_strName=Valid-STATUS-macrogroups
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM100_WK
 
 @}}
 [FDITEM101_WK]
-m_strName=cb-mcg4-buf
+m_strName=cb-mcg1-buf
 m_strRawPic=X(50)
 m_strPic=X(50)
 m_nItemLevel=77
@@ -1054,7 +1055,7 @@ m_bFixed=1
 
 @}}
 [FDITEM102_WK]
-m_strName=cb-mcg5-buf
+m_strName=cb-mcg2-buf
 m_strRawPic=X(50)
 m_strPic=X(50)
 m_nItemLevel=77
@@ -1064,7 +1065,7 @@ m_bFixed=1
 
 @}}
 [FDITEM103_WK]
-m_strName=cb-mcg6-buf
+m_strName=cb-mcg3-buf
 m_strRawPic=X(50)
 m_strPic=X(50)
 m_nItemLevel=77
@@ -1074,13 +1075,64 @@ m_bFixed=1
 
 @}}
 [FDITEM104_WK]
-m_strName=cb-mcg7-buf
+m_strName=cb-mcg4-buf
 m_strRawPic=X(50)
 m_strPic=X(50)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM104_WK
+
+@}}
+[FDITEM105_WK]
+m_strName=cb-mcg5-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM105_WK
+
+@}}
+[FDITEM106_WK]
+m_strName=cb-mcg6-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM106_WK
+
+@}}
+[FDITEM107_WK]
+m_strName=cb-mcg7-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM107_WK
+
+@}}
+[FDITEM108_WK]
+m_strName=chk-prim8-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM108_WK
+
+@}}
+[FDITEM109_WK]
+m_strName=cb-mcg8-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM109_WK
 
 @}}
 
@@ -1256,7 +1308,7 @@ GRAPHICAL-SCREEN
 Begin Screen Form1
    PREFIX            = Screen1
    IMPORTED-SCREEN   = FALSE
-   LOCK-CONTROL      = FALSE
+   LOCK-CONTROL      = TRUE
    LEVEL             = 1
    (Name)            = Form1
    Absolute Column   = 0
@@ -1293,7 +1345,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 156,40
+   Size              = 172,50
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -1622,7 +1674,7 @@ Begin Screen Form1
       Link To           = chk-prim4-LinkTo
    End
    Begin Check-Box chk-prim5
-      SCREEN-COL        = 105,60
+      SCREEN-COL        = 106,30
       SCREEN-LINE       = 4,78
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1633,7 +1685,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 105,60
+      Column            = 106,30
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -1670,7 +1722,7 @@ Begin Screen Form1
       Link To           = chk-prim5-LinkTo
    End
    Begin Check-Box chk-prim6
-      SCREEN-COL        = 124,60
+      SCREEN-COL        = 125,20
       SCREEN-LINE       = 4,78
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1681,7 +1733,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 124,60
+      Column            = 125,20
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -1718,7 +1770,7 @@ Begin Screen Form1
       Link To           = chk-prim6-LinkTo
    End
    Begin Check-Box chk-prim7
-      SCREEN-COL        = 143,60
+      SCREEN-COL        = 144,20
       SCREEN-LINE       = 4,78
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1729,7 +1781,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 143,60
+      Column            = 144,20
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -2395,8 +2447,8 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Frame Screen1-Fr-1
-      SCREEN-COL        = 2,30
-      SCREEN-LINE       = 11,26
+      SCREEN-COL        = 1,90
+      SCREEN-LINE       = 11,22
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = Screen1-Fr-1
@@ -2405,7 +2457,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 2,30
+      Column            = 1,90
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -2415,11 +2467,11 @@ Begin Screen Form1
       Help ID           = 0
       High Color        = 0
       ID                = 7
-      Line              = 11,26
+      Line              = 11,22
       Lines             = 18,13
       Lines Unit        = Default
       Low Color         = 0
-      Size              = 153,80
+      Size              = 170,60
       Size Unit         = Default
       Tab Order         = 26
       Thickness         = Default
@@ -2428,8 +2480,8 @@ Begin Screen Form1
       Visible           = NONE
       Width in Cells    = TRUE
       Begin Grid gd1
-         SCREEN-COL        = 3,70
-         SCREEN-LINE       = 14,09
+         SCREEN-COL        = 3,50
+         SCREEN-LINE       = 14,04
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd1
@@ -2439,19 +2491,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
          Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
          Cells' Setting    = ( X = 3, Y = 1, Data = "Descrizione" )
+         Cells' Setting    = ( X = 4, Y = 1, Data = "SS" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 2,40
+         Column            = 2,60
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
+         Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2477,18 +2533,18 @@ Begin Screen Form1
          Lines Unit        = Default
          No Tab            = FALSE
          Num Col Headings  = 1
-         Num Columns       = 3
-         Num Rows          = 11
+         Num Columns       = 4
+         Num Rows          = 20
          Occurs            = 0
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 1
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 23
+         Virtual Width     = 25
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -2504,8 +2560,8 @@ Begin Screen Form1
          Before Procedure  = gd1-BeforeProcedure
       End
       Begin Grid gd2
-         SCREEN-COL        = 25,50
-         SCREEN-LINE       = 14,09
+         SCREEN-COL        = 27,60
+         SCREEN-LINE       = 14,04
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd2
@@ -2515,19 +2571,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
          Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
          Cells' Setting    = ( X = 3, Y = 1, Data = "Descrizione" )
+         Cells' Setting    = ( X = 4, Y = 1, Data = "SS" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 24,20
+         Column            = 26,70
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
+         Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2553,18 +2613,18 @@ Begin Screen Form1
          Lines Unit        = Default
          No Tab            = FALSE
          Num Col Headings  = 1
-         Num Columns       = 3
+         Num Columns       = 4
          Num Rows          = 20
          Occurs            = 0
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 2
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 23
+         Virtual Width     = 25
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -2580,8 +2640,8 @@ Begin Screen Form1
          Before Procedure  = gd2-BeforeProcedure
       End
       Begin Grid gd3
-         SCREEN-COL        = 47,20
-         SCREEN-LINE       = 14,09
+         SCREEN-COL        = 51,70
+         SCREEN-LINE       = 14,04
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd3
@@ -2591,19 +2651,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
          Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
          Cells' Setting    = ( X = 3, Y = 1, Data = "Descrizione" )
+         Cells' Setting    = ( X = 4, Y = 1, Data = "SS" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 45,90
+         Column            = 50,80
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
+         Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2629,18 +2693,18 @@ Begin Screen Form1
          Lines Unit        = Default
          No Tab            = FALSE
          Num Col Headings  = 1
-         Num Columns       = 3
+         Num Columns       = 4
          Num Rows          = 20
          Occurs            = 0
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 3
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 23
+         Virtual Width     = 25
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -2656,8 +2720,8 @@ Begin Screen Form1
          Before Procedure  = gd3-BeforeProcedure
       End
       Begin Grid gd4
-         SCREEN-COL        = 68,90
-         SCREEN-LINE       = 14,09
+         SCREEN-COL        = 75,70
+         SCREEN-LINE       = 14,04
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd4
@@ -2667,19 +2731,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
          Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
          Cells' Setting    = ( X = 3, Y = 1, Data = "Descrizione" )
+         Cells' Setting    = ( X = 4, Y = 1, Data = "SS" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 67,60
+         Column            = 74,80
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
+         Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2705,18 +2773,18 @@ Begin Screen Form1
          Lines Unit        = Default
          No Tab            = FALSE
          Num Col Headings  = 1
-         Num Columns       = 3
+         Num Columns       = 4
          Num Rows          = 20
          Occurs            = 0
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 4
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 23
+         Virtual Width     = 25
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -2732,8 +2800,8 @@ Begin Screen Form1
          Before Procedure  = gd4-BeforeProcedure
       End
       Begin Grid gd5
-         SCREEN-COL        = 90,70
-         SCREEN-LINE       = 14,09
+         SCREEN-COL        = 100,10
+         SCREEN-LINE       = 14,04
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd5
@@ -2743,19 +2811,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
          Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
          Cells' Setting    = ( X = 3, Y = 1, Data = "Descrizione" )
+         Cells' Setting    = ( X = 4, Y = 1, Data = "SS" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 89,40
+         Column            = 99,20
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
+         Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2781,18 +2853,18 @@ Begin Screen Form1
          Lines Unit        = Default
          No Tab            = FALSE
          Num Col Headings  = 1
-         Num Columns       = 3
+         Num Columns       = 4
          Num Rows          = 20
          Occurs            = 0
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 5
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 23
+         Virtual Width     = 25
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -2808,8 +2880,8 @@ Begin Screen Form1
          Before Procedure  = gd5-BeforeProcedure
       End
       Begin Grid gd6
-         SCREEN-COL        = 112,50
-         SCREEN-LINE       = 14,09
+         SCREEN-COL        = 124,30
+         SCREEN-LINE       = 14,00
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd6
@@ -2819,19 +2891,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
          Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
          Cells' Setting    = ( X = 3, Y = 1, Data = "Descrizione" )
+         Cells' Setting    = ( X = 4, Y = 1, Data = "SS" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 111,20
+         Column            = 123,40
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
+         Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2852,23 +2928,23 @@ Begin Screen Form1
          ID                = 6
          ID Variable       = AUTO-ID
          Last Row          = 0
-         Line              = 3,83
+         Line              = 3,78
          Lines             = 13,96
          Lines Unit        = Default
          No Tab            = FALSE
          Num Col Headings  = 1
-         Num Columns       = 3
+         Num Columns       = 4
          Num Rows          = 20
          Occurs            = 0
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 6
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 23
+         Virtual Width     = 25
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -2884,8 +2960,8 @@ Begin Screen Form1
          Before Procedure  = gd6-BeforeProcedure
       End
       Begin Grid gd7
-         SCREEN-COL        = 134,20
-         SCREEN-LINE       = 14,09
+         SCREEN-COL        = 148,40
+         SCREEN-LINE       = 14,04
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd7
@@ -2895,19 +2971,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 1, Y = 1, Data = "Split" )
          Cells' Setting    = ( X = 2, Y = 1, Data = "Effort" )
          Cells' Setting    = ( X = 3, Y = 1, Data = "Descrizione" )
+         Cells' Setting    = ( X = 4, Y = 1, Data = "SS" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 132,90
+         Column            = 147,50
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
+         Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2933,18 +3013,18 @@ Begin Screen Form1
          Lines Unit        = Default
          No Tab            = FALSE
          Num Col Headings  = 1
-         Num Columns       = 3
+         Num Columns       = 4
          Num Rows          = 20
          Occurs            = 0
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 7
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 23
+         Virtual Width     = 25
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -2960,15 +3040,15 @@ Begin Screen Form1
          Before Procedure  = gd7-BeforeProcedure
       End
       Begin Label Screen1-La-2aab
-         SCREEN-COL        = 134,20
-         SCREEN-LINE       = 12,56
+         SCREEN-COL        = 148,40
+         SCREEN-LINE       = 12,52
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aab
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 132,90
+         Column            = 147,50
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -2984,7 +3064,7 @@ Begin Screen Form1
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 20,70
+         Size              = 23,30
          Size Unit         = Default
          Tab Order         = 8
          Title             = "Giorno 7"
@@ -2993,15 +3073,15 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aaba
-         SCREEN-COL        = 3,70
-         SCREEN-LINE       = 12,56
+         SCREEN-COL        = 3,50
+         SCREEN-LINE       = 12,43
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aaba
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 2,40
+         Column            = 2,60
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3012,12 +3092,12 @@ Begin Screen Form1
          ID                = 24
          Justification     = Center
          Label Offset      = 20
-         Line              = 2,30
+         Line              = 2,22
          Lines             = 1,30
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 9
          Title             = "Giorno 1"
@@ -3026,15 +3106,15 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aabb
-         SCREEN-COL        = 25,50
-         SCREEN-LINE       = 12,56
+         SCREEN-COL        = 27,60
+         SCREEN-LINE       = 12,52
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aabb
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 24,20
+         Column            = 26,70
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3050,7 +3130,7 @@ Begin Screen Form1
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 10
          Title             = "Giorno 2"
@@ -3059,15 +3139,15 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aabba
-         SCREEN-COL        = 68,90
-         SCREEN-LINE       = 12,56
+         SCREEN-COL        = 75,70
+         SCREEN-LINE       = 12,52
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aabba
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 67,60
+         Column            = 74,80
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3083,7 +3163,7 @@ Begin Screen Form1
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 11
          Title             = "Giorno 4"
@@ -3092,15 +3172,15 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aabaa
-         SCREEN-COL        = 47,20
-         SCREEN-LINE       = 12,56
+         SCREEN-COL        = 51,70
+         SCREEN-LINE       = 12,48
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aabaa
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 45,90
+         Column            = 50,80
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3111,12 +3191,12 @@ Begin Screen Form1
          ID                = 27
          Justification     = Center
          Label Offset      = 20
-         Line              = 2,30
+         Line              = 2,26
          Lines             = 1,30
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 12
          Title             = "Giorno 3"
@@ -3125,15 +3205,15 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aabbb
-         SCREEN-COL        = 112,50
-         SCREEN-LINE       = 12,56
+         SCREEN-COL        = 124,30
+         SCREEN-LINE       = 12,52
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aabbb
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 111,20
+         Column            = 123,40
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3149,7 +3229,7 @@ Begin Screen Form1
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 13
          Title             = "Giorno 6"
@@ -3158,15 +3238,15 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aabab
-         SCREEN-COL        = 90,70
-         SCREEN-LINE       = 12,56
+         SCREEN-COL        = 100,10
+         SCREEN-LINE       = 12,52
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aabab
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 89,40
+         Column            = 99,20
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3182,7 +3262,7 @@ Begin Screen Form1
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 20,70
+         Size              = 22,30
          Size Unit         = Default
          Tab Order         = 14
          Title             = "Giorno 5"
@@ -3400,7 +3480,7 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Label lab-macro5
-      SCREEN-COL        = 97,30
+      SCREEN-COL        = 98,10
       SCREEN-LINE       = 4,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -3408,7 +3488,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 97,30
+      Column            = 98,10
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -3435,7 +3515,7 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Label lab-macro6
-      SCREEN-COL        = 116,30
+      SCREEN-COL        = 117,00
       SCREEN-LINE       = 4,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -3443,7 +3523,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 116,30
+      Column            = 117,00
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -3470,7 +3550,7 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Label lab-macro7
-      SCREEN-COL        = 135,30
+      SCREEN-COL        = 136,00
       SCREEN-LINE       = 4,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -3478,7 +3558,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 135,30
+      Column            = 136,00
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -3537,6 +3617,133 @@ Begin Screen Form1
       Visible           = NONE
       Width in Cells    = TRUE
    End
+   Begin Check-Box chk-prim8
+      SCREEN-COL        = 163,20
+      SCREEN-LINE       = 4,78
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-prim8
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 163,20
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 1010
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 16
+      Left Text         = FALSE
+      Line              = 4,78
+      Lines             = 1,39
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 37
+      Termination Value = 0
+      Title             = "Primario"
+      Value             = 0:FALSE
+      Value Variable    = chk-prim8-buf
+      Visible           = FALSE
+      Visible Variable  = v-macro8
+      Width in Cells    = TRUE
+      Before Procedure  = Screen1-Cb-1-BeforeProcedure
+      After Procedure   = Screen1-Cb-1-AfterProcedure
+      Link To           = chk-prim8-LinkTo
+   End
+   Begin Combo-Box cb-mcg8
+      SCREEN-COL        = 155,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg8
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 155,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 46
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 38
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg8-buf
+      Visible           = NONE
+      Visible Variable  = v-macro8
+      Width in Cells    = TRUE
+      Before Procedure  = Screen1-Cm-1-BeforeProcedure
+      After Procedure   = Screen1-Cm-1-AfterProcedure
+   End
+   Begin Label lab-macro8
+      SCREEN-COL        = 155,00
+      SCREEN-LINE       = 4,70
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = lab-macro8
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 155,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 39
+      Justification     = Unaligned
+      Label Offset      = 20
+      Line              = 4,70
+      Lines             = 1,30
+      Lines Unit        = Default
+      No Key Letter     = FALSE
+      Occurs            = 0
+      Size              = 8,50
+      Size Unit         = Default
+      Tab Order         = 39
+      Title Picture     = X(20)
+      Title Variable    = lab-macro8-buf
+      Transparent       = TRUE
+      Visible           = FALSE
+      Visible Variable  = v-macro8
+      Width in Cells    = TRUE
+   End
    Begin Toolbar Form1-Tb-1
       SCREEN-LINE       = 1,00
       LOCK-CONTROL      = TRUE
@@ -3549,7 +3756,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,35
-      Tab Order         = 37
+      Tab Order         = 40
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -4237,7 +4444,7 @@ Begin Screen Form1
       Handle Variable   = Form1-St-1-Handle
       PANEL-WIDTHS      = ( 45, 23, 999 )
       PANEL-STYLE       = ( 1, 1, 1 )
-      Tab Order         = 38
+      Tab Order         = 41
    End
 End
 
@@ -4335,6 +4542,7 @@ BEGIN-TEXT
            modify cb-mcg5, item-to-add = "Nessuno".
            modify cb-mcg6, item-to-add = "Nessuno".
            modify cb-mcg7, item-to-add = "Nessuno".
+           modify cb-mcg8, item-to-add = "Nessuno".
 
            move 0 to tot-primari.
            move low-value to mcg-key.
@@ -4351,6 +4559,7 @@ BEGIN-TEXT
                     modify cb-mcg5, item-to-add = mcg-desc
                     modify cb-mcg6, item-to-add = mcg-desc
                     modify cb-mcg7, item-to-add = mcg-desc
+                    modify cb-mcg8, item-to-add = mcg-desc
                  end-perform                       
            end-start.                              
            modify cb-mcg1, value = "Nessuno".                 
@@ -4360,6 +4569,7 @@ BEGIN-TEXT
            modify cb-mcg5, value = "Nessuno".                 
            modify cb-mcg6, value = "Nessuno".                 
            modify cb-mcg7, value = "Nessuno".
+           modify cb-mcg8, value = "Nessuno".
 
            perform INIT.
            perform ABILITA-TOOLBAR.
@@ -4594,10 +4804,10 @@ BEGIN-DATA
    PARAGRAPH         = CALCOLA-VALORI
 BEGIN-TEXT
            move 0 to v-macro1 v-macro2 v-macro3 v-macro4 
-                     v-macro5 v-macro6 v-macro7
+                     v-macro5 v-macro6 v-macro7 v-macro8
                      chk-prim1-buf chk-prim2-buf chk-prim3-buf 
                      chk-prim4-buf chk-prim5-buf chk-prim6-buf 
-                     chk-prim7-buf 
+                     chk-prim7-buf chk-prim8-buf
            initialize lab-durata-buf lab-macro-buf
 
            move 0 to tot-days.
@@ -4705,6 +4915,9 @@ BEGIN-TEXT
                  when 7 
                       move como-desc to lab-macro7-buf
                       move 1 to v-macro7
+                 when 8
+                      move como-desc to lab-macro8-buf
+                      move 1 to v-macro8
                  end-evaluate
               end-perform
            end-if. 
@@ -4838,6 +5051,7 @@ BEGIN-TEXT
                           when 5 move 1 to chk-prim5-buf
                           when 6 move 1 to chk-prim6-buf
                           when 7 move 1 to chk-prim7-buf
+                          when 8 move 1 to chk-prim8-buf
                           end-evaluate
                           exit perform
                        end-if
@@ -4968,13 +5182,13 @@ BEGIN-DATA
 BEGIN-TEXT
            move wom-key to old-wom-key.
            move 0 to v-macro1 v-macro2 v-macro3 v-macro4 
-                     v-macro5 v-macro6 v-macro7
+                     v-macro5 v-macro6 v-macro7 v-macro8
                      chk-prim1-buf chk-prim3-buf chk-prim3-buf 
                      chk-prim4-buf chk-prim5-buf
-                     chk-prim6-buf chk-prim7-buf.
+                     chk-prim6-buf chk-prim7-buf chk-prim8-buf.
            move spaces to lab-macro1-buf lab-macro2-buf lab-macro3-buf 
                           lab-macro4-buf lab-macro5-buf lab-macro6-buf 
-                          lab-macro7-buf. 
+                          lab-macro7-buf lab-macro8-buf. 
 
            initialize wom-data 
                       lab-int-buf
@@ -4994,6 +5208,7 @@ BEGIN-TEXT
            modify cb-mcg5, value "Nessuno", visible v-macro5.
            modify cb-mcg6, value "Nessuno", visible v-macro6.
            modify cb-mcg7, value "Nessuno", visible v-macro7.
+           modify cb-mcg8, value "Nessuno", visible v-macro8.
                                           
            display form1. 
 
@@ -5077,6 +5292,12 @@ BEGIN-TEXT
                    else                
                       modify gd1(riga, 1), cell-color = 0
                    end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim7-buf = 1
+                      modify gd1(riga, 1), cell-color = 176
+                   else                
+                      modify gd1(riga, 1), cell-color = 0
+                   end-if
               when other
                    modify gd1(riga, 1), cell-color = 0 
               end-evaluate
@@ -5125,6 +5346,12 @@ BEGIN-TEXT
                    end-if
               when lab-macro7-buf(1:1)
                    if chk-prim7-buf = 1
+                      modify gd2(riga, 1), cell-color = 176
+                   else                
+                      modify gd2(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim8-buf = 1
                       modify gd2(riga, 1), cell-color = 176
                    else                
                       modify gd2(riga, 1), cell-color = 0
@@ -5181,6 +5408,12 @@ BEGIN-TEXT
                    else                
                       modify gd3(riga, 1), cell-color = 0
                    end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim8-buf = 1
+                      modify gd3(riga, 1), cell-color = 176
+                   else                
+                      modify gd3(riga, 1), cell-color = 0
+                   end-if
               when other
                    modify gd3(riga, 1), cell-color = 0 
               end-evaluate
@@ -5229,6 +5462,12 @@ BEGIN-TEXT
                    end-if
               when lab-macro7-buf(1:1)
                    if chk-prim7-buf = 1
+                      modify gd4(riga, 1), cell-color = 176
+                   else                
+                      modify gd4(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim8-buf = 1
                       modify gd4(riga, 1), cell-color = 176
                    else                
                       modify gd4(riga, 1), cell-color = 0
@@ -5285,6 +5524,12 @@ BEGIN-TEXT
                    else                
                       modify gd5(riga, 1), cell-color = 0
                    end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim8-buf = 1
+                      modify gd5(riga, 1), cell-color = 176
+                   else                
+                      modify gd5(riga, 1), cell-color = 0
+                   end-if
               when other
                    modify gd5(riga, 1), cell-color = 0 
               end-evaluate
@@ -5333,6 +5578,12 @@ BEGIN-TEXT
                    end-if
               when lab-macro7-buf(1:1)
                    if chk-prim7-buf = 1
+                      modify gd6(riga, 1), cell-color = 176
+                   else                
+                      modify gd6(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro8-buf(1:1)
+                   if chk-prim8-buf = 1
                       modify gd6(riga, 1), cell-color = 176
                    else                
                       modify gd6(riga, 1), cell-color = 0
@@ -5386,6 +5637,12 @@ BEGIN-TEXT
                    end-if
               when lab-macro7-buf(1:1)                     
                    if chk-prim7-buf = 1
+                      modify gd7(riga, 1), cell-color = 176
+                   else                
+                      modify gd7(riga, 1), cell-color = 0
+                   end-if
+              when lab-macro8-buf(1:1)                     
+                   if chk-prim8-buf = 1
                       modify gd7(riga, 1), cell-color = 176
                    else                
                       modify gd7(riga, 1), cell-color = 0
@@ -5521,6 +5778,7 @@ BEGIN-TEXT
            add chk-prim5-buf to tot-primari-buf.
            add chk-prim6-buf to tot-primari-buf.
            add chk-prim7-buf to tot-primari-buf.
+           add chk-prim8-buf to tot-primari-buf.
 
            if tot-primari-buf > tot-primari
               display message "Non ci sono macrogruppi primari a sufficienza ("
@@ -5681,6 +5939,27 @@ BEGIN-TEXT
                    exit paragraph
                 end-if
            end-read.
+           
+           inquire chk-prim8, value in chk-prim8-buf.
+           inquire cb-mcg8, value in mcg-desc.
+           read macrogroups no lock key mcg-k-desc
+                invalid continue
+            not invalid
+                if ( chk-prim8-buf = 1 and mcg-isPrimary = 0 )    
+                   display message "Il gruppo 8 dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+                if ( chk-prim8-buf = 0 and mcg-isPrimary = 1 )    
+                   display message "Il gruppo 8 NON dev'essere primario"
+                             title tit-err
+                              icon 2
+                   set errori to true
+                   exit paragraph
+                end-if
+           end-read.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -5710,6 +5989,7 @@ BEGIN-TEXT
                  move spaces to col-int-desc              
                  modify gd1(riga, 2), cell-data col-effort
                  modify gd1(riga, 3), cell-data col-int-desc
+                 modify gd1(riga, 4), cell-data col-ss
               end-if                    
            end-perform.
            if errori exit paragraph end-if.
@@ -5731,8 +6011,9 @@ BEGIN-TEXT
               else
                  move 0 to col-effort
                  move spaces to col-int-desc              
-                 modify gd2(riga, 2), cell-data col-effort
+                 modify gd2(riga, 2), cell-data col-effort   
                  modify gd2(riga, 3), cell-data col-int-desc
+                 modify gd2(riga, 4), cell-data col-ss
               end-if
            end-perform.           
            if errori exit paragraph end-if.
@@ -5755,7 +6036,8 @@ BEGIN-TEXT
                  move 0 to col-effort
                  move spaces to col-int-desc              
                  modify gd3(riga, 2), cell-data col-effort
-                 modify gd3(riga, 3), cell-data col-int-desc
+                 modify gd3(riga, 3), cell-data col-int-desc  
+                 modify gd3(riga, 4), cell-data col-ss
               end-if                  
            end-perform.     
            if errori exit paragraph end-if.
@@ -5779,6 +6061,7 @@ BEGIN-TEXT
                  move spaces to col-int-desc              
                  modify gd4(riga, 2), cell-data col-effort
                  modify gd4(riga, 3), cell-data col-int-desc
+                 modify gd4(riga, 4), cell-data col-ss
               end-if                  
            end-perform.    
            if errori exit paragraph end-if.
@@ -5802,6 +6085,7 @@ BEGIN-TEXT
                  move spaces to col-int-desc              
                  modify gd5(riga, 2), cell-data col-effort
                  modify gd5(riga, 3), cell-data col-int-desc
+                 modify gd5(riga, 4), cell-data col-ss
               end-if                  
            end-perform.  
            if errori exit paragraph end-if.
@@ -5823,8 +6107,9 @@ BEGIN-TEXT
               else
                  move 0 to col-effort
                  move spaces to col-int-desc              
-                 modify gd6(riga, 2), cell-data col-effort
+                 modify gd6(riga, 2), cell-data col-effort     
                  modify gd6(riga, 3), cell-data col-int-desc
+                 modify gd6(riga, 4), cell-data col-ss
               end-if                  
            end-perform.  
            if errori exit paragraph end-if.
@@ -5846,8 +6131,9 @@ BEGIN-TEXT
               else
                  move 0 to col-effort
                  move spaces to col-int-desc              
-                 modify gd7(riga, 2), cell-data col-effort
+                 modify gd7(riga, 2), cell-data col-effort    
                  modify gd7(riga, 3), cell-data col-int-desc
+                 modify gd7(riga, 4), cell-data col-ss
               end-if                  
            end-perform.  
            if errori exit paragraph end-if.
@@ -5928,24 +6214,31 @@ BEGIN-TEXT
            when 1 inquire gd1,(event-data-2, 1), cell-data col-split
                   inquire gd1,(event-data-2, 2), cell-data col-effort
                   inquire gd1,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd1,(event-data-2, 4), cell-data col-ss
            when 2 inquire gd2,(event-data-2, 1), cell-data col-split
                   inquire gd2,(event-data-2, 2), cell-data col-effort  
                   inquire gd2,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd2,(event-data-2, 4), cell-data col-ss
            when 3 inquire gd3,(event-data-2, 1), cell-data col-split
                   inquire gd3,(event-data-2, 2), cell-data col-effort  
                   inquire gd3,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd3,(event-data-2, 4), cell-data col-ss
            when 4 inquire gd4,(event-data-2, 1), cell-data col-split
                   inquire gd4,(event-data-2, 2), cell-data col-effort  
                   inquire gd4,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd4,(event-data-2, 4), cell-data col-ss
            when 5 inquire gd5,(event-data-2, 1), cell-data col-split
                   inquire gd5,(event-data-2, 2), cell-data col-effort  
                   inquire gd5,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd5,(event-data-2, 4), cell-data col-ss
            when 6 inquire gd6,(event-data-2, 1), cell-data col-split
                   inquire gd6,(event-data-2, 2), cell-data col-effort  
                   inquire gd6,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd6,(event-data-2, 4), cell-data col-ss
            when 7 inquire gd7,(event-data-2, 1), cell-data col-split
                   inquire gd7,(event-data-2, 2), cell-data col-effort  
                   inquire gd7,(event-data-2, 3), cell-data col-int-desc
+                  inquire gd7,(event-data-2, 4), cell-data col-ss
            end-evaluate.
            evaluate event-data-1
            when 1 if col-split = spaces
@@ -6014,6 +6307,10 @@ BEGIN-TEXT
                 if chk-prim7-buf = 1
                    move 176 to colore
                 end-if
+           when lab-macro8-buf(1:1)
+                if chk-prim8-buf = 1
+                   move 176 to colore
+                end-if
            end-evaluate.
 
            evaluate grid-day
@@ -6021,30 +6318,37 @@ BEGIN-TEXT
                                                 cell-color colore
                   modify gd1,(event-data-2, 2), cell-data col-effort  
                   modify gd1,(event-data-2, 3), cell-data col-int-desc
+                  modify gd1,(event-data-2, 4), cell-data col-ss
            when 2 modify gd2,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd2,(event-data-2, 2), cell-data col-effort  
                   modify gd2,(event-data-2, 3), cell-data col-int-desc
+                  modify gd2,(event-data-2, 4), cell-data col-ss
            when 3 modify gd3,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd3,(event-data-2, 2), cell-data col-effort  
                   modify gd3,(event-data-2, 3), cell-data col-int-desc
+                  modify gd3,(event-data-2, 4), cell-data col-ss
            when 4 modify gd4,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore  
                   modify gd4,(event-data-2, 2), cell-data col-effort  
                   modify gd4,(event-data-2, 3), cell-data col-int-desc
+                  modify gd4,(event-data-2, 4), cell-data col-ss
            when 5 modify gd5,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd5,(event-data-2, 2), cell-data col-effort  
                   modify gd5,(event-data-2, 3), cell-data col-int-desc
+                  modify gd5,(event-data-2, 4), cell-data col-ss
            when 6 modify gd6,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd6,(event-data-2, 2), cell-data col-effort  
                   modify gd6,(event-data-2, 3), cell-data col-int-desc
+                  modify gd6,(event-data-2, 4), cell-data col-ss
            when 7 modify gd7,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd7,(event-data-2, 2), cell-data col-effort  
                   modify gd7,(event-data-2, 3), cell-data col-int-desc
+                  modify gd7,(event-data-2, 4), cell-data col-ss
            end-evaluate.
 
            if tutto-ok
@@ -6105,7 +6409,8 @@ BEGIN-TEXT
                  evaluate idx-day
                  when 1 modify gd1(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)   
                         modify gd1(riga, 2), cell-data wom-split-el-split-int-code(idx-day, idx-split)
-                        modify gd1(riga, 3), cell-data como-desc
+                        modify gd1(riga, 3), cell-data como-desc                                      
+                        modify gd1(riga, 4), cell-data wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, idx-split) = 1
                            modify gd1(riga, 1), cell-color 176
                         else                                                                              
@@ -6113,7 +6418,8 @@ BEGIN-TEXT
                         end-if
                  when 2 modify gd2(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd2(riga, 2), cell-data wom-split-el-split-int-code(idx-day, idx-split)
-                        modify gd2(riga, 3), cell-data como-desc
+                        modify gd2(riga, 3), cell-data como-desc     
+                        modify gd2(riga, 4), cell-data wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, idx-split) = 1
                            modify gd2(riga, 1), cell-color 176
                         else                                                                              
@@ -6122,6 +6428,7 @@ BEGIN-TEXT
                  when 3 modify gd3(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd3(riga, 2), cell-data wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd3(riga, 3), cell-data como-desc
+                        modify gd3(riga, 4), cell-data wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, idx-split) = 1
                            modify gd3(riga, 1), cell-color 176
                         else                                                                              
@@ -6130,6 +6437,7 @@ BEGIN-TEXT
                  when 4 modify gd4(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)   
                         modify gd4(riga, 2), cell-data wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd4(riga, 3), cell-data como-desc
+                        modify gd4(riga, 4), cell-data wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, idx-split) = 1
                            modify gd4(riga, 1), cell-color 176
                         else                                                                              
@@ -6138,6 +6446,7 @@ BEGIN-TEXT
                  when 5 modify gd5(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)   
                         modify gd5(riga, 2), cell-data wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd5(riga, 3), cell-data como-desc
+                        modify gd5(riga, 4), cell-data wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, idx-split) = 1
                            modify gd5(riga, 1), cell-color 176
                         else                                                                              
@@ -6146,6 +6455,7 @@ BEGIN-TEXT
                  when 6 modify gd6(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd6(riga, 2), cell-data wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd6(riga, 3), cell-data como-desc
+                        modify gd6(riga, 4), cell-data wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, idx-split) = 1
                            modify gd6(riga, 1), cell-color 176
                         else                                                                              
@@ -6154,6 +6464,7 @@ BEGIN-TEXT
                  when 7 modify gd7(riga, 1), cell-data wom-split-el-split-sigla(idx-day, idx-split)
                         modify gd7(riga, 2), cell-data wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd7(riga, 3), cell-data como-desc
+                        modify gd7(riga, 4), cell-data wom-split-el-split-ss(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, idx-split) = 1
                            modify gd7(riga, 1), cell-color 176
                         else                                                                              
@@ -6227,6 +6538,15 @@ BEGIN-TEXT
            else                           
               move "Nessuno" to cb-mcg7-buf    
               modify cb-mcg7, value = "Nessuno"
+           end-if.
+           if wom-mcg-code-default(8) not = spaces
+              move wom-mcg-code-default(8) to mcg-code
+              read macrogroups 
+              move mcg-desc to cb-mcg8-buf
+              modify cb-mcg8, value = mcg-desc
+           else                           
+              move "Nessuno" to cb-mcg8-buf    
+              modify cb-mcg8, value = "Nessuno"
            end-if.                  
 END-TEXT
 END-DATA
@@ -6511,6 +6831,10 @@ BEGIN-TEXT
                      wom-split-el-split-primary(idx-day, idx-split)   
                        not =                                                 
                      old-wom-split-el-split-primary(idx-day, idx-split)   
+                       or
+                     wom-split-el-split-ss(idx-day, idx-split)   
+                       not =                                                 
+                     old-wom-split-el-split-ss(idx-day, idx-split)   
                        set NoSalvato to true
                        exit perform
                     end-if
@@ -6658,7 +6982,7 @@ BEGIN-TEXT
                      end-if
                   end-if
                   modify gd1, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6672,7 +6996,7 @@ BEGIN-TEXT
                      end-if
                   end-if
                   modify gd2, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6686,7 +7010,7 @@ BEGIN-TEXT
                      end-if
                   end-if
                   modify gd3, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,                             
@@ -6700,7 +7024,7 @@ BEGIN-TEXT
                      end-if
                   end-if
                   modify gd4, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6714,7 +7038,7 @@ BEGIN-TEXT
                      end-if
                   end-if
                   modify gd5, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6728,7 +7052,7 @@ BEGIN-TEXT
                      end-if
                   end-if
                   modify gd6, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6742,7 +7066,7 @@ BEGIN-TEXT
                      end-if
                   end-if
                   modify gd7, start-x = startX,
-                              x = 3,
+                              x = 4,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6873,8 +7197,9 @@ BEGIN-TEXT
            inquire chk-prim3, value chk-prim3-buf.
            inquire chk-prim4, value chk-prim4-buf.
            inquire chk-prim5, value chk-prim5-buf.
-           inquire chk-prim6, value chk-prim6-buf.
+           inquire chk-prim6, value chk-prim6-buf. 
            inquire chk-prim7, value chk-prim7-buf.
+           inquire chk-prim8, value chk-prim8-buf.
 
            initialize wom-split-tab replacing numeric data by zeroes
                                          alphanumeric data by spaces.
@@ -6891,7 +7216,9 @@ BEGIN-TEXT
                  move col-effort to wom-split-el-split-int-code(1, idx-ok)
                  move col-effort to wom-split-el-split-int-code(1, idx-ok)
                  perform VALORIZZA-PRIMARY
-                 move como-prim  to wom-split-el-split-primary(1, idx-ok)
+                 move como-prim  to wom-split-el-split-primary(1, idx-ok)  
+                 inquire gd1(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(1, idx-ok)
               end-if
            end-perform.
            
@@ -6906,7 +7233,9 @@ BEGIN-TEXT
                  inquire gd2(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(2, idx-ok)
                  perform VALORIZZA-PRIMARY 
-                 move como-prim  to wom-split-el-split-primary(2, idx-ok)
+                 move como-prim  to wom-split-el-split-primary(2, idx-ok)  
+                 inquire gd2(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(2, idx-ok)
               end-if
            end-perform.
            
@@ -6921,7 +7250,9 @@ BEGIN-TEXT
                  inquire gd3(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(3, idx-ok) 
                  perform VALORIZZA-PRIMARY                      
-                 move como-prim  to wom-split-el-split-primary(3, idx-ok)
+                 move como-prim  to wom-split-el-split-primary(3, idx-ok) 
+                 inquire gd3(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(3, idx-ok)
               end-if
            end-perform.
            
@@ -6937,6 +7268,8 @@ BEGIN-TEXT
                  move col-effort to wom-split-el-split-int-code(4, idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(4, idx-ok)
+                 inquire gd4(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(4, idx-ok)
               end-if
            end-perform.
            
@@ -6951,7 +7284,9 @@ BEGIN-TEXT
                  inquire gd5(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(5, idx-ok)
                  perform VALORIZZA-PRIMARY                      
-                 move como-prim  to wom-split-el-split-primary(5, idx-ok)
+                 move como-prim  to wom-split-el-split-primary(5, idx-ok) 
+                 inquire gd5(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(5, idx-ok)
               end-if
            end-perform.
            
@@ -6966,7 +7301,9 @@ BEGIN-TEXT
                  inquire gd6(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(6, idx-ok)
                  perform VALORIZZA-PRIMARY                      
-                 move como-prim  to wom-split-el-split-primary(6, idx-ok)
+                 move como-prim  to wom-split-el-split-primary(6, idx-ok)  
+                 inquire gd6(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(6, idx-ok)
               end-if
            end-perform.
            
@@ -6981,7 +7318,9 @@ BEGIN-TEXT
                  inquire gd7(riga, 2), cell-data in col-effort
                  move col-effort to wom-split-el-split-int-code(7, idx-ok)
                  perform VALORIZZA-PRIMARY                      
-                 move como-prim  to wom-split-el-split-primary(7, idx-ok)
+                 move como-prim  to wom-split-el-split-primary(7, idx-ok)  
+                 inquire gd7(riga, 4), cell-data in col-ss
+                 move col-ss     to wom-split-el-split-ss(7, idx-ok)
               end-if
            end-perform.   
 
@@ -7061,6 +7400,23 @@ BEGIN-TEXT
            else                                               
               move space to wom-sigla-default(7)
            end-if.
+           move mcg-code to wom-mcg-code-default(8).
+           if v-macro8 = 1
+              move lab-macro8-buf(1:1) to wom-sigla-default(8)
+           else                                               
+              move space to wom-sigla-default(8)
+           end-if.
+
+           inquire cb-mcg8, value = mcg-desc.
+           read macrogroups key mcg-k-desc
+                invalid move spaces to mcg-code 
+           end-read.
+           move mcg-code to wom-mcg-code-default(8).
+           if v-macro8 = 1
+              move lab-macro8-buf(1:1) to wom-sigla-default(8)
+           else                                               
+              move space to wom-sigla-default(8)
+           end-if.
 
 
       ***---
@@ -7080,6 +7436,7 @@ BEGIN-TEXT
                  when 5 move chk-prim5-buf to como-prim
                  when 6 move chk-prim6-buf to como-prim
                  when 7 move chk-prim7-buf to como-prim
+                 when 8 move chk-prim8-buf to como-prim
                  exit perform
               end-if
            end-perform.      
@@ -7873,6 +8230,14 @@ BEGIN-DATA
    PARAGRAPH         = Screen1-Cm-1-AfterProcedure
 BEGIN-TEXT
       *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim8-LinkTo
+BEGIN-TEXT
+           move 8 to check-mcg.
+           perform COLORA-PRIMARY.
 END-TEXT
 END-DATA
 

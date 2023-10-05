@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 5 ottobre 2023 10:46:18.
+       DATE-WRITTEN.        giovedì 5 ottobre 2023 15:42:56.
        REMARKS.
       *{TOTEM}END
 
@@ -289,6 +289,7 @@
            05 col-exe-desc     PIC  x(100).
            05 col-series       PIC  99.
            05 col-reps         PIC  x(20).
+           05 col-ss           PIC  z.
        77 Calibri14-Occidentale
                   USAGE IS HANDLE OF FONT.
        77 Calibri14B-Occidentale
@@ -344,6 +345,7 @@
        78 78-col-exe-desc VALUE IS 6. 
        78 78-col-series VALUE IS 7. 
        78 78-col-reps VALUE IS 8. 
+       78 78-col-ss VALUE IS 9. 
        77 ex-remain        PIC  99.
        77 effort-wod       PIC  99.
        77 path-tmp-exe-effort          PIC  X(256).
@@ -454,7 +456,7 @@
        77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(330).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(331).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(190).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
@@ -1022,17 +1024,16 @@
        05
            gd1, 
            Grid, 
-           COL 71,00, 
+           COL 71,50, 
            LINE 1,70,
            LINES 34,87 ,
-           SIZE 75,50 ,
-           ADJUSTABLE-COLUMNS,
+           SIZE 82,00 ,
            BOXED,
-           DATA-COLUMNS (1, 2, 4, 9, 109, 114, 214, 216),
-           ALIGNMENT ("C", "R", "U", "L", "U", "L", "U", "U"),
-           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5),
-           DATA-TYPES ("9(1)", "z9", "X(5)", "X(100)", "X(5)", "X(100)"
-           , "9(2)", "x(20)"),
+           DATA-COLUMNS (1, 2, 4, 9, 109, 114, 214, 216, 236),
+           ALIGNMENT ("C", "R", "U", "L", "U", "L", "U", "U", "C"),
+           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5),
+           DATA-TYPES ("91)", "z9", "X(5)", "X(100)", "X(5)", "X(100)", 
+           "9(2)", "x(20)", "9(1)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
@@ -1040,12 +1041,11 @@
            FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
-           HSCROLL,
            ID IS 78-ID-gd1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 90,
+           VIRTUAL-WIDTH 98,
            VPADDING 5,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -1297,7 +1297,7 @@
        05
            pb-aggiungi, 
            Push-Button, 
-           COL 147,10, 
+           COL 154,20, 
            LINE 1,70,
            LINES 1,17 ,
            SIZE 28 PIXELS,
@@ -1316,7 +1316,7 @@
        05
            pb-elimina, 
            Push-Button, 
-           COL 147,10, 
+           COL 154,20, 
            LINE 2,96,
            LINES 1,17 ,
            SIZE 28 PIXELS,
@@ -1335,7 +1335,7 @@
        05
            pb-su, 
            Push-Button, 
-           COL 147,10, 
+           COL 154,20, 
            LINE 4,26,
            LINES 1,17 ,
            SIZE 28 PIXELS,
@@ -1354,7 +1354,7 @@
        05
            pb-giu, 
            Push-Button, 
-           COL 147,10, 
+           COL 154,20, 
            LINE 5,52,
            LINES 1,17 ,
            SIZE 28 PIXELS,
@@ -1373,7 +1373,7 @@
        05
            pb-int, 
            Push-Button, 
-           COL 147,10, 
+           COL 154,20, 
            LINE 6,78,
            LINES 1,17 ,
            SIZE 28 PIXELS,
@@ -4289,6 +4289,9 @@
       * CELLS' SETTING
               MODIFY gd1, X = 8, Y = 1,
                 CELL-DATA = "Reps",
+      * CELLS' SETTING
+              MODIFY gd1, X = 9, Y = 1,
+                CELL-DATA = "Superset",
            .
 
       * GRID
@@ -4482,7 +4485,7 @@
               SCREEN LINE 2,
               SCREEN COLUMN 2,
               LINES 38,39,
-              SIZE 149,50,
+              SIZE 156,80,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -4521,7 +4524,8 @@
               HANDLE IS Form1-St-1-Handle
            DISPLAY Form1 UPON form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY gd1, DISPLAY-COLUMNS (1, 6, 9, 16, 36, 43, 73, 78)
+              MODIFY gd1, DISPLAY-COLUMNS (1, 6, 9, 16, 36, 43, 73, 78, 
+           91)
               MODIFY gd-schema, DISPLAY-COLUMNS (1, 6, 13, 20, 27, 34, 
            41, 48, 55, 62, 69, 76)
            .
@@ -6225,7 +6229,10 @@
                    move col-reps to tex-reps
                    rewrite tex-rec
                    close tmp-exe            
-                end-if
+                end-if 
+           when 78-col-ss
+                inquire gd1(riga, 78-col-ss), cell-data in col-ss
+                modify  gd1(riga, 78-col-ss), cell-data col-ss
 
            end-evaluate 
            .
@@ -6792,11 +6799,14 @@
                     read intexe
 
                     if fromAggiungi
+                       move tex-ss       to col-ss
                        move tex-int-code to int-code
                        read intexe
                        move tex-series to col-series
                        move tex-reps   to col-reps
-                    else
+                    else                      
+                       move wom-split-el-split-ss(tex-day, tex-split)
+                         to tex-ss col-ss
                        perform IMPOSTA-SERIES-REPS
                     end-if
                     add 1 to riga                                
@@ -6812,6 +6822,8 @@
            col-exe-code
                     modify gd1(riga, 78-col-exe-desc), cell-data = 
            col-exe-desc
+                    modify gd1(riga, 78-col-ss),       cell-data = 
+           col-ss
                     if col-series = 0
                        modify gd1(riga, 78-col-series),   cell-data = 
            spaces
@@ -7932,7 +7944,7 @@
            move 0 to StatusHelp
                              
            modify gd1, start-x = 1,
-                             x = 78-col-reps,
+                             x = 78-col-ss,
                        start-y = event-data-2,
                              y = event-data-2,
                   region-color = 257,

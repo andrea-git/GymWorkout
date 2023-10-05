@@ -161,6 +161,16 @@ m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM14_
 
 @}}
+[FDITEM15_]
+m_strName=tex-ss
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM15_
+
+@}}
 [CStoAcucobolSL_]
 m_nType=1
 m_strAssignToName=path-tmp-exe

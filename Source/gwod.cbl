@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 5 ottobre 2023 15:42:56.
+       DATE-WRITTEN.        giovedì 5 ottobre 2023 16:45:05.
        REMARKS.
       *{TOTEM}END
 
@@ -41,6 +41,7 @@
            COPY "zoom-exe-mcg.sl".
            COPY "tmp-hit.sl".
            COPY "tmp-grp-exe.sl".
+           COPY "tmp-superset.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
@@ -59,6 +60,7 @@
            COPY "zoom-exe-mcg.fd".
            COPY "tmp-hit.fd".
            COPY "tmp-grp-exe.fd".
+           COPY "tmp-superset.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -140,6 +142,7 @@
        77 riga-aggiunta    PIC  999.
        77 sec-squeeze      PIC  99.
        77 exe-probabili    PIC  99.
+       77 como-split       PIC  99.
        77 tentativo        PIC  99.
        01 como-tex-data-tab.
            05 como-tex-data-el PIC  x(1000)
@@ -436,6 +439,9 @@
        77 intens-BMP       PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
+       77 path-tmp-superset            PIC  X(256).
+       77 STATUS-tmp-superset          PIC  X(2).
+           88 Valid-STATUS-tmp-superset VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -462,6 +468,7 @@
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
        77 TMP-DataSet1-tmp-hit-BUF     PIC X(6).
        77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(217).
+       77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -537,6 +544,11 @@
        77 DataSet1-tmp-grp-exe-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-tmp-grp-exe-KEY-Asc  VALUE "A".
           88 DataSet1-tmp-grp-exe-KEY-Desc VALUE "D".
+       77 DataSet1-tmp-superset-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-tmp-superset-LOCK  VALUE "Y".
+       77 DataSet1-tmp-superset-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-tmp-superset-KEY-Asc  VALUE "A".
+          88 DataSet1-tmp-superset-KEY-Desc VALUE "D".
 
        77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
@@ -1863,6 +1875,8 @@
       *    PERFORM OPEN-tmp-hit
       *    tmp-grp-exe OPEN MODE IS FALSE
       *    PERFORM OPEN-tmp-grp-exe
+      *    tmp-superset OPEN MODE IS FALSE
+      *    PERFORM OPEN-tmp-superset
       *    After Open
            .
 
@@ -2041,6 +2055,18 @@
       * <TOTEM:END>
            .
 
+       OPEN-tmp-superset.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-superset, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  OUTPUT tmp-superset
+           IF NOT Valid-STATUS-tmp-superset
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-superset, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-exercises
@@ -2064,6 +2090,8 @@
       *    PERFORM CLOSE-tmp-hit
       *    tmp-grp-exe CLOSE MODE IS FALSE
       *    PERFORM CLOSE-tmp-grp-exe
+      *    tmp-superset CLOSE MODE IS FALSE
+      *    PERFORM CLOSE-tmp-superset
       *    After Close
            .
 
@@ -2141,6 +2169,11 @@
 
        CLOSE-tmp-grp-exe.
       * <TOTEM:EPT. INIT:gwod, FD:tmp-grp-exe, BeforeClose>
+      * <TOTEM:END>
+           .
+
+       CLOSE-tmp-superset.
+      * <TOTEM:EPT. INIT:gwod, FD:tmp-superset, BeforeClose>
       * <TOTEM:END>
            .
 
@@ -4197,6 +4230,119 @@
       * <TOTEM:END>
            .
 
+       DataSet1-tmp-superset-INITSTART.
+           IF DataSet1-tmp-superset-KEY-Asc
+              MOVE Low-Value TO tss-key
+           ELSE
+              MOVE High-Value TO tss-key
+           END-IF
+           .
+
+       DataSet1-tmp-superset-INITEND.
+           IF DataSet1-tmp-superset-KEY-Asc
+              MOVE High-Value TO tss-key
+           ELSE
+              MOVE Low-Value TO tss-key
+           END-IF
+           .
+
+      * tmp-superset
+       DataSet1-tmp-superset-START.
+           IF DataSet1-tmp-superset-KEY-Asc
+              START tmp-superset KEY >= tss-key
+           ELSE
+              START tmp-superset KEY <= tss-key
+           END-IF
+           .
+
+       DataSet1-tmp-superset-START-NOTGREATER.
+           IF DataSet1-tmp-superset-KEY-Asc
+              START tmp-superset KEY <= tss-key
+           ELSE
+              START tmp-superset KEY >= tss-key
+           END-IF
+           .
+
+       DataSet1-tmp-superset-START-GREATER.
+           IF DataSet1-tmp-superset-KEY-Asc
+              START tmp-superset KEY > tss-key
+           ELSE
+              START tmp-superset KEY < tss-key
+           END-IF
+           .
+
+       DataSet1-tmp-superset-START-LESS.
+           IF DataSet1-tmp-superset-KEY-Asc
+              START tmp-superset KEY < tss-key
+           ELSE
+              START tmp-superset KEY > tss-key
+           END-IF
+           .
+
+       DataSet1-tmp-superset-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, BeforeReadRecord>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-superset-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, BeforeReadNext>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-superset-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, BeforeReadPrev>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-superset-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, BeforeWrite>
+      * <TOTEM:END>
+           WRITE tss-rec OF tmp-superset.
+           MOVE STATUS-tmp-superset TO TOTEM-ERR-STAT
+           MOVE "tmp-superset" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-superset-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-superset TO TOTEM-ERR-STAT
+           MOVE "tmp-superset" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-superset-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-superset TO TOTEM-ERR-STAT
+           MOVE "tmp-superset" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-superset, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE grp-rec OF groups
@@ -4212,6 +4358,7 @@
            INITIALIZE zem-rec OF zoom-exe-mcg
            INITIALIZE th-rec OF tmp-hit
            INITIALIZE tge-rec OF tmp-grp-exe
+           INITIALIZE tss-rec OF tmp-superset
            .
 
 
@@ -4441,6 +4588,14 @@
       * FD's Initialize Paragraph
        DataSet1-tmp-grp-exe-INITREC.
            INITIALIZE tge-rec OF tmp-grp-exe
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-tmp-superset-INITREC.
+           INITIALIZE tss-rec OF tmp-superset
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -6123,6 +6278,105 @@
            .
       * <TOTEM:END>
 
+       CHECK-WOD.
+      * <TOTEM:PARA. CHECK-WOD>
+           accept  como-data from century-date.
+           accept  como-ora  from time.
+           accept  path-tmp-superset from environment "PATH_ST".
+           inspect path-tmp-superset replacing trailing spaces by 
+           low-value.
+           string  path-tmp-superset delimited low-value
+                   "tmp-superset_"   delimited size
+                   como-data         delimited size
+                   "_"               delimited size
+                   como-ora          delimited size
+              into path-tmp-superset
+           end-string.                                                  
+                 
+           inspect path-tmp-superset replacing trailing low-value by 
+           spaces.
+           open output tmp-superset.    
+           close       tmp-superset.
+           open i-o    tmp-superset.
+           
+           set tutto-ok to true.
+           open input tmp-exe.
+           move low-value to tex-key.
+           start tmp-exe key >= tex-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-exe next at end exit perform end-read
+                    if tex-ss = 0
+                       exit perform cycle
+                    end-if
+                    move tex-day to tss-day
+                    move tex-ss  to tss-ss
+                    read tmp-superset 
+                         invalid 
+                         initialize tss-data replacing numeric data by 
+           zeroes
+                                                  alphanumeric data by 
+           spaces
+                    end-read
+                    add 1 to tss-exe
+                    move tex-split to tss-split-el(tss-exe)
+                    write tss-rec invalid rewrite tss-rec end-write
+                 end-perform
+           end-start.
+           close tmp-exe.
+
+           move low-value to tss-key
+           start tmp-superset key >= tss-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-superset next at end exit perform end-read
+                    if tss-exe < 2
+                       set errori to true
+                       display message "Sistemare il superset del giorno
+      -    " " tss-day"."
+                                x"0d0a""La sequenza della serie " 
+           tss-ss " ha 1 solo esercizio."
+                                 title tit-err
+                                  icon 2
+                       exit perform
+                    end-if
+                 end-perform
+           end-start.
+
+           if tutto-ok
+              move low-value to tss-key
+              start tmp-superset key >= tss-key
+                    invalid continue
+                not invalid
+                    perform until 1 = 2
+                       read tmp-superset next at end exit perform 
+           end-read
+                       perform varying idx from 1 by 1 
+                                 until idx = tss-exe
+                          add 1 to tss-split-el(idx) giving como-split
+                          if como-split not = tss-split-el(idx + 1)
+                             set errori to true
+                             display message "Sistemare il superset del 
+      -    "giorno " tss-day
+                                      x"0d0a""La serie " tss-ss " non è 
+      -    "in sequenza."
+                                       title tit-err
+                                        icon 2
+                             exit perform
+                          end-if
+                       end-perform
+                       if errori exit perform end-if
+                    end-perform
+              end-start
+           end-if.
+
+           close       tmp-superset.
+           delete file tmp-superset 
+           .
+      * <TOTEM:END>
+
        CONTROLLO.
       * <TOTEM:PARA. CONTROLLO>
       *     set tutto-ok to true. 
@@ -6231,9 +6485,18 @@
                    close tmp-exe            
                 end-if 
            when 78-col-ss
-                inquire gd1(riga, 78-col-ss), cell-data in col-ss
-                modify  gd1(riga, 78-col-ss), cell-data col-ss
-
+                inquire gd1(riga, 78-col-ss), cell-data col-ss
+                modify  gd1(riga, 78-col-ss), cell-data col-ss  
+                inquire gd1(riga, 78-col-day), hidden-data hiddenData
+                move hid-tex-key to tex-key
+                open i-o tmp-exe
+                read tmp-exe
+                move col-ss to tex-ss
+                rewrite tex-rec
+                set fromAggiungi to true  
+                open output tmp-hit
+                perform LOAD-GRID
+                set fromAggiungi to false
            end-evaluate 
            .
       * <TOTEM:END>
@@ -6851,13 +7114,21 @@
                     else
                        move 0  to sec-squeeze
                     end-if
-
-                    compute tot-durata  = tot-durata +
-                          ( exe-setting * 2 ) +
-                          ( col-series  * int-time  ) +
-                          ( int-rest    * ( col-series - 1 ) ) +
-                          ( sec-squeeze * col-series ) + 
-                          60 |Ipotetico rest tra una e l'altra
+                                               
+                    if tex-ss = 0
+                       compute tot-durata  = tot-durata +
+                             ( exe-setting * 2 ) +
+                             ( col-series  * int-time  ) +
+                             ( int-rest    * ( col-series - 1 ) ) +
+                             ( sec-squeeze * col-series ) + 
+                             60 |Ipotetico rest tra una e l'altra
+                    else
+                       compute tot-durata  = tot-durata +
+                             ( exe-setting * 2 ) +
+                             ( col-series  * int-time  ) +
+                             ( sec-squeeze * col-series ) + 
+                             ( int-rest / 2) 
+                    end-if
 
                     move tex-day      to th-day
                     move tex-mcg-code to th-mcg-code
@@ -6898,10 +7169,10 @@
            if tot-durata > 3600
               divide tot-durata by 3600 giving hh remainder resto
               if resto > 0
-                 if resto > 60
+                 if resto >= 60
                     compute mm = resto / 60
                  else
-                    move resto to mm
+                    move 0 to mm
                  end-if
               else
                  move 0 to mm 
@@ -7837,6 +8108,7 @@
 
        SALVA.
       * <TOTEM:PARA. SALVA>
+           perform CHECK-WOD.
       *     if mod = 0 
       *        exit paragraph 
       *     end-if.
@@ -7969,14 +8241,17 @@
 
        STAMPA-ANTEPRIMA.
       * <TOTEM:PARA. STAMPA-ANTEPRIMA>
-           if s-anteprima
-              accept link-stampante from environment "STAMPANTE_ANTEPRIM
-      -    "A"
-           else
-              move spaces to link-stampante
-           end-if.
-           call   "st-wod" using path-tmp-exe, link-stampante
-           cancel "st-wod"
+           perform CHECK-WOD.
+           if tutto-ok
+              if s-anteprima
+                 accept link-stampante from environment "STAMPANTE_ANTEP
+      -    "RIMA"
+              else
+                 move spaces to link-stampante
+              end-if
+              call   "st-wod" using path-tmp-exe, link-stampante
+              cancel "st-wod"
+           end-if 
            .
       * <TOTEM:END>
 

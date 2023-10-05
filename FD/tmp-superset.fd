@@ -1,0 +1,11 @@
+      *(( XFD FILE = tmp-superset ))
+       FD  tmp-superset.
+       01 tss-rec.
+           05 tss-key.
+               10 tss-day          PIC  9.
+               10 tss-ss           PIC  9.
+           05 tss-data.
+               10 tss-exe          PIC  99.
+               10 tss-split-tab.
+                   15 tss-split-el     PIC  99
+                              OCCURS 20 TIMES.

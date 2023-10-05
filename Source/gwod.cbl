@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 4 ottobre 2023 16:52:32.
+       DATE-WRITTEN.        giovedì 5 ottobre 2023 10:46:18.
        REMARKS.
       *{TOTEM}END
 
@@ -141,6 +141,9 @@
        77 sec-squeeze      PIC  99.
        77 exe-probabili    PIC  99.
        77 tentativo        PIC  99.
+       01 como-tex-data-tab.
+           05 como-tex-data-el PIC  x(1000)
+                      OCCURS 99 TIMES.
        01 exe-probabili-tab.
            05 exe-code-probabile-el        PIC  x(5)
                       OCCURS 50 TIMES.
@@ -426,6 +429,9 @@
                   USAGE IS COMP-4
                   VALUE IS 0.
        77 TECNICHE-BMP     PIC  S9(9)
+                  USAGE IS COMP-4
+                  VALUE IS 0.
+       77 intens-BMP       PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
 
@@ -1371,7 +1377,7 @@
            LINE 6,78,
            LINES 1,17 ,
            SIZE 28 PIXELS,
-           BITMAP-HANDLE TECNICHE-BMP,
+           BITMAP-HANDLE intens-BMP,
            BITMAP-NUMBER 1,
            FRAMED,
            SQUARE,
@@ -1679,7 +1685,7 @@
            CALL "w$bitmap" USING WBITMAP-DESTROY, random-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, PIU-MENO-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, UP-DOWN-BMP
-           CALL "w$bitmap" USING WBITMAP-DESTROY, TECNICHE-BMP
+           CALL "w$bitmap" USING WBITMAP-DESTROY, intens-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
       *    After-Program
            PERFORM ginqui-Ev-After-Program
@@ -1819,9 +1825,9 @@
            CALL "w$bitmap" USING WBITMAP-LOAD "UP-DOWN.BMP", 
                    GIVING UP-DOWN-BMP.
       * pb-int
-           COPY RESOURCE "TECNICHE.BMP".
-           CALL "w$bitmap" USING WBITMAP-LOAD "TECNICHE.BMP", 
-                   GIVING TECNICHE-BMP.
+           COPY RESOURCE "intens.BMP".
+           CALL "w$bitmap" USING WBITMAP-LOAD "intens.BMP", 
+                   GIVING intens-BMP.
       * TOOL-ESCI
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
@@ -6177,7 +6183,9 @@
                       perform ELIMINA-RIGA  
                       open i-o    tmp-exe  
                       open output tmp-hit
-                      perform LOAD-GRID
+                      set fromAggiungi to true
+                      perform LOAD-GRID       
+                      set fromAggiungi to false
                    else
                       if col-day not = hid-tex-day
                          move hid-tex-day to col-day
@@ -6526,6 +6534,37 @@
            delete tmp-exe record.
            close tmp-exe.  
            modify gd1, record-to-delete = riga.
+                        
+           open i-o tmp-exe.
+           move 0 to idx1.
+           initialize como-tex-data-tab.
+           move tex-day to como-giorno.
+           move low-value to tex-split.
+           start tmp-exe key >= tex-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-exe next at end exit perform end-read
+                    if tex-day not = como-giorno
+                       exit perform
+                    end-if
+                    add 1 to idx1
+                    move tex-data to como-tex-data-el(idx1)
+                    delete tmp-exe record
+                end-perform
+           end-start.
+     
+           if idx > 0
+              perform varying idx from 1 by 1 
+                        until idx > idx1
+                 move como-giorno to tex-day
+                 move idx         to tex-split
+                 move como-tex-data-el(idx) to tex-data
+                 write tex-rec
+              end-perform
+           end-if.
+
+           close tmp-exe.
 
            perform RICALCOLA-HIT-DIV.
            perform CALCOLA-HIT-BOTTONI         
@@ -6753,6 +6792,8 @@
                     read intexe
 
                     if fromAggiungi
+                       move tex-int-code to int-code
+                       read intexe
                        move tex-series to col-series
                        move tex-reps   to col-reps
                     else
@@ -8926,8 +8967,10 @@
               perform ABILITAZIONI
            else
               open i-o    tmp-exe  
-              open output tmp-hit
+              open output tmp-hit 
+              set fromAggiungi to true
               perform LOAD-GRID
+              set fromAggiungi to false
            end-if 
            
            .
@@ -9180,11 +9223,11 @@
                  move col-reps      to tex-reps
                  move col-series    to tex-series
                  move int-restpause to tex-int-restpause
-                 rewrite tex-rec         
+                 rewrite tex-rec          
+                 open output tmp-hit      
                  set fromAggiungi to true 
-                 open output tmp-hit
                  perform LOAD-GRID
-                 set fromAggiungi to true
+                 set fromAggiungi to false
               end-if 
            end-if 
            .

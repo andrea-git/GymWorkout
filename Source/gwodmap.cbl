@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 5 ottobre 2023 11:59:38.
+       DATE-WRITTEN.        giovedì 5 ottobre 2023 15:14:48.
        REMARKS.
       *{TOTEM}END
 
@@ -217,6 +217,8 @@
        77 chk-prim8-buf    PIC  9
                   VALUE IS 0.
        77 cb-mcg8-buf      PIC  X(50).
+       77 Calibri12BU-Occidentale
+                  USAGE IS HANDLE OF FONT.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -318,18 +320,18 @@
        78  78-ID-ef-codice VALUE 5001.
        78  78-ID-ef-desc VALUE 5002.
        78  78-ID-chk-prim1 VALUE 5003.
-       78  78-ID-chk-prim2 VALUE 5004.
-       78  78-ID-chk-prim3 VALUE 5005.
-       78  78-ID-chk-prim4 VALUE 5006.
-       78  78-ID-chk-prim5 VALUE 5007.
-       78  78-ID-chk-prim6 VALUE 5008.
-       78  78-ID-chk-prim7 VALUE 5009.
-       78  78-ID-cb-mcg1 VALUE 5010.
-       78  78-ID-cb-mcg2 VALUE 5011.
-       78  78-ID-cb-mcg3 VALUE 5012.
-       78  78-ID-cb-mcg4 VALUE 5013.
-       78  78-ID-cb-mcg5 VALUE 5014.
-       78  78-ID-cb-mcg6 VALUE 5015.
+       78  78-ID-cb-mcg1 VALUE 5004.
+       78  78-ID-chk-prim2 VALUE 5005.
+       78  78-ID-cb-mcg2 VALUE 5006.
+       78  78-ID-chk-prim3 VALUE 5007.
+       78  78-ID-cb-mcg3 VALUE 5008.
+       78  78-ID-chk-prim4 VALUE 5009.
+       78  78-ID-cb-mcg4 VALUE 5010.
+       78  78-ID-chk-prim5 VALUE 5011.
+       78  78-ID-cb-mcg5 VALUE 5012.
+       78  78-ID-chk-prim6 VALUE 5013.
+       78  78-ID-cb-mcg6 VALUE 5014.
+       78  78-ID-chk-prim7 VALUE 5015.
        78  78-ID-cb-mcg7 VALUE 5016.
        78  78-ID-gd1 VALUE 5017.
        78  78-ID-gd2 VALUE 5018.
@@ -412,134 +414,8 @@
            TITLE "Primario",
            VALUE chk-prim1-buf,
            VISIBLE v-macro1,
-           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
-           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
-           .
-      * CHECK BOX
-       05
-           chk-prim2, 
-           Check-Box, 
-           COL 48,60, 
-           LINE 4,78,
-           LINES 1,39 ,
-           SIZE 9,00 ,
-           ENABLED MOD,
-           EXCEPTION-VALUE 1003
-           FLAT,
-           ID IS 78-ID-chk-prim2,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NOTIFY,
-           TITLE "Primario",
-           VALUE chk-prim2-buf,
-           VISIBLE v-macro2,
-           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
-           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
-           .
-      * CHECK BOX
-       05
-           chk-prim3, 
-           Check-Box, 
-           COL 67,60, 
-           LINE 4,78,
-           LINES 1,39 ,
-           SIZE 9,00 ,
-           ENABLED MOD,
-           EXCEPTION-VALUE 1004
-           FLAT,
-           ID IS 78-ID-chk-prim3,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NOTIFY,
-           TITLE "Primario",
-           VALUE chk-prim3-buf,
-           VISIBLE v-macro3,
-           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
-           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
-           .
-      * CHECK BOX
-       05
-           chk-prim4, 
-           Check-Box, 
-           COL 86,60, 
-           LINE 4,78,
-           LINES 1,39 ,
-           SIZE 9,00 ,
-           ENABLED MOD,
-           EXCEPTION-VALUE 1005
-           FLAT,
-           ID IS 78-ID-chk-prim4,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NOTIFY,
-           TITLE "Primario",
-           VALUE chk-prim4-buf,
-           VISIBLE v-macro4,
-           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
-           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
-           .
-      * CHECK BOX
-       05
-           chk-prim5, 
-           Check-Box, 
-           COL 106,30, 
-           LINE 4,78,
-           LINES 1,39 ,
-           SIZE 9,00 ,
-           ENABLED MOD,
-           EXCEPTION-VALUE 1007
-           FLAT,
-           ID IS 78-ID-chk-prim5,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NOTIFY,
-           TITLE "Primario",
-           VALUE chk-prim5-buf,
-           VISIBLE v-macro5,
-           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
-           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
-           .
-      * CHECK BOX
-       05
-           chk-prim6, 
-           Check-Box, 
-           COL 125,20, 
-           LINE 4,78,
-           LINES 1,39 ,
-           SIZE 9,00 ,
-           ENABLED MOD,
-           EXCEPTION-VALUE 1008
-           FLAT,
-           ID IS 78-ID-chk-prim6,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NOTIFY,
-           TITLE "Primario",
-           VALUE chk-prim6-buf,
-           VISIBLE v-macro6,
-           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
-           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
-           .
-      * CHECK BOX
-       05
-           chk-prim7, 
-           Check-Box, 
-           COL 144,20, 
-           LINE 4,78,
-           LINES 1,39 ,
-           SIZE 9,00 ,
-           ENABLED MOD,
-           EXCEPTION-VALUE 1009
-           FLAT,
-           ID IS 78-ID-chk-prim7,                
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NOTIFY,
-           TITLE "Primario",
-           VALUE chk-prim7-buf,
-           VISIBLE v-macro7,
-           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
-           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
+           AFTER PROCEDURE chk-prim1-AfterProcedure,
+           BEFORE PROCEDURE chk-prim1-BeforeProcedure, 
            .
       * COMBO-BOX
        05
@@ -560,8 +436,29 @@
            UNSORTED,
            VALUE cb-mcg1-buf,
            VISIBLE v-macro1,
-           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           AFTER PROCEDURE cb-mcg1-AfterProcedure, 
+           BEFORE PROCEDURE cb-mcg1-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim2, 
+           Check-Box, 
+           COL 48,60, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1003
+           FLAT,
+           ID IS 78-ID-chk-prim2,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim2-buf,
+           VISIBLE v-macro2,
+           AFTER PROCEDURE chk-prim2-AfterProcedure,
+           BEFORE PROCEDURE chk-prim2-BeforeProcedure, 
            .
       * COMBO-BOX
        05
@@ -582,8 +479,29 @@
            UNSORTED,
            VALUE cb-mcg2-buf,
            VISIBLE v-macro2,
-           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           AFTER PROCEDURE cb-mcg2-AfterProcedure, 
+           BEFORE PROCEDURE cb-mcg2-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim3, 
+           Check-Box, 
+           COL 67,60, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1004
+           FLAT,
+           ID IS 78-ID-chk-prim3,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim3-buf,
+           VISIBLE v-macro3,
+           AFTER PROCEDURE chk-prim3-AfterProcedure,
+           BEFORE PROCEDURE chk-prim3-BeforeProcedure, 
            .
       * COMBO-BOX
        05
@@ -604,8 +522,29 @@
            UNSORTED,
            VALUE cb-mcg3-buf,
            VISIBLE v-macro3,
-           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           AFTER PROCEDURE cb-mcg3-AfterProcedure, 
+           BEFORE PROCEDURE cb-mcg3-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim4, 
+           Check-Box, 
+           COL 86,60, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1005
+           FLAT,
+           ID IS 78-ID-chk-prim4,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim4-buf,
+           VISIBLE v-macro4,
+           AFTER PROCEDURE chk-prim4-AfterProcedure,
+           BEFORE PROCEDURE chk-prim4-BeforeProcedure, 
            .
       * COMBO-BOX
        05
@@ -626,8 +565,29 @@
            UNSORTED,
            VALUE cb-mcg4-buf,
            VISIBLE v-macro4,
-           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           AFTER PROCEDURE cb-mcg4-AfterProcedure, 
+           BEFORE PROCEDURE cb-mcg4-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim5, 
+           Check-Box, 
+           COL 106,30, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1007
+           FLAT,
+           ID IS 78-ID-chk-prim5,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim5-buf,
+           VISIBLE v-macro5,
+           AFTER PROCEDURE chk-prim5-AfterProcedure,
+           BEFORE PROCEDURE chk-prim5-BeforeProcedure, 
            .
       * COMBO-BOX
        05
@@ -648,8 +608,29 @@
            UNSORTED,
            VALUE cb-mcg5-buf,
            VISIBLE v-macro5,
-           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           AFTER PROCEDURE cb-mcg5-AfterProcedure, 
+           BEFORE PROCEDURE cb-mcg5-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim6, 
+           Check-Box, 
+           COL 125,20, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1008
+           FLAT,
+           ID IS 78-ID-chk-prim6,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim6-buf,
+           VISIBLE v-macro6,
+           AFTER PROCEDURE chk-prim6-AfterProcedure,
+           BEFORE PROCEDURE chk-prim6-BeforeProcedure, 
            .
       * COMBO-BOX
        05
@@ -670,8 +651,29 @@
            UNSORTED,
            VALUE cb-mcg6-buf,
            VISIBLE v-macro6,
-           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           AFTER PROCEDURE cb-mcg6-AfterProcedure, 
+           BEFORE PROCEDURE cb-mcg6-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim7, 
+           Check-Box, 
+           COL 144,20, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1009
+           FLAT,
+           ID IS 78-ID-chk-prim7,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim7-buf,
+           VISIBLE v-macro7,
+           AFTER PROCEDURE chk-prim7-AfterProcedure,
+           BEFORE PROCEDURE chk-prim7-BeforeProcedure, 
            .
       * COMBO-BOX
        05
@@ -692,8 +694,51 @@
            UNSORTED,
            VALUE cb-mcg7-buf,
            VISIBLE v-macro7,
-           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
+           AFTER PROCEDURE cb-mcg7-AfterProcedure, 
+           BEFORE PROCEDURE cb-mcg7-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-prim8, 
+           Check-Box, 
+           COL 163,20, 
+           LINE 4,78,
+           LINES 1,39 ,
+           SIZE 9,00 ,
+           ENABLED MOD,
+           EXCEPTION-VALUE 1010
+           FLAT,
+           ID IS 48,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Primario",
+           VALUE chk-prim8-buf,
+           VISIBLE v-macro8,
+           AFTER PROCEDURE chk-prim8-AfterProcedure,
+           BEFORE PROCEDURE chk-prim8-BeforeProcedure, 
+           .
+      * COMBO-BOX
+       05
+           cb-mcg8, 
+           Combo-Box, 
+           COL 155,00, 
+           LINE 6,17,
+           LINES 12,00 ,
+           SIZE 17,00 ,
+           3-D,
+           COLOR IS 513,
+           ENABLED MOD,
+           ID IS 49,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-mcg8-buf,
+           VISIBLE v-macro8,
+           AFTER PROCEDURE cb-mcg8-AfterProcedure, 
+           BEFORE PROCEDURE cb-mcg8-BeforeProcedure, 
            .
       * LABEL
        05
@@ -852,7 +897,7 @@
            gd1, 
            Grid, 
            COL 3,50, 
-           LINE 14,04,
+           LINE 14,05,
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
@@ -885,7 +930,7 @@
            gd2, 
            Grid, 
            COL 27,60, 
-           LINE 14,04,
+           LINE 14,05,
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
@@ -918,7 +963,7 @@
            gd3, 
            Grid, 
            COL 51,70, 
-           LINE 14,04,
+           LINE 14,05,
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
@@ -951,7 +996,7 @@
            gd4, 
            Grid, 
            COL 75,70, 
-           LINE 14,04,
+           LINE 14,05,
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
@@ -984,7 +1029,7 @@
            gd5, 
            Grid, 
            COL 100,10, 
-           LINE 14,04,
+           LINE 14,05,
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
@@ -1050,7 +1095,7 @@
            gd7, 
            Grid, 
            COL 148,40, 
-           LINE 14,04,
+           LINE 14,05,
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
@@ -1099,7 +1144,7 @@
            Screen1-La-2aaba, 
            Label, 
            COL 3,50, 
-           LINE 12,43,
+           LINE 12,44,
            LINES 1,30 ,
            SIZE 22,30 ,
            ID IS 24,
@@ -1347,49 +1392,6 @@
            TITLE "Default",
            .
 
-      * CHECK BOX
-       05
-           chk-prim8, 
-           Check-Box, 
-           COL 163,20, 
-           LINE 4,78,
-           LINES 1,39 ,
-           SIZE 9,00 ,
-           ENABLED MOD,
-           EXCEPTION-VALUE 1010
-           FLAT,
-           ID IS 16,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           NOTIFY,
-           TITLE "Primario",
-           VALUE chk-prim8-buf,
-           VISIBLE v-macro8,
-           AFTER PROCEDURE Screen1-Cb-1-AfterProcedure,
-           BEFORE PROCEDURE Screen1-Cb-1-BeforeProcedure, 
-           .
-      * COMBO-BOX
-       05
-           cb-mcg8, 
-           Combo-Box, 
-           COL 155,00, 
-           LINE 6,17,
-           LINES 12,00 ,
-           SIZE 17,00 ,
-           3-D,
-           COLOR IS 513,
-           ENABLED MOD,
-           ID IS 46,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           MASS-UPDATE 0,
-           DROP-LIST,
-           UNSORTED,
-           VALUE cb-mcg8-buf,
-           VISIBLE v-macro8,
-           AFTER PROCEDURE Screen1-Cm-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen1-Cm-1-BeforeProcedure, 
-           .
       * LABEL
        05
            lab-macro8, 
@@ -1398,7 +1400,7 @@
            LINE 4,70,
            LINES 1,30 ,
            SIZE 8,50 ,
-           ID IS 39,
+           ID IS 50,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -1706,6 +1708,22 @@
            AFTER PROCEDURE TOOL-ORD-AfterProcedure,
            BEFORE PROCEDURE TOOL-ORD-BeforeProcedure, 
            .
+      * PUSH BUTTON
+       05
+           Screen1-Pb-1, 
+           Push-Button, 
+           COL 121,60, 
+           LINE 1,96,
+           LINES 0,91 ,
+           SIZE 4,50 ,
+           FONT IS Calibri12BU-Occidentale,
+           ID IS 123,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Push Button",
+           VISIBLE 0,
+           .
+
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
@@ -1815,6 +1833,7 @@
       * <TOTEM:END>
            DESTROY Calibri12-Occidentale
            DESTROY Calibri14-Occidentale
+           DESTROY Calibri12BU-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
       *    After-Program
            PERFORM ginqui-Ev-After-Program
@@ -1869,6 +1888,19 @@
            MOVE 0 TO WFONT-CHAR-SET
            CALL "W$FONT" USING WFONT-GET-FONT, 
                      Calibri14-Occidentale, WFONT-DATA
+      * Calibri12BU-Occidentale
+           INITIALIZE WFONT-DATA Calibri12BU-Occidentale
+           MOVE 12 TO WFONT-SIZE
+           MOVE "Calibri" TO WFONT-NAME
+           SET WFCHARSET-DONT-CARE TO TRUE
+           SET WFONT-BOLD TO TRUE
+           SET WFONT-ITALIC TO FALSE
+           SET WFONT-UNDERLINE TO TRUE
+           SET WFONT-STRIKEOUT TO FALSE
+           SET WFONT-FIXED-PITCH TO FALSE
+           MOVE 0 TO WFONT-CHAR-SET
+           CALL "W$FONT" USING WFONT-GET-FONT, 
+                     Calibri12BU-Occidentale, WFONT-DATA
            .
 
        INIT-BMP.
@@ -2834,6 +2866,10 @@
        cb-mcg7-Content.
            .
 
+      * COMBO-BOX
+       cb-mcg8-Content.
+           .
+
       * GRID
        gd1-Content.
       * CELLS' SETTING
@@ -2944,10 +2980,6 @@
       * CELLS' SETTING
               MODIFY gd7, X = 4, Y = 1,
                 CELL-DATA = "SS",
-           .
-
-      * COMBO-BOX
-       cb-mcg8-Content.
            .
 
       * FD's Initialize Paragraph
@@ -3271,6 +3303,8 @@
            PERFORM cb-mcg6-Content
       * COMBO-BOX
            PERFORM cb-mcg7-Content
+      * COMBO-BOX
+           PERFORM cb-mcg8-Content
       * GRID
            PERFORM gd1-Content
       * GRID
@@ -3285,8 +3319,6 @@
            PERFORM gd6-Content
       * GRID
            PERFORM gd7-Content
-      * COMBO-BOX
-           PERFORM cb-mcg8-Content
            .
 
        Form1-DataSet1-CHANGETO-KEY1.
@@ -5465,6 +5497,95 @@
            .
       * <TOTEM:END>
 
+       EVIDENZIA-GRUPPI.
+      * <TOTEM:PARA. EVIDENZIA-GRUPPI>
+           if check-mcg = 0
+              move low-value to como-value
+           else
+              move el-mcg(check-mcg) to como-value
+           end-if.
+              
+           inquire gd1, last-row in tot-righe.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd1(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd1(store-riga), row-font = 
+           Calibri12BU-Occidentale
+              else                                                    
+                 modify gd1(store-riga), row-font = 
+           Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd2(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd2(store-riga), row-font = 
+           Calibri12BU-Occidentale
+              else                                                    
+                 modify gd2(store-riga), row-font = 
+           Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd3(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd3(store-riga), row-font = 
+           Calibri12BU-Occidentale
+              else                                                    
+                 modify gd3(store-riga), row-font = 
+           Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd4(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd4(store-riga), row-font = 
+           Calibri12BU-Occidentale
+              else                                                    
+                 modify gd4(store-riga), row-font = 
+           Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd5(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd5(store-riga), row-font = 
+           Calibri12BU-Occidentale
+              else                                                    
+                 modify gd5(store-riga), row-font = 
+           Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd6(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd6(store-riga), row-font = 
+           Calibri12BU-Occidentale
+              else                                                    
+                 modify gd6(store-riga), row-font = 
+           Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd7(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd7(store-riga), row-font = 
+           Calibri12BU-Occidentale
+              else                                                    
+                 modify gd7(store-riga), row-font = 
+           Calibri12-Occidentale
+              end-if
+           end-perform 
+           .
+      * <TOTEM:END>
+
        FORMAT-VALUE.
       * <TOTEM:PARA. FORMAT-VALUE>
            inspect como-value replacing leading x"30" by x"20".
@@ -6754,6 +6875,16 @@
            .
       * <TOTEM:END>
 
+       Screen1-Cb-1-BeforeProcedure.
+      * <TOTEM:PARA. Screen1-Cb-1-BeforeProcedure>
+           .
+      * <TOTEM:END>
+
+       Screen1-Cb-1-AfterProcedure.
+      * <TOTEM:PARA. Screen1-Cb-1-AfterProcedure>
+           .
+      * <TOTEM:END>
+
       * EVENT PARAGRAPH
        NUOVO-LinkTo.
       * <TOTEM:PARA. NUOVO-LinkTo>
@@ -7312,16 +7443,6 @@
            perform SPOSTAMENTO 
            .
       * <TOTEM:END>
-       Screen1-Cb-1-BeforeProcedure.
-      * <TOTEM:PARA. Screen1-Cb-1-BeforeProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
-           .
-      * <TOTEM:END>
-       Screen1-Cb-1-AfterProcedure.
-      * <TOTEM:PARA. Screen1-Cb-1-AfterProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-           .
-      * <TOTEM:END>
        chk-prim1-LinkTo.
       * <TOTEM:PARA. chk-prim1-LinkTo>
            move 1 to check-mcg.
@@ -7364,20 +7485,230 @@
            perform COLORA-PRIMARY 
            .
       * <TOTEM:END>
-       Screen1-Cm-1-BeforeProcedure.
-      * <TOTEM:PARA. Screen1-Cm-1-BeforeProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
-           .
-      * <TOTEM:END>
-       Screen1-Cm-1-AfterProcedure.
-      * <TOTEM:PARA. Screen1-Cm-1-AfterProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-           .
-      * <TOTEM:END>
        chk-prim8-LinkTo.
       * <TOTEM:PARA. chk-prim8-LinkTo>
            move 8 to check-mcg.
            perform COLORA-PRIMARY 
+           .
+      * <TOTEM:END>
+       cb-mcg1-BeforeProcedure.
+      * <TOTEM:PARA. cb-mcg1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 1 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg2-BeforeProcedure.
+      * <TOTEM:PARA. cb-mcg2-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 2 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg3-BeforeProcedure.
+      * <TOTEM:PARA. cb-mcg3-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 3 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg4-BeforeProcedure.
+      * <TOTEM:PARA. cb-mcg4-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 4 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg5-BeforeProcedure.
+      * <TOTEM:PARA. cb-mcg5-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 5 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg6-BeforeProcedure.
+      * <TOTEM:PARA. cb-mcg6-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 6 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg7-BeforeProcedure.
+      * <TOTEM:PARA. cb-mcg7-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 7 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg8-BeforeProcedure.
+      * <TOTEM:PARA. cb-mcg8-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       cb-mcg1-AfterProcedure.
+      * <TOTEM:PARA. cb-mcg1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg2-AfterProcedure.
+      * <TOTEM:PARA. cb-mcg2-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg3-AfterProcedure.
+      * <TOTEM:PARA. cb-mcg3-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg4-AfterProcedure.
+      * <TOTEM:PARA. cb-mcg4-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg5-AfterProcedure.
+      * <TOTEM:PARA. cb-mcg5-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg6-AfterProcedure.
+      * <TOTEM:PARA. cb-mcg6-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg7-AfterProcedure.
+      * <TOTEM:PARA. cb-mcg7-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       cb-mcg8-AfterProcedure.
+      * <TOTEM:PARA. cb-mcg8-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       chk-prim1-BeforeProcedure.
+      * <TOTEM:PARA. chk-prim1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 1 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim2-BeforeProcedure.
+      * <TOTEM:PARA. chk-prim2-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 2 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim3-BeforeProcedure.
+      * <TOTEM:PARA. chk-prim3-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 3 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim4-BeforeProcedure.
+      * <TOTEM:PARA. chk-prim4-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 4 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim5-BeforeProcedure.
+      * <TOTEM:PARA. chk-prim5-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 5 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim6-BeforeProcedure.
+      * <TOTEM:PARA. chk-prim6-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 6 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim7-BeforeProcedure.
+      * <TOTEM:PARA. chk-prim7-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 7 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim8-BeforeProcedure.
+      * <TOTEM:PARA. chk-prim8-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           move 8 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim1-AfterProcedure.
+      * <TOTEM:PARA. chk-prim1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim2-AfterProcedure.
+      * <TOTEM:PARA. chk-prim2-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim3-AfterProcedure.
+      * <TOTEM:PARA. chk-prim3-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim4-AfterProcedure.
+      * <TOTEM:PARA. chk-prim4-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim5-AfterProcedure.
+      * <TOTEM:PARA. chk-prim5-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim6-AfterProcedure.
+      * <TOTEM:PARA. chk-prim6-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim7-AfterProcedure.
+      * <TOTEM:PARA. chk-prim7-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
+           .
+      * <TOTEM:END>
+       chk-prim8-AfterProcedure.
+      * <TOTEM:PARA. chk-prim8-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI 
            .
       * <TOTEM:END>
 

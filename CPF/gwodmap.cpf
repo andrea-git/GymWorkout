@@ -11,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A591032-488-73020652
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A513852-85-2267919328
 
 {{@DESCRIPTION:
 
@@ -1139,6 +1139,15 @@ m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM109_WK
 
 @}}
+[FDITEM110_WK]
+m_strName=Calibri12BU-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM110_WK
+
+@}}
 
 
 [LINKAGE_SECTION]
@@ -1529,9 +1538,55 @@ Begin Screen Form1
       Visible           = FALSE
       Visible Variable  = v-macro1
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cb-1-BeforeProcedure
-      After Procedure   = Screen1-Cb-1-AfterProcedure
+      Before Procedure  = chk-prim1-BeforeProcedure
+      After Procedure   = chk-prim1-AfterProcedure
       Link To           = chk-prim1-LinkTo
+   End
+   Begin Combo-Box cb-mcg1
+      SCREEN-COL        = 21,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg1
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 21,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 40
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 4
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg1-buf
+      Visible           = NONE
+      Visible Variable  = v-macro1
+      Width in Cells    = TRUE
+      Before Procedure  = cb-mcg1-BeforeProcedure
+      After Procedure   = cb-mcg1-AfterProcedure
    End
    Begin Check-Box chk-prim2
       SCREEN-COL        = 48,60
@@ -1569,7 +1624,7 @@ Begin Screen Form1
       Self Act          = FALSE
       Size              = 9,00
       Size Unit         = Default
-      Tab Order         = 4
+      Tab Order         = 5
       Termination Value = 0
       Title             = "Primario"
       Value             = 0:FALSE
@@ -1577,9 +1632,55 @@ Begin Screen Form1
       Visible           = FALSE
       Visible Variable  = v-macro2
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cb-1-BeforeProcedure
-      After Procedure   = Screen1-Cb-1-AfterProcedure
+      Before Procedure  = chk-prim2-BeforeProcedure
+      After Procedure   = chk-prim2-AfterProcedure
       Link To           = chk-prim2-LinkTo
+   End
+   Begin Combo-Box cb-mcg2
+      SCREEN-COL        = 40,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg2
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 40,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 41
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 6
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg2-buf
+      Visible           = NONE
+      Visible Variable  = v-macro2
+      Width in Cells    = TRUE
+      Before Procedure  = cb-mcg2-BeforeProcedure
+      After Procedure   = cb-mcg2-AfterProcedure
    End
    Begin Check-Box chk-prim3
       SCREEN-COL        = 67,60
@@ -1617,7 +1718,7 @@ Begin Screen Form1
       Self Act          = FALSE
       Size              = 9,00
       Size Unit         = Default
-      Tab Order         = 5
+      Tab Order         = 7
       Termination Value = 0
       Title             = "Primario"
       Value             = 0:FALSE
@@ -1625,9 +1726,55 @@ Begin Screen Form1
       Visible           = FALSE
       Visible Variable  = v-macro3
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cb-1-BeforeProcedure
-      After Procedure   = Screen1-Cb-1-AfterProcedure
+      Before Procedure  = chk-prim3-BeforeProcedure
+      After Procedure   = chk-prim3-AfterProcedure
       Link To           = chk-prim3-LinkTo
+   End
+   Begin Combo-Box cb-mcg3
+      SCREEN-COL        = 59,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg3
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 59,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 42
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 8
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg3-buf
+      Visible           = NONE
+      Visible Variable  = v-macro3
+      Width in Cells    = TRUE
+      Before Procedure  = cb-mcg3-BeforeProcedure
+      After Procedure   = cb-mcg3-AfterProcedure
    End
    Begin Check-Box chk-prim4
       SCREEN-COL        = 86,60
@@ -1665,7 +1812,7 @@ Begin Screen Form1
       Self Act          = FALSE
       Size              = 9,00
       Size Unit         = Default
-      Tab Order         = 6
+      Tab Order         = 9
       Termination Value = 0
       Title             = "Primario"
       Value             = 0:FALSE
@@ -1673,9 +1820,55 @@ Begin Screen Form1
       Visible           = FALSE
       Visible Variable  = v-macro4
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cb-1-BeforeProcedure
-      After Procedure   = Screen1-Cb-1-AfterProcedure
+      Before Procedure  = chk-prim4-BeforeProcedure
+      After Procedure   = chk-prim4-AfterProcedure
       Link To           = chk-prim4-LinkTo
+   End
+   Begin Combo-Box cb-mcg4
+      SCREEN-COL        = 78,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg4
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 78,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 43
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 10
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg4-buf
+      Visible           = NONE
+      Visible Variable  = v-macro4
+      Width in Cells    = TRUE
+      Before Procedure  = cb-mcg4-BeforeProcedure
+      After Procedure   = cb-mcg4-AfterProcedure
    End
    Begin Check-Box chk-prim5
       SCREEN-COL        = 106,30
@@ -1713,7 +1906,7 @@ Begin Screen Form1
       Self Act          = FALSE
       Size              = 9,00
       Size Unit         = Default
-      Tab Order         = 7
+      Tab Order         = 11
       Termination Value = 0
       Title             = "Primario"
       Value             = 0:FALSE
@@ -1721,9 +1914,55 @@ Begin Screen Form1
       Visible           = FALSE
       Visible Variable  = v-macro5
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cb-1-BeforeProcedure
-      After Procedure   = Screen1-Cb-1-AfterProcedure
+      Before Procedure  = chk-prim5-BeforeProcedure
+      After Procedure   = chk-prim5-AfterProcedure
       Link To           = chk-prim5-LinkTo
+   End
+   Begin Combo-Box cb-mcg5
+      SCREEN-COL        = 98,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg5
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 98,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 44
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 12
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg5-buf
+      Visible           = NONE
+      Visible Variable  = v-macro5
+      Width in Cells    = TRUE
+      Before Procedure  = cb-mcg5-BeforeProcedure
+      After Procedure   = cb-mcg5-AfterProcedure
    End
    Begin Check-Box chk-prim6
       SCREEN-COL        = 125,20
@@ -1761,7 +2000,7 @@ Begin Screen Form1
       Self Act          = FALSE
       Size              = 9,00
       Size Unit         = Default
-      Tab Order         = 8
+      Tab Order         = 13
       Termination Value = 0
       Title             = "Primario"
       Value             = 0:FALSE
@@ -1769,9 +2008,55 @@ Begin Screen Form1
       Visible           = FALSE
       Visible Variable  = v-macro6
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cb-1-BeforeProcedure
-      After Procedure   = Screen1-Cb-1-AfterProcedure
+      Before Procedure  = chk-prim6-BeforeProcedure
+      After Procedure   = chk-prim6-AfterProcedure
       Link To           = chk-prim6-LinkTo
+   End
+   Begin Combo-Box cb-mcg6
+      SCREEN-COL        = 117,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg6
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 117,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 45
+      ID Variable       = AUTO-ID
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 14
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg6-buf
+      Visible           = NONE
+      Visible Variable  = v-macro6
+      Width in Cells    = TRUE
+      Before Procedure  = cb-mcg6-BeforeProcedure
+      After Procedure   = cb-mcg6-AfterProcedure
    End
    Begin Check-Box chk-prim7
       SCREEN-COL        = 144,20
@@ -1809,7 +2094,7 @@ Begin Screen Form1
       Self Act          = FALSE
       Size              = 9,00
       Size Unit         = Default
-      Tab Order         = 9
+      Tab Order         = 15
       Termination Value = 0
       Title             = "Primario"
       Value             = 0:FALSE
@@ -1817,285 +2102,9 @@ Begin Screen Form1
       Visible           = FALSE
       Visible Variable  = v-macro7
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cb-1-BeforeProcedure
-      After Procedure   = Screen1-Cb-1-AfterProcedure
+      Before Procedure  = chk-prim7-BeforeProcedure
+      After Procedure   = chk-prim7-AfterProcedure
       Link To           = chk-prim7-LinkTo
-   End
-   Begin Combo-Box cb-mcg1
-      SCREEN-COL        = 21,00
-      SCREEN-LINE       = 6,17
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = cb-mcg1
-      Border            = 3D
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 21,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Enable Variable   = MOD
-      Exception Value   = 0
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 40
-      ID Variable       = AUTO-ID
-      Line              = 6,17
-      Lines             = 12,00
-      Lines Unit        = Default
-      Mass Update       = 0:Fast-Update
-      Max Text          = 0
-      No Tab            = FALSE
-      Notify DblClick   = FALSE
-      Notify SelChange  = FALSE
-      Occurs            = 0
-      Size              = 17,00
-      Size Unit         = Default
-      Style             = Drop List
-      Tab Order         = 10
-      Termination Value = 0
-      Unsorted          = TRUE
-      Value Picture     = X(50)
-      Value Variable    = cb-mcg1-buf
-      Visible           = NONE
-      Visible Variable  = v-macro1
-      Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cm-1-BeforeProcedure
-      After Procedure   = Screen1-Cm-1-AfterProcedure
-   End
-   Begin Combo-Box cb-mcg2
-      SCREEN-COL        = 40,00
-      SCREEN-LINE       = 6,17
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = cb-mcg2
-      Border            = 3D
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 40,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Enable Variable   = MOD
-      Exception Value   = 0
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 41
-      ID Variable       = AUTO-ID
-      Line              = 6,17
-      Lines             = 12,00
-      Lines Unit        = Default
-      Mass Update       = 0:Fast-Update
-      Max Text          = 0
-      No Tab            = FALSE
-      Notify DblClick   = FALSE
-      Notify SelChange  = FALSE
-      Occurs            = 0
-      Size              = 17,00
-      Size Unit         = Default
-      Style             = Drop List
-      Tab Order         = 11
-      Termination Value = 0
-      Unsorted          = TRUE
-      Value Picture     = X(50)
-      Value Variable    = cb-mcg2-buf
-      Visible           = NONE
-      Visible Variable  = v-macro2
-      Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cm-1-BeforeProcedure
-      After Procedure   = Screen1-Cm-1-AfterProcedure
-   End
-   Begin Combo-Box cb-mcg3
-      SCREEN-COL        = 59,00
-      SCREEN-LINE       = 6,17
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = cb-mcg3
-      Border            = 3D
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 59,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Enable Variable   = MOD
-      Exception Value   = 0
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 42
-      ID Variable       = AUTO-ID
-      Line              = 6,17
-      Lines             = 12,00
-      Lines Unit        = Default
-      Mass Update       = 0:Fast-Update
-      Max Text          = 0
-      No Tab            = FALSE
-      Notify DblClick   = FALSE
-      Notify SelChange  = FALSE
-      Occurs            = 0
-      Size              = 17,00
-      Size Unit         = Default
-      Style             = Drop List
-      Tab Order         = 12
-      Termination Value = 0
-      Unsorted          = TRUE
-      Value Picture     = X(50)
-      Value Variable    = cb-mcg3-buf
-      Visible           = NONE
-      Visible Variable  = v-macro3
-      Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cm-1-BeforeProcedure
-      After Procedure   = Screen1-Cm-1-AfterProcedure
-   End
-   Begin Combo-Box cb-mcg4
-      SCREEN-COL        = 78,00
-      SCREEN-LINE       = 6,17
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = cb-mcg4
-      Border            = 3D
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 78,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Enable Variable   = MOD
-      Exception Value   = 0
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 43
-      ID Variable       = AUTO-ID
-      Line              = 6,17
-      Lines             = 12,00
-      Lines Unit        = Default
-      Mass Update       = 0:Fast-Update
-      Max Text          = 0
-      No Tab            = FALSE
-      Notify DblClick   = FALSE
-      Notify SelChange  = FALSE
-      Occurs            = 0
-      Size              = 17,00
-      Size Unit         = Default
-      Style             = Drop List
-      Tab Order         = 13
-      Termination Value = 0
-      Unsorted          = TRUE
-      Value Picture     = X(50)
-      Value Variable    = cb-mcg4-buf
-      Visible           = NONE
-      Visible Variable  = v-macro4
-      Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cm-1-BeforeProcedure
-      After Procedure   = Screen1-Cm-1-AfterProcedure
-   End
-   Begin Combo-Box cb-mcg5
-      SCREEN-COL        = 98,00
-      SCREEN-LINE       = 6,17
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = cb-mcg5
-      Border            = 3D
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 98,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Enable Variable   = MOD
-      Exception Value   = 0
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 44
-      ID Variable       = AUTO-ID
-      Line              = 6,17
-      Lines             = 12,00
-      Lines Unit        = Default
-      Mass Update       = 0:Fast-Update
-      Max Text          = 0
-      No Tab            = FALSE
-      Notify DblClick   = FALSE
-      Notify SelChange  = FALSE
-      Occurs            = 0
-      Size              = 17,00
-      Size Unit         = Default
-      Style             = Drop List
-      Tab Order         = 14
-      Termination Value = 0
-      Unsorted          = TRUE
-      Value Picture     = X(50)
-      Value Variable    = cb-mcg5-buf
-      Visible           = NONE
-      Visible Variable  = v-macro5
-      Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cm-1-BeforeProcedure
-      After Procedure   = Screen1-Cm-1-AfterProcedure
-   End
-   Begin Combo-Box cb-mcg6
-      SCREEN-COL        = 117,00
-      SCREEN-LINE       = 6,17
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = cb-mcg6
-      Border            = 3D
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 117,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Enable Variable   = MOD
-      Exception Value   = 0
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 45
-      ID Variable       = AUTO-ID
-      Line              = 6,17
-      Lines             = 12,00
-      Lines Unit        = Default
-      Mass Update       = 0:Fast-Update
-      Max Text          = 0
-      No Tab            = FALSE
-      Notify DblClick   = FALSE
-      Notify SelChange  = FALSE
-      Occurs            = 0
-      Size              = 17,00
-      Size Unit         = Default
-      Style             = Drop List
-      Tab Order         = 15
-      Termination Value = 0
-      Unsorted          = TRUE
-      Value Picture     = X(50)
-      Value Variable    = cb-mcg6-buf
-      Visible           = NONE
-      Visible Variable  = v-macro6
-      Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cm-1-BeforeProcedure
-      After Procedure   = Screen1-Cm-1-AfterProcedure
    End
    Begin Combo-Box cb-mcg7
       SCREEN-COL        = 136,00
@@ -2140,8 +2149,100 @@ Begin Screen Form1
       Visible           = NONE
       Visible Variable  = v-macro7
       Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cm-1-BeforeProcedure
-      After Procedure   = Screen1-Cm-1-AfterProcedure
+      Before Procedure  = cb-mcg7-BeforeProcedure
+      After Procedure   = cb-mcg7-AfterProcedure
+   End
+   Begin Check-Box chk-prim8
+      SCREEN-COL        = 163,20
+      SCREEN-LINE       = 4,78
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = chk-prim8
+      Bitmap Frame      = FALSE
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 0
+      Column            = 163,20
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 1010
+      Flat              = TRUE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 48
+      Left Text         = FALSE
+      Line              = 4,78
+      Lines             = 1,39
+      Lines Unit        = Default
+      No Tab            = FALSE
+      Notify            = TRUE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 9,00
+      Size Unit         = Default
+      Tab Order         = 17
+      Termination Value = 0
+      Title             = "Primario"
+      Value             = 0:FALSE
+      Value Variable    = chk-prim8-buf
+      Visible           = FALSE
+      Visible Variable  = v-macro8
+      Width in Cells    = TRUE
+      Before Procedure  = chk-prim8-BeforeProcedure
+      After Procedure   = chk-prim8-AfterProcedure
+      Link To           = chk-prim8-LinkTo
+   End
+   Begin Combo-Box cb-mcg8
+      SCREEN-COL        = 155,00
+      SCREEN-LINE       = 6,17
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = cb-mcg8
+      Border            = 3D
+      Case              = Mixed
+      Clines            = 0
+      Clines Unit       = Default
+      Color             = 513
+      Column            = 155,00
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Enable Variable   = MOD
+      Exception Value   = 0
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 49
+      Line              = 6,17
+      Lines             = 12,00
+      Lines Unit        = Default
+      Mass Update       = 0:Fast-Update
+      Max Text          = 0
+      No Tab            = FALSE
+      Notify DblClick   = FALSE
+      Notify SelChange  = FALSE
+      Occurs            = 0
+      Size              = 17,00
+      Size Unit         = Default
+      Style             = Drop List
+      Tab Order         = 18
+      Termination Value = 0
+      Unsorted          = TRUE
+      Value Picture     = X(50)
+      Value Variable    = cb-mcg8-buf
+      Visible           = NONE
+      Visible Variable  = v-macro8
+      Width in Cells    = TRUE
+      Before Procedure  = cb-mcg8-BeforeProcedure
+      After Procedure   = cb-mcg8-AfterProcedure
    End
    Begin Label Screen1-La-1
       SCREEN-COL        = 2,90
@@ -2170,7 +2271,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 10,00
       Size Unit         = Default
-      Tab Order         = 17
+      Tab Order         = 19
       Title             = "Codice"
       Transparent       = TRUE
       Visible           = NONE
@@ -2208,7 +2309,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 3,29
       Size Unit         = Default
-      Tab Order         = 18
+      Tab Order         = 20
       Title             = "CUSTOM CONTROL"
       Transparent       = TRUE
       Visible           = NONE
@@ -2244,7 +2345,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 2,43
       Size Unit         = Default
-      Tab Order         = 19
+      Tab Order         = 21
       Title             = "BlockPgm"
       Transparent       = TRUE
       Visible           = NONE
@@ -2278,7 +2379,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 10,00
       Size Unit         = Default
-      Tab Order         = 20
+      Tab Order         = 22
       Title             = "Descrizione"
       Transparent       = TRUE
       Visible           = NONE
@@ -2311,7 +2412,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 18,00
       Size Unit         = Default
-      Tab Order         = 21
+      Tab Order         = 23
       Title             = "Macrogruppi coinvolti"
       Transparent       = TRUE
       Visible           = NONE
@@ -2344,7 +2445,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 18,00
       Size Unit         = Default
-      Tab Order         = 22
+      Tab Order         = 24
       Title             = "Giorni per settimana"
       Transparent       = TRUE
       Visible           = NONE
@@ -2377,7 +2478,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 18,00
       Size Unit         = Default
-      Tab Order         = 23
+      Tab Order         = 25
       Title             = "Durata complessiva"
       Transparent       = TRUE
       Visible           = NONE
@@ -2410,7 +2511,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 100,00
       Size Unit         = Default
-      Tab Order         = 24
+      Tab Order         = 26
       Title Picture     = X(100)
       Title Variable    = lab-days-buf
       Transparent       = TRUE
@@ -2444,7 +2545,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 18,00
       Size Unit         = Default
-      Tab Order         = 25
+      Tab Order         = 27
       Title             = "Intensità media"
       Transparent       = TRUE
       Visible           = NONE
@@ -2477,7 +2578,7 @@ Begin Screen Form1
       Low Color         = 0
       Size              = 170,60
       Size Unit         = Default
-      Tab Order         = 26
+      Tab Order         = 28
       Thickness         = Default
       Title             = "Giorni di allenamento"
       Title Position    = 2:Top center
@@ -2485,7 +2586,7 @@ Begin Screen Form1
       Width in Cells    = TRUE
       Begin Grid gd1
          SCREEN-COL        = 3,50
-         SCREEN-LINE       = 14,04
+         SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd1
@@ -2565,7 +2666,7 @@ Begin Screen Form1
       End
       Begin Grid gd2
          SCREEN-COL        = 27,60
-         SCREEN-LINE       = 14,04
+         SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd2
@@ -2645,7 +2746,7 @@ Begin Screen Form1
       End
       Begin Grid gd3
          SCREEN-COL        = 51,70
-         SCREEN-LINE       = 14,04
+         SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd3
@@ -2725,7 +2826,7 @@ Begin Screen Form1
       End
       Begin Grid gd4
          SCREEN-COL        = 75,70
-         SCREEN-LINE       = 14,04
+         SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd4
@@ -2805,7 +2906,7 @@ Begin Screen Form1
       End
       Begin Grid gd5
          SCREEN-COL        = 100,10
-         SCREEN-LINE       = 14,04
+         SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd5
@@ -2965,7 +3066,7 @@ Begin Screen Form1
       End
       Begin Grid gd7
          SCREEN-COL        = 148,40
-         SCREEN-LINE       = 14,04
+         SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = gd7
@@ -3078,7 +3179,7 @@ Begin Screen Form1
       End
       Begin Label Screen1-La-2aaba
          SCREEN-COL        = 3,50
-         SCREEN-LINE       = 12,43
+         SCREEN-LINE       = 12,44
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aaba
@@ -3302,7 +3403,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 100,00
       Size Unit         = Default
-      Tab Order         = 27
+      Tab Order         = 29
       Title Picture     = X(100)
       Title Variable    = lab-durata-buf
       Transparent       = TRUE
@@ -3336,7 +3437,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 100,00
       Size Unit         = Default
-      Tab Order         = 28
+      Tab Order         = 30
       Title Picture     = X(100)
       Title Variable    = lab-int-buf
       Transparent       = TRUE
@@ -3370,7 +3471,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 29
+      Tab Order         = 31
       Title Picture     = X(20)
       Title Variable    = lab-macro1-buf
       Transparent       = TRUE
@@ -3405,7 +3506,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 30
+      Tab Order         = 32
       Title Picture     = X(20)
       Title Variable    = lab-macro2-buf
       Transparent       = TRUE
@@ -3440,7 +3541,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 31
+      Tab Order         = 33
       Title Picture     = X(20)
       Title Variable    = lab-macro3-buf
       Transparent       = TRUE
@@ -3475,7 +3576,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 32
+      Tab Order         = 34
       Title Picture     = X(20)
       Title Variable    = lab-macro4-buf
       Transparent       = TRUE
@@ -3510,7 +3611,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 33
+      Tab Order         = 35
       Title Picture     = X(20)
       Title Variable    = lab-macro5-buf
       Transparent       = TRUE
@@ -3545,7 +3646,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 34
+      Tab Order         = 36
       Title Picture     = X(20)
       Title Variable    = lab-macro6-buf
       Transparent       = TRUE
@@ -3580,7 +3681,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 8,50
       Size Unit         = Default
-      Tab Order         = 35
+      Tab Order         = 37
       Title Picture     = X(20)
       Title Variable    = lab-macro7-buf
       Transparent       = TRUE
@@ -3615,103 +3716,11 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 18,00
       Size Unit         = Default
-      Tab Order         = 36
+      Tab Order         = 38
       Title             = "Default"
       Transparent       = TRUE
       Visible           = NONE
       Width in Cells    = TRUE
-   End
-   Begin Check-Box chk-prim8
-      SCREEN-COL        = 163,20
-      SCREEN-LINE       = 4,78
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = chk-prim8
-      Bitmap Frame      = FALSE
-      Bitmap Number     = 1
-      Bitmap Square     = TRUE
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 0
-      Column            = 163,20
-      Copy Resource     = TRUE
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Enable Variable   = MOD
-      Exception Value   = 1010
-      Flat              = TRUE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 16
-      Left Text         = FALSE
-      Line              = 4,78
-      Lines             = 1,39
-      Lines Unit        = Default
-      No Tab            = FALSE
-      Notify            = TRUE
-      Occurs            = 0
-      Self Act          = FALSE
-      Size              = 9,00
-      Size Unit         = Default
-      Tab Order         = 37
-      Termination Value = 0
-      Title             = "Primario"
-      Value             = 0:FALSE
-      Value Variable    = chk-prim8-buf
-      Visible           = FALSE
-      Visible Variable  = v-macro8
-      Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cb-1-BeforeProcedure
-      After Procedure   = Screen1-Cb-1-AfterProcedure
-      Link To           = chk-prim8-LinkTo
-   End
-   Begin Combo-Box cb-mcg8
-      SCREEN-COL        = 155,00
-      SCREEN-LINE       = 6,17
-      LOCK-CONTROL      = TRUE
-      LEVEL             = 5
-      (Name)            = cb-mcg8
-      Border            = 3D
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 155,00
-      Csize             = 0
-      Csize Unit        = Default
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Enable Variable   = MOD
-      Exception Value   = 0
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 46
-      Line              = 6,17
-      Lines             = 12,00
-      Lines Unit        = Default
-      Mass Update       = 0:Fast-Update
-      Max Text          = 0
-      No Tab            = FALSE
-      Notify DblClick   = FALSE
-      Notify SelChange  = FALSE
-      Occurs            = 0
-      Size              = 17,00
-      Size Unit         = Default
-      Style             = Drop List
-      Tab Order         = 38
-      Termination Value = 0
-      Unsorted          = TRUE
-      Value Picture     = X(50)
-      Value Variable    = cb-mcg8-buf
-      Visible           = NONE
-      Visible Variable  = v-macro8
-      Width in Cells    = TRUE
-      Before Procedure  = Screen1-Cm-1-BeforeProcedure
-      After Procedure   = Screen1-Cm-1-AfterProcedure
    End
    Begin Label lab-macro8
       SCREEN-COL        = 155,00
@@ -3730,7 +3739,7 @@ Begin Screen Form1
       Font              = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 39
+      ID                = 50
       Justification     = Unaligned
       Label Offset      = 20
       Line              = 4,70
@@ -4437,6 +4446,46 @@ Begin Screen Form1
          Before Procedure  = TOOL-ORD-BeforeProcedure
          After Procedure   = TOOL-ORD-AfterProcedure
          Link To           = TOOL-ORD-LinkTo
+      End
+      Begin Push-Button Screen1-Pb-1
+         SCREEN-COL        = 121,60
+         SCREEN-LINE       = 1,96
+         LOCK-CONTROL      = FALSE
+         LEVEL             = 5
+         (Name)            = Screen1-Pb-1
+         Bitmap Frame      = FALSE
+         Bitmap Number     = 1
+         Bitmap Square     = TRUE
+         Clines            = 0
+         Clines Unit       = Default
+         Column            = 121,60
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Exception Value   = 0
+         Flat              = FALSE
+         Font              = Calibri/12/B/U/C0/@Occidentale
+         Font Variable     = Calibri12BU-Occidentale
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 123
+         Line              = 1,96
+         Lines             = 0,91
+         Lines Unit        = Default
+         No Auto Default   = FALSE
+         No Tab            = FALSE
+         Occurs            = 0
+         Self Act          = FALSE
+         Size              = 4,50
+         Size Unit         = Default
+         Style             = Other
+         Tab Order         = 15
+         Termination Value = 0
+         Title             = "Push Button"
+         Visible           = FALSE
+         Width in Cells    = TRUE
       End
    End
    Begin Status-Bar Form1-St-1
@@ -6201,6 +6250,82 @@ END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 3
+   PARAGRAPH         = EVIDENZIA-GRUPPI
+BEGIN-TEXT
+           if check-mcg = 0
+              move low-value to como-value
+           else
+              move el-mcg(check-mcg) to como-value
+           end-if.
+              
+           inquire gd1, last-row in tot-righe.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd1(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd1(store-riga), row-font = Calibri12BU-Occidentale
+              else                                                    
+                 modify gd1(store-riga), row-font = Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd2(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd2(store-riga), row-font = Calibri12BU-Occidentale
+              else                                                    
+                 modify gd2(store-riga), row-font = Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd3(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd3(store-riga), row-font = Calibri12BU-Occidentale
+              else                                                    
+                 modify gd3(store-riga), row-font = Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd4(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd4(store-riga), row-font = Calibri12BU-Occidentale
+              else                                                    
+                 modify gd4(store-riga), row-font = Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd5(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd5(store-riga), row-font = Calibri12BU-Occidentale
+              else                                                    
+                 modify gd5(store-riga), row-font = Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd6(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd6(store-riga), row-font = Calibri12BU-Occidentale
+              else                                                    
+                 modify gd6(store-riga), row-font = Calibri12-Occidentale
+              end-if
+           end-perform.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire gd7(store-riga, 1), cell-data in col-split
+              if col-split = como-value
+                 modify gd7(store-riga), row-font = Calibri12BU-Occidentale
+              else                                                    
+                 modify gd7(store-riga), row-font = Calibri12-Occidentale
+              end-if
+           end-perform.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
    PARAGRAPH         = FORMAT-VALUE
 BEGIN-TEXT
            inspect como-value replacing leading x"30" by x"20".
@@ -7447,6 +7572,20 @@ BEGIN-TEXT
 END-TEXT
 END-DATA
 BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = Screen1-Cb-1-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = Screen1-Cb-1-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = NUOVO-LinkTo
 BEGIN-TEXT
@@ -8154,20 +8293,6 @@ END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
-   PARAGRAPH         = Screen1-Cb-1-BeforeProcedure
-BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 2
-   PARAGRAPH         = Screen1-Cb-1-AfterProcedure
-BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 2
    PARAGRAPH         = chk-prim1-LinkTo
 BEGIN-TEXT
            move 1 to check-mcg.
@@ -8224,24 +8349,294 @@ END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
-   PARAGRAPH         = Screen1-Cm-1-BeforeProcedure
-BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 2
-   PARAGRAPH         = Screen1-Cm-1-AfterProcedure
-BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 2
    PARAGRAPH         = chk-prim8-LinkTo
 BEGIN-TEXT
            move 8 to check-mcg.
            perform COLORA-PRIMARY.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg1-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+           move 1 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg2-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
+           move 2 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg3-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>    
+           move 3 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg4-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>     
+           move 4 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg5-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>> 
+           move 5 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg6-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
+           move 6 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg7-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>        
+           move 7 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg8-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg1-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>  
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg2-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>       
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg3-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg4-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg5-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg6-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>  
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg7-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>      
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = cb-mcg8-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim1-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+           move 1 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim2-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+           move 2 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim3-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>       
+           move 3 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim4-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>  
+           move 4 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim5-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>> 
+           move 5 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim6-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>    
+           move 6 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim7-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>> 
+           move 7 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim8-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+           move 8 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim1-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>> 
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim2-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>  
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim3-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>      
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim4-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim5-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>      
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim6-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim7-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = chk-prim8-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+           move 0 to check-mcg.
+           perform EVIDENZIA-GRUPPI.
 END-TEXT
 END-DATA
 

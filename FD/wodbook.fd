@@ -4,30 +4,16 @@
                10 wod-code         PIC  9(18).
                10 wod-dayPrg       PIC  9.
            05 wod-data.
-               10 wod-date         PIC  9(8).
-               10 wod-duration     PIC  9(3).
-               10 wod-head.
-                   15 wod-totals.
-                       20 wod-totals-duration          PIC  9(5).
-                       20 wod-totals-wod   PIC  9.
-                       20 wod-total-series PIC  9(3).
-                   15 wod-macro-tab.
-                       20 wod-macro-el
-                                  OCCURS 20 TIMES.
-                           25 wod-macro-el-code            PIC  9(3).
-                           25 wod-macro-el-times           PIC  9(3).
-                   15 wod-filler-1     PIC  x(1000).
-                   15 wod-filler-n1    PIC  9(18).
-                   15 wod-filler-n2    PIC  9(18).
-                   15 wod-filler-n3    PIC  9(18).
-               10 wod-row.
-                   15 wod-exe-tab.
-                       20 wod-exeo-el
-                                  OCCURS 20 TIMES.
-                           25 wod-exe-el-code  PIC  x(5).
-                           25 wod-exe-el-series            PIC  99.
-                           25 wod-exe-el-reps  PIC  99.
-                   15 wod-filler2      PIC  x(1000).
-                   15 wod-filler-n4    PIC  9(18).
-                   15 wod-filler-n5    PIC  9(18).
-                   15 wod-filler-n6    PIC  9(18).
+               10 wod-data.
+                   15 wod-exe-desc-univoca         PIC  x(100).
+                   15 wod-mcg-code     PIC  x(5).
+                   15 wod-exe-code     PIC  x(5).
+                   15 wod-exe-desc     PIC  x(100).
+                   15 wod-nome-dupl    PIC  x(100).
+                   15 wod-int-code     PIC  99.
+                   15 wod-exe-isMulti  PIC  9.
+                   15 wod-reps         PIC  x(10).
+                   15 wod-series       PIC  99.
+                   15 wod-int-restpause            PIC  9.
+                   15 wod-ss           PIC  9.
+                   15 FILLER           PIC  x(2000).

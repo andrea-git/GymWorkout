@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 6 ottobre 2023 14:29:54.
+       DATE-WRITTEN.        venerdì 6 ottobre 2023 18:16:30.
        REMARKS.
       *{TOTEM}END
 
@@ -442,6 +442,37 @@
        77 path-tmp-superset            PIC  X(256).
        77 STATUS-tmp-superset          PIC  X(2).
            88 Valid-STATUS-tmp-superset VALUE IS "00" THRU "09". 
+       77 scr-date-Handle
+                  USAGE IS HANDLE OF WINDOW.
+       01 Screen2-Gd-1-Record.
+           05 Gd-1-Col-1       PIC  X(08).
+           05 Gd-1-Col-2       PIC  X(08).
+           05 Gd-1-Col-3       PIC  X(08).
+           05 Gd-1-Col-4       PIC  X(08).
+           05 Gd-1-Col-5       PIC  X(08).
+       77 Calibri16-Occidentale
+                  USAGE IS HANDLE OF FONT.
+       77 ef-gg1-buf       PIC  9(8).
+       77 ef-gg2-buf       PIC  9(8).
+       77 ef-gg4-buf       PIC  9(8).
+       77 ef-gg5-buf       PIC  9(8).
+       77 ef-gg3-buf       PIC  9(8).
+       77 ef-gg6-buf       PIC  9(8).
+       77 ef-gg7-buf       PIC  9(8).
+       77 e-gg1            PIC  9
+                  VALUE IS 1.
+       77 e-gg2            PIC  9
+                  VALUE IS 1.
+       77 e-gg3            PIC  9
+                  VALUE IS 1.
+       77 e-gg4            PIC  9
+                  VALUE IS 1.
+       77 e-gg5            PIC  9
+                  VALUE IS 1.
+       77 e-gg6            PIC  9
+                  VALUE IS 1.
+       77 e-gg7            PIC  9
+                  VALUE IS 1.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -449,17 +480,19 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(2447).
+       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(2346).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(2447).
+       77 Form1-MULKEY-TMPBUF   PIC X(2346).
        77 STATUS-scr-attesa-FLAG-REFRESH PIC  9.
           88 scr-attesa-FLAG-REFRESH  VALUE 1 FALSE 0. 
+       77 STATUS-scr-date-FLAG-REFRESH PIC  9.
+          88 scr-date-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-DataSet1-exercises-BUF     PIC X(1189).
        77 TMP-DataSet1-groups-BUF     PIC X(1182).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
-       77 TMP-DataSet1-wodbook-BUF     PIC X(2447).
+       77 TMP-DataSet1-wodbook-BUF     PIC X(2346).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(331).
@@ -1400,6 +1433,19 @@
            TITLE "Tecniche",
            .
 
+      * BAR
+       05
+           Screen1-Br-1, 
+           Bar,
+           COL 70,20, 
+           LINE 1,00,
+           LINES 37,04 ,
+           ID IS 43,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           WIDTH 1,
+           .
+
       * TOOLBAR
        01
            Form1-Tb-1,
@@ -1616,6 +1662,308 @@
            TITLE lab-attesa-buf,
            .
 
+      * FORM
+       01 
+           scr-date, 
+           .
+
+      * FRAME
+       05
+           Screen2-Fr-1, 
+           Frame, 
+           COL 2,64, 
+           LINE 1,54,
+           LINES 12,96 ,
+           SIZE 25,82 ,
+           ENGRAVED,
+           ID IS 1,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Indicare le date di allenamento",
+           TITLE-POSITION 2,
+           .
+
+      * LABEL
+       05
+           Screen2-La-1, 
+           Label, 
+           COL 5,28, 
+           LINE 3,08,
+           LINES 1,23 ,
+           SIZE 7,82 ,
+           ID IS 4,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Giorno 1",
+           .
+
+      * LABEL
+       05
+           Screen2-La-1a, 
+           Label, 
+           COL 5,28, 
+           LINE 4,62,
+           LINES 1,23 ,
+           SIZE 7,82 ,
+           ID IS 5,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Giorno 2",
+           .
+
+      * LABEL
+       05
+           Screen2-La-1b, 
+           Label, 
+           COL 5,28, 
+           LINE 6,16,
+           LINES 1,00 ,
+           SIZE 7,82 ,
+           ID IS 6,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Giorno 3",
+           .
+
+      * LABEL
+       05
+           Screen2-La-1c, 
+           Label, 
+           COL 5,28, 
+           LINE 7,69,
+           LINES 1,23 ,
+           SIZE 7,82 ,
+           ID IS 7,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Giorno 4",
+           .
+
+      * LABEL
+       05
+           Screen2-La-1d, 
+           Label, 
+           COL 5,28, 
+           LINE 9,23,
+           LINES 1,23 ,
+           SIZE 7,82 ,
+           ID IS 8,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Giorno 5",
+           .
+
+      * LABEL
+       05
+           Screen2-La-1e, 
+           Label, 
+           COL 5,28, 
+           LINE 10,77,
+           LINES 1,23 ,
+           SIZE 7,82 ,
+           ID IS 9,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Giorno 6",
+           .
+
+      * LABEL
+       05
+           Screen2-La-1f, 
+           Label, 
+           COL 5,28, 
+           LINE 12,31,
+           LINES 1,00 ,
+           SIZE 7,82 ,
+           ID IS 10,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Giorno 7",
+           .
+
+      * ENTRY FIELD
+       05
+           ef-gg1, 
+           Entry-Field, 
+           COL 15,82, 
+           LINE 3,08,
+           LINES 1,23 ,
+           SIZE 10,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-gg1,
+           ID IS 11,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-gg1-buf,
+           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-gg2, 
+           Entry-Field, 
+           COL 15,82, 
+           LINE 4,62,
+           LINES 1,23 ,
+           SIZE 10,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-gg2,
+           ID IS 12,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-gg2-buf,
+           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-gg3, 
+           Entry-Field, 
+           COL 15,82, 
+           LINE 6,16,
+           LINES 1,23 ,
+           SIZE 10,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-gg3,
+           ID IS 13,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-gg3-buf,
+           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-gg4, 
+           Entry-Field, 
+           COL 15,82, 
+           LINE 7,69,
+           LINES 1,23 ,
+           SIZE 10,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-gg4,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-gg4-buf,
+           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-gg5, 
+           Entry-Field, 
+           COL 15,82, 
+           LINE 9,23,
+           LINES 1,23 ,
+           SIZE 10,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-gg5,
+           ID IS 15,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-gg5-buf,
+           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-gg6, 
+           Entry-Field, 
+           COL 15,82, 
+           LINE 10,77,
+           LINES 1,23 ,
+           SIZE 10,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-gg6,
+           ID IS 16,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-gg6-buf,
+           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-gg7, 
+           Entry-Field, 
+           COL 15,82, 
+           LINE 12,31,
+           LINES 1,23 ,
+           SIZE 10,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-gg7,
+           ID IS 17,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-gg7-buf,
+           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           .
+
+      * PUSH BUTTON
+       05
+           pb-ok, 
+           Push-Button, 
+           COL 8,27, 
+           LINE 14,77,
+           LINES 1,42 ,
+           SIZE 81 PIXELS,
+           BITMAP-HANDLE BOTTONE-OK-BMP,
+           BITMAP-NUMBER 1,
+           UNFRAMED,
+           EXCEPTION-VALUE 333,
+           FLAT,
+           FONT IS Small-Font,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           AFTER PROCEDURE pb-ok-AfterProcedure, 
+           BEFORE PROCEDURE pb-ok-BeforeProcedure, 
+           .
+
+      * PUSH BUTTON
+       05
+           pb-cancel, 
+           Push-Button, 
+           COL 15,45, 
+           LINE 14,77,
+           LINES 1,42 ,
+           SIZE 81 PIXELS,
+           BITMAP-HANDLE BOTTONE-ANNULLA-BMP,
+           BITMAP-NUMBER 1,
+           UNFRAMED,
+           EXCEPTION-VALUE 27,
+           FLAT,
+           FONT IS Small-Font,
+           ID IS 18,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           ESCAPE-BUTTON,
+           AFTER PROCEDURE pb-cancel-AfterProcedure, 
+           BEFORE PROCEDURE pb-cancel-BeforeProcedure, 
+           .
+
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
@@ -1693,12 +2041,15 @@
            DESTROY Calibri14BU-Occidentale
            DESTROY Calibri24B-Occidentale
            DESTROY Calibri16B-Occidentale
+           DESTROY Calibri16-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, genera-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, random-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, PIU-MENO-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, UP-DOWN-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, intens-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
+           CALL "w$bitmap" USING WBITMAP-DESTROY, BOTTONE-OK-BMP
+           CALL "w$bitmap" USING WBITMAP-DESTROY, BOTTONE-ANNULLA-BMP
       *    After-Program
            PERFORM ginqui-Ev-After-Program
            EXIT PROGRAM TOTEM-PgmStatus
@@ -1817,6 +2168,19 @@
            MOVE 0 TO WFONT-CHAR-SET
            CALL "W$FONT" USING WFONT-GET-FONT, 
                      Calibri16B-Occidentale, WFONT-DATA
+      * Calibri16-Occidentale
+           INITIALIZE WFONT-DATA Calibri16-Occidentale
+           MOVE 16 TO WFONT-SIZE
+           MOVE "Calibri" TO WFONT-NAME
+           SET WFCHARSET-DONT-CARE TO TRUE
+           SET WFONT-BOLD TO FALSE
+           SET WFONT-ITALIC TO FALSE
+           SET WFONT-UNDERLINE TO FALSE
+           SET WFONT-STRIKEOUT TO FALSE
+           SET WFONT-FIXED-PITCH TO FALSE
+           MOVE 0 TO WFONT-CHAR-SET
+           CALL "W$FONT" USING WFONT-GET-FONT, 
+                     Calibri16-Occidentale, WFONT-DATA
            .
 
        INIT-BMP.
@@ -1844,6 +2208,14 @@
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
                    GIVING toolbar-bmp.
+      * pb-ok
+           COPY RESOURCE "BOTTONE-OK.BMP".
+           CALL "w$bitmap" USING WBITMAP-LOAD "BOTTONE-OK.BMP", 
+                   GIVING BOTTONE-OK-BMP.
+      * pb-cancel
+           COPY RESOURCE "BOTTONE-ANNULLA.BMP".
+           CALL "w$bitmap" USING WBITMAP-LOAD "BOTTONE-ANNULLA.BMP", 
+                   GIVING BOTTONE-ANNULLA-BMP.
            .
 
        INIT-RES.
@@ -5466,6 +5838,203 @@
        scr-attesa-Restore-Status.
            .
 
+       scr-date-Open-Routine.
+           PERFORM scr-date-Scrn
+           PERFORM scr-date-Proc
+           .
+
+       scr-date-Scrn.
+           PERFORM scr-date-Create-Win
+           PERFORM scr-date-Init-Value
+           PERFORM scr-date-Init-Data
+      * Tab keystrok settings
+      * Tool Bar
+           PERFORM scr-date-DISPLAY
+           .
+
+       scr-date-Create-Win.
+           Display Floating GRAPHICAL WINDOW
+              LINES 15,62,
+              SIZE 29,18,
+              HEIGHT-IN-CELLS,
+              WIDTH-IN-CELLS,
+              COLOR 131329,
+              CONTROL FONT Calibri16-Occidentale,
+              LINK TO THREAD,
+              MODELESS,
+              NO SCROLL,
+              No WRAP,
+              EVENT PROCEDURE scr-attesa-Event-Proc,
+              HANDLE IS scr-date-handle,
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, AfterCreateWin>
+      * <TOTEM:END>
+
+
+      * Tool Bar    
+      * Status-bar
+           DISPLAY scr-date UPON scr-date-handle
+      * DISPLAY-COLUMNS settings
+           .
+
+       scr-date-PROC.
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, BeforeAccept>
+           move 0 to ef-gg1-buf e-gg1.
+           move 0 to ef-gg2-buf e-gg2.
+           move 0 to ef-gg3-buf e-gg3.
+           move 0 to ef-gg4-buf e-gg4.
+           move 0 to ef-gg5-buf e-gg5.
+           move 0 to ef-gg6-buf e-gg6.
+           move 0 to ef-gg7-buf e-gg7.
+
+           open input tmp-exe.
+           move low-value to tex-key.
+           start tmp-exe key >= tex-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-exe next at end exit perform end-read
+                    evaluate tex-day       
+                    when 1 move 1 to e-gg1
+                    when 2 move 1 to e-gg2
+                    when 3 move 1 to e-gg3
+                    when 4 move 1 to e-gg4
+                    when 5 move 1 to e-gg5
+                    when 6 move 1 to e-gg6
+                    when 7 move 1 to e-gg7
+                    end-evaluate
+                 end-perform
+           end-start.
+           close tmp-exe.
+
+           display scr-date.
+
+           .
+      * <TOTEM:END>
+           PERFORM UNTIL Exit-Pushed
+              ACCEPT scr-date
+                 ON EXCEPTION
+                    PERFORM scr-date-Evaluate-Func
+                 MOVE 3 TO TOTEM-Form-Index
+              END-ACCEPT
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, AfterEndAccept>
+      * <TOTEM:END>
+           END-PERFORM
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, BeforeDestroyWindow>
+      * <TOTEM:END>
+           DESTROY scr-date-handle
+           INITIALIZE Key-Status
+           .
+
+       scr-date-Evaluate-Func.
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, AfterAccept>
+      * <TOTEM:END>
+           EVALUATE TRUE
+              WHEN Exit-Pushed
+                 PERFORM scr-date-Exit
+              WHEN Event-Occurred
+                 IF Event-Type = Cmd-Close
+                    PERFORM scr-date-Exit
+                 END-IF
+           END-EVALUATE
+      * avoid changing focus
+           MOVE 4 TO Accept-Control
+           .
+
+       scr-date-CLEAR.
+           PERFORM scr-date-INIT-VALUE
+           PERFORM scr-date-DISPLAY
+           .
+
+       scr-date-DISPLAY.
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, BeforeDisplay>
+      * <TOTEM:END>
+           DISPLAY scr-date UPON scr-date-handle
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, AfterDisplay>
+           SET LK-BL-SCRITTURA     TO TRUE.
+           MOVE COMO-PROG-ID       TO LK-BL-PROG-ID.
+           MOVE FORM1-HANDLE       TO LK-HND-WIN.
+           CALL "BLOCKPGM"  USING LK-BLOCKPGM.
+           CANCEL "BLOCKPGM".
+
+           .
+      * <TOTEM:END>
+           .
+
+       scr-date-Exit.
+      * for main screen
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, BeforeExit>
+      * <TOTEM:END>
+           MOVE 27 TO Key-Status
+           .
+
+       scr-date-Init-Data.
+           MOVE 3 TO TOTEM-Form-Index
+           MOVE 0 TO TOTEM-Frame-Index
+           .
+
+       scr-date-Init-Value.
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, SetDefault>
+      * <TOTEM:END>
+           PERFORM scr-date-FLD-TO-BUF
+           .
+
+
+       scr-date-ALLGRID-RESET.
+           .
+
+      * for Form's Validation
+       scr-date-VALIDATION-ROUTINE.
+           SET TOTEM-CHECK-OK TO TRUE
+           .
+
+
+       scr-date-Buf-To-Fld.
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, BeforeBufToFld>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, AfterBufToFld>
+      * <TOTEM:END>
+           .
+
+       scr-date-Fld-To-Buf.
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, BeforeFldToBuf>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FORM:scr-date, FORM:scr-date, AfterFldToBuf>
+      * <TOTEM:END>
+           .
+
+       scr-date-CONTROLLO-OLD.
+           set SiSalvato to true.
+           if mod = 0 exit paragraph end-if.
+           perform scr-date-BUF-TO-FLD.
+           move 0 to scelta.
+           .
+       scr-date-EXTENDED-FILE-STATUS.
+           CALL "C$RERRNAME" USING TOTEM-MSG-ERR-FILE
+           CALL "C$RERR" USING EXTEND-STAT, TEXT-MESSAGE
+           MOVE PRIMARY-ERROR TO TOTEM-MSG-ID
+           PERFORM scr-date-SHOW-MSG-ROUTINE
+           .
+
+       scr-date-SHOW-MSG-ROUTINE.
+           PERFORM SHOW-MSG-ROUTINE
+           PERFORM scr-date-DISPLAY-MESSAGE
+           .
+
+       scr-date-DISPLAY-MESSAGE.
+           PERFORM MESSAGE-BOX-ROUTINE
+           DISPLAY MESSAGE BOX TOTEM-MSG-TEXT
+               TITLE IS TOTEM-MSG-TITLE
+               TYPE  IS TOTEM-MSG-BUTTON-TYPE
+               ICON  IS TOTEM-MSG-DEFAULT-BUTTON
+               RETURNING TOTEM-MSG-RETURN-VALUE
+           .
+
+       scr-date-Save-Status.
+           .             
+
+       scr-date-Restore-Status.
+           .
+
 
 
        Screen1-Event-Proc.
@@ -8113,6 +8682,9 @@
        SALVA.
       * <TOTEM:PARA. SALVA>
            perform CHECK-WOD.
+           if tutto-ok
+              perform SCR-DATE-OPEN-ROUTINE
+           end-if.
       *     if mod = 0 
       *        exit paragraph 
       *     end-if.
@@ -8842,7 +9414,9 @@
       * <TOTEM:END>
        pb-genera-LinkTo.
       * <TOTEM:PARA. pb-genera-LinkTo>
-           perform SCR-ATTESA-OPEN-ROUTINE 
+           modify form1-handle, visible false.
+           perform SCR-ATTESA-OPEN-ROUTINE.
+           modify form1-handle, visible true 
            .
       * <TOTEM:END>
        pb-random-LinkTo.
@@ -9521,6 +10095,36 @@
                  set fromAggiungi to false
               end-if 
            end-if 
+           .
+      * <TOTEM:END>
+       Screen2-Ef-1-BeforeProcedure.
+      * <TOTEM:PARA. Screen2-Ef-1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       Screen2-Ef-1-AfterProcedure.
+      * <TOTEM:PARA. Screen2-Ef-1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       pb-ok-BeforeProcedure.
+      * <TOTEM:PARA. pb-ok-BeforeProcedure>
+           modify pb-ok, bitmap-number 2 
+           .
+      * <TOTEM:END>
+       pb-ok-AfterProcedure.
+      * <TOTEM:PARA. pb-ok-AfterProcedure>
+           modify pb-ok, bitmap-number 1 
+           .
+      * <TOTEM:END>
+       pb-cancel-BeforeProcedure.
+      * <TOTEM:PARA. pb-cancel-BeforeProcedure>
+           modify pb-cancel, bitmap-number 2 
+           .
+      * <TOTEM:END>
+       pb-cancel-AfterProcedure.
+      * <TOTEM:PARA. pb-cancel-AfterProcedure>
+           modify pb-cancel, bitmap-number 1 
            .
       * <TOTEM:END>
 

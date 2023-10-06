@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 5 ottobre 2023 17:21:39.
+       DATE-WRITTEN.        venerdì 6 ottobre 2023 14:29:54.
        REMARKS.
       *{TOTEM}END
 
@@ -7117,11 +7117,12 @@
                                                
                     if tex-ss = 0
                        compute tot-durata  = tot-durata +
-                             ( exe-setting * 2 ) +
+                             ( exe-setting ) +
+                             ( exe-setting * 0,5 ) +
                              ( col-series  * int-time  ) +
                              ( int-rest    * ( col-series - 1 ) ) +
                              ( sec-squeeze * col-series ) + 
-                             60 |Ipotetico rest tra una e l'altra
+                             30 |Ipotetico rest tra una e l'altra
                     else
                        compute tot-durata  = tot-durata +
                              ( exe-setting * 2 ) +

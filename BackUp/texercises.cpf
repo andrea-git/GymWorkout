@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E791D82514-394-289938729
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A613415-993-785113777
 
 {{@DESCRIPTION:
 
@@ -117,6 +117,226 @@ m_bFixed=1
 
 @}}
 [FDITEM9_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM9_WK
+
+@}}
+[FDITEM10_WK]
+m_strName=rp1-true
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM10_WK
+
+@}}
+[FDITEM11_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM11_WK
+
+@}}
+[FDITEM12_WK]
+m_strName=rp2-true
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM12_WK
+
+@}}
+[FDITEM13_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM13_WK
+
+@}}
+[FDITEM14_WK]
+m_strName=rp3-true
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM14_WK
+
+@}}
+[FDITEM15_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM15_WK
+
+@}}
+[FDITEM16_WK]
+m_strName=rp4-true
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM16_WK
+
+@}}
+[FDITEM17_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM17_WK
+
+@}}
+[FDITEM18_WK]
+m_strName=rp5-true
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM18_WK
+
+@}}
+[FDITEM19_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM19_WK
+
+@}}
+[FDITEM20_WK]
+m_strName=rp6-true
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM20_WK
+
+@}}
+[FDITEM21_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM21_WK
+
+@}}
+[FDITEM22_WK]
+m_strName=rp7-true
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM22_WK
+
+@}}
+[FDITEM23_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM23_WK
+
+@}}
+[FDITEM24_WK]
+m_strName=rp8-true
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM24_WK
+
+@}}
+[FDITEM25_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM25_WK
+
+@}}
+[FDITEM26_WK]
+m_strName=rp9-true
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM26_WK
+
+@}}
+[FDITEM27_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM27_WK
+
+@}}
+[FDITEM28_WK]
+m_strName=rp10-true
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM28_WK
+
+@}}
+[FDITEM29_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM29_WK
+
+@}}
+[FDITEM30_WK]
+m_strName=rp11-true
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM30_WK
+
+@}}
+[FDITEM31_WK]
 m_strName=E-MODIFICA
 m_strRawPic=9
 m_strPic=9
@@ -124,10 +344,10 @@ m_strDefaultValue=1
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM9_WK
+{{@DataItem_m_strDescriptionFDITEM31_WK
 
 @}}
-[FDITEM10_WK]
+[FDITEM32_WK]
 m_strName=E-STAMPA
 m_strRawPic=9
 m_strPic=9
@@ -135,10 +355,31 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM10_WK
+{{@DataItem_m_strDescriptionFDITEM32_WK
 
 @}}
-[FDITEM11_WK]
+[FDITEM33_WK]
+m_strName=tab-int-rp
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM33_WK
+
+@}}
+[FDITEM34_WK]
+m_strName=el-int-rp
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
+m_nSync=-1
+m_bOccurs=1
+m_bFixed=1
+m_strRawSize=99
+m_nSize=99
+{{@DataItem_m_strDescriptionFDITEM34_WK
+
+@}}
+[FDITEM35_WK]
 m_strName=E-CERCA
 m_strRawPic=9
 m_strPic=9
@@ -146,10 +387,10 @@ m_strDefaultValue=1
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM11_WK
+{{@DataItem_m_strDescriptionFDITEM35_WK
 
 @}}
-[FDITEM12_WK]
+[FDITEM36_WK]
 m_strName=MESSAGGIO
 m_strRawPic=X(300)
 m_strPic=X(300)
@@ -157,19 +398,19 @@ m_strDefaultValue=SPACE
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM12_WK
+{{@DataItem_m_strDescriptionFDITEM36_WK
 
 @}}
-[FDITEM13_WK]
+[FDITEM37_WK]
 m_strName=Small-Font
 m_nUsage=37
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM13_WK
+{{@DataItem_m_strDescriptionFDITEM37_WK
 
 @}}
-[FDITEM14_WK]
+[FDITEM38_WK]
 m_strName=toolbar-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -178,247 +419,21 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM14_WK
-
-@}}
-[FDITEM15_WK]
-m_strName=hiddenData
-m_nItemLevel=1
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM15_WK
-
-@}}
-[FDITEM16_WK]
-m_strName=hid-note
-m_strRawPic=x(278)
-m_strPic=x(278)
-m_nItemLevel=5
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM16_WK
-
-@}}
-[FDITEM17_WK]
-m_strName=bmpNum
-m_strRawPic=999
-m_strPic=999
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM17_WK
-
-@}}
-[FDITEM18_WK]
-m_strName=78-col-code
-m_strDefaultValue=1
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM18_WK
-
-@}}
-[FDITEM19_WK]
-m_strName=78-col-desc
-m_strDefaultValue=2
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM19_WK
-
-@}}
-[FDITEM20_WK]
-m_strName=78-col-desc-stampa
-m_strDefaultValue=3
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM20_WK
-
-@}}
-[FDITEM21_WK]
-m_strName=78-col-grp-code
-m_strDefaultValue=4
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM21_WK
-
-@}}
-[FDITEM22_WK]
-m_strName=78-col-grp-desc
-m_strDefaultValue=5
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM22_WK
-
-@}}
-[FDITEM23_WK]
-m_strName=78-col-mcg-desc
-m_strDefaultValue=6
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM23_WK
-
-@}}
-[FDITEM24_WK]
-m_strName=78-col-int-code
-m_strDefaultValue=7
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM24_WK
-
-@}}
-[FDITEM25_WK]
-m_strName=78-col-int-desc
-m_strDefaultValue=8
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM25_WK
-
-@}}
-[FDITEM26_WK]
-m_strName=78-col-ismulti
-m_strDefaultValue=9
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM26_WK
-
-@}}
-[FDITEM27_WK]
-m_strName=78-col-setting
-m_strDefaultValue=10
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM27_WK
-
-@}}
-[FDITEM28_WK]
-m_strName=78-col-restpause
-m_strDefaultValue=11
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM28_WK
-
-@}}
-[FDITEM29_WK]
-m_strName=78-col-disable
-m_strDefaultValue=12
-m_nItemLevel=78
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM29_WK
-
-@}}
-[FDITEM30_WK]
-m_strName=rec-grid
-m_nItemLevel=1
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM30_WK
-
-@}}
-[FDITEM31_WK]
-m_strName=col-codice
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=5
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM31_WK
-
-@}}
-[FDITEM32_WK]
-m_strName=col-des
-m_strRawPic=X(50)
-m_strPic=X(50)
-m_nItemLevel=5
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM32_WK
-
-@}}
-[FDITEM33_WK]
-m_strName=col-des-stampa
-m_strRawPic=X(20)
-m_strPic=X(20)
-m_nItemLevel=5
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM33_WK
-
-@}}
-[FDITEM34_WK]
-m_strName=col-group
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=5
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM34_WK
-
-@}}
-[FDITEM35_WK]
-m_strName=col-grp-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
-m_nItemLevel=5
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM35_WK
-
-@}}
-[FDITEM36_WK]
-m_strName=col-mcg-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
-m_nItemLevel=5
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM36_WK
-
-@}}
-[FDITEM37_WK]
-m_strName=col-intensity
-m_strRawPic=z9
-m_strPic=z9
-m_nItemLevel=5
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM37_WK
-
-@}}
-[FDITEM38_WK]
-m_strName=col-int-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
-m_nItemLevel=5
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM38_WK
 
 @}}
 [FDITEM39_WK]
-m_strName=col-isMulti
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=5
+m_strName=hiddenData
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM39_WK
 
 @}}
 [FDITEM40_WK]
-m_strName=col-setting
-m_strRawPic=z.zz9
-m_strPic=z.zz9
+m_strName=hid-note
+m_strRawPic=x(278)
+m_strPic=x(278)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -426,229 +441,665 @@ m_bFixed=1
 
 @}}
 [FDITEM41_WK]
-m_strName=col-restpause
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=5
+m_strName=bmpNum
+m_strRawPic=999
+m_strPic=999
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM41_WK
 
 @}}
 [FDITEM42_WK]
-m_strName=col-disab
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=5
+m_strName=78-col-code
+m_strDefaultValue=1
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM42_WK
 
 @}}
 [FDITEM43_WK]
-m_strName=como-v
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=77
+m_strName=78-col-desc
+m_strDefaultValue=2
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM43_WK
 
 @}}
 [FDITEM44_WK]
-m_strName=como-titolo
-m_strRawPic=x(50)
-m_strPic=x(50)
-m_nItemLevel=77
+m_strName=78-col-desc-stampa
+m_strDefaultValue=3
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM44_WK
 
 @}}
 [FDITEM45_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
-m_nItemLevel=77
+m_strName=78-col-grp-code
+m_strDefaultValue=4
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM45_WK
 
 @}}
 [FDITEM46_WK]
-m_strName=como-ord
-m_strRawPic=99
-m_strPic=99
-m_nItemLevel=77
+m_strName=78-col-grp-desc
+m_strDefaultValue=5
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM46_WK
 
 @}}
 [FDITEM47_WK]
-m_strName=ord-code-asc
-m_nItemLevel=88
+m_strName=78-col-mcg-desc
+m_strDefaultValue=6
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
-m_strTrue=1
 {{@DataItem_m_strDescriptionFDITEM47_WK
 
 @}}
 [FDITEM48_WK]
-m_strName=ord-code-disc
-m_nItemLevel=88
+m_strName=78-col-int-code
+m_strDefaultValue=7
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
-m_strTrue=2
 {{@DataItem_m_strDescriptionFDITEM48_WK
 
 @}}
 [FDITEM49_WK]
-m_strName=ord-desc-asc
-m_nItemLevel=88
+m_strName=78-col-int-desc
+m_strDefaultValue=8
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
-m_strTrue=3
 {{@DataItem_m_strDescriptionFDITEM49_WK
 
 @}}
 [FDITEM50_WK]
-m_strName=ord-desc-disc
-m_nItemLevel=88
+m_strName=78-col-ismulti
+m_strDefaultValue=9
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
-m_strTrue=4
 {{@DataItem_m_strDescriptionFDITEM50_WK
 
 @}}
 [FDITEM51_WK]
-m_strName=ord-mcg-asc
-m_nItemLevel=88
+m_strName=78-col-setting
+m_strDefaultValue=10
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
-m_strTrue=5
 {{@DataItem_m_strDescriptionFDITEM51_WK
 
 @}}
 [FDITEM52_WK]
-m_strName=ord-mcg-disc
-m_nItemLevel=88
+m_strName=78-col-restpause
+m_strDefaultValue=11
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
-m_strTrue=6
 {{@DataItem_m_strDescriptionFDITEM52_WK
 
 @}}
 [FDITEM53_WK]
-m_strName=ord-multi-asc
-m_nItemLevel=88
+m_strName=78-col-disable
+m_strDefaultValue=12
+m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
-m_strTrue=7
 {{@DataItem_m_strDescriptionFDITEM53_WK
 
 @}}
 [FDITEM54_WK]
-m_strName=ord-multi-disc
-m_nItemLevel=88
+m_strName=rec-grid
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
-m_strTrue=8
 {{@DataItem_m_strDescriptionFDITEM54_WK
 
 @}}
 [FDITEM55_WK]
-m_strName=ord-disable-asc
-m_nItemLevel=88
+m_strName=col-codice
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-m_strTrue=9
 {{@DataItem_m_strDescriptionFDITEM55_WK
 
 @}}
 [FDITEM56_WK]
-m_strName=ord-disable-disc
-m_nItemLevel=88
+m_strName=col-des
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-m_strTrue=10
 {{@DataItem_m_strDescriptionFDITEM56_WK
 
 @}}
 [FDITEM57_WK]
-m_strName=ord-rp-asc
-m_nItemLevel=88
+m_strName=col-des-stampa
+m_strRawPic=X(20)
+m_strPic=X(20)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-m_strTrue=11
 {{@DataItem_m_strDescriptionFDITEM57_WK
 
 @}}
 [FDITEM58_WK]
-m_strName=ord-rp-disc
-m_nItemLevel=88
+m_strName=col-group
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-m_strTrue=12
 {{@DataItem_m_strDescriptionFDITEM58_WK
 
 @}}
 [FDITEM59_WK]
-m_strName=ord-int-asc
-m_nItemLevel=88
+m_strName=col-grp-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-m_strTrue=13
 {{@DataItem_m_strDescriptionFDITEM59_WK
 
 @}}
 [FDITEM60_WK]
-m_strName=ord-int-disc
-m_nItemLevel=88
+m_strName=col-mcg-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-m_strTrue=14
 {{@DataItem_m_strDescriptionFDITEM60_WK
 
 @}}
 [FDITEM61_WK]
-m_strName=ord-grp-asc
-m_nItemLevel=88
+m_strName=col-intensity
+m_strRawPic=z9
+m_strPic=z9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-m_strTrue=15
 {{@DataItem_m_strDescriptionFDITEM61_WK
 
 @}}
 [FDITEM62_WK]
-m_strName=ord-grp-disc
-m_nItemLevel=88
+m_strName=col-int-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
-m_strTrue=16
 {{@DataItem_m_strDescriptionFDITEM62_WK
 
 @}}
 [FDITEM63_WK]
-m_strName=FILLER
+m_strName=col-isMulti
 m_strRawPic=9
 m_strPic=9
-m_nItemLevel=1
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM63_WK
 
 @}}
 [FDITEM64_WK]
+m_strName=col-setting
+m_strRawPic=z.zz9
+m_strPic=z.zz9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM64_WK
+
+@}}
+[FDITEM65_WK]
+m_strName=col-restpause
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM65_WK
+
+@}}
+[FDITEM66_WK]
+m_strName=col-disab
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM66_WK
+
+@}}
+[FDITEM67_WK]
+m_strName=v-mcg1
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM67_WK
+
+@}}
+[FDITEM68_WK]
+m_strName=v-mcg2
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM68_WK
+
+@}}
+[FDITEM69_WK]
+m_strName=v-mcg3
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM69_WK
+
+@}}
+[FDITEM70_WK]
+m_strName=v-mcg4
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM70_WK
+
+@}}
+[FDITEM71_WK]
+m_strName=v-mcg5
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM71_WK
+
+@}}
+[FDITEM72_WK]
+m_strName=v-mcg6
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM72_WK
+
+@}}
+[FDITEM73_WK]
+m_strName=v-mcg7
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM73_WK
+
+@}}
+[FDITEM74_WK]
+m_strName=v-mcg8
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM74_WK
+
+@}}
+[FDITEM75_WK]
+m_strName=v-mcg9
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM75_WK
+
+@}}
+[FDITEM76_WK]
+m_strName=v-mcg10
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM76_WK
+
+@}}
+[FDITEM77_WK]
+m_strName=v-mcg11
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM77_WK
+
+@}}
+[FDITEM78_WK]
+m_strName=v-int1
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM78_WK
+
+@}}
+[FDITEM79_WK]
+m_strName=v-int2
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM79_WK
+
+@}}
+[FDITEM80_WK]
+m_strName=v-int3
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM80_WK
+
+@}}
+[FDITEM81_WK]
+m_strName=v-int4
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM81_WK
+
+@}}
+[FDITEM82_WK]
+m_strName=v-int5
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM82_WK
+
+@}}
+[FDITEM83_WK]
+m_strName=v-int6
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM83_WK
+
+@}}
+[FDITEM84_WK]
+m_strName=v-int7
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM84_WK
+
+@}}
+[FDITEM85_WK]
+m_strName=v-int8
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM85_WK
+
+@}}
+[FDITEM86_WK]
+m_strName=v-int9
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM86_WK
+
+@}}
+[FDITEM87_WK]
+m_strName=v-int10
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM87_WK
+
+@}}
+[FDITEM88_WK]
+m_strName=v-int11
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM88_WK
+
+@}}
+[FDITEM89_WK]
+m_strName=como-titolo
+m_strRawPic=x(50)
+m_strPic=x(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM89_WK
+
+@}}
+[FDITEM90_WK]
+m_strName=Screen1-Handle
+m_nUsage=24
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM90_WK
+
+@}}
+[FDITEM91_WK]
+m_strName=como-ord
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM91_WK
+
+@}}
+[FDITEM92_WK]
+m_strName=ord-code-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+{{@DataItem_m_strDescriptionFDITEM92_WK
+
+@}}
+[FDITEM93_WK]
+m_strName=ord-code-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=2
+{{@DataItem_m_strDescriptionFDITEM93_WK
+
+@}}
+[FDITEM94_WK]
+m_strName=ord-desc-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=3
+{{@DataItem_m_strDescriptionFDITEM94_WK
+
+@}}
+[FDITEM95_WK]
+m_strName=ord-desc-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=4
+{{@DataItem_m_strDescriptionFDITEM95_WK
+
+@}}
+[FDITEM96_WK]
+m_strName=ord-mcg-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=5
+{{@DataItem_m_strDescriptionFDITEM96_WK
+
+@}}
+[FDITEM97_WK]
+m_strName=ord-mcg-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=6
+{{@DataItem_m_strDescriptionFDITEM97_WK
+
+@}}
+[FDITEM98_WK]
+m_strName=ord-multi-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=7
+{{@DataItem_m_strDescriptionFDITEM98_WK
+
+@}}
+[FDITEM99_WK]
+m_strName=ord-multi-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=8
+{{@DataItem_m_strDescriptionFDITEM99_WK
+
+@}}
+[FDITEM100_WK]
+m_strName=ord-disable-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=9
+{{@DataItem_m_strDescriptionFDITEM100_WK
+
+@}}
+[FDITEM101_WK]
+m_strName=ord-disable-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=10
+{{@DataItem_m_strDescriptionFDITEM101_WK
+
+@}}
+[FDITEM102_WK]
+m_strName=ord-rp-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=11
+{{@DataItem_m_strDescriptionFDITEM102_WK
+
+@}}
+[FDITEM103_WK]
+m_strName=ord-rp-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=12
+{{@DataItem_m_strDescriptionFDITEM103_WK
+
+@}}
+[FDITEM104_WK]
+m_strName=ord-int-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=13
+{{@DataItem_m_strDescriptionFDITEM104_WK
+
+@}}
+[FDITEM105_WK]
+m_strName=ord-int-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=14
+{{@DataItem_m_strDescriptionFDITEM105_WK
+
+@}}
+[FDITEM106_WK]
+m_strName=ord-grp-asc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=15
+{{@DataItem_m_strDescriptionFDITEM106_WK
+
+@}}
+[FDITEM107_WK]
+m_strName=ord-grp-disc
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=16
+{{@DataItem_m_strDescriptionFDITEM107_WK
+
+@}}
+[FDITEM108_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM108_WK
+
+@}}
+[FDITEM109_WK]
 m_strName=ricarica
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM64_WK
+{{@DataItem_m_strDescriptionFDITEM109_WK
 
 @}}
-[FDITEM65_WK]
+[FDITEM110_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -657,47 +1108,47 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM65_WK
+{{@DataItem_m_strDescriptionFDITEM110_WK
 
 @}}
-[FDITEM66_WK]
+[FDITEM111_WK]
 m_strName=Default-Font
 m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM66_WK
+{{@DataItem_m_strDescriptionFDITEM111_WK
 
 @}}
-[FDITEM67_WK]
+[FDITEM112_WK]
 m_strName=STATUS-exercises
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM67_WK
+{{@DataItem_m_strDescriptionFDITEM112_WK
 
 @}}
-[FDITEM68_WK]
+[FDITEM113_WK]
 m_strName=Valid-STATUS-exercises
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM68_WK
+{{@DataItem_m_strDescriptionFDITEM113_WK
 
 @}}
-[FDITEM69_WK]
+[FDITEM114_WK]
 m_strName=Calibri14-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM69_WK
+{{@DataItem_m_strDescriptionFDITEM114_WK
 
 @}}
-[FDITEM70_WK]
+[FDITEM115_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -706,96 +1157,96 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM70_WK
+{{@DataItem_m_strDescriptionFDITEM115_WK
 
 @}}
-[FDITEM71_WK]
+[FDITEM116_WK]
 m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM71_WK
+{{@DataItem_m_strDescriptionFDITEM116_WK
 
 @}}
-[FDITEM72_WK]
+[FDITEM117_WK]
 m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM72_WK
+{{@DataItem_m_strDescriptionFDITEM117_WK
 
 @}}
-[FDITEM73_WK]
+[FDITEM118_WK]
 m_strName=STATUS-intexe
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM73_WK
+{{@DataItem_m_strDescriptionFDITEM118_WK
 
 @}}
-[FDITEM74_WK]
+[FDITEM119_WK]
 m_strName=Valid-STATUS-intexe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM74_WK
+{{@DataItem_m_strDescriptionFDITEM119_WK
 
 @}}
-[FDITEM75_WK]
+[FDITEM120_WK]
 m_strName=STATUS-macrogroups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM75_WK
+{{@DataItem_m_strDescriptionFDITEM120_WK
 
 @}}
-[FDITEM76_WK]
+[FDITEM121_WK]
 m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM76_WK
+{{@DataItem_m_strDescriptionFDITEM121_WK
 
 @}}
-[FDITEM77_WK]
+[FDITEM122_WK]
 m_strName=path-tmp-exe-mcg
 m_strRawPic=X(256)
 m_strPic=X(256)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM77_WK
+{{@DataItem_m_strDescriptionFDITEM122_WK
 
 @}}
-[FDITEM78_WK]
+[FDITEM123_WK]
 m_strName=STATUS-tmp-exe-mcg
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM78_WK
+{{@DataItem_m_strDescriptionFDITEM123_WK
 
 @}}
-[FDITEM79_WK]
+[FDITEM124_WK]
 m_strName=Valid-STATUS-tmp-exe-mcg
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM79_WK
+{{@DataItem_m_strDescriptionFDITEM124_WK
 
 @}}
-[FDITEM80_WK]
+[FDITEM125_WK]
 m_strName=chk-mcg1-buf
 m_strRawPic=9
 m_strPic=9
@@ -803,10 +1254,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM80_WK
+{{@DataItem_m_strDescriptionFDITEM125_WK
 
 @}}
-[FDITEM81_WK]
+[FDITEM126_WK]
 m_strName=chk-mcg2-buf
 m_strRawPic=9
 m_strPic=9
@@ -814,10 +1265,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM81_WK
+{{@DataItem_m_strDescriptionFDITEM126_WK
 
 @}}
-[FDITEM82_WK]
+[FDITEM127_WK]
 m_strName=chk-mcg3-buf
 m_strRawPic=9
 m_strPic=9
@@ -825,10 +1276,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM82_WK
+{{@DataItem_m_strDescriptionFDITEM127_WK
 
 @}}
-[FDITEM83_WK]
+[FDITEM128_WK]
 m_strName=chk-mcg4-buf
 m_strRawPic=9
 m_strPic=9
@@ -836,10 +1287,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM83_WK
+{{@DataItem_m_strDescriptionFDITEM128_WK
 
 @}}
-[FDITEM84_WK]
+[FDITEM129_WK]
 m_strName=chk-mcg5-buf
 m_strRawPic=9
 m_strPic=9
@@ -847,10 +1298,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM84_WK
+{{@DataItem_m_strDescriptionFDITEM129_WK
 
 @}}
-[FDITEM85_WK]
+[FDITEM130_WK]
 m_strName=chk-mcg6-buf
 m_strRawPic=9
 m_strPic=9
@@ -858,10 +1309,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM85_WK
+{{@DataItem_m_strDescriptionFDITEM130_WK
 
 @}}
-[FDITEM86_WK]
+[FDITEM131_WK]
 m_strName=chk-mcg7-buf
 m_strRawPic=9
 m_strPic=9
@@ -869,10 +1320,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM86_WK
+{{@DataItem_m_strDescriptionFDITEM131_WK
 
 @}}
-[FDITEM87_WK]
+[FDITEM132_WK]
 m_strName=chk-mcg8-buf
 m_strRawPic=9
 m_strPic=9
@@ -880,10 +1331,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM87_WK
+{{@DataItem_m_strDescriptionFDITEM132_WK
 
 @}}
-[FDITEM88_WK]
+[FDITEM133_WK]
 m_strName=chk-mcg9-buf
 m_strRawPic=9
 m_strPic=9
@@ -891,10 +1342,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM88_WK
+{{@DataItem_m_strDescriptionFDITEM133_WK
 
 @}}
-[FDITEM89_WK]
+[FDITEM134_WK]
 m_strName=chk-mcg10-buf
 m_strRawPic=9
 m_strPic=9
@@ -902,10 +1353,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM89_WK
+{{@DataItem_m_strDescriptionFDITEM134_WK
 
 @}}
-[FDITEM90_WK]
+[FDITEM135_WK]
 m_strName=chk-mcg11-buf
 m_strRawPic=9
 m_strPic=9
@@ -913,10 +1364,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM90_WK
+{{@DataItem_m_strDescriptionFDITEM135_WK
 
 @}}
-[FDITEM91_WK]
+[FDITEM136_WK]
 m_strName=chk-int1-buf
 m_strRawPic=9
 m_strPic=9
@@ -924,10 +1375,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM91_WK
+{{@DataItem_m_strDescriptionFDITEM136_WK
 
 @}}
-[FDITEM92_WK]
+[FDITEM137_WK]
 m_strName=chk-int10-buf
 m_strRawPic=9
 m_strPic=9
@@ -935,10 +1386,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM92_WK
+{{@DataItem_m_strDescriptionFDITEM137_WK
 
 @}}
-[FDITEM93_WK]
+[FDITEM138_WK]
 m_strName=chk-int11-buf
 m_strRawPic=9
 m_strPic=9
@@ -946,10 +1397,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM93_WK
+{{@DataItem_m_strDescriptionFDITEM138_WK
 
 @}}
-[FDITEM94_WK]
+[FDITEM139_WK]
 m_strName=chk-int9-buf
 m_strRawPic=9
 m_strPic=9
@@ -957,10 +1408,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM94_WK
+{{@DataItem_m_strDescriptionFDITEM139_WK
 
 @}}
-[FDITEM95_WK]
+[FDITEM140_WK]
 m_strName=chk-int8-buf
 m_strRawPic=9
 m_strPic=9
@@ -968,10 +1419,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM95_WK
+{{@DataItem_m_strDescriptionFDITEM140_WK
 
 @}}
-[FDITEM96_WK]
+[FDITEM141_WK]
 m_strName=chk-int7-buf
 m_strRawPic=9
 m_strPic=9
@@ -979,10 +1430,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM96_WK
+{{@DataItem_m_strDescriptionFDITEM141_WK
 
 @}}
-[FDITEM97_WK]
+[FDITEM142_WK]
 m_strName=chk-int6-buf
 m_strRawPic=9
 m_strPic=9
@@ -990,10 +1441,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM97_WK
+{{@DataItem_m_strDescriptionFDITEM142_WK
 
 @}}
-[FDITEM98_WK]
+[FDITEM143_WK]
 m_strName=chk-int5-buf
 m_strRawPic=9
 m_strPic=9
@@ -1001,10 +1452,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM98_WK
+{{@DataItem_m_strDescriptionFDITEM143_WK
 
 @}}
-[FDITEM99_WK]
+[FDITEM144_WK]
 m_strName=chk-int4-buf
 m_strRawPic=9
 m_strPic=9
@@ -1012,10 +1463,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM99_WK
+{{@DataItem_m_strDescriptionFDITEM144_WK
 
 @}}
-[FDITEM100_WK]
+[FDITEM145_WK]
 m_strName=chk-int3-buf
 m_strRawPic=9
 m_strPic=9
@@ -1023,10 +1474,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM100_WK
+{{@DataItem_m_strDescriptionFDITEM145_WK
 
 @}}
-[FDITEM101_WK]
+[FDITEM146_WK]
 m_strName=chk-int2-buf
 m_strRawPic=9
 m_strPic=9
@@ -1034,10 +1485,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM101_WK
+{{@DataItem_m_strDescriptionFDITEM146_WK
 
 @}}
-[FDITEM102_WK]
+[FDITEM147_WK]
 m_strName=chk-mcgall-buf
 m_strRawPic=9
 m_strPic=9
@@ -1045,10 +1496,10 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM102_WK
+{{@DataItem_m_strDescriptionFDITEM147_WK
 
 @}}
-[FDITEM103_WK]
+[FDITEM148_WK]
 m_strName=chk-intall-buf
 m_strRawPic=9
 m_strPic=9
@@ -1056,10 +1507,10 @@ m_strDefaultValue=1
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM103_WK
+{{@DataItem_m_strDescriptionFDITEM148_WK
 
 @}}
-[FDITEM104_WK]
+[FDITEM149_WK]
 m_strName=AUTO-ID
 m_strRawPic=9(6)
 m_strPic=9(6)
@@ -1067,10 +1518,10 @@ m_strDefaultValue=32
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM104_WK
+{{@DataItem_m_strDescriptionFDITEM149_WK
 
 @}}
-[FDITEM105_WK]
+[FDITEM150_WK]
 m_strName=E-SELEZIONA
 m_strRawPic=9
 m_strPic=9
@@ -1078,16 +1529,16 @@ m_strDefaultValue=1
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM105_WK
+{{@DataItem_m_strDescriptionFDITEM150_WK
 
 @}}
-[FDITEM106_WK]
+[FDITEM151_WK]
 m_strName=Calibri12-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM106_WK
+{{@DataItem_m_strDescriptionFDITEM151_WK
 
 @}}
 
@@ -3181,6 +3632,7 @@ BEGIN-TEXT
                     when 10 modify chk-int10, title = int-desc, visible = 1, value 1
                     when 11 modify chk-int11, title = int-desc, visible = 1, value 1
                     end-evaluate
+                    move int-restpause to el-int-rp(riga)
                  end-perform
            end-start.
 
@@ -3189,7 +3641,6 @@ BEGIN-TEXT
 
            perform INTESTAZIONE.
            set ord-mcg-asc to true.
-           perform LOAD-TMP-EXE-MCG.
            perform LOAD-RECORD.
 
            move 2  to event-data-2.
@@ -3568,9 +4019,17 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = LOAD-RECORD
 BEGIN-TEXT
+           if ord-mcg-asc    or ord-mcg-disc    or ord-multi-asc    or 
+              ord-multi-disc or ord-disable-asc or ord-disable-disc or
+              ord-rp-asc     or ord-rp-disc     or ord-int-asc      or 
+              ord-int-disc   or ord-grp-asc     or ord-grp-disc
+              perform LOAD-TMP-EXE-MCG
+           end-if.
+
            modify form1-gd-1, mass-update = 1, reset-grid = 1.
 
-           perform FORM1-GD-1-CONTENT.
+           perform FORM1-GD-1-CONTENT.   
+           perform TROVA-RP.
 
            evaluate true 
            when ord-code-asc
@@ -3839,6 +4298,14 @@ BEGIN-TEXT
            modify form1-gd-1, mass-update = 0.
            move 2 to riga.
            perform SPOSTAMENTO.
+           
+           if ord-mcg-asc    or ord-mcg-disc    or ord-multi-asc    or 
+              ord-multi-disc or ord-disable-asc or ord-disable-disc or
+              ord-rp-asc     or ord-rp-disc     or ord-int-asc      or 
+              ord-int-disc   or ord-grp-asc     or ord-grp-disc
+              close       tmp-exe-mcg     
+              delete file tmp-exe-mcg
+           end-if.
 
       ***---
        RECORD-TO-GRID.
@@ -3850,11 +4317,11 @@ BEGIN-TEXT
            read macrogroups no lock invalid move spaces to mcg-desc end-read
            move grp-desc to col-grp-desc
            move mcg-desc to col-mcg-desc
-           move exe-int-code to col-intensity int-code
-           read intexe no lock invalid move spaces to int-desc end-read
-           move int-desc      to col-int-desc
-           move exe-isMulti   to col-isMulti
-           move exe-setting   to col-setting
+           move exe-int-code    to col-intensity int-code
+           read intexe no lock  invalid move spaces to int-desc end-read
+           move int-desc        to col-int-desc
+           move exe-isMulti     to col-isMulti
+           move exe-setting     to col-setting
            move exe-isRestpause to col-restpause
            move exe-isDisable   to col-disab
            move exe-desc-stampa to col-des-stampa.
@@ -3916,57 +4383,134 @@ BEGIN-TEXT
 
            inquire chk-int1, value in chk-int1-buf, title in como-titolo
            if chk-int1-buf = 0 and int-desc = como-titolo
-              exit paragraph 
+              if exe-isRestpause > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
            end-if.
 
            inquire chk-int2, value in chk-int2-buf, title in como-titolo
            if chk-int2-buf = 0 and int-desc = como-titolo
-              exit paragraph 
+              if exe-isRestpause > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
            end-if.
 
            inquire chk-int3, value in chk-int3-buf, title in como-titolo
            if chk-int3-buf = 0 and int-desc = como-titolo
-              exit paragraph 
+              if exe-isRestpause > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
            end-if.
 
            inquire chk-int4, value in chk-int4-buf, title in como-titolo
            if chk-int4-buf = 0 and int-desc = como-titolo
-              exit paragraph 
+              if exe-isRestpause > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
            end-if.
 
            inquire chk-int5, value in chk-int5-buf, title in como-titolo
            if chk-int5-buf = 0 and int-desc = como-titolo
-              exit paragraph 
+              if exe-isRestpause > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
            end-if.
 
            inquire chk-int6, value in chk-int6-buf, title in como-titolo
            if chk-int6-buf = 0 and int-desc = como-titolo
-              exit paragraph 
+              if exe-isRestpause > 0
+                 perform RP-VALIDO 
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
            end-if.
 
            inquire chk-int7, value in chk-int7-buf, title in como-titolo
            if chk-int7-buf = 0 and int-desc = como-titolo
-              exit paragraph 
+              if exe-isRestpause > 0
+                 perform RP-VALIDO 
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
            end-if.
 
            inquire chk-int8, value in chk-int8-buf, title in como-titolo
            if chk-int8-buf = 0 and int-desc = como-titolo
-              exit paragraph 
+              if exe-isRestpause > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
            end-if.
 
            inquire chk-int9, value in chk-int9-buf, title in como-titolo
            if chk-int9-buf = 0 and int-desc = como-titolo
-              exit paragraph 
-           end-if.     
+              if exe-isRestpause > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
 
            inquire chk-int10, value in chk-int10-buf, title in como-titolo
-           if chk-int10-buf = 0   and int-desc = como-titolo
-              exit paragraph 
+           if chk-int10-buf = 0 and int-desc = como-titolo
+              if exe-isRestpause > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
            end-if.
 
            inquire chk-int11, value in chk-int11-buf, title in como-titolo
-           if chk-int11-buf = 0   and int-desc = como-titolo
-              exit paragraph 
+           if chk-int11-buf = 0 and int-desc = como-titolo
+              if exe-isRestpause > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
            end-if.
 
            add 1 to riga.
@@ -3987,118 +4531,250 @@ BEGIN-TEXT
            modify form1-gd-1(riga, 78-col-setting),     cell-data col-setting.
            modify form1-gd-1(riga, 78-col-restpause),   cell-data col-restpause.
            modify form1-gd-1(riga, 78-col-disable),     cell-data col-disab.
-                       
-           inquire chk-mcg1, visible in como-v
-           if como-v = 1 and chk-mcg1-buf = 0 
+                                               
+           inquire chk-mcg1,  visible in v-mcg1.
+           inquire chk-mcg2,  visible in v-mcg2.
+           inquire chk-mcg3,  visible in v-mcg3.
+           inquire chk-mcg4,  visible in v-mcg4.
+           inquire chk-mcg5,  visible in v-mcg5.
+           inquire chk-mcg6,  visible in v-mcg6.
+           inquire chk-mcg7,  visible in v-mcg7.
+           inquire chk-mcg8,  visible in v-mcg8.
+           inquire chk-mcg9,  visible in v-mcg9.
+           inquire chk-mcg10, visible in v-mcg10.
+           inquire chk-mcg11, visible in v-mcg11.
+
+           inquire chk-int1,  visible in v-int1.
+           inquire chk-int2,  visible in v-int2.
+           inquire chk-int3,  visible in v-int3.
+           inquire chk-int4,  visible in v-int4.
+           inquire chk-int5,  visible in v-int5.
+           inquire chk-int6,  visible in v-int6.
+           inquire chk-int7,  visible in v-int7.
+           inquire chk-int8,  visible in v-int8.
+           inquire chk-int9,  visible in v-int9.
+           inquire chk-int10, visible in v-int10.
+           inquire chk-int11, visible in v-int11.
+
+           if v-mcg1 = 1 and chk-mcg1-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if      
-           inquire chk-mcg2, visible in como-v
-           if como-v = 1 and chk-mcg2-buf = 0 
+           end-if.
+           if v-mcg2 = 1 and chk-mcg2-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if      
-           inquire chk-mcg3, visible in como-v
-           if como-v = 1 and chk-mcg3-buf = 0 
+           end-if.
+           if v-mcg3 = 1 and chk-mcg3-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if      
-           inquire chk-mcg4, visible in como-v
-           if como-v = 1 and chk-mcg4-buf = 0 
+           end-if.
+           if v-mcg4 = 1 and chk-mcg4-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if      
-           inquire chk-mcg5, visible in como-v
-           if como-v = 1 and chk-mcg5-buf = 0 
+           end-if.
+           if v-mcg5 = 1 and chk-mcg5-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if      
-           inquire chk-mcg6, visible in como-v
-           if como-v = 1 and chk-mcg6-buf = 0 
+           end-if.
+           if v-mcg6 = 1 and chk-mcg6-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if      
-           inquire chk-mcg7, visible in como-v
-           if como-v = 1 and chk-mcg7-buf = 0 
+           end-if.
+           if v-mcg7 = 1 and chk-mcg7-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if      
-           inquire chk-mcg8, visible in como-v
-           if como-v = 1 and chk-mcg8-buf = 0 
+           end-if.
+           if v-mcg8 = 1 and chk-mcg8-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if      
-           inquire chk-mcg9, visible in como-v
-           if como-v = 1 and chk-mcg9-buf = 0 
+           end-if.
+           if v-mcg9 = 1 and chk-mcg9-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if      
-           inquire chk-mcg10, visible in como-v
-           if como-v = 1 and chk-mcg10-buf = 0 
+           end-if.
+           if v-mcg10 = 1 and chk-mcg10-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if
-           inquire chk-mcg11, visible in como-v
-           if como-v = 1 and chk-mcg11-buf = 0 
+           end-if.
+           if v-mcg11 = 1 and chk-mcg11-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if
-                                        
-           inquire chk-int1, visible in como-v
-           if como-v = 1 and chk-int1-buf = 0 
+           end-if.
+
+           if v-int1 = 1 and chk-int1-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if
-           inquire chk-int2, visible in como-v
-           if como-v = 1 and chk-int2-buf = 0 
+           end-if.
+           if v-int2 = 1 and chk-int2-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if
-           inquire chk-int3, visible in como-v
-           if como-v = 1 and chk-int3-buf = 0 
+           end-if.
+           if v-int3 = 1 and chk-int3-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if
-           inquire chk-int4, visible in como-v
-           if como-v = 1 and chk-int4-buf = 0 
+           end-if.
+           if v-int4 = 1 and chk-int4-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if
-           inquire chk-int5, visible in como-v
-           if como-v = 1 and chk-int5-buf = 0 
+           end-if.
+           if v-int5 = 1 and chk-int5-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if
-           inquire chk-int6, visible in como-v
-           if como-v = 1 and chk-int6-buf = 0 
+           end-if.
+           if v-int6 = 1 and chk-int6-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if
-           inquire chk-int7, visible in como-v
-           if como-v = 1 and chk-int7-buf = 0 
+           end-if.
+           if v-int7 = 1 and chk-int7-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if
-           inquire chk-int8, visible in como-v
-           if como-v = 1 and chk-int8-buf = 0 
+           end-if.
+           if v-int8 = 1 and chk-int8-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if
-           inquire chk-int9, visible in como-v
-           if como-v = 1 and chk-int9-buf = 0 
+           end-if.
+           if v-int9 = 1 and chk-int9-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if
-           inquire chk-int10, visible in como-v
-           if como-v = 1 and chk-int10-buf = 0 
+           end-if.
+           if v-int10 = 1 and chk-int10-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if
-           inquire chk-int11, visible in como-v
-           if como-v = 1 and chk-int11-buf = 0 
+           end-if.
+           if v-int11 = 1 and chk-int11-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if
+           end-if.
+
+           if ( ( v-mcg1  = 1 and chk-mcg1-buf  = 1 ) or v-mcg1  = 0 ) and 
+              ( ( v-mcg2  = 1 and chk-mcg2-buf  = 1 ) or v-mcg2  = 0 ) and 
+              ( ( v-mcg3  = 1 and chk-mcg3-buf  = 1 ) or v-mcg3  = 0 ) and 
+              ( ( v-mcg4  = 1 and chk-mcg4-buf  = 1 ) or v-mcg4  = 0 ) and 
+              ( ( v-mcg5  = 1 and chk-mcg5-buf  = 1 ) or v-mcg5  = 0 ) and 
+              ( ( v-mcg6  = 1 and chk-mcg6-buf  = 1 ) or v-mcg6  = 0 ) and 
+              ( ( v-mcg7  = 1 and chk-mcg7-buf  = 1 ) or v-mcg7  = 0 ) and 
+              ( ( v-mcg8  = 1 and chk-mcg8-buf  = 1 ) or v-mcg8  = 0 ) and 
+              ( ( v-mcg9  = 1 and chk-mcg9-buf  = 1 ) or v-mcg9  = 0 ) and 
+              ( ( v-mcg10 = 1 and chk-mcg10-buf = 1 ) or v-mcg10 = 0 ) and 
+              ( ( v-mcg11 = 1 and chk-mcg11-buf = 1 ) or v-mcg11 = 0 )  
+              move 1 to chk-mcgall-buf
+              display chk-mcgall
+           end-if.
+
+           if ( ( v-int1  = 1 and chk-int1-buf  = 1 ) or v-int1  = 0 ) and 
+              ( ( v-int2  = 1 and chk-int2-buf  = 1 ) or v-int2  = 0 ) and 
+              ( ( v-int3  = 1 and chk-int3-buf  = 1 ) or v-int3  = 0 ) and 
+              ( ( v-int4  = 1 and chk-int4-buf  = 1 ) or v-int4  = 0 ) and 
+              ( ( v-int5  = 1 and chk-int5-buf  = 1 ) or v-int5  = 0 ) and 
+              ( ( v-int6  = 1 and chk-int6-buf  = 1 ) or v-int6  = 0 ) and 
+              ( ( v-int7  = 1 and chk-int7-buf  = 1 ) or v-int7  = 0 ) and 
+              ( ( v-int8  = 1 and chk-int8-buf  = 1 ) or v-int8  = 0 ) and 
+              ( ( v-int9  = 1 and chk-int9-buf  = 1 ) or v-int9  = 0 ) and 
+              ( ( v-int10 = 1 and chk-int10-buf = 1 ) or v-int10 = 0 ) and 
+              ( ( v-int11 = 1 and chk-int11-buf = 1 ) or v-int11 = 0 ) 
+              move 1 to chk-intall-buf
+              display chk-intall
+           end-if.
+
+
+      ***---
+       TROVA-RP.                 
+           set rp1-true  to false.
+           set rp2-true  to false.
+           set rp3-true  to false.
+           set rp4-true  to false.
+           set rp5-true  to false.
+           set rp6-true  to false.
+           set rp7-true  to false.
+           set rp8-true  to false.
+           set rp9-true  to false.
+           set rp10-true to false.
+           set rp11-true to false.
+
+           perform varying idx from 1 by 1 
+                     until idx > 99
+              if el-int-rp(idx) = 0
+                 exit perform cycle
+              end-if
+              perform TROVA-FLAG-RP
+           end-perform.
+
+      ***---
+       TROVA-FLAG-RP.
+           evaluate idx
+           when 1 inquire chk-int1, value in chk-int1-buf
+                  if chk-int1-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 3 inquire chk-int2, value in chk-int2-buf
+                  if chk-int2-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 3 inquire chk-int3, value in chk-int3-buf
+                  if chk-int3-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 4 inquire chk-int4, value in chk-int4-buf
+                  if chk-int4-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 5 inquire chk-int5, value in chk-int5-buf
+                  if chk-int5-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 6 inquire chk-int6, value in chk-int6-buf
+                  if chk-int6-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 7 inquire chk-int7, value in chk-int7-buf
+                  if chk-int7-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 8 inquire chk-int8, value in chk-int8-buf
+                  if chk-int8-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 9 inquire chk-int9, value in chk-int9-buf
+                  if chk-int9-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 10 inquire chk-int10, value in chk-int10-buf
+                  if chk-int10-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 10 inquire chk-int11, value in chk-int11-buf
+                  if chk-int11-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           end-evaluate.
+
+
+      ***---
+       SETTA-FLAG-RP.
+           evaluate el-int-rp(idx)
+           when 0 continue            
+           when 1  set rp1-true  to true
+           when 2  set rp3-true  to true
+           when 3  set rp3-true  to true
+           when 4  set rp4-true  to true
+           when 5  set rp5-true  to true
+           when 6  set rp6-true  to true
+           when 7  set rp7-true  to true
+           when 8  set rp8-true  to true
+           when 9  set rp9-true  to true
+           when 10 set rp10-true to true
+           when 11 set rp11-true to true
+           end-evaluate.
+
+      ***---       
+       RP-VALIDO.
+           set trovato to false.
+           if exe-isRestpause = 1 and
+              rp1-true  or rp2-true  or rp3-true or rp4-true or 
+              rp5-true  or rp6-true  or rp7-true or rp8-true or
+              rp9-true  or rp10-true or rp11-true
+              set trovato to true 
+           end-if.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -4603,7 +5279,7 @@ BEGIN-TEXT
                    set ord-desc-disc to true
                 else                        
                    set ord-desc-asc to true
-                end-if
+                end-if             
                 perform LOAD-RECORD
 
            when 78-col-mcg-desc
@@ -4612,10 +5288,7 @@ BEGIN-TEXT
                 else                        
                    set ord-mcg-asc to true
                 end-if                  
-                perform LOAD-TMP-EXE-MCG
-                perform LOAD-RECORD
-                close       tmp-exe-mcg
-                delete file tmp-exe-mcg   
+                perform LOAD-RECORD       
 
            when 78-col-restpause
                 if ord-rp-asc
@@ -4623,10 +5296,7 @@ BEGIN-TEXT
                 else                        
                    set ord-rp-asc to true
                 end-if                  
-                perform LOAD-TMP-EXE-MCG
-                perform LOAD-RECORD
-                close       tmp-exe-mcg     
-                delete file tmp-exe-mcg
+                perform LOAD-RECORD     
 
            when 78-col-int-code
                 if ord-int-asc
@@ -4634,54 +5304,39 @@ BEGIN-TEXT
                 else                        
                    set ord-int-asc to true
                 end-if                  
-                perform LOAD-TMP-EXE-MCG
-                perform LOAD-RECORD
-                close       tmp-exe-mcg     
-                delete file tmp-exe-mcg
+                perform LOAD-RECORD     
 
            when 78-col-isMulti
                 if ord-multi-asc
                    set ord-multi-disc to true
                 else                        
                    set ord-multi-asc to true
-                end-if                 
-                perform LOAD-TMP-EXE-MCG
-                perform LOAD-RECORD
-                close       tmp-exe-mcg
-                delete file tmp-exe-mcg 
+                end-if                  
+                perform LOAD-RECORD     
 
            when 78-col-restPause
                 if ord-multi-asc
                    set ord-multi-disc to true
                 else                        
                    set ord-multi-asc to true
-                end-if                 
-                perform LOAD-TMP-EXE-MCG
-                perform LOAD-RECORD
-                close       tmp-exe-mcg
-                delete file tmp-exe-mcg 
+                end-if                  
+                perform LOAD-RECORD     
 
            when 78-col-disable
                 if ord-disable-asc
                    set ord-disable-disc to true
                 else                        
                    set ord-disable-asc to true
-                end-if                 
-                perform LOAD-TMP-EXE-MCG
-                perform LOAD-RECORD
-                close       tmp-exe-mcg
-                delete file tmp-exe-mcg 
+                end-if                  
+                perform LOAD-RECORD     
 
            when 78-col-grp-code
                 if ord-grp-asc
                    set ord-grp-disc to true
                 else                        
                    set ord-grp-asc to true
-                end-if                 
-                perform LOAD-TMP-EXE-MCG
-                perform LOAD-RECORD
-                close       tmp-exe-mcg
-                delete file tmp-exe-mcg 
+                end-if                  
+                perform LOAD-RECORD     
            end-evaluate.                        
 END-TEXT
 END-DATA
@@ -4696,115 +5351,105 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = chk-mcgall-LinkTo
 BEGIN-TEXT
+           inquire chk-mcg1,  visible in v-mcg1.
+           inquire chk-mcg2,  visible in v-mcg2.
+           inquire chk-mcg3,  visible in v-mcg3.
+           inquire chk-mcg4,  visible in v-mcg4.
+           inquire chk-mcg5,  visible in v-mcg5.
+           inquire chk-mcg6,  visible in v-mcg6.
+           inquire chk-mcg7,  visible in v-mcg7.
+           inquire chk-mcg8,  visible in v-mcg8.
+           inquire chk-mcg9,  visible in v-mcg9.
+           inquire chk-mcg10, visible in v-mcg10.
+           inquire chk-mcg11, visible in v-mcg11.
+
            if chk-mcgall-buf = 0
-              inquire chk-mcg1, visible in como-v
-              if como-v = 1
+              if v-mcg1 = 1
                  move 0 to chk-mcg1-buf
                  modify chk-mcg1, value chk-mcg1-buf
               end-if
-              inquire chk-mcg2, visible in como-v
-              if como-v = 1
+              if v-mcg2 = 1
                  move 0 to chk-mcg2-buf
                  modify chk-mcg2, value chk-mcg2-buf
               end-if
-              inquire chk-mcg3, visible in como-v
-              if como-v = 1
+              if v-mcg3 = 1
                  move 0 to chk-mcg3-buf
                  modify chk-mcg3, value chk-mcg3-buf
               end-if
-              inquire chk-mcg4, visible in como-v
-              if como-v = 1
+              if v-mcg4 = 1
                  move 0 to chk-mcg4-buf
                  modify chk-mcg4, value chk-mcg4-buf
               end-if
-              inquire chk-mcg5, visible in como-v
-              if como-v = 1
+              if v-mcg5 = 1
                  move 0 to chk-mcg5-buf
                  modify chk-mcg5, value chk-mcg5-buf
               end-if
-              inquire chk-mcg6, visible in como-v
-              if como-v = 1
+              if v-mcg6 = 1
                  move 0 to chk-mcg6-buf
                  modify chk-mcg6, value chk-mcg6-buf
               end-if
-              inquire chk-mcg7, visible in como-v
-              if como-v = 1
+              if v-mcg7 = 1
                  move 0 to chk-mcg7-buf
                  modify chk-mcg7, value chk-mcg7-buf
               end-if
-              inquire chk-mcg8, visible in como-v
-              if como-v = 1
+              if v-mcg8 = 1
                  move 0 to chk-mcg8-buf
                  modify chk-mcg8, value chk-mcg8-buf
               end-if
-              inquire chk-mcg9, visible in como-v
-              if como-v = 1
+              if v-mcg9 = 1
                  move 0 to chk-mcg9-buf
                  modify chk-mcg9, value chk-mcg9-buf
               end-if
-              inquire chk-mcg10, visible in como-v
-              if como-v = 1
+              if v-mcg10 = 1
                  move 0 to chk-mcg10-buf
                  modify chk-mcg10, value chk-mcg10-buf
               end-if
-              inquire chk-mcg11, visible in como-v
-              if como-v = 1
+              if v-mcg11 = 1
                  move 0 to chk-mcg11-buf
                  modify chk-mcg11, value chk-mcg11-buf
               end-if
            else
-              inquire chk-mcg1, visible in como-v
-              if como-v = 1
+              if v-mcg1 = 1
                  move 1 to chk-mcg1-buf
                  modify chk-mcg1, value chk-mcg1-buf
               end-if
-              inquire chk-mcg2, visible in como-v
-              if como-v = 1
+              if v-mcg2 = 1
                  move 1 to chk-mcg2-buf
                  modify chk-mcg2, value chk-mcg2-buf
               end-if
-              inquire chk-mcg3, visible in como-v
-              if como-v = 1
+              if v-mcg3 = 1
                  move 1 to chk-mcg3-buf
                  modify chk-mcg3, value chk-mcg3-buf
               end-if
-              inquire chk-mcg4, visible in como-v
-              if como-v = 1
+              if v-mcg4 = 1
                  move 1 to chk-mcg4-buf
                  modify chk-mcg4, value chk-mcg4-buf
               end-if
-              inquire chk-mcg5, visible in como-v
-              if como-v = 1
+              if v-mcg5 = 1
                  move 1 to chk-mcg5-buf
                  modify chk-mcg5, value chk-mcg5-buf
               end-if
-              inquire chk-mcg6, visible in como-v
-              if como-v = 1
+              if v-mcg6 = 1
                  move 1 to chk-mcg6-buf
                  modify chk-mcg6, value chk-mcg6-buf
               end-if
-              inquire chk-mcg7, visible in como-v
-              if como-v = 1
+              if v-mcg7 = 1
                  move 1 to chk-mcg7-buf
                  modify chk-mcg7, value chk-mcg7-buf
               end-if
-              inquire chk-mcg8, visible in como-v
-              if como-v = 1
+              if v-mcg8 = 1
                  move 1 to chk-mcg8-buf
                  modify chk-mcg8, value chk-mcg8-buf
               end-if
-              inquire chk-mcg9, visible in como-v
-              if como-v = 1
+              if v-mcg9 = 1
                  move 1 to chk-mcg9-buf
                  modify chk-mcg9, value chk-mcg9-buf
               end-if
-              inquire chk-mcg10, visible in como-v
-              if como-v = 1
+              if v-mcg10 = 1
                  move 1 to chk-mcg10-buf
                  modify chk-mcg10, value chk-mcg10-buf
               end-if
-              inquire chk-mcg11, visible in como-v
-              if como-v = 1
+              if v-mcg11 = 1
                  move 1 to chk-mcg11-buf
                  modify chk-mcg11, value chk-mcg11-buf
               end-if
@@ -4816,115 +5461,105 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = chk-intall-LinkTo
 BEGIN-TEXT
+           inquire chk-int1,  visible in v-int1.
+           inquire chk-int2,  visible in v-int2.
+           inquire chk-int3,  visible in v-int3.
+           inquire chk-int4,  visible in v-int4.
+           inquire chk-int5,  visible in v-int5.
+           inquire chk-int6,  visible in v-int6.
+           inquire chk-int7,  visible in v-int7.
+           inquire chk-int8,  visible in v-int8.
+           inquire chk-int9,  visible in v-int9.
+           inquire chk-int10, visible in v-int10.
+           inquire chk-int11, visible in v-int11.
+
            if chk-intall-buf = 0
-              inquire chk-int1, visible in como-v
-              if como-v = 1
+              if v-int1 = 1
                  move 0 to chk-int1-buf
                  modify chk-int1, value chk-int1-buf
-              end-if
-              inquire chk-int2, visible in como-v
-              if como-v = 1
+              end-if            
+              if v-int2 = 1
                  move 0 to chk-int2-buf
                  modify chk-int2, value chk-int2-buf
-              end-if
-              inquire chk-int3, visible in como-v
-              if como-v = 1
+              end-if            
+              if v-int3 = 1
                  move 0 to chk-int3-buf
                  modify chk-int3, value chk-int3-buf
-              end-if
-              inquire chk-int4, visible in como-v
-              if como-v = 1
+              end-if            
+              if v-int4 = 1
                  move 0 to chk-int4-buf
                  modify chk-int4, value chk-int4-buf
-              end-if
-              inquire chk-int5, visible in como-v
-              if como-v = 1
+              end-if            
+              if v-int5 = 1
                  move 0 to chk-int5-buf
                  modify chk-int5, value chk-int5-buf
-              end-if
-              inquire chk-int6, visible in como-v
-              if como-v = 1
+              end-if            
+              if v-int6 = 1
                  move 0 to chk-int6-buf
                  modify chk-int6, value chk-int6-buf
-              end-if
-              inquire chk-int7, visible in como-v
-              if como-v = 1
+              end-if            
+              if v-int7 = 1
                  move 0 to chk-int7-buf
                  modify chk-int7, value chk-int7-buf
-              end-if
-              inquire chk-int8, visible in como-v
-              if como-v = 1
+              end-if            
+              if v-int8 = 1
                  move 0 to chk-int8-buf
                  modify chk-int8, value chk-int8-buf
-              end-if
-              inquire chk-int9, visible in como-v
-              if como-v = 1
+              end-if            
+              if v-int9 = 1
                  move 0 to chk-int9-buf
                  modify chk-int9, value chk-int9-buf
-              end-if
-              inquire chk-int10, visible in como-v
-              if como-v = 1
+              end-if            
+              if v-int10 = 1
                  move 0 to chk-int10-buf
                  modify chk-int10, value chk-int10-buf
-              end-if
-              inquire chk-int11, visible in como-v
-              if como-v = 1
+              end-if            
+              if v-int11 = 1
                  move 0 to chk-int11-buf
                  modify chk-int11, value chk-int11-buf
               end-if
            else
-              inquire chk-int1, visible in como-v
-              if como-v = 1
+              if v-int1 = 1
                  move 1 to chk-int1-buf
                  modify chk-int1, value chk-int1-buf
               end-if
-              inquire chk-int2, visible in como-v
-              if como-v = 1
+              if v-int2 = 1
                  move 1 to chk-int2-buf
                  modify chk-int2, value chk-int2-buf
               end-if
-              inquire chk-int3, visible in como-v
-              if como-v = 1
+              if v-int3 = 1
                  move 1 to chk-int3-buf
                  modify chk-int3, value chk-int3-buf
               end-if
-              inquire chk-int4, visible in como-v
-              if como-v = 1
+              if v-int4 = 1
                  move 1 to chk-int4-buf
                  modify chk-int4, value chk-int4-buf
               end-if
-              inquire chk-int5, visible in como-v
-              if como-v = 1
+              if v-int5 = 1
                  move 1 to chk-int5-buf
                  modify chk-int5, value chk-int5-buf
               end-if
-              inquire chk-int6, visible in como-v
-              if como-v = 1
+              if v-int6 = 1
                  move 1 to chk-int6-buf
                  modify chk-int6, value chk-int6-buf
               end-if
-              inquire chk-int7, visible in como-v
-              if como-v = 1
+              if v-int7 = 1
                  move 1 to chk-int7-buf
                  modify chk-int7, value chk-int7-buf
               end-if
-              inquire chk-int8, visible in como-v
-              if como-v = 1
+              if v-int8 = 1
                  move 1 to chk-int8-buf
                  modify chk-int8, value chk-int8-buf
               end-if
-              inquire chk-int9, visible in como-v
-              if como-v = 1
+              if v-int9 = 1
                  move 1 to chk-int9-buf
                  modify chk-int9, value chk-int9-buf
               end-if
-              inquire chk-int10, visible in como-v
-              if como-v = 1
+              if v-int10 = 1
                  move 1 to chk-int10-buf
                  modify chk-int10, value chk-int10-buf
               end-if
-              inquire chk-int11, visible in como-v
-              if como-v = 1
+              if v-int11 = 1
                  move 1 to chk-int11-buf
                  modify chk-int11, value chk-int11-buf
               end-if

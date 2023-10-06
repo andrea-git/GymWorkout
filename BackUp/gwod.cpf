@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A575629-494-103849444
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A612299-424-412393
 
 {{@DESCRIPTION:
 
@@ -7222,11 +7222,12 @@ BEGIN-TEXT
                                                
                     if tex-ss = 0
                        compute tot-durata  = tot-durata +
-                             ( exe-setting * 2 ) +
+                             ( exe-setting ) +
+                             ( exe-setting * 0,5 ) +
                              ( col-series  * int-time  ) +
                              ( int-rest    * ( col-series - 1 ) ) +
                              ( sec-squeeze * col-series ) + 
-                             60 |Ipotetico rest tra una e l'altra
+                             30 |Ipotetico rest tra una e l'altra
                     else
                        compute tot-durata  = tot-durata +
                              ( exe-setting * 2 ) +

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 6 ottobre 2023 18:16:30.
+       DATE-WRITTEN.        lunedì 9 ottobre 2023 10:10:16.
        REMARKS.
       *{TOTEM}END
 
@@ -155,21 +155,6 @@
        01 s-tex-key.
            05 s-tex-day        PIC  9.
            05 s-tex-split      PIC  9(3).
-       01 como-tex-rec.
-           05 como-tex-key.
-               10 como-tex-day     PIC  9.
-               10 como-tex-split   PIC  9(3).
-           05 como-tex-data.
-               10 como-tex-mcg-code            PIC  x(5).
-               10 como-tex-exe-code            PIC  x(5).
-               10 como-tex-exe-desc            PIC  x(100).
-               10 como-tex-nome-dupl           PIC  x(100).
-               10 como-tex-int-code            PIC  99.
-               10 como-tex-exe-isMulti         PIC  9.
-                   88 como-tex-exe-isMulti-no VALUE IS 0. 
-                   88 como-tex-exe-isMulti-yes VALUE IS 1. 
-               10 como-tex-reps    PIC  x(10).
-               10 como-tex-series  PIC  99.
        01 mcg-sigle-tab.
            05 el-mcg-sigla     PIC  x
                       OCCURS 10 TIMES.
@@ -622,6 +607,23 @@
        77  s-tex-exe-code     pic x(5).  
        77  s-tex-exe-desc     pic x(100).   
        77  s-tex-exe-isMulti  pic 9.
+
+       01 como-tex-rec.
+           05 como-tex-key.
+               10 como-tex-day          PIC  9.
+               10 como-tex-split        PIC  9(3).
+           05 como-tex-data.
+               10 como-tex-exe-desc-univoca         PIC  x(100).
+               10 como-tex-mcg-code     PIC  x(5).
+               10 como-tex-exe-code     PIC  x(5).
+               10 como-tex-exe-desc     PIC  x(100).
+               10 como-tex-nome-dupl    PIC  x(100).
+               10 como-tex-int-code     PIC  99.
+               10 como-tex-exe-isMulti  PIC  9.
+               10 como-tex-reps         PIC  x(10).
+               10 como-tex-series       PIC  99.
+               10 como-tex-int-restpause            PIC  9.
+               10 como-tex-ss           PIC  9.
       *{TOTEM}END
 
       *{TOTEM}ID-LOGICI

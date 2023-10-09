@@ -6,14 +6,18 @@
                10 wod-split        PIC  99.
            05 wod-data.
                10 wod-data.
-                   15 wod-exe-desc-univoca         PIC  x(100).
-                   15 wod-mcg-code     PIC  x(5).
-                   15 wod-exe-code     PIC  x(5).
-                   15 wod-exe-desc     PIC  x(100).
-                   15 wod-int-code     PIC  99.
-                   15 wod-exe-isMulti  PIC  9.
-                   15 wod-reps         PIC  x(10).
-                   15 wod-series       PIC  99.
-                   15 wod-int-restpause            PIC  9.
-                   15 wod-ss           PIC  9.
-                   15 FILLER           PIC  x(2000).
+                   15 wod-head-data.
+                       20 wod-desc         PIC  x(100).
+                       20 FILLER           PIC  x(2000).
+                   15 wod-row-data.
+                       20 wod-exe-desc-univoca         PIC  x(100).
+                       20 wod-mcg-code     PIC  x(5).
+                       20 wod-exe-code     PIC  x(5).
+                       20 wod-exe-desc     PIC  x(100).
+                       20 wod-int-code     PIC  99.
+                       20 wod-exe-isMulti  PIC  9.
+                       20 wod-reps         PIC  x(10).
+                       20 wod-series       PIC  99.
+                       20 wod-int-restpause            PIC  9.
+                       20 wod-ss           PIC  9.
+                       20 FILLER           PIC  x(2000).

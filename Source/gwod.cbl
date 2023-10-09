@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 9 ottobre 2023 10:43:18.
+       DATE-WRITTEN.        lunedì 9 ottobre 2023 19:35:08.
        REMARKS.
       *{TOTEM}END
 
@@ -144,6 +144,7 @@
        77 exe-probabili    PIC  99.
        77 como-split       PIC  99.
        77 tentativo        PIC  99.
+       77 como-code        PIC  9(18).
        01 como-tex-data-tab.
            05 como-tex-data-el PIC  x(1000)
                       OCCURS 99 TIMES.
@@ -458,6 +459,7 @@
                   VALUE IS 1.
        77 e-gg7            PIC  9
                   VALUE IS 1.
+       77 ef-desc-buf      PIC  X(100).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -465,9 +467,9 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(2255).
+       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(4355).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(2255).
+       77 Form1-MULKEY-TMPBUF   PIC X(4355).
        77 STATUS-scr-attesa-FLAG-REFRESH PIC  9.
           88 scr-attesa-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 STATUS-scr-date-FLAG-REFRESH PIC  9.
@@ -477,7 +479,7 @@
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
-       77 TMP-DataSet1-wodbook-BUF     PIC X(2255).
+       77 TMP-DataSet1-wodbook-BUF     PIC X(4355).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(331).
@@ -575,6 +577,7 @@
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-exercises-SPLITBUF  PIC X(3).
+       77 wodbook-wod-k-desc-SPLITBUF  PIC X(101).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 tmp-exe-tex-k-dupl-SPLITBUF  PIC X(102).
        77 tmp-exe-tex-k-mcg-SPLITBUF  PIC X(10).
@@ -1633,6 +1636,27 @@
            VISIBLE 0,
            .
 
+      * PUSH BUTTON
+       05
+           TOOL-SELEZIONAa, 
+           Push-Button, 
+           COL 33,30, 
+           LINE 1,09,
+           LINES 64,00 ,
+           SIZE 48,00 ,
+           BITMAP-HANDLE toolbar-bmp,
+           BITMAP-NUMBER 9,
+           FRAMED,
+           SQUARE,
+           ENABLED E-SELEZIONA,
+           EXCEPTION-VALUE 9,
+           FLAT,
+           FONT IS Calibri14-Occidentale,
+           ID IS 115,
+           SELF-ACT,
+           TITLE "Seleziona (F9)",
+           .
+
       * FORM
        01 
            scr-attesa, 
@@ -1680,7 +1704,7 @@
        05
            Screen2-Fr-1, 
            Frame, 
-           COL 2,64, 
+           COL 14,45, 
            LINE 1,54,
            LINES 12,96 ,
            SIZE 25,82 ,
@@ -1696,7 +1720,7 @@
        05
            Screen2-La-1, 
            Label, 
-           COL 5,28, 
+           COL 17,09, 
            LINE 3,08,
            LINES 1,23 ,
            SIZE 7,82 ,
@@ -1711,7 +1735,7 @@
        05
            Screen2-La-1a, 
            Label, 
-           COL 5,28, 
+           COL 17,09, 
            LINE 4,62,
            LINES 1,23 ,
            SIZE 7,82 ,
@@ -1726,7 +1750,7 @@
        05
            Screen2-La-1b, 
            Label, 
-           COL 5,28, 
+           COL 17,09, 
            LINE 6,16,
            LINES 1,00 ,
            SIZE 7,82 ,
@@ -1741,7 +1765,7 @@
        05
            Screen2-La-1c, 
            Label, 
-           COL 5,28, 
+           COL 17,09, 
            LINE 7,69,
            LINES 1,23 ,
            SIZE 7,82 ,
@@ -1756,7 +1780,7 @@
        05
            Screen2-La-1d, 
            Label, 
-           COL 5,28, 
+           COL 17,09, 
            LINE 9,23,
            LINES 1,23 ,
            SIZE 7,82 ,
@@ -1771,7 +1795,7 @@
        05
            Screen2-La-1e, 
            Label, 
-           COL 5,28, 
+           COL 17,09, 
            LINE 10,77,
            LINES 1,23 ,
            SIZE 7,82 ,
@@ -1786,7 +1810,7 @@
        05
            Screen2-La-1f, 
            Label, 
-           COL 5,28, 
+           COL 17,09, 
            LINE 12,31,
            LINES 1,00 ,
            SIZE 7,82 ,
@@ -1801,7 +1825,7 @@
        05
            ef-gg1, 
            Entry-Field, 
-           COL 15,82, 
+           COL 27,63, 
            LINE 3,08,
            LINES 1,23 ,
            SIZE 10,00 ,
@@ -1820,7 +1844,7 @@
        05
            ef-gg2, 
            Entry-Field, 
-           COL 15,82, 
+           COL 27,63, 
            LINE 4,62,
            LINES 1,23 ,
            SIZE 10,00 ,
@@ -1839,7 +1863,7 @@
        05
            ef-gg3, 
            Entry-Field, 
-           COL 15,82, 
+           COL 27,63, 
            LINE 6,16,
            LINES 1,23 ,
            SIZE 10,00 ,
@@ -1858,7 +1882,7 @@
        05
            ef-gg4, 
            Entry-Field, 
-           COL 15,82, 
+           COL 27,63, 
            LINE 7,69,
            LINES 1,23 ,
            SIZE 10,00 ,
@@ -1877,7 +1901,7 @@
        05
            ef-gg5, 
            Entry-Field, 
-           COL 15,82, 
+           COL 27,63, 
            LINE 9,23,
            LINES 1,23 ,
            SIZE 10,00 ,
@@ -1896,7 +1920,7 @@
        05
            ef-gg6, 
            Entry-Field, 
-           COL 15,82, 
+           COL 27,63, 
            LINE 10,77,
            LINES 1,23 ,
            SIZE 10,00 ,
@@ -1915,7 +1939,7 @@
        05
            ef-gg7, 
            Entry-Field, 
-           COL 15,82, 
+           COL 27,63, 
            LINE 12,31,
            LINES 1,23 ,
            SIZE 10,00 ,
@@ -1930,12 +1954,30 @@
            BEFORE PROCEDURE ef-gg7-BeforeProcedure, 
            .
 
+      * ENTRY FIELD
+       05
+           ef-desc, 
+           Entry-Field, 
+           COL 11,45, 
+           LINE 15,12,
+           LINES 1,15 ,
+           SIZE 41,64 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 2,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-desc-buf,
+           AFTER PROCEDURE ef-desc-AfterProcedure, 
+           BEFORE PROCEDURE ef-desc-BeforeProcedure, 
+           .
+
       * PUSH BUTTON
        05
            pb-ok, 
            Push-Button, 
-           COL 8,27, 
-           LINE 14,88,
+           COL 20,09, 
+           LINE 16,69,
            LINES 1,42 ,
            SIZE 81 PIXELS,
            BITMAP-HANDLE BOTTONE-OK-BMP,
@@ -1955,8 +1997,8 @@
        05
            pb-cancel, 
            Push-Button, 
-           COL 15,45, 
-           LINE 14,88,
+           COL 27,27, 
+           LINE 16,69,
            LINES 1,42 ,
            SIZE 81 PIXELS,
            BITMAP-HANDLE BOTTONE-ANNULLA-BMP,
@@ -1971,6 +2013,21 @@
            ESCAPE-BUTTON,
            AFTER PROCEDURE pb-cancel-AfterProcedure, 
            BEFORE PROCEDURE pb-cancel-BeforeProcedure, 
+           .
+
+      * LABEL
+       05
+           Screen2-La-1fa, 
+           Label, 
+           COL 1,64, 
+           LINE 15,15,
+           LINES 1,00 ,
+           SIZE 10,00 ,
+           ID IS 19,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Descrizione",
            .
 
       *{TOTEM}END
@@ -3347,6 +3404,11 @@
       * <TOTEM:END>
            .
 
+       wodbook-wod-k-desc-MERGE-SPLITBUF.
+           INITIALIZE wodbook-wod-k-desc-SPLITBUF
+           MOVE wod-desc(1:100) TO wodbook-wod-k-desc-SPLITBUF(1:100)
+           .
+
        DataSet1-wodbook-INITSTART.
            EVALUATE DataSet1-KEYIS
            WHEN 1
@@ -3447,6 +3509,7 @@
                  KEY wod-key
               END-IF
            END-EVALUATE
+           PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT 
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -3477,6 +3540,7 @@
                  END-IF
               END-IF
            END-EVALUATE
+           PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -3507,6 +3571,7 @@
                  END-IF
               END-IF
            END-EVALUATE
+           PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -5212,6 +5277,8 @@
                  PERFORM STAMPA-LinkTo
               WHEN Key-Status = 8
                  PERFORM TOOL-CERCA-LinkTo
+              WHEN Key-Status = 9
+                 PERFORM TOOL-SELEZIONA-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -5863,8 +5930,8 @@
 
        scr-date-Create-Win.
            Display Floating GRAPHICAL WINDOW
-              LINES 15,62,
-              SIZE 29,18,
+              LINES 17,50,
+              SIZE 52,82,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -8849,6 +8916,31 @@
            .
       * <TOTEM:END>
 
+       SELEZIONA.
+      * <TOTEM:PARA. SELEZIONA>
+      *     move "wodbook"    to como-file.
+      *     call "zoom-gt" using como-file, wom-rec
+      *                   giving stato-zoom.
+      *     cancel "zoom-gt".
+      *     if stato-zoom = ZERO
+      *        if old-wom-key not = wom-key or
+      *         ( wom-code = 0 and mod = 0 )
+      *           move wom-key to save-key
+      *           perform SALV-MOD
+      *           if tutto-ok
+      *              move save-key to wom-key
+      *              set ReadSecca to true
+      *              modify ef-codice, value wom-code
+      *              perform CURRENT-RECORD
+      *              perform CANCELLA-COLORE
+      *              move 78-ID-ef-desc to CONTROL-ID       
+      *              move 4             to ACCEPT-CONTROL   
+      *           end-if                                  
+      *        end-if
+      *     end-if 
+           .
+      * <TOTEM:END>
+
        SPOSTAMENTO.
       * <TOTEM:PARA. SPOSTAMENTO>
            set tutto-ok to true.
@@ -9488,9 +9580,7 @@
       * <TOTEM:END>
        pb-genera-LinkTo.
       * <TOTEM:PARA. pb-genera-LinkTo>
-           modify form1-handle, visible false.
-           perform SCR-ATTESA-OPEN-ROUTINE.
-           modify form1-handle, visible true 
+           perform SCR-ATTESA-OPEN-ROUTINE 
            .
       * <TOTEM:END>
        pb-random-LinkTo.
@@ -10201,18 +10291,85 @@
               end-if
            end-perform.
 
+
+           if ( ef-gg1-buf not = "00/00/0000" ) and 
+              ( ef-gg1-buf = ef-gg2-buf or ef-gg3-buf or ef-gg4-buf or
+                             ef-gg5-buf or ef-gg6-buf or ef-gg7-buf )
+              display message "Le date devono essere diverse"
+                        title tit-err
+                         icon 2
+              exit paragraph
+           end-if
+           if ( ef-gg2-buf not = "00/00/0000" ) and 
+              ( ef-gg2-buf = ef-gg1-buf or ef-gg3-buf or ef-gg4-buf or
+                             ef-gg5-buf or ef-gg6-buf or ef-gg7-buf )
+              display message "Le date devono essere diverse"
+                        title tit-err
+                         icon 2
+              exit paragraph
+           end-if.
+           if ( ef-gg3-buf not = "00/00/0000" ) and 
+              ( ef-gg3-buf = ef-gg1-buf or ef-gg2-buf or ef-gg4-buf or
+                             ef-gg5-buf or ef-gg6-buf or ef-gg7-buf ) 
+              display message "Le date devono essere diverse"
+                        title tit-err
+                         icon 2
+              exit paragraph
+           end-if.
+           if ( ef-gg4-buf not = "00/00/0000" ) and 
+              ( ef-gg4-buf = ef-gg1-buf or ef-gg2-buf or ef-gg3-buf or
+                             ef-gg5-buf or ef-gg6-buf or ef-gg7-buf ) 
+              display message "Le date devono essere diverse"
+                        title tit-err
+                         icon 2
+              exit paragraph
+           end-if.
+           if ( ef-gg5-buf not = "00/00/0000" ) and 
+              ( ef-gg5-buf = ef-gg1-buf or ef-gg2-buf or ef-gg3-buf or
+                             ef-gg4-buf or ef-gg6-buf or ef-gg7-buf ) 
+              display message "Le date devono essere diverse"
+                        title tit-err
+                         icon 2
+              exit paragraph
+           end-if.
+           if ( ef-gg6-buf not = "00/00/0000" ) and 
+              ( ef-gg6-buf = ef-gg1-buf or ef-gg1-buf or ef-gg3-buf or
+                             ef-gg4-buf or ef-gg5-buf or ef-gg7-buf ) 
+              display message "Le date devono essere diverse"
+                        title tit-err
+                         icon 2
+              exit paragraph
+           end-if.
+           if ( ef-gg7-buf not = "00/00/0000" ) and 
+              ( ef-gg7-buf = ef-gg1-buf or ef-gg2-buf or ef-gg3-buf or
+                             ef-gg4-buf or ef-gg5-buf or ef-gg6-buf )
+              display message "Le date devono essere diverse"
+                        title tit-err
+                         icon 2
+              exit paragraph
+           end-if
+
+
            move high-value to wod-rec.
            start wodbook key <= wod-key
-                 invalid move 0 to wod-code
+                 invalid move 0 to como-code
              not invalid read wodbook previous
+                         move wom-code to como-code
            end-start.
 
-           add 1 to wod-code.
+           add 1 to como-code.
            open input tmp-exe.
            move low-value to tex-key.
            start tmp-exe key >= tex-key
                  invalid continue
              not invalid
+                 |Scrivo la testata
+                 initialize wod-rec replacing numeric data by zeroes
+                                         alphanumeric data by spaces
+                 move como-code      to wod-code
+                 move ef-desc-buf    to wod-desc
+                 move como-data(1:4) to wod-day
+                 write wod-rec
                  perform until 1 = 2
                     read tmp-exe next at end exit perform end-read
                     evaluate tex-day
@@ -10238,7 +10395,9 @@
                            perform DATE-TO-FILE
                            move como-data to wod-day
                     end-evaluate
-
+                    initialize wod-rec replacing numeric data by zeroes
+                                            alphanumeric data by spaces
+                    move como-code            to wod-code
                     move tex-split            to wod-split
                     move tex-exe-desc-univoca to wod-exe-desc-univoca
                     move tex-mcg-code         to wod-mcg-code        
@@ -10335,6 +10494,24 @@
       * <TOTEM:PARA. ef-gg7-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
            perform CONTROLLO-DATE 
+           .
+      * <TOTEM:END>
+       TOOL-SELEZIONA-LinkTo.
+      * <TOTEM:PARA. TOOL-SELEZIONA-LinkTo>
+           inquire tool-seleziona, enabled in e-seleziona
+           if e-seleziona = 1
+              perform SELEZIONA
+           end-if 
+           .
+      * <TOTEM:END>
+       ef-desc-BeforeProcedure.
+      * <TOTEM:PARA. ef-desc-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-desc-AfterProcedure.
+      * <TOTEM:PARA. ef-desc-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
            .
       * <TOTEM:END>
 

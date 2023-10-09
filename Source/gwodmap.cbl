@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 5 ottobre 2023 15:14:48.
+       DATE-WRITTEN.        lunedì 9 ottobre 2023 19:22:35.
        REMARKS.
       *{TOTEM}END
 

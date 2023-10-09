@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A98923-566-193328983
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A982510-666-118419148
 
 {{@DESCRIPTION:
 
@@ -2741,8 +2741,8 @@ m_bFixed=1
 @}}
 [FDITEM273_WK]
 m_strName=ef-gg1-buf
-m_strRawPic=9(8)
-m_strPic=9(8)
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -2751,8 +2751,8 @@ m_bFixed=1
 @}}
 [FDITEM274_WK]
 m_strName=ef-gg2-buf
-m_strRawPic=9(8)
-m_strPic=9(8)
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -2761,8 +2761,8 @@ m_bFixed=1
 @}}
 [FDITEM275_WK]
 m_strName=ef-gg4-buf
-m_strRawPic=9(8)
-m_strPic=9(8)
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -2771,8 +2771,8 @@ m_bFixed=1
 @}}
 [FDITEM276_WK]
 m_strName=ef-gg5-buf
-m_strRawPic=9(8)
-m_strPic=9(8)
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -2781,8 +2781,8 @@ m_bFixed=1
 @}}
 [FDITEM277_WK]
 m_strName=ef-gg3-buf
-m_strRawPic=9(8)
-m_strPic=9(8)
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -2791,8 +2791,8 @@ m_bFixed=1
 @}}
 [FDITEM278_WK]
 m_strName=ef-gg6-buf
-m_strRawPic=9(8)
-m_strPic=9(8)
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -2801,8 +2801,8 @@ m_bFixed=1
 @}}
 [FDITEM279_WK]
 m_strName=ef-gg7-buf
-m_strRawPic=9(8)
-m_strPic=9(8)
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -5854,6 +5854,7 @@ Begin Screen scr-date
          Height in Cells   = TRUE
          Help ID           = 0
          ID                = 11
+         ID Variable       = AUTO-ID
          Justification     = Unaligned
          Line              = 2,54
          Lines             = 1,23
@@ -5881,8 +5882,8 @@ Begin Screen scr-date
          Value Variable    = ef-gg1-buf
          Visible           = NONE
          Width in Cells    = TRUE
-         Before Procedure  = Screen2-Ef-1-BeforeProcedure
-         After Procedure   = Screen2-Ef-1-AfterProcedure
+         Before Procedure  = ef-gg1-BeforeProcedure
+         After Procedure   = ef-gg1-AfterProcedure
       End
       Begin Entry-Field ef-gg2
          SCREEN-COL        = 15,82
@@ -5910,6 +5911,7 @@ Begin Screen scr-date
          Height in Cells   = TRUE
          Help ID           = 0
          ID                = 12
+         ID Variable       = AUTO-ID
          Justification     = Unaligned
          Line              = 4,08
          Lines             = 1,23
@@ -5937,8 +5939,8 @@ Begin Screen scr-date
          Value Variable    = ef-gg2-buf
          Visible           = NONE
          Width in Cells    = TRUE
-         Before Procedure  = Screen2-Ef-1-BeforeProcedure
-         After Procedure   = Screen2-Ef-1-AfterProcedure
+         Before Procedure  = ef-gg2-BeforeProcedure
+         After Procedure   = ef-gg2-AfterProcedure
       End
       Begin Entry-Field ef-gg3
          SCREEN-COL        = 15,82
@@ -5966,6 +5968,7 @@ Begin Screen scr-date
          Height in Cells   = TRUE
          Help ID           = 0
          ID                = 13
+         ID Variable       = AUTO-ID
          Justification     = Unaligned
          Line              = 5,62
          Lines             = 1,23
@@ -5993,8 +5996,8 @@ Begin Screen scr-date
          Value Variable    = ef-gg3-buf
          Visible           = NONE
          Width in Cells    = TRUE
-         Before Procedure  = Screen2-Ef-1-BeforeProcedure
-         After Procedure   = Screen2-Ef-1-AfterProcedure
+         Before Procedure  = ef-gg3-BeforeProcedure
+         After Procedure   = ef-gg3-AfterProcedure
       End
       Begin Entry-Field ef-gg4
          SCREEN-COL        = 15,82
@@ -6022,6 +6025,7 @@ Begin Screen scr-date
          Height in Cells   = TRUE
          Help ID           = 0
          ID                = 14
+         ID Variable       = AUTO-ID
          Justification     = Unaligned
          Line              = 7,15
          Lines             = 1,23
@@ -6049,8 +6053,8 @@ Begin Screen scr-date
          Value Variable    = ef-gg4-buf
          Visible           = NONE
          Width in Cells    = TRUE
-         Before Procedure  = Screen2-Ef-1-BeforeProcedure
-         After Procedure   = Screen2-Ef-1-AfterProcedure
+         Before Procedure  = ef-gg4-BeforeProcedure
+         After Procedure   = ef-gg4-AfterProcedure
       End
       Begin Entry-Field ef-gg5
          SCREEN-COL        = 15,82
@@ -6078,6 +6082,7 @@ Begin Screen scr-date
          Height in Cells   = TRUE
          Help ID           = 0
          ID                = 15
+         ID Variable       = AUTO-ID
          Justification     = Unaligned
          Line              = 8,69
          Lines             = 1,23
@@ -6105,8 +6110,8 @@ Begin Screen scr-date
          Value Variable    = ef-gg5-buf
          Visible           = NONE
          Width in Cells    = TRUE
-         Before Procedure  = Screen2-Ef-1-BeforeProcedure
-         After Procedure   = Screen2-Ef-1-AfterProcedure
+         Before Procedure  = ef-gg5-BeforeProcedure
+         After Procedure   = ef-gg5-AfterProcedure
       End
       Begin Entry-Field ef-gg6
          SCREEN-COL        = 15,82
@@ -6134,6 +6139,7 @@ Begin Screen scr-date
          Height in Cells   = TRUE
          Help ID           = 0
          ID                = 16
+         ID Variable       = AUTO-ID
          Justification     = Unaligned
          Line              = 10,23
          Lines             = 1,23
@@ -6161,8 +6167,8 @@ Begin Screen scr-date
          Value Variable    = ef-gg6-buf
          Visible           = NONE
          Width in Cells    = TRUE
-         Before Procedure  = Screen2-Ef-1-BeforeProcedure
-         After Procedure   = Screen2-Ef-1-AfterProcedure
+         Before Procedure  = ef-gg6-BeforeProcedure
+         After Procedure   = ef-gg6-AfterProcedure
       End
       Begin Entry-Field ef-gg7
          SCREEN-COL        = 15,82
@@ -6190,6 +6196,7 @@ Begin Screen scr-date
          Height in Cells   = TRUE
          Help ID           = 0
          ID                = 17
+         ID Variable       = AUTO-ID
          Justification     = Unaligned
          Line              = 11,77
          Lines             = 1,23
@@ -6217,13 +6224,13 @@ Begin Screen scr-date
          Value Variable    = ef-gg7-buf
          Visible           = NONE
          Width in Cells    = TRUE
-         Before Procedure  = Screen2-Ef-1-BeforeProcedure
-         After Procedure   = Screen2-Ef-1-AfterProcedure
+         Before Procedure  = ef-gg7-BeforeProcedure
+         After Procedure   = ef-gg7-AfterProcedure
       End
    End
    Begin Push-Button pb-ok
       SCREEN-COL        = 8,27
-      SCREEN-LINE       = 14,77
+      SCREEN-LINE       = 14,88
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = pb-ok
@@ -6247,7 +6254,7 @@ Begin Screen scr-date
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 3
-      Line              = 14,77
+      Line              = 14,88
       Lines             = 1,42
       Lines in Pixels   = 30
       Lines Unit        = Default
@@ -6265,10 +6272,11 @@ Begin Screen scr-date
       Width in Cells    = TRUE
       Before Procedure  = pb-ok-BeforeProcedure
       After Procedure   = pb-ok-AfterProcedure
+      Link To           = pb-ok-LinkTo
    End
    Begin Push-Button pb-cancel
       SCREEN-COL        = 15,45
-      SCREEN-LINE       = 14,77
+      SCREEN-LINE       = 14,88
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = pb-cancel
@@ -6292,7 +6300,7 @@ Begin Screen scr-date
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 18
-      Line              = 14,77
+      Line              = 14,88
       Lines             = 1,42
       Lines in Pixels   = 30
       Lines Unit        = Default
@@ -7522,6 +7530,70 @@ BEGIN-TEXT
       *        move CONTROL-ID to store-id
       *        move 4          to ACCEPT-CONTROL
       *     end-if.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = CONTROLLO-DATE
+BEGIN-TEXT
+           evaluate control-id
+           when 78-ID-ef-gg1
+                inquire ef-gg1, enabled e-gg1, value ef-gg1-buf
+                if e-gg1 = 1
+                   move ef-gg1-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg1-buf
+                   display ef-gg1
+                end-if        
+           when 78-ID-ef-gg2
+                inquire ef-gg2, enabled e-gg2, value ef-gg2-buf
+                if e-gg2 = 1
+                   move ef-gg2-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg2-buf
+                   display ef-gg2
+                end-if      
+           when 78-ID-ef-gg3
+                inquire ef-gg3, enabled e-gg3, value ef-gg3-buf
+                if e-gg3 = 1
+                   move ef-gg3-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg3-buf
+                   display ef-gg3
+                end-if      
+           when 78-ID-ef-gg4
+                inquire ef-gg4, enabled e-gg4, value ef-gg4-buf
+                if e-gg4 = 1
+                   move ef-gg4-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg4-buf
+                   display ef-gg4
+                end-if      
+           when 78-ID-ef-gg5
+                inquire ef-gg5, enabled e-gg5, value ef-gg5-buf
+                if e-gg5 = 1
+                   move ef-gg5-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg5-buf
+                   display ef-gg5
+                end-if      
+           when 78-ID-ef-gg6
+                inquire ef-gg6, enabled e-gg6, value ef-gg6-buf
+                if e-gg6 = 1
+                   move ef-gg6-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg6-buf
+                   display ef-gg6
+                end-if      
+           when 78-ID-ef-gg7
+                inquire ef-gg7, enabled e-gg7, value ef-gg7-buf
+                if e-gg7 = 1
+                   move ef-gg7-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg7-buf
+                   display ef-gg7
+                end-if
+           end-evaluate.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -10687,20 +10759,6 @@ END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
-   PARAGRAPH         = Screen2-Ef-1-BeforeProcedure
-BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 2
-   PARAGRAPH         = Screen2-Ef-1-AfterProcedure
-BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 2
    PARAGRAPH         = pb-ok-BeforeProcedure
 BEGIN-TEXT
            modify pb-ok, bitmap-number 2.
@@ -10725,6 +10783,182 @@ BEGIN-DATA
    PARAGRAPH         = pb-cancel-AfterProcedure
 BEGIN-TEXT
            modify pb-cancel, bitmap-number 1.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-ok-LinkTo
+BEGIN-TEXT
+           perform varying control-id from 78-ID-ef-gg1 by 1 
+                     until control-id > 78-ID-ef-gg7
+              perform CONTROLLO-DATE
+              if errori 
+                 exit perform 
+              end-if
+           end-perform.
+
+           move high-value to wod-rec.
+           start wodbook key <= wod-key
+                 invalid move 0 to wod-code
+             not invalid read wodbook previous
+           end-start.
+
+           add 1 to wod-code.
+           open input tmp-exe.
+           move low-value to tex-key.
+           start tmp-exe key >= tex-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-exe next at end exit perform end-read
+                    evaluate tex-day
+                    when 1 move ef-gg1-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 2 move ef-gg2-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 3 move ef-gg3-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 4 move ef-gg4-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 5 move ef-gg5-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 6 move ef-gg6-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 7 move ef-gg7-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    end-evaluate
+
+                    move tex-split            to wod-split
+                    move tex-exe-desc-univoca to wod-exe-desc-univoca
+                    move tex-mcg-code         to wod-mcg-code        
+                    move tex-exe-code         to wod-exe-code        
+                    move tex-exe-desc         to wod-exe-desc        
+                    move tex-int-code         to wod-int-code        
+                    move tex-exe-isMulti      to wod-exe-isMulti     
+                    move tex-reps             to wod-reps            
+                    move tex-series           to wod-series          
+                    move tex-int-restpause    to wod-int-restpause   
+                    move tex-ss               to wod-ss              
+                    write wod-rec
+                 end-perform
+                 display message "Salvato allenamento correttamente."
+                          x"0d0a""Codice : " wod-code
+                           title titolo
+                 move 27 to key-status
+           end-start.
+           close tmp-exe.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg1-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg2-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg3-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg4-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg5-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg6-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg7-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg1-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
+           perform CONTROLLO-DATE.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg2-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
+           perform CONTROLLO-DATE.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg3-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>> 
+           perform CONTROLLO-DATE.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg4-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>> 
+           perform CONTROLLO-DATE.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg5-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>  
+           perform CONTROLLO-DATE.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg6-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>  
+           perform CONTROLLO-DATE.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gg7-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>   
+           perform CONTROLLO-DATE.
 END-TEXT
 END-DATA
 

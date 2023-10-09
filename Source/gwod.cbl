@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 9 ottobre 2023 10:10:16.
+       DATE-WRITTEN.        lunedì 9 ottobre 2023 10:43:18.
        REMARKS.
       *{TOTEM}END
 
@@ -437,13 +437,13 @@
            05 Gd-1-Col-5       PIC  X(08).
        77 Calibri16-Occidentale
                   USAGE IS HANDLE OF FONT.
-       77 ef-gg1-buf       PIC  9(8).
-       77 ef-gg2-buf       PIC  9(8).
-       77 ef-gg4-buf       PIC  9(8).
-       77 ef-gg5-buf       PIC  9(8).
-       77 ef-gg3-buf       PIC  9(8).
-       77 ef-gg6-buf       PIC  9(8).
-       77 ef-gg7-buf       PIC  9(8).
+       77 ef-gg1-buf       PIC  99/99/9999.
+       77 ef-gg2-buf       PIC  99/99/9999.
+       77 ef-gg4-buf       PIC  99/99/9999.
+       77 ef-gg5-buf       PIC  99/99/9999.
+       77 ef-gg3-buf       PIC  99/99/9999.
+       77 ef-gg6-buf       PIC  99/99/9999.
+       77 ef-gg7-buf       PIC  99/99/9999.
        77 e-gg1            PIC  9
                   VALUE IS 1.
        77 e-gg2            PIC  9
@@ -465,9 +465,9 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(2346).
+       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(2255).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(2346).
+       77 Form1-MULKEY-TMPBUF   PIC X(2255).
        77 STATUS-scr-attesa-FLAG-REFRESH PIC  9.
           88 scr-attesa-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 STATUS-scr-date-FLAG-REFRESH PIC  9.
@@ -477,7 +477,7 @@
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
-       77 TMP-DataSet1-wodbook-BUF     PIC X(2346).
+       77 TMP-DataSet1-wodbook-BUF     PIC X(2255).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(331).
@@ -636,6 +636,13 @@
        78  78-ID-cb-mg6 VALUE 5006.
        78  78-ID-cb-mg7 VALUE 5007.
        78  78-ID-gd1 VALUE 5008.
+       78  78-ID-ef-gg1 VALUE 5001.
+       78  78-ID-ef-gg2 VALUE 5002.
+       78  78-ID-ef-gg3 VALUE 5003.
+       78  78-ID-ef-gg4 VALUE 5004.
+       78  78-ID-ef-gg5 VALUE 5005.
+       78  78-ID-ef-gg6 VALUE 5006.
+       78  78-ID-ef-gg7 VALUE 5007.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -1801,12 +1808,12 @@
            BOXED,
            COLOR IS 513,
            ENABLED e-gg1,
-           ID IS 11,
+           ID IS 78-ID-ef-gg1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-gg1-buf,
-           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           AFTER PROCEDURE ef-gg1-AfterProcedure, 
+           BEFORE PROCEDURE ef-gg1-BeforeProcedure, 
            .
 
       * ENTRY FIELD
@@ -1820,12 +1827,12 @@
            BOXED,
            COLOR IS 513,
            ENABLED e-gg2,
-           ID IS 12,
+           ID IS 78-ID-ef-gg2,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-gg2-buf,
-           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           AFTER PROCEDURE ef-gg2-AfterProcedure, 
+           BEFORE PROCEDURE ef-gg2-BeforeProcedure, 
            .
 
       * ENTRY FIELD
@@ -1839,12 +1846,12 @@
            BOXED,
            COLOR IS 513,
            ENABLED e-gg3,
-           ID IS 13,
+           ID IS 78-ID-ef-gg3,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-gg3-buf,
-           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           AFTER PROCEDURE ef-gg3-AfterProcedure, 
+           BEFORE PROCEDURE ef-gg3-BeforeProcedure, 
            .
 
       * ENTRY FIELD
@@ -1858,12 +1865,12 @@
            BOXED,
            COLOR IS 513,
            ENABLED e-gg4,
-           ID IS 14,
+           ID IS 78-ID-ef-gg4,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-gg4-buf,
-           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           AFTER PROCEDURE ef-gg4-AfterProcedure, 
+           BEFORE PROCEDURE ef-gg4-BeforeProcedure, 
            .
 
       * ENTRY FIELD
@@ -1877,12 +1884,12 @@
            BOXED,
            COLOR IS 513,
            ENABLED e-gg5,
-           ID IS 15,
+           ID IS 78-ID-ef-gg5,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-gg5-buf,
-           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           AFTER PROCEDURE ef-gg5-AfterProcedure, 
+           BEFORE PROCEDURE ef-gg5-BeforeProcedure, 
            .
 
       * ENTRY FIELD
@@ -1896,12 +1903,12 @@
            BOXED,
            COLOR IS 513,
            ENABLED e-gg6,
-           ID IS 16,
+           ID IS 78-ID-ef-gg6,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-gg6-buf,
-           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           AFTER PROCEDURE ef-gg6-AfterProcedure, 
+           BEFORE PROCEDURE ef-gg6-BeforeProcedure, 
            .
 
       * ENTRY FIELD
@@ -1915,12 +1922,12 @@
            BOXED,
            COLOR IS 513,
            ENABLED e-gg7,
-           ID IS 17,
+           ID IS 78-ID-ef-gg7,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-gg7-buf,
-           AFTER PROCEDURE Screen2-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen2-Ef-1-BeforeProcedure, 
+           AFTER PROCEDURE ef-gg7-AfterProcedure, 
+           BEFORE PROCEDURE ef-gg7-BeforeProcedure, 
            .
 
       * PUSH BUTTON
@@ -1928,7 +1935,7 @@
            pb-ok, 
            Push-Button, 
            COL 8,27, 
-           LINE 14,77,
+           LINE 14,88,
            LINES 1,42 ,
            SIZE 81 PIXELS,
            BITMAP-HANDLE BOTTONE-OK-BMP,
@@ -1949,7 +1956,7 @@
            pb-cancel, 
            Push-Button, 
            COL 15,45, 
-           LINE 14,77,
+           LINE 14,88,
            LINES 1,42 ,
            SIZE 81 PIXELS,
            BITMAP-HANDLE BOTTONE-ANNULLA-BMP,
@@ -5937,6 +5944,8 @@
                  IF Event-Type = Cmd-Close
                     PERFORM scr-date-Exit
                  END-IF
+              WHEN Key-Status = 333
+                 PERFORM pb-ok-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -6993,6 +7002,69 @@
       *        move CONTROL-ID to store-id
       *        move 4          to ACCEPT-CONTROL
       *     end-if 
+           .
+      * <TOTEM:END>
+
+       CONTROLLO-DATE.
+      * <TOTEM:PARA. CONTROLLO-DATE>
+           evaluate control-id
+           when 78-ID-ef-gg1
+                inquire ef-gg1, enabled e-gg1, value ef-gg1-buf
+                if e-gg1 = 1
+                   move ef-gg1-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg1-buf
+                   display ef-gg1
+                end-if        
+           when 78-ID-ef-gg2
+                inquire ef-gg2, enabled e-gg2, value ef-gg2-buf
+                if e-gg2 = 1
+                   move ef-gg2-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg2-buf
+                   display ef-gg2
+                end-if      
+           when 78-ID-ef-gg3
+                inquire ef-gg3, enabled e-gg3, value ef-gg3-buf
+                if e-gg3 = 1
+                   move ef-gg3-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg3-buf
+                   display ef-gg3
+                end-if      
+           when 78-ID-ef-gg4
+                inquire ef-gg4, enabled e-gg4, value ef-gg4-buf
+                if e-gg4 = 1
+                   move ef-gg4-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg4-buf
+                   display ef-gg4
+                end-if      
+           when 78-ID-ef-gg5
+                inquire ef-gg5, enabled e-gg5, value ef-gg5-buf
+                if e-gg5 = 1
+                   move ef-gg5-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg5-buf
+                   display ef-gg5
+                end-if      
+           when 78-ID-ef-gg6
+                inquire ef-gg6, enabled e-gg6, value ef-gg6-buf
+                if e-gg6 = 1
+                   move ef-gg6-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg6-buf
+                   display ef-gg6
+                end-if      
+           when 78-ID-ef-gg7
+                inquire ef-gg7, enabled e-gg7, value ef-gg7-buf
+                if e-gg7 = 1
+                   move ef-gg7-buf to como-data
+                   perform DATE-FORMAT
+                   move como-data to ef-gg7-buf
+                   display ef-gg7
+                end-if
+           end-evaluate 
            .
       * <TOTEM:END>
 
@@ -10099,16 +10171,6 @@
            end-if 
            .
       * <TOTEM:END>
-       Screen2-Ef-1-BeforeProcedure.
-      * <TOTEM:PARA. Screen2-Ef-1-BeforeProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
-           .
-      * <TOTEM:END>
-       Screen2-Ef-1-AfterProcedure.
-      * <TOTEM:PARA. Screen2-Ef-1-AfterProcedure>
-           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
-           .
-      * <TOTEM:END>
        pb-ok-BeforeProcedure.
       * <TOTEM:PARA. pb-ok-BeforeProcedure>
            modify pb-ok, bitmap-number 2 
@@ -10127,6 +10189,152 @@
        pb-cancel-AfterProcedure.
       * <TOTEM:PARA. pb-cancel-AfterProcedure>
            modify pb-cancel, bitmap-number 1 
+           .
+      * <TOTEM:END>
+       pb-ok-LinkTo.
+      * <TOTEM:PARA. pb-ok-LinkTo>
+           perform varying control-id from 78-ID-ef-gg1 by 1 
+                     until control-id > 78-ID-ef-gg7
+              perform CONTROLLO-DATE
+              if errori 
+                 exit perform 
+              end-if
+           end-perform.
+
+           move high-value to wod-rec.
+           start wodbook key <= wod-key
+                 invalid move 0 to wod-code
+             not invalid read wodbook previous
+           end-start.
+
+           add 1 to wod-code.
+           open input tmp-exe.
+           move low-value to tex-key.
+           start tmp-exe key >= tex-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-exe next at end exit perform end-read
+                    evaluate tex-day
+                    when 1 move ef-gg1-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 2 move ef-gg2-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 3 move ef-gg3-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 4 move ef-gg4-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 5 move ef-gg5-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 6 move ef-gg6-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 7 move ef-gg7-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    end-evaluate
+
+                    move tex-split            to wod-split
+                    move tex-exe-desc-univoca to wod-exe-desc-univoca
+                    move tex-mcg-code         to wod-mcg-code        
+                    move tex-exe-code         to wod-exe-code        
+                    move tex-exe-desc         to wod-exe-desc        
+                    move tex-int-code         to wod-int-code        
+                    move tex-exe-isMulti      to wod-exe-isMulti     
+                    move tex-reps             to wod-reps            
+                    move tex-series           to wod-series          
+                    move tex-int-restpause    to wod-int-restpause   
+                    move tex-ss               to wod-ss              
+                    write wod-rec
+                 end-perform
+                 display message "Salvato allenamento correttamente."
+                          x"0d0a""Codice : " wod-code
+                           title titolo
+                 move 27 to key-status
+           end-start.
+           close tmp-exe 
+           .
+      * <TOTEM:END>
+       ef-gg1-BeforeProcedure.
+      * <TOTEM:PARA. ef-gg1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-gg2-BeforeProcedure.
+      * <TOTEM:PARA. ef-gg2-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-gg3-BeforeProcedure.
+      * <TOTEM:PARA. ef-gg3-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-gg4-BeforeProcedure.
+      * <TOTEM:PARA. ef-gg4-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-gg5-BeforeProcedure.
+      * <TOTEM:PARA. ef-gg5-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-gg6-BeforeProcedure.
+      * <TOTEM:PARA. ef-gg6-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-gg7-BeforeProcedure.
+      * <TOTEM:PARA. ef-gg7-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-gg1-AfterProcedure.
+      * <TOTEM:PARA. ef-gg1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-DATE 
+           .
+      * <TOTEM:END>
+       ef-gg2-AfterProcedure.
+      * <TOTEM:PARA. ef-gg2-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-DATE 
+           .
+      * <TOTEM:END>
+       ef-gg3-AfterProcedure.
+      * <TOTEM:PARA. ef-gg3-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-DATE 
+           .
+      * <TOTEM:END>
+       ef-gg4-AfterProcedure.
+      * <TOTEM:PARA. ef-gg4-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-DATE 
+           .
+      * <TOTEM:END>
+       ef-gg5-AfterProcedure.
+      * <TOTEM:PARA. ef-gg5-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-DATE 
+           .
+      * <TOTEM:END>
+       ef-gg6-AfterProcedure.
+      * <TOTEM:PARA. ef-gg6-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-DATE 
+           .
+      * <TOTEM:END>
+       ef-gg7-AfterProcedure.
+      * <TOTEM:PARA. ef-gg7-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-DATE 
            .
       * <TOTEM:END>
 

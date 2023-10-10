@@ -7,9 +7,12 @@
            05 wod-data.
                10 wod-data.
                    15 wod-head-data.
+                       20 wod-gg           PIC  9.
+                       20 wod-tot-exe      PIC  9(3).
                        20 wod-desc         PIC  x(100).
                        20 FILLER           PIC  x(2000).
                    15 wod-row-data.
+                       20 wod-prg-day      PIC  9.
                        20 wod-exe-desc-univoca         PIC  x(100).
                        20 wod-mcg-code     PIC  x(5).
                        20 wod-exe-code     PIC  x(5).

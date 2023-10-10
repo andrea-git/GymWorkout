@@ -11,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A9172254-702-3042922033
+PROGRAM_UNIQUE_CODE=TOTEM-7E7AA112521-898-170936285
 
 {{@DESCRIPTION:
 
@@ -6546,7 +6546,7 @@ BEGIN-DATA
    NODESTYLE         = 7
    PARAGRAPH         = DeletedCode
 BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>======================================================      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -9487,10 +9487,10 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = SELEZIONA
 BEGIN-TEXT
-      *     move "wodbook"    to como-file.
-      *     call "zoom-gt" using como-file, wom-rec
-      *                   giving stato-zoom.
-      *     cancel "zoom-gt".
+           move "wodbook"    to como-file.
+           call "zoom-gt" using como-file, wom-rec
+                         giving stato-zoom.
+           cancel "zoom-gt".
       *     if stato-zoom = ZERO
       *        if old-wom-key not = wom-key or
       *         ( wom-code = 0 and mod = 0 )
@@ -11044,9 +11044,10 @@ BEGIN-TEXT
            start wodbook key <= wod-key
                  invalid move 0 to como-code
              not invalid read wodbook previous
-                         move wom-code to como-code
+                         move wod-code to como-code
            end-start.
 
+           move 0 to tot-exe.
            add 1 to como-code.
            open input tmp-exe.
            move low-value to tex-key.
@@ -11054,6 +11055,7 @@ BEGIN-TEXT
                  invalid continue
              not invalid
                  |Scrivo la testata
+                 accept como-data from century-date
                  initialize wod-rec replacing numeric data by zeroes
                                          alphanumeric data by spaces
                  move como-code      to wod-code
@@ -11062,10 +11064,12 @@ BEGIN-TEXT
                  write wod-rec
                  perform until 1 = 2
                     read tmp-exe next at end exit perform end-read
+                    initialize wod-rec replacing numeric data by zeroes
+                                            alphanumeric data by spaces
                     evaluate tex-day
                     when 1 move ef-gg1-buf to como-data
                            perform DATE-TO-FILE
-                           move como-data to wod-day
+                           move como-data to wod-day  
                     when 2 move ef-gg2-buf to como-data
                            perform DATE-TO-FILE
                            move como-data to wod-day
@@ -11085,8 +11089,7 @@ BEGIN-TEXT
                            perform DATE-TO-FILE
                            move como-data to wod-day
                     end-evaluate
-                    initialize wod-rec replacing numeric data by zeroes
-                                            alphanumeric data by spaces
+                    move tex-day              to wod-prg-day
                     move como-code            to wod-code
                     move tex-split            to wod-split
                     move tex-exe-desc-univoca to wod-exe-desc-univoca
@@ -11098,9 +11101,20 @@ BEGIN-TEXT
                     move tex-reps             to wod-reps            
                     move tex-series           to wod-series          
                     move tex-int-restpause    to wod-int-restpause   
-                    move tex-ss               to wod-ss              
+                    move tex-ss               to wod-ss    
+                    add  1                    to tot-exe
                     write wod-rec
                  end-perform
+                 
+                 initialize wod-rec replacing numeric data by zeroes
+                                         alphanumeric data by spaces
+                 move como-code      to wod-code
+                 move como-data(1:4) to wod-day
+                 read wodbook
+                 move tex-day        to wod-gg
+                 move tot-exe        to wod-tot-exe
+                 rewrite wod-rec
+
                  display message "Salvato allenamento correttamente."
                           x"0d0a""Codice : " wod-code
                            title titolo

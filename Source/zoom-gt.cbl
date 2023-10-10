@@ -1026,31 +1026,70 @@
            move  0                       to xzoom-row.
            move  0                       to xzoom-cln.
            move  10                      to xzoom-lw.
-           move  61                      to xzoom-sw. 
+           move  78                      to xzoom-sw. 
            move "wodbook"                to xzoom-file-name(1).
-           move  5                       to xzoom-fields.
+           move  4                       to xzoom-fields.
 
       * CAMPO 1   
            add 1 to idx
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
-           move  5                       to xzoom-field-length(idx).
+           move  18                      to xzoom-field-length(idx).
            move  0                       to xzoom-field-offset(idx).
            move  10                      to xzoom-field-column(idx).
-           move "Codice"                 to xzoom-field-name(idx).  
-           set  xzoom-ft-alpha(idx)      to true. 
-      
+           move "Codice"                 to xzoom-field-name(idx).   
+           set xzoom-al-right(idx)       to true.
+           set xzoom-field-unsigned(idx) to true.
+           set xzoom-ft-display(idx)     to true.
+           move 18                       to xzoom-field-digits(idx).
+           move 0                        to xzoom-field-dec(idx).
+           move "#################0"     to xzoom-field-fmt(idx).
+
       * CAMPO 2
            add 1 to idx.
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
            move  100                     to xzoom-field-length(idx).
-           move  5                       to xzoom-field-offset(idx).
-           move  35                      to xzoom-field-column(idx).
+           move  32                      to xzoom-field-offset(idx).
+           move  25                      to xzoom-field-column(idx).
            move "Descrizione"            to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 
+
+      * CAMPO 3
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  1                       to xzoom-field-length(idx).
+           move  28                      to xzoom-field-offset(idx).
+           move  12                      to xzoom-field-column(idx).
+           move "Gg. di allenamento"     to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true. 
+
+      * CAMPO 4
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  3                       to xzoom-field-length(idx).
+           move  29                      to xzoom-field-offset(idx).
+           move  10                      to xzoom-field-column(idx).
+           move "Tot. esercizi"          to xzoom-field-name(idx).  
+           set xzoom-al-right(idx)       to true.
+           set xzoom-field-unsigned(idx) to true.
+           set xzoom-ft-display(idx)     to true.
+           move 3                        to xzoom-field-digits(idx).
+           move 0                        to xzoom-field-dec(idx).
+           move "##0"                    to xzoom-field-fmt(idx).
 
            move  -1                      to xzoom-delimiter-offset.
            move  5                       to xzoom-delimiter-length.
            move "000"                    to xzoom-from-value.
-           move "000"                    to xzoom-to-value.
+           move "000"                    to xzoom-to-value.  
+
+           set xzoom-when-true(1)    to true.
+           set xzoom-begin-with(1)   to true.
+           set xzoom-ignore-case(1)  to true.
+                                 
+           move "0"                  to xzoom-wild-value(1).
+           move 1                    to xzoom-wild-value-length(1).
+           move 1                    to xzoom-wild-length(1).
+           move 2132                 to xzoom-wild-offset(1).

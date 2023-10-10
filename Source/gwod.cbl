@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 9 ottobre 2023 19:35:08.
+       DATE-WRITTEN.        martedì 10 ottobre 2023 14:59:27.
        REMARKS.
       *{TOTEM}END
 
@@ -467,9 +467,9 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(4355).
+       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(4360).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(4355).
+       77 Form1-MULKEY-TMPBUF   PIC X(4360).
        77 STATUS-scr-attesa-FLAG-REFRESH PIC  9.
           88 scr-attesa-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 STATUS-scr-date-FLAG-REFRESH PIC  9.
@@ -479,7 +479,7 @@
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
-       77 TMP-DataSet1-wodbook-BUF     PIC X(4355).
+       77 TMP-DataSet1-wodbook-BUF     PIC X(4360).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(331).
@@ -578,6 +578,7 @@
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-exercises-SPLITBUF  PIC X(3).
        77 wodbook-wod-k-desc-SPLITBUF  PIC X(101).
+       77 wodbook-wod-k-prg-SPLITBUF  PIC X(22).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 tmp-exe-tex-k-dupl-SPLITBUF  PIC X(102).
        77 tmp-exe-tex-k-mcg-SPLITBUF  PIC X(10).
@@ -3409,6 +3410,13 @@
            MOVE wod-desc(1:100) TO wodbook-wod-k-desc-SPLITBUF(1:100)
            .
 
+       wodbook-wod-k-prg-MERGE-SPLITBUF.
+           INITIALIZE wodbook-wod-k-prg-SPLITBUF
+           MOVE wod-code(1:18) TO wodbook-wod-k-prg-SPLITBUF(1:18)
+           MOVE wod-prg-day(1:1) TO wodbook-wod-k-prg-SPLITBUF(19:1)
+           MOVE wod-split(1:2) TO wodbook-wod-k-prg-SPLITBUF(20:2)
+           .
+
        DataSet1-wodbook-INITSTART.
            EVALUATE DataSet1-KEYIS
            WHEN 1
@@ -3510,6 +3518,7 @@
               END-IF
            END-EVALUATE
            PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-prg-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT 
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -3541,6 +3550,7 @@
               END-IF
            END-EVALUATE
            PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-prg-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -3572,6 +3582,7 @@
               END-IF
            END-EVALUATE
            PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-prg-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -8918,10 +8929,10 @@
 
        SELEZIONA.
       * <TOTEM:PARA. SELEZIONA>
-      *     move "wodbook"    to como-file.
-      *     call "zoom-gt" using como-file, wom-rec
-      *                   giving stato-zoom.
-      *     cancel "zoom-gt".
+           move "wodbook"    to como-file.
+           call "zoom-gt" using como-file, wom-rec
+                         giving stato-zoom.
+           cancel "zoom-gt".
       *     if stato-zoom = ZERO
       *        if old-wom-key not = wom-key or
       *         ( wom-code = 0 and mod = 0 )
@@ -10354,9 +10365,10 @@
            start wodbook key <= wod-key
                  invalid move 0 to como-code
              not invalid read wodbook previous
-                         move wom-code to como-code
+                         move wod-code to como-code
            end-start.
 
+           move 0 to tot-exe.
            add 1 to como-code.
            open input tmp-exe.
            move low-value to tex-key.
@@ -10364,6 +10376,7 @@
                  invalid continue
              not invalid
                  |Scrivo la testata
+                 accept como-data from century-date
                  initialize wod-rec replacing numeric data by zeroes
                                          alphanumeric data by spaces
                  move como-code      to wod-code
@@ -10372,10 +10385,12 @@
                  write wod-rec
                  perform until 1 = 2
                     read tmp-exe next at end exit perform end-read
+                    initialize wod-rec replacing numeric data by zeroes
+                                            alphanumeric data by spaces
                     evaluate tex-day
                     when 1 move ef-gg1-buf to como-data
                            perform DATE-TO-FILE
-                           move como-data to wod-day
+                           move como-data to wod-day  
                     when 2 move ef-gg2-buf to como-data
                            perform DATE-TO-FILE
                            move como-data to wod-day
@@ -10395,8 +10410,7 @@
                            perform DATE-TO-FILE
                            move como-data to wod-day
                     end-evaluate
-                    initialize wod-rec replacing numeric data by zeroes
-                                            alphanumeric data by spaces
+                    move tex-day              to wod-prg-day
                     move como-code            to wod-code
                     move tex-split            to wod-split
                     move tex-exe-desc-univoca to wod-exe-desc-univoca
@@ -10408,9 +10422,20 @@
                     move tex-reps             to wod-reps            
                     move tex-series           to wod-series          
                     move tex-int-restpause    to wod-int-restpause   
-                    move tex-ss               to wod-ss              
+                    move tex-ss               to wod-ss    
+                    add  1                    to tot-exe
                     write wod-rec
                  end-perform
+                 
+                 initialize wod-rec replacing numeric data by zeroes
+                                         alphanumeric data by spaces
+                 move como-code      to wod-code
+                 move como-data(1:4) to wod-day
+                 read wodbook
+                 move tex-day        to wod-gg
+                 move tot-exe        to wod-tot-exe
+                 rewrite wod-rec
+
                  display message "Salvato allenamento correttamente."
                           x"0d0a""Codice : " wod-code
                            title titolo

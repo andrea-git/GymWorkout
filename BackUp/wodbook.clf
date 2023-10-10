@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7A9132125-814-1087226116
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7AA112521-810-164294225
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -84,9 +84,9 @@ m_bFixed=1
 
 @}}
 [FDITEM8_]
-m_strName=wod-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=wod-gg
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -94,9 +94,9 @@ m_bFixed=1
 
 @}}
 [FDITEM9_]
-m_strName=FILLER
-m_strRawPic=x(2000)
-m_strPic=x(2000)
+m_strName=wod-tot-exe
+m_strRawPic=9(3)
+m_strPic=9(3)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -104,17 +104,19 @@ m_bFixed=1
 
 @}}
 [FDITEM10_]
-m_strName=wod-row-data
-m_nItemLevel=15
+m_strName=wod-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM10_
 
 @}}
 [FDITEM11_]
-m_strName=wod-exe-desc-univoca
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=FILLER
+m_strRawPic=x(2000)
+m_strPic=x(2000)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -122,19 +124,17 @@ m_bFixed=1
 
 @}}
 [FDITEM12_]
-m_strName=wod-mcg-code
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=20
+m_strName=wod-row-data
+m_nItemLevel=15
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM12_
 
 @}}
 [FDITEM13_]
-m_strName=wod-exe-code
-m_strRawPic=x(5)
-m_strPic=x(5)
+m_strName=wod-prg-day
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -142,7 +142,7 @@ m_bFixed=1
 
 @}}
 [FDITEM14_]
-m_strName=wod-exe-desc
+m_strName=wod-exe-desc-univoca
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=20
@@ -152,9 +152,9 @@ m_bFixed=1
 
 @}}
 [FDITEM15_]
-m_strName=wod-int-code
-m_strRawPic=99
-m_strPic=99
+m_strName=wod-mcg-code
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -162,9 +162,9 @@ m_bFixed=1
 
 @}}
 [FDITEM16_]
-m_strName=wod-exe-isMulti
-m_strRawPic=9
-m_strPic=9
+m_strName=wod-exe-code
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -172,9 +172,9 @@ m_bFixed=1
 
 @}}
 [FDITEM17_]
-m_strName=wod-reps
-m_strRawPic=x(10)
-m_strPic=x(10)
+m_strName=wod-exe-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -182,7 +182,7 @@ m_bFixed=1
 
 @}}
 [FDITEM18_]
-m_strName=wod-series
+m_strName=wod-int-code
 m_strRawPic=99
 m_strPic=99
 m_nItemLevel=20
@@ -192,7 +192,7 @@ m_bFixed=1
 
 @}}
 [FDITEM19_]
-m_strName=wod-int-restpause
+m_strName=wod-exe-isMulti
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=20
@@ -202,9 +202,9 @@ m_bFixed=1
 
 @}}
 [FDITEM20_]
-m_strName=wod-ss
-m_strRawPic=9
-m_strPic=9
+m_strName=wod-reps
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -212,13 +212,43 @@ m_bFixed=1
 
 @}}
 [FDITEM21_]
+m_strName=wod-series
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=20
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM21_
+
+@}}
+[FDITEM22_]
+m_strName=wod-int-restpause
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=20
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM22_
+
+@}}
+[FDITEM23_]
+m_strName=wod-ss
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=20
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM23_
+
+@}}
+[FDITEM24_]
 m_strName=FILLER
 m_strRawPic=x(2000)
 m_strPic=x(2000)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM21_
+{{@DataItem_m_strDescriptionFDITEM24_
 
 @}}
 [CStoAcucobolSL_]
@@ -247,3 +277,14 @@ m_strName=wod-k-desc
 @}}
 [SLKEYATOM0_SLINDEX0_]
 m_strName=wod-desc
+[SLINDEX1_]
+m_strName=wod-k-prg
+{{@Key_m_strDescriptionSLINDEX1_
+
+@}}
+[SLKEYATOM0_SLINDEX1_]
+m_strName=wod-code
+[SLKEYATOM1_SLINDEX1_]
+m_strName=wod-prg-day
+[SLKEYATOM2_SLINDEX1_]
+m_strName=wod-split

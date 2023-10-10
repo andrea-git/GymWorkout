@@ -9487,22 +9487,41 @@ BEGIN-TEXT
            call "zoom-gt" using como-file, wom-rec
                          giving stato-zoom.
            cancel "zoom-gt".
-      *     if stato-zoom = ZERO
-      *        if old-wom-key not = wom-key or
-      *         ( wom-code = 0 and mod = 0 )
-      *           move wom-key to save-key
-      *           perform SALV-MOD
-      *           if tutto-ok
-      *              move save-key to wom-key
-      *              set ReadSecca to true
-      *              modify ef-codice, value wom-code
-      *              perform CURRENT-RECORD
-      *              perform CANCELLA-COLORE
-      *              move 78-ID-ef-desc to CONTROL-ID       
-      *              move 4             to ACCEPT-CONTROL   
-      *           end-if                                  
-      *        end-if
-      *     end-if.
+           if stato-zoom = 0
+              move low-value to wod-day wod-split
+              start wodbook key >= wod-key
+                    invalid continue
+                not invalid
+                    if path-tmp-exe = spaces
+                       perform OPEN-TMP
+                    else
+                       open output tmp-exe
+                       close       tmp-exe
+                       open i-o    tmp-exe
+                       open output tmp-hit
+                    end-if
+                    perform until 1 = 2
+                       read wodbook next at end exit perform end-read
+                       if wod-split = 0 exit perform cycle end-if
+                       move wod-prg-day          to tex-day
+                       move wod-split            to tex-split
+                       move wod-exe-desc-univoca to tex-exe-desc-univoca
+                       move wod-mcg-code         to tex-mcg-code        
+                       move wod-exe-code         to tex-exe-code        
+                       move wod-exe-desc         to tex-exe-desc        
+                       move wod-int-code         to tex-int-code        
+                       move wod-exe-isMulti      to tex-exe-isMulti     
+                       move wod-reps             to tex-reps            
+                       move wod-series           to tex-series          
+                       move wod-int-restpause    to tex-int-restpause   
+                       move wod-ss               to tex-ss              
+                       write tex-rec
+                    end-perform             
+                    set fromAggiungi to true
+                    perform LOAD-GRID
+                    set fromAggiungi to false
+              end-start
+           end-if.
 END-TEXT
 END-DATA
 BEGIN-DATA

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 10 ottobre 2023 18:24:45.
+       DATE-WRITTEN.        martedì 10 ottobre 2023 18:38:12.
        REMARKS.
       *{TOTEM}END
 
@@ -268,6 +268,7 @@
                       OCCURS 10 TIMES.
                10 el-mgroup        PIC  x(100).
                10 el-mcg-code      PIC  x(5).
+               10 el-hit           PIC  99.
                10 el-mcg-color     PIC  999.
        01 rec-grid.
            05 col-day          PIC  9.
@@ -467,9 +468,9 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(4360).
+       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(4523).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(4360).
+       77 Form1-MULKEY-TMPBUF   PIC X(4523).
        77 STATUS-scr-attesa-FLAG-REFRESH PIC  9.
           88 scr-attesa-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 STATUS-scr-date-FLAG-REFRESH PIC  9.
@@ -479,7 +480,7 @@
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
-       77 TMP-DataSet1-wodbook-BUF     PIC X(4360).
+       77 TMP-DataSet1-wodbook-BUF     PIC X(4523).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(331).
@@ -6725,7 +6726,7 @@
                        add 1 to tot-hit
                     end-perform
               end-start
-
+              move tot-hit to el-hit(idx)
                                       
               evaluate tot-hit
               when 0
@@ -10377,7 +10378,10 @@
                         title tit-err
                          icon 2
               exit paragraph
-           end-if
+           end-if.
+
+           inquire cb-wod, value in wom-desc.
+           read wodmap no lock.
 
 
            move high-value to wod-rec.
@@ -10401,6 +10405,17 @@
                  move como-code      to wod-code
                  move ef-desc-buf    to wod-desc
                  move como-data(1:4) to wod-day
+                 move wom-code       to wod-wom-code
+
+                 perform varying idx from 1 by 1 
+                           until idx > 20
+                    if el-mcg-code(idx) = spaces
+                       exit perform
+                    end-if             
+                    move el-mcg-code(idx) to wod-el-mcg-code(idx)
+                    move el-hit(idx)      to wod-el-hit(idx)
+                 end-perform
+
                  write wod-rec
                  perform until 1 = 2
                     read tmp-exe next at end exit perform end-read

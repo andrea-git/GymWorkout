@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7AA112521-810-164294225
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7AA162844-875-648419829
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -84,9 +84,9 @@ m_bFixed=1
 
 @}}
 [FDITEM8_]
-m_strName=wod-gg
-m_strRawPic=9
-m_strPic=9
+m_strName=wod-wom-code
+m_strRawPic=9(3)
+m_strPic=9(3)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -94,9 +94,9 @@ m_bFixed=1
 
 @}}
 [FDITEM9_]
-m_strName=wod-tot-exe
-m_strRawPic=9(3)
-m_strPic=9(3)
+m_strName=wod-gg
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -104,9 +104,9 @@ m_bFixed=1
 
 @}}
 [FDITEM10_]
-m_strName=wod-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=wod-tot-exe
+m_strRawPic=9(3)
+m_strPic=9(3)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -114,9 +114,9 @@ m_bFixed=1
 
 @}}
 [FDITEM11_]
-m_strName=FILLER
-m_strRawPic=x(2000)
-m_strPic=x(2000)
+m_strName=wod-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -124,37 +124,40 @@ m_bFixed=1
 
 @}}
 [FDITEM12_]
-m_strName=wod-row-data
-m_nItemLevel=15
+m_strName=wod-macrogroups
+m_nItemLevel=20
 m_nSync=-1
+m_bOccurs=1
 m_bFixed=1
+m_strRawSize=20
+m_nSize=20
 {{@DataItem_m_strDescriptionFDITEM12_
 
 @}}
 [FDITEM13_]
-m_strName=wod-prg-day
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=20
+m_strName=wod-el-mcg-code
+m_strRawPic=x(5)
+m_strPic=x(5)
+m_nItemLevel=25
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM13_
 
 @}}
 [FDITEM14_]
-m_strName=wod-exe-desc-univoca
-m_strRawPic=x(100)
-m_strPic=x(100)
-m_nItemLevel=20
+m_strName=wod-el-hit
+m_strRawPic=9(3)
+m_strPic=9(3)
+m_nItemLevel=25
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM14_
 
 @}}
 [FDITEM15_]
-m_strName=wod-mcg-code
-m_strRawPic=x(5)
-m_strPic=x(5)
+m_strName=FILLER
+m_strRawPic=x(2000)
+m_strPic=x(2000)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -162,19 +165,17 @@ m_bFixed=1
 
 @}}
 [FDITEM16_]
-m_strName=wod-exe-code
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=20
+m_strName=wod-row-data
+m_nItemLevel=15
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM16_
 
 @}}
 [FDITEM17_]
-m_strName=wod-exe-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=wod-prg-day
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -182,9 +183,9 @@ m_bFixed=1
 
 @}}
 [FDITEM18_]
-m_strName=wod-int-code
-m_strRawPic=99
-m_strPic=99
+m_strName=wod-exe-desc-univoca
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -192,19 +193,20 @@ m_bFixed=1
 
 @}}
 [FDITEM19_]
-m_strName=wod-exe-isMulti
-m_strRawPic=9
-m_strPic=9
+m_strName=wod-mcg-code
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
+m_strName_Xfd=wod-mcg-code_1
 {{@DataItem_m_strDescriptionFDITEM19_
 
 @}}
 [FDITEM20_]
-m_strName=wod-reps
-m_strRawPic=x(10)
-m_strPic=x(10)
+m_strName=wod-exe-code
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -212,9 +214,9 @@ m_bFixed=1
 
 @}}
 [FDITEM21_]
-m_strName=wod-series
-m_strRawPic=99
-m_strPic=99
+m_strName=wod-exe-desc
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -222,9 +224,9 @@ m_bFixed=1
 
 @}}
 [FDITEM22_]
-m_strName=wod-int-restpause
-m_strRawPic=9
-m_strPic=9
+m_strName=wod-int-code
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
@@ -232,7 +234,7 @@ m_bFixed=1
 
 @}}
 [FDITEM23_]
-m_strName=wod-ss
+m_strName=wod-exe-isMulti
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=20
@@ -242,13 +244,53 @@ m_bFixed=1
 
 @}}
 [FDITEM24_]
+m_strName=wod-reps
+m_strRawPic=x(10)
+m_strPic=x(10)
+m_nItemLevel=20
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM24_
+
+@}}
+[FDITEM25_]
+m_strName=wod-series
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=20
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM25_
+
+@}}
+[FDITEM26_]
+m_strName=wod-int-restpause
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=20
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM26_
+
+@}}
+[FDITEM27_]
+m_strName=wod-ss
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=20
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM27_
+
+@}}
+[FDITEM28_]
 m_strName=FILLER
 m_strRawPic=x(2000)
 m_strPic=x(2000)
 m_nItemLevel=20
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM24_
+{{@DataItem_m_strDescriptionFDITEM28_
 
 @}}
 [CStoAcucobolSL_]

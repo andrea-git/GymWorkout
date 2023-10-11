@@ -13,6 +13,7 @@
            copy "duration.sl".    
            copy "wodmap.sl".     
            copy "tmp-grp-exe.sl".
+           copy "tmp-wod-exe.sl".
            copy "tmp-exe.sl".
       *
        SELECT FBLOCK
@@ -34,7 +35,8 @@
            copy "intexe.fd".    
            copy "duration.fd".    
            copy "wodmap.fd".     
-           copy "tmp-grp-exe.fd".
+           copy "tmp-grp-exe.fd". 
+           copy "tmp-wod-exe.fd".
            copy "tmp-exe.fd".
       *                               
        FD  FBLOCK
@@ -57,9 +59,11 @@
        77  status-duration       pic xx.
        77  status-wodmap         pic xx.
        77  status-tmp-grp-exe    pic xx.
-       77  path-tmp-grp-exe      pic x.
+       77  path-tmp-grp-exe      pic x. 
        77  status-tmp-exe        pic xx.
        77  path-tmp-exe          pic x.
+       77  status-tmp-wod-exe    pic xx.
+       77  path-tmp-wod-exe      pic x.
        77  stato-io              pic xx.  
 
        78  titolo            value "Generazione files".

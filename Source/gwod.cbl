@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 11 ottobre 2023 11:04:24.
+       DATE-WRITTEN.        mercoledì 11 ottobre 2023 17:14:56.
        REMARKS.
       *{TOTEM}END
 
@@ -147,6 +147,7 @@
        77 como-code        PIC  9(18).
        77 como-data-x10    PIC  99/99/9999.
        77 s-wod-code       PIC  9(18).
+       77 como-wod-code    PIC  x(18).
        01 como-tex-data-tab.
            05 como-tex-data-el PIC  x(1000)
                       OCCURS 99 TIMES.
@@ -464,6 +465,8 @@
                   VALUE IS 1.
        77 ef-desc-buf      PIC  X(100).
        77 lab-desc-buf     PIC  X(100).
+       77 lab-code-buf     PIC  z(18).
+       77 lab-ins-mod-buf  PIC  x(50).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -1467,16 +1470,33 @@
        05
            lab-desc, 
            Label, 
-           COL 2,30, 
+           COL 7,30, 
            LINE 36,70,
            LINES 1,00 ,
-           SIZE 66,70 ,
+           SIZE 61,70 ,
            COLOR IS 5,
            ID IS 44,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
            TITLE lab-desc-buf,
+           .
+
+      * LABEL
+       05
+           lab-code, 
+           Label, 
+           COL 2,30, 
+           LINE 36,70,
+           LINES 1,00 ,
+           SIZE 4,00 ,
+           COLOR IS 5,
+           ID IS 44,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           RIGHT,
+           TRANSPARENT,
+           TITLE lab-code-buf,
            .
 
       * TOOLBAR
@@ -1552,7 +1572,7 @@
        05
            TOOL-ANTEPRIMA, 
            Push-Button, 
-           COL 22,10, 
+           COL 28,10, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1572,7 +1592,7 @@
        05
            TOOL-STAMPA, 
            Push-Button, 
-           COL 27,40, 
+           COL 33,40, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1592,7 +1612,7 @@
        05
            TOOL-CERCA, 
            Push-Button, 
-           COL 16,90, 
+           COL 22,90, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1614,7 +1634,7 @@
            tool-modifica, 
            Push-Button, 
            COL 49,80, 
-           LINE 1,09,
+           LINE 1,04,
            LINES 1,35 ,
            SIZE 3,10 ,
            FONT IS Calibri12B-Occidentale,
@@ -1627,7 +1647,7 @@
 
       * PUSH BUTTON
        05
-           tool-cancella, 
+           tool-cancellad, 
            Push-Button, 
            COL 52,90, 
            LINE 1,13,
@@ -1661,7 +1681,7 @@
        05
            TOOL-SELEZIONAa, 
            Push-Button, 
-           COL 33,30, 
+           COL 39,30, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1676,6 +1696,27 @@
            ID IS 115,
            SELF-ACT,
            TITLE "Seleziona (F9)",
+           .
+
+      * PUSH BUTTON
+       05
+           TOOL-CANCELLA, 
+           Push-Button, 
+           COL 17,30, 
+           LINE 1,09,
+           LINES 64,00 ,
+           SIZE 48,00 ,
+           BITMAP-HANDLE toolbar-bmp,
+           FRAMED,
+           SQUARE,
+           ENABLED E-CANCELLA,
+           EXCEPTION-VALUE 4,
+           FLAT,
+           FONT IS Calibri14-Occidentale,
+           ID IS 74,
+           SELF-ACT,
+           TITLE "Cancella (F4)",
+           BITMAP-NUMBER BitmapNumDelete
            .
 
       * FORM
@@ -1726,7 +1767,7 @@
            Screen2-Fr-1, 
            Frame, 
            COL 14,45, 
-           LINE 1,54,
+           LINE 2,69,
            LINES 12,96 ,
            SIZE 25,82 ,
            ENGRAVED,
@@ -1742,7 +1783,7 @@
            Screen2-La-1, 
            Label, 
            COL 17,09, 
-           LINE 3,08,
+           LINE 4,23,
            LINES 1,23 ,
            SIZE 7,82 ,
            ID IS 4,
@@ -1757,7 +1798,7 @@
            Screen2-La-1a, 
            Label, 
            COL 17,09, 
-           LINE 4,62,
+           LINE 5,77,
            LINES 1,23 ,
            SIZE 7,82 ,
            ID IS 5,
@@ -1772,7 +1813,7 @@
            Screen2-La-1b, 
            Label, 
            COL 17,09, 
-           LINE 6,16,
+           LINE 7,31,
            LINES 1,00 ,
            SIZE 7,82 ,
            ID IS 6,
@@ -1787,7 +1828,7 @@
            Screen2-La-1c, 
            Label, 
            COL 17,09, 
-           LINE 7,69,
+           LINE 8,84,
            LINES 1,23 ,
            SIZE 7,82 ,
            ID IS 7,
@@ -1802,7 +1843,7 @@
            Screen2-La-1d, 
            Label, 
            COL 17,09, 
-           LINE 9,23,
+           LINE 10,38,
            LINES 1,23 ,
            SIZE 7,82 ,
            ID IS 8,
@@ -1817,7 +1858,7 @@
            Screen2-La-1e, 
            Label, 
            COL 17,09, 
-           LINE 10,77,
+           LINE 11,92,
            LINES 1,23 ,
            SIZE 7,82 ,
            ID IS 9,
@@ -1832,7 +1873,7 @@
            Screen2-La-1f, 
            Label, 
            COL 17,09, 
-           LINE 12,31,
+           LINE 13,46,
            LINES 1,00 ,
            SIZE 7,82 ,
            ID IS 10,
@@ -1847,7 +1888,7 @@
            ef-gg1, 
            Entry-Field, 
            COL 27,63, 
-           LINE 3,08,
+           LINE 4,23,
            LINES 1,23 ,
            SIZE 10,00 ,
            BOXED,
@@ -1866,7 +1907,7 @@
            ef-gg2, 
            Entry-Field, 
            COL 27,63, 
-           LINE 4,62,
+           LINE 5,77,
            LINES 1,23 ,
            SIZE 10,00 ,
            BOXED,
@@ -1885,7 +1926,7 @@
            ef-gg3, 
            Entry-Field, 
            COL 27,63, 
-           LINE 6,16,
+           LINE 7,31,
            LINES 1,23 ,
            SIZE 10,00 ,
            BOXED,
@@ -1904,7 +1945,7 @@
            ef-gg4, 
            Entry-Field, 
            COL 27,63, 
-           LINE 7,69,
+           LINE 8,84,
            LINES 1,23 ,
            SIZE 10,00 ,
            BOXED,
@@ -1923,7 +1964,7 @@
            ef-gg5, 
            Entry-Field, 
            COL 27,63, 
-           LINE 9,23,
+           LINE 10,38,
            LINES 1,23 ,
            SIZE 10,00 ,
            BOXED,
@@ -1942,7 +1983,7 @@
            ef-gg6, 
            Entry-Field, 
            COL 27,63, 
-           LINE 10,77,
+           LINE 11,92,
            LINES 1,23 ,
            SIZE 10,00 ,
            BOXED,
@@ -1961,7 +2002,7 @@
            ef-gg7, 
            Entry-Field, 
            COL 27,63, 
-           LINE 12,31,
+           LINE 13,46,
            LINES 1,23 ,
            SIZE 10,00 ,
            BOXED,
@@ -1980,7 +2021,7 @@
            ef-desc, 
            Entry-Field, 
            COL 11,45, 
-           LINE 15,12,
+           LINE 16,27,
            LINES 1,15 ,
            SIZE 41,64 ,
            BOXED,
@@ -1998,7 +2039,7 @@
            pb-ok, 
            Push-Button, 
            COL 20,09, 
-           LINE 16,69,
+           LINE 17,85,
            LINES 1,42 ,
            SIZE 81 PIXELS,
            BITMAP-HANDLE BOTTONE-OK-BMP,
@@ -2019,7 +2060,7 @@
            pb-cancel, 
            Push-Button, 
            COL 27,27, 
-           LINE 16,69,
+           LINE 17,85,
            LINES 1,42 ,
            SIZE 81 PIXELS,
            BITMAP-HANDLE BOTTONE-ANNULLA-BMP,
@@ -2041,7 +2082,7 @@
            Screen2-La-1fa, 
            Label, 
            COL 1,64, 
-           LINE 15,15,
+           LINE 16,31,
            LINES 1,00 ,
            SIZE 10,00 ,
            ID IS 19,
@@ -2049,6 +2090,23 @@
            WIDTH-IN-CELLS,
            TRANSPARENT,
            TITLE "Descrizione",
+           .
+
+      * LABEL
+       05
+           lab-ins-mod, 
+           Label, 
+           COL 1,91, 
+           LINE 1,15,
+           LINES 1,00 ,
+           SIZE 51,00 ,
+           COLOR IS 5,
+           ID IS 19,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           CENTER,
+           TRANSPARENT,
+           TITLE lab-ins-mod-buf,
            .
 
       *{TOTEM}END
@@ -5310,6 +5368,8 @@
                  PERFORM TOOL-CERCA-LinkTo
               WHEN Key-Status = 9
                  PERFORM TOOL-SELEZIONA-LinkTo
+              WHEN Key-Status = 4
+                 PERFORM CANCELLA-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -5961,7 +6021,7 @@
 
        scr-date-Create-Win.
            Display Floating GRAPHICAL WINDOW
-              LINES 17,50,
+              LINES 18,65,
               SIZE 52,82,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
@@ -5993,7 +6053,6 @@
            move 0 to ef-gg6-buf e-gg6.
            move 0 to ef-gg7-buf e-gg7.
 
-           open input tmp-exe.
            move low-value to tex-key.
            start tmp-exe key >= tex-key
                  invalid continue
@@ -6011,9 +6070,70 @@
                     end-evaluate
                  end-perform
            end-start.
-           close tmp-exe.
 
            display scr-date.
+                                          
+           move lab-desc-buf to ef-desc-buf.
+           display ef-desc.               
+           initialize lab-ins-mod-buf.    
+           move lab-code-buf to wod-code.
+           if wod-code > 0
+              move lab-code-buf to como-wod-code
+              inspect como-wod-code replacing leading x"30" by x"20"
+              call "C$JUSTIFY" using como-wod-code, "L"
+              string "Stai modificando il wod # "
+                     como-wod-code
+                into lab-ins-mod-buf
+              end-string
+              move low-value to wod-key  
+              move lab-code-buf to wod-code s-wod-code
+              start wodbook key >= wod-key
+                    invalid continue
+                not invalid
+                    perform until 1 = 2
+                       read wodbook next at end exit perform end-read
+                       if wod-code not = s-wod-code
+                          exit perform
+                       end-if
+                       evaluate wod-prg-day
+                       when 1 
+                            move wod-day to como-data
+                            perform DATE-TO-SCREEN
+                            move como-data to ef-gg1-buf
+                       when 2
+                            move wod-day to como-data
+                            perform DATE-TO-SCREEN
+                            move como-data to ef-gg2-buf
+                       when 3
+                            move wod-day to como-data
+                            perform DATE-TO-SCREEN
+                            move como-data to ef-gg3-buf
+                       when 4
+                            move wod-day to como-data
+                            perform DATE-TO-SCREEN
+                            move como-data to ef-gg4-buf
+                       when 5
+                            move wod-day to como-data
+                            perform DATE-TO-SCREEN
+                            move como-data to ef-gg5-buf
+                       when 6
+                            move wod-day to como-data
+                            perform DATE-TO-SCREEN
+                            move como-data to ef-gg6-buf
+                       when 7
+                            move wod-day to como-data
+                            perform DATE-TO-SCREEN
+                            move como-data to ef-gg7-buf
+                       end-evaluate
+                    end-perform
+              end-start
+           else
+              move "Stai inserendo un nuovo wod" to lab-ins-mod-buf
+              move 0 to ef-gg1-buf ef-gg2-buf ef-gg3-buf ef-gg4-buf
+                        ef-gg5-buf ef-gg6-buf ef-gg7-buf
+           end-if.
+           display lab-ins-mod
+           display ef-gg1 ef-gg2 ef-gg3 ef-gg4 ef-gg5 ef-gg6 ef-gg7.
 
            .
       * <TOTEM:END>
@@ -6232,9 +6352,14 @@
               cb-wod-buf = s-cb-wod-buf
               exit paragraph 
            end-if.                           
-
+                                       
            move spaces to lab-desc-buf.
            display lab-desc.
+           move 0 to lab-code-buf s-wod-code.
+           display lab-code.
+
+           move 0 to e-cancella
+           modify tool-cancella, enabled e-cancella
            
            inquire cb-wod, value in wom-desc.     
 
@@ -6685,7 +6810,6 @@
        ABILITAZIONI.
       * <TOTEM:PARA. ABILITAZIONI>
            if mod = 1              
-              move BitmapDeleteEnabled  to BitmapNumDelete
               move BitmapSaveEnabled    to BitmapNumSave
               move BitmapPrintEnabled   to BitmapNumPrint
               move BitmapPreviewEnabled to BitmapNumPreview
@@ -6695,7 +6819,6 @@
               modify pb-su,       enabled true
               modify pb-giu,      enabled true 
            else           
-              move BitmapDeleteDisabled  to BitmapNumDelete
               move BitmapSaveDisabled    to BitmapNumSave   
               move BitmapPrintDisabled   to BitmapNumPrint
               move BitmapPreviewDisabled to BitmapNumPreview
@@ -6706,9 +6829,7 @@
               modify pb-giu,      enabled false
               modify pb-int,      enabled false
            end-if.      
-
-                                         
-           modify tool-cancella,  enabled = e-cancella.
+                                               
            modify tool-salva,     enabled = e-salva.
            modify tool-stampa,    enabled = e-stampa.
            modify tool-anteprima, enabled = e-anteprima. 
@@ -6716,7 +6837,7 @@
       * ISACCO (SERVE SEMPRE PER LA MODIFICA PRCEDENTE E PER RIPRISTINARE
       * LE BITMAP DISABILITATE. - 10/11/2003
       *     perform FORM1-DISPLAY.
-           display tool-nuovo, tool-salva, tool-cancella, tool-modifica
+           display tool-nuovo, tool-salva, tool-modifica
                    tool-stampa tool-anteprima.
       * FINE 
            .
@@ -6861,6 +6982,35 @@
            .
       * <TOTEM:END>
 
+       CANCELLA.
+      * <TOTEM:PARA. CANCELLA>
+           display message "Cancellare il WOD?"
+                     title titolo
+                      type mb-yes-no
+                    giving scelta       
+       
+           if scelta = mb-no
+              exit paragraph
+           end-if.
+
+           move low-value  to wod-key.
+           move s-wod-code to wod-code.
+           start wodbook key >= wod-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read wodbook next at end exit perform end-read
+                    if wod-code not = s-wod-code
+                       exit perform
+                    end-if
+                    delete wodbook record
+                 end-perform
+           end-start.
+
+           perform DATI-DEFAULT 
+           .
+      * <TOTEM:END>
+
        CERCA.
       * <TOTEM:PARA. CERCA>
            evaluate CONTROL-ID
@@ -6982,7 +7132,6 @@
            open i-o    tmp-superset.
            
            set tutto-ok to true.
-           open input tmp-exe.
            move low-value to tex-key.
            start tmp-exe key >= tex-key
                  invalid continue
@@ -7006,7 +7155,6 @@
                     write tss-rec invalid rewrite tss-rec end-write
                  end-perform
            end-start.
-           close tmp-exe.
 
            move low-value to tss-key
            start tmp-superset key >= tss-key
@@ -7184,7 +7332,6 @@
                 if hid-tex-day not = 0
                    if col-day = 0                 
                       perform ELIMINA-RIGA  
-                      open i-o    tmp-exe  
                       open output tmp-hit
                       set fromAggiungi to true
                       perform LOAD-GRID       
@@ -7204,13 +7351,10 @@
                 else
                    inquire gd1(riga, 78-col-day), hidden-data hiddenData
                    move hid-tex-key to tex-key
-                   open i-o tmp-exe
                    read tmp-exe
                    move col-series to tex-series
                    rewrite tex-rec
-                   close tmp-exe
                    perform RICALCOLA-HIT-DIV  
-                   open i-o    tmp-exe  
                    open output tmp-hit
                    set fromAggiungi to true
                    perform LOAD-GRID       
@@ -7223,18 +7367,15 @@
                 else     
                    inquire gd1(riga, 78-col-day), hidden-data hiddenData
                    move hid-tex-key to tex-key
-                   open i-o tmp-exe
                    read tmp-exe
                    move col-reps to tex-reps
-                   rewrite tex-rec
-                   close tmp-exe            
+                   rewrite tex-rec          
                 end-if 
            when 78-col-ss
                 inquire gd1(riga, 78-col-ss), cell-data col-ss
                 modify  gd1(riga, 78-col-ss), cell-data col-ss  
                 inquire gd1(riga, 78-col-day), hidden-data hiddenData
                 move hid-tex-key to tex-key
-                open i-o tmp-exe
                 read tmp-exe
                 move col-ss to tex-ss
                 rewrite tex-rec
@@ -7317,7 +7458,6 @@
 
            move el-mcg-code(idx) to mcg-code.
                        
-           open input tmp-exe.
            move low-value to tex-rec.
            move mcg-code  to tex-mcg-code.
            start tmp-exe key >= tex-k-mcg
@@ -7346,7 +7486,6 @@
                     write tge-rec 
                  end-perform
            end-start.         
-           close tmp-exe.  
                     
            move spaces to como-nome.
            move 0      to tot-series store-riga.  
@@ -7540,9 +7679,11 @@
            perform GD-SCHEMA-CONTENT.    
 
            modify pb-genera, enabled false.  
-
+                                  
            move spaces to lab-desc-buf.
            display lab-desc.
+           move 0 to lab-code-buf.
+           display lab-code.
 
            modify pb-random, enabled false 
            .
@@ -7552,13 +7693,10 @@
       * <TOTEM:PARA. ELIMINA-RIGA>
            inquire gd1(riga, 78-col-day), hidden-data hiddenData.
            inquire gd1(riga, 78-col-day), cell-data col-day.
-           open i-o tmp-exe.
            move hid-tex-key to tex-key.
            delete tmp-exe record.
-           close tmp-exe.  
            modify gd1, record-to-delete = riga.
                         
-           open i-o tmp-exe.
            move 0 to idx1.
            initialize como-tex-data-tab.
            move tex-day to como-giorno.
@@ -7586,8 +7724,6 @@
                  write tex-rec
               end-perform
            end-if.
-
-           close tmp-exe.
 
            perform RICALCOLA-HIT-DIV.
            perform CALCOLA-HIT-BOTTONI         
@@ -7677,6 +7813,11 @@
             
       ***---
        OPEN-TMP. 
+           close       tmp-exe.
+           open output tmp-exe.
+           close       tmp-exe.
+           open i-o    tmp-exe.
+
            accept  como-data from century-date.
            accept  como-ora  from time.
            accept  path-tmp-exe-effort from environment "PATH_ST".
@@ -7712,21 +7853,6 @@
            open output tmp-wod-exe.
            close       tmp-wod-exe.
            open i-o    tmp-wod-exe.
-                 
-           accept  path-tmp-exe from environment "PATH_ST".
-           inspect path-tmp-exe replacing trailing spaces by low-value.
-           string  path-tmp-exe delimited low-value
-                   "tmp-exe_"   delimited size
-                   como-data    delimited size
-                   "_"          delimited size
-                   como-ora     delimited size
-              into path-tmp-exe
-           end-string.                                                  
-                 
-           inspect path-tmp-exe replacing trailing low-value by spaces.
-           open output tmp-exe.
-           close       tmp-exe.
-           open i-o    tmp-exe. 
 
            accept  path-tmp-exe-dupl from environment "PATH_ST".
            inspect path-tmp-exe-dupl replacing trailing spaces by 
@@ -7770,8 +7896,6 @@
                                         
            close       tmp-exe-dupl.
            delete file tmp-exe-dupl.
-
-           close       tmp-exe.
       
       ***---
        LOAD-GRID.
@@ -8009,6 +8133,7 @@
                     read intexe no lock
                     move exe-grp-code to grp-code
                     read groups no lock
+
                     if exe-isMulti = 1 and cb-mul-buf = "No"
                        exit perform cycle
                     end-if
@@ -8580,7 +8705,6 @@
               inquire gd1(riga, 78-col-day), 
                      hidden-data = hiddenData
               move hid-tex-key to tex-key
-              open i-o tmp-exe
               read tmp-exe 
                    invalid continue
                not invalid
@@ -8590,7 +8714,6 @@
                    move exe-isMulti  to tex-exe-isMulti
                    rewrite tex-rec
               end-read
-              close tmp-exe
            end-if.    
 
       ***---
@@ -8972,14 +9095,11 @@
               start wodbook key >= wod-key
                     invalid continue
                 not invalid
-                    if path-tmp-exe = spaces
-                       perform OPEN-TMP
-                    else
-                       open output tmp-exe
-                       close       tmp-exe
-                       open i-o    tmp-exe
-                       open output tmp-hit
-                    end-if
+                    perform OPEN-TMP
+                    close       tmp-exe
+                    open output tmp-exe
+                    close       tmp-exe
+                    open i-o    tmp-exe
                     perform until 1 = 2
                        read wodbook next at end exit perform end-read
                        if wod-code not = s-wod-code
@@ -9014,10 +9134,13 @@
                           modify cb-int, value "Tutto"
                           modify cb-dur, value "Tutto"
                           modify cb-gio, value "Tutto"
+                          move spaces to s-cb-mg1-buf
                           perform VALORIZZA-WOD
                           perform ABILITA-MACROGRUPPI  
                           move wod-desc to lab-desc-buf
                           display lab-desc
+                          move wod-code to lab-code-buf s-wod-code
+                          display lab-code
                           exit perform cycle 
                        end-if
                        move wod-day to como-data
@@ -9045,21 +9168,24 @@
                     perform LOAD-GRID
                     set fromAggiungi to false
               end-start
-           end-if.
-           close tmp-hit.
-           perform CALCOLA-HIT-BOTTONI.
-           move cb-mg1-buf to s-cb-mg1-buf.
-           move cb-mg2-buf to s-cb-mg2-buf.
-           move cb-mg3-buf to s-cb-mg3-buf.
-           move cb-mg4-buf to s-cb-mg4-buf.
-           move cb-mg5-buf to s-cb-mg5-buf.
-           move cb-mg6-buf to s-cb-mg6-buf.
-           move cb-mg7-buf to s-cb-mg7-buf.
-           move cb-mul-buf to s-cb-mul-buf.
-           move cb-int-buf to s-cb-int-buf.
-           move cb-dur-buf to s-cb-dur-buf.
-           move cb-gio-buf to s-cb-gio-buf.
-           move cb-wod-buf to s-cb-wod-buf 
+              close tmp-hit
+              perform CALCOLA-HIT-BOTTONI
+              move cb-mg1-buf to s-cb-mg1-buf
+              move cb-mg2-buf to s-cb-mg2-buf
+              move cb-mg3-buf to s-cb-mg3-buf
+              move cb-mg4-buf to s-cb-mg4-buf
+              move cb-mg5-buf to s-cb-mg5-buf
+              move cb-mg6-buf to s-cb-mg6-buf
+              move cb-mg7-buf to s-cb-mg7-buf
+              move cb-mul-buf to s-cb-mul-buf
+              move cb-int-buf to s-cb-int-buf
+              move cb-dur-buf to s-cb-dur-buf
+              move cb-gio-buf to s-cb-gio-buf
+              move cb-wod-buf to s-cb-wod-buf
+
+              move 1 to e-cancella
+              modify tool-cancella, enabled e-cancella
+           end-if 
            .
       * <TOTEM:END>
 
@@ -9352,7 +9478,22 @@
       * <TOTEM:END>
        ginqui-Ev-Before-Program.
       * <TOTEM:PARA. ginqui-Ev-Before-Program>
-           move LK-BL-PROG-ID    TO COMO-PROG-ID 
+           move LK-BL-PROG-ID    TO COMO-PROG-ID.
+                 
+           accept  path-tmp-exe from environment "PATH_ST".
+           inspect path-tmp-exe replacing trailing spaces by low-value.
+           string  path-tmp-exe delimited low-value
+                   "tmp-exe_"   delimited size
+                   como-data    delimited size
+                   "_"          delimited size
+                   como-ora     delimited size
+              into path-tmp-exe
+           end-string.                                                  
+                 
+           inspect path-tmp-exe replacing trailing low-value by spaces.
+           open output tmp-exe.
+           close       tmp-exe.
+           open i-o    tmp-exe  
            .
       * <TOTEM:END>
        ginqui-Ev-After-Program.
@@ -9367,6 +9508,11 @@
               delete file tmp-hit
            end-if.
            if path-tmp-exe not = spaces
+              delete file tmp-exe
+           end-if.
+
+           if path-tmp-exe not = spaces    
+              close       tmp-exe
               delete file tmp-exe
            end-if 
            .
@@ -9974,8 +10120,6 @@
            modify gd1(riga - 1, 78-col-exe-code), cell-data exe-code.
            modify gd1(riga - 1, 78-col-exe-desc), cell-data exe-desc.  
            
-           open i-o tmp-exe.               
-
            inquire gd1(riga - 1, 78-col-day), cell-data in tex-day.
            inquire gd1(riga - 1, 78-col-prg), cell-data in tex-split.
            read tmp-exe no lock.       
@@ -10001,8 +10145,6 @@
            move s-tex-exe-desc    to tex-exe-desc.   
            move s-tex-exe-isMulti to tex-exe-isMulti.
            rewrite tex-rec.                
-
-           close tmp-exe.               
 
            subtract 1 from riga giving event-data-2.
            perform SPOSTAMENTO.
@@ -10061,8 +10203,6 @@
            modify gd1(riga + 1, 78-col-exe-code), cell-data exe-code.
            modify gd1(riga + 1, 78-col-exe-desc), cell-data exe-desc.
            
-           open i-o tmp-exe.               
-
            inquire gd1(riga + 1, 78-col-day), cell-data in tex-day.
            inquire gd1(riga + 1, 78-col-prg), cell-data in tex-split.
            read tmp-exe no lock.       
@@ -10088,8 +10228,6 @@
            move s-tex-exe-desc    to tex-exe-desc.   
            move s-tex-exe-isMulti to tex-exe-isMulti.
            rewrite tex-rec.                
-
-           close tmp-exe.               
 
            add 1 to riga giving event-data-2.
            perform SPOSTAMENTO.
@@ -10117,7 +10255,6 @@
               move 0 to mod
               perform ABILITAZIONI
            else
-              open i-o    tmp-exe  
               open output tmp-hit 
               set fromAggiungi to true
               perform LOAD-GRID
@@ -10189,7 +10326,6 @@
 
            open output tmp-hit.
              
-           open i-o tmp-exe.
            move low-value to tex-split.
            start tmp-exe key >= tex-key
                  invalid continue
@@ -10256,7 +10392,6 @@
            set fromAggiungi to true.
            perform LOAD-GRID.       
            set fromAggiungi to false.
-           close tmp-exe.  
 
            perform RICALCOLA-HIT-DIV.
            perform CALCOLA-HIT-BOTTONI.
@@ -10368,7 +10503,6 @@
                  modify gd1(riga, 78-col-reps),   cell-data col-reps
                  modify gd1(riga, 78-col-series), cell-data int-series
                  move hid-tex-key to tex-key
-                 open i-o tmp-exe
                  read tmp-exe no lock
                  move int-code      to tex-int-code
                  move col-reps      to tex-reps
@@ -10473,18 +10607,34 @@
 
            inquire cb-wod, value in wom-desc.
            read wodmap no lock.
-
-
-           move high-value to wod-rec.
-           start wodbook key <= wod-key
-                 invalid move 0 to como-code
-             not invalid read wodbook previous
-                         move wod-code to como-code
-           end-start.
+           
+           move lab-code-buf to wod-code.
+           if wod-code > 0
+              move wod-code to como-code
+              move low-value to wod-rec 
+              move como-code to wod-code
+              start wodbook key >= wod-key
+                    invalid continue
+                not invalid 
+                    perform until 1 = 2
+                       read wodbook next at end exit perform end-read
+                       if wod-code not = como-code
+                          exit perform
+                       end-if 
+                       delete wodbook record
+                    end-perform
+              end-start
+           else
+              move high-value to wod-rec
+              start wodbook key <= wod-key
+                    invalid move 0 to como-code
+                not invalid read wodbook previous
+                            move wod-code to como-code
+              end-start
+              add 1 to como-code 
+           end-if.
 
            move 0 to tot-exe.
-           add 1 to como-code.
-           open input tmp-exe.
            move low-value to tex-key.
            start tmp-exe key >= tex-key
                  invalid continue
@@ -10494,9 +10644,13 @@
                  initialize wod-rec replacing numeric data by zeroes
                                          alphanumeric data by spaces
                  move como-code      to wod-code
+                 inquire ef-desc, value in ef-desc-buf
                  move ef-desc-buf    to wod-desc
                  move como-data(1:4) to wod-day
-                 move wom-code       to wod-wom-code
+                 move wom-code       to wod-wom-code 
+                 move wod-code to lab-code-buf
+                 move wod-desc to lab-desc-buf
+                 display lab-desc lab-code
 
                  perform varying idx from 1 by 1 
                            until idx > 20
@@ -10534,7 +10688,8 @@
                     when 7 move ef-gg7-buf to como-data
                            perform DATE-TO-FILE
                            move como-data to wod-day
-                    end-evaluate
+                    end-evaluate  
+
                     move tex-day              to wod-prg-day
                     move como-code            to wod-code
                     move tex-split            to wod-split
@@ -10549,11 +10704,19 @@
                     move tex-int-restpause    to wod-int-restpause   
                     move tex-ss               to wod-ss    
                     add  1                    to tot-exe
-                    write wod-rec
+                    write wod-rec       
+
+                    move wod-day to como-data
+                    perform DATE-TO-SCREEN
+                    move como-data to como-data-x10
+                    compute riga = wod-prg-day * 2 + 1
+                    modify gd-schema(riga, 12), cell-data como-data-x10
+
                  end-perform
                  
                  initialize wod-rec replacing numeric data by zeroes
                                          alphanumeric data by spaces
+                 accept como-data from century-date
                  move como-code      to wod-code
                  move como-data(1:4) to wod-day
                  read wodbook
@@ -10565,8 +10728,7 @@
                           x"0d0a""Codice : " wod-code
                            title titolo
                  move 27 to key-status
-           end-start.
-           close tmp-exe 
+           end-start 
            .
       * <TOTEM:END>
        ef-gg1-BeforeProcedure.
@@ -10662,6 +10824,14 @@
        ef-desc-AfterProcedure.
       * <TOTEM:PARA. ef-desc-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       CANCELLA-LinkTo.
+      * <TOTEM:PARA. CANCELLA-LinkTo>
+           inquire tool-cancella, enabled in e-cancella
+           if e-cancella = 1
+              perform CANCELLA
+           end-if 
            .
       * <TOTEM:END>
 

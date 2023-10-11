@@ -926,7 +926,7 @@
            add 1 to idx
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
-           move  100                     to xzoom-field-length(idx).
+           move  95                      to xzoom-field-length(idx).
            move  0                       to xzoom-field-offset(idx).
            move  14                      to xzoom-field-column(idx).
            move "Gruppo muscolare"       to xzoom-field-name(idx).  
@@ -937,7 +937,7 @@
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
            move  1                       to xzoom-field-length(idx).
-           move  100                     to xzoom-field-offset(idx).
+           move  95                      to xzoom-field-offset(idx).
            move  5                       to xzoom-field-column(idx).
            move "Giorno"                 to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 
@@ -946,8 +946,8 @@
            add 1 to idx.
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
-           move  100                     to xzoom-field-length(idx).
-           move  101                     to xzoom-field-offset(idx).
+           move  95                      to xzoom-field-length(idx).
+           move  96                      to xzoom-field-offset(idx).
            move  22                      to xzoom-field-column(idx).
            move "Esercizio"              to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true.                   
@@ -957,7 +957,7 @@
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
            move  3                       to xzoom-field-length(idx).
-           move  201                     to xzoom-field-offset(idx).
+           move  191                     to xzoom-field-offset(idx).
            move  5                       to xzoom-field-column(idx).
            move "Series"                 to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 
@@ -967,7 +967,7 @@
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
            move  10                      to xzoom-field-length(idx).
-           move  204                     to xzoom-field-offset(idx).
+           move  194                     to xzoom-field-offset(idx).
            move  10                      to xzoom-field-column(idx).
            move "Reps"                   to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 
@@ -1050,8 +1050,8 @@
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
            move  100                     to xzoom-field-length(idx).
-           move  32                      to xzoom-field-offset(idx).
-           move  25                      to xzoom-field-column(idx).
+           move  35                      to xzoom-field-offset(idx).
+           move  26                      to xzoom-field-column(idx).
            move "Descrizione"            to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 
 
@@ -1060,7 +1060,7 @@
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
            move  1                       to xzoom-field-length(idx).
-           move  28                      to xzoom-field-offset(idx).
+           move  31                      to xzoom-field-offset(idx).
            move  12                      to xzoom-field-column(idx).
            move "Gg. di allenamento"     to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 
@@ -1070,7 +1070,7 @@
            move  1                       to xzoom-field-file(Idx).
            move  0                       to xzoom-field-rel(Idx).    
            move  3                       to xzoom-field-length(idx).
-           move  29                      to xzoom-field-offset(idx).
+           move  32                      to xzoom-field-offset(idx).
            move  10                      to xzoom-field-column(idx).
            move "Tot. esercizi"          to xzoom-field-name(idx).  
            set xzoom-al-right(idx)       to true.
@@ -1089,7 +1089,7 @@
            set xzoom-begin-with(1)   to true.
            set xzoom-ignore-case(1)  to true.
                                  
-           move "0"                  to xzoom-wild-value(1).
-           move 1                    to xzoom-wild-value-length(1).
-           move 1                    to xzoom-wild-length(1).
-           move 2132                 to xzoom-wild-offset(1).
+           move "00"                 to xzoom-wild-value(1).
+           move 2                    to xzoom-wild-value-length(1).
+           move 2                    to xzoom-wild-length(1).
+           move 26                   to xzoom-wild-offset(1).

@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E791C7330-591-243904168
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7AA163055-190-2798129198
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -31,8 +31,8 @@ m_bFixed=1
 @}}
 [FDITEM2_]
 m_strName=tge-grp-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strRawPic=x(95)
+m_strPic=x(95)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -51,8 +51,8 @@ m_bFixed=1
 @}}
 [FDITEM4_]
 m_strName=tge-exe-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strRawPic=x(95)
+m_strPic=x(95)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1

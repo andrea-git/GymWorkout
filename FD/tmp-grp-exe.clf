@@ -35,8 +35,8 @@ m_bFixed=1
 @}}
 [FDITEM2_]
 m_strName=tge-grp-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strRawPic=x(95)
+m_strPic=x(95)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -55,8 +55,8 @@ m_bFixed=1
 @}}
 [FDITEM4_]
 m_strName=tge-exe-desc
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strRawPic=x(95)
+m_strPic=x(95)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1

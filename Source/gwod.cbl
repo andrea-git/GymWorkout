@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 10 ottobre 2023 18:38:12.
+       DATE-WRITTEN.        mercoledì 11 ottobre 2023 11:04:24.
        REMARKS.
       *{TOTEM}END
 
@@ -145,6 +145,8 @@
        77 como-split       PIC  99.
        77 tentativo        PIC  99.
        77 como-code        PIC  9(18).
+       77 como-data-x10    PIC  99/99/9999.
+       77 s-wod-code       PIC  9(18).
        01 como-tex-data-tab.
            05 como-tex-data-el PIC  x(1000)
                       OCCURS 99 TIMES.
@@ -461,6 +463,7 @@
        77 e-gg7            PIC  9
                   VALUE IS 1.
        77 ef-desc-buf      PIC  X(100).
+       77 lab-desc-buf     PIC  X(100).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -488,7 +491,7 @@
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(190).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
        77 TMP-DataSet1-tmp-hit-BUF     PIC X(6).
-       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(217).
+       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(207).
        77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
@@ -1458,6 +1461,22 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            WIDTH 1,
+           .
+
+      * LABEL
+       05
+           lab-desc, 
+           Label, 
+           COL 2,30, 
+           LINE 36,70,
+           LINES 1,00 ,
+           SIZE 66,70 ,
+           COLOR IS 5,
+           ID IS 44,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-desc-buf,
            .
 
       * TOOLBAR
@@ -6213,6 +6232,10 @@
               cb-wod-buf = s-cb-wod-buf
               exit paragraph 
            end-if.                           
+
+           move spaces to lab-desc-buf.
+           display lab-desc.
+           
            inquire cb-wod, value in wom-desc.     
 
            read wodmap key wom-k-desc
@@ -7274,6 +7297,8 @@
        CREA-TMP-GRP-EXE.
       * <TOTEM:PARA. CREA-TMP-GRP-EXE>
            accept  path-tmp-grp-exe from environment "PATH_ST".
+           accept como-data from century-date.
+           accept como-ora  from time.
            inspect path-tmp-grp-exe replacing trailing spaces by 
            low-value.
            string  path-tmp-grp-exe delimited low-value
@@ -7361,8 +7386,9 @@
                     add como-series  to tot-series
                  end-perform
            end-start.        
-                            
-           close       tmp-grp-exe.
+                                            
+           close  tmp-grp-exe.    
+
            move path-tmp-grp-exe to ext-file
            move "tmp-grp-exe"    to Como-File
            call   "zoom-gt"   using como-file, tge-rec
@@ -7513,7 +7539,12 @@
            modify gd-schema, reset-grid = 1.
            perform GD-SCHEMA-CONTENT.    
 
-           modify pb-genera, enabled false 
+           modify pb-genera, enabled false.  
+
+           move spaces to lab-desc-buf.
+           display lab-desc.
+
+           modify pb-random, enabled false 
            .
       * <TOTEM:END>
 
@@ -8931,11 +8962,13 @@
        SELEZIONA.
       * <TOTEM:PARA. SELEZIONA>
            move "wodbook"    to como-file.
-           call "zoom-gt" using como-file, wom-rec
+           call "zoom-gt" using como-file, wod-rec
                          giving stato-zoom.
            cancel "zoom-gt".
            if stato-zoom = 0
+              move 0 to tot-gruppi
               move low-value to wod-day wod-split
+              move wod-code to s-wod-code
               start wodbook key >= wod-key
                     invalid continue
                 not invalid
@@ -8949,7 +8982,51 @@
                     end-if
                     perform until 1 = 2
                        read wodbook next at end exit perform end-read
-                       if wod-split = 0 exit perform cycle end-if
+                       if wod-code not = s-wod-code
+                          exit perform
+                       end-if
+                       if wod-split = 0 
+                          move wod-wom-code to wom-code
+                          read wodmap no lock
+                          modify cb-wod, value wom-desc
+
+                          perform varying idx from 1 by 1 
+                                    until idx > 7
+                             if wod-el-mcg-code(idx) = spaces
+                                exit perform
+                             end-if
+                             move wod-el-mcg-code(idx) to mcg-code
+                                                       el-mcg-code(idx)
+                             read macrogroups
+                             evaluate idx                               
+                 
+                             when 1 modify cb-mg1, value mcg-desc
+                             when 2 modify cb-mg2, value mcg-desc
+                             when 3 modify cb-mg3, value mcg-desc
+                             when 4 modify cb-mg4, value mcg-desc
+                             when 5 modify cb-mg5, value mcg-desc
+                             when 6 modify cb-mg6, value mcg-desc
+                             when 7 modify cb-mg7, value mcg-desc
+                             end-evaluate
+                             add 1 to tot-gruppi            
+                          end-perform  
+                          modify cb-mul, value "Si"
+                          modify cb-int, value "Tutto"
+                          modify cb-dur, value "Tutto"
+                          modify cb-gio, value "Tutto"
+                          perform VALORIZZA-WOD
+                          perform ABILITA-MACROGRUPPI  
+                          move wod-desc to lab-desc-buf
+                          display lab-desc
+                          exit perform cycle 
+                       end-if
+                       move wod-day to como-data
+                       perform DATE-TO-SCREEN
+                       move como-data to como-data-x10
+                       compute riga = wod-prg-day * 2 + 1
+                       modify gd-schema(riga, 12), cell-data 
+           como-data-x10
+
                        move wod-prg-day          to tex-day
                        move wod-split            to tex-split
                        move wod-exe-desc-univoca to tex-exe-desc-univoca
@@ -8968,7 +9045,21 @@
                     perform LOAD-GRID
                     set fromAggiungi to false
               end-start
-           end-if 
+           end-if.
+           close tmp-hit.
+           perform CALCOLA-HIT-BOTTONI.
+           move cb-mg1-buf to s-cb-mg1-buf.
+           move cb-mg2-buf to s-cb-mg2-buf.
+           move cb-mg3-buf to s-cb-mg3-buf.
+           move cb-mg4-buf to s-cb-mg4-buf.
+           move cb-mg5-buf to s-cb-mg5-buf.
+           move cb-mg6-buf to s-cb-mg6-buf.
+           move cb-mg7-buf to s-cb-mg7-buf.
+           move cb-mul-buf to s-cb-mul-buf.
+           move cb-int-buf to s-cb-int-buf.
+           move cb-dur-buf to s-cb-dur-buf.
+           move cb-gio-buf to s-cb-gio-buf.
+           move cb-wod-buf to s-cb-wod-buf 
            .
       * <TOTEM:END>
 

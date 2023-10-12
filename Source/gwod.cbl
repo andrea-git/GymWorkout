@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 11 ottobre 2023 17:14:56.
+       DATE-WRITTEN.        giovedì 12 ottobre 2023 12:08:40.
        REMARKS.
       *{TOTEM}END
 
@@ -154,8 +154,9 @@
        01 exe-probabili-tab.
            05 exe-code-probabile-el        PIC  x(5)
                       OCCURS 50 TIMES.
-       01 FILLER           PIC  9.
-           88 fromAggiungi VALUE IS 1    WHEN SET TO FALSE  0. 
+       01 FILLER           PIC  9
+                  VALUE IS 0.
+           88 reloadGrid VALUE IS 1    WHEN SET TO FALSE  0. 
        01 s-tex-key.
            05 s-tex-day        PIC  9.
            05 s-tex-split      PIC  9(3).
@@ -1450,7 +1451,7 @@
            ID IS 42,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TITLE "Tecniche",
+           TITLE "Modifica serie/reps",
            .
 
       * BAR
@@ -1491,7 +1492,7 @@
            LINES 1,00 ,
            SIZE 4,00 ,
            COLOR IS 5,
-           ID IS 44,
+           ID IS 45,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            RIGHT,
@@ -2101,7 +2102,7 @@
            LINES 1,00 ,
            SIZE 51,00 ,
            COLOR IS 5,
-           ID IS 19,
+           ID IS 20,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            CENTER,
@@ -6353,10 +6354,10 @@
               exit paragraph 
            end-if.                           
                                        
-           move spaces to lab-desc-buf.
-           display lab-desc.
-           move 0 to lab-code-buf s-wod-code.
-           display lab-code.
+      *     move spaces to lab-desc-buf.
+      *     display lab-desc.
+      *     move 0 to lab-code-buf s-wod-code.
+      *     display lab-code.
 
            move 0 to e-cancella
            modify tool-cancella, enabled e-cancella
@@ -6399,37 +6400,71 @@
                    move wom-sigla-default(6) to el-mcg-sigla(6)
                    move wom-sigla-default(7) to el-mcg-sigla(7)
                 
-                   move wom-mcg-code-default(1) to mcg-code
+                   if reloadGrid
+                      move wod-el-mcg-code(1)      to mcg-code
+                   else                                       
+                      move wom-mcg-code-default(1) to mcg-code
+                   end-if
                    read macrogroups 
                         invalid continue
                     not invalid modify cb-mg1, value mcg-desc
                    end-read
-                   move wom-mcg-code-default(2) to mcg-code
+
+                   if reloadGrid
+                      move wod-el-mcg-code(2)      to mcg-code
+                   else                                       
+                      move wom-mcg-code-default(2) to mcg-code
+                   end-if
                    read macrogroups 
                         invalid continue
                     not invalid modify cb-mg2, value mcg-desc
                    end-read
-                   move wom-mcg-code-default(3) to mcg-code
+
+                   if reloadGrid
+                      move wod-el-mcg-code(3)      to mcg-code
+                   else                                       
+                      move wom-mcg-code-default(3) to mcg-code
+                   end-if
                    read macrogroups 
                         invalid continue
                     not invalid modify cb-mg3, value mcg-desc
                    end-read
-                   move wom-mcg-code-default(4) to mcg-code
+
+                   if reloadGrid
+                      move wod-el-mcg-code(4)      to mcg-code
+                   else                                       
+                      move wom-mcg-code-default(4) to mcg-code
+                   end-if
                    read macrogroups 
                         invalid continue
                     not invalid modify cb-mg4, value mcg-desc
                    end-read
-                   move wom-mcg-code-default(5) to mcg-code
+
+                   if reloadGrid
+                      move wod-el-mcg-code(5)      to mcg-code
+                   else                                       
+                      move wom-mcg-code-default(5) to mcg-code
+                   end-if
                    read macrogroups 
                         invalid continue
                     not invalid modify cb-mg5, value mcg-desc
                    end-read
-                   move wom-mcg-code-default(6) to mcg-code
+
+                   if reloadGrid
+                      move wod-el-mcg-code(6)      to mcg-code
+                   else                                       
+                      move wom-mcg-code-default(6) to mcg-code
+                   end-if
                    read macrogroups 
                         invalid continue
                     not invalid modify cb-mg6, value mcg-desc
                    end-read
-                   move wom-mcg-code-default(7) to mcg-code
+
+                   if reloadGrid
+                      move wod-el-mcg-code(7)      to mcg-code
+                   else                                       
+                      move wom-mcg-code-default(7) to mcg-code
+                   end-if
                    read macrogroups 
                         invalid continue
                     not invalid modify cb-mg7, value mcg-desc
@@ -6646,20 +6681,26 @@
                     into como-day
                  end-string
                  evaluate idx-split
-                 when 1 move como-day to sigle-effort-1
-                        move mcg-code to mcg-1
-                 when 2 move como-day to sigle-effort-2
-                        move mcg-code to mcg-2
-                 when 3 move como-day to sigle-effort-3
-                        move mcg-code to mcg-3
-                 when 4 move como-day to sigle-effort-4
-                        move mcg-code to mcg-4
-                 when 5 move como-day to sigle-effort-5
-                        move mcg-code to mcg-5
-                 when 6 move como-day to sigle-effort-6
-                        move mcg-code to mcg-6
-                 when 7 move como-day to sigle-effort-7
-                        move mcg-code to mcg-7
+                 when 1  move como-day to sigle-effort-1
+                         move mcg-code to mcg-1
+                 when 2  move como-day to sigle-effort-2
+                         move mcg-code to mcg-2
+                 when 3  move como-day to sigle-effort-3
+                         move mcg-code to mcg-3
+                 when 4  move como-day to sigle-effort-4
+                         move mcg-code to mcg-4
+                 when 5  move como-day to sigle-effort-5
+                         move mcg-code to mcg-5
+                 when 6  move como-day to sigle-effort-6
+                         move mcg-code to mcg-6
+                 when 7  move como-day to sigle-effort-7
+                         move mcg-code to mcg-7
+                 when 8  move como-day to sigle-effort-8
+                         move mcg-code to mcg-8
+                 when 9  move como-day to sigle-effort-9
+                         move mcg-code to mcg-9
+                 when 10 move como-day to sigle-effort-10
+                         move mcg-code to mcg-10
                  end-evaluate
               end-perform
               if colore = 304 
@@ -6852,8 +6893,6 @@
 
        CALCOLA-HIT-BOTTONI.
       * <TOTEM:PARA. CALCOLA-HIT-BOTTONI>
-           open input tmp-hit.
-
            perform varying idx from 1 by 1 
                      until idx > tot-gruppi
               move el-mcg-code(idx) to th-mcg-code
@@ -6976,9 +7015,7 @@
                  end-evaluate
               end-if
 
-           end-perform.
-
-           close tmp-hit 
+           end-perform  
            .
       * <TOTEM:END>
 
@@ -7332,10 +7369,7 @@
                 if hid-tex-day not = 0
                    if col-day = 0                 
                       perform ELIMINA-RIGA  
-                      open output tmp-hit
-                      set fromAggiungi to true
-                      perform LOAD-GRID       
-                      set fromAggiungi to false
+                      perform RELOAD-GRID   
                    else
                       if col-day not = hid-tex-day
                          move hid-tex-day to col-day
@@ -7355,10 +7389,7 @@
                    move col-series to tex-series
                    rewrite tex-rec
                    perform RICALCOLA-HIT-DIV  
-                   open output tmp-hit
-                   set fromAggiungi to true
-                   perform LOAD-GRID       
-                   set fromAggiungi to false
+                   perform RELOAD-GRID       
                 end-if
            when 78-col-reps
                 inquire gd1(riga, 78-col-reps), cell-data in col-reps
@@ -7379,10 +7410,7 @@
                 read tmp-exe
                 move col-ss to tex-ss
                 rewrite tex-rec
-                set fromAggiungi to true  
-                open output tmp-hit
-                perform LOAD-GRID
-                set fromAggiungi to false
+                perform RELOAD-GRID
            end-evaluate 
            .
       * <TOTEM:END>
@@ -7559,63 +7587,96 @@
 
        CURRENT-RECORD.
       * <TOTEM:PARA. CURRENT-RECORD>
-      *     perform RIEMPI-CHIAVE.
-      *     set tutto-ok  to true.
-      *     set ReadSecca to true.
-      *     if nuovo move 0 to mod end-if.
-      *
-      *     if mod = 1
-      *        read tschede lock key tsc-k-cliente
-      *           invalid
-      *              set errori to true 
-      *        end-read
-      *     else
-      *        read tschede no lock key tsc-k-cliente
-      *           invalid 
-      *              set errori to true 
-      *        end-read
-      *     end-if.                    
-      *     set ReadSecca to false.
-      *
-      *     if RecLocked
-      *        set RecLocked to false
-      *     else
-      *        if tutto-ok
-      *           perform CANCELLA-COLORE
-      *           if nuovo
-      *              move 0      to mod
-      *              move 1      to mod-k
-      *              move 78-ID-ef-cliente to control-id
-      *              move 4                to accept-control
-      *           else
-      *              move 78-ID-gd1 to control-id
-      *              move 4         to accept-control
-      *           end-if   
-      *           perform FORM1-IUD-DISPLAY
-      *           set vecchio to true
-      *           if mod = 1
-      *              set StatusModifica to true
-      *           else                         
-      *              set StatusVisua    to true
-      *           end-if
-      *           perform STATUS-BAR-MSG 
-      *           perform VALORIZZA-OLD
-      *           perform RIEMPI-GRID
-      *        else
-      *           move 0 to mod
-      *           move 1 to mod-k
-      *           if vecchio
-      *              perform CLEAR-SCREEN
-      *              if YesMessage
-      *                 move 78-ID-ef-cliente to CONTROL-ID
-      *                 move 4                to accept-control
-      *                 display message MSG-Record-inesistente
-      *                           title tit-err
-      *                            icon 2
-      *              end-if
-      *           end-if
-      *        end-if
-      *     end-if 
+           move 0 to tot-gruppi.
+           move low-value to wod-day wod-split.
+           move wod-code to s-wod-code.
+           start wodbook key >= wod-key
+                 invalid continue
+             not invalid
+                 perform OPEN-TMP
+                 perform until 1 = 2
+                    read wodbook next at end exit perform end-read
+                    if wod-code not = s-wod-code
+                       exit perform
+                    end-if
+                    if wod-split = 0 
+                       move wod-wom-code to wom-code
+                       read wodmap no lock
+                       modify cb-wod, value wom-desc
+
+                       perform varying idx from 1 by 1 
+                                 until idx > 7
+                          if wod-el-mcg-code(idx) = spaces
+                             exit perform
+                          end-if
+                          move wod-el-mcg-code(idx) to mcg-code
+                                                    el-mcg-code(idx)
+                          read macrogroups
+                          evaluate idx                                  
+              
+                          when 1 modify cb-mg1, value mcg-desc
+                          when 2 modify cb-mg2, value mcg-desc
+                          when 3 modify cb-mg3, value mcg-desc
+                          when 4 modify cb-mg4, value mcg-desc
+                          when 5 modify cb-mg5, value mcg-desc
+                          when 6 modify cb-mg6, value mcg-desc
+                          when 7 modify cb-mg7, value mcg-desc
+                          end-evaluate
+                          add 1 to tot-gruppi            
+                       end-perform  
+                       modify cb-mul, value "Si"
+                       modify cb-int, value "Tutto"
+                       modify cb-dur, value "Tutto"
+                       modify cb-gio, value "Tutto"
+                       move spaces to s-cb-mg1-buf
+                       perform VALORIZZA-WOD
+                       set reloadGrid to true
+                       perform ABILITA-MACROGRUPPI  
+                       set reloadGrid to false
+                       move wod-desc to lab-desc-buf
+                       display lab-desc
+                       move wod-code to lab-code-buf s-wod-code
+                       display lab-code
+                       exit perform cycle 
+                    end-if
+                    move wod-day to como-data
+                    perform DATE-TO-SCREEN
+                    move como-data to como-data-x10
+                    compute riga = wod-prg-day * 2 + 1
+                    modify gd-schema(riga, 12), cell-data como-data-x10
+
+                    move wod-prg-day          to tex-day
+                    move wod-split            to tex-split
+                    move wod-exe-desc-univoca to tex-exe-desc-univoca
+                    move wod-mcg-code         to tex-mcg-code        
+                    move wod-exe-code         to tex-exe-code        
+                    move wod-exe-desc         to tex-exe-desc        
+                    move wod-int-code         to tex-int-code        
+                    move wod-exe-isMulti      to tex-exe-isMulti     
+                    move wod-reps             to tex-reps            
+                    move wod-series           to tex-series          
+                    move wod-int-restpause    to tex-int-restpause   
+                    move wod-ss               to tex-ss              
+                    write tex-rec
+                 end-perform             
+                 perform RELOAD-GRID
+           end-start.
+           perform CALCOLA-HIT-BOTTONI.
+           move cb-mg1-buf to s-cb-mg1-buf.
+           move cb-mg2-buf to s-cb-mg2-buf.
+           move cb-mg3-buf to s-cb-mg3-buf.
+           move cb-mg4-buf to s-cb-mg4-buf.
+           move cb-mg5-buf to s-cb-mg5-buf.
+           move cb-mg6-buf to s-cb-mg6-buf.
+           move cb-mg7-buf to s-cb-mg7-buf.
+           move cb-mul-buf to s-cb-mul-buf.
+           move cb-int-buf to s-cb-int-buf.
+           move cb-dur-buf to s-cb-dur-buf.
+           move cb-gio-buf to s-cb-gio-buf.
+           move cb-wod-buf to s-cb-wod-buf.
+
+           move 1 to e-cancella.
+           modify tool-cancella, enabled e-cancella 
            .
       * <TOTEM:END>
 
@@ -7792,7 +7853,6 @@
            perform REMOVE-DUPLICATES.
            move "Carico la griglia" to lab-attesa-buf.
            display lab-attesa.
-           set fromAggiungi to false.
            perform LOAD-GRID.          
            move "Calcolo coperture" to lab-attesa-buf.
            display lab-attesa
@@ -7817,6 +7877,11 @@
            open output tmp-exe.
            close       tmp-exe.
            open i-o    tmp-exe.
+
+           close       tmp-hit.
+           open output tmp-hit.
+           close       tmp-hit.
+           open i-o    tmp-hit.
 
            accept  como-data from century-date.
            accept  como-ora  from time.
@@ -7869,22 +7934,7 @@
            spaces.
            open output tmp-exe-dupl.    
            close       tmp-exe-dupl.
-           open i-o    tmp-exe-dupl.
-
-           accept  path-tmp-hit from environment "PATH_ST".
-           inspect path-tmp-hit replacing trailing spaces by low-value.
-           string  path-tmp-hit delimited low-value
-                   "tmp-hit_"   delimited size
-                   como-data    delimited size
-                   "_"          delimited size
-                   como-ora     delimited size
-              into path-tmp-hit
-           end-string.                                                  
-                 
-           inspect path-tmp-hit replacing trailing low-value by spaces.
-           open output tmp-hit.    
-           close       tmp-hit.
-           open i-o    tmp-hit.                                    
+           open i-o    tmp-exe-dupl.                               
 
       ***---
        CLOSE-TMP.                  
@@ -7938,7 +7988,7 @@
                       to int-code
                     read intexe
 
-                    if fromAggiungi
+                    if reloadGrid
                        move tex-ss       to col-ss
                        move tex-int-code to int-code
                        read intexe
@@ -8013,9 +8063,7 @@
                     write th-rec invalid rewrite th-rec end-write
 
                  end-perform
-           end-start.
-
-      *     close tmp-hit.
+           end-start.    
                                   
            inquire gd1, last-row in tot-righe.
            if tot-righe > 1
@@ -8234,9 +8282,9 @@
                        if el-mcg-code(idx-gruppi) = mcg-code
                           perform until 1 = 2
                              compute idx = function random * (tot-exe)
-                             add 1 to idx
+                             add 1 to idx              
                              if el-exe-used(idx) = 0 or
-                                ex-remain = 0
+                                ex-remain = 0     
                                 move idx-days         to tex-day
                                 move idx-split        to tex-split
                                 move mcg-code         to tex-mcg-code
@@ -8339,7 +8387,7 @@
                     move twe-exe-isRestpause to 
            el-exe-isRestpause(tot-exe)
                  end-perform
-           end-start.
+           end-start.    
 
            if tot-exe > 0
               move tot-exe to ex-remain
@@ -8778,6 +8826,18 @@
            .
       * <TOTEM:END>
 
+       RELOAD-GRID.
+      * <TOTEM:PARA. RELOAD-GRID>
+           close       tmp-hit.
+           open output tmp-hit.
+           close       tmp-hit.
+           open i-o    tmp-hit.
+           set reloadGrid to true.
+           perform LOAD-GRID.
+           set reloadGrid to false 
+           .
+      * <TOTEM:END>
+
        RESETTA-FONT.
       * <TOTEM:PARA. RESETTA-FONT>
            inquire gd1, last-row in tot-righe.
@@ -8796,7 +8856,8 @@
        RICALCOLA-HIT-DIV.
       * <TOTEM:PARA. RICALCOLA-HIT-DIV>
            modify gd1, mass-update = 1.
-           open output tmp-hit.
+           close       tmp-hit
+           open output tmp-hit.        
            close       tmp-hit
            open i-o    tmp-hit.
            move 0 to save-day tot-series tot-exe.
@@ -8833,7 +8894,6 @@
               move hid-mcg-code to th-mcg-code
               write th-rec invalid rewrite th-rec end-write
            end-perform.
-           close tmp-hit.
 
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe                       
@@ -9082,109 +9142,148 @@
            .
       * <TOTEM:END>
 
+       SALVATAGGIO.
+      * <TOTEM:PARA. SALVATAGGIO>
+           inquire cb-wod, value in wom-desc.
+           read wodmap no lock.
+           
+           move lab-code-buf to wod-code.
+           if wod-code > 0
+              move wod-code to como-code
+              move low-value to wod-rec 
+              move como-code to wod-code
+              start wodbook key >= wod-key
+                    invalid continue
+                not invalid 
+                    perform until 1 = 2
+                       read wodbook next at end exit perform end-read
+                       if wod-code not = como-code
+                          exit perform
+                       end-if 
+                       delete wodbook record
+                    end-perform
+              end-start
+           else
+              move high-value to wod-rec
+              start wodbook key <= wod-key
+                    invalid move 0 to como-code
+                not invalid read wodbook previous
+                            move wod-code to como-code
+              end-start
+              add 1 to como-code 
+           end-if.
+
+           move 0 to tot-exe.
+           move low-value to tex-key.
+           start tmp-exe key >= tex-key
+                 invalid continue
+             not invalid
+                 |Scrivo la testata
+                 accept como-data from century-date
+                 initialize wod-rec replacing numeric data by zeroes
+                                         alphanumeric data by spaces
+                 move como-code      to wod-code
+                 inquire ef-desc, value in ef-desc-buf
+                 move ef-desc-buf    to wod-desc
+                 move como-data(1:4) to wod-day
+                 move wom-code       to wod-wom-code 
+                 move wod-code to lab-code-buf
+                 move wod-desc to lab-desc-buf
+                 display lab-desc lab-code
+
+                 perform varying idx from 1 by 1 
+                           until idx > 20
+                    if el-mcg-code(idx) = spaces
+                       exit perform
+                    end-if             
+                    move el-mcg-code(idx) to wod-el-mcg-code(idx)
+                    move el-hit(idx)      to wod-el-hit(idx)
+                 end-perform
+
+                 write wod-rec
+                 move 0 to s-tex-split
+                 perform until 1 = 2
+                    read tmp-exe next at end exit perform end-read
+                    initialize wod-rec replacing numeric data by zeroes
+                                            alphanumeric data by spaces
+                    evaluate tex-day
+                    when 1 move ef-gg1-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day  
+                    when 2 move ef-gg2-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 3 move ef-gg3-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 4 move ef-gg4-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 5 move ef-gg5-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 6 move ef-gg6-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    when 7 move ef-gg7-buf to como-data
+                           perform DATE-TO-FILE
+                           move como-data to wod-day
+                    end-evaluate  
+
+                    move tex-day              to wod-prg-day
+                    move como-code            to wod-code
+                    add 1 to s-tex-split
+                    move s-tex-split          to wod-split
+      *              move tex-split            to wod-split
+                    move tex-exe-desc-univoca to wod-exe-desc-univoca
+                    move tex-mcg-code         to wod-mcg-code        
+                    move tex-exe-code         to wod-exe-code        
+                    move tex-exe-desc         to wod-exe-desc        
+                    move tex-int-code         to wod-int-code        
+                    move tex-exe-isMulti      to wod-exe-isMulti     
+                    move tex-reps             to wod-reps            
+                    move tex-series           to wod-series          
+                    move tex-int-restpause    to wod-int-restpause   
+                    move tex-ss               to wod-ss    
+                    add  1                    to tot-exe
+                    write wod-rec       
+
+                    move wod-day to como-data
+                    perform DATE-TO-SCREEN
+                    move como-data to como-data-x10
+                    compute riga = wod-prg-day * 2 + 1
+                    modify gd-schema(riga, 12), cell-data como-data-x10
+
+                 end-perform
+                 
+                 initialize wod-rec replacing numeric data by zeroes
+                                         alphanumeric data by spaces
+                 accept como-data from century-date
+                 move como-code      to wod-code
+                 move como-data(1:4) to wod-day
+                 read wodbook
+                 move tex-day        to wod-gg
+                 move tot-exe        to wod-tot-exe
+                 rewrite wod-rec
+
+                 perform CURRENT-RECORD     
+
+                 display message "Salvato allenamento correttamente."
+                          x"0d0a""Codice : " wod-code
+                           title titolo
+                 move 27 to key-status
+           end-start 
+           .
+      * <TOTEM:END>
+
        SELEZIONA.
       * <TOTEM:PARA. SELEZIONA>
            move "wodbook"    to como-file.
            call "zoom-gt" using como-file, wod-rec
                          giving stato-zoom.
            cancel "zoom-gt".
-           if stato-zoom = 0
-              move 0 to tot-gruppi
-              move low-value to wod-day wod-split
-              move wod-code to s-wod-code
-              start wodbook key >= wod-key
-                    invalid continue
-                not invalid
-                    perform OPEN-TMP
-                    close       tmp-exe
-                    open output tmp-exe
-                    close       tmp-exe
-                    open i-o    tmp-exe
-                    perform until 1 = 2
-                       read wodbook next at end exit perform end-read
-                       if wod-code not = s-wod-code
-                          exit perform
-                       end-if
-                       if wod-split = 0 
-                          move wod-wom-code to wom-code
-                          read wodmap no lock
-                          modify cb-wod, value wom-desc
-
-                          perform varying idx from 1 by 1 
-                                    until idx > 7
-                             if wod-el-mcg-code(idx) = spaces
-                                exit perform
-                             end-if
-                             move wod-el-mcg-code(idx) to mcg-code
-                                                       el-mcg-code(idx)
-                             read macrogroups
-                             evaluate idx                               
-                 
-                             when 1 modify cb-mg1, value mcg-desc
-                             when 2 modify cb-mg2, value mcg-desc
-                             when 3 modify cb-mg3, value mcg-desc
-                             when 4 modify cb-mg4, value mcg-desc
-                             when 5 modify cb-mg5, value mcg-desc
-                             when 6 modify cb-mg6, value mcg-desc
-                             when 7 modify cb-mg7, value mcg-desc
-                             end-evaluate
-                             add 1 to tot-gruppi            
-                          end-perform  
-                          modify cb-mul, value "Si"
-                          modify cb-int, value "Tutto"
-                          modify cb-dur, value "Tutto"
-                          modify cb-gio, value "Tutto"
-                          move spaces to s-cb-mg1-buf
-                          perform VALORIZZA-WOD
-                          perform ABILITA-MACROGRUPPI  
-                          move wod-desc to lab-desc-buf
-                          display lab-desc
-                          move wod-code to lab-code-buf s-wod-code
-                          display lab-code
-                          exit perform cycle 
-                       end-if
-                       move wod-day to como-data
-                       perform DATE-TO-SCREEN
-                       move como-data to como-data-x10
-                       compute riga = wod-prg-day * 2 + 1
-                       modify gd-schema(riga, 12), cell-data 
-           como-data-x10
-
-                       move wod-prg-day          to tex-day
-                       move wod-split            to tex-split
-                       move wod-exe-desc-univoca to tex-exe-desc-univoca
-                       move wod-mcg-code         to tex-mcg-code        
-                       move wod-exe-code         to tex-exe-code        
-                       move wod-exe-desc         to tex-exe-desc        
-                       move wod-int-code         to tex-int-code        
-                       move wod-exe-isMulti      to tex-exe-isMulti     
-                       move wod-reps             to tex-reps            
-                       move wod-series           to tex-series          
-                       move wod-int-restpause    to tex-int-restpause   
-                       move wod-ss               to tex-ss              
-                       write tex-rec
-                    end-perform             
-                    set fromAggiungi to true
-                    perform LOAD-GRID
-                    set fromAggiungi to false
-              end-start
-              close tmp-hit
-              perform CALCOLA-HIT-BOTTONI
-              move cb-mg1-buf to s-cb-mg1-buf
-              move cb-mg2-buf to s-cb-mg2-buf
-              move cb-mg3-buf to s-cb-mg3-buf
-              move cb-mg4-buf to s-cb-mg4-buf
-              move cb-mg5-buf to s-cb-mg5-buf
-              move cb-mg6-buf to s-cb-mg6-buf
-              move cb-mg7-buf to s-cb-mg7-buf
-              move cb-mul-buf to s-cb-mul-buf
-              move cb-int-buf to s-cb-int-buf
-              move cb-dur-buf to s-cb-dur-buf
-              move cb-gio-buf to s-cb-gio-buf
-              move cb-wod-buf to s-cb-wod-buf
-
-              move 1 to e-cancella
-              modify tool-cancella, enabled e-cancella
+           if stato-zoom = 0           
+              perform CURRENT-RECORD
            end-if 
            .
       * <TOTEM:END>
@@ -9493,7 +9592,22 @@
            inspect path-tmp-exe replacing trailing low-value by spaces.
            open output tmp-exe.
            close       tmp-exe.
-           open i-o    tmp-exe  
+           open i-o    tmp-exe. 
+                 
+           accept  path-tmp-hit from environment "PATH_ST".
+           inspect path-tmp-hit replacing trailing spaces by low-value.
+           string  path-tmp-hit delimited low-value
+                   "tmp-hit_"   delimited size
+                   como-data    delimited size
+                   "_"          delimited size
+                   como-ora     delimited size
+              into path-tmp-hit
+           end-string.                                                  
+                 
+           inspect path-tmp-hit replacing trailing low-value by spaces.
+           open output tmp-hit.
+           close       tmp-hit.
+           open i-o    tmp-hit  
            .
       * <TOTEM:END>
        ginqui-Ev-After-Program.
@@ -9505,6 +9619,7 @@
            CALL "BLOCKPGM"  USING LK-BLOCKPGM.
                
            if path-tmp-hit not = spaces
+              close       tmp-hit
               delete file tmp-hit
            end-if.
            if path-tmp-exe not = spaces
@@ -10255,10 +10370,7 @@
               move 0 to mod
               perform ABILITAZIONI
            else
-              open output tmp-hit 
-              set fromAggiungi to true
-              perform LOAD-GRID
-              set fromAggiungi to false
+              perform RELOAD-GRID
            end-if 
            
            .
@@ -10274,13 +10386,14 @@
                  modify gd1, record-to-delete riga
               end-if
            end-if.
-
+                                
            if riga <= tot-righe
               inquire gd1(riga, 78-col-day), cell-data in col-day
               inquire gd1(riga, 78-col-prg), cell-data in col-exe-prg
 
               inquire gd1(riga, 78-col-exe-code), cell-data in exe-code
               inquire gd1(riga, 78-col-grp-code), cell-data in grp-code
+              inquire gd1(riga, 78-col-ss), cell-data col-ss
       
               if col-exe-prg = 0
                  inquire gd1(riga - 1, 78-col-day), cell-data in col-day
@@ -10290,10 +10403,10 @@
            exe-code
                  inquire gd1(riga - 1, 78-col-grp-code), cell-data in 
            grp-code 
+                 inquire gd1(riga - 1, 78-col-ss), cell-data col-ss
                  add 1 to col-exe-prg
               end-if
-           end-if.
-                              
+           end-if.            
 
            modify gd1, insertion-index riga, record-to-add rec-grid.
 
@@ -10323,9 +10436,8 @@
            move riga to riga-aggiunta.
                    
            inquire gd1(event-data-2, 1), hidden-data hiddendata. 
-
-           open output tmp-hit.
-             
+                               
+           move s-tex-day to tex-day.
            move low-value to tex-split.
            start tmp-exe key >= tex-key
                  invalid continue
@@ -10363,6 +10475,7 @@
               inquire gd1(riga, 78-col-prg),    cell-data tex-split
               inquire gd1(riga, 78-col-series), cell-data col-series
               inquire gd1(riga, 78-col-reps),   cell-data col-reps
+              inquire gd1(riga, 78-col-ss),     cell-data tex-ss
 
               inquire gd1(riga, 78-col-exe-code), cell-data exe-code
               read exercises no lock
@@ -10389,9 +10502,7 @@
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
 
-           set fromAggiungi to true.
-           perform LOAD-GRID.       
-           set fromAggiungi to false.
+           perform RELOAD-GRID.       
 
            perform RICALCOLA-HIT-DIV.
            perform CALCOLA-HIT-BOTTONI.
@@ -10509,10 +10620,7 @@
                  move col-series    to tex-series
                  move int-restpause to tex-int-restpause
                  rewrite tex-rec          
-                 open output tmp-hit      
-                 set fromAggiungi to true 
-                 perform LOAD-GRID
-                 set fromAggiungi to false
+                 perform RELOAD-GRID
               end-if 
            end-if 
            .
@@ -10605,130 +10713,7 @@
               exit paragraph
            end-if.
 
-           inquire cb-wod, value in wom-desc.
-           read wodmap no lock.
-           
-           move lab-code-buf to wod-code.
-           if wod-code > 0
-              move wod-code to como-code
-              move low-value to wod-rec 
-              move como-code to wod-code
-              start wodbook key >= wod-key
-                    invalid continue
-                not invalid 
-                    perform until 1 = 2
-                       read wodbook next at end exit perform end-read
-                       if wod-code not = como-code
-                          exit perform
-                       end-if 
-                       delete wodbook record
-                    end-perform
-              end-start
-           else
-              move high-value to wod-rec
-              start wodbook key <= wod-key
-                    invalid move 0 to como-code
-                not invalid read wodbook previous
-                            move wod-code to como-code
-              end-start
-              add 1 to como-code 
-           end-if.
-
-           move 0 to tot-exe.
-           move low-value to tex-key.
-           start tmp-exe key >= tex-key
-                 invalid continue
-             not invalid
-                 |Scrivo la testata
-                 accept como-data from century-date
-                 initialize wod-rec replacing numeric data by zeroes
-                                         alphanumeric data by spaces
-                 move como-code      to wod-code
-                 inquire ef-desc, value in ef-desc-buf
-                 move ef-desc-buf    to wod-desc
-                 move como-data(1:4) to wod-day
-                 move wom-code       to wod-wom-code 
-                 move wod-code to lab-code-buf
-                 move wod-desc to lab-desc-buf
-                 display lab-desc lab-code
-
-                 perform varying idx from 1 by 1 
-                           until idx > 20
-                    if el-mcg-code(idx) = spaces
-                       exit perform
-                    end-if             
-                    move el-mcg-code(idx) to wod-el-mcg-code(idx)
-                    move el-hit(idx)      to wod-el-hit(idx)
-                 end-perform
-
-                 write wod-rec
-                 perform until 1 = 2
-                    read tmp-exe next at end exit perform end-read
-                    initialize wod-rec replacing numeric data by zeroes
-                                            alphanumeric data by spaces
-                    evaluate tex-day
-                    when 1 move ef-gg1-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day  
-                    when 2 move ef-gg2-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    when 3 move ef-gg3-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    when 4 move ef-gg4-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    when 5 move ef-gg5-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    when 6 move ef-gg6-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    when 7 move ef-gg7-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    end-evaluate  
-
-                    move tex-day              to wod-prg-day
-                    move como-code            to wod-code
-                    move tex-split            to wod-split
-                    move tex-exe-desc-univoca to wod-exe-desc-univoca
-                    move tex-mcg-code         to wod-mcg-code        
-                    move tex-exe-code         to wod-exe-code        
-                    move tex-exe-desc         to wod-exe-desc        
-                    move tex-int-code         to wod-int-code        
-                    move tex-exe-isMulti      to wod-exe-isMulti     
-                    move tex-reps             to wod-reps            
-                    move tex-series           to wod-series          
-                    move tex-int-restpause    to wod-int-restpause   
-                    move tex-ss               to wod-ss    
-                    add  1                    to tot-exe
-                    write wod-rec       
-
-                    move wod-day to como-data
-                    perform DATE-TO-SCREEN
-                    move como-data to como-data-x10
-                    compute riga = wod-prg-day * 2 + 1
-                    modify gd-schema(riga, 12), cell-data como-data-x10
-
-                 end-perform
-                 
-                 initialize wod-rec replacing numeric data by zeroes
-                                         alphanumeric data by spaces
-                 accept como-data from century-date
-                 move como-code      to wod-code
-                 move como-data(1:4) to wod-day
-                 read wodbook
-                 move tex-day        to wod-gg
-                 move tot-exe        to wod-tot-exe
-                 rewrite wod-rec
-
-                 display message "Salvato allenamento correttamente."
-                          x"0d0a""Codice : " wod-code
-                           title titolo
-                 move 27 to key-status
-           end-start 
+           perform SALVATAGGIO 
            .
       * <TOTEM:END>
        ef-gg1-BeforeProcedure.

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 12 ottobre 2023 12:08:40.
+       DATE-WRITTEN.        giovedì 12 ottobre 2023 18:08:20.
        REMARKS.
       *{TOTEM}END
 
@@ -1498,6 +1498,27 @@
            RIGHT,
            TRANSPARENT,
            TITLE lab-code-buf,
+           .
+
+      * PUSH BUTTON
+       05
+           pb-def, 
+           Push-Button, 
+           COL 33,00, 
+           LINE 12,35,
+           LINES 55 PIXELS,
+           SIZE 148 PIXELS,
+           BITMAP-HANDLE random-bmp,
+           BITMAP-NUMBER 1,
+           FRAMED,
+           SQUARE,
+           ENABLED 1,
+           EXCEPTION-VALUE 1014,
+           FONT IS Small-Font,
+           ID IS 25,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "&Random",
            .
 
       * TOOLBAR
@@ -5357,6 +5378,8 @@
                  PERFORM pb-giu-LinkTo
               WHEN Key-Status = 1013
                  PERFORM pb-int-LinkTo
+              WHEN Key-Status = 1014
+                 PERFORM pb-def-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 3
@@ -5847,7 +5870,6 @@
            move 0 to tentativo.
            modify gd1, mass-update 1.
            perform 15 times |Se non riesco significa che non ho esercizi a sufficienza
-              perform OPEN-TMP
               perform GENERA-WOD 
               move 0 to tot-subst
               move low-value to tex-rec
@@ -5871,7 +5893,6 @@
                        end-if
                     end-perform
               end-start          
-              perform CLOSE-TMP
               if tot-subst = 0
                  exit perform
               end-if
@@ -7661,6 +7682,7 @@
                  end-perform             
                  perform RELOAD-GRID
            end-start.
+           perform RICALCOLA-HIT-DIV.
            perform CALCOLA-HIT-BOTTONI.
            move cb-mg1-buf to s-cb-mg1-buf.
            move cb-mg2-buf to s-cb-mg2-buf.
@@ -7809,6 +7831,7 @@
 
        GENERA-WOD.
       * <TOTEM:PARA. GENERA-WOD>
+           perform OPEN-TMP.
            move "Creo i gruppi" to lab-attesa-buf.
            display lab-attesa
            perform CREA-OCCURS-GRUPPI.
@@ -7883,69 +7906,20 @@
            close       tmp-hit.
            open i-o    tmp-hit.
 
-           accept  como-data from century-date.
-           accept  como-ora  from time.
-           accept  path-tmp-exe-effort from environment "PATH_ST".
-           inspect path-tmp-exe-effort replacing trailing spaces by 
-           low-value.
-           string  path-tmp-exe-effort delimited low-value
-                   "tmp-exe-effort_"   delimited size
-                   como-data           delimited size
-                   "_"                 delimited size
-                   como-ora            delimited size
-              into path-tmp-exe-effort
-           end-string.                                                  
-                 
-           inspect path-tmp-exe-effort replacing trailing low-value by 
-           spaces.
+           close       tmp-exe-effort.    
            open output tmp-exe-effort.    
            close       tmp-exe-effort.
            open i-o    tmp-exe-effort.
-                 
-           accept  path-tmp-wod-exe from environment "PATH_ST".
-           inspect path-tmp-wod-exe replacing trailing spaces by 
-           low-value.
-           string  path-tmp-wod-exe delimited low-value
-                   "tmp-wod-exe_"   delimited size
-                   como-data        delimited size
-                   "_"              delimited size
-                   como-ora         delimited size
-              into path-tmp-wod-exe
-           end-string.                                                  
-                 
-           inspect path-tmp-wod-exe replacing trailing low-value by 
-           spaces.
+
+           close       tmp-wod-exe.
            open output tmp-wod-exe.
            close       tmp-wod-exe.
            open i-o    tmp-wod-exe.
 
-           accept  path-tmp-exe-dupl from environment "PATH_ST".
-           inspect path-tmp-exe-dupl replacing trailing spaces by 
-           low-value.
-           string  path-tmp-exe-dupl delimited low-value
-                   "path-tmp-exe-dupl_"   delimited size
-                   como-data           delimited size
-                   "_"                 delimited size
-                   como-ora            delimited size
-              into path-tmp-exe-dupl
-           end-string.                                                  
-                 
-           inspect path-tmp-exe-dupl replacing trailing low-value by 
-           spaces.
+           close       tmp-exe-dupl.    
            open output tmp-exe-dupl.    
            close       tmp-exe-dupl.
            open i-o    tmp-exe-dupl.                               
-
-      ***---
-       CLOSE-TMP.                  
-           close       tmp-exe-effort.
-           delete file tmp-exe-effort.
-
-           close       tmp-wod-exe.
-           delete file tmp-wod-exe.
-                                        
-           close       tmp-exe-dupl.
-           delete file tmp-exe-dupl.
       
       ***---
        LOAD-GRID.
@@ -8426,10 +8400,6 @@
                      until como-giorno > wom-days  
 
               |1. Creo una lista dei soli esercizi per giorno/gruppo
-              close       tmp-exe-dupl
-              open output tmp-exe-dupl
-              close       tmp-exe-dupl
-              open i-o    tmp-exe-dupl
               move low-value to tex-rec
               move como-giorno  to tex-day
               move 0 to tot-subst
@@ -8616,19 +8586,19 @@
 
        IMPOSTA-SERIES-REPS.
       * <TOTEM:PARA. IMPOSTA-SERIES-REPS>
-           if exe-isMulti = 1
-              evaluate wom-effort
-              when 1 move  5 to col-series
-                     move  5 to col-reps
-              when 2 move  6 to col-series
-                     move 10 to col-reps
-              when 3 move 10 to col-series
-                     move  8 to col-reps
-              end-evaluate                               
-              inspect col-reps 
-                      replacing leading x"30" by x"20"
-              call "C$JUSTIFY" using col-reps, "L"
-           else                  
+      *****     if exe-isMulti = 1
+      *****        evaluate wom-effort
+      *****        when 1 move  5 to col-series
+      *****               move  5 to col-reps
+      *****        when 2 move  6 to col-series
+      *****               move 10 to col-reps
+      *****        when 3 move 10 to col-series
+      *****               move  8 to col-reps
+      *****        end-evaluate                               
+      *****        inspect col-reps 
+      *****                replacing leading x"30" by x"20"
+      *****        call "C$JUSTIFY" using col-reps, "L"
+      *****     else                  
               move int-series to col-series
                                     
               initialize col-reps
@@ -8649,7 +8619,8 @@
               else
                  perform IMPOSTA-SERIES-RANGE
               end-if
-           end-if.
+      *****     end-if.
+           .
                        
       ***---
        IMPOSTA-SERIES-RANGE.
@@ -8669,27 +8640,41 @@
                    into col-reps
                  end-string
               else
-                 move int-range-from to como-range-from
-                 inspect como-range-from 
-                 replacing leading x"30" by x"20"
-                 call "C$JUSTIFY" using como-range-from, "L"
-                 inspect como-range-from 
-                 replacing trailing spaces by low-value
-              
-                 move int-range-to to como-range-to                    
-                 inspect como-range-to 
-                 replacing leading x"30" by x"20"  
-                 call "C$JUSTIFY" using como-range-to, "L"          
-                 inspect como-range-to 
-                 replacing trailing spaces by low-value
-              
-                 initialize col-reps
-                 string como-range-from delimited low-value
-                        "-"             delimited size
-                        como-range-to   delimited low-value
-                   into col-reps
-                 end-string
-              end-if
+                 if int-range-from = int-range-to      
+                    move int-range-from to como-range-from
+                    inspect como-range-from 
+                    replacing leading x"30" by x"20"
+                    call "C$JUSTIFY" using como-range-from, "L"
+                    inspect como-range-from 
+                    replacing trailing spaces by low-value  
+                 
+                    initialize col-reps
+                    string como-range-from delimited low-value
+                      into col-reps
+                    end-string
+                 else
+                    move int-range-from to como-range-from
+                    inspect como-range-from 
+                    replacing leading x"30" by x"20"
+                    call "C$JUSTIFY" using como-range-from, "L"
+                    inspect como-range-from 
+                    replacing trailing spaces by low-value
+                 
+                    move int-range-to to como-range-to                  
+             
+                    inspect como-range-to 
+                    replacing leading x"30" by x"20"  
+                    call "C$JUSTIFY" using como-range-to, "L"          
+                    inspect como-range-to 
+                    replacing trailing spaces by low-value
+                 
+                    initialize col-reps
+                    string como-range-from delimited low-value
+                           "-"             delimited size
+                           como-range-to   delimited low-value
+                      into col-reps
+                    end-string
+                 end-if
            end-if 
            .
       * <TOTEM:END>
@@ -8828,11 +8813,11 @@
 
        RELOAD-GRID.
       * <TOTEM:PARA. RELOAD-GRID>
+           set reloadGrid to true.
            close       tmp-hit.
            open output tmp-hit.
-           close       tmp-hit.
-           open i-o    tmp-hit.
-           set reloadGrid to true.
+           close       tmp-hit
+           open output tmp-hit.
            perform LOAD-GRID.
            set reloadGrid to false 
            .
@@ -9201,34 +9186,39 @@
                  end-perform
 
                  write wod-rec
-                 move 0 to s-tex-split
+                 move 0 to como-giorno
                  perform until 1 = 2
                     read tmp-exe next at end exit perform end-read
+                    if tex-day not = como-giorno
+                       move tex-day to como-giorno
+                       move 0 to s-tex-split
+                       evaluate tex-day
+                       when 1 move ef-gg1-buf to como-data
+                              perform DATE-TO-FILE
+                              move como-data to wod-day  
+                       when 2 move ef-gg2-buf to como-data
+                              perform DATE-TO-FILE
+                              move como-data to wod-day
+                       when 3 move ef-gg3-buf to como-data
+                              perform DATE-TO-FILE
+                              move como-data to wod-day
+                       when 4 move ef-gg4-buf to como-data
+                              perform DATE-TO-FILE
+                              move como-data to wod-day
+                       when 5 move ef-gg5-buf to como-data
+                              perform DATE-TO-FILE
+                              move como-data to wod-day
+                       when 6 move ef-gg6-buf to como-data
+                              perform DATE-TO-FILE
+                              move como-data to wod-day
+                       when 7 move ef-gg7-buf to como-data
+                              perform DATE-TO-FILE
+                              move como-data to wod-day
+                       end-evaluate  
+                    end-if
                     initialize wod-rec replacing numeric data by zeroes
                                             alphanumeric data by spaces
-                    evaluate tex-day
-                    when 1 move ef-gg1-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day  
-                    when 2 move ef-gg2-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    when 3 move ef-gg3-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    when 4 move ef-gg4-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    when 5 move ef-gg5-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    when 6 move ef-gg6-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    when 7 move ef-gg7-buf to como-data
-                           perform DATE-TO-FILE
-                           move como-data to wod-day
-                    end-evaluate  
+                    move como-data to wod-day
 
                     move tex-day              to wod-prg-day
                     move como-code            to wod-code
@@ -9578,6 +9568,8 @@
        ginqui-Ev-Before-Program.
       * <TOTEM:PARA. ginqui-Ev-Before-Program>
            move LK-BL-PROG-ID    TO COMO-PROG-ID.
+           accept como-data from century-date.
+           accept como-ora  from time.
                  
            accept  path-tmp-exe from environment "PATH_ST".
            inspect path-tmp-exe replacing trailing spaces by low-value.
@@ -9607,7 +9599,59 @@
            inspect path-tmp-hit replacing trailing low-value by spaces.
            open output tmp-hit.
            close       tmp-hit.
-           open i-o    tmp-hit  
+           open i-o    tmp-hit. 
+
+           accept  path-tmp-exe-effort from environment "PATH_ST".
+           inspect path-tmp-exe-effort replacing trailing spaces by 
+           low-value.
+           string  path-tmp-exe-effort delimited low-value
+                   "tmp-exe-effort_"   delimited size
+                   como-data           delimited size
+                   "_"                 delimited size
+                   como-ora            delimited size
+              into path-tmp-exe-effort
+           end-string.                                                  
+                 
+           inspect path-tmp-exe-effort replacing trailing low-value by 
+           spaces.
+           open output tmp-exe-effort.    
+           close       tmp-exe-effort.
+           open i-o    tmp-exe-effort.
+                 
+           accept  path-tmp-wod-exe from environment "PATH_ST".
+           inspect path-tmp-wod-exe replacing trailing spaces by 
+           low-value.
+           string  path-tmp-wod-exe delimited low-value
+                   "tmp-wod-exe_"   delimited size
+                   como-data        delimited size
+                   "_"              delimited size
+                   como-ora         delimited size
+              into path-tmp-wod-exe
+           end-string.                                                  
+                 
+           inspect path-tmp-wod-exe replacing trailing low-value by 
+           spaces.
+           open output tmp-wod-exe.
+           close       tmp-wod-exe.
+           open i-o    tmp-wod-exe.
+
+           accept  path-tmp-exe-dupl from environment "PATH_ST".
+           inspect path-tmp-exe-dupl replacing trailing spaces by 
+           low-value.
+           string  path-tmp-exe-dupl delimited low-value
+                   "path-tmp-exe-dupl_"   delimited size
+                   como-data           delimited size
+                   "_"                 delimited size
+                   como-ora            delimited size
+              into path-tmp-exe-dupl
+           end-string.                                                  
+                 
+           inspect path-tmp-exe-dupl replacing trailing low-value by 
+           spaces. 
+           open output tmp-exe-dupl.    
+           close       tmp-exe-dupl.
+           open i-o    tmp-exe-dupl                                
+           
            .
       * <TOTEM:END>
        ginqui-Ev-After-Program.
@@ -9618,18 +9662,22 @@
            MOVE COMO-PROG-ID       TO LK-BL-PROG-ID.
            CALL "BLOCKPGM"  USING LK-BLOCKPGM.
                
-           if path-tmp-hit not = spaces
-              close       tmp-hit
-              delete file tmp-hit
-           end-if.
-           if path-tmp-exe not = spaces
-              delete file tmp-exe
-           end-if.
 
-           if path-tmp-exe not = spaces    
-              close       tmp-exe
-              delete file tmp-exe
-           end-if 
+           close       tmp-hit.
+           delete file tmp-hit.
+
+           close       tmp-exe.
+           delete file tmp-exe.
+
+           close       tmp-exe-effort.
+           delete file tmp-exe-effort.
+
+           close       tmp-wod-exe.
+           delete file tmp-wod-exe.
+
+           close       tmp-exe-dupl.
+           delete file tmp-exe-dupl                                
+           
            .
       * <TOTEM:END>
        gd1-Ev-Msg-Begin-Drag.
@@ -10817,6 +10865,12 @@
            if e-cancella = 1
               perform CANCELLA
            end-if 
+           .
+      * <TOTEM:END>
+       pb-def-LinkTo.
+      * <TOTEM:PARA. pb-def-LinkTo>
+           move spaces to s-cb-wod-buf.
+           perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
 

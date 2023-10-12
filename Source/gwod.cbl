@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 12 ottobre 2023 18:08:20.
+       DATE-WRITTEN.        giovedì 12 ottobre 2023 23:45:52.
        REMARKS.
       *{TOTEM}END
 
@@ -148,6 +148,7 @@
        77 como-data-x10    PIC  99/99/9999.
        77 s-wod-code       PIC  9(18).
        77 como-wod-code    PIC  x(18).
+       77 primo-giorno     PIC  9(8).
        01 como-tex-data-tab.
            05 como-tex-data-el PIC  x(1000)
                       OCCURS 99 TIMES.
@@ -468,6 +469,11 @@
        77 lab-desc-buf     PIC  X(100).
        77 lab-code-buf     PIC  z(18).
        77 lab-ins-mod-buf  PIC  x(50).
+       77 ripristino-bmp   PIC  S9(9)
+                  USAGE IS COMP-4
+                  VALUE IS 0.
+       77 scr-filtro-handle
+                  USAGE IS HANDLE OF WINDOW.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -475,19 +481,21 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(4523).
+       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(4431).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(4523).
+       77 Form1-MULKEY-TMPBUF   PIC X(4431).
        77 STATUS-scr-attesa-FLAG-REFRESH PIC  9.
           88 scr-attesa-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 STATUS-scr-date-FLAG-REFRESH PIC  9.
           88 scr-date-FLAG-REFRESH  VALUE 1 FALSE 0. 
+       77 STATUS-scr-filtro-FLAG-REFRESH PIC  9.
+          88 scr-filtro-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-DataSet1-exercises-BUF     PIC X(1189).
        77 TMP-DataSet1-groups-BUF     PIC X(1182).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
-       77 TMP-DataSet1-wodbook-BUF     PIC X(4523).
+       77 TMP-DataSet1-wodbook-BUF     PIC X(4431).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(331).
@@ -587,6 +595,14 @@
        77 duration-dur-k-exercises-SPLITBUF  PIC X(3).
        77 wodbook-wod-k-desc-SPLITBUF  PIC X(101).
        77 wodbook-wod-k-prg-SPLITBUF  PIC X(22).
+       77 wodbook-wod-k-data-SPLITBUF  PIC X(109).
+       77 wodbook-wod-k-creazione-SPLITBUF  PIC X(117).
+       77 wodbook-wod-k-wom-SPLITBUF  PIC X(12).
+       77 wodbook-wod-k-mcg-SPLITBUF  PIC X(14).
+       77 wodbook-wod-k-exe-SPLITBUF  PIC X(14).
+       77 wodbook-wod-k-mcg-multi-SPLITBUF  PIC X(15).
+       77 wodbook-wod-k-mcg-rp-SPLITBUF  PIC X(15).
+       77 wodbook-wod-k-mcg-ss-SPLITBUF  PIC X(15).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 tmp-exe-tex-k-dupl-SPLITBUF  PIC X(102).
        77 tmp-exe-tex-k-mcg-SPLITBUF  PIC X(10).
@@ -1502,23 +1518,23 @@
 
       * PUSH BUTTON
        05
-           pb-def, 
+           pb-ripristino, 
            Push-Button, 
-           COL 33,00, 
-           LINE 12,35,
+           COL 31,20, 
+           LINE 12,39,
            LINES 55 PIXELS,
            SIZE 148 PIXELS,
-           BITMAP-HANDLE random-bmp,
+           BITMAP-HANDLE RIPRISTINO-BMP,
            BITMAP-NUMBER 1,
            FRAMED,
            SQUARE,
            ENABLED 1,
            EXCEPTION-VALUE 1014,
            FONT IS Small-Font,
-           ID IS 25,
+           ID IS 46,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TITLE "&Random",
+           TITLE "Ri&pristino",
            .
 
       * TOOLBAR
@@ -2131,6 +2147,59 @@
            TITLE lab-ins-mod-buf,
            .
 
+      * FORM
+       01 
+           scr-filtro, 
+           .
+
+      * LABEL
+       05
+           lab-attesaa, 
+           Label, 
+           COL 13,73, 
+           LINE 4,27,
+           LINES 1,08 ,
+           SIZE 18,73 ,
+           ID IS 2,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           CENTER,
+           TRANSPARENT,
+           TITLE lab-attesa-buf,
+           .
+
+      * LABEL
+       05
+           Screen3-La-1, 
+           Label, 
+           COL 2,45, 
+           LINE 1,19,
+           LINES 2,08 ,
+           SIZE 9,45 ,
+           ID IS 1,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Ricerca per esercizio",
+           .
+
+      * ENTRY FIELD
+       05
+           Screen3-Ef-1, 
+           Entry-Field, 
+           COL 13,27, 
+           LINE 4,23,
+           LINES 1,54 ,
+           SIZE 9,55 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           AFTER PROCEDURE Screen3-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen3-Ef-1-BeforeProcedure, 
+           .
+
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
@@ -2214,6 +2283,7 @@
            CALL "w$bitmap" USING WBITMAP-DESTROY, PIU-MENO-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, UP-DOWN-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, intens-BMP
+           CALL "w$bitmap" USING WBITMAP-DESTROY, RIPRISTINO-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, BOTTONE-OK-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, BOTTONE-ANNULLA-BMP
@@ -2371,6 +2441,10 @@
            COPY RESOURCE "intens.BMP".
            CALL "w$bitmap" USING WBITMAP-LOAD "intens.BMP", 
                    GIVING intens-BMP.
+      * pb-ripristino
+           COPY RESOURCE "RIPRISTINO.BMP".
+           CALL "w$bitmap" USING WBITMAP-LOAD "RIPRISTINO.BMP", 
+                   GIVING RIPRISTINO-BMP.
       * TOOL-ESCI
            COPY RESOURCE "toolbar.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "toolbar.bmp", 
@@ -3517,6 +3591,64 @@
            MOVE wod-split(1:2) TO wodbook-wod-k-prg-SPLITBUF(20:2)
            .
 
+       wodbook-wod-k-data-MERGE-SPLITBUF.
+           INITIALIZE wodbook-wod-k-data-SPLITBUF
+           MOVE wod-day(1:8) TO wodbook-wod-k-data-SPLITBUF(1:8)
+           MOVE wod-desc(1:100) TO wodbook-wod-k-data-SPLITBUF(9:100)
+           .
+
+       wodbook-wod-k-creazione-MERGE-SPLITBUF.
+           INITIALIZE wodbook-wod-k-creazione-SPLITBUF
+           MOVE wod-data-creazione(1:8) TO 
+           wodbook-wod-k-creazione-SPLITBUF(1:8)
+           MOVE wod-day(1:8) TO wodbook-wod-k-creazione-SPLITBUF(9:8)
+           MOVE wod-desc(1:100) TO 
+           wodbook-wod-k-creazione-SPLITBUF(17:100)
+           .
+
+       wodbook-wod-k-wom-MERGE-SPLITBUF.
+           INITIALIZE wodbook-wod-k-wom-SPLITBUF
+           MOVE wod-wom-code(1:3) TO wodbook-wod-k-wom-SPLITBUF(1:3)
+           MOVE wod-data-creazione(1:8) TO 
+           wodbook-wod-k-wom-SPLITBUF(4:8)
+           .
+
+       wodbook-wod-k-mcg-MERGE-SPLITBUF.
+           INITIALIZE wodbook-wod-k-mcg-SPLITBUF
+           MOVE wod-mcg-code(1:5) TO wodbook-wod-k-mcg-SPLITBUF(1:5)
+           MOVE wod-day(1:8) TO wodbook-wod-k-mcg-SPLITBUF(6:8)
+           .
+
+       wodbook-wod-k-exe-MERGE-SPLITBUF.
+           INITIALIZE wodbook-wod-k-exe-SPLITBUF
+           MOVE wod-exe-code(1:5) TO wodbook-wod-k-exe-SPLITBUF(1:5)
+           MOVE wod-day(1:8) TO wodbook-wod-k-exe-SPLITBUF(6:8)
+           .
+
+       wodbook-wod-k-mcg-multi-MERGE-SPLITBUF.
+           INITIALIZE wodbook-wod-k-mcg-multi-SPLITBUF
+           MOVE wod-mcg-code(1:5) TO 
+           wodbook-wod-k-mcg-multi-SPLITBUF(1:5)
+           MOVE wod-exe-isMulti(1:1) TO 
+           wodbook-wod-k-mcg-multi-SPLITBUF(6:1)
+           MOVE wod-day(1:8) TO wodbook-wod-k-mcg-multi-SPLITBUF(7:8)
+           .
+
+       wodbook-wod-k-mcg-rp-MERGE-SPLITBUF.
+           INITIALIZE wodbook-wod-k-mcg-rp-SPLITBUF
+           MOVE wod-mcg-code(1:5) TO wodbook-wod-k-mcg-rp-SPLITBUF(1:5)
+           MOVE wod-int-restpause(1:1) TO 
+           wodbook-wod-k-mcg-rp-SPLITBUF(6:1)
+           MOVE wod-day(1:8) TO wodbook-wod-k-mcg-rp-SPLITBUF(7:8)
+           .
+
+       wodbook-wod-k-mcg-ss-MERGE-SPLITBUF.
+           INITIALIZE wodbook-wod-k-mcg-ss-SPLITBUF
+           MOVE wod-mcg-code(1:5) TO wodbook-wod-k-mcg-ss-SPLITBUF(1:5)
+           MOVE wod-ss(1:1) TO wodbook-wod-k-mcg-ss-SPLITBUF(6:1)
+           MOVE wod-day(1:8) TO wodbook-wod-k-mcg-ss-SPLITBUF(7:8)
+           .
+
        DataSet1-wodbook-INITSTART.
            EVALUATE DataSet1-KEYIS
            WHEN 1
@@ -3619,6 +3751,14 @@
            END-EVALUATE
            PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
            PERFORM wodbook-wod-k-prg-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-data-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-creazione-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-wom-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-exe-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-multi-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-rp-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-ss-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT 
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -3651,6 +3791,14 @@
            END-EVALUATE
            PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
            PERFORM wodbook-wod-k-prg-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-data-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-creazione-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-wom-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-exe-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-multi-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-rp-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-ss-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -3683,6 +3831,14 @@
            END-EVALUATE
            PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
            PERFORM wodbook-wod-k-prg-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-data-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-creazione-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-wom-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-exe-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-multi-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-rp-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-mcg-ss-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -5379,7 +5535,7 @@
               WHEN Key-Status = 1013
                  PERFORM pb-int-LinkTo
               WHEN Key-Status = 1014
-                 PERFORM pb-def-LinkTo
+                 PERFORM pb-ripristino-LinkTo
               WHEN Key-Status = 2
                  PERFORM NUOVO-LinkTo
               WHEN Key-Status = 3
@@ -6286,6 +6442,172 @@
        scr-date-Restore-Status.
            .
 
+       scr-filtro-Open-Routine.
+           PERFORM scr-filtro-Scrn
+           PERFORM scr-filtro-Proc
+           .
+
+       scr-filtro-Scrn.
+           PERFORM scr-filtro-Create-Win
+           PERFORM scr-filtro-Init-Value
+           PERFORM scr-filtro-Init-Data
+      * Tab keystrok settings
+      * Tool Bar
+           PERFORM scr-filtro-DISPLAY
+           .
+
+       scr-filtro-Create-Win.
+           Display Floating GRAPHICAL WINDOW
+              LINES 15,73,
+              SIZE 44,27,
+              HEIGHT-IN-CELLS,
+              WIDTH-IN-CELLS,
+              COLOR 131329,
+              CONTROL FONT Calibri16-Occidentale,
+              LINK TO THREAD,
+              MODELESS,
+              NO SCROLL,
+              No WRAP,
+              EVENT PROCEDURE scr-attesa-Event-Proc,
+              HANDLE IS scr-filtro-handle,
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, AfterCreateWin>
+      * <TOTEM:END>
+
+
+      * Tool Bar    
+      * Status-bar
+           DISPLAY scr-filtro UPON scr-filtro-handle
+      * DISPLAY-COLUMNS settings
+           .
+
+       scr-filtro-PROC.
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, BeforeAccept>
+      * <TOTEM:END>
+           PERFORM UNTIL Exit-Pushed
+              ACCEPT scr-filtro
+                 ON EXCEPTION
+                    PERFORM scr-filtro-Evaluate-Func
+                 MOVE 4 TO TOTEM-Form-Index
+              END-ACCEPT
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, AfterEndAccept>
+      * <TOTEM:END>
+           END-PERFORM
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, BeforeDestroyWindow>
+      * <TOTEM:END>
+           DESTROY scr-filtro-handle
+           INITIALIZE Key-Status
+           .
+
+       scr-filtro-Evaluate-Func.
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, AfterAccept>
+      * <TOTEM:END>
+           EVALUATE TRUE
+              WHEN Exit-Pushed
+                 PERFORM scr-filtro-Exit
+              WHEN Event-Occurred
+                 IF Event-Type = Cmd-Close
+                    PERFORM scr-filtro-Exit
+                 END-IF
+           END-EVALUATE
+      * avoid changing focus
+           MOVE 4 TO Accept-Control
+           .
+
+       scr-filtro-CLEAR.
+           PERFORM scr-filtro-INIT-VALUE
+           PERFORM scr-filtro-DISPLAY
+           .
+
+       scr-filtro-DISPLAY.
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, BeforeDisplay>
+      * <TOTEM:END>
+           DISPLAY scr-filtro UPON scr-filtro-handle
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, AfterDisplay>
+           SET LK-BL-SCRITTURA     TO TRUE.
+           MOVE COMO-PROG-ID       TO LK-BL-PROG-ID.
+           MOVE FORM1-HANDLE       TO LK-HND-WIN.
+           CALL "BLOCKPGM"  USING LK-BLOCKPGM.
+           CANCEL "BLOCKPGM".
+
+           .
+      * <TOTEM:END>
+           .
+
+       scr-filtro-Exit.
+      * for main screen
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, BeforeExit>
+      * <TOTEM:END>
+           MOVE 27 TO Key-Status
+           .
+
+       scr-filtro-Init-Data.
+           MOVE 4 TO TOTEM-Form-Index
+           MOVE 0 TO TOTEM-Frame-Index
+           .
+
+       scr-filtro-Init-Value.
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, SetDefault>
+      * <TOTEM:END>
+           PERFORM scr-filtro-FLD-TO-BUF
+           .
+
+
+       scr-filtro-ALLGRID-RESET.
+           .
+
+      * for Form's Validation
+       scr-filtro-VALIDATION-ROUTINE.
+           SET TOTEM-CHECK-OK TO TRUE
+           .
+
+
+       scr-filtro-Buf-To-Fld.
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, BeforeBufToFld>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, AfterBufToFld>
+      * <TOTEM:END>
+           .
+
+       scr-filtro-Fld-To-Buf.
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, BeforeFldToBuf>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, AfterFldToBuf>
+      * <TOTEM:END>
+           .
+
+       scr-filtro-CONTROLLO-OLD.
+           set SiSalvato to true.
+           if mod = 0 exit paragraph end-if.
+           perform scr-filtro-BUF-TO-FLD.
+           move 0 to scelta.
+           .
+       scr-filtro-EXTENDED-FILE-STATUS.
+           CALL "C$RERRNAME" USING TOTEM-MSG-ERR-FILE
+           CALL "C$RERR" USING EXTEND-STAT, TEXT-MESSAGE
+           MOVE PRIMARY-ERROR TO TOTEM-MSG-ID
+           PERFORM scr-filtro-SHOW-MSG-ROUTINE
+           .
+
+       scr-filtro-SHOW-MSG-ROUTINE.
+           PERFORM SHOW-MSG-ROUTINE
+           PERFORM scr-filtro-DISPLAY-MESSAGE
+           .
+
+       scr-filtro-DISPLAY-MESSAGE.
+           PERFORM MESSAGE-BOX-ROUTINE
+           DISPLAY MESSAGE BOX TOTEM-MSG-TEXT
+               TITLE IS TOTEM-MSG-TITLE
+               TYPE  IS TOTEM-MSG-BUTTON-TYPE
+               ICON  IS TOTEM-MSG-DEFAULT-BUTTON
+               RETURNING TOTEM-MSG-RETURN-VALUE
+           .
+
+       scr-filtro-Save-Status.
+           .             
+
+       scr-filtro-Restore-Status.
+           .
+
 
 
        Screen1-Event-Proc.
@@ -6863,8 +7185,10 @@
 
            if cb-wod-buf = "Nessuno"         
               modify pb-random, enabled false
-           else
+              modify pb-ripristino, enabled false
+           else                              
               modify pb-random, enabled true
+              modify pb-ripristino, enabled true
            end-if 
            .
       * <TOTEM:END>
@@ -7671,7 +7995,10 @@
                     move wod-exe-desc-univoca to tex-exe-desc-univoca
                     move wod-mcg-code         to tex-mcg-code        
                     move wod-exe-code         to tex-exe-code        
-                    move wod-exe-desc         to tex-exe-desc        
+                    read exercises no lock
+                         invalid move "NON TROVATA" to exe-desc
+                    end-read
+                    move exe-desc         to tex-exe-desc        
                     move wod-int-code         to tex-int-code        
                     move wod-exe-isMulti      to tex-exe-isMulti     
                     move wod-reps             to tex-reps            
@@ -7767,8 +8094,10 @@
            display lab-desc.
            move 0 to lab-code-buf.
            display lab-code.
-
-           modify pb-random, enabled false 
+                                           
+           modify pb-random,     enabled false.
+           modify pb-ripristino, enabled false.
+           modify tool-cancella, enabled false 
            .
       * <TOTEM:END>
 
@@ -9158,7 +9487,7 @@
               add 1 to como-code 
            end-if.
 
-           move 0 to tot-exe.
+           move 0 to tot-exe primo-giorno.             
            move low-value to tex-key.
            start tmp-exe key >= tex-key
                  invalid continue
@@ -9215,7 +9544,7 @@
                               perform DATE-TO-FILE
                               move como-data to wod-day
                        end-evaluate  
-                    end-if
+                    end-if                
                     initialize wod-rec replacing numeric data by zeroes
                                             alphanumeric data by spaces
                     move como-data to wod-day
@@ -9228,7 +9557,6 @@
                     move tex-exe-desc-univoca to wod-exe-desc-univoca
                     move tex-mcg-code         to wod-mcg-code        
                     move tex-exe-code         to wod-exe-code        
-                    move tex-exe-desc         to wod-exe-desc        
                     move tex-int-code         to wod-int-code        
                     move tex-exe-isMulti      to wod-exe-isMulti     
                     move tex-reps             to wod-reps            
@@ -9252,8 +9580,11 @@
                  move como-code      to wod-code
                  move como-data(1:4) to wod-day
                  read wodbook
+                 delete wodbook record
                  move tex-day        to wod-gg
                  move tot-exe        to wod-tot-exe
+                 move primo-giorno   to wod-day
+                 accept wod-data-creazione from century-date
                  rewrite wod-rec
 
                  perform CURRENT-RECORD     
@@ -10867,10 +11198,20 @@
            end-if 
            .
       * <TOTEM:END>
-       pb-def-LinkTo.
-      * <TOTEM:PARA. pb-def-LinkTo>
+       pb-ripristino-LinkTo.
+      * <TOTEM:PARA. pb-ripristino-LinkTo>
            move spaces to s-cb-wod-buf.
            perform ABILITA-MACROGRUPPI 
+           .
+      * <TOTEM:END>
+       Screen3-Ef-1-BeforeProcedure.
+      * <TOTEM:PARA. Screen3-Ef-1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       Screen3-Ef-1-AfterProcedure.
+      * <TOTEM:PARA. Screen3-Ef-1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
            .
       * <TOTEM:END>
 

@@ -2,11 +2,10 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-Adesk-andre=169.254.95.20
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7AD95443-170-90033257
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7AD162914-467-233032349
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -322,6 +321,8 @@ m_strName=wod-k-desc
 
 @}}
 [SLKEYATOM0_SLINDEX0_]
+m_strName=wod-split
+[SLKEYATOM1_SLINDEX0_]
 m_strName=wod-desc
 [SLINDEX1_]
 m_strName=wod-k-prg
@@ -329,19 +330,21 @@ m_strName=wod-k-prg
 
 @}}
 [SLKEYATOM0_SLINDEX1_]
-m_strName=wod-code
-[SLKEYATOM1_SLINDEX1_]
-m_strName=wod-prg-day
-[SLKEYATOM2_SLINDEX1_]
 m_strName=wod-split
+[SLKEYATOM1_SLINDEX1_]
+m_strName=wod-code
+[SLKEYATOM2_SLINDEX1_]
+m_strName=wod-prg-day
 [SLINDEX2_]
 m_strName=wod-k-data
 {{@Key_m_strDescriptionSLINDEX2_
 
 @}}
 [SLKEYATOM0_SLINDEX2_]
-m_strName=wod-day
+m_strName=wod-split
 [SLKEYATOM1_SLINDEX2_]
+m_strName=wod-day
+[SLKEYATOM2_SLINDEX2_]
 m_strName=wod-desc
 [SLINDEX3_]
 m_strName=wod-k-creazione
@@ -349,10 +352,12 @@ m_strName=wod-k-creazione
 
 @}}
 [SLKEYATOM0_SLINDEX3_]
-m_strName=wod-data-creazione
+m_strName=wod-split
 [SLKEYATOM1_SLINDEX3_]
-m_strName=wod-day
+m_strName=wod-data-creazione
 [SLKEYATOM2_SLINDEX3_]
+m_strName=wod-day
+[SLKEYATOM3_SLINDEX3_]
 m_strName=wod-desc
 [SLINDEX4_]
 m_strName=wod-k-wom
@@ -360,9 +365,11 @@ m_strName=wod-k-wom
 
 @}}
 [SLKEYATOM0_SLINDEX4_]
-m_strName=wod-wom-code
+m_strName=wod-split
 [SLKEYATOM1_SLINDEX4_]
-m_strName=wod-data-creazione
+m_strName=wod-wom-code
+[SLKEYATOM2_SLINDEX4_]
+m_strName=wod-day
 [SLINDEX5_]
 m_strName=wod-k-mcg
 {{@Key_m_strDescriptionSLINDEX5_
@@ -413,4 +420,13 @@ m_strName=wod-mcg-code
 [SLKEYATOM1_SLINDEX9_]
 m_strName=wod-ss
 [SLKEYATOM2_SLINDEX9_]
+m_strName=wod-day
+[SLINDEX10_]
+m_strName=wod-k-head
+{{@Key_m_strDescriptionSLINDEX10_
+
+@}}
+[SLKEYATOM0_SLINDEX10_]
+m_strName=wod-code
+[SLKEYATOM1_SLINDEX10_]
 m_strName=wod-day

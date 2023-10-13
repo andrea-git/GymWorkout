@@ -93,6 +93,8 @@
                 perform PREPARA-WODMAP-ALFA 
            when "zoom-exe-mcg"             
                 perform PREPARA-ZOOM-EXE-MCG
+           when "zoom-wodbook"
+                perform PREPARA-ZOOM-WODBOOK
            when "tmp-grp-exe"             
                 perform PREPARA-TMP-GRP-EXE
            when "exercises"
@@ -848,6 +850,85 @@
        PREPARA-WODMAP-ALFA.
            perform PREPARA-WODMAP.
            move  1   to xzoom-file-key.
+
+      ***---
+       PREPARA-ZOOM-WODBOOK.  
+           initialize xzoom-linkage xzoom-ext-info(1).
+      
+           move  1   to xzoom-file-key.
+      *
+           move  0                       to idx.
+           move  0                       to xzoom-row.
+           move  0                       to xzoom-cln.
+           move  10                      to xzoom-lw.
+           move  82                      to xzoom-sw. 
+           move ext-file                 to xzoom-file-name(1).
+           move  6                       to xzoom-fields.
+
+      * CAMPO 1
+           add 1 to idx
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  18                      to xzoom-field-length(idx).
+           move  0                       to xzoom-field-offset(idx).
+           move  8                       to xzoom-field-column(idx).
+           move "Codice"                 to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true. 
+      
+      * CAMPO 2
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  100                     to xzoom-field-length(idx).
+           move  18                      to xzoom-field-offset(idx).
+           move  22                      to xzoom-field-column(idx).
+           move "Descrizione"            to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true. 
+      
+      * CAMPO 3
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  8                       to xzoom-field-length(idx).
+           move  118                     to xzoom-field-offset(idx).
+           move  8                       to xzoom-field-column(idx).
+           move "Creato il"              to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true.     
+      
+      * CAMPO 4
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  8                       to xzoom-field-length(idx).
+           move  126                     to xzoom-field-offset(idx).
+           move  8                       to xzoom-field-column(idx).
+           move "Iniziato il"            to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true.     
+      
+      * CAMPO 5
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  3                       to xzoom-field-length(idx).
+           move  134                     to xzoom-field-offset(idx).
+           move  8                       to xzoom-field-column(idx).
+           move "Giorni"                 to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true.     
+      
+      * CAMPO 6
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  3                       to xzoom-field-length(idx).
+           move  137                     to xzoom-field-offset(idx).
+           move  8                       to xzoom-field-column(idx).
+           move "Esercizi"               to xzoom-field-name(idx).  
+           set  xzoom-ft-alpha(idx)      to true.     
+
+           move  -1                      to xzoom-delimiter-offset.
+           move  5                       to xzoom-delimiter-length.
+           move "000"                    to xzoom-from-value.
+           move "000"                    to xzoom-to-value.
                            
       ***---
        PREPARA-ZOOM-EXE-MCG.
@@ -861,7 +942,7 @@
            move  10                      to xzoom-lw.
            move  82                      to xzoom-sw. 
            move ext-file                 to xzoom-file-name(1).
-           move  5                       to xzoom-fields.
+           move  4                       to xzoom-fields.
 
       * CAMPO 1
            add 1 to idx

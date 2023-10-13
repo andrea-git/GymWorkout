@@ -4,18 +4,19 @@
            ACCESS MODE  IS DYNAMIC
            FILE STATUS  IS STATUS-wodbook
            RECORD KEY   IS wod-key
-           ALTERNATE RECORD KEY IS wod-k-desc = wod-desc
+           ALTERNATE RECORD KEY IS wod-k-desc = wod-split, wod-desc
            WITH DUPLICATES 
-           ALTERNATE RECORD KEY IS wod-k-prg = wod-code, wod-prg-day, 
-           wod-split
+           ALTERNATE RECORD KEY IS wod-k-prg = wod-split, wod-code, 
+           wod-prg-day
            WITH DUPLICATES 
-           ALTERNATE RECORD KEY IS wod-k-data = wod-day, wod-desc
+           ALTERNATE RECORD KEY IS wod-k-data = wod-split, wod-day, 
+           wod-desc
            WITH DUPLICATES 
-           ALTERNATE RECORD KEY IS wod-k-creazione = 
+           ALTERNATE RECORD KEY IS wod-k-creazione = wod-split, 
            wod-data-creazione, wod-day, wod-desc
            WITH DUPLICATES 
-           ALTERNATE RECORD KEY IS wod-k-wom = wod-wom-code, 
-           wod-data-creazione
+           ALTERNATE RECORD KEY IS wod-k-wom = wod-split, wod-wom-code, 
+           wod-day
            WITH DUPLICATES 
            ALTERNATE RECORD KEY IS wod-k-mcg = wod-mcg-code, wod-day
            WITH DUPLICATES 
@@ -29,4 +30,6 @@
            WITH DUPLICATES 
            ALTERNATE RECORD KEY IS wod-k-mcg-ss = wod-mcg-code, wod-ss, 
            wod-day
+           WITH DUPLICATES 
+           ALTERNATE RECORD KEY IS wod-k-head = wod-code, wod-day
            WITH DUPLICATES .

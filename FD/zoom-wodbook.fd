@@ -1,0 +1,11 @@
+      *(( XFD FILE = zoom-wodbook ))
+       FD  zoom-wodbook.
+       01 zwod-rec.
+           05 zwod-key.
+               10 zwod-code        PIC  x(18).
+               10 zwod-desc        PIC  x(100).
+           05 zwod-data.
+               10 zwod-creation    PIC  9(8).
+               10 zwod-ini         PIC  9(8).
+               10 zwod-gg          PIC  999.
+               10 zwod-exe         PIC  999.

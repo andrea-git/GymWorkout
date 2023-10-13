@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 13 ottobre 2023 12:02:10.
+       DATE-WRITTEN.        venerdì 13 ottobre 2023 18:28:20.
        REMARKS.
       *{TOTEM}END
 
@@ -42,6 +42,7 @@
            COPY "tmp-hit.sl".
            COPY "tmp-grp-exe.sl".
            COPY "tmp-superset.sl".
+           COPY "zoom-wodbook.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
@@ -61,6 +62,7 @@
            COPY "tmp-hit.fd".
            COPY "tmp-grp-exe.fd".
            COPY "tmp-superset.fd".
+           COPY "zoom-wodbook.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -88,19 +90,8 @@
       * Properties & User defined Working Stoarge
        78 titolo VALUE IS "Gestione WOD". 
            COPY  "EXTERNALS.DEF".
-       77 num-param        PIC  9
-                  USAGE IS COMP-1
-                  VALUE IS 0.
-       77 RigaCambiata     PIC  9(5)
-                  VALUE IS 0.
-       77 ColonnaCambiata  PIC  9(5)
-                  VALUE IS 0.
        77 Form1-Tb-1-Handle
                   USAGE IS HANDLE OF WINDOW.
-       77 val-ini          PIC  99/99/9999.
-       77 store-ini        PIC  9(8).
-       77 store-codice     PIC  9(5).
-       77 data-oggi        PIC  9(8).
        77 toolbar-bmp      PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
@@ -137,6 +128,8 @@
        77 save-day         PIC  9.
        77 como-series      PIC  999.
        77 como-grp-desc    PIC  x(100).
+       77 nessuna-scelta   PIC  9
+                  VALUE IS 0.
        77 riga-div         PIC  999.
        77 como-grp-code    PIC  x(5).
        77 riga-aggiunta    PIC  999.
@@ -149,6 +142,9 @@
        77 s-wod-code       PIC  9(18).
        77 como-wod-code    PIC  x(18).
        77 primo-giorno     PIC  9(8).
+       77 como-data-from   PIC  9(8).
+       77 como-data-to     PIC  9(8).
+       78 78-lab-tutti VALUE IS "Vuoto = Tutti". 
        01 como-tex-data-tab.
            05 como-tex-data-el PIC  x(1000)
                       OCCURS 99 TIMES.
@@ -474,7 +470,7 @@
                   VALUE IS 0.
        77 scr-filtro-handle
                   USAGE IS HANDLE OF WINDOW.
-       77 tipo-filtro      PIC  S9(1)
+       77 tipo-filtro      PIC  99
                   VALUE IS 1.
        77 e-des            PIC  9
                   VALUE IS 1.
@@ -484,6 +480,8 @@
                   VALUE IS 1.
        77 e-map            PIC  9
                   VALUE IS 1.
+       01 FILLER           PIC  9.
+           88 record-ok VALUE IS 1    WHEN SET TO FALSE  0. 
        77 e-exe            PIC  9
                   VALUE IS 1.
        77 e-mul            PIC  9
@@ -496,12 +494,25 @@
        77 ef-rep-buf       PIC  X(5).
        77 ef-mul-buf       PIC  X(5).
        77 ef-exe-buf       PIC  X(5).
-       77 ef-map-buf       PIC  9(3).
+       77 ef-map-buf       PIC  zzz.
        77 ef-dtc-from-buf  PIC  99/99/9999.
        77 ef-dtc-to-buf    PIC  99/99/9999.
        77 ef-dta-from-buf  PIC  99/99/9999.
        77 ef-dta-to-buf    PIC  99/99/9999.
        77 ef-des-buf       PIC  X(100).
+       77 lab-gss-buf      PIC  x(50).
+       77 lab-rep-buf      PIC  x(50).
+       77 lab-mul-buf      PIC  X(50).
+       77 lab-exe-buf      PIC  X(50).
+       77 lab-map-buf      PIC  X(50).
+       77 e-mcg            PIC  9
+                  VALUE IS 1.
+       77 ef-mcg-buf       PIC  X(5).
+       77 lab-mcg-buf      PIC  x(50)
+                  VALUE IS "Vuoto =Tutti".
+       77 path-zoom-wodbook            PIC  X(256).
+       77 STATUS-zoom-wodbook          PIC  X(2).
+           88 Valid-STATUS-zoom-wodbook VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -533,6 +544,7 @@
        77 TMP-DataSet1-tmp-hit-BUF     PIC X(6).
        77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(207).
        77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
+       77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(140).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -613,6 +625,11 @@
        77 DataSet1-tmp-superset-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-tmp-superset-KEY-Asc  VALUE "A".
           88 DataSet1-tmp-superset-KEY-Desc VALUE "D".
+       77 DataSet1-zoom-wodbook-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-zoom-wodbook-LOCK  VALUE "Y".
+       77 DataSet1-zoom-wodbook-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-zoom-wodbook-KEY-Asc  VALUE "A".
+          88 DataSet1-zoom-wodbook-KEY-Desc VALUE "D".
 
        77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
@@ -621,16 +638,17 @@
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-exercises-SPLITBUF  PIC X(3).
-       77 wodbook-wod-k-desc-SPLITBUF  PIC X(101).
+       77 wodbook-wod-k-desc-SPLITBUF  PIC X(103).
        77 wodbook-wod-k-prg-SPLITBUF  PIC X(22).
-       77 wodbook-wod-k-data-SPLITBUF  PIC X(109).
-       77 wodbook-wod-k-creazione-SPLITBUF  PIC X(117).
-       77 wodbook-wod-k-wom-SPLITBUF  PIC X(12).
+       77 wodbook-wod-k-data-SPLITBUF  PIC X(111).
+       77 wodbook-wod-k-creazione-SPLITBUF  PIC X(119).
+       77 wodbook-wod-k-wom-SPLITBUF  PIC X(14).
        77 wodbook-wod-k-mcg-SPLITBUF  PIC X(14).
        77 wodbook-wod-k-exe-SPLITBUF  PIC X(14).
        77 wodbook-wod-k-mcg-multi-SPLITBUF  PIC X(15).
        77 wodbook-wod-k-mcg-rp-SPLITBUF  PIC X(15).
        77 wodbook-wod-k-mcg-ss-SPLITBUF  PIC X(15).
+       77 wodbook-wod-k-head-SPLITBUF  PIC X(27).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 tmp-exe-tex-k-dupl-SPLITBUF  PIC X(102).
        77 tmp-exe-tex-k-mcg-SPLITBUF  PIC X(10).
@@ -641,6 +659,9 @@
        77 tmp-exe-dupl-ted-k-num-SPLITBUF  PIC X(111).
        77 zoom-exe-mcg-zem-k-int-SPLITBUF  PIC X(203).
        77 tmp-grp-exe-tge-k-prg-SPLITBUF  PIC X(4).
+       77 zoom-wodbook-key01-SPLITBUF  PIC X(119).
+       77 zoom-wodbook-key02-SPLITBUF  PIC X(109).
+       77 zoom-wodbook-key03-SPLITBUF  PIC X(109).
 
        01                 pic 9.
            88 s-excell    value 1.
@@ -699,6 +720,18 @@
        78  78-ID-ef-gg5 VALUE 5005.
        78  78-ID-ef-gg6 VALUE 5006.
        78  78-ID-ef-gg7 VALUE 5007.
+       78  78-ID-ef-des VALUE 5001.
+       78  78-ID-ef-dta-from VALUE 5002.
+       78  78-ID-ef-dta-to VALUE 5003.
+       78  78-ID-ef-dtc-from VALUE 5004.
+       78  78-ID-ef-dtc-to VALUE 5005.
+       78  78-ID-ef-map VALUE 5006.
+       78  78-ID-ef-exe VALUE 5007.
+       78  78-ID-ef-mul VALUE 5008.
+       78  78-ID-ef-rep VALUE 5009.
+       78  78-ID-ef-gss VALUE 5010.
+       78  78-ID-rb-mcg VALUE 5011.
+       78  78-ID-ef-mcg VALUE 5012.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -2185,8 +2218,8 @@
            Screen3-Fr-1, 
            Frame, 
            COL 2,73, 
-           LINE 1,50,
-           LINES 16,27 ,
+           LINE 1,12,
+           LINES 17,42 ,
            SIZE 75,45 ,
            ENGRAVED,
            ID IS 1,
@@ -2201,7 +2234,7 @@
            rb-tut, 
            Radio-Button, 
            COL 5,09, 
-           LINE 2,92,
+           LINE 2,54,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1000
@@ -2211,6 +2244,7 @@
            ID IS 4,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
            NOTIFY,
            TITLE "Tutto",
            VALUE tipo-filtro,
@@ -2222,7 +2256,7 @@
            rb-des, 
            Radio-Button, 
            COL 5,09, 
-           LINE 4,46,
+           LINE 4,08,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1001
@@ -2232,6 +2266,7 @@
            ID IS 5,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
            NOTIFY,
            TITLE "Descrizione",
            VALUE tipo-filtro,
@@ -2243,13 +2278,13 @@
            ef-des, 
            Entry-Field, 
            COL 26,82, 
-           LINE 4,42,
+           LINE 4,04,
            LINES 1,23 ,
            SIZE 50,00 ,
            BOXED,
            COLOR IS 513,
            ENABLED e-des,
-           ID IS 3,
+           ID IS 78-ID-ef-des,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-des-buf,
@@ -2262,7 +2297,7 @@
            rb-dta, 
            Radio-Button, 
            COL 5,09, 
-           LINE 6,00,
+           LINE 5,62,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1002
@@ -2272,6 +2307,7 @@
            ID IS 6,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
            NOTIFY,
            TITLE "Data allenamento",
            VALUE tipo-filtro,
@@ -2283,15 +2319,16 @@
            ef-dta-from, 
            Entry-Field, 
            COL 26,82, 
-           LINE 5,96,
+           LINE 5,58,
            LINES 1,23 ,
-           SIZE 11,00 ,
+           SIZE 9,50 ,
            BOXED,
            COLOR IS 513,
            ENABLED e-dta,
-           ID IS 7,
+           ID IS 78-ID-ef-dta-from,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           CENTER,
            VALUE ef-dta-from-buf,
            AFTER PROCEDURE ef-dta-from-AfterProcedure, 
            BEFORE PROCEDURE ef-dta-from-BeforeProcedure, 
@@ -2301,16 +2338,17 @@
        05
            ef-dta-to, 
            Entry-Field, 
-           COL 38,64, 
-           LINE 5,96,
+           COL 36,82, 
+           LINE 5,58,
            LINES 1,23 ,
-           SIZE 11,00 ,
+           SIZE 9,50 ,
            BOXED,
            COLOR IS 513,
            ENABLED e-dta,
-           ID IS 8,
+           ID IS 78-ID-ef-dta-to,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           CENTER,
            VALUE ef-dta-to-buf,
            AFTER PROCEDURE ef-dta-to-AfterProcedure, 
            BEFORE PROCEDURE ef-dta-to-BeforeProcedure, 
@@ -2321,7 +2359,7 @@
            rb-dtc, 
            Radio-Button, 
            COL 5,09, 
-           LINE 7,54,
+           LINE 7,16,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1003
@@ -2331,6 +2369,7 @@
            ID IS 9,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
            NOTIFY,
            TITLE "Data creazione",
            VALUE tipo-filtro,
@@ -2342,15 +2381,16 @@
            ef-dtc-from, 
            Entry-Field, 
            COL 26,82, 
-           LINE 7,50,
+           LINE 7,12,
            LINES 1,23 ,
-           SIZE 11,00 ,
+           SIZE 9,50 ,
            BOXED,
            COLOR IS 513,
            ENABLED e-dtc,
-           ID IS 10,
+           ID IS 78-ID-ef-dtc-from,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           CENTER,
            VALUE ef-dtc-from-buf,
            AFTER PROCEDURE ef-dtc-from-AfterProcedure, 
            BEFORE PROCEDURE ef-dtc-from-BeforeProcedure, 
@@ -2360,16 +2400,17 @@
        05
            ef-dtc-to, 
            Entry-Field, 
-           COL 38,64, 
-           LINE 7,50,
+           COL 36,82, 
+           LINE 7,12,
            LINES 1,23 ,
-           SIZE 11,00 ,
+           SIZE 9,50 ,
            BOXED,
            COLOR IS 513,
            ENABLED e-dtc,
-           ID IS 11,
+           ID IS 78-ID-ef-dtc-to,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           CENTER,
            VALUE ef-dtc-to-buf,
            AFTER PROCEDURE ef-dtc-to-AfterProcedure, 
            BEFORE PROCEDURE ef-dtc-to-BeforeProcedure, 
@@ -2380,7 +2421,7 @@
            rb-map, 
            Radio-Button, 
            COL 5,09, 
-           LINE 9,08,
+           LINE 8,70,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1004
@@ -2390,6 +2431,7 @@
            ID IS 12,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
            NOTIFY,
            TITLE "Mappatura",
            VALUE tipo-filtro,
@@ -2401,18 +2443,37 @@
            ef-map, 
            Entry-Field, 
            COL 26,82, 
-           LINE 9,08,
+           LINE 8,70,
            LINES 1,23 ,
-           SIZE 11,00 ,
+           SIZE 9,50 ,
            BOXED,
            COLOR IS 513,
            ENABLED e-map,
-           ID IS 13,
+           ID IS 78-ID-ef-map,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           RIGHT,
            VALUE ef-map-buf,
            AFTER PROCEDURE ef-map-AfterProcedure, 
            BEFORE PROCEDURE ef-map-BeforeProcedure, 
+           .
+
+      * PUSH BUTTON
+       05
+           pb-map, 
+           Push-Button, 
+           COL 36,82, 
+           LINE 8,70,
+           LINES 1,23 ,
+           SIZE 3,00 ,
+           ENABLED e-map,
+           EXCEPTION-VALUE 1009,
+           FONT IS Small-Font,
+           ID IS 2,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           SELF-ACT,
+           TITLE "...",
            .
 
       * RADIO BUTTON
@@ -2420,7 +2481,7 @@
            rb-exe, 
            Radio-Button, 
            COL 5,09, 
-           LINE 10,62,
+           LINE 10,24,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1005
@@ -2430,6 +2491,7 @@
            ID IS 14,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
            NOTIFY,
            TITLE "Esercizio",
            VALUE tipo-filtro,
@@ -2441,13 +2503,13 @@
            ef-exe, 
            Entry-Field, 
            COL 26,82, 
-           LINE 10,62,
+           LINE 10,24,
            LINES 1,23 ,
-           SIZE 11,00 ,
+           SIZE 9,50 ,
            BOXED,
            COLOR IS 513,
            ENABLED e-exe,
-           ID IS 15,
+           ID IS 78-ID-ef-exe,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-exe-buf,
@@ -2455,21 +2517,40 @@
            BEFORE PROCEDURE ef-exe-BeforeProcedure, 
            .
 
+      * PUSH BUTTON
+       05
+           pb-exe, 
+           Push-Button, 
+           COL 36,82, 
+           LINE 10,24,
+           LINES 1,23 ,
+           SIZE 3,00 ,
+           ENABLED e-exe,
+           EXCEPTION-VALUE 1010,
+           FONT IS Small-Font,
+           ID IS 16,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           SELF-ACT,
+           TITLE "...",
+           .
+
       * RADIO BUTTON
        05
            rb-mul, 
            Radio-Button, 
            COL 5,09, 
-           LINE 12,15,
+           LINE 11,77,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1006
            FLAT,
            GROUP 1,
            GROUP-VALUE 7,
-           ID IS 16,
+           ID IS 17,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
            NOTIFY,
            TITLE "Gruppo / Multiarticolare",
            VALUE tipo-filtro,
@@ -2481,13 +2562,13 @@
            ef-mul, 
            Entry-Field, 
            COL 26,82, 
-           LINE 12,15,
+           LINE 11,77,
            LINES 1,23 ,
-           SIZE 11,00 ,
+           SIZE 9,50 ,
            BOXED,
            COLOR IS 513,
            ENABLED e-mul,
-           ID IS 17,
+           ID IS 78-ID-ef-mul,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-mul-buf,
@@ -2495,21 +2576,40 @@
            BEFORE PROCEDURE ef-mul-BeforeProcedure, 
            .
 
+      * PUSH BUTTON
+       05
+           pb-mul, 
+           Push-Button, 
+           COL 36,82, 
+           LINE 11,77,
+           LINES 1,23 ,
+           SIZE 3,00 ,
+           ENABLED e-mul,
+           EXCEPTION-VALUE 1011,
+           FONT IS Small-Font,
+           ID IS 19,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           SELF-ACT,
+           TITLE "...",
+           .
+
       * RADIO BUTTON
        05
            rb-rep, 
            Radio-Button, 
            COL 5,09, 
-           LINE 13,69,
+           LINE 13,31,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1007
            FLAT,
            GROUP 1,
            GROUP-VALUE 8,
-           ID IS 18,
+           ID IS 20,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
            NOTIFY,
            TITLE "Gruppo / rest pause",
            VALUE tipo-filtro,
@@ -2521,13 +2621,13 @@
            ef-rep, 
            Entry-Field, 
            COL 26,82, 
-           LINE 13,69,
+           LINE 13,31,
            LINES 1,23 ,
-           SIZE 11,00 ,
+           SIZE 9,50 ,
            BOXED,
            COLOR IS 513,
            ENABLED e-rep,
-           ID IS 19,
+           ID IS 78-ID-ef-rep,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-rep-buf,
@@ -2535,21 +2635,40 @@
            BEFORE PROCEDURE ef-rep-BeforeProcedure, 
            .
 
+      * PUSH BUTTON
+       05
+           pb-rep, 
+           Push-Button, 
+           COL 36,82, 
+           LINE 13,31,
+           LINES 1,23 ,
+           SIZE 3,00 ,
+           ENABLED e-rep,
+           EXCEPTION-VALUE 1012,
+           FONT IS Small-Font,
+           ID IS 22,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           SELF-ACT,
+           TITLE "...",
+           .
+
       * RADIO BUTTON
        05
            rb-gss, 
            Radio-Button, 
            COL 5,09, 
-           LINE 15,23,
+           LINE 14,85,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1008
            FLAT,
            GROUP 1,
            GROUP-VALUE 9,
-           ID IS 20,
+           ID IS 23,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
            NOTIFY,
            TITLE "Gruppo / super set",
            VALUE tipo-filtro,
@@ -2561,13 +2680,13 @@
            ef-gss, 
            Entry-Field, 
            COL 26,82, 
-           LINE 15,23,
+           LINE 14,85,
            LINES 1,23 ,
-           SIZE 11,00 ,
+           SIZE 9,50 ,
            BOXED,
            COLOR IS 513,
            ENABLED e-gss,
-           ID IS 21,
+           ID IS 78-ID-ef-gss,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            VALUE ef-gss-buf,
@@ -2577,18 +2696,192 @@
 
       * PUSH BUTTON
        05
+           pb-gss, 
+           Push-Button, 
+           COL 36,82, 
+           LINE 14,85,
+           LINES 1,23 ,
+           SIZE 3,00 ,
+           ENABLED e-gss,
+           EXCEPTION-VALUE 1013,
+           FONT IS Small-Font,
+           ID IS 25,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           SELF-ACT,
+           TITLE "...",
+           .
+
+      * RADIO BUTTON
+       05
+           rb-mcg, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 16,39,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1008
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 10,
+           ID IS 78-ID-rb-mcg,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
+           NOTIFY,
+           TITLE "Gruppo",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-mcg-AfterProcedure, 
+           BEFORE PROCEDURE rb-mcg-BeforeProcedure, 
+           .
+      * ENTRY FIELD
+       05
+           ef-mcg, 
+           Entry-Field, 
+           COL 26,82, 
+           LINE 16,39,
+           LINES 1,23 ,
+           SIZE 9,50 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-mcg,
+           ID IS 78-ID-ef-mcg,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-mcg-buf,
+           AFTER PROCEDURE ef-mcg-AfterProcedure, 
+           BEFORE PROCEDURE ef-mcg-BeforeProcedure, 
+           .
+
+      * PUSH BUTTON
+       05
+           pb-mcg, 
+           Push-Button, 
+           COL 36,82, 
+           LINE 16,39,
+           LINES 1,23 ,
+           SIZE 3,00 ,
+           ENABLED e-mcg,
+           EXCEPTION-VALUE 1014,
+           FONT IS Small-Font,
+           ID IS AUTO-ID,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           SELF-ACT,
+           TITLE "...",
+           .
+
+      * LABEL
+       05
+           lab-map, 
+           Label, 
+           COL 41,09, 
+           LINE 8,70,
+           LINES 1,23 ,
+           SIZE 36,00 ,
+           COLOR IS 5,
+           ID IS 29,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-map-buf,
+           .
+
+      * LABEL
+       05
+           lab-exe, 
+           Label, 
+           COL 41,09, 
+           LINE 10,24,
+           LINES 1,23 ,
+           SIZE 36,00 ,
+           COLOR IS 5,
+           ID IS 30,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-exe-buf,
+           .
+
+      * LABEL
+       05
+           lab-mul, 
+           Label, 
+           COL 41,09, 
+           LINE 11,77,
+           LINES 1,23 ,
+           SIZE 36,00 ,
+           COLOR IS 5,
+           ID IS 31,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-mul-buf,
+           .
+
+      * LABEL
+       05
+           lab-rep, 
+           Label, 
+           COL 41,09, 
+           LINE 13,31,
+           LINES 1,23 ,
+           SIZE 36,00 ,
+           COLOR IS 5,
+           ID IS 32,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-rep-buf,
+           .
+
+      * LABEL
+       05
+           lab-gss, 
+           Label, 
+           COL 41,09, 
+           LINE 14,85,
+           LINES 1,23 ,
+           SIZE 36,00 ,
+           COLOR IS 5,
+           ID IS 33,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-gss-buf,
+           .
+
+      * LABEL
+       05
+           lab-mcg, 
+           Label, 
+           COL 41,09, 
+           LINE 16,39,
+           LINES 1,23 ,
+           SIZE 36,00 ,
+           COLOR IS 5,
+           ID IS 34,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-mcg-buf,
+           .
+
+      * PUSH BUTTON
+       05
            pb-ok-f, 
            Push-Button, 
            COL 33,18, 
-           LINE 18,23,
+           LINE 18,81,
            LINES 1,42 ,
            SIZE 81 PIXELS,
            BITMAP-HANDLE BOTTONE-OK-BMP,
            BITMAP-NUMBER 1,
            UNFRAMED,
+           EXCEPTION-VALUE 1015,
            FLAT,
            FONT IS Small-Font,
-           ID IS 3,
+           ID IS 35,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            AFTER PROCEDURE pb-ok-f-AfterProcedure, 
@@ -2600,7 +2893,7 @@
            pb-cancel-f, 
            Push-Button, 
            COL 40,36, 
-           LINE 18,23,
+           LINE 18,81,
            LINES 1,42 ,
            SIZE 81 PIXELS,
            BITMAP-HANDLE BOTTONE-ANNULLA-BMP,
@@ -2609,7 +2902,7 @@
            EXCEPTION-VALUE 27,
            FLAT,
            FONT IS Small-Font,
-           ID IS 18,
+           ID IS 36,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            ESCAPE-BUTTON,
@@ -2907,6 +3200,8 @@
       *    PERFORM OPEN-tmp-grp-exe
       *    tmp-superset OPEN MODE IS FALSE
       *    PERFORM OPEN-tmp-superset
+      *    zoom-wodbook OPEN MODE IS FALSE
+      *    PERFORM OPEN-zoom-wodbook
       *    After Open
            .
 
@@ -3097,6 +3392,18 @@
       * <TOTEM:END>
            .
 
+       OPEN-zoom-wodbook.
+      * <TOTEM:EPT. INIT:gwod, FD:zoom-wodbook, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  OUTPUT zoom-wodbook
+           IF NOT Valid-STATUS-zoom-wodbook
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:zoom-wodbook, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-exercises
@@ -3122,6 +3429,8 @@
       *    PERFORM CLOSE-tmp-grp-exe
       *    tmp-superset CLOSE MODE IS FALSE
       *    PERFORM CLOSE-tmp-superset
+      *    zoom-wodbook CLOSE MODE IS FALSE
+      *    PERFORM CLOSE-zoom-wodbook
       *    After Close
            .
 
@@ -3204,6 +3513,11 @@
 
        CLOSE-tmp-superset.
       * <TOTEM:EPT. INIT:gwod, FD:tmp-superset, BeforeClose>
+      * <TOTEM:END>
+           .
+
+       CLOSE-zoom-wodbook.
+      * <TOTEM:EPT. INIT:gwod, FD:zoom-wodbook, BeforeClose>
       * <TOTEM:END>
            .
 
@@ -3998,36 +4312,39 @@
 
        wodbook-wod-k-desc-MERGE-SPLITBUF.
            INITIALIZE wodbook-wod-k-desc-SPLITBUF
-           MOVE wod-desc(1:100) TO wodbook-wod-k-desc-SPLITBUF(1:100)
+           MOVE wod-split(1:2) TO wodbook-wod-k-desc-SPLITBUF(1:2)
+           MOVE wod-desc(1:100) TO wodbook-wod-k-desc-SPLITBUF(3:100)
            .
 
        wodbook-wod-k-prg-MERGE-SPLITBUF.
            INITIALIZE wodbook-wod-k-prg-SPLITBUF
-           MOVE wod-code(1:18) TO wodbook-wod-k-prg-SPLITBUF(1:18)
-           MOVE wod-prg-day(1:1) TO wodbook-wod-k-prg-SPLITBUF(19:1)
-           MOVE wod-split(1:2) TO wodbook-wod-k-prg-SPLITBUF(20:2)
+           MOVE wod-split(1:2) TO wodbook-wod-k-prg-SPLITBUF(1:2)
+           MOVE wod-code(1:18) TO wodbook-wod-k-prg-SPLITBUF(3:18)
+           MOVE wod-prg-day(1:1) TO wodbook-wod-k-prg-SPLITBUF(21:1)
            .
 
        wodbook-wod-k-data-MERGE-SPLITBUF.
            INITIALIZE wodbook-wod-k-data-SPLITBUF
-           MOVE wod-day(1:8) TO wodbook-wod-k-data-SPLITBUF(1:8)
-           MOVE wod-desc(1:100) TO wodbook-wod-k-data-SPLITBUF(9:100)
+           MOVE wod-split(1:2) TO wodbook-wod-k-data-SPLITBUF(1:2)
+           MOVE wod-day(1:8) TO wodbook-wod-k-data-SPLITBUF(3:8)
+           MOVE wod-desc(1:100) TO wodbook-wod-k-data-SPLITBUF(11:100)
            .
 
        wodbook-wod-k-creazione-MERGE-SPLITBUF.
            INITIALIZE wodbook-wod-k-creazione-SPLITBUF
+           MOVE wod-split(1:2) TO wodbook-wod-k-creazione-SPLITBUF(1:2)
            MOVE wod-data-creazione(1:8) TO 
-           wodbook-wod-k-creazione-SPLITBUF(1:8)
-           MOVE wod-day(1:8) TO wodbook-wod-k-creazione-SPLITBUF(9:8)
+           wodbook-wod-k-creazione-SPLITBUF(3:8)
+           MOVE wod-day(1:8) TO wodbook-wod-k-creazione-SPLITBUF(11:8)
            MOVE wod-desc(1:100) TO 
-           wodbook-wod-k-creazione-SPLITBUF(17:100)
+           wodbook-wod-k-creazione-SPLITBUF(19:100)
            .
 
        wodbook-wod-k-wom-MERGE-SPLITBUF.
            INITIALIZE wodbook-wod-k-wom-SPLITBUF
-           MOVE wod-wom-code(1:3) TO wodbook-wod-k-wom-SPLITBUF(1:3)
-           MOVE wod-data-creazione(1:8) TO 
-           wodbook-wod-k-wom-SPLITBUF(4:8)
+           MOVE wod-split(1:2) TO wodbook-wod-k-wom-SPLITBUF(1:2)
+           MOVE wod-wom-code(1:3) TO wodbook-wod-k-wom-SPLITBUF(3:3)
+           MOVE wod-day(1:8) TO wodbook-wod-k-wom-SPLITBUF(6:8)
            .
 
        wodbook-wod-k-mcg-MERGE-SPLITBUF.
@@ -4064,6 +4381,12 @@
            MOVE wod-mcg-code(1:5) TO wodbook-wod-k-mcg-ss-SPLITBUF(1:5)
            MOVE wod-ss(1:1) TO wodbook-wod-k-mcg-ss-SPLITBUF(6:1)
            MOVE wod-day(1:8) TO wodbook-wod-k-mcg-ss-SPLITBUF(7:8)
+           .
+
+       wodbook-wod-k-head-MERGE-SPLITBUF.
+           INITIALIZE wodbook-wod-k-head-SPLITBUF
+           MOVE wod-code(1:18) TO wodbook-wod-k-head-SPLITBUF(1:18)
+           MOVE wod-day(1:8) TO wodbook-wod-k-head-SPLITBUF(19:8)
            .
 
        DataSet1-wodbook-INITSTART.
@@ -4176,6 +4499,7 @@
            PERFORM wodbook-wod-k-mcg-multi-MERGE-SPLITBUF
            PERFORM wodbook-wod-k-mcg-rp-MERGE-SPLITBUF
            PERFORM wodbook-wod-k-mcg-ss-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-head-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT 
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -4216,6 +4540,7 @@
            PERFORM wodbook-wod-k-mcg-multi-MERGE-SPLITBUF
            PERFORM wodbook-wod-k-mcg-rp-MERGE-SPLITBUF
            PERFORM wodbook-wod-k-mcg-ss-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-head-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -4256,6 +4581,7 @@
            PERFORM wodbook-wod-k-mcg-multi-MERGE-SPLITBUF
            PERFORM wodbook-wod-k-mcg-rp-MERGE-SPLITBUF
            PERFORM wodbook-wod-k-mcg-ss-MERGE-SPLITBUF
+           PERFORM wodbook-wod-k-head-MERGE-SPLITBUF
            MOVE STATUS-wodbook TO TOTEM-ERR-STAT
            MOVE "wodbook" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -5473,6 +5799,137 @@
       * <TOTEM:END>
            .
 
+       zoom-wodbook-key01-MERGE-SPLITBUF.
+           INITIALIZE zoom-wodbook-key01-SPLITBUF
+           MOVE zwod-desc(1:100) TO zoom-wodbook-key01-SPLITBUF(1:100)
+           MOVE zwod-code(1:18) TO zoom-wodbook-key01-SPLITBUF(101:18)
+           .
+
+       zoom-wodbook-key02-MERGE-SPLITBUF.
+           INITIALIZE zoom-wodbook-key02-SPLITBUF
+           MOVE zwod-creation(1:8) TO zoom-wodbook-key02-SPLITBUF(1:8)
+           MOVE zwod-desc(1:100) TO zoom-wodbook-key02-SPLITBUF(9:100)
+           .
+
+       zoom-wodbook-key03-MERGE-SPLITBUF.
+           INITIALIZE zoom-wodbook-key03-SPLITBUF
+           MOVE zwod-ini(1:8) TO zoom-wodbook-key03-SPLITBUF(1:8)
+           MOVE zwod-desc(1:100) TO zoom-wodbook-key03-SPLITBUF(9:100)
+           .
+
+       DataSet1-zoom-wodbook-INITSTART.
+           IF DataSet1-zoom-wodbook-KEY-Asc
+              MOVE Low-Value TO zwod-key
+           ELSE
+              MOVE High-Value TO zwod-key
+           END-IF
+           .
+
+       DataSet1-zoom-wodbook-INITEND.
+           IF DataSet1-zoom-wodbook-KEY-Asc
+              MOVE High-Value TO zwod-key
+           ELSE
+              MOVE Low-Value TO zwod-key
+           END-IF
+           .
+
+      * zoom-wodbook
+       DataSet1-zoom-wodbook-START.
+           IF DataSet1-zoom-wodbook-KEY-Asc
+              START zoom-wodbook KEY >= zwod-key
+           ELSE
+              START zoom-wodbook KEY <= zwod-key
+           END-IF
+           .
+
+       DataSet1-zoom-wodbook-START-NOTGREATER.
+           IF DataSet1-zoom-wodbook-KEY-Asc
+              START zoom-wodbook KEY <= zwod-key
+           ELSE
+              START zoom-wodbook KEY >= zwod-key
+           END-IF
+           .
+
+       DataSet1-zoom-wodbook-START-GREATER.
+           IF DataSet1-zoom-wodbook-KEY-Asc
+              START zoom-wodbook KEY > zwod-key
+           ELSE
+              START zoom-wodbook KEY < zwod-key
+           END-IF
+           .
+
+       DataSet1-zoom-wodbook-START-LESS.
+           IF DataSet1-zoom-wodbook-KEY-Asc
+              START zoom-wodbook KEY < zwod-key
+           ELSE
+              START zoom-wodbook KEY > zwod-key
+           END-IF
+           .
+
+       DataSet1-zoom-wodbook-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, BeforeReadRecord>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-zoom-wodbook-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, BeforeReadNext>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-zoom-wodbook-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, BeforeReadPrev>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-zoom-wodbook-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, BeforeWrite>
+      * <TOTEM:END>
+           WRITE zwod-rec OF zoom-wodbook.
+           MOVE STATUS-zoom-wodbook TO TOTEM-ERR-STAT
+           MOVE "zoom-wodbook" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-zoom-wodbook-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-zoom-wodbook TO TOTEM-ERR-STAT
+           MOVE "zoom-wodbook" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-zoom-wodbook-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-zoom-wodbook TO TOTEM-ERR-STAT
+           MOVE "zoom-wodbook" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:zoom-wodbook, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE grp-rec OF groups
@@ -5489,6 +5946,7 @@
            INITIALIZE th-rec OF tmp-hit
            INITIALIZE tge-rec OF tmp-grp-exe
            INITIALIZE tss-rec OF tmp-superset
+           INITIALIZE zwod-rec OF zoom-wodbook
            .
 
 
@@ -5726,6 +6184,14 @@
       * FD's Initialize Paragraph
        DataSet1-tmp-superset-INITREC.
            INITIALIZE tss-rec OF tmp-superset
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-zoom-wodbook-INITREC.
+           INITIALIZE zwod-rec OF zoom-wodbook
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -6875,7 +7341,7 @@
 
        scr-filtro-Create-Win.
            Display Floating GRAPHICAL WINDOW
-              LINES 19,19,
+              LINES 19,62,
               SIZE 78,91,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
@@ -6899,9 +7365,20 @@
 
        scr-filtro-PROC.
       * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, BeforeAccept>
-           move 0 to e-des e-dta e-dtc e-map e-exe e-mul e-rep e-gss.
+           move 0 to e-des e-dta e-dtc e-map e-exe e-mul e-rep e-gss 
+           e-mcg.
+           move 0 to ef-dta-from-buf ef-dta-to-buf.
+           move 0 to ef-dtc-from-buf ef-dtc-to-buf.
+           move 78-lab-tutti to lab-map-buf
+                                lab-exe-buf
+                                lab-mul-buf
+                                lab-rep-buf
+                                lab-gss-buf
+                                lab-mcg-buf.
            move 1 to tipo-filtro.
            display scr-filtro.
+
+           move 1 to nessuna-scelta.
 
            .
       * <TOTEM:END>
@@ -6940,14 +7417,30 @@
                  PERFORM rb-dtc-LinkTo
               WHEN Key-Status = 1004
                  PERFORM rb-map-LinkTo
+              WHEN Key-Status = 1009
+                 PERFORM pb-map-LinkTo
               WHEN Key-Status = 1005
                  PERFORM rb-exe-LinkTo
+              WHEN Key-Status = 1010
+                 PERFORM pb-exe-LinkTo
               WHEN Key-Status = 1006
                  PERFORM rb-mul-LinkTo
+              WHEN Key-Status = 1011
+                 PERFORM pb-mul-LinkTo
               WHEN Key-Status = 1007
                  PERFORM rb-rep-LinkTo
+              WHEN Key-Status = 1012
+                 PERFORM pb-rep-LinkTo
               WHEN Key-Status = 1008
                  PERFORM rb-gss-LinkTo
+              WHEN Key-Status = 1013
+                 PERFORM pb-gss-LinkTo
+              WHEN Key-Status = 1008
+                 PERFORM rb-gss-LinkTo
+              WHEN Key-Status = 1014
+                 PERFORM pb-mcg-LinkTo
+              WHEN Key-Status = 1015
+                 PERFORM pb-ok-f-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -8197,6 +8690,189 @@
                 rewrite tex-rec
                 perform RELOAD-GRID
            end-evaluate 
+           .
+      * <TOTEM:END>
+
+       CONTROLLO-FILTRO.
+      * <TOTEM:PARA. CONTROLLO-FILTRO>
+           set tutto-ok to true.
+           evaluate control-id
+           when 78-ID-ef-des continue
+
+           when 78-ID-ef-dta-from
+                inquire ef-dta-from value in como-data
+                if como-data > 0
+                   perform DATE-FORMAT
+                   move como-data to ef-dta-from-buf
+                   display ef-dta-from
+                end-if
+
+           when 78-ID-ef-dta-to  
+                inquire ef-dta-to value in como-data
+                if como-data > 0
+                   if como-data not = 99999999
+                      perform DATE-FORMAT
+                      move como-data to ef-dta-to-buf
+                      display ef-dta-to  
+                   end-if
+                else
+                   move 99999999 to  ef-dta-to-buf
+                   display ef-dta-to
+                end-if                              
+                inquire ef-dta-from value in como-data
+                perform DATE-TO-FILE
+                move como-data to como-data-from    
+                inquire ef-dta-to value in como-data
+                perform DATE-TO-FILE
+                move como-data to como-data-to
+                if como-data-to < como-data-from
+                   display message "Range date errato"
+                             title tit-err
+                              icon 2
+                   move 78-ID-ef-dta-from to control-id
+                   set errori to true
+                end-if
+
+           when 78-ID-ef-dtc-from   
+                inquire ef-dtc-from value in como-data
+                if como-data > 0
+                   perform DATE-FORMAT
+                   move como-data to ef-dtc-from-buf
+                   display ef-dtc-from
+                end-if
+           when 78-ID-ef-dtc-to  
+                inquire ef-dtc-to value in como-data
+                if como-data > 0
+                   if como-data not = 99999999
+                      perform DATE-FORMAT
+                      move como-data to ef-dtc-to-buf
+                      display ef-dtc-to
+                   end-if
+                else
+                   move 99999999 to  ef-dtc-to-buf
+                   display ef-dtc-to
+                end-if                              
+                inquire ef-dtc-from value in como-data
+                perform DATE-TO-FILE
+                move como-data to como-data-from    
+                inquire ef-dtc-to value in como-data
+                perform DATE-TO-FILE
+                move como-data to como-data-to
+                if como-data-to < como-data-from
+                   display message "Range date errato"
+                             title tit-err
+                              icon 2
+                   move 78-ID-ef-dtc-from to control-id 
+                   set errori to true
+                end-if
+
+           when 78-ID-ef-map
+                inquire ef-map, value in wom-code
+                if wom-code = 0
+                   move "Tutte le mappature" to wom-desc
+                else
+                   read wodmap no lock
+                        invalid                 
+                        display message "Valore errato"
+                                  title tit-err
+                                   icon 2
+                        move spaces to wom-desc
+                        set errori to true
+                   end-read
+                end-if
+                move wom-desc to lab-map-buf
+                display lab-map
+
+           when 78-ID-ef-exe   
+                inquire ef-exe, value in exe-code
+                if exe-code = spaces
+                   move "Tutti gli esercizi" to exe-desc
+                else
+                   read exercises no lock
+                        invalid              
+                        display message "Valore errato"
+                                  title tit-err
+                                   icon 2
+                        move spaces to exe-desc  
+                        set errori to true
+                   end-read
+                end-if
+                move exe-desc to lab-exe-buf
+                display lab-exe
+
+           when 78-ID-ef-mul
+                inquire ef-mul, value in mcg-code
+                if mcg-code = spaces
+                   move "Tutti i gruppi" to mcg-desc
+                else
+                   read macrogroups no lock
+                        invalid               
+                        display message "Valore errato"
+                                  title tit-err
+                                   icon 2
+                        move spaces to mcg-desc   
+                        set errori to true
+                   end-read
+                end-if
+                move mcg-desc to lab-mul-buf
+                display lab-mul
+                                
+           when 78-ID-ef-rep    
+                inquire ef-rep, value in mcg-code
+                if mcg-code = spaces
+                   move "Tutti i gruppi" to mcg-desc
+                else
+                   read macrogroups no lock
+                        invalid           
+                        display message "Valore errato"
+                                  title tit-err
+                                   icon 2
+                        move spaces to mcg-desc   
+                        set errori to true
+                   end-read
+                end-if
+                move mcg-desc to lab-rep-buf
+                display lab-rep
+
+           when 78-ID-ef-gss   
+                inquire ef-gss, value in mcg-code
+                if mcg-code = spaces
+                   move "Tutti i gruppi" to mcg-desc
+                else
+                   read macrogroups no lock
+                        invalid       
+                        display message "Valore errato"
+                                  title tit-err
+                                   icon 2
+                        move spaces to mcg-desc  
+                        set errori to true
+                   end-read
+                end-if
+                move mcg-desc to lab-gss-buf
+                display lab-gss
+
+           when 78-ID-ef-mcg
+                inquire ef-mul, value in mcg-code
+                if mcg-code = spaces
+                   move "Tutti i gruppi" to mcg-desc
+                else
+                   read macrogroups no lock
+                        invalid     
+                        display message "Valore errato"
+                                  title tit-err
+                                   icon 2
+                        move spaces to mcg-desc    
+                        set errori to true
+                   end-read
+                end-if
+                move mcg-desc to lab-mcg-buf
+                display lab-mcg
+
+           end-evaluate.
+
+           if errori
+              move 4 to accept-control
+           end-if 
            .
       * <TOTEM:END>
 
@@ -9932,29 +10608,6 @@
            start tmp-exe key >= tex-key
                  invalid continue
              not invalid
-                 |Scrivo la testata
-                 accept como-data from century-date
-                 initialize wod-rec replacing numeric data by zeroes
-                                         alphanumeric data by spaces
-                 move como-code      to wod-code
-                 inquire ef-desc, value in ef-desc-buf
-                 move ef-desc-buf    to wod-desc
-                 move como-data(1:4) to wod-day
-                 move wom-code       to wod-wom-code 
-                 move wod-code to lab-code-buf
-                 move wod-desc to lab-desc-buf
-                 display lab-desc lab-code
-
-                 perform varying idx from 1 by 1 
-                           until idx > 20
-                    if el-mcg-code(idx) = spaces
-                       exit perform
-                    end-if             
-                    move el-mcg-code(idx) to wod-el-mcg-code(idx)
-                    move el-hit(idx)      to wod-el-hit(idx)
-                 end-perform
-
-                 write wod-rec
                  move 0 to como-giorno
                  perform until 1 = 2
                     read tmp-exe next at end exit perform end-read
@@ -9964,7 +10617,7 @@
                        evaluate tex-day
                        when 1 move ef-gg1-buf to como-data
                               perform DATE-TO-FILE
-                              move como-data to wod-day  
+                              move como-data to wod-day primo-giorno
                        when 2 move ef-gg2-buf to como-data
                               perform DATE-TO-FILE
                               move como-data to wod-day
@@ -10012,20 +10665,34 @@
                     compute riga = wod-prg-day * 2 + 1
                     modify gd-schema(riga, 12), cell-data como-data-x10
 
-                 end-perform
-                 
+                 end-perform   
+
+                 |Scrivo la testata
+                 accept como-data from century-date
                  initialize wod-rec replacing numeric data by zeroes
                                          alphanumeric data by spaces
-                 accept como-data from century-date
                  move como-code      to wod-code
-                 move como-data(1:4) to wod-day
-                 read wodbook
-                 delete wodbook record
-                 move tex-day        to wod-gg
-                 move tot-exe        to wod-tot-exe
+                 inquire ef-desc, value in ef-desc-buf
+                 move ef-desc-buf    to wod-desc
+                 move como-data      to wod-data-creazione
+                 move wom-code       to wod-wom-code 
                  move primo-giorno   to wod-day
-                 accept wod-data-creazione from century-date
-                 rewrite wod-rec
+                 move wod-code to lab-code-buf
+                 move wod-desc to lab-desc-buf
+                 display lab-desc lab-code
+                 move tot-exe        to wod-tot-exe
+                 move tex-day        to wod-gg
+
+                 perform varying idx from 1 by 1 
+                           until idx > 20
+                    if el-mcg-code(idx) = spaces
+                       exit perform
+                    end-if             
+                    move el-mcg-code(idx) to wod-el-mcg-code(idx)
+                    move el-hit(idx)      to wod-el-hit(idx)
+                 end-perform
+
+                 write wod-rec
 
                  perform CURRENT-RECORD     
 
@@ -10039,17 +10706,149 @@
 
        SEL-FILTRO.
       * <TOTEM:PARA. SEL-FILTRO>
-           move 0 to e-des e-dta e-dtc e-map e-exe e-mul e-rep e-gss.
+           move 0 to e-des e-dta e-dtc e-map e-exe e-mul e-rep e-gss 
+           e-mcg.
 
            evaluate tipo-filtro
-           when 2 move 1 to e-des
-           when 3 move 1 to e-dta
-           when 4 move 1 to e-dtc
-           when 5 move 1 to e-map
-           when 6 move 1 to e-exe
-           when 7 move 1 to e-mul
-           when 8 move 1 to e-rep
-           when 9 move 1 to e-gss
+           when 2 
+                move 1 to e-des
+                move spaces to ef-des-buf                    
+                               ef-dta-from-buf ef-dta-to-buf
+                               ef-dtc-from-buf ef-dtc-to-buf
+                               ef-exe-buf
+                               ef-mul-buf
+                               ef-rep-buf
+                               ef-gss-buf
+                               ef-mcg-buf
+                move 78-lab-tutti to lab-exe-buf
+                                     lab-mul-buf
+                                     lab-rep-buf
+                                     lab-gss-buf
+                                     lab-map-buf
+                                     lab-mcg-buf
+                move 0      to ef-map-buf
+           when 3 
+                move 1 to e-dta         
+                move spaces to ef-des-buf                    
+                               ef-dtc-from-buf ef-dtc-to-buf
+                               ef-exe-buf
+                               ef-mul-buf
+                               ef-rep-buf
+                               ef-gss-buf
+                               ef-mcg-buf
+                move 78-lab-tutti to lab-exe-buf
+                                     lab-mul-buf
+                                     lab-rep-buf
+                                     lab-gss-buf
+                                     lab-map-buf
+                                     lab-mcg-buf
+                move 0      to ef-map-buf
+           when 4 
+                move 1 to e-dtc         
+                move spaces to ef-des-buf                    
+                               ef-dta-from-buf ef-dta-to-buf
+                               ef-exe-buf
+                               ef-mul-buf
+                               ef-rep-buf
+                               ef-gss-buf   
+                               ef-mcg-buf
+                move 78-lab-tutti to lab-exe-buf
+                                     lab-mul-buf
+                                     lab-rep-buf
+                                     lab-gss-buf
+                                     lab-map-buf   
+                                     lab-mcg-buf
+                move 0      to ef-map-buf
+           when 5 
+                move 1 to e-map
+                move spaces to ef-des-buf                    
+                               ef-dta-from-buf ef-dta-to-buf
+                               ef-dtc-from-buf ef-dtc-to-buf
+                               ef-exe-buf
+                               ef-mul-buf
+                               ef-rep-buf
+                               ef-gss-buf   
+                               ef-mcg-buf
+                move 78-lab-tutti to lab-exe-buf
+                                     lab-mul-buf
+                                     lab-rep-buf
+                                     lab-gss-buf
+                                     lab-mcg-buf
+           when 6 
+                move 1 to e-exe
+                move spaces to ef-des-buf                    
+                               ef-dta-from-buf ef-dta-to-buf
+                               ef-dtc-from-buf ef-dtc-to-buf
+                               ef-mul-buf
+                               ef-rep-buf
+                               ef-gss-buf
+                               ef-mcg-buf
+                move 78-lab-tutti to lab-mul-buf
+                                     lab-rep-buf
+                                     lab-gss-buf
+                                     lab-map-buf
+                                     lab-mcg-buf
+                move 0      to ef-map-buf
+           when 7 
+                move 1 to e-mul      
+                move spaces to ef-des-buf                    
+                               ef-dta-from-buf ef-dta-to-buf
+                               ef-dtc-from-buf ef-dtc-to-buf
+                               ef-exe-buf
+                               ef-rep-buf
+                               ef-gss-buf
+                               ef-mcg-buf
+                move 78-lab-tutti to lab-exe-buf
+                                     lab-rep-buf
+                                     lab-gss-buf
+                                     lab-map-buf
+                                     lab-mcg-buf
+                move 0      to ef-map-buf
+           when 8 
+                move 1 to e-rep
+                move spaces to ef-des-buf                    
+                               ef-dta-from-buf ef-dta-to-buf
+                               ef-dtc-from-buf ef-dtc-to-buf
+                               ef-exe-buf
+                               ef-mul-buf
+                               ef-gss-buf
+                               ef-mcg-buf
+                move 78-lab-tutti to lab-exe-buf
+                                     lab-mul-buf
+                                     lab-gss-buf
+                                     lab-map-buf
+                                     lab-mcg-buf
+                move 0      to ef-map-buf
+           when 9 
+                move 1 to e-gss
+                move spaces to ef-des-buf                    
+                               ef-dta-from-buf ef-dta-to-buf
+                               ef-dtc-from-buf ef-dtc-to-buf
+                               ef-exe-buf
+                               ef-mul-buf
+                               ef-rep-buf
+                               ef-mcg-buf
+                move 78-lab-tutti to lab-exe-buf
+                                     lab-mul-buf
+                                     lab-rep-buf
+                                     lab-map-buf
+                                     lab-mcg-buf
+                move 0      to ef-map-buf
+           when 10
+                move 1 to e-mcg
+                move spaces to ef-des-buf                    
+                               ef-dta-from-buf ef-dta-to-buf
+                               ef-dtc-from-buf ef-dtc-to-buf
+                               ef-exe-buf
+                               ef-mul-buf
+                               ef-rep-buf
+                               ef-gss-buf
+                move 78-lab-tutti to lab-exe-buf
+                                     lab-mul-buf
+                                     lab-rep-buf
+                                     lab-map-buf
+                                     lab-gss-buf
+                move 0      to ef-map-buf
            end-evaluate.
 
            display scr-filtro 
@@ -10060,12 +10859,14 @@
       * <TOTEM:PARA. SELEZIONA>
            perform SCR-FILTRO-OPEN-ROUTINE.
 
-           move "wodbook"    to como-file.
-           call "zoom-gt" using como-file, wod-rec
-                         giving stato-zoom.
-           cancel "zoom-gt".
-           if stato-zoom = 0           
-              perform CURRENT-RECORD
+           if nessuna-scelta = 0
+              move "wodbook"    to como-file
+              call "zoom-gt" using como-file, wod-rec
+                            giving stato-zoom
+              cancel "zoom-gt"
+              if stato-zoom = 0           
+                 perform CURRENT-RECORD
+              end-if 
            end-if 
            .
       * <TOTEM:END>
@@ -11718,51 +12519,61 @@
        ef-des-AfterProcedure.
       * <TOTEM:PARA. ef-des-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        ef-dta-from-AfterProcedure.
       * <TOTEM:PARA. ef-dta-from-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        ef-dta-to-AfterProcedure.
       * <TOTEM:PARA. ef-dta-to-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        ef-dtc-from-AfterProcedure.
       * <TOTEM:PARA. ef-dtc-from-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        ef-dtc-to-AfterProcedure.
       * <TOTEM:PARA. ef-dtc-to-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        ef-map-AfterProcedure.
       * <TOTEM:PARA. ef-map-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        ef-exe-AfterProcedure.
       * <TOTEM:PARA. ef-exe-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        ef-mul-AfterProcedure.
       * <TOTEM:PARA. ef-mul-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        ef-rep-AfterProcedure.
       * <TOTEM:PARA. ef-rep-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        ef-gss-AfterProcedure.
       * <TOTEM:PARA. ef-gss-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        rb-tut-BeforeProcedure.
@@ -11828,6 +12639,7 @@
        rb-dtc-AfterProcedure.
       * <TOTEM:PARA. rb-dtc-AfterProcedure>
            modify control-handle, color = colore-or
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        rb-map-AfterProcedure.
@@ -11918,6 +12730,240 @@
        pb-cancel-f-AfterProcedure.
       * <TOTEM:PARA. pb-cancel-f-AfterProcedure>
            modify pb-cancel-f, bitmap-number = 1 
+           .
+      * <TOTEM:END>
+       pb-map-LinkTo.
+      * <TOTEM:PARA. pb-map-LinkTo>
+           move "wodmap"     to como-file.
+           call "zoom-gt" using como-file, wom-rec
+                         giving stato-zoom.
+           cancel "zoom-gt".
+           if stato-zoom = 0           
+              move wom-code to ef-map-buf
+              display ef-map
+              move wom-desc to lab-map-buf
+              display lab-map
+           end-if 
+           .
+      * <TOTEM:END>
+       pb-exe-LinkTo.
+      * <TOTEM:PARA. pb-exe-LinkTo>
+           move "exercises"  to como-file.
+           call "zoom-gt" using como-file, exe-rec
+                         giving stato-zoom.
+           cancel "zoom-gt".
+           if stato-zoom = 0           
+              move exe-code to ef-exe-buf
+              display ef-exe
+              move exe-desc to lab-exe-buf
+              display lab-exe
+           end-if 
+           .
+      * <TOTEM:END>
+       pb-mul-LinkTo.
+      * <TOTEM:PARA. pb-mul-LinkTo>
+           move "macrogroups"  to como-file.
+           call "zoom-gt" using como-file, mcg-rec
+                         giving stato-zoom.
+           cancel "zoom-gt".
+           if stato-zoom = 0           
+              move mcg-code to ef-mul-buf
+              display ef-mul
+              move mcg-desc to lab-mul-buf
+              display lab-mul
+           end-if 
+           .
+      * <TOTEM:END>
+       pb-rep-LinkTo.
+      * <TOTEM:PARA. pb-rep-LinkTo>
+           move "macrogroups"  to como-file.
+           call "zoom-gt" using como-file, mcg-rec
+                         giving stato-zoom.
+           cancel "zoom-gt".
+           if stato-zoom = 0           
+              move mcg-code to ef-rep-buf
+              display ef-rep
+              move mcg-desc to lab-rep-buf
+              display lab-rep
+           end-if 
+           .
+      * <TOTEM:END>
+       pb-gss-LinkTo.
+      * <TOTEM:PARA. pb-gss-LinkTo>
+           move "macrogroups"  to como-file.
+           call "zoom-gt" using como-file, mcg-rec
+                         giving stato-zoom.
+           cancel "zoom-gt".
+           if stato-zoom = 0           
+              move mcg-code to ef-gss-buf
+              display ef-gss
+              move mcg-desc to lab-gss-buf
+              display lab-gss
+           end-if 
+           .
+      * <TOTEM:END>
+       pb-mcg-LinkTo.
+      * <TOTEM:PARA. pb-mcg-LinkTo>
+           move "macrogroups"  to como-file.
+           call "zoom-gt" using como-file, mcg-rec
+                         giving stato-zoom.
+           cancel "zoom-gt".
+           if stato-zoom = 0           
+              move mcg-code to ef-mcg-buf
+              display ef-mcg
+              move mcg-desc to lab-mcg-buf
+              display lab-mcg
+           end-if 
+           .
+      * <TOTEM:END>
+       ef-mcg-BeforeProcedure.
+      * <TOTEM:PARA. ef-mcg-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-mcg-AfterProcedure.
+      * <TOTEM:PARA. ef-mcg-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       rb-mcg-BeforeProcedure.
+      * <TOTEM:PARA. rb-mcg-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-mcg-AfterProcedure.
+      * <TOTEM:PARA. rb-mcg-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       pb-ok-f-LinkTo.
+      * <TOTEM:PARA. pb-ok-f-LinkTo>
+           perform varying control-id from 78-ID-ef-des by 1
+                     until control-id > 78-ID-ef-mcg
+              perform CONTROLLO-FILTRO
+              if errori
+                 exit perform
+              end-if
+           end-perform.
+
+           if errori exit paragraph end-if.
+
+           accept como-data from century-date.
+           accept como-ora  from time
+           accept  path-zoom-wodbook from environment "PATH_ST".
+           inspect path-zoom-wodbook replacing trailing spaces by 
+           low-value.
+           string  path-zoom-wodbook delimited low-value
+                   "zoom-wodbook_"   delimited size
+                   como-data         delimited size
+                   "-"               delimited size
+                   como-ora          delimited size
+              into path-zoom-wodbook 
+           end-string.
+           open output zoom-wodbook.
+           close       zoom-wodbook.
+           open i-o    zoom-wodbook.
+
+           set tutto-ok to true.
+           move low-value to wod-rec.
+           evaluate tipo-filtro
+           when 1 
+                start wodbook key >= wod-key
+                      invalid set errori to true
+                end-start
+           when 2         
+                move ef-des-buf to wod-desc
+                start wodbook key >= wod-k-desc
+                      invalid set errori to true
+                end-start
+           when 3
+                move como-data-from to wod-day
+                start wodbook key >= wod-k-data
+                      invalid set errori to true
+                end-start
+           when 4        
+                move como-data-from to wod-data-creazione
+                start wodbook key >= wod-k-creazione
+                      invalid set errori to true
+                end-start
+           when 5
+                move ef-map-buf to wod-wom-code
+                start wodbook key >= wod-k-wom
+                      invalid set errori to true
+                end-start
+           when 6
+                move ef-exe-buf to wod-exe-code
+                start wodbook key >= wod-k-exe
+                      invalid set errori to true
+                end-start
+           when 7        
+                move ef-mul-buf to wod-mcg-code
+                move 1 to wod-exe-isMulti
+                start wodbook key >= wod-k-exe
+                      invalid set errori to true
+                end-start
+           when 8        
+                move ef-rep-buf to wod-mcg-code
+                move 1 to wod-int-restpause
+                start wodbook key >= wod-k-mcg-rp
+                      invalid set errori to true
+                end-start
+           when 9        
+                move ef-gss-buf to wod-mcg-code
+                move 1 to wod-ss
+                start wodbook key >= wod-k-mcg-ss
+                      invalid set errori to true
+                end-start
+           when 10       
+                move ef-mcg-buf to wod-mcg-code
+                start wodbook key >= wod-k-mcg
+                      invalid set errori to true
+                end-start
+           end-evaluate.
+
+           if tutto-ok
+              perform until 1 = 2
+                 read wodbook next at end exit perform end-read
+                 set record-ok to false
+                 evaluate tipo-filtro
+                 when 1 set record-ok to true
+                 when 2
+                 when 3
+                 when 4
+                 when 5
+                 when 6
+                 when 7
+                 when 8
+                 when 9
+                 when 10
+                 end-evaluate
+                 if record-ok  
+                    move wod-code           to zwod-code     
+                    inspect zwod-code replacing leading x"30" by x"20"
+                    call "C$JUSTIFY" using zwod-code, "L"
+                    move wod-desc           to zwod-desc
+                    move wod-data-creazione to zwod-creation 
+                    move wod-day            to zwod-ini      
+                    move wod-gg             to zwod-gg       
+                    move wod-tot-exe        to zwod-exe      
+                    write zwod-rec
+                 end-if
+              end-perform
+           end-if.
+
+           close       zoom-wodbook.
+           
+           move path-zoom-wodbook to ext-file
+           move "zoom-wodbook"    to Como-File
+           call   "zoom-gt"   using como-file, zwod-rec
+                             giving stato-zoom
+           cancel "zoom-gt".
+
+
+           delete file zoom-wodbook.
+
+           move  0 to nessuna-scelta.
+           move 27 to key-status 
            .
       * <TOTEM:END>
 

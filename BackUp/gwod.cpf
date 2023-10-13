@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7AC21168-881-1803021412
+PROGRAM_UNIQUE_CODE=TOTEM-7E7AD95443-282-3018115686
 
 {{@DESCRIPTION:
 
@@ -3006,6 +3006,205 @@ m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM298_WK
+
+@}}
+[FDITEM299_WK]
+m_strName=tipo-filtro
+m_strRawPic=S9(1)
+m_strPic=S9(1)
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM299_WK
+
+@}}
+[FDITEM300_WK]
+m_strName=e-des
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM300_WK
+
+@}}
+[FDITEM301_WK]
+m_strName=e-dta
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM301_WK
+
+@}}
+[FDITEM302_WK]
+m_strName=e-dtc
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM302_WK
+
+@}}
+[FDITEM303_WK]
+m_strName=e-map
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM303_WK
+
+@}}
+[FDITEM304_WK]
+m_strName=e-exe
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM304_WK
+
+@}}
+[FDITEM305_WK]
+m_strName=e-mul
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM305_WK
+
+@}}
+[FDITEM306_WK]
+m_strName=e-rep
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM306_WK
+
+@}}
+[FDITEM307_WK]
+m_strName=e-gss
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM307_WK
+
+@}}
+[FDITEM308_WK]
+m_strName=ef-gss-buf
+m_strRawPic=X(5)
+m_strPic=X(5)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM308_WK
+
+@}}
+[FDITEM309_WK]
+m_strName=ef-rep-buf
+m_strRawPic=X(5)
+m_strPic=X(5)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM309_WK
+
+@}}
+[FDITEM310_WK]
+m_strName=ef-mul-buf
+m_strRawPic=X(5)
+m_strPic=X(5)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM310_WK
+
+@}}
+[FDITEM311_WK]
+m_strName=ef-exe-buf
+m_strRawPic=X(5)
+m_strPic=X(5)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM311_WK
+
+@}}
+[FDITEM312_WK]
+m_strName=ef-map-buf
+m_strRawPic=9(3)
+m_strPic=9(3)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM312_WK
+
+@}}
+[FDITEM313_WK]
+m_strName=ef-dtc-from-buf
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM313_WK
+
+@}}
+[FDITEM314_WK]
+m_strName=ef-dtc-to-buf
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM314_WK
+
+@}}
+[FDITEM315_WK]
+m_strName=ef-dta-from-buf
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM315_WK
+
+@}}
+[FDITEM316_WK]
+m_strName=ef-dta-to-buf
+m_strRawPic=99/99/9999
+m_strPic=99/99/9999
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM316_WK
+
+@}}
+[FDITEM317_WK]
+m_strName=ef-des-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM317_WK
 
 @}}
 
@@ -6778,7 +6977,7 @@ End
 Begin Screen scr-filtro
    PREFIX            = Screen3
    IMPORTED-SCREEN   = FALSE
-   LOCK-CONTROL      = FALSE
+   LOCK-CONTROL      = TRUE
    LEVEL             = 1
    (Name)            = scr-filtro
    Absolute Column   = 0
@@ -6804,7 +7003,7 @@ Begin Screen scr-filtro
    Height in Cells   = TRUE
    Help ID           = 0
    Label Offset      = 20
-   Lines             = 15,73
+   Lines             = 19,19
    Link To Thread    = TRUE
    Max Lines         = 0,00
    Max Size          = 0,00
@@ -6815,7 +7014,7 @@ Begin Screen scr-filtro
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 44,27
+   Size              = 78,91
    System Menu       = FALSE
    Title Bar         = FALSE
    Unit              = Cells
@@ -6826,125 +7025,1123 @@ Begin Screen scr-filtro
    Window Type       = Floating
    Wrap              = FALSE
    Event Procedure   = scr-attesa-Event-Proc
-   Begin Label lab-attesaa
-      SCREEN-COL        = 13,73
-      SCREEN-LINE       = 4,27
+   Begin Frame Screen3-Fr-1
+      SCREEN-COL        = 2,73
+      SCREEN-LINE       = 1,50
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
-      (Name)            = lab-attesaa
+      (Name)            = Screen3-Fr-1
+      3D Style          = Engraved
+      Alternate         = FALSE
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 13,73
+      Column            = 2,73
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
-      Enable            = NONE
       Font              = Default Font
+      Full Height       = FALSE
       Height in Cells   = TRUE
       Help ID           = 0
-      ID                = 2
-      Justification     = Center
-      Label Offset      = 20
-      Line              = 4,27
-      Lines             = 1,08
+      High Color        = 0
+      ID                = 1
+      Line              = 1,50
+      Lines             = 16,27
       Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 18,73
+      Low Color         = 0
+      Size              = 75,45
       Size Unit         = Default
       Tab Order         = 1
-      Title Picture     = zzz.zzz9
-      Title Variable    = lab-attesa-buf
-      Transparent       = TRUE
+      Thickness         = Default
+      Title             = "Ricerca WOD per:"
+      Title Position    = 2:Top center
       Visible           = NONE
       Width in Cells    = TRUE
+      Begin Radio-Button rb-tut
+         SCREEN-COL        = 5,09
+         SCREEN-LINE       = 2,92
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = rb-tut
+         Bitmap Frame      = FALSE
+         Bitmap Number     = 1
+         Bitmap Square     = TRUE
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 0
+         Column            = 3,36
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Exception Value   = 1000
+         Flat              = TRUE
+         Font              = Default Font
+         Group             = 1
+         Group Value       = 1
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 4
+         Left Text         = FALSE
+         Line              = 2,42
+         Lines             = 1,23
+         Lines Unit        = Default
+         No Group Tab      = FALSE
+         No Tab            = FALSE
+         Notify            = TRUE
+         Occurs            = 0
+         Self Act          = FALSE
+         Size              = 21,00
+         Size Unit         = Default
+         Tab Order         = 1
+         Termination Value = 0
+         Title             = "Tutto"
+         Value             = 1
+         Value Picture     = S9(1)
+         Value Variable    = tipo-filtro
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = rb-tut-BeforeProcedure
+         After Procedure   = rb-tut-AfterProcedure
+         Link To           = rb-tut-LinkTo
+      End
+      Begin Radio-Button rb-des
+         SCREEN-COL        = 5,09
+         SCREEN-LINE       = 4,46
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = rb-des
+         Bitmap Frame      = FALSE
+         Bitmap Number     = 1
+         Bitmap Square     = TRUE
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 0
+         Column            = 3,36
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Exception Value   = 1001
+         Flat              = TRUE
+         Font              = Default Font
+         Group             = 1
+         Group Value       = 2
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 5
+         Left Text         = FALSE
+         Line              = 3,96
+         Lines             = 1,23
+         Lines Unit        = Default
+         No Group Tab      = FALSE
+         No Tab            = FALSE
+         Notify            = TRUE
+         Occurs            = 0
+         Self Act          = FALSE
+         Size              = 21,00
+         Size Unit         = Default
+         Tab Order         = 2
+         Termination Value = 0
+         Title             = "Descrizione"
+         Value             = 1
+         Value Variable    = tipo-filtro
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = rb-des-BeforeProcedure
+         After Procedure   = rb-des-AfterProcedure
+         Link To           = rb-des-LinkTo
+      End
+      Begin Entry-Field ef-des
+         SCREEN-COL        = 26,82
+         SCREEN-LINE       = 4,42
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = ef-des
+         Auto              = FALSE
+         Auto Decimal      = 0
+         Border            = Boxed
+         Case              = Mixed
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 513
+         Column            = 25,09
+         Csize             = 0
+         Csize Unit        = Default
+         Cursor            = 0
+         Cursor Col        = 0
+         Cursor Row        = 0
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Enable Variable   = e-des
+         Font              = Default Font
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 3
+         Justification     = Unaligned
+         Line              = 3,92
+         Lines             = 1,23
+         Lines Unit        = Default
+         Max Lines         = 0
+         Max Text          = 0
+         Max Value         = 0
+         Min Value         = 0
+         No AutoSel        = FALSE
+         No Tab            = FALSE
+         Notify Change     = FALSE
+         Numeric           = FALSE
+         Occurs            = 0
+         Read Only         = FALSE
+         Required          = FALSE
+         Secure            = FALSE
+         Size              = 50,00
+         Size Unit         = Default
+         Style             = Singleline
+         Tab Order         = 3
+         Use Return        = FALSE
+         Use Tab           = FALSE
+         Value Multiple    = FALSE
+         Value Picture     = X(100)
+         Value Variable    = ef-des-buf
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = ef-des-BeforeProcedure
+         After Procedure   = ef-des-AfterProcedure
+      End
+      Begin Radio-Button rb-dta
+         SCREEN-COL        = 5,09
+         SCREEN-LINE       = 6,00
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = rb-dta
+         Bitmap Frame      = FALSE
+         Bitmap Number     = 1
+         Bitmap Square     = TRUE
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 0
+         Column            = 3,36
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Exception Value   = 1002
+         Flat              = TRUE
+         Font              = Default Font
+         Group             = 1
+         Group Value       = 3
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 6
+         Left Text         = FALSE
+         Line              = 5,50
+         Lines             = 1,23
+         Lines Unit        = Default
+         No Group Tab      = FALSE
+         No Tab            = FALSE
+         Notify            = TRUE
+         Occurs            = 0
+         Self Act          = FALSE
+         Size              = 21,00
+         Size Unit         = Default
+         Tab Order         = 4
+         Termination Value = 0
+         Title             = "Data allenamento"
+         Value             = 1
+         Value Variable    = tipo-filtro
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = rb-dta-BeforeProcedure
+         After Procedure   = rb-dta-AfterProcedure
+         Link To           = rb-dta-LinkTo
+      End
+      Begin Entry-Field ef-dta-from
+         SCREEN-COL        = 26,82
+         SCREEN-LINE       = 5,96
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = ef-dta-from
+         Auto              = FALSE
+         Auto Decimal      = 0
+         Border            = Boxed
+         Case              = Mixed
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 513
+         Column            = 25,09
+         Csize             = 0
+         Csize Unit        = Default
+         Cursor            = 0
+         Cursor Col        = 0
+         Cursor Row        = 0
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Enable Variable   = e-dta
+         Font              = Default Font
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 7
+         Justification     = Unaligned
+         Line              = 5,46
+         Lines             = 1,23
+         Lines Unit        = Default
+         Max Lines         = 0
+         Max Text          = 0
+         Max Value         = 0
+         Min Value         = 0
+         No AutoSel        = FALSE
+         No Tab            = FALSE
+         Notify Change     = FALSE
+         Numeric           = FALSE
+         Occurs            = 0
+         Read Only         = FALSE
+         Required          = FALSE
+         Secure            = FALSE
+         Size              = 11,00
+         Size Unit         = Default
+         Style             = Singleline
+         Tab Order         = 5
+         Use Return        = FALSE
+         Use Tab           = FALSE
+         Value Multiple    = FALSE
+         Value Picture     = 99/99/9999
+         Value Variable    = ef-dta-from-buf
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = ef-dta-from-BeforeProcedure
+         After Procedure   = ef-dta-from-AfterProcedure
+      End
+      Begin Entry-Field ef-dta-to
+         SCREEN-COL        = 38,64
+         SCREEN-LINE       = 5,96
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = ef-dta-to
+         Auto              = FALSE
+         Auto Decimal      = 0
+         Border            = Boxed
+         Case              = Mixed
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 513
+         Column            = 36,91
+         Csize             = 0
+         Csize Unit        = Default
+         Cursor            = 0
+         Cursor Col        = 0
+         Cursor Row        = 0
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Enable Variable   = e-dta
+         Font              = Default Font
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 8
+         Justification     = Unaligned
+         Line              = 5,46
+         Lines             = 1,23
+         Lines Unit        = Default
+         Max Lines         = 0
+         Max Text          = 0
+         Max Value         = 0
+         Min Value         = 0
+         No AutoSel        = FALSE
+         No Tab            = FALSE
+         Notify Change     = FALSE
+         Numeric           = FALSE
+         Occurs            = 0
+         Read Only         = FALSE
+         Required          = FALSE
+         Secure            = FALSE
+         Size              = 11,00
+         Size Unit         = Default
+         Style             = Singleline
+         Tab Order         = 6
+         Use Return        = FALSE
+         Use Tab           = FALSE
+         Value Multiple    = FALSE
+         Value Picture     = 99/99/9999
+         Value Variable    = ef-dta-to-buf
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = ef-dta-to-BeforeProcedure
+         After Procedure   = ef-dta-to-AfterProcedure
+      End
+      Begin Radio-Button rb-dtc
+         SCREEN-COL        = 5,09
+         SCREEN-LINE       = 7,54
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = rb-dtc
+         Bitmap Frame      = FALSE
+         Bitmap Number     = 1
+         Bitmap Square     = TRUE
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 0
+         Column            = 3,36
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Exception Value   = 1003
+         Flat              = TRUE
+         Font              = Default Font
+         Group             = 1
+         Group Value       = 4
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 9
+         Left Text         = FALSE
+         Line              = 7,04
+         Lines             = 1,23
+         Lines Unit        = Default
+         No Group Tab      = FALSE
+         No Tab            = FALSE
+         Notify            = TRUE
+         Occurs            = 0
+         Self Act          = FALSE
+         Size              = 21,00
+         Size Unit         = Default
+         Tab Order         = 7
+         Termination Value = 0
+         Title             = "Data creazione"
+         Value             = 1
+         Value Variable    = tipo-filtro
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = rb-dtc-BeforeProcedure
+         After Procedure   = rb-dtc-AfterProcedure
+         Link To           = rb-dtc-LinkTo
+      End
+      Begin Entry-Field ef-dtc-from
+         SCREEN-COL        = 26,82
+         SCREEN-LINE       = 7,50
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = ef-dtc-from
+         Auto              = FALSE
+         Auto Decimal      = 0
+         Border            = Boxed
+         Case              = Mixed
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 513
+         Column            = 25,09
+         Csize             = 0
+         Csize Unit        = Default
+         Cursor            = 0
+         Cursor Col        = 0
+         Cursor Row        = 0
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Enable Variable   = e-dtc
+         Font              = Default Font
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 10
+         Justification     = Unaligned
+         Line              = 7,00
+         Lines             = 1,23
+         Lines Unit        = Default
+         Max Lines         = 0
+         Max Text          = 0
+         Max Value         = 0
+         Min Value         = 0
+         No AutoSel        = FALSE
+         No Tab            = FALSE
+         Notify Change     = FALSE
+         Numeric           = FALSE
+         Occurs            = 0
+         Read Only         = FALSE
+         Required          = FALSE
+         Secure            = FALSE
+         Size              = 11,00
+         Size Unit         = Default
+         Style             = Singleline
+         Tab Order         = 8
+         Use Return        = FALSE
+         Use Tab           = FALSE
+         Value Multiple    = FALSE
+         Value Picture     = 99/99/9999
+         Value Variable    = ef-dtc-from-buf
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = ef-dtc-from-BeforeProcedure
+         After Procedure   = ef-dtc-from-AfterProcedure
+      End
+      Begin Entry-Field ef-dtc-to
+         SCREEN-COL        = 38,64
+         SCREEN-LINE       = 7,50
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = ef-dtc-to
+         Auto              = FALSE
+         Auto Decimal      = 0
+         Border            = Boxed
+         Case              = Mixed
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 513
+         Column            = 36,91
+         Csize             = 0
+         Csize Unit        = Default
+         Cursor            = 0
+         Cursor Col        = 0
+         Cursor Row        = 0
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Enable Variable   = e-dtc
+         Font              = Default Font
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 11
+         Justification     = Unaligned
+         Line              = 7,00
+         Lines             = 1,23
+         Lines Unit        = Default
+         Max Lines         = 0
+         Max Text          = 0
+         Max Value         = 0
+         Min Value         = 0
+         No AutoSel        = FALSE
+         No Tab            = FALSE
+         Notify Change     = FALSE
+         Numeric           = FALSE
+         Occurs            = 0
+         Read Only         = FALSE
+         Required          = FALSE
+         Secure            = FALSE
+         Size              = 11,00
+         Size Unit         = Default
+         Style             = Singleline
+         Tab Order         = 9
+         Use Return        = FALSE
+         Use Tab           = FALSE
+         Value Multiple    = FALSE
+         Value Picture     = 99/99/9999
+         Value Variable    = ef-dtc-to-buf
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = ef-dtc-to-BeforeProcedure
+         After Procedure   = ef-dtc-to-AfterProcedure
+      End
+      Begin Radio-Button rb-map
+         SCREEN-COL        = 5,09
+         SCREEN-LINE       = 9,08
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = rb-map
+         Bitmap Frame      = FALSE
+         Bitmap Number     = 1
+         Bitmap Square     = TRUE
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 0
+         Column            = 3,36
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Exception Value   = 1004
+         Flat              = TRUE
+         Font              = Default Font
+         Group             = 1
+         Group Value       = 5
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 12
+         Left Text         = FALSE
+         Line              = 8,58
+         Lines             = 1,23
+         Lines Unit        = Default
+         No Group Tab      = FALSE
+         No Tab            = FALSE
+         Notify            = TRUE
+         Occurs            = 0
+         Self Act          = FALSE
+         Size              = 21,00
+         Size Unit         = Default
+         Tab Order         = 10
+         Termination Value = 0
+         Title             = "Mappatura"
+         Value             = 1
+         Value Variable    = tipo-filtro
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = rb-map-BeforeProcedure
+         After Procedure   = rb-map-AfterProcedure
+         Link To           = rb-map-LinkTo
+      End
+      Begin Entry-Field ef-map
+         SCREEN-COL        = 26,82
+         SCREEN-LINE       = 9,08
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = ef-map
+         Auto              = FALSE
+         Auto Decimal      = 0
+         Border            = Boxed
+         Case              = Mixed
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 513
+         Column            = 25,09
+         Csize             = 0
+         Csize Unit        = Default
+         Cursor            = 0
+         Cursor Col        = 0
+         Cursor Row        = 0
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Enable Variable   = e-map
+         Font              = Default Font
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 13
+         Justification     = Unaligned
+         Line              = 8,58
+         Lines             = 1,23
+         Lines Unit        = Default
+         Max Lines         = 0
+         Max Text          = 0
+         Max Value         = 0
+         Min Value         = 0
+         No AutoSel        = FALSE
+         No Tab            = FALSE
+         Notify Change     = FALSE
+         Numeric           = FALSE
+         Occurs            = 0
+         Read Only         = FALSE
+         Required          = FALSE
+         Secure            = FALSE
+         Size              = 11,00
+         Size Unit         = Default
+         Style             = Singleline
+         Tab Order         = 11
+         Use Return        = FALSE
+         Use Tab           = FALSE
+         Value Multiple    = FALSE
+         Value Picture     = 9(3)
+         Value Variable    = ef-map-buf
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = ef-map-BeforeProcedure
+         After Procedure   = ef-map-AfterProcedure
+      End
+      Begin Radio-Button rb-exe
+         SCREEN-COL        = 5,09
+         SCREEN-LINE       = 10,62
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = rb-exe
+         Bitmap Frame      = FALSE
+         Bitmap Number     = 1
+         Bitmap Square     = TRUE
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 0
+         Column            = 3,36
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Exception Value   = 1005
+         Flat              = TRUE
+         Font              = Default Font
+         Group             = 1
+         Group Value       = 6
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 14
+         Left Text         = FALSE
+         Line              = 10,12
+         Lines             = 1,23
+         Lines Unit        = Default
+         No Group Tab      = FALSE
+         No Tab            = FALSE
+         Notify            = TRUE
+         Occurs            = 0
+         Self Act          = FALSE
+         Size              = 21,00
+         Size Unit         = Default
+         Tab Order         = 12
+         Termination Value = 0
+         Title             = "Esercizio"
+         Value             = 1
+         Value Variable    = tipo-filtro
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = rb-exe-BeforeProcedure
+         After Procedure   = rb-exe-AfterProcedure
+         Link To           = rb-exe-LinkTo
+      End
+      Begin Entry-Field ef-exe
+         SCREEN-COL        = 26,82
+         SCREEN-LINE       = 10,62
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = ef-exe
+         Auto              = FALSE
+         Auto Decimal      = 0
+         Border            = Boxed
+         Case              = Mixed
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 513
+         Column            = 25,09
+         Csize             = 0
+         Csize Unit        = Default
+         Cursor            = 0
+         Cursor Col        = 0
+         Cursor Row        = 0
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Enable Variable   = e-exe
+         Font              = Default Font
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 15
+         Justification     = Unaligned
+         Line              = 10,12
+         Lines             = 1,23
+         Lines Unit        = Default
+         Max Lines         = 0
+         Max Text          = 0
+         Max Value         = 0
+         Min Value         = 0
+         No AutoSel        = FALSE
+         No Tab            = FALSE
+         Notify Change     = FALSE
+         Numeric           = FALSE
+         Occurs            = 0
+         Read Only         = FALSE
+         Required          = FALSE
+         Secure            = FALSE
+         Size              = 11,00
+         Size Unit         = Default
+         Style             = Singleline
+         Tab Order         = 13
+         Use Return        = FALSE
+         Use Tab           = FALSE
+         Value Multiple    = FALSE
+         Value Picture     = X(5)
+         Value Variable    = ef-exe-buf
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = ef-exe-BeforeProcedure
+         After Procedure   = ef-exe-AfterProcedure
+      End
+      Begin Radio-Button rb-mul
+         SCREEN-COL        = 5,09
+         SCREEN-LINE       = 12,15
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = rb-mul
+         Bitmap Frame      = FALSE
+         Bitmap Number     = 1
+         Bitmap Square     = TRUE
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 0
+         Column            = 3,36
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Exception Value   = 1006
+         Flat              = TRUE
+         Font              = Default Font
+         Group             = 1
+         Group Value       = 7
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 16
+         Left Text         = FALSE
+         Line              = 11,65
+         Lines             = 1,23
+         Lines Unit        = Default
+         No Group Tab      = FALSE
+         No Tab            = FALSE
+         Notify            = TRUE
+         Occurs            = 0
+         Self Act          = FALSE
+         Size              = 21,00
+         Size Unit         = Default
+         Tab Order         = 14
+         Termination Value = 0
+         Title             = "Gruppo / Multiarticolare"
+         Value             = 1
+         Value Variable    = tipo-filtro
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = rb-mul-BeforeProcedure
+         After Procedure   = rb-mul-AfterProcedure
+         Link To           = rb-mul-LinkTo
+      End
+      Begin Entry-Field ef-mul
+         SCREEN-COL        = 26,82
+         SCREEN-LINE       = 12,15
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = ef-mul
+         Auto              = FALSE
+         Auto Decimal      = 0
+         Border            = Boxed
+         Case              = Mixed
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 513
+         Column            = 25,09
+         Csize             = 0
+         Csize Unit        = Default
+         Cursor            = 0
+         Cursor Col        = 0
+         Cursor Row        = 0
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Enable Variable   = e-mul
+         Font              = Default Font
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 17
+         Justification     = Unaligned
+         Line              = 11,65
+         Lines             = 1,23
+         Lines Unit        = Default
+         Max Lines         = 0
+         Max Text          = 0
+         Max Value         = 0
+         Min Value         = 0
+         No AutoSel        = FALSE
+         No Tab            = FALSE
+         Notify Change     = FALSE
+         Numeric           = FALSE
+         Occurs            = 0
+         Read Only         = FALSE
+         Required          = FALSE
+         Secure            = FALSE
+         Size              = 11,00
+         Size Unit         = Default
+         Style             = Singleline
+         Tab Order         = 15
+         Use Return        = FALSE
+         Use Tab           = FALSE
+         Value Multiple    = FALSE
+         Value Picture     = X(5)
+         Value Variable    = ef-mul-buf
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = ef-mul-BeforeProcedure
+         After Procedure   = ef-mul-AfterProcedure
+      End
+      Begin Radio-Button rb-rep
+         SCREEN-COL        = 5,09
+         SCREEN-LINE       = 13,69
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = rb-rep
+         Bitmap Frame      = FALSE
+         Bitmap Number     = 1
+         Bitmap Square     = TRUE
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 0
+         Column            = 3,36
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Exception Value   = 1007
+         Flat              = TRUE
+         Font              = Default Font
+         Group             = 1
+         Group Value       = 8
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 18
+         Left Text         = FALSE
+         Line              = 13,19
+         Lines             = 1,23
+         Lines Unit        = Default
+         No Group Tab      = FALSE
+         No Tab            = FALSE
+         Notify            = TRUE
+         Occurs            = 0
+         Self Act          = FALSE
+         Size              = 21,00
+         Size Unit         = Default
+         Tab Order         = 16
+         Termination Value = 0
+         Title             = "Gruppo / rest pause"
+         Value             = 1
+         Value Variable    = tipo-filtro
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = rb-rep-BeforeProcedure
+         After Procedure   = rb-rep-AfterProcedure
+         Link To           = rb-rep-LinkTo
+      End
+      Begin Entry-Field ef-rep
+         SCREEN-COL        = 26,82
+         SCREEN-LINE       = 13,69
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = ef-rep
+         Auto              = FALSE
+         Auto Decimal      = 0
+         Border            = Boxed
+         Case              = Mixed
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 513
+         Column            = 25,09
+         Csize             = 0
+         Csize Unit        = Default
+         Cursor            = 0
+         Cursor Col        = 0
+         Cursor Row        = 0
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Enable Variable   = e-rep
+         Font              = Default Font
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 19
+         Justification     = Unaligned
+         Line              = 13,19
+         Lines             = 1,23
+         Lines Unit        = Default
+         Max Lines         = 0
+         Max Text          = 0
+         Max Value         = 0
+         Min Value         = 0
+         No AutoSel        = FALSE
+         No Tab            = FALSE
+         Notify Change     = FALSE
+         Numeric           = FALSE
+         Occurs            = 0
+         Read Only         = FALSE
+         Required          = FALSE
+         Secure            = FALSE
+         Size              = 11,00
+         Size Unit         = Default
+         Style             = Singleline
+         Tab Order         = 17
+         Use Return        = FALSE
+         Use Tab           = FALSE
+         Value Multiple    = FALSE
+         Value Picture     = X(5)
+         Value Variable    = ef-rep-buf
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = ef-rep-BeforeProcedure
+         After Procedure   = ef-rep-AfterProcedure
+      End
+      Begin Radio-Button rb-gss
+         SCREEN-COL        = 5,09
+         SCREEN-LINE       = 15,23
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = rb-gss
+         Bitmap Frame      = FALSE
+         Bitmap Number     = 1
+         Bitmap Square     = TRUE
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 0
+         Column            = 3,36
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Exception Value   = 1008
+         Flat              = TRUE
+         Font              = Default Font
+         Group             = 1
+         Group Value       = 9
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 20
+         Left Text         = FALSE
+         Line              = 14,73
+         Lines             = 1,23
+         Lines Unit        = Default
+         No Group Tab      = FALSE
+         No Tab            = FALSE
+         Notify            = TRUE
+         Occurs            = 0
+         Self Act          = FALSE
+         Size              = 21,00
+         Size Unit         = Default
+         Tab Order         = 18
+         Termination Value = 0
+         Title             = "Gruppo / super set"
+         Value             = 1
+         Value Picture     = S9(1)
+         Value Variable    = tipo-filtro
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = rb-gss-BeforeProcedure
+         After Procedure   = rb-gss-AfterProcedure
+         Link To           = rb-gss-LinkTo
+      End
+      Begin Entry-Field ef-gss
+         SCREEN-COL        = 26,82
+         SCREEN-LINE       = 15,23
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = ef-gss
+         Auto              = FALSE
+         Auto Decimal      = 0
+         Border            = Boxed
+         Case              = Mixed
+         Clines            = 0
+         Clines Unit       = Default
+         Color             = 513
+         Column            = 25,09
+         Csize             = 0
+         Csize Unit        = Default
+         Cursor            = 0
+         Cursor Col        = 0
+         Cursor Row        = 0
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Enable Variable   = e-gss
+         Font              = Default Font
+         Height in Cells   = TRUE
+         Help ID           = 0
+         ID                = 21
+         Justification     = Unaligned
+         Line              = 14,73
+         Lines             = 1,23
+         Lines Unit        = Default
+         Max Lines         = 0
+         Max Text          = 0
+         Max Value         = 0
+         Min Value         = 0
+         No AutoSel        = FALSE
+         No Tab            = FALSE
+         Notify Change     = FALSE
+         Numeric           = FALSE
+         Occurs            = 0
+         Read Only         = FALSE
+         Required          = FALSE
+         Secure            = FALSE
+         Size              = 11,00
+         Size Unit         = Default
+         Style             = Singleline
+         Tab Order         = 19
+         Use Return        = FALSE
+         Use Tab           = FALSE
+         Value Multiple    = FALSE
+         Value Picture     = X(5)
+         Value Variable    = ef-gss-buf
+         Visible           = NONE
+         Width in Cells    = TRUE
+         Before Procedure  = ef-gss-BeforeProcedure
+         After Procedure   = ef-gss-AfterProcedure
+      End
    End
-   Begin Label Screen3-La-1
-      SCREEN-COL        = 2,45
-      SCREEN-LINE       = 1,19
-      LOCK-CONTROL      = FALSE
+   Begin Push-Button pb-ok-f
+      SCREEN-COL        = 33,18
+      SCREEN-LINE       = 18,23
+      LOCK-CONTROL      = TRUE
       LEVEL             = 5
-      (Name)            = Screen3-La-1
+      (Name)            = pb-ok-f
+      Bitmap            = "..\RESOURCE\BOTTONE-OK.BMP"
+      Bitmap Frame      = FALSE
+      Bitmap Handle     = BOTTONE-OK-BMP
+      Bitmap Number     = 1
+      Bitmap Square     = FALSE
       Clines            = 0
       Clines Unit       = Default
-      Color             = 0
-      Column            = 2,45
+      Column            = 33,18
+      Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
       Enable            = NONE
-      Font              = Default Font
-      Height in Cells   = TRUE
-      Help ID           = 0
-      ID                = 1
-      Justification     = Unaligned
-      Label Offset      = 20
-      Line              = 1,19
-      Lines             = 2,08
-      Lines Unit        = Default
-      No Key Letter     = FALSE
-      Occurs            = 0
-      Size              = 9,45
-      Size Unit         = Default
-      Tab Order         = 2
-      Title             = "Ricerca per esercizio"
-      Transparent       = TRUE
-      Visible           = NONE
-      Width in Cells    = TRUE
-   End
-   Begin Entry-Field Screen3-Ef-1
-      SCREEN-COL        = 13,27
-      SCREEN-LINE       = 4,23
-      LOCK-CONTROL      = FALSE
-      LEVEL             = 5
-      (Name)            = Screen3-Ef-1
-      Auto              = FALSE
-      Auto Decimal      = 0
-      Border            = Boxed
-      Case              = Mixed
-      Clines            = 0
-      Clines Unit       = Default
-      Color             = 513
-      Column            = 13,27
-      Csize             = 0
-      Csize Unit        = Default
-      Cursor            = 0
-      Cursor Col        = 0
-      Cursor Row        = 0
-      Destroy Type      = Automatic
-      Enable            = NONE
-      Font              = Default Font
+      Exception Value   = 0
+      Flat              = TRUE
+      Font              = Small Font
+      Font Variable     = Small-Font
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 3
-      Justification     = Unaligned
-      Line              = 4,23
-      Lines             = 1,54
+      Line              = 18,23
+      Lines             = 1,42
+      Lines in Pixels   = 30
       Lines Unit        = Default
-      Max Lines         = 0
-      Max Text          = 0
-      Max Value         = 0
-      Min Value         = 0
-      No AutoSel        = FALSE
+      No Auto Default   = FALSE
       No Tab            = FALSE
-      Notify Change     = FALSE
-      Numeric           = FALSE
       Occurs            = 0
-      Read Only         = FALSE
-      Required          = FALSE
-      Secure            = FALSE
-      Size              = 9,55
-      Size Unit         = Default
-      Style             = Singleline
-      Tab Order         = 3
-      Use Return        = FALSE
-      Use Tab           = FALSE
-      Value Multiple    = FALSE
+      Self Act          = FALSE
+      Size              = 7,36
+      Size in Pixels    = 73
+      Size Unit         = Pixels
+      Style             = Other
+      Tab Order         = 2
+      Termination Value = 0
       Visible           = NONE
       Width in Cells    = TRUE
-      Before Procedure  = Screen3-Ef-1-BeforeProcedure
-      After Procedure   = Screen3-Ef-1-AfterProcedure
+      Before Procedure  = pb-ok-f-BeforeProcedure
+      After Procedure   = pb-ok-f-AfterProcedure
+   End
+   Begin Push-Button pb-cancel-f
+      SCREEN-COL        = 40,36
+      SCREEN-LINE       = 18,23
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = pb-cancel-f
+      Bitmap            = "..\RESOURCE\BOTTONE-ANNULLA.BMP"
+      Bitmap Frame      = FALSE
+      Bitmap Handle     = BOTTONE-ANNULLA-BMP
+      Bitmap Number     = 1
+      Bitmap Square     = FALSE
+      Clines            = 0
+      Clines Unit       = Default
+      Column            = 40,36
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = NONE
+      Exception Value   = 27
+      Flat              = TRUE
+      Font              = Small Font
+      Font Variable     = Small-Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 18
+      Line              = 18,23
+      Lines             = 1,42
+      Lines in Pixels   = 30
+      Lines Unit        = Default
+      No Auto Default   = FALSE
+      No Tab            = FALSE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 7,36
+      Size in Pixels    = 73
+      Size Unit         = Pixels
+      Style             = Escape Button
+      Tab Order         = 3
+      Termination Value = 0
+      Visible           = NONE
+      Width in Cells    = TRUE
+      Before Procedure  = pb-cancel-f-BeforeProcedure
+      After Procedure   = pb-cancel-f-AfterProcedure
    End
 End
 
@@ -7343,6 +8540,19 @@ BEGIN-DATA
    ENTRYPOINT        = AfterDisplay
 BEGIN-TEXT
       *<<** Customized_Default, SP-G, Screen1-blockpgm-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 1
+   NODESTYLE         = 2
+   PARENT            = scr-filtro
+   ACTOBJ            = scr-filtro
+   TEXTMODE          = 0
+   ENTRYPOINT        = BeforeAccept
+BEGIN-TEXT
+           move 0 to e-des e-dta e-dtc e-map e-exe e-mul e-rep e-gss.
+           move 1 to tipo-filtro.
+           display scr-filtro.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -10221,8 +11431,30 @@ END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 3
+   PARAGRAPH         = SEL-FILTRO
+BEGIN-TEXT
+           move 0 to e-des e-dta e-dtc e-map e-exe e-mul e-rep e-gss.
+
+           evaluate tipo-filtro
+           when 2 move 1 to e-des
+           when 3 move 1 to e-dta
+           when 4 move 1 to e-dtc
+           when 5 move 1 to e-map
+           when 6 move 1 to e-exe
+           when 7 move 1 to e-mul
+           when 8 move 1 to e-rep
+           when 9 move 1 to e-gss
+           end-evaluate.
+
+           display scr-filtro.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
    PARAGRAPH         = SELEZIONA
 BEGIN-TEXT
+           perform SCR-FILTRO-OPEN-ROUTINE.
+
            move "wodbook"    to como-file.
            call "zoom-gt" using como-file, wod-rec
                          giving stato-zoom.
@@ -11978,16 +13210,359 @@ END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
-   PARAGRAPH         = Screen3-Ef-1-BeforeProcedure
+   PARAGRAPH         = ef-des-BeforeProcedure
 BEGIN-TEXT
       *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
 END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 2
-   PARAGRAPH         = Screen3-Ef-1-AfterProcedure
+   PARAGRAPH         = ef-dta-from-BeforeProcedure
 BEGIN-TEXT
       *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-dta-to-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-dtc-from-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-dtc-to-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-map-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-exe-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-mul-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-rep-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gss-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-des-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-dta-from-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-dta-to-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-dtc-from-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-dtc-to-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-map-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-exe-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-mul-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-rep-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = ef-gss-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-tut-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-des-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-dta-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-dtc-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-map-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-exe-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-mul-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-rep-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-gss-BeforeProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-tut-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-des-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-dta-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-dtc-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-map-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-exe-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-mul-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-rep-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-gss-AfterProcedure
+BEGIN-TEXT
+      *<<** Customized_Default, SP-G, Screen1-Custom1-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-tut-LinkTo
+BEGIN-TEXT
+           perform SEL-FILTRO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-des-LinkTo
+BEGIN-TEXT
+           perform SEL-FILTRO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-dta-LinkTo
+BEGIN-TEXT
+           perform SEL-FILTRO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-dtc-LinkTo
+BEGIN-TEXT
+           perform SEL-FILTRO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-map-LinkTo
+BEGIN-TEXT
+           perform SEL-FILTRO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-exe-LinkTo
+BEGIN-TEXT
+           perform SEL-FILTRO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-mul-LinkTo
+BEGIN-TEXT
+           perform SEL-FILTRO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-rep-LinkTo
+BEGIN-TEXT
+           perform SEL-FILTRO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = rb-gss-LinkTo
+BEGIN-TEXT
+           perform SEL-FILTRO.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-ok-f-BeforeProcedure
+BEGIN-TEXT
+           modify pb-ok-f, bitmap-number = 2.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-ok-f-AfterProcedure
+BEGIN-TEXT
+           modify pb-ok-f, bitmap-number = 1.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-cancel-f-BeforeProcedure
+BEGIN-TEXT
+           modify pb-cancel-f, bitmap-number = 2.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-cancel-f-AfterProcedure
+BEGIN-TEXT
+           modify pb-cancel-f, bitmap-number = 1.
 END-TEXT
 END-DATA
 

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 12 ottobre 2023 23:45:52.
+       DATE-WRITTEN.        venerdì 13 ottobre 2023 12:02:10.
        REMARKS.
       *{TOTEM}END
 
@@ -474,6 +474,34 @@
                   VALUE IS 0.
        77 scr-filtro-handle
                   USAGE IS HANDLE OF WINDOW.
+       77 tipo-filtro      PIC  S9(1)
+                  VALUE IS 1.
+       77 e-des            PIC  9
+                  VALUE IS 1.
+       77 e-dta            PIC  9
+                  VALUE IS 1.
+       77 e-dtc            PIC  9
+                  VALUE IS 1.
+       77 e-map            PIC  9
+                  VALUE IS 1.
+       77 e-exe            PIC  9
+                  VALUE IS 1.
+       77 e-mul            PIC  9
+                  VALUE IS 1.
+       77 e-rep            PIC  9
+                  VALUE IS 1.
+       77 e-gss            PIC  9
+                  VALUE IS 1.
+       77 ef-gss-buf       PIC  X(5).
+       77 ef-rep-buf       PIC  X(5).
+       77 ef-mul-buf       PIC  X(5).
+       77 ef-exe-buf       PIC  X(5).
+       77 ef-map-buf       PIC  9(3).
+       77 ef-dtc-from-buf  PIC  99/99/9999.
+       77 ef-dtc-to-buf    PIC  99/99/9999.
+       77 ef-dta-from-buf  PIC  99/99/9999.
+       77 ef-dta-to-buf    PIC  99/99/9999.
+       77 ef-des-buf       PIC  X(100).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -2152,52 +2180,441 @@
            scr-filtro, 
            .
 
-      * LABEL
+      * FRAME
        05
-           lab-attesaa, 
-           Label, 
-           COL 13,73, 
-           LINE 4,27,
-           LINES 1,08 ,
-           SIZE 18,73 ,
-           ID IS 2,
-           HEIGHT-IN-CELLS,
-           WIDTH-IN-CELLS,
-           CENTER,
-           TRANSPARENT,
-           TITLE lab-attesa-buf,
-           .
-
-      * LABEL
-       05
-           Screen3-La-1, 
-           Label, 
-           COL 2,45, 
-           LINE 1,19,
-           LINES 2,08 ,
-           SIZE 9,45 ,
+           Screen3-Fr-1, 
+           Frame, 
+           COL 2,73, 
+           LINE 1,50,
+           LINES 16,27 ,
+           SIZE 75,45 ,
+           ENGRAVED,
            ID IS 1,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           TRANSPARENT,
-           TITLE "Ricerca per esercizio",
+           TITLE "Ricerca WOD per:",
+           TITLE-POSITION 2,
+           .
+
+      * RADIO BUTTON
+       05
+           rb-tut, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 2,92,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 1,
+           ID IS 4,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Tutto",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-tut-AfterProcedure, 
+           BEFORE PROCEDURE rb-tut-BeforeProcedure, 
+           .
+      * RADIO BUTTON
+       05
+           rb-des, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 4,46,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1001
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 2,
+           ID IS 5,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Descrizione",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-des-AfterProcedure, 
+           BEFORE PROCEDURE rb-des-BeforeProcedure, 
+           .
+      * ENTRY FIELD
+       05
+           ef-des, 
+           Entry-Field, 
+           COL 26,82, 
+           LINE 4,42,
+           LINES 1,23 ,
+           SIZE 50,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-des,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-des-buf,
+           AFTER PROCEDURE ef-des-AfterProcedure, 
+           BEFORE PROCEDURE ef-des-BeforeProcedure, 
+           .
+
+      * RADIO BUTTON
+       05
+           rb-dta, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 6,00,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1002
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 3,
+           ID IS 6,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Data allenamento",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-dta-AfterProcedure, 
+           BEFORE PROCEDURE rb-dta-BeforeProcedure, 
+           .
+      * ENTRY FIELD
+       05
+           ef-dta-from, 
+           Entry-Field, 
+           COL 26,82, 
+           LINE 5,96,
+           LINES 1,23 ,
+           SIZE 11,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-dta,
+           ID IS 7,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-dta-from-buf,
+           AFTER PROCEDURE ef-dta-from-AfterProcedure, 
+           BEFORE PROCEDURE ef-dta-from-BeforeProcedure, 
            .
 
       * ENTRY FIELD
        05
-           Screen3-Ef-1, 
+           ef-dta-to, 
            Entry-Field, 
-           COL 13,27, 
-           LINE 4,23,
-           LINES 1,54 ,
-           SIZE 9,55 ,
+           COL 38,64, 
+           LINE 5,96,
+           LINES 1,23 ,
+           SIZE 11,00 ,
            BOXED,
            COLOR IS 513,
+           ENABLED e-dta,
+           ID IS 8,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-dta-to-buf,
+           AFTER PROCEDURE ef-dta-to-AfterProcedure, 
+           BEFORE PROCEDURE ef-dta-to-BeforeProcedure, 
+           .
+
+      * RADIO BUTTON
+       05
+           rb-dtc, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 7,54,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1003
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 4,
+           ID IS 9,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Data creazione",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-dtc-AfterProcedure, 
+           BEFORE PROCEDURE rb-dtc-BeforeProcedure, 
+           .
+      * ENTRY FIELD
+       05
+           ef-dtc-from, 
+           Entry-Field, 
+           COL 26,82, 
+           LINE 7,50,
+           LINES 1,23 ,
+           SIZE 11,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-dtc,
+           ID IS 10,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-dtc-from-buf,
+           AFTER PROCEDURE ef-dtc-from-AfterProcedure, 
+           BEFORE PROCEDURE ef-dtc-from-BeforeProcedure, 
+           .
+
+      * ENTRY FIELD
+       05
+           ef-dtc-to, 
+           Entry-Field, 
+           COL 38,64, 
+           LINE 7,50,
+           LINES 1,23 ,
+           SIZE 11,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-dtc,
+           ID IS 11,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-dtc-to-buf,
+           AFTER PROCEDURE ef-dtc-to-AfterProcedure, 
+           BEFORE PROCEDURE ef-dtc-to-BeforeProcedure, 
+           .
+
+      * RADIO BUTTON
+       05
+           rb-map, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 9,08,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1004
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 5,
+           ID IS 12,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Mappatura",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-map-AfterProcedure, 
+           BEFORE PROCEDURE rb-map-BeforeProcedure, 
+           .
+      * ENTRY FIELD
+       05
+           ef-map, 
+           Entry-Field, 
+           COL 26,82, 
+           LINE 9,08,
+           LINES 1,23 ,
+           SIZE 11,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-map,
+           ID IS 13,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-map-buf,
+           AFTER PROCEDURE ef-map-AfterProcedure, 
+           BEFORE PROCEDURE ef-map-BeforeProcedure, 
+           .
+
+      * RADIO BUTTON
+       05
+           rb-exe, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 10,62,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1005
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 6,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Esercizio",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-exe-AfterProcedure, 
+           BEFORE PROCEDURE rb-exe-BeforeProcedure, 
+           .
+      * ENTRY FIELD
+       05
+           ef-exe, 
+           Entry-Field, 
+           COL 26,82, 
+           LINE 10,62,
+           LINES 1,23 ,
+           SIZE 11,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-exe,
+           ID IS 15,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-exe-buf,
+           AFTER PROCEDURE ef-exe-AfterProcedure, 
+           BEFORE PROCEDURE ef-exe-BeforeProcedure, 
+           .
+
+      * RADIO BUTTON
+       05
+           rb-mul, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 12,15,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1006
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 7,
+           ID IS 16,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Gruppo / Multiarticolare",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-mul-AfterProcedure, 
+           BEFORE PROCEDURE rb-mul-BeforeProcedure, 
+           .
+      * ENTRY FIELD
+       05
+           ef-mul, 
+           Entry-Field, 
+           COL 26,82, 
+           LINE 12,15,
+           LINES 1,23 ,
+           SIZE 11,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-mul,
+           ID IS 17,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-mul-buf,
+           AFTER PROCEDURE ef-mul-AfterProcedure, 
+           BEFORE PROCEDURE ef-mul-BeforeProcedure, 
+           .
+
+      * RADIO BUTTON
+       05
+           rb-rep, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 13,69,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1007
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 8,
+           ID IS 18,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Gruppo / rest pause",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-rep-AfterProcedure, 
+           BEFORE PROCEDURE rb-rep-BeforeProcedure, 
+           .
+      * ENTRY FIELD
+       05
+           ef-rep, 
+           Entry-Field, 
+           COL 26,82, 
+           LINE 13,69,
+           LINES 1,23 ,
+           SIZE 11,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-rep,
+           ID IS 19,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-rep-buf,
+           AFTER PROCEDURE ef-rep-AfterProcedure, 
+           BEFORE PROCEDURE ef-rep-BeforeProcedure, 
+           .
+
+      * RADIO BUTTON
+       05
+           rb-gss, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 15,23,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1008
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 9,
+           ID IS 20,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Gruppo / super set",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-gss-AfterProcedure, 
+           BEFORE PROCEDURE rb-gss-BeforeProcedure, 
+           .
+      * ENTRY FIELD
+       05
+           ef-gss, 
+           Entry-Field, 
+           COL 26,82, 
+           LINE 15,23,
+           LINES 1,23 ,
+           SIZE 11,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-gss,
+           ID IS 21,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-gss-buf,
+           AFTER PROCEDURE ef-gss-AfterProcedure, 
+           BEFORE PROCEDURE ef-gss-BeforeProcedure, 
+           .
+
+      * PUSH BUTTON
+       05
+           pb-ok-f, 
+           Push-Button, 
+           COL 33,18, 
+           LINE 18,23,
+           LINES 1,42 ,
+           SIZE 81 PIXELS,
+           BITMAP-HANDLE BOTTONE-OK-BMP,
+           BITMAP-NUMBER 1,
+           UNFRAMED,
+           FLAT,
+           FONT IS Small-Font,
            ID IS 3,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           AFTER PROCEDURE Screen3-Ef-1-AfterProcedure, 
-           BEFORE PROCEDURE Screen3-Ef-1-BeforeProcedure, 
+           AFTER PROCEDURE pb-ok-f-AfterProcedure, 
+           BEFORE PROCEDURE pb-ok-f-BeforeProcedure, 
+           .
+
+      * PUSH BUTTON
+       05
+           pb-cancel-f, 
+           Push-Button, 
+           COL 40,36, 
+           LINE 18,23,
+           LINES 1,42 ,
+           SIZE 81 PIXELS,
+           BITMAP-HANDLE BOTTONE-ANNULLA-BMP,
+           BITMAP-NUMBER 1,
+           UNFRAMED,
+           EXCEPTION-VALUE 27,
+           FLAT,
+           FONT IS Small-Font,
+           ID IS 18,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           ESCAPE-BUTTON,
+           AFTER PROCEDURE pb-cancel-f-AfterProcedure, 
+           BEFORE PROCEDURE pb-cancel-f-BeforeProcedure, 
            .
 
       *{TOTEM}END
@@ -6458,8 +6875,8 @@
 
        scr-filtro-Create-Win.
            Display Floating GRAPHICAL WINDOW
-              LINES 15,73,
-              SIZE 44,27,
+              LINES 19,19,
+              SIZE 78,91,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -6482,6 +6899,11 @@
 
        scr-filtro-PROC.
       * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, BeforeAccept>
+           move 0 to e-des e-dta e-dtc e-map e-exe e-mul e-rep e-gss.
+           move 1 to tipo-filtro.
+           display scr-filtro.
+
+           .
       * <TOTEM:END>
            PERFORM UNTIL Exit-Pushed
               ACCEPT scr-filtro
@@ -6508,6 +6930,24 @@
                  IF Event-Type = Cmd-Close
                     PERFORM scr-filtro-Exit
                  END-IF
+              WHEN Key-Status = 1000
+                 PERFORM rb-tut-LinkTo
+              WHEN Key-Status = 1001
+                 PERFORM rb-des-LinkTo
+              WHEN Key-Status = 1002
+                 PERFORM rb-dta-LinkTo
+              WHEN Key-Status = 1003
+                 PERFORM rb-dtc-LinkTo
+              WHEN Key-Status = 1004
+                 PERFORM rb-map-LinkTo
+              WHEN Key-Status = 1005
+                 PERFORM rb-exe-LinkTo
+              WHEN Key-Status = 1006
+                 PERFORM rb-mul-LinkTo
+              WHEN Key-Status = 1007
+                 PERFORM rb-rep-LinkTo
+              WHEN Key-Status = 1008
+                 PERFORM rb-gss-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -9597,8 +10037,29 @@
            .
       * <TOTEM:END>
 
+       SEL-FILTRO.
+      * <TOTEM:PARA. SEL-FILTRO>
+           move 0 to e-des e-dta e-dtc e-map e-exe e-mul e-rep e-gss.
+
+           evaluate tipo-filtro
+           when 2 move 1 to e-des
+           when 3 move 1 to e-dta
+           when 4 move 1 to e-dtc
+           when 5 move 1 to e-map
+           when 6 move 1 to e-exe
+           when 7 move 1 to e-mul
+           when 8 move 1 to e-rep
+           when 9 move 1 to e-gss
+           end-evaluate.
+
+           display scr-filtro 
+           .
+      * <TOTEM:END>
+
        SELEZIONA.
       * <TOTEM:PARA. SELEZIONA>
+           perform SCR-FILTRO-OPEN-ROUTINE.
+
            move "wodbook"    to como-file.
            call "zoom-gt" using como-file, wod-rec
                          giving stato-zoom.
@@ -11204,14 +11665,259 @@
            perform ABILITA-MACROGRUPPI 
            .
       * <TOTEM:END>
-       Screen3-Ef-1-BeforeProcedure.
-      * <TOTEM:PARA. Screen3-Ef-1-BeforeProcedure>
+       ef-des-BeforeProcedure.
+      * <TOTEM:PARA. ef-des-BeforeProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-NU
            .
       * <TOTEM:END>
-       Screen3-Ef-1-AfterProcedure.
-      * <TOTEM:PARA. Screen3-Ef-1-AfterProcedure>
+       ef-dta-from-BeforeProcedure.
+      * <TOTEM:PARA. ef-dta-from-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-dta-to-BeforeProcedure.
+      * <TOTEM:PARA. ef-dta-to-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-dtc-from-BeforeProcedure.
+      * <TOTEM:PARA. ef-dtc-from-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-dtc-to-BeforeProcedure.
+      * <TOTEM:PARA. ef-dtc-to-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-map-BeforeProcedure.
+      * <TOTEM:PARA. ef-map-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-exe-BeforeProcedure.
+      * <TOTEM:PARA. ef-exe-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-mul-BeforeProcedure.
+      * <TOTEM:PARA. ef-mul-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-rep-BeforeProcedure.
+      * <TOTEM:PARA. ef-rep-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-gss-BeforeProcedure.
+      * <TOTEM:PARA. ef-gss-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-des-AfterProcedure.
+      * <TOTEM:PARA. ef-des-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       ef-dta-from-AfterProcedure.
+      * <TOTEM:PARA. ef-dta-from-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       ef-dta-to-AfterProcedure.
+      * <TOTEM:PARA. ef-dta-to-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       ef-dtc-from-AfterProcedure.
+      * <TOTEM:PARA. ef-dtc-from-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       ef-dtc-to-AfterProcedure.
+      * <TOTEM:PARA. ef-dtc-to-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       ef-map-AfterProcedure.
+      * <TOTEM:PARA. ef-map-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       ef-exe-AfterProcedure.
+      * <TOTEM:PARA. ef-exe-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       ef-mul-AfterProcedure.
+      * <TOTEM:PARA. ef-mul-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       ef-rep-AfterProcedure.
+      * <TOTEM:PARA. ef-rep-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       ef-gss-AfterProcedure.
+      * <TOTEM:PARA. ef-gss-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       rb-tut-BeforeProcedure.
+      * <TOTEM:PARA. rb-tut-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-des-BeforeProcedure.
+      * <TOTEM:PARA. rb-des-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-dta-BeforeProcedure.
+      * <TOTEM:PARA. rb-dta-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-dtc-BeforeProcedure.
+      * <TOTEM:PARA. rb-dtc-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-map-BeforeProcedure.
+      * <TOTEM:PARA. rb-map-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-exe-BeforeProcedure.
+      * <TOTEM:PARA. rb-exe-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-mul-BeforeProcedure.
+      * <TOTEM:PARA. rb-mul-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-rep-BeforeProcedure.
+      * <TOTEM:PARA. rb-rep-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-gss-BeforeProcedure.
+      * <TOTEM:PARA. rb-gss-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-tut-AfterProcedure.
+      * <TOTEM:PARA. rb-tut-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       rb-des-AfterProcedure.
+      * <TOTEM:PARA. rb-des-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       rb-dta-AfterProcedure.
+      * <TOTEM:PARA. rb-dta-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       rb-dtc-AfterProcedure.
+      * <TOTEM:PARA. rb-dtc-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       rb-map-AfterProcedure.
+      * <TOTEM:PARA. rb-map-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       rb-exe-AfterProcedure.
+      * <TOTEM:PARA. rb-exe-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       rb-mul-AfterProcedure.
+      * <TOTEM:PARA. rb-mul-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       rb-rep-AfterProcedure.
+      * <TOTEM:PARA. rb-rep-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       rb-gss-AfterProcedure.
+      * <TOTEM:PARA. rb-gss-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       rb-tut-LinkTo.
+      * <TOTEM:PARA. rb-tut-LinkTo>
+           perform SEL-FILTRO 
+           .
+      * <TOTEM:END>
+       rb-des-LinkTo.
+      * <TOTEM:PARA. rb-des-LinkTo>
+           perform SEL-FILTRO 
+           .
+      * <TOTEM:END>
+       rb-dta-LinkTo.
+      * <TOTEM:PARA. rb-dta-LinkTo>
+           perform SEL-FILTRO 
+           .
+      * <TOTEM:END>
+       rb-dtc-LinkTo.
+      * <TOTEM:PARA. rb-dtc-LinkTo>
+           perform SEL-FILTRO 
+           .
+      * <TOTEM:END>
+       rb-map-LinkTo.
+      * <TOTEM:PARA. rb-map-LinkTo>
+           perform SEL-FILTRO 
+           .
+      * <TOTEM:END>
+       rb-exe-LinkTo.
+      * <TOTEM:PARA. rb-exe-LinkTo>
+           perform SEL-FILTRO 
+           .
+      * <TOTEM:END>
+       rb-mul-LinkTo.
+      * <TOTEM:PARA. rb-mul-LinkTo>
+           perform SEL-FILTRO 
+           .
+      * <TOTEM:END>
+       rb-rep-LinkTo.
+      * <TOTEM:PARA. rb-rep-LinkTo>
+           perform SEL-FILTRO 
+           .
+      * <TOTEM:END>
+       rb-gss-LinkTo.
+      * <TOTEM:PARA. rb-gss-LinkTo>
+           perform SEL-FILTRO 
+           .
+      * <TOTEM:END>
+       pb-ok-f-BeforeProcedure.
+      * <TOTEM:PARA. pb-ok-f-BeforeProcedure>
+           modify pb-ok-f, bitmap-number = 2 
+           .
+      * <TOTEM:END>
+       pb-ok-f-AfterProcedure.
+      * <TOTEM:PARA. pb-ok-f-AfterProcedure>
+           modify pb-ok-f, bitmap-number = 1 
+           .
+      * <TOTEM:END>
+       pb-cancel-f-BeforeProcedure.
+      * <TOTEM:PARA. pb-cancel-f-BeforeProcedure>
+           modify pb-cancel-f, bitmap-number = 2 
+           .
+      * <TOTEM:END>
+       pb-cancel-f-AfterProcedure.
+      * <TOTEM:PARA. pb-cancel-f-AfterProcedure>
+           modify pb-cancel-f, bitmap-number = 1 
            .
       * <TOTEM:END>
 

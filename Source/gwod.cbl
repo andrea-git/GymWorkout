@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 13 ottobre 2023 18:28:20.
+       DATE-WRITTEN.        domenica 15 ottobre 2023 01:50:01.
        REMARKS.
       *{TOTEM}END
 
@@ -32,7 +32,6 @@
            COPY "macrogroups.sl".
            COPY "duration.sl".
            COPY "tmp-exe-effort.sl".
-           COPY "wodbook.sl".
            COPY "wodmap.sl".
            COPY "tmp-wod-exe.sl".
            COPY "tmp-exe.sl".
@@ -43,6 +42,8 @@
            COPY "tmp-grp-exe.sl".
            COPY "tmp-superset.sl".
            COPY "zoom-wodbook.sl".
+           COPY "rwodbook.sl".
+           COPY "twodbook.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
@@ -52,7 +53,6 @@
            COPY "macrogroups.fd".
            COPY "duration.fd".
            COPY "tmp-exe-effort.fd".
-           COPY "wodbook.fd".
            COPY "wodmap.fd".
            COPY "tmp-wod-exe.fd".
            COPY "tmp-exe.fd".
@@ -63,6 +63,8 @@
            COPY "tmp-grp-exe.fd".
            COPY "tmp-superset.fd".
            COPY "zoom-wodbook.fd".
+           COPY "rwodbook.fd".
+           COPY "twodbook.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -128,6 +130,7 @@
        77 save-day         PIC  9.
        77 como-series      PIC  999.
        77 como-grp-desc    PIC  x(100).
+       01 save-wod-rec     PIC  x(3000).
        77 nessuna-scelta   PIC  9
                   VALUE IS 0.
        77 riga-div         PIC  999.
@@ -139,11 +142,14 @@
        77 tentativo        PIC  99.
        77 como-code        PIC  9(18).
        77 como-data-x10    PIC  99/99/9999.
-       77 s-wod-code       PIC  9(18).
-       77 como-wod-code    PIC  x(18).
+       77 s-tod-code       PIC  9(18).
+       77 como-tod-code    PIC  x(18).
        77 primo-giorno     PIC  9(8).
        77 como-data-from   PIC  9(8).
        77 como-data-to     PIC  9(8).
+       77 text-len
+                  USAGE IS UNSIGNED-INT.
+       77 countChar        PIC  9(3).
        78 78-lab-tutti VALUE IS "Vuoto = Tutti". 
        01 como-tex-data-tab.
            05 como-tex-data-el PIC  x(1000)
@@ -510,9 +516,21 @@
        77 ef-mcg-buf       PIC  X(5).
        77 lab-mcg-buf      PIC  x(50)
                   VALUE IS "Vuoto =Tutti".
+       77 cb-eff-buf       PIC  X(100).
        77 path-zoom-wodbook            PIC  X(256).
        77 STATUS-zoom-wodbook          PIC  X(2).
            88 Valid-STATUS-zoom-wodbook VALUE IS "00" THRU "09". 
+       77 STATUS-rwodbook  PIC  X(2).
+           88 Valid-STATUS-rwodbook VALUE IS "00" THRU "09". 
+       77 STATUS-twodbook  PIC  X(2).
+           88 Valid-STATUS-twodbook VALUE IS "00" THRU "09". 
+       77 e-eff            PIC  9
+                  VALUE IS 1.
+       77 e-dur            PIC  9
+                  VALUE IS 1.
+       77 ef-dur-buf       PIC  zz.
+       77 lab-dur-buf      PIC  x(50)
+                  VALUE IS "Vuoto =Tutti".
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -520,9 +538,9 @@
        77 STATUS-Form1-FLAG-REFRESH PIC  9.
           88 Form1-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-wodbook-RESTOREBUF  PIC X(4431).
+       77 TMP-Form1-twodbook-RESTOREBUF  PIC X(2305).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(4431).
+       77 Form1-MULKEY-TMPBUF   PIC X(2305).
        77 STATUS-scr-attesa-FLAG-REFRESH PIC  9.
           88 scr-attesa-FLAG-REFRESH  VALUE 1 FALSE 0. 
        77 STATUS-scr-date-FLAG-REFRESH PIC  9.
@@ -534,7 +552,6 @@
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
-       77 TMP-DataSet1-wodbook-BUF     PIC X(4431).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(331).
@@ -545,6 +562,8 @@
        77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(207).
        77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
        77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(140).
+       77 TMP-DataSet1-rwodbook-BUF     PIC X(2156).
+       77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -574,12 +593,6 @@
        77 DataSet1-tmp-exe-effort-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-tmp-exe-effort-KEY-Asc  VALUE "A".
           88 DataSet1-tmp-exe-effort-KEY-Desc VALUE "D".
-       77 DataSet1-wodbook-LOCK-FLAG   PIC X VALUE SPACE.
-           88 DataSet1-wodbook-LOCK  VALUE "Y".
-       77 DataSet1-KEYIS   PIC 9(3) VALUE 1.
-       77 DataSet1-wodbook-KEY1-ORDER  PIC X VALUE "A".
-          88 DataSet1-wodbook-KEY1-Asc  VALUE "A".
-          88 DataSet1-wodbook-KEY1-Desc VALUE "D".
        77 DataSet1-wodmap-LOCK-FLAG   PIC X VALUE SPACE.
            88 DataSet1-wodmap-LOCK  VALUE "Y".
        77 DataSet1-wodmap-KEY-ORDER  PIC X VALUE "A".
@@ -630,6 +643,17 @@
        77 DataSet1-zoom-wodbook-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-zoom-wodbook-KEY-Asc  VALUE "A".
           88 DataSet1-zoom-wodbook-KEY-Desc VALUE "D".
+       77 DataSet1-rwodbook-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-rwodbook-LOCK  VALUE "Y".
+       77 DataSet1-rwodbook-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-rwodbook-KEY-Asc  VALUE "A".
+          88 DataSet1-rwodbook-KEY-Desc VALUE "D".
+       77 DataSet1-twodbook-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-twodbook-LOCK  VALUE "Y".
+       77 DataSet1-KEYIS   PIC 9(3) VALUE 1.
+       77 DataSet1-twodbook-KEY1-ORDER  PIC X VALUE "A".
+          88 DataSet1-twodbook-KEY1-Asc  VALUE "A".
+          88 DataSet1-twodbook-KEY1-Desc VALUE "D".
 
        77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
@@ -638,17 +662,6 @@
        77 macrogroups-mcg-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-exercises-SPLITBUF  PIC X(3).
-       77 wodbook-wod-k-desc-SPLITBUF  PIC X(103).
-       77 wodbook-wod-k-prg-SPLITBUF  PIC X(22).
-       77 wodbook-wod-k-data-SPLITBUF  PIC X(111).
-       77 wodbook-wod-k-creazione-SPLITBUF  PIC X(119).
-       77 wodbook-wod-k-wom-SPLITBUF  PIC X(14).
-       77 wodbook-wod-k-mcg-SPLITBUF  PIC X(14).
-       77 wodbook-wod-k-exe-SPLITBUF  PIC X(14).
-       77 wodbook-wod-k-mcg-multi-SPLITBUF  PIC X(15).
-       77 wodbook-wod-k-mcg-rp-SPLITBUF  PIC X(15).
-       77 wodbook-wod-k-mcg-ss-SPLITBUF  PIC X(15).
-       77 wodbook-wod-k-head-SPLITBUF  PIC X(27).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
        77 tmp-exe-tex-k-dupl-SPLITBUF  PIC X(102).
        77 tmp-exe-tex-k-mcg-SPLITBUF  PIC X(10).
@@ -662,6 +675,19 @@
        77 zoom-wodbook-key01-SPLITBUF  PIC X(119).
        77 zoom-wodbook-key02-SPLITBUF  PIC X(109).
        77 zoom-wodbook-key03-SPLITBUF  PIC X(109).
+       77 rwodbook-rod-k-day-SPLITBUF  PIC X(29).
+       77 rwodbook-rod-k-prg-SPLITBUF  PIC X(30).
+       77 rwodbook-rod-k-mcg-SPLITBUF  PIC X(34).
+       77 rwodbook-rod-k-exe-SPLITBUF  PIC X(34).
+       77 rwodbook-rod-k-multi-SPLITBUF  PIC X(35).
+       77 rwodbook-rod-k-rp-SPLITBUF  PIC X(35).
+       77 rwodbook-rod-k-ss-SPLITBUF  PIC X(35).
+       77 twodbook-tod-k-creazione-SPLITBUF  PIC X(27).
+       77 twodbook-tod-k-wom-SPLITBUF  PIC X(22).
+       77 twodbook-tod-k-desc-SPLITBUF  PIC X(119).
+       77 twodbook-tod-k-ini-SPLITBUF  PIC X(27).
+       77 twodbook-tod-k-eff-SPLITBUF  PIC X(21).
+       77 twodbook-tod-k-dur-SPLITBUF  PIC X(21).
 
        01                 pic 9.
            88 s-excell    value 1.
@@ -726,12 +752,16 @@
        78  78-ID-ef-dtc-from VALUE 5004.
        78  78-ID-ef-dtc-to VALUE 5005.
        78  78-ID-ef-map VALUE 5006.
-       78  78-ID-ef-exe VALUE 5007.
-       78  78-ID-ef-mul VALUE 5008.
-       78  78-ID-ef-rep VALUE 5009.
-       78  78-ID-ef-gss VALUE 5010.
-       78  78-ID-rb-mcg VALUE 5011.
-       78  78-ID-ef-mcg VALUE 5012.
+       78  78-ID-rb-eff VALUE 5007.
+       78  78-ID-cb-eff VALUE 5008.
+       78  78-ID-ef-exe VALUE 5009.
+       78  78-ID-ef-mul VALUE 5010.
+       78  78-ID-ef-rep VALUE 5011.
+       78  78-ID-ef-gss VALUE 5012.
+       78  78-ID-rb-mcg VALUE 5013.
+       78  78-ID-ef-mcg VALUE 5014.
+       78  78-ID-rb-dur VALUE 5015.
+       78  78-ID-ef-dur VALUE 5016.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -2219,7 +2249,7 @@
            Frame, 
            COL 2,73, 
            LINE 1,12,
-           LINES 17,42 ,
+           LINES 20,65 ,
            SIZE 75,45 ,
            ENGRAVED,
            ID IS 1,
@@ -2458,6 +2488,49 @@
            BEFORE PROCEDURE ef-map-BeforeProcedure, 
            .
 
+      * RADIO BUTTON
+       05
+           rb-eff, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 10,35,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1016
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 11,
+           ID IS 78-ID-rb-eff,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
+           NOTIFY,
+           TITLE "Effort",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-eff-AfterProcedure, 
+           BEFORE PROCEDURE rb-eff-BeforeProcedure, 
+           .
+      * COMBO-BOX
+       05
+           cb-eff, 
+           Combo-Box, 
+           COL 26,82, 
+           LINE 10,27,
+           LINES 5,00 ,
+           SIZE 50,00 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-eff,
+           ID IS 78-ID-cb-eff,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           MASS-UPDATE 0,
+           DROP-LIST,
+           UNSORTED,
+           VALUE cb-eff-buf,
+           AFTER PROCEDURE Screen3-Cm-1-AfterProcedure, 
+           BEFORE PROCEDURE Screen3-Cm-1-BeforeProcedure, 
+           .
       * PUSH BUTTON
        05
            pb-map, 
@@ -2481,7 +2554,7 @@
            rb-exe, 
            Radio-Button, 
            COL 5,09, 
-           LINE 10,24,
+           LINE 11,89,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1005
@@ -2503,7 +2576,7 @@
            ef-exe, 
            Entry-Field, 
            COL 26,82, 
-           LINE 10,24,
+           LINE 11,89,
            LINES 1,23 ,
            SIZE 9,50 ,
            BOXED,
@@ -2522,7 +2595,7 @@
            pb-exe, 
            Push-Button, 
            COL 36,82, 
-           LINE 10,24,
+           LINE 11,89,
            LINES 1,23 ,
            SIZE 3,00 ,
            ENABLED e-exe,
@@ -2540,7 +2613,7 @@
            rb-mul, 
            Radio-Button, 
            COL 5,09, 
-           LINE 11,77,
+           LINE 13,43,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1006
@@ -2562,7 +2635,7 @@
            ef-mul, 
            Entry-Field, 
            COL 26,82, 
-           LINE 11,77,
+           LINE 13,43,
            LINES 1,23 ,
            SIZE 9,50 ,
            BOXED,
@@ -2581,7 +2654,7 @@
            pb-mul, 
            Push-Button, 
            COL 36,82, 
-           LINE 11,77,
+           LINE 13,43,
            LINES 1,23 ,
            SIZE 3,00 ,
            ENABLED e-mul,
@@ -2599,7 +2672,7 @@
            rb-rep, 
            Radio-Button, 
            COL 5,09, 
-           LINE 13,31,
+           LINE 14,97,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1007
@@ -2621,7 +2694,7 @@
            ef-rep, 
            Entry-Field, 
            COL 26,82, 
-           LINE 13,31,
+           LINE 14,97,
            LINES 1,23 ,
            SIZE 9,50 ,
            BOXED,
@@ -2640,7 +2713,7 @@
            pb-rep, 
            Push-Button, 
            COL 36,82, 
-           LINE 13,31,
+           LINE 14,97,
            LINES 1,23 ,
            SIZE 3,00 ,
            ENABLED e-rep,
@@ -2658,7 +2731,7 @@
            rb-gss, 
            Radio-Button, 
            COL 5,09, 
-           LINE 14,85,
+           LINE 16,50,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1008
@@ -2680,7 +2753,7 @@
            ef-gss, 
            Entry-Field, 
            COL 26,82, 
-           LINE 14,85,
+           LINE 16,50,
            LINES 1,23 ,
            SIZE 9,50 ,
            BOXED,
@@ -2699,7 +2772,7 @@
            pb-gss, 
            Push-Button, 
            COL 36,82, 
-           LINE 14,85,
+           LINE 16,50,
            LINES 1,23 ,
            SIZE 3,00 ,
            ENABLED e-gss,
@@ -2717,7 +2790,7 @@
            rb-mcg, 
            Radio-Button, 
            COL 5,09, 
-           LINE 16,39,
+           LINE 18,04,
            LINES 1,23 ,
            SIZE 21,00 ,
            EXCEPTION-VALUE 1008
@@ -2739,9 +2812,9 @@
            ef-mcg, 
            Entry-Field, 
            COL 26,82, 
-           LINE 16,39,
+           LINE 18,04,
            LINES 1,23 ,
-           SIZE 9,50 ,
+           SIZE 9,55 ,
            BOXED,
            COLOR IS 513,
            ENABLED e-mcg,
@@ -2758,7 +2831,7 @@
            pb-mcg, 
            Push-Button, 
            COL 36,82, 
-           LINE 16,39,
+           LINE 18,04,
            LINES 1,23 ,
            SIZE 3,00 ,
            ENABLED e-mcg,
@@ -2780,7 +2853,7 @@
            LINES 1,23 ,
            SIZE 36,00 ,
            COLOR IS 5,
-           ID IS 29,
+           ID IS 30,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -2792,11 +2865,11 @@
            lab-exe, 
            Label, 
            COL 41,09, 
-           LINE 10,24,
+           LINE 11,89,
            LINES 1,23 ,
            SIZE 36,00 ,
            COLOR IS 5,
-           ID IS 30,
+           ID IS 31,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -2808,11 +2881,11 @@
            lab-mul, 
            Label, 
            COL 41,09, 
-           LINE 11,77,
+           LINE 13,43,
            LINES 1,23 ,
            SIZE 36,00 ,
            COLOR IS 5,
-           ID IS 31,
+           ID IS 32,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -2824,11 +2897,11 @@
            lab-rep, 
            Label, 
            COL 41,09, 
-           LINE 13,31,
+           LINE 14,97,
            LINES 1,23 ,
            SIZE 36,00 ,
            COLOR IS 5,
-           ID IS 32,
+           ID IS 33,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -2840,11 +2913,11 @@
            lab-gss, 
            Label, 
            COL 41,09, 
-           LINE 14,85,
+           LINE 16,50,
            LINES 1,23 ,
            SIZE 36,00 ,
            COLOR IS 5,
-           ID IS 33,
+           ID IS 34,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
@@ -2856,15 +2929,90 @@
            lab-mcg, 
            Label, 
            COL 41,09, 
-           LINE 16,39,
+           LINE 18,04,
            LINES 1,23 ,
            SIZE 36,00 ,
            COLOR IS 5,
-           ID IS 34,
+           ID IS 35,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TRANSPARENT,
            TITLE lab-mcg-buf,
+           .
+
+      * RADIO BUTTON
+       05
+           rb-dur, 
+           Radio-Button, 
+           COL 5,09, 
+           LINE 19,58,
+           LINES 1,23 ,
+           SIZE 21,00 ,
+           EXCEPTION-VALUE 1017
+           FLAT,
+           GROUP 1,
+           GROUP-VALUE 12,
+           ID IS 78-ID-rb-dur,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NO-GROUP-TAB,
+           NOTIFY,
+           TITLE "Durata",
+           VALUE tipo-filtro,
+           AFTER PROCEDURE rb-dur-AfterProcedure, 
+           BEFORE PROCEDURE rb-dur-BeforeProcedure, 
+           .
+      * ENTRY FIELD
+       05
+           ef-dur, 
+           Entry-Field, 
+           COL 26,82, 
+           LINE 19,58,
+           LINES 1,23 ,
+           SIZE 9,55 ,
+           BOXED,
+           COLOR IS 513,
+           ENABLED e-dur,
+           ID IS 78-ID-ef-dur,                
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           VALUE ef-dur-buf,
+           AFTER PROCEDURE ef-dur-AfterProcedure, 
+           BEFORE PROCEDURE ef-dur-BeforeProcedure, 
+           .
+
+      * PUSH BUTTON
+       05
+           pb-dur, 
+           Push-Button, 
+           COL 36,82, 
+           LINE 19,58,
+           LINES 1,23 ,
+           SIZE 3,00 ,
+           ENABLED e-dur,
+           EXCEPTION-VALUE 1018,
+           FONT IS Small-Font,
+           ID IS 39,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           SELF-ACT,
+           TITLE "...",
+           .
+
+      * LABEL
+       05
+           lab-dur, 
+           Label, 
+           COL 41,09, 
+           LINE 19,58,
+           LINES 1,23 ,
+           SIZE 36,00 ,
+           COLOR IS 5,
+           ID IS 40,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE lab-dur-buf,
            .
 
       * PUSH BUTTON
@@ -2872,7 +3020,7 @@
            pb-ok-f, 
            Push-Button, 
            COL 33,18, 
-           LINE 18,81,
+           LINE 22,08,
            LINES 1,42 ,
            SIZE 81 PIXELS,
            BITMAP-HANDLE BOTTONE-OK-BMP,
@@ -2881,7 +3029,7 @@
            EXCEPTION-VALUE 1015,
            FLAT,
            FONT IS Small-Font,
-           ID IS 35,
+           ID IS 41,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            AFTER PROCEDURE pb-ok-f-AfterProcedure, 
@@ -2893,7 +3041,7 @@
            pb-cancel-f, 
            Push-Button, 
            COL 40,36, 
-           LINE 18,81,
+           LINE 22,08,
            LINES 1,42 ,
            SIZE 81 PIXELS,
            BITMAP-HANDLE BOTTONE-ANNULLA-BMP,
@@ -2902,7 +3050,7 @@
            EXCEPTION-VALUE 27,
            FLAT,
            FONT IS Small-Font,
-           ID IS 36,
+           ID IS 42,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            ESCAPE-BUTTON,
@@ -2919,22 +3067,48 @@
       *{TOTEM}DECLARATIVE
        DECLARATIVES.
       * <TOTEM:EPT. INIT:gwod, INIT:gwod, BeforeDeclarative>
-       WODBOOK-ERROR SECTION.
-           use after error procedure on WODBOOK.
+       TWODBOOK-ERROR SECTION.
+           use after error procedure on TWODBOOK.
            set RecLocked to false.
-           evaluate status-WODBOOK
+           evaluate status-TWODBOOK
            when "35"
-                display message "File [WODBOOK] not found!"
+                display message "File [TWODBOOK] not found!"
                            title titolo
                             icon 3
                 set errori to true
            when "39"
-                display message "File [WODBOOK] Mismatch size!"
+                display message "File [TWODBOOK] Mismatch size!"
                            title titolo
                             icon 3
                 set errori to true
            when "98"
-                display message "[WODBOOK] Indexed file corrupt!"
+                display message "[TWODBOOK] Indexed file corrupt!"
+                           title titolo
+                            icon 3
+                set errori to true
+           when "99"
+           when "93"
+                set RecLocked to true
+                set errori    to true
+           end-evaluate.                 
+           
+      ***--     
+       RWODBOOK-ERROR SECTION.
+           use after error procedure on RWODBOOK.
+           set RecLocked to false.
+           evaluate status-RWODBOOK
+           when "35"
+                display message "File [RWODBOOK] not found!"
+                           title titolo
+                            icon 3
+                set errori to true
+           when "39"
+                display message "File [RWODBOOK] Mismatch size!"
+                           title titolo
+                            icon 3
+                set errori to true
+           when "98"
+                display message "[RWODBOOK] Indexed file corrupt!"
                            title titolo
                             icon 3
                 set errori to true
@@ -3183,7 +3357,6 @@
            PERFORM OPEN-duration
       *    tmp-exe-effort OPEN MODE IS FALSE
       *    PERFORM OPEN-tmp-exe-effort
-           PERFORM OPEN-wodbook
            PERFORM OPEN-wodmap
       *    tmp-wod-exe OPEN MODE IS FALSE
       *    PERFORM OPEN-tmp-wod-exe
@@ -3202,6 +3375,8 @@
       *    PERFORM OPEN-tmp-superset
       *    zoom-wodbook OPEN MODE IS FALSE
       *    PERFORM OPEN-zoom-wodbook
+           PERFORM OPEN-rwodbook
+           PERFORM OPEN-twodbook
       *    After Open
            .
 
@@ -3262,25 +3437,6 @@
               GO TO EXIT-STOP-ROUTINE
            END-IF
       * <TOTEM:EPT. INIT:gwod, FD:tmp-exe-effort, AfterOpen>
-      * <TOTEM:END>
-           .
-
-       OPEN-wodbook.
-      * <TOTEM:EPT. INIT:gwod, FD:wodbook, BeforeOpen>
-      * <TOTEM:END>
-           OPEN  I-O wodbook
-           IF STATUS-wodbook = "35"
-              OPEN OUTPUT wodbook
-                IF Valid-STATUS-wodbook
-                   CLOSE wodbook
-                   OPEN I-O wodbook
-                END-IF
-           END-IF
-           IF NOT Valid-STATUS-wodbook
-              PERFORM  Form1-EXTENDED-FILE-STATUS
-              GO TO EXIT-STOP-ROUTINE
-           END-IF
-      * <TOTEM:EPT. INIT:gwod, FD:wodbook, AfterOpen>
       * <TOTEM:END>
            .
 
@@ -3404,6 +3560,44 @@
       * <TOTEM:END>
            .
 
+       OPEN-rwodbook.
+      * <TOTEM:EPT. INIT:gwod, FD:rwodbook, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  I-O rwodbook
+           IF STATUS-rwodbook = "35"
+              OPEN OUTPUT rwodbook
+                IF Valid-STATUS-rwodbook
+                   CLOSE rwodbook
+                   OPEN I-O rwodbook
+                END-IF
+           END-IF
+           IF NOT Valid-STATUS-rwodbook
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:rwodbook, AfterOpen>
+      * <TOTEM:END>
+           .
+
+       OPEN-twodbook.
+      * <TOTEM:EPT. INIT:gwod, FD:twodbook, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  I-O twodbook
+           IF STATUS-twodbook = "35"
+              OPEN OUTPUT twodbook
+                IF Valid-STATUS-twodbook
+                   CLOSE twodbook
+                   OPEN I-O twodbook
+                END-IF
+           END-IF
+           IF NOT Valid-STATUS-twodbook
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:gwod, FD:twodbook, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-exercises
@@ -3412,7 +3606,6 @@
            PERFORM CLOSE-duration
       *    tmp-exe-effort CLOSE MODE IS FALSE
       *    PERFORM CLOSE-tmp-exe-effort
-           PERFORM CLOSE-wodbook
            PERFORM CLOSE-wodmap
       *    tmp-wod-exe CLOSE MODE IS FALSE
       *    PERFORM CLOSE-tmp-wod-exe
@@ -3431,6 +3624,8 @@
       *    PERFORM CLOSE-tmp-superset
       *    zoom-wodbook CLOSE MODE IS FALSE
       *    PERFORM CLOSE-zoom-wodbook
+           PERFORM CLOSE-rwodbook
+           PERFORM CLOSE-twodbook
       *    After Close
            .
 
@@ -3461,12 +3656,6 @@
        CLOSE-tmp-exe-effort.
       * <TOTEM:EPT. INIT:gwod, FD:tmp-exe-effort, BeforeClose>
       * <TOTEM:END>
-           .
-
-       CLOSE-wodbook.
-      * <TOTEM:EPT. INIT:gwod, FD:wodbook, BeforeClose>
-      * <TOTEM:END>
-           CLOSE wodbook
            .
 
        CLOSE-wodmap.
@@ -3519,6 +3708,18 @@
        CLOSE-zoom-wodbook.
       * <TOTEM:EPT. INIT:gwod, FD:zoom-wodbook, BeforeClose>
       * <TOTEM:END>
+           .
+
+       CLOSE-rwodbook.
+      * <TOTEM:EPT. INIT:gwod, FD:rwodbook, BeforeClose>
+      * <TOTEM:END>
+           CLOSE rwodbook
+           .
+
+       CLOSE-twodbook.
+      * <TOTEM:EPT. INIT:gwod, FD:twodbook, BeforeClose>
+      * <TOTEM:END>
+           CLOSE twodbook
            .
 
        exercises-exe-k-desc-MERGE-SPLITBUF.
@@ -4310,320 +4511,6 @@
       * <TOTEM:END>
            .
 
-       wodbook-wod-k-desc-MERGE-SPLITBUF.
-           INITIALIZE wodbook-wod-k-desc-SPLITBUF
-           MOVE wod-split(1:2) TO wodbook-wod-k-desc-SPLITBUF(1:2)
-           MOVE wod-desc(1:100) TO wodbook-wod-k-desc-SPLITBUF(3:100)
-           .
-
-       wodbook-wod-k-prg-MERGE-SPLITBUF.
-           INITIALIZE wodbook-wod-k-prg-SPLITBUF
-           MOVE wod-split(1:2) TO wodbook-wod-k-prg-SPLITBUF(1:2)
-           MOVE wod-code(1:18) TO wodbook-wod-k-prg-SPLITBUF(3:18)
-           MOVE wod-prg-day(1:1) TO wodbook-wod-k-prg-SPLITBUF(21:1)
-           .
-
-       wodbook-wod-k-data-MERGE-SPLITBUF.
-           INITIALIZE wodbook-wod-k-data-SPLITBUF
-           MOVE wod-split(1:2) TO wodbook-wod-k-data-SPLITBUF(1:2)
-           MOVE wod-day(1:8) TO wodbook-wod-k-data-SPLITBUF(3:8)
-           MOVE wod-desc(1:100) TO wodbook-wod-k-data-SPLITBUF(11:100)
-           .
-
-       wodbook-wod-k-creazione-MERGE-SPLITBUF.
-           INITIALIZE wodbook-wod-k-creazione-SPLITBUF
-           MOVE wod-split(1:2) TO wodbook-wod-k-creazione-SPLITBUF(1:2)
-           MOVE wod-data-creazione(1:8) TO 
-           wodbook-wod-k-creazione-SPLITBUF(3:8)
-           MOVE wod-day(1:8) TO wodbook-wod-k-creazione-SPLITBUF(11:8)
-           MOVE wod-desc(1:100) TO 
-           wodbook-wod-k-creazione-SPLITBUF(19:100)
-           .
-
-       wodbook-wod-k-wom-MERGE-SPLITBUF.
-           INITIALIZE wodbook-wod-k-wom-SPLITBUF
-           MOVE wod-split(1:2) TO wodbook-wod-k-wom-SPLITBUF(1:2)
-           MOVE wod-wom-code(1:3) TO wodbook-wod-k-wom-SPLITBUF(3:3)
-           MOVE wod-day(1:8) TO wodbook-wod-k-wom-SPLITBUF(6:8)
-           .
-
-       wodbook-wod-k-mcg-MERGE-SPLITBUF.
-           INITIALIZE wodbook-wod-k-mcg-SPLITBUF
-           MOVE wod-mcg-code(1:5) TO wodbook-wod-k-mcg-SPLITBUF(1:5)
-           MOVE wod-day(1:8) TO wodbook-wod-k-mcg-SPLITBUF(6:8)
-           .
-
-       wodbook-wod-k-exe-MERGE-SPLITBUF.
-           INITIALIZE wodbook-wod-k-exe-SPLITBUF
-           MOVE wod-exe-code(1:5) TO wodbook-wod-k-exe-SPLITBUF(1:5)
-           MOVE wod-day(1:8) TO wodbook-wod-k-exe-SPLITBUF(6:8)
-           .
-
-       wodbook-wod-k-mcg-multi-MERGE-SPLITBUF.
-           INITIALIZE wodbook-wod-k-mcg-multi-SPLITBUF
-           MOVE wod-mcg-code(1:5) TO 
-           wodbook-wod-k-mcg-multi-SPLITBUF(1:5)
-           MOVE wod-exe-isMulti(1:1) TO 
-           wodbook-wod-k-mcg-multi-SPLITBUF(6:1)
-           MOVE wod-day(1:8) TO wodbook-wod-k-mcg-multi-SPLITBUF(7:8)
-           .
-
-       wodbook-wod-k-mcg-rp-MERGE-SPLITBUF.
-           INITIALIZE wodbook-wod-k-mcg-rp-SPLITBUF
-           MOVE wod-mcg-code(1:5) TO wodbook-wod-k-mcg-rp-SPLITBUF(1:5)
-           MOVE wod-int-restpause(1:1) TO 
-           wodbook-wod-k-mcg-rp-SPLITBUF(6:1)
-           MOVE wod-day(1:8) TO wodbook-wod-k-mcg-rp-SPLITBUF(7:8)
-           .
-
-       wodbook-wod-k-mcg-ss-MERGE-SPLITBUF.
-           INITIALIZE wodbook-wod-k-mcg-ss-SPLITBUF
-           MOVE wod-mcg-code(1:5) TO wodbook-wod-k-mcg-ss-SPLITBUF(1:5)
-           MOVE wod-ss(1:1) TO wodbook-wod-k-mcg-ss-SPLITBUF(6:1)
-           MOVE wod-day(1:8) TO wodbook-wod-k-mcg-ss-SPLITBUF(7:8)
-           .
-
-       wodbook-wod-k-head-MERGE-SPLITBUF.
-           INITIALIZE wodbook-wod-k-head-SPLITBUF
-           MOVE wod-code(1:18) TO wodbook-wod-k-head-SPLITBUF(1:18)
-           MOVE wod-day(1:8) TO wodbook-wod-k-head-SPLITBUF(19:8)
-           .
-
-       DataSet1-wodbook-INITSTART.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-wodbook-KEY1-Asc
-                 MOVE Low-Value TO wod-key
-              ELSE
-                 MOVE High-Value TO wod-key
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-wodbook-INITEND.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-wodbook-KEY1-Asc
-                 MOVE High-Value TO wod-key
-              ELSE
-                 MOVE Low-Value TO wod-key
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-CHANGETO-KEY1.
-           MOVE 1 TO DataSet1-KEYIS
-           .   
-
-       DataSet1-Change-CurrentKey-Asc.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              MOVE "A" TO DataSet1-wodbook-KEY1-ORDER
-           END-EVALUATE
-           .
-
-       DataSet1-Change-CurrentKey-Desc.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              MOVE "D" TO DataSet1-wodbook-KEY1-ORDER
-           END-EVALUATE
-           .
-
-      * wodbook
-       DataSet1-wodbook-START.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-wodbook-KEY1-Asc
-                 START wodbook KEY >= wod-key
-              ELSE
-                 START wodbook KEY <= wod-key
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-wodbook-START-NOTGREATER.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-wodbook-KEY1-Asc
-                 START wodbook KEY <= wod-key
-              ELSE
-                 START wodbook KEY >= wod-key
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-wodbook-START-GREATER.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-wodbook-KEY1-Asc
-                 START wodbook KEY > wod-key
-              ELSE
-                 START wodbook KEY < wod-key
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-wodbook-START-LESS.
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-wodbook-KEY1-Asc
-                 START wodbook KEY < wod-key
-              ELSE
-                 START wodbook KEY > wod-key
-              END-IF
-           END-EVALUATE
-           .
-
-       DataSet1-wodbook-Read.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeReadRecord>
-      * <TOTEM:END>
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-wodbook-LOCK
-                 READ wodbook WITH LOCK 
-                 KEY wod-key
-              ELSE
-                 READ wodbook WITH NO LOCK 
-                 KEY wod-key
-              END-IF
-           END-EVALUATE
-           PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-prg-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-data-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-creazione-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-wom-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-exe-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-multi-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-rp-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-ss-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-head-MERGE-SPLITBUF
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT 
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "READ" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterReadRecord>
-      * <TOTEM:END>
-           .
-
-       DataSet1-wodbook-Read-Next.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeReadNext>
-      * <TOTEM:END>
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-wodbook-KEY1-Asc
-                 IF DataSet1-wodbook-LOCK
-                    READ wodbook NEXT WITH LOCK
-                 ELSE
-                    READ wodbook NEXT WITH NO LOCK
-                 END-IF
-              ELSE
-                 IF DataSet1-wodbook-LOCK
-                    READ wodbook PREVIOUS WITH LOCK
-                 ELSE
-                    READ wodbook PREVIOUS WITH NO LOCK
-                 END-IF
-              END-IF
-           END-EVALUATE
-           PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-prg-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-data-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-creazione-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-wom-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-exe-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-multi-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-rp-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-ss-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-head-MERGE-SPLITBUF
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "READ NEXT" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterReadNext>
-      * <TOTEM:END>
-           .
-
-       DataSet1-wodbook-Read-Prev.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeReadPrev>
-      * <TOTEM:END>
-           EVALUATE DataSet1-KEYIS
-           WHEN 1
-              IF DataSet1-wodbook-KEY1-Asc
-                 IF DataSet1-wodbook-LOCK
-                    READ wodbook PREVIOUS WITH LOCK
-                 ELSE
-                    READ wodbook PREVIOUS WITH NO LOCK
-                 END-IF
-              ELSE
-                 IF DataSet1-wodbook-LOCK
-                    READ wodbook NEXT WITH LOCK
-                 ELSE
-                    READ wodbook NEXT WITH NO LOCK
-                 END-IF
-              END-IF
-           END-EVALUATE
-           PERFORM wodbook-wod-k-desc-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-prg-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-data-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-creazione-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-wom-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-exe-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-multi-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-rp-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-mcg-ss-MERGE-SPLITBUF
-           PERFORM wodbook-wod-k-head-MERGE-SPLITBUF
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRead>
-      * <TOTEM:END>
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterReadPrev>
-      * <TOTEM:END>
-           .
-
-       DataSet1-wodbook-Rec-Write.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeWrite>
-      * <TOTEM:END>
-           WRITE wod-rec OF wodbook.
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "WRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterWrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-wodbook-Rec-Rewrite.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeRewrite>
-      * <TOTEM:END>
-           REWRITE wod-rec OF wodbook.
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "REWRITE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterRewrite>
-      * <TOTEM:END>
-           .
-
-       DataSet1-wodbook-Rec-Delete.
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, BeforeDelete>
-      * <TOTEM:END>
-           DELETE wodbook.
-           MOVE STATUS-wodbook TO TOTEM-ERR-STAT
-           MOVE "wodbook" TO TOTEM-ERR-FILE
-           MOVE "DELETE" TO TOTEM-ERR-MODE
-      * <TOTEM:EPT. FD:DataSet1, FD:wodbook, AfterDelete>
-      * <TOTEM:END>
-           .
-
        wodmap-wom-k-desc-MERGE-SPLITBUF.
            INITIALIZE wodmap-wom-k-desc-SPLITBUF
            MOVE wom-desc(1:100) TO wodmap-wom-k-desc-SPLITBUF(1:100)
@@ -4915,13 +4802,13 @@
        tmp-exe-tex-k-day-exe-MERGE-SPLITBUF.
            INITIALIZE tmp-exe-tex-k-day-exe-SPLITBUF
            MOVE tex-day(1:1) TO tmp-exe-tex-k-day-exe-SPLITBUF(1:1)
-           MOVE tex-exe-desc-univoca(1:100) TO 
+           MOVE tex-desc-univoca(1:100) TO 
            tmp-exe-tex-k-day-exe-SPLITBUF(2:100)
            .
 
        tmp-exe-tex-k-exe-MERGE-SPLITBUF.
            INITIALIZE tmp-exe-tex-k-exe-SPLITBUF
-           MOVE tex-exe-desc-univoca(1:100) TO 
+           MOVE tex-desc-univoca(1:100) TO 
            tmp-exe-tex-k-exe-SPLITBUF(1:100)
            .
 
@@ -5930,13 +5817,495 @@
       * <TOTEM:END>
            .
 
+       rwodbook-rod-k-day-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-day-SPLITBUF
+           MOVE rod-day(1:8) TO rwodbook-rod-k-day-SPLITBUF(1:8)
+           MOVE rod-split(1:2) TO rwodbook-rod-k-day-SPLITBUF(9:2)
+           MOVE rod-code(1:18) TO rwodbook-rod-k-day-SPLITBUF(11:18)
+           .
+
+       rwodbook-rod-k-prg-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-prg-SPLITBUF
+           MOVE rod-key(1:28) TO rwodbook-rod-k-prg-SPLITBUF(1:28)
+           MOVE rod-prg-day(1:1) TO rwodbook-rod-k-prg-SPLITBUF(29:1)
+           .
+
+       rwodbook-rod-k-mcg-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-mcg-SPLITBUF
+           MOVE rod-mcg-code(1:5) TO rwodbook-rod-k-mcg-SPLITBUF(1:5)
+           MOVE rod-key(1:28) TO rwodbook-rod-k-mcg-SPLITBUF(6:28)
+           .
+
+       rwodbook-rod-k-exe-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-exe-SPLITBUF
+           MOVE rod-exe-code(1:5) TO rwodbook-rod-k-exe-SPLITBUF(1:5)
+           MOVE rod-key(1:28) TO rwodbook-rod-k-exe-SPLITBUF(6:28)
+           .
+
+       rwodbook-rod-k-multi-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-multi-SPLITBUF
+           MOVE rod-exe-isMulti(1:1) TO 
+           rwodbook-rod-k-multi-SPLITBUF(1:1)
+           MOVE rod-mcg-code(1:5) TO rwodbook-rod-k-multi-SPLITBUF(2:5)
+           MOVE rod-key(1:28) TO rwodbook-rod-k-multi-SPLITBUF(7:28)
+           .
+
+       rwodbook-rod-k-rp-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-rp-SPLITBUF
+           MOVE rod-int-restpause(1:1) TO 
+           rwodbook-rod-k-rp-SPLITBUF(1:1)
+           MOVE rod-mcg-code(1:5) TO rwodbook-rod-k-rp-SPLITBUF(2:5)
+           MOVE rod-key(1:28) TO rwodbook-rod-k-rp-SPLITBUF(7:28)
+           .
+
+       rwodbook-rod-k-ss-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-ss-SPLITBUF
+           MOVE rod-ss(1:1) TO rwodbook-rod-k-ss-SPLITBUF(1:1)
+           MOVE rod-mcg-code(1:5) TO rwodbook-rod-k-ss-SPLITBUF(2:5)
+           MOVE rod-key(1:28) TO rwodbook-rod-k-ss-SPLITBUF(7:28)
+           .
+
+       DataSet1-rwodbook-INITSTART.
+           IF DataSet1-rwodbook-KEY-Asc
+              MOVE Low-Value TO rod-key
+           ELSE
+              MOVE High-Value TO rod-key
+           END-IF
+           .
+
+       DataSet1-rwodbook-INITEND.
+           IF DataSet1-rwodbook-KEY-Asc
+              MOVE High-Value TO rod-key
+           ELSE
+              MOVE Low-Value TO rod-key
+           END-IF
+           .
+
+      * rwodbook
+       DataSet1-rwodbook-START.
+           IF DataSet1-rwodbook-KEY-Asc
+              START rwodbook KEY >= rod-key
+           ELSE
+              START rwodbook KEY <= rod-key
+           END-IF
+           .
+
+       DataSet1-rwodbook-START-NOTGREATER.
+           IF DataSet1-rwodbook-KEY-Asc
+              START rwodbook KEY <= rod-key
+           ELSE
+              START rwodbook KEY >= rod-key
+           END-IF
+           .
+
+       DataSet1-rwodbook-START-GREATER.
+           IF DataSet1-rwodbook-KEY-Asc
+              START rwodbook KEY > rod-key
+           ELSE
+              START rwodbook KEY < rod-key
+           END-IF
+           .
+
+       DataSet1-rwodbook-START-LESS.
+           IF DataSet1-rwodbook-KEY-Asc
+              START rwodbook KEY < rod-key
+           ELSE
+              START rwodbook KEY > rod-key
+           END-IF
+           .
+
+       DataSet1-rwodbook-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, BeforeReadRecord>
+      * <TOTEM:END>
+           IF DataSet1-rwodbook-LOCK
+              READ rwodbook WITH LOCK 
+              KEY rod-key
+           ELSE
+              READ rwodbook WITH NO LOCK 
+              KEY rod-key
+           END-IF
+           PERFORM rwodbook-rod-k-day-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-prg-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-mcg-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-exe-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
+           MOVE STATUS-rwodbook TO TOTEM-ERR-STAT 
+           MOVE "rwodbook" TO TOTEM-ERR-FILE
+           MOVE "READ" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-rwodbook-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, BeforeReadNext>
+      * <TOTEM:END>
+           IF DataSet1-rwodbook-KEY-Asc
+              IF DataSet1-rwodbook-LOCK
+                 READ rwodbook NEXT WITH LOCK
+              ELSE
+                 READ rwodbook NEXT WITH NO LOCK
+              END-IF
+           ELSE
+              IF DataSet1-rwodbook-LOCK
+                 READ rwodbook PREVIOUS WITH LOCK
+              ELSE
+                 READ rwodbook PREVIOUS WITH NO LOCK
+              END-IF
+           END-IF
+           PERFORM rwodbook-rod-k-day-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-prg-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-mcg-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-exe-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
+           MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
+           MOVE "rwodbook" TO TOTEM-ERR-FILE
+           MOVE "READ NEXT" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-rwodbook-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, BeforeReadPrev>
+      * <TOTEM:END>
+           IF DataSet1-rwodbook-KEY-Asc
+              IF DataSet1-rwodbook-LOCK
+                 READ rwodbook PREVIOUS WITH LOCK
+              ELSE
+                 READ rwodbook PREVIOUS WITH NO LOCK
+              END-IF
+           ELSE
+              IF DataSet1-rwodbook-LOCK
+                 READ rwodbook NEXT WITH LOCK
+              ELSE
+                 READ rwodbook NEXT WITH NO LOCK
+              END-IF
+           END-IF
+           PERFORM rwodbook-rod-k-day-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-prg-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-mcg-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-exe-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
+           MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
+           MOVE "rwodbook" TO TOTEM-ERR-FILE
+           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-rwodbook-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, BeforeWrite>
+      * <TOTEM:END>
+           WRITE rod-rec OF rwodbook.
+           MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
+           MOVE "rwodbook" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-rwodbook-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, BeforeRewrite>
+      * <TOTEM:END>
+           REWRITE rod-rec OF rwodbook.
+           MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
+           MOVE "rwodbook" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-rwodbook-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, BeforeDelete>
+      * <TOTEM:END>
+           DELETE rwodbook.
+           MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
+           MOVE "rwodbook" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:rwodbook, AfterDelete>
+      * <TOTEM:END>
+           .
+
+       twodbook-tod-k-creazione-MERGE-SPLITBUF.
+           INITIALIZE twodbook-tod-k-creazione-SPLITBUF
+           MOVE tod-data-creazione(1:8) TO 
+           twodbook-tod-k-creazione-SPLITBUF(1:8)
+           MOVE tod-key(1:18) TO twodbook-tod-k-creazione-SPLITBUF(9:18)
+           .
+
+       twodbook-tod-k-wom-MERGE-SPLITBUF.
+           INITIALIZE twodbook-tod-k-wom-SPLITBUF
+           MOVE tod-wom-code(1:3) TO twodbook-tod-k-wom-SPLITBUF(1:3)
+           MOVE tod-key(1:18) TO twodbook-tod-k-wom-SPLITBUF(4:18)
+           .
+
+       twodbook-tod-k-desc-MERGE-SPLITBUF.
+           INITIALIZE twodbook-tod-k-desc-SPLITBUF
+           MOVE tod-desc(1:100) TO twodbook-tod-k-desc-SPLITBUF(1:100)
+           MOVE tod-key(1:18) TO twodbook-tod-k-desc-SPLITBUF(101:18)
+           .
+
+       twodbook-tod-k-ini-MERGE-SPLITBUF.
+           INITIALIZE twodbook-tod-k-ini-SPLITBUF
+           MOVE tod-day-ini(1:8) TO twodbook-tod-k-ini-SPLITBUF(1:8)
+           MOVE tod-key(1:18) TO twodbook-tod-k-ini-SPLITBUF(9:18)
+           .
+
+       twodbook-tod-k-eff-MERGE-SPLITBUF.
+           INITIALIZE twodbook-tod-k-eff-SPLITBUF
+           MOVE tod-wom-effort(1:2) TO twodbook-tod-k-eff-SPLITBUF(1:2)
+           MOVE tod-key(1:18) TO twodbook-tod-k-eff-SPLITBUF(3:18)
+           .
+
+       twodbook-tod-k-dur-MERGE-SPLITBUF.
+           INITIALIZE twodbook-tod-k-dur-SPLITBUF
+           MOVE tod-dur-code(1:2) TO twodbook-tod-k-dur-SPLITBUF(1:2)
+           MOVE tod-key(1:18) TO twodbook-tod-k-dur-SPLITBUF(3:18)
+           .
+
+       DataSet1-twodbook-INITSTART.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-twodbook-KEY1-Asc
+                 MOVE Low-Value TO tod-key
+              ELSE
+                 MOVE High-Value TO tod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-twodbook-INITEND.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-twodbook-KEY1-Asc
+                 MOVE High-Value TO tod-key
+              ELSE
+                 MOVE Low-Value TO tod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-CHANGETO-KEY1.
+           MOVE 1 TO DataSet1-KEYIS
+           .   
+
+       DataSet1-Change-CurrentKey-Asc.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              MOVE "A" TO DataSet1-twodbook-KEY1-ORDER
+           END-EVALUATE
+           .
+
+       DataSet1-Change-CurrentKey-Desc.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              MOVE "D" TO DataSet1-twodbook-KEY1-ORDER
+           END-EVALUATE
+           .
+
+      * twodbook
+       DataSet1-twodbook-START.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-twodbook-KEY1-Asc
+                 START twodbook KEY >= tod-key
+              ELSE
+                 START twodbook KEY <= tod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-twodbook-START-NOTGREATER.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-twodbook-KEY1-Asc
+                 START twodbook KEY <= tod-key
+              ELSE
+                 START twodbook KEY >= tod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-twodbook-START-GREATER.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-twodbook-KEY1-Asc
+                 START twodbook KEY > tod-key
+              ELSE
+                 START twodbook KEY < tod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-twodbook-START-LESS.
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-twodbook-KEY1-Asc
+                 START twodbook KEY < tod-key
+              ELSE
+                 START twodbook KEY > tod-key
+              END-IF
+           END-EVALUATE
+           .
+
+       DataSet1-twodbook-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, BeforeReadRecord>
+      * <TOTEM:END>
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-twodbook-LOCK
+                 READ twodbook WITH LOCK 
+                 KEY tod-key
+              ELSE
+                 READ twodbook WITH NO LOCK 
+                 KEY tod-key
+              END-IF
+           END-EVALUATE
+           PERFORM twodbook-tod-k-creazione-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-wom-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-desc-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-ini-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-eff-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-dur-MERGE-SPLITBUF
+           MOVE STATUS-twodbook TO TOTEM-ERR-STAT 
+           MOVE "twodbook" TO TOTEM-ERR-FILE
+           MOVE "READ" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-twodbook-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, BeforeReadNext>
+      * <TOTEM:END>
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-twodbook-KEY1-Asc
+                 IF DataSet1-twodbook-LOCK
+                    READ twodbook NEXT WITH LOCK
+                 ELSE
+                    READ twodbook NEXT WITH NO LOCK
+                 END-IF
+              ELSE
+                 IF DataSet1-twodbook-LOCK
+                    READ twodbook PREVIOUS WITH LOCK
+                 ELSE
+                    READ twodbook PREVIOUS WITH NO LOCK
+                 END-IF
+              END-IF
+           END-EVALUATE
+           PERFORM twodbook-tod-k-creazione-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-wom-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-desc-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-ini-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-eff-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-dur-MERGE-SPLITBUF
+           MOVE STATUS-twodbook TO TOTEM-ERR-STAT
+           MOVE "twodbook" TO TOTEM-ERR-FILE
+           MOVE "READ NEXT" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-twodbook-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, BeforeReadPrev>
+      * <TOTEM:END>
+           EVALUATE DataSet1-KEYIS
+           WHEN 1
+              IF DataSet1-twodbook-KEY1-Asc
+                 IF DataSet1-twodbook-LOCK
+                    READ twodbook PREVIOUS WITH LOCK
+                 ELSE
+                    READ twodbook PREVIOUS WITH NO LOCK
+                 END-IF
+              ELSE
+                 IF DataSet1-twodbook-LOCK
+                    READ twodbook NEXT WITH LOCK
+                 ELSE
+                    READ twodbook NEXT WITH NO LOCK
+                 END-IF
+              END-IF
+           END-EVALUATE
+           PERFORM twodbook-tod-k-creazione-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-wom-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-desc-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-ini-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-eff-MERGE-SPLITBUF
+           PERFORM twodbook-tod-k-dur-MERGE-SPLITBUF
+           MOVE STATUS-twodbook TO TOTEM-ERR-STAT
+           MOVE "twodbook" TO TOTEM-ERR-FILE
+           MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-twodbook-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, BeforeWrite>
+      * <TOTEM:END>
+           WRITE tod-rec OF twodbook.
+           MOVE STATUS-twodbook TO TOTEM-ERR-STAT
+           MOVE "twodbook" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-twodbook-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, BeforeRewrite>
+      * <TOTEM:END>
+           REWRITE tod-rec OF twodbook.
+           MOVE STATUS-twodbook TO TOTEM-ERR-STAT
+           MOVE "twodbook" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-twodbook-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, BeforeDelete>
+      * <TOTEM:END>
+           DELETE twodbook.
+           MOVE STATUS-twodbook TO TOTEM-ERR-STAT
+           MOVE "twodbook" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:twodbook, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE grp-rec OF groups
            INITIALIZE mcg-rec OF macrogroups
            INITIALIZE dur-rec OF duration
            INITIALIZE tee-rec OF tmp-exe-effort
-           INITIALIZE wod-rec OF wodbook
            INITIALIZE wom-rec OF wodmap
            INITIALIZE twe-rec OF tmp-wod-exe
            INITIALIZE tex-rec OF tmp-exe
@@ -5947,6 +6316,8 @@
            INITIALIZE tge-rec OF tmp-grp-exe
            INITIALIZE tss-rec OF tmp-superset
            INITIALIZE zwod-rec OF zoom-wodbook
+           INITIALIZE rod-rec OF rwodbook
+           INITIALIZE tod-rec OF twodbook
            .
 
 
@@ -6069,6 +6440,10 @@
                 CELL-DATA = "Durata stimata",
            .
 
+      * COMBO-BOX
+       cb-eff-Content.
+           .
+
       * FD's Initialize Paragraph
        DataSet1-exercises-INITREC.
            INITIALIZE exe-rec OF exercises
@@ -6104,14 +6479,6 @@
       * FD's Initialize Paragraph
        DataSet1-tmp-exe-effort-INITREC.
            INITIALIZE tee-rec OF tmp-exe-effort
-               REPLACING NUMERIC       DATA BY ZEROS
-                         ALPHANUMERIC  DATA BY SPACES
-                         ALPHABETIC    DATA BY SPACES
-           .
-
-      * FD's Initialize Paragraph
-       DataSet1-wodbook-INITREC.
-           INITIALIZE wod-rec OF wodbook
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -6192,6 +6559,22 @@
       * FD's Initialize Paragraph
        DataSet1-zoom-wodbook-INITREC.
            INITIALIZE zwod-rec OF zoom-wodbook
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-rwodbook-INITREC.
+           INITIALIZE rod-rec OF rwodbook
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-twodbook-INITREC.
+           INITIALIZE tod-rec OF twodbook
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -6507,7 +6890,7 @@
        Form1-DataSet1-Change-CurrentKey-Asc.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              MOVE "A" TO DataSet1-wodbook-KEY1-ORDER
+              MOVE "A" TO DataSet1-twodbook-KEY1-ORDER
            END-EVALUATE
            PERFORM Form1-DataSet1-Update-Key
            .
@@ -6515,19 +6898,19 @@
        Form1-DataSet1-Change-CurrentKey-Desc.
            EVALUATE DataSet1-KEYIS
            WHEN 1
-              MOVE "D" TO DataSet1-wodbook-KEY1-ORDER
+              MOVE "D" TO DataSet1-twodbook-KEY1-ORDER
            END-EVALUATE
            PERFORM Form1-DataSet1-Update-Key
            .
 
        Form1-DataSet1-Update-Key.
-           MOVE wod-rec OF wodbook TO
+           MOVE tod-rec OF twodbook TO
                      Form1-MULKEY-TMPBUF
            PERFORM Form1-CLEAR
            PERFORM Form1-INIT-DATA
            MOVE Form1-MULKEY-TMPBUF TO
-                     wod-rec OF wodbook
-           PERFORM DataSet1-wodbook-Read
+                     tod-rec OF twodbook
+           PERFORM DataSet1-twodbook-Read
            PERFORM Form1-DUPLICATE-MOVEKEY
            PERFORM Form1-DUMMY-CURR
            PERFORM Form1-IUD-Display
@@ -6538,16 +6921,16 @@
 
        Form1-First.
            PERFORM Form1-DUMMY-FIRST
-           PERFORM DataSet1-wodbook-INITSTART
-           PERFORM DataSet1-wodbook-START
-           IF NOT Valid-STATUS-wodbook
+           PERFORM DataSet1-twodbook-INITSTART
+           PERFORM DataSet1-twodbook-START
+           IF NOT Valid-STATUS-twodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeFirst>
       * <TOTEM:END>
-           PERFORM DataSet1-wodbook-Read-Next
-           IF NOT Valid-STATUS-wodbook
+           PERFORM DataSet1-twodbook-Read-Next
+           IF NOT Valid-STATUS-twodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -6559,15 +6942,15 @@
 
        Form1-Previous.
               PERFORM Form1-Buf-To-Fld
-              PERFORM DataSet1-wodbook-START-LESS
-           IF NOT Valid-STATUS-wodbook
+              PERFORM DataSet1-twodbook-START-LESS
+           IF NOT Valid-STATUS-twodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforePrevious>
       * <TOTEM:END>
-           PERFORM DataSet1-wodbook-Read-Prev
-           IF NOT Valid-STATUS-wodbook
+           PERFORM DataSet1-twodbook-Read-Prev
+           IF NOT Valid-STATUS-twodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -6580,15 +6963,15 @@
 
        Form1-Next.
               PERFORM Form1-Buf-To-Fld
-              PERFORM DataSet1-wodbook-START-GREATER
-           IF NOT Valid-STATUS-wodbook
+              PERFORM DataSet1-twodbook-START-GREATER
+           IF NOT Valid-STATUS-twodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeNext>
       * <TOTEM:END>
-           PERFORM DataSet1-wodbook-Read-Next
-           IF NOT Valid-STATUS-wodbook
+           PERFORM DataSet1-twodbook-Read-Next
+           IF NOT Valid-STATUS-twodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -6601,16 +6984,16 @@
       
        Form1-Last.
            PERFORM Form1-DUMMY-LAST
-           PERFORM DataSet1-wodbook-INITEND
-           PERFORM DataSet1-wodbook-START-NOTGREATER
-           IF NOT Valid-STATUS-wodbook
+           PERFORM DataSet1-twodbook-INITEND
+           PERFORM DataSet1-twodbook-START-NOTGREATER
+           IF NOT Valid-STATUS-twodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeLast>
       * <TOTEM:END>
-           PERFORM DataSet1-wodbook-Read-Prev
-           IF NOT Valid-STATUS-wodbook
+           PERFORM DataSet1-twodbook-Read-Prev
+           IF NOT Valid-STATUS-twodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
@@ -6624,7 +7007,7 @@
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeCurrent>
       * <TOTEM:END>
            PERFORM Form1-Buf-To-Fld
-           PERFORM DataSet1-wodbook-Read
+           PERFORM DataSet1-twodbook-Read
            PERFORM Form1-DUPLICATE-MOVEKEY
            PERFORM Form1-DUMMY-CURR
            PERFORM Form1-IUD-Display
@@ -6633,7 +7016,7 @@
            .
 
        Form1-IUD-Display.
-           IF Valid-STATUS-wodbook
+           IF Valid-STATUS-twodbook
               PERFORM Form1-ALLGRID-RESET
               PERFORM Form1-Fld-To-Buf
               PERFORM Form1-NAVI-FOR-MASTERGRID
@@ -6654,14 +7037,14 @@
                EXIT PARAGRAPH
            END-IF
            PERFORM Form1-DUMMY-ADD
-           PERFORM DataSet1-wodbook-INITREC
+           PERFORM DataSet1-twodbook-INITREC
            PERFORM Form1-Buf-To-Fld
            MOVE SPACES TO TOTEM-TRANSACTION-FLAG
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAdd>
       * <TOTEM:END>
       * write
-           PERFORM DataSet1-wodbook-Rec-Write
-           IF Valid-STATUS-wodbook
+           PERFORM DataSet1-twodbook-Rec-Write
+           IF Valid-STATUS-twodbook
               PERFORM Form1-RESUMMARY-INS
               PERFORM Form1-DUMMY-UPDATE-INIT
               MOVE "301" TO TOTEM-MSG-ID
@@ -6674,12 +7057,12 @@
      
        Form1-Update.
            PERFORM Form1-Buf-To-Fld
-           PERFORM DataSet1-wodbook-START              
-           IF NOT Valid-STATUS-wodbook
+           PERFORM DataSet1-twodbook-START              
+           IF NOT Valid-STATUS-twodbook
               PERFORM Form1-Extended-File-Status
               EXIT PARAGRAPH
            END-IF
-           PERFORM DataSet1-wodbook-Read
+           PERFORM DataSet1-twodbook-Read
            PERFORM Form1-Buf-To-Fld
            PERFORM Form1-VALIDATION-ROUTINE
            IF NOT TOTEM-CHECK-OK
@@ -6691,8 +7074,8 @@
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeUpdate>
       * <TOTEM:END>
       * write
-           PERFORM DataSet1-wodbook-Rec-Rewrite
-           IF Valid-STATUS-wodbook
+           PERFORM DataSet1-twodbook-Rec-Rewrite
+           IF Valid-STATUS-twodbook
               PERFORM Form1-RESUMMARY-DEL
               PERFORM Form1-DUMMY-UPDATE-INIT
               MOVE "302" TO TOTEM-MSG-ID
@@ -6716,12 +7099,12 @@
            PERFORM Form1-DUMMY-DELETE
       * delete
            PERFORM Form1-Buf-To-Fld
-           PERFORM DataSet1-wodbook-Rec-Delete
-           IF Valid-STATUS-wodbook
+           PERFORM DataSet1-twodbook-Rec-Delete
+           IF Valid-STATUS-twodbook
               PERFORM Form1-CLEAR
               PERFORM Form1-DUMMY-DELETE-INIT
               MOVE "303" TO TOTEM-MSG-ID
-              MOVE "00" to STATUS-wodbook
+              MOVE "00" to STATUS-twodbook
            END-IF
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, AfterDelete>
       * <TOTEM:END>
@@ -6732,7 +7115,7 @@
            .
 
        Form1-ERR-CHECKING.
-           IF Valid-STATUS-wodbook
+           IF Valid-STATUS-twodbook
               PERFORM Form1-SHOW-MSG-ROUTINE
            ELSE
               PERFORM Form1-Extended-File-Status
@@ -6841,28 +7224,28 @@
            .
 
        Form1-Save-Status.
-           MOVE DataSet1-wodbook-KEY1-ORDER TO TMP-Form1-KEY1-ORDER
+           MOVE DataSet1-twodbook-KEY1-ORDER TO TMP-Form1-KEY1-ORDER
            MOVE DataSet1-KEYIS TO TMP-Form1-KEYIS
-           MOVE wod-rec OF wodbook TO 
-              TMP-Form1-wodbook-RESTOREBUF
+           MOVE tod-rec OF twodbook TO 
+              TMP-Form1-twodbook-RESTOREBUF
            .             
 
        Form1-Restore-Status.
-           MOVE TMP-Form1-KEY1-ORDER TO DataSet1-wodbook-KEY1-ORDER
+           MOVE TMP-Form1-KEY1-ORDER TO DataSet1-twodbook-KEY1-ORDER
            MOVE TMP-Form1-KEYIS TO DataSet1-KEYIS
-           MOVE TMP-Form1-wodbook-RESTOREBUF TO
-              wod-rec OF wodbook
-           PERFORM DataSet1-wodbook-START
-           IF Valid-STATUS-wodbook
-              PERFORM DataSet1-wodbook-Read-Next
+           MOVE TMP-Form1-twodbook-RESTOREBUF TO
+              tod-rec OF twodbook
+           PERFORM DataSet1-twodbook-START
+           IF Valid-STATUS-twodbook
+              PERFORM DataSet1-twodbook-Read-Next
            ELSE
-              PERFORM DataSet1-wodbook-INITREC
+              PERFORM DataSet1-twodbook-INITREC
            END-IF
-           PERFORM UNTIL NOT Valid-STATUS-wodbook OR
-              (Valid-STATUS-wodbook AND
-                 wod-rec OF wodbook = 
-                   TMP-Form1-wodbook-RESTOREBUF)
-              PERFORM DataSet1-wodbook-Read-Next
+           PERFORM UNTIL NOT Valid-STATUS-twodbook OR
+              (Valid-STATUS-twodbook AND
+                 tod-rec OF twodbook = 
+                   TMP-Form1-twodbook-RESTOREBUF)
+              PERFORM DataSet1-twodbook-Read-Next
            END-PERFORM
            .
 
@@ -6919,16 +7302,16 @@
                        read tmp-exe next at end exit perform end-read
                        if como-giorno = 0
                           move tex-day to como-giorno
-                          move tex-exe-desc-univoca to exe-desc 
+                          move tex-desc-univoca to exe-desc 
                           exit perform cycle
                        end-if
                        if tex-day = como-giorno and
-                          tex-exe-desc-univoca = exe-desc
+                          tex-desc-univoca = exe-desc
                           add 1 to tot-subst
                           exit perform
                        else
                           move tex-day to como-giorno
-                          move tex-exe-desc-univoca to exe-desc 
+                          move tex-desc-univoca to exe-desc 
                        end-if
                     end-perform
               end-start          
@@ -7137,52 +7520,52 @@
            move lab-desc-buf to ef-desc-buf.
            display ef-desc.               
            initialize lab-ins-mod-buf.    
-           move lab-code-buf to wod-code.
-           if wod-code > 0
-              move lab-code-buf to como-wod-code
-              inspect como-wod-code replacing leading x"30" by x"20"
-              call "C$JUSTIFY" using como-wod-code, "L"
+           move lab-code-buf to tod-code.
+           if tod-code > 0
+              move lab-code-buf to como-tod-code
+              inspect como-tod-code replacing leading x"30" by x"20"
+              call "C$JUSTIFY" using como-tod-code, "L"
               string "Stai modificando il wod # "
-                     como-wod-code
+                     como-tod-code
                 into lab-ins-mod-buf
               end-string
-              move low-value to wod-key  
-              move lab-code-buf to wod-code s-wod-code
-              start wodbook key >= wod-key
+              move low-value to rod-key  
+              move tod-code  to rod-code
+              start rwodbook key >= rod-key
                     invalid continue
                 not invalid
                     perform until 1 = 2
-                       read wodbook next at end exit perform end-read
-                       if wod-code not = s-wod-code
+                       read rwodbook next at end exit perform end-read
+                       if rod-code not = tod-code
                           exit perform
                        end-if
-                       evaluate wod-prg-day
+                       evaluate rod-prg-day
                        when 1 
-                            move wod-day to como-data
+                            move rod-day to como-data
                             perform DATE-TO-SCREEN
                             move como-data to ef-gg1-buf
                        when 2
-                            move wod-day to como-data
+                            move rod-day to como-data
                             perform DATE-TO-SCREEN
                             move como-data to ef-gg2-buf
                        when 3
-                            move wod-day to como-data
+                            move rod-day to como-data
                             perform DATE-TO-SCREEN
                             move como-data to ef-gg3-buf
                        when 4
-                            move wod-day to como-data
+                            move rod-day to como-data
                             perform DATE-TO-SCREEN
                             move como-data to ef-gg4-buf
                        when 5
-                            move wod-day to como-data
+                            move rod-day to como-data
                             perform DATE-TO-SCREEN
                             move como-data to ef-gg5-buf
                        when 6
-                            move wod-day to como-data
+                            move rod-day to como-data
                             perform DATE-TO-SCREEN
                             move como-data to ef-gg6-buf
                        when 7
-                            move wod-day to como-data
+                            move rod-day to como-data
                             perform DATE-TO-SCREEN
                             move como-data to ef-gg7-buf
                        end-evaluate
@@ -7341,7 +7724,7 @@
 
        scr-filtro-Create-Win.
            Display Floating GRAPHICAL WINDOW
-              LINES 19,62,
+              LINES 22,88,
               SIZE 78,91,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
@@ -7366,16 +7749,28 @@
        scr-filtro-PROC.
       * <TOTEM:EPT. FORM:scr-filtro, FORM:scr-filtro, BeforeAccept>
            move 0 to e-des e-dta e-dtc e-map e-exe e-mul e-rep e-gss 
-           e-mcg.
+           e-mcg e-eff e-dur.
            move 0 to ef-dta-from-buf ef-dta-to-buf.
-           move 0 to ef-dtc-from-buf ef-dtc-to-buf.
+           move 0 to ef-dtc-from-buf ef-dtc-to-buf ef-map-buf 
+           ef-dur-buf.
+           move spaces to ef-des-buf ef-exe-buf ef-mul-buf ef-rep-buf 
+           ef-gss-buf ef-mcg-buf.
            move 78-lab-tutti to lab-map-buf
                                 lab-exe-buf
                                 lab-mul-buf
                                 lab-rep-buf
                                 lab-gss-buf
-                                lab-mcg-buf.
+                                lab-mcg-buf
+                                lab-dur-buf.
            move 1 to tipo-filtro.
+           modify cb-eff, reset-list = 1.                
+           modify cb-eff, item-to-add "Light wod effort" 
+           modify cb-eff, item-to-add "Medium wod effort" 
+           modify cb-eff, item-to-add "Heavy wod effort"  
+           modify cb-eff, item-to-add "Tutti" 
+           
+           move "Tutti" to cb-eff-buf.
+
            display scr-filtro.
 
            move 1 to nessuna-scelta.
@@ -7417,6 +7812,8 @@
                  PERFORM rb-dtc-LinkTo
               WHEN Key-Status = 1004
                  PERFORM rb-map-LinkTo
+              WHEN Key-Status = 1016
+                 PERFORM rb-eff-LinkTo
               WHEN Key-Status = 1009
                  PERFORM pb-map-LinkTo
               WHEN Key-Status = 1005
@@ -7439,6 +7836,10 @@
                  PERFORM rb-gss-LinkTo
               WHEN Key-Status = 1014
                  PERFORM pb-mcg-LinkTo
+              WHEN Key-Status = 1017
+                 PERFORM rb-dur-LinkTo
+              WHEN Key-Status = 1018
+                 PERFORM pb-dur-LinkTo
               WHEN Key-Status = 1015
                  PERFORM pb-ok-f-LinkTo
            END-EVALUATE
@@ -7476,6 +7877,8 @@
        scr-filtro-Init-Data.
            MOVE 4 TO TOTEM-Form-Index
            MOVE 0 TO TOTEM-Frame-Index
+      * COMBO-BOX
+           PERFORM cb-eff-Content
            .
 
        scr-filtro-Init-Value.
@@ -7677,7 +8080,7 @@
                    move wom-sigla-default(7) to el-mcg-sigla(7)
                 
                    if reloadGrid
-                      move wod-el-mcg-code(1)      to mcg-code
+                      move tod-el-mcg-code(1)      to mcg-code
                    else                                       
                       move wom-mcg-code-default(1) to mcg-code
                    end-if
@@ -7687,7 +8090,7 @@
                    end-read
 
                    if reloadGrid
-                      move wod-el-mcg-code(2)      to mcg-code
+                      move tod-el-mcg-code(2)      to mcg-code
                    else                                       
                       move wom-mcg-code-default(2) to mcg-code
                    end-if
@@ -7697,7 +8100,7 @@
                    end-read
 
                    if reloadGrid
-                      move wod-el-mcg-code(3)      to mcg-code
+                      move tod-el-mcg-code(3)      to mcg-code
                    else                                       
                       move wom-mcg-code-default(3) to mcg-code
                    end-if
@@ -7707,7 +8110,7 @@
                    end-read
 
                    if reloadGrid
-                      move wod-el-mcg-code(4)      to mcg-code
+                      move tod-el-mcg-code(4)      to mcg-code
                    else                                       
                       move wom-mcg-code-default(4) to mcg-code
                    end-if
@@ -7717,7 +8120,7 @@
                    end-read
 
                    if reloadGrid
-                      move wod-el-mcg-code(5)      to mcg-code
+                      move tod-el-mcg-code(5)      to mcg-code
                    else                                       
                       move wom-mcg-code-default(5) to mcg-code
                    end-if
@@ -7727,7 +8130,7 @@
                    end-read
 
                    if reloadGrid
-                      move wod-el-mcg-code(6)      to mcg-code
+                      move tod-el-mcg-code(6)      to mcg-code
                    else                                       
                       move wom-mcg-code-default(6) to mcg-code
                    end-if
@@ -7737,7 +8140,7 @@
                    end-read
 
                    if reloadGrid
-                      move wod-el-mcg-code(7)      to mcg-code
+                      move tod-el-mcg-code(7)      to mcg-code
                    else                                       
                       move wom-mcg-code-default(7) to mcg-code
                    end-if
@@ -8308,17 +8711,20 @@
               exit paragraph
            end-if.
 
-           move low-value  to wod-key.
-           move s-wod-code to wod-code.
-           start wodbook key >= wod-key
+           move s-tod-code to tod-code.
+           delete twodbook record.
+
+           move low-value  to rod-key.
+           move s-tod-code to rod-code.
+           start rwodbook key >= rod-key
                  invalid continue
              not invalid
                  perform until 1 = 2
-                    read wodbook next at end exit perform end-read
-                    if wod-code not = s-wod-code
+                    read rwodbook next at end exit perform end-read
+                    if rod-code not = tod-code
                        exit perform
                     end-if
-                    delete wodbook record
+                    delete rwodbook record
                  end-perform
            end-start.
 
@@ -8849,7 +9255,7 @@
                    end-read
                 end-if
                 move mcg-desc to lab-gss-buf
-                display lab-gss
+                display lab-gss       
 
            when 78-ID-ef-mcg
                 inquire ef-mul, value in mcg-code
@@ -8867,6 +9273,23 @@
                 end-if
                 move mcg-desc to lab-mcg-buf
                 display lab-mcg
+
+           when 78-ID-ef-dur
+                inquire ef-dur, value in dur-code
+                if dur-code = 0
+                   move "Tutte le durate" to dur-desc
+                else
+                   read duration no lock
+                        invalid     
+                        display message "Valore errato"
+                                  title tit-err
+                                   icon 2
+                        move spaces to dur-desc    
+                        set errori to true
+                   end-read
+                end-if
+                move dur-desc to lab-dur-buf
+                display lab-dur
 
            end-evaluate.
 
@@ -9049,82 +9472,93 @@
        CURRENT-RECORD.
       * <TOTEM:PARA. CURRENT-RECORD>
            move 0 to tot-gruppi.
-           move low-value to wod-day wod-split.
-           move wod-code to s-wod-code.
-           start wodbook key >= wod-key
-                 invalid continue
-             not invalid
-                 perform OPEN-TMP
-                 perform until 1 = 2
-                    read wodbook next at end exit perform end-read
-                    if wod-code not = s-wod-code
-                       exit perform
-                    end-if
-                    if wod-split = 0 
-                       move wod-wom-code to wom-code
-                       read wodmap no lock
-                       modify cb-wod, value wom-desc
+           read twodbook
+                invalid continue
+            not invalid
+                perform OPEN-TMP  
+                move tod-wom-code to wom-code
+                read wodmap no lock
+                modify cb-wod, value wom-desc
+                
+                perform varying idx from 1 by 1 
+                          until idx > 7
+                   if tod-el-mcg-code(idx) = spaces
+                      exit perform
+                   end-if
+                   move tod-el-mcg-code(idx) to mcg-code
+                                             el-mcg-code(idx)
+                   read macrogroups
+                   evaluate idx                                     
+                   when 1 modify cb-mg1, value mcg-desc
+                   when 2 modify cb-mg2, value mcg-desc
+                   when 3 modify cb-mg3, value mcg-desc
+                   when 4 modify cb-mg4, value mcg-desc
+                   when 5 modify cb-mg5, value mcg-desc
+                   when 6 modify cb-mg6, value mcg-desc
+                   when 7 modify cb-mg7, value mcg-desc
+                   end-evaluate
+                   add 1 to tot-gruppi            
+                end-perform  
+                modify cb-mul, value "Si"
+                modify cb-int, value "Tutto"
+                modify cb-dur, value "Tutto"
+                modify cb-gio, value "Tutto"
+                move spaces to s-cb-mg1-buf
+                perform VALORIZZA-WOD
+                set reloadGrid to true
+                perform ABILITA-MACROGRUPPI  
+                set reloadGrid to false
+                move tod-desc to lab-desc-buf
+                display lab-desc
+                move tod-code to lab-code-buf s-tod-code
+                display lab-code
 
-                       perform varying idx from 1 by 1 
-                                 until idx > 7
-                          if wod-el-mcg-code(idx) = spaces
-                             exit perform
-                          end-if
-                          move wod-el-mcg-code(idx) to mcg-code
-                                                    el-mcg-code(idx)
-                          read macrogroups
-                          evaluate idx                                  
-              
-                          when 1 modify cb-mg1, value mcg-desc
-                          when 2 modify cb-mg2, value mcg-desc
-                          when 3 modify cb-mg3, value mcg-desc
-                          when 4 modify cb-mg4, value mcg-desc
-                          when 5 modify cb-mg5, value mcg-desc
-                          when 6 modify cb-mg6, value mcg-desc
-                          when 7 modify cb-mg7, value mcg-desc
-                          end-evaluate
-                          add 1 to tot-gruppi            
-                       end-perform  
-                       modify cb-mul, value "Si"
-                       modify cb-int, value "Tutto"
-                       modify cb-dur, value "Tutto"
-                       modify cb-gio, value "Tutto"
-                       move spaces to s-cb-mg1-buf
-                       perform VALORIZZA-WOD
-                       set reloadGrid to true
-                       perform ABILITA-MACROGRUPPI  
-                       set reloadGrid to false
-                       move wod-desc to lab-desc-buf
-                       display lab-desc
-                       move wod-code to lab-code-buf s-wod-code
-                       display lab-code
-                       exit perform cycle 
-                    end-if
-                    move wod-day to como-data
-                    perform DATE-TO-SCREEN
-                    move como-data to como-data-x10
-                    compute riga = wod-prg-day * 2 + 1
-                    modify gd-schema(riga, 12), cell-data como-data-x10
-
-                    move wod-prg-day          to tex-day
-                    move wod-split            to tex-split
-                    move wod-exe-desc-univoca to tex-exe-desc-univoca
-                    move wod-mcg-code         to tex-mcg-code        
-                    move wod-exe-code         to tex-exe-code        
-                    read exercises no lock
-                         invalid move "NON TROVATA" to exe-desc
-                    end-read
-                    move exe-desc         to tex-exe-desc        
-                    move wod-int-code         to tex-int-code        
-                    move wod-exe-isMulti      to tex-exe-isMulti     
-                    move wod-reps             to tex-reps            
-                    move wod-series           to tex-series          
-                    move wod-int-restpause    to tex-int-restpause   
-                    move wod-ss               to tex-ss              
-                    write tex-rec
-                 end-perform             
-                 perform RELOAD-GRID
-           end-start.
+                move low-value to rod-key
+                move tod-code  to rod-code
+                start rwodbook key >= rod-key
+                      invalid continue
+                  not invalid
+                      perform until 1 = 2
+                         read rwodbook next at end exit perform end-read
+                         if rod-code not = tod-code
+                            exit perform
+                         end-if             
+                         move rod-day to como-data
+                         perform DATE-TO-SCREEN
+                         move como-data to como-data-x10
+                         compute riga = rod-prg-day * 2 + 1
+                         modify gd-schema(riga, 12), cell-data 
+           como-data-x10
+                
+                         move rod-prg-day          to tex-day
+                         move rod-split            to tex-split
+                         move rod-mcg-code         to tex-mcg-code      
+             
+                         move rod-exe-code         to tex-exe-code 
+           exe-code
+                         read exercises no lock
+                              invalid move "NON TROVATA" to exe-desc
+                         end-read                              
+                         move rod-desc-univoca     to tex-desc-univoca
+                         move exe-desc             to tex-exe-desc      
+             
+                         move rod-int-code         to tex-int-code      
+             
+                         move rod-exe-isMulti      to tex-exe-isMulti   
+             
+                         move rod-reps             to tex-reps          
+             
+                         move rod-series           to tex-series        
+             
+                         move rod-int-restpause    to tex-int-restpause 
+             
+                         move rod-ss               to tex-ss            
+             
+                         write tex-rec
+                      end-perform             
+                      perform RELOAD-GRID
+                end-start
+           end-read.
            perform RICALCOLA-HIT-DIV.
            perform CALCOLA-HIT-BOTTONI.
            move cb-mg1-buf to s-cb-mg1-buf.
@@ -9877,7 +10311,7 @@
                           exit perform cycle
                        end-if                    
                        if tex-exe-isMulti = 1 exit perform cycle end-if
-                       move tex-exe-desc-univoca to como-nome
+                       move tex-desc-univoca to como-nome
                        inspect tex-exe-desc replacing trailing 
            low-value by spaces
                        move tex-day   to ted-day
@@ -10009,22 +10443,22 @@
       ***---
        DES-UNIVOCA.
            move tex-exe-desc to como-nome.
-           initialize como-nome counter tex-exe-desc-univoca.
+           initialize como-nome counter tex-desc-univoca.
            inspect tex-exe-desc replacing trailing spaces by low-value.
            inspect tex-exe-desc tallying counter for characters before 
            low-value.
            if tex-exe-desc(counter - 3 : 4) = "HARD"
-              move tex-exe-desc(1:counter - 4)to tex-exe-desc-univoca
+              move tex-exe-desc(1:counter - 4)to tex-desc-univoca
            end-if .
            if tex-exe-desc(counter - 5 : 6) = "MEDIUM"
-              move tex-exe-desc(1:counter - 6)to tex-exe-desc-univoca
+              move tex-exe-desc(1:counter - 6)to tex-desc-univoca
            end-if.
            if tex-exe-desc(counter - 4 : 5) = "LIGHT"
-              move tex-exe-desc(1:counter - 5)to tex-exe-desc-univoca
+              move tex-exe-desc(1:counter - 5)to tex-desc-univoca
            end-if.
            inspect tex-exe-desc replacing trailing low-value by spaces.
-           if tex-exe-desc-univoca = spaces
-              move tex-exe-desc to tex-exe-desc-univoca
+           if tex-desc-univoca = spaces
+              move tex-exe-desc to tex-desc-univoca
            end-if 
            .
       * <TOTEM:END>
@@ -10577,28 +11011,28 @@
            inquire cb-wod, value in wom-desc.
            read wodmap no lock.
            
-           move lab-code-buf to wod-code.
-           if wod-code > 0
-              move wod-code to como-code
-              move low-value to wod-rec 
-              move como-code to wod-code
-              start wodbook key >= wod-key
+           move lab-code-buf to tod-code.
+           if tod-code > 0
+              delete twodbook record        
+              move low-value to rod-key
+              move tod-code  to rod-code
+              start rwodbook key >= rod-key
                     invalid continue
                 not invalid 
                     perform until 1 = 2
-                       read wodbook next at end exit perform end-read
-                       if wod-code not = como-code
+                       read rwodbook next at end exit perform end-read
+                       if rod-code not = tod-code
                           exit perform
                        end-if 
-                       delete wodbook record
+                       delete rwodbook record
                     end-perform
               end-start
            else
-              move high-value to wod-rec
-              start wodbook key <= wod-key
+              move high-value to tod-rec
+              start twodbook key <= tod-key
                     invalid move 0 to como-code
-                not invalid read wodbook previous
-                            move wod-code to como-code
+                not invalid read twodbook previous
+                            move tod-code to como-code
               end-start
               add 1 to como-code 
            end-if.
@@ -10617,87 +11051,89 @@
                        evaluate tex-day
                        when 1 move ef-gg1-buf to como-data
                               perform DATE-TO-FILE
-                              move como-data to wod-day primo-giorno
+                              move como-data to rod-day primo-giorno
                        when 2 move ef-gg2-buf to como-data
                               perform DATE-TO-FILE
-                              move como-data to wod-day
+                              move como-data to rod-day
                        when 3 move ef-gg3-buf to como-data
                               perform DATE-TO-FILE
-                              move como-data to wod-day
+                              move como-data to rod-day
                        when 4 move ef-gg4-buf to como-data
                               perform DATE-TO-FILE
-                              move como-data to wod-day
+                              move como-data to rod-day
                        when 5 move ef-gg5-buf to como-data
                               perform DATE-TO-FILE
-                              move como-data to wod-day
+                              move como-data to rod-day
                        when 6 move ef-gg6-buf to como-data
                               perform DATE-TO-FILE
-                              move como-data to wod-day
+                              move como-data to rod-day
                        when 7 move ef-gg7-buf to como-data
                               perform DATE-TO-FILE
-                              move como-data to wod-day
+                              move como-data to rod-day
                        end-evaluate  
                     end-if                
-                    initialize wod-rec replacing numeric data by zeroes
+                    initialize rod-rec replacing numeric data by zeroes
                                             alphanumeric data by spaces
-                    move como-data to wod-day
-
-                    move tex-day              to wod-prg-day
-                    move como-code            to wod-code
+                    move como-data to rod-day 
+                    move tex-day              to rod-prg-day
+                    move como-code            to rod-code
                     add 1 to s-tex-split
-                    move s-tex-split          to wod-split
+                    move s-tex-split          to rod-split
       *              move tex-split            to wod-split
-                    move tex-exe-desc-univoca to wod-exe-desc-univoca
-                    move tex-mcg-code         to wod-mcg-code        
-                    move tex-exe-code         to wod-exe-code        
-                    move tex-int-code         to wod-int-code        
-                    move tex-exe-isMulti      to wod-exe-isMulti     
-                    move tex-reps             to wod-reps            
-                    move tex-series           to wod-series          
-                    move tex-int-restpause    to wod-int-restpause   
-                    move tex-ss               to wod-ss    
-                    add  1                    to tot-exe
-                    write wod-rec       
+                    move tex-mcg-code         to rod-mcg-code        
+                    move tex-exe-code         to rod-exe-code        
+                    move tex-int-code         to rod-int-code        
+                    move tex-exe-isMulti      to rod-exe-isMulti     
+                    move tex-reps             to rod-reps            
+                    move tex-series           to rod-series          
+                    move tex-int-restpause    to rod-int-restpause   
+                    move tex-ss               to rod-ss    
+                    add  1                    to tot-exe            
+                    move tex-desc-univoca     to rod-desc-univoca
+                    write rod-rec       
 
-                    move wod-day to como-data
+                    move rod-day to como-data
                     perform DATE-TO-SCREEN
                     move como-data to como-data-x10
-                    compute riga = wod-prg-day * 2 + 1
+                    compute riga = rod-prg-day * 2 + 1
                     modify gd-schema(riga, 12), cell-data como-data-x10
 
                  end-perform   
 
                  |Scrivo la testata
                  accept como-data from century-date
-                 initialize wod-rec replacing numeric data by zeroes
+                 initialize tod-rec replacing numeric data by zeroes
                                          alphanumeric data by spaces
-                 move como-code      to wod-code
+                 move effort-wod     to tod-wom-effort      
+                 move como-code      to tod-code
                  inquire ef-desc, value in ef-desc-buf
-                 move ef-desc-buf    to wod-desc
-                 move como-data      to wod-data-creazione
-                 move wom-code       to wod-wom-code 
-                 move primo-giorno   to wod-day
-                 move wod-code to lab-code-buf
-                 move wod-desc to lab-desc-buf
+                 move ef-desc-buf    to tod-desc
+                 move como-data      to tod-data-creazione
+                 move wom-code       to tod-wom-code wom-code
+                 read wodmap
+                 move primo-giorno   to tod-day-ini
+                 move tod-code to lab-code-buf
+                 move tod-desc to lab-desc-buf
                  display lab-desc lab-code
-                 move tot-exe        to wod-tot-exe
-                 move tex-day        to wod-gg
+                 move tot-exe        to tod-tot-exe
+                 move tex-day        to tod-gg
+                 move wom-dur-code   to dur-code
 
                  perform varying idx from 1 by 1 
                            until idx > 20
                     if el-mcg-code(idx) = spaces
                        exit perform
                     end-if             
-                    move el-mcg-code(idx) to wod-el-mcg-code(idx)
-                    move el-hit(idx)      to wod-el-hit(idx)
+                    move el-mcg-code(idx) to tod-el-mcg-code(idx)
+                    move el-hit(idx)      to tod-el-hit(idx)
                  end-perform
 
-                 write wod-rec
+                 write tod-rec
 
                  perform CURRENT-RECORD     
 
                  display message "Salvato allenamento correttamente."
-                          x"0d0a""Codice : " wod-code
+                          x"0d0a""Codice : " tod-code
                            title titolo
                  move 27 to key-status
            end-start 
@@ -10707,7 +11143,7 @@
        SEL-FILTRO.
       * <TOTEM:PARA. SEL-FILTRO>
            move 0 to e-des e-dta e-dtc e-map e-exe e-mul e-rep e-gss 
-           e-mcg.
+           e-mcg e-eff e-dur.
 
            evaluate tipo-filtro
            when 2 
@@ -10725,8 +11161,10 @@
                                      lab-rep-buf
                                      lab-gss-buf
                                      lab-map-buf
-                                     lab-mcg-buf
-                move 0      to ef-map-buf
+                                     lab-mcg-buf    
+                                     lab-dur-buf
+                move 0       to ef-map-buf ef-dur-buf
+                move "Tutti" to cb-eff-buf
            when 3 
                 move 1 to e-dta         
                 move spaces to ef-des-buf                    
@@ -10740,9 +11178,11 @@
                                      lab-mul-buf
                                      lab-rep-buf
                                      lab-gss-buf
-                                     lab-map-buf
-                                     lab-mcg-buf
-                move 0      to ef-map-buf
+                                     lab-map-buf     
+                                     lab-mcg-buf     
+                                     lab-dur-buf
+                move 0       to ef-map-buf ef-dur-buf
+                move "Tutti" to cb-eff-buf
            when 4 
                 move 1 to e-dtc         
                 move spaces to ef-des-buf                    
@@ -10757,8 +11197,10 @@
                                      lab-rep-buf
                                      lab-gss-buf
                                      lab-map-buf   
-                                     lab-mcg-buf
-                move 0      to ef-map-buf
+                                     lab-mcg-buf     
+                                     lab-dur-buf
+                move 0       to ef-map-buf ef-dur-buf
+                move "Tutti" to cb-eff-buf
            when 5 
                 move 1 to e-map
                 move spaces to ef-des-buf                    
@@ -10773,7 +11215,10 @@
                                      lab-mul-buf
                                      lab-rep-buf
                                      lab-gss-buf
-                                     lab-mcg-buf
+                                     lab-mcg-buf     
+                                     lab-dur-buf
+                move 0       to ef-dur-buf
+                move "Tutti" to cb-eff-buf
            when 6 
                 move 1 to e-exe
                 move spaces to ef-des-buf                    
@@ -10787,8 +11232,10 @@
                                      lab-rep-buf
                                      lab-gss-buf
                                      lab-map-buf
-                                     lab-mcg-buf
-                move 0      to ef-map-buf
+                                     lab-mcg-buf  
+                                     lab-dur-buf
+                move 0       to ef-map-buf ef-dur-buf
+                move "Tutti" to cb-eff-buf
            when 7 
                 move 1 to e-mul      
                 move spaces to ef-des-buf                    
@@ -10802,8 +11249,10 @@
                                      lab-rep-buf
                                      lab-gss-buf
                                      lab-map-buf
-                                     lab-mcg-buf
-                move 0      to ef-map-buf
+                                     lab-mcg-buf  
+                                     lab-dur-buf
+                move 0       to ef-map-buf ef-dur-buf
+                move "Tutti" to cb-eff-buf
            when 8 
                 move 1 to e-rep
                 move spaces to ef-des-buf                    
@@ -10817,8 +11266,10 @@
                                      lab-mul-buf
                                      lab-gss-buf
                                      lab-map-buf
-                                     lab-mcg-buf
-                move 0      to ef-map-buf
+                                     lab-mcg-buf  
+                                     lab-dur-buf
+                move 0       to ef-map-buf ef-dur-buf
+                move "Tutti" to cb-eff-buf
            when 9 
                 move 1 to e-gss
                 move spaces to ef-des-buf                    
@@ -10832,8 +11283,10 @@
                                      lab-mul-buf
                                      lab-rep-buf
                                      lab-map-buf
-                                     lab-mcg-buf
-                move 0      to ef-map-buf
+                                     lab-mcg-buf  
+                                     lab-dur-buf
+                move 0       to ef-map-buf ef-dur-buf
+                move "Tutti" to cb-eff-buf
            when 10
                 move 1 to e-mcg
                 move spaces to ef-des-buf                    
@@ -10847,8 +11300,44 @@
                                      lab-mul-buf
                                      lab-rep-buf
                                      lab-map-buf
-                                     lab-gss-buf
-                move 0      to ef-map-buf
+                                     lab-gss-buf  
+                                     lab-dur-buf
+                move 0       to ef-map-buf ef-dur-buf
+                move "Tutti" to cb-eff-buf
+                                                  
+           when 11                       
+                move 1 to e-eff
+                move spaces to ef-des-buf                    
+                               ef-dta-from-buf ef-dta-to-buf
+                               ef-dtc-from-buf ef-dtc-to-buf
+                               ef-exe-buf
+                               ef-mul-buf
+                               ef-rep-buf
+                               ef-gss-buf
+                               ef-mcg-buf
+                move 78-lab-tutti to lab-exe-buf
+                                     lab-mul-buf
+                                     lab-rep-buf
+                                     lab-map-buf
+                                     lab-gss-buf  
+                                     lab-dur-buf
+                move 0       to ef-map-buf ef-dur-buf
+           when 12                       
+                move 1 to e-dur
+                move spaces to ef-des-buf                    
+                               ef-dta-from-buf ef-dta-to-buf
+                               ef-dtc-from-buf ef-dtc-to-buf
+                               ef-exe-buf
+                               ef-mul-buf
+                               ef-rep-buf
+                               ef-gss-buf
+                               ef-mcg-buf
+                move 78-lab-tutti to lab-exe-buf
+                                     lab-mul-buf
+                                     lab-rep-buf
+                                     lab-map-buf
+                                     lab-gss-buf  
+                move 0       to ef-map-buf
            end-evaluate.
 
            display scr-filtro 
@@ -10859,15 +11348,17 @@
       * <TOTEM:PARA. SELEZIONA>
            perform SCR-FILTRO-OPEN-ROUTINE.
 
-           if nessuna-scelta = 0
-              move "wodbook"    to como-file
-              call "zoom-gt" using como-file, wod-rec
-                            giving stato-zoom
-              cancel "zoom-gt"
-              if stato-zoom = 0           
-                 perform CURRENT-RECORD
-              end-if 
-           end-if 
+      *     if nessuna-scelta = 1               
+      *        move "wodbook"    to como-file
+      *        call "zoom-gt" using como-file, tod-rec
+      *                      giving stato-zoom
+      *        cancel "zoom-gt"
+      *        if stato-zoom = 0           
+      *           perform CURRENT-RECORD
+      *        end-if 
+      *     else
+      *        continue
+      *     end-if 
            .
       * <TOTEM:END>
 
@@ -12824,6 +13315,7 @@
        ef-mcg-AfterProcedure.
       * <TOTEM:PARA. ef-mcg-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
            .
       * <TOTEM:END>
        rb-mcg-BeforeProcedure.
@@ -12865,88 +13357,169 @@
            open i-o    zoom-wodbook.
 
            set tutto-ok to true.
-           move low-value to wod-rec.
+           move low-value to tod-rec rod-rec.
            evaluate tipo-filtro
-           when 1 
-                start wodbook key >= wod-key
+           when 1                  
+                move 0 to tod-code
+                start twodbook key >= tod-key
                       invalid set errori to true
                 end-start
-           when 2         
-                move ef-des-buf to wod-desc
-                start wodbook key >= wod-k-desc
+           when 2                  
+                move 0 to tod-code
+                move 100 to text-len
+                call "C$TOUPPER" using ef-des-buf, value text-len
+                move ef-des-buf to tod-desc
+                start twodbook key >= tod-k-desc
+                      invalid set errori to true
+                end-start                                               
+            
+                inspect ef-des-buf replacing trailing spaces by 
+           low-value
+                move 0 to countChar
+                inspect ef-des-buf tallying countChar for characters 
+           before low-value  
+                inspect ef-des-buf replacing trailing low-value by 
+           spaces
+           when 3                  
+                move 0 to tod-code
+                move como-data-from to tod-day-ini
+                start twodbook key >= tod-k-ini
                       invalid set errori to true
                 end-start
-           when 3
-                move como-data-from to wod-day
-                start wodbook key >= wod-k-data
-                      invalid set errori to true
-                end-start
-           when 4        
-                move como-data-from to wod-data-creazione
-                start wodbook key >= wod-k-creazione
+           when 4                  
+                move 0 to tod-code
+                move como-data-from to tod-data-creazione
+                start twodbook key >= tod-k-creazione
                       invalid set errori to true
                 end-start
            when 5
-                move ef-map-buf to wod-wom-code
-                start wodbook key >= wod-k-wom
+                move 0 to tod-code
+                move ef-map-buf to tod-code
+                move wom-code   to tod-wom-code
+                start twodbook key >= tod-k-wom
                       invalid set errori to true
                 end-start
-           when 6
-                move ef-exe-buf to wod-exe-code
-                start wodbook key >= wod-k-exe
-                      invalid set errori to true
-                end-start
-           when 7        
-                move ef-mul-buf to wod-mcg-code
-                move 1 to wod-exe-isMulti
-                start wodbook key >= wod-k-exe
-                      invalid set errori to true
-                end-start
-           when 8        
-                move ef-rep-buf to wod-mcg-code
-                move 1 to wod-int-restpause
-                start wodbook key >= wod-k-mcg-rp
-                      invalid set errori to true
-                end-start
-           when 9        
-                move ef-gss-buf to wod-mcg-code
-                move 1 to wod-ss
-                start wodbook key >= wod-k-mcg-ss
-                      invalid set errori to true
-                end-start
-           when 10       
-                move ef-mcg-buf to wod-mcg-code
-                start wodbook key >= wod-k-mcg
-                      invalid set errori to true
-                end-start
+      *****     when 6
+      *****          move low-value  to rod-rec
+      *****          move ef-exe-buf to rod-exe-code
+      *****          start rodbook key >= rod-k-exe
+      *****                invalid set errori to true
+      *****          end-start
+      *****     when 7        
+      *****          move ef-mul-buf to wod-mcg-code
+      *****          move 1 to wod-exe-isMulti
+      *****          start wodbook key >= wod-k-exe
+      *****                invalid set errori to true
+      *****          end-start
+      *****     when 8        
+      *****          move ef-rep-buf to wod-mcg-code
+      *****          move 1 to wod-int-restpause
+      *****          start wodbook key >= wod-k-mcg-rp
+      *****                invalid set errori to true
+      *****          end-start
+      *****     when 9        
+      *****          move ef-gss-buf to wod-mcg-code
+      *****          move 1 to wod-ss
+      *****          start wodbook key >= wod-k-mcg-ss
+      *****                invalid set errori to true
+      *****          end-start
+      *****     when 10       
+      *****          move ef-mcg-buf to wod-mcg-code
+      *****          start wodbook key >= wod-k-mcg
+      *****                invalid set errori to true
+      *****          end-start
            end-evaluate.
 
-           if tutto-ok
+           if tutto-ok          
               perform until 1 = 2
-                 read wodbook next at end exit perform end-read
+                 read twodbook next at end exit perform end-read
                  set record-ok to false
                  evaluate tipo-filtro
-                 when 1 set record-ok to true
-                 when 2
-                 when 3
-                 when 4
-                 when 5
-                 when 6
-                 when 7
-                 when 8
-                 when 9
-                 when 10
+                 when 1  |Tutto
+                      set record-ok to true
+                 when 2  |Descrizione                             
+                      if ef-des-buf not = spaces                        
+                         move 100 to text-len
+                         call "C$TOUPPER" using tod-desc, value text-len
+                         if tod-desc(1:countChar) =
+                            ef-des-buf
+                            set record-ok to true
+                         end-if
+                      else
+                         set record-ok to true
+                      end-if
+                 when 3  |Data allenamento
+                      if tod-day-ini > como-data-to
+                         exit perform
+                      else
+                         if tod-day-ini >= como-data-from and <= 
+           como-data-to
+                            set record-ok to true
+                         end-if
+                      end-if
+                 when 4  |Data creazione  
+                      if tod-data-creazione > como-data-to
+                         exit perform
+                      else
+                         if tod-data-creazione >= como-data-from and <= 
+           como-data-to
+                            set record-ok to true
+                         end-if
+                      end-if
+                 when 5  |Mappatura
+                      if wom-code not = tod-wom-code and
+                         wom-code not = spaces
+                         exit perform
+                      else
+                         set record-ok to true
+                      end-if
+      *****           when 6  |Esercizio  
+      *****                if wod-exe-code = ef-exe-buf or ef-exe-buf = spaces
+      *****                   set record-ok to true
+      *****                else
+      *****                   exit perform
+      *****                end-if
+      *****           when 7  |Multi      
+      *****                if wod-mcg-code = ef-mul-buf or ef-mul-buf = spaces
+      *****                   if wod-exe-isMulti = 1
+      *****                      set record-ok to true
+      *****                   end-if
+      *****                else
+      *****                   exit perform
+      *****                end-if
+      *****           when 8  |RP        
+      *****                if wod-mcg-code = ef-rep-buf or ef-rep-buf = spaces
+      *****                   if wod-int-restpause > 0
+      *****                      set record-ok to true
+      *****                   end-if
+      *****                else
+      *****                   exit perform
+      *****                end-if
+      *****           when 9  |SS        
+      *****                if wod-mcg-code = ef-gss-buf or ef-gss-buf = spaces
+      *****                   if wod-ss > 0
+      *****                      set record-ok to true
+      *****                   end-if
+      *****                else
+      *****                   exit perform
+      *****                end-if
+      *****           when 10 |Gruppoi      
+      *****                if wod-mcg-code = ef-mcg-buf or ef-mcg-buf = spaces
+      *****                   set record-ok to true
+      *****                else
+      *****                   exit perform
+      *****                end-if
                  end-evaluate
-                 if record-ok  
-                    move wod-code           to zwod-code     
+                 if record-ok                   
+                    move tod-code           to zwod-code     
                     inspect zwod-code replacing leading x"30" by x"20"
                     call "C$JUSTIFY" using zwod-code, "L"
-                    move wod-desc           to zwod-desc
-                    move wod-data-creazione to zwod-creation 
-                    move wod-day            to zwod-ini      
-                    move wod-gg             to zwod-gg       
-                    move wod-tot-exe        to zwod-exe      
-                    write zwod-rec
+                    move tod-desc           to zwod-desc
+                    move tod-data-creazione to zwod-creation 
+                    move tod-day-ini        to zwod-ini      
+                    move tod-gg             to zwod-gg       
+                    move tod-tot-exe        to zwod-exe      
+                    write zwod-rec invalid rewrite zwod-rec end-write
                  end-if
               end-perform
            end-if.
@@ -12964,6 +13537,71 @@
 
            move  0 to nessuna-scelta.
            move 27 to key-status 
+           .
+      * <TOTEM:END>
+       Screen3-Cm-1-BeforeProcedure.
+      * <TOTEM:PARA. Screen3-Cm-1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       Screen3-Cm-1-AfterProcedure.
+      * <TOTEM:PARA. Screen3-Cm-1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           .
+      * <TOTEM:END>
+       rb-eff-LinkTo.
+      * <TOTEM:PARA. rb-eff-LinkTo>
+           perform SEL-FILTRO 
+           .
+      * <TOTEM:END>
+       rb-eff-BeforeProcedure.
+      * <TOTEM:PARA. rb-eff-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-eff-AfterProcedure.
+      * <TOTEM:PARA. rb-eff-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       rb-dur-BeforeProcedure.
+      * <TOTEM:PARA. rb-dur-BeforeProcedure>
+           modify control-handle, color = colore-nu
+           .
+      * <TOTEM:END>
+       rb-dur-AfterProcedure.
+      * <TOTEM:PARA. rb-dur-AfterProcedure>
+           modify control-handle, color = colore-or
+           .
+      * <TOTEM:END>
+       rb-dur-LinkTo.
+      * <TOTEM:PARA. rb-dur-LinkTo>
+           perform SEL-FILTRO 
+           .
+      * <TOTEM:END>
+       ef-dur-BeforeProcedure.
+      * <TOTEM:PARA. ef-dur-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           .
+      * <TOTEM:END>
+       ef-dur-AfterProcedure.
+      * <TOTEM:PARA. ef-dur-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           perform CONTROLLO-FILTRO 
+           .
+      * <TOTEM:END>
+       pb-dur-LinkTo.
+      * <TOTEM:PARA. pb-dur-LinkTo>
+           move "duration"   to como-file.
+           call "zoom-gt" using como-file, dur-rec
+                         giving stato-zoom.
+           cancel "zoom-gt".
+           if stato-zoom = 0           
+              move dur-code to ef-dur-buf
+              display ef-dur
+              move dur-desc to lab-dur-buf
+              display lab-dur
+           end-if 
            .
       * <TOTEM:END>
 

@@ -31,5 +31,5 @@
            ALTERNATE RECORD KEY IS wod-k-mcg-ss = wod-mcg-code, wod-ss, 
            wod-day
            WITH DUPLICATES 
-           ALTERNATE RECORD KEY IS wod-k-head = wod-code, wod-day
+           ALTERNATE RECORD KEY IS wod-k-head = wod-split, wod-code
            WITH DUPLICATES .

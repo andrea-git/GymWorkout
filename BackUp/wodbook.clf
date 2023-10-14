@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7AD15220-235-269697812
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7AD214755-103-1920531626
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -424,6 +424,6 @@ m_strName=wod-k-head
 
 @}}
 [SLKEYATOM0_SLINDEX10_]
-m_strName=wod-code
+m_strName=wod-split
 [SLKEYATOM1_SLINDEX10_]
-m_strName=wod-day
+m_strName=wod-code

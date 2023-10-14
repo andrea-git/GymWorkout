@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7A575629-441-1969528304
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7AE222243-417-109481522
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -58,7 +58,7 @@ m_bFixed=1
 
 @}}
 [FDITEM5_]
-m_strName=tex-exe-desc-univoca
+m_strName=tex-desc-univoca
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=10
@@ -212,11 +212,11 @@ m_strName=tex-k-day-exe
 [SLKEYATOM0_SLINDEX2_]
 m_strName=tex-day
 [SLKEYATOM1_SLINDEX2_]
-m_strName=tex-exe-desc-univoca
+m_strName=tex-desc-univoca
 [SLINDEX3_]
 m_strName=tex-k-exe
 {{@Key_m_strDescriptionSLINDEX3_
 
 @}}
 [SLKEYATOM0_SLINDEX3_]
-m_strName=tex-exe-desc-univoca
+m_strName=tex-desc-univoca

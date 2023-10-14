@@ -8,7 +8,8 @@
            copy "exercises.sl".
            copy "groups.sl".
            copy "macrogroups.sl". 
-           copy "wodbook.sl".     
+           copy "twodbook.sl".    
+           copy "rwodbook.sl".     
            copy "intexe.sl".   
            copy "duration.sl".    
            copy "wodmap.sl".     
@@ -31,7 +32,8 @@
            copy "exercises.fd".
            copy "groups.fd".
            copy "macrogroups.fd".
-           copy "wodbook.fd".      
+           copy "twodbook.fd".   
+           copy "rwodbook.fd".      
            copy "intexe.fd".    
            copy "duration.fd".    
            copy "wodmap.fd".     
@@ -54,7 +56,8 @@
        77  status-exercises      pic xx.
        77  status-groups         pic xx.
        77  status-macrogroups    pic xx.
-       77  status-wodbook        pic xx. 
+       77  status-twodbook       pic xx.
+       77  status-rwodbook       pic xx. 
        77  status-intexe         pic xx.
        77  status-duration       pic xx.
        77  status-wodmap         pic xx.
@@ -126,17 +129,34 @@
            end-evaluate.               
 
       ***---
-       WODBOOK-ERR SECTION.
-           use after error procedure on WODBOOK.
-           evaluate status-WODBOOK
+       TWODBOOK-ERR SECTION.
+           use after error procedure on twodbook.
+           evaluate status-twodbook
            when "35" continue
            when "39"
-                display message "File [WODBOOK] Mismatch size!"
+                display message "File [TWODBOOK] Mismatch size!"
                            title titolo
                             icon 3
                 
            when "98"
-                display message "[WODBOOK] Indexed file corrupt!"
+                display message "[TWODBOOK] Indexed file corrupt!"
+                           title titolo
+                            icon 3
+                
+           end-evaluate.               
+
+      ***---
+       RWODBOOK-ERR SECTION.
+           use after error procedure on rwodbook.
+           evaluate status-rwodbook
+           when "35" continue
+           when "39"
+                display message "File [RWODBOOK] Mismatch size!"
+                           title titolo
+                            icon 3
+                
+           when "98"
+                display message "[RWODBOOK] Indexed file corrupt!"
                            title titolo
                             icon 3
                 
@@ -226,14 +246,23 @@
            end-if.
            close macrogroups.           
 
-           open input wodbook.
-           if status-wodbook = "35"
-              open output wodbook
-              if status-wodbook not = "00"
+           open input twodbook.
+           if status-twodbook = "35"
+              open output twodbook
+              if status-twodbook not = "00"
                  move -1 to link-status
               end-if
            end-if.
-           close wodbook.
+           close twodbook.           
+
+           open input rwodbook.
+           if status-rwodbook = "35"
+              open output rwodbook
+              if status-rwodbook not = "00"
+                 move -1 to link-status
+              end-if
+           end-if.
+           close rwodbook.
 
            open input intexe.
            if status-intexe = "35"

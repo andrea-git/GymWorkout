@@ -1,0 +1,18 @@
+       FD  twodbook.
+       01 tod-rec.
+           05 tod-key.
+               10 tod-code         PIC  9(18).
+           05 tod-data.
+               10 tod-day-ini      PIC  9(8).
+               10 tod-desc         PIC  x(100).
+               10 tod-data-creazione           PIC  9(8).
+               10 tod-wom-code     PIC  9(3).
+               10 tod-gg           PIC  9.
+               10 tod-wom-effort   PIC  99.
+               10 tod-tot-exe      PIC  9(3).
+               10 tod-macrogroups
+                          OCCURS 20 TIMES.
+                   15 tod-el-mcg-code  PIC  x(5).
+                   15 tod-el-hit       PIC  9(3).
+               10 tod-dur-code     PIC  99.
+               10 FILLER           PIC  x(2000).

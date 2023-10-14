@@ -1,0 +1,19 @@
+       FD  rwodbook.
+       01 rod-rec.
+           05 rod-key.
+               10 rod-code         PIC  9(18).
+               10 rod-day          PIC  9(8).
+               10 rod-split        PIC  99.
+           05 rod-data.
+               10 rod-prg-day      PIC  9.
+      *(( XFD NAME = wod-mcg-code_1 ))
+               10 rod-mcg-code     PIC  x(5).
+               10 rod-exe-code     PIC  x(5).
+               10 rod-int-code     PIC  99.
+               10 rod-exe-isMulti  PIC  9.
+               10 rod-reps         PIC  x(10).
+               10 rod-series       PIC  99.
+               10 rod-int-restpause            PIC  9.
+               10 rod-ss           PIC  9.
+               10 rod-desc-univoca PIC  x(100).
+               10 FILLER           PIC  x(2000).

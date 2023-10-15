@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        domenica 15 ottobre 2023 02:26:14.
+       DATE-WRITTEN.        domenica 15 ottobre 2023 20:05:02.
        REMARKS.
       *{TOTEM}END
 
@@ -130,9 +130,11 @@
        77 save-day         PIC  9.
        77 como-series      PIC  999.
        77 como-grp-desc    PIC  x(100).
-       01 save-wod-rec     PIC  x(3000).
        77 nessuna-scelta   PIC  9
                   VALUE IS 0.
+       01 filtro-tipo      PIC  9.
+           88 filtro-testa VALUE IS 1. 
+           88 filtro-righe VALUE IS 2. 
        77 riga-div         PIC  999.
        77 como-grp-code    PIC  x(5).
        77 riga-aggiunta    PIC  999.
@@ -746,22 +748,31 @@
        78  78-ID-ef-gg5 VALUE 5005.
        78  78-ID-ef-gg6 VALUE 5006.
        78  78-ID-ef-gg7 VALUE 5007.
-       78  78-ID-ef-des VALUE 5001.
-       78  78-ID-ef-dta-from VALUE 5002.
-       78  78-ID-ef-dta-to VALUE 5003.
-       78  78-ID-ef-dtc-from VALUE 5004.
-       78  78-ID-ef-dtc-to VALUE 5005.
-       78  78-ID-ef-map VALUE 5006.
-       78  78-ID-rb-eff VALUE 5007.
-       78  78-ID-cb-eff VALUE 5008.
-       78  78-ID-ef-exe VALUE 5009.
-       78  78-ID-ef-mul VALUE 5010.
-       78  78-ID-ef-rep VALUE 5011.
-       78  78-ID-ef-gss VALUE 5012.
-       78  78-ID-rb-mcg VALUE 5013.
-       78  78-ID-ef-mcg VALUE 5014.
-       78  78-ID-rb-dur VALUE 5015.
-       78  78-ID-ef-dur VALUE 5016.
+       78  78-ID-rb-tut VALUE 5001.
+       78  78-ID-rb-des VALUE 5002.
+       78  78-ID-ef-des VALUE 5003.
+       78  78-ID-rb-dta VALUE 5004.
+       78  78-ID-ef-dta-from VALUE 5005.
+       78  78-ID-ef-dta-to VALUE 5006.
+       78  78-ID-rb-dtc VALUE 5007.
+       78  78-ID-ef-dtc-from VALUE 5008.
+       78  78-ID-ef-dtc-to VALUE 5009.
+       78  78-ID-rb-map VALUE 5010.
+       78  78-ID-ef-map VALUE 5011.
+       78  78-ID-rb-eff VALUE 5012.
+       78  78-ID-cb-eff VALUE 5013.
+       78  78-ID-rb-exe VALUE 5014.
+       78  78-ID-ef-exe VALUE 5015.
+       78  78-ID-rb-mul VALUE 5016.
+       78  78-ID-ef-mul VALUE 5017.
+       78  78-ID-rb-rep VALUE 5018.
+       78  78-ID-ef-rep VALUE 5019.
+       78  78-ID-rb-gss VALUE 5020.
+       78  78-ID-ef-gss VALUE 5021.
+       78  78-ID-rb-mcg VALUE 5022.
+       78  78-ID-ef-mcg VALUE 5023.
+       78  78-ID-rb-dur VALUE 5024.
+       78  78-ID-ef-dur VALUE 5025.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -2271,7 +2282,7 @@
            FLAT,
            GROUP 1,
            GROUP-VALUE 1,
-           ID IS 4,
+           ID IS 78-ID-rb-tut,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NO-GROUP-TAB,
@@ -2293,7 +2304,7 @@
            FLAT,
            GROUP 1,
            GROUP-VALUE 2,
-           ID IS 5,
+           ID IS 78-ID-rb-des,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NO-GROUP-TAB,
@@ -2334,7 +2345,7 @@
            FLAT,
            GROUP 1,
            GROUP-VALUE 3,
-           ID IS 6,
+           ID IS 78-ID-rb-dta,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NO-GROUP-TAB,
@@ -2396,7 +2407,7 @@
            FLAT,
            GROUP 1,
            GROUP-VALUE 4,
-           ID IS 9,
+           ID IS 78-ID-rb-dtc,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NO-GROUP-TAB,
@@ -2458,7 +2469,7 @@
            FLAT,
            GROUP 1,
            GROUP-VALUE 5,
-           ID IS 12,
+           ID IS 78-ID-rb-map,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NO-GROUP-TAB,
@@ -2561,7 +2572,7 @@
            FLAT,
            GROUP 1,
            GROUP-VALUE 6,
-           ID IS 14,
+           ID IS 78-ID-rb-exe,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NO-GROUP-TAB,
@@ -2620,7 +2631,7 @@
            FLAT,
            GROUP 1,
            GROUP-VALUE 7,
-           ID IS 17,
+           ID IS 78-ID-rb-mul,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NO-GROUP-TAB,
@@ -2679,7 +2690,7 @@
            FLAT,
            GROUP 1,
            GROUP-VALUE 8,
-           ID IS 20,
+           ID IS 78-ID-rb-rep,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NO-GROUP-TAB,
@@ -2738,7 +2749,7 @@
            FLAT,
            GROUP 1,
            GROUP-VALUE 9,
-           ID IS 23,
+           ID IS 78-ID-rb-gss,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NO-GROUP-TAB,
@@ -9276,6 +9287,7 @@
 
            when 78-ID-cb-eff
                 inquire cb-eff, value in cb-eff-buf
+                move 0 to como-effort
                 evaluate cb-eff-buf                          
                 when "Light wod effort"  move 1 to como-effort
                 when "Medium wod effort" move 2 to como-effort
@@ -11356,17 +11368,12 @@
       * <TOTEM:PARA. SELEZIONA>
            perform SCR-FILTRO-OPEN-ROUTINE.
 
-      *     if nessuna-scelta = 1               
-      *        move "wodbook"    to como-file
-      *        call "zoom-gt" using como-file, tod-rec
-      *                      giving stato-zoom
-      *        cancel "zoom-gt"
-      *        if stato-zoom = 0           
-      *           perform CURRENT-RECORD
-      *        end-if 
-      *     else
-      *        continue
-      *     end-if 
+           if nessuna-scelta = 0
+              call "C$JUSTIFY" using zwod-code, "R"
+              inspect zwod-code replacing leading x"20" by x"30"
+              move zwod-code to tod-code
+              perform CURRENT-RECORD
+           end-if 
            .
       * <TOTEM:END>
 
@@ -13345,6 +13352,7 @@
                  exit perform
               end-if
            end-perform.
+           move 0 to tot-righe.
 
            if errori exit paragraph end-if.
 
@@ -13367,12 +13375,15 @@
            set tutto-ok to true.
            move low-value to tod-rec rod-rec.
            evaluate tipo-filtro
-           when 1                  
+           when 1          
+                set filtro-testa to true        
                 move 0 to tod-code
                 start twodbook key >= tod-key
                       invalid set errori to true
                 end-start
-           when 2                  
+                move 78-ID-rb-tut to control-id
+           when 2                               
+                set filtro-testa to true        
                 move 0 to tod-code
                 move 100 to text-len
                 call "C$TOUPPER" using ef-des-buf, value text-len
@@ -13388,74 +13399,100 @@
            before low-value  
                 inspect ef-des-buf replacing trailing low-value by 
            spaces
-           when 3                  
+                move 78-ID-rb-des to control-id
+           when 3                               
+                set filtro-testa to true        
                 move 0 to tod-code
                 move como-data-from to tod-day-ini
                 start twodbook key >= tod-k-ini
                       invalid set errori to true
-                end-start
-           when 4                  
+                end-start        
+                move 78-ID-rb-dta to control-id
+           when 4                               
+                set filtro-testa to true        
                 move 0 to tod-code
                 move como-data-from to tod-data-creazione
                 start twodbook key >= tod-k-creazione
                       invalid set errori to true
-                end-start                           
-           when 5
+                end-start        
+                move 78-ID-rb-dta to control-id                   
+           when 5                               
+                set filtro-testa to true        
                 move 0 to tod-code
                 move ef-map-buf to wom-code tod-wom-code
                 start twodbook key >= tod-k-wom
                       invalid set errori to true
-                end-start
-           when 11
+                end-start        
+                move 78-ID-rb-map to control-id
+           when 11                              
+                set filtro-testa to true        
                 move 0 to tod-code
-                move ef-dur-buf to tod-code
-                move wom-code   to tod-wom-code
-                start twodbook key >= tod-k-wom
+                move ef-dur-buf  to tod-code
+                move como-effort to tod-wom-effort
+                start twodbook key >= tod-k-eff
                       invalid set errori to true
-                end-start
-           when 12
+                end-start        
+                move 78-ID-rb-eff to control-id
+           when 12                              
+                set filtro-testa to true        
                 move 0 to tod-code
                 move ef-dur-buf to dur-code tod-dur-code
                 start twodbook key >= tod-k-dur
                       invalid set errori to true
-                end-start
-      *****     when 6
-      *****          move low-value  to rod-rec
-      *****          move ef-exe-buf to rod-exe-code
-      *****          start rodbook key >= rod-k-exe
-      *****                invalid set errori to true
-      *****          end-start
-      *****     when 7        
-      *****          move ef-mul-buf to wod-mcg-code
-      *****          move 1 to wod-exe-isMulti
-      *****          start wodbook key >= wod-k-exe
-      *****                invalid set errori to true
-      *****          end-start
-      *****     when 8        
-      *****          move ef-rep-buf to wod-mcg-code
-      *****          move 1 to wod-int-restpause
-      *****          start wodbook key >= wod-k-mcg-rp
-      *****                invalid set errori to true
-      *****          end-start
-      *****     when 9        
-      *****          move ef-gss-buf to wod-mcg-code
-      *****          move 1 to wod-ss
-      *****          start wodbook key >= wod-k-mcg-ss
-      *****                invalid set errori to true
-      *****          end-start
-      *****     when 10       
-      *****          move ef-mcg-buf to wod-mcg-code
-      *****          start wodbook key >= wod-k-mcg
-      *****                invalid set errori to true
-      *****          end-start
-           end-evaluate.
+                end-start     
+                move 78-ID-rb-dur to control-id
+           when 6                               
+                set filtro-righe to true        
+                move low-value  to rod-rec
+                move ef-exe-buf to rod-exe-code
+                start rwodbook key >= rod-k-exe
+                      invalid set errori to true
+                end-start        
+                move 78-ID-rb-exe to control-id
+           when 7                               
+                set filtro-righe to true 
+                move ef-mul-buf to rod-mcg-code
+                move 1 to rod-exe-isMulti
+                start rwodbook key >= rod-k-multi
+                      invalid set errori to true
+                end-start                      
+                move 78-ID-rb-mul to control-id
+           when 8                               
+                set filtro-righe to true 
+                move ef-rep-buf to rod-mcg-code
+                move 1 to rod-int-restpause
+                start rwodbook key >= rod-k-rp
+                      invalid set errori to true
+                end-start        
+                move 78-ID-rb-rep to control-id
+           when 9                               
+                set filtro-righe to true 
+                move ef-gss-buf to rod-mcg-code
+                move 1 to rod-ss
+                start rwodbook key >= rod-k-ss
+                      invalid set errori to true
+                end-start        
+                move 78-ID-rb-gss to control-id
+           when 10                              
+                set filtro-righe to true 
+                move ef-mcg-buf to rod-mcg-code
+                start rwodbook key >= rod-k-mcg
+                      invalid set errori to true
+                end-start        
+                move 78-ID-rb-mcg to control-id
+           end-evaluate.       
+           move 4 to accept-control.
 
            if tutto-ok          
               perform until 1 = 2
-                 read twodbook next at end exit perform end-read
+                 if filtro-testa 
+                    read twodbook next at end exit perform end-read
+                 else                                              
+                    read rwodbook next at end exit perform end-read
+                 end-if
                  set record-ok to false
                  evaluate tipo-filtro
-                 when 1  |Tutto
+                 when 1  |Tutto               
                       set record-ok to true
                  when 2  |Descrizione                             
                       if ef-des-buf not = spaces                        
@@ -13468,7 +13505,16 @@
                       else
                          set record-ok to true
                       end-if
-                 when 3  |Data allenamento
+                 when 3  |Data allenamento            
+                      inquire ef-dta-from, value in como-data
+                      perform DATE-TO-FILE
+                      move como-data to como-data-from
+
+                      inquire ef-dta-to, value in como-data
+                      perform DATE-TO-FILE
+                      move como-data to como-data-to
+
+                      set filtro-testa to true
                       if tod-day-ini > como-data-to
                          exit perform
                       else
@@ -13477,7 +13523,16 @@
                             set record-ok to true
                          end-if
                       end-if
-                 when 4  |Data creazione  
+                 when 4  |Data creazione              
+                      inquire ef-dtc-from, value in como-data
+                      perform DATE-TO-FILE
+                      move como-data to como-data-from
+
+                      inquire ef-dtc-to, value in como-data
+                      perform DATE-TO-FILE
+                      move como-data to como-data-to
+
+                      set filtro-testa to true
                       if tod-data-creazione > como-data-to
                          exit perform
                       else
@@ -13486,65 +13541,72 @@
                             set record-ok to true
                          end-if
                       end-if
-                 when 5  |Mappatura
+                 when 5  |Mappatura           
                       if wom-code not = tod-wom-code and
                          wom-code not = spaces
                          exit perform
                       else
                          set record-ok to true
                       end-if
-                 when 11  |Effort
+                 when 11  |Effort             
                       if como-effort not = tod-wom-effort and
-                         como-effort not = "Tutti"
+                         como-effort not = 0
                          exit perform
                       else
                          set record-ok to true
                       end-if
-                 when 12  |Durata
+                 when 12  |Durata             
                       if dur-code not = tod-dur-code and
                          dur-code not = spaces
                          exit perform
                       else
                          set record-ok to true
                       end-if
-      *****           when 6  |Esercizio  
-      *****                if wod-exe-code = ef-exe-buf or ef-exe-buf = spaces
-      *****                   set record-ok to true
-      *****                else
-      *****                   exit perform
-      *****                end-if
-      *****           when 7  |Multi      
-      *****                if wod-mcg-code = ef-mul-buf or ef-mul-buf = spaces
-      *****                   if wod-exe-isMulti = 1
-      *****                      set record-ok to true
-      *****                   end-if
-      *****                else
-      *****                   exit perform
-      *****                end-if
-      *****           when 8  |RP        
-      *****                if wod-mcg-code = ef-rep-buf or ef-rep-buf = spaces
-      *****                   if wod-int-restpause > 0
-      *****                      set record-ok to true
-      *****                   end-if
-      *****                else
-      *****                   exit perform
-      *****                end-if
-      *****           when 9  |SS        
-      *****                if wod-mcg-code = ef-gss-buf or ef-gss-buf = spaces
-      *****                   if wod-ss > 0
-      *****                      set record-ok to true
-      *****                   end-if
-      *****                else
-      *****                   exit perform
-      *****                end-if
-      *****           when 10 |Gruppoi      
-      *****                if wod-mcg-code = ef-mcg-buf or ef-mcg-buf = spaces
-      *****                   set record-ok to true
-      *****                else
-      *****                   exit perform
-      *****                end-if
+                 when 6  |Esercizio           
+                      if rod-exe-code = ef-exe-buf or ef-exe-buf = 
+           spaces
+                         set record-ok to true           
+                      else
+                         exit perform
+                      end-if
+                 when 7  |Multi                                          
+                      if rod-exe-isMulti = 0
+                         exit perform
+                      else
+                         if rod-mcg-code = ef-mul-buf or 
+                            ef-mul-buf = spaces
+                            set record-ok to true
+                         end-if
+                      end-if
+                 when 8  |RP                                       
+                      if rod-mcg-code = ef-rep-buf or ef-rep-buf = 
+           spaces
+                         if rod-int-restpause > 0
+                            set record-ok to true
+                         end-if
+                      end-if
+                 when 9  |SS        
+                      if rod-mcg-code = ef-gss-buf or ef-gss-buf = 
+           spaces
+                         if rod-ss > 0
+                            set record-ok to true
+                         end-if
+                      end-if
+                 when 10 |Gruppo
+                      if rod-mcg-code = ef-mcg-buf or ef-mcg-buf = 
+           spaces
+                         set record-ok to true
+                      else
+                         exit perform
+                      end-if
                  end-evaluate
-                 if record-ok                   
+
+                 if record-ok  
+                    if filtro-righe
+                       move rod-code to tod-code
+                       read twodbook
+                    end-if
+                    add 1 to tot-righe                 
                     move tod-code           to zwod-code     
                     inspect zwod-code replacing leading x"30" by x"20"
                     call "C$JUSTIFY" using zwod-code, "L"
@@ -13570,19 +13632,29 @@
               end-perform
            end-if.
 
-           close       zoom-wodbook.
+           close zoom-wodbook.
+
+           if tot-righe = 0
+              display message "Nessun WOD disponibile nei filtri richies
+      -    "ti"
+                        title titolo
+                         icon 2
+           else
+               move path-zoom-wodbook to ext-file
+               move "zoom-wodbook"    to Como-File
+               call   "zoom-gt"   using como-file, zwod-rec
+                                 giving stato-zoom
+               cancel "zoom-gt"
            
-           move path-zoom-wodbook to ext-file
-           move "zoom-wodbook"    to Como-File
-           call   "zoom-gt"   using como-file, zwod-rec
-                             giving stato-zoom
-           cancel "zoom-gt".
-
-
-           delete file zoom-wodbook.
-
-           move  0 to nessuna-scelta.
-           move 27 to key-status 
+               if stato-zoom = 0
+                  move 0 to nessuna-scelta
+               else
+                  move 1 to nessuna-scelta
+               end-if                    
+               move 27 to key-status
+           end-if.
+           delete file zoom-wodbook
+                                     
            .
       * <TOTEM:END>
        Screen3-Cm-1-BeforeProcedure.

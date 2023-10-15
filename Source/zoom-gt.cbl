@@ -861,7 +861,7 @@
            move  0                       to xzoom-row.
            move  0                       to xzoom-cln.
            move  10                      to xzoom-lw.
-           move  122                     to xzoom-sw. 
+           move  130                     to xzoom-sw. 
            move ext-file                 to xzoom-file-name(1).
            move  9                       to xzoom-fields.
 
@@ -949,7 +949,7 @@
            move  0                       to xzoom-field-rel(Idx).    
            move  100                     to xzoom-field-length(idx).
            move  140                     to xzoom-field-offset(idx).
-           move  20                      to xzoom-field-column(idx).
+           move  22                      to xzoom-field-column(idx).
            move "Mappatura"              to xzoom-field-name(idx).    
            set  xzoom-ft-alpha(idx)      to true. 
       
@@ -959,7 +959,7 @@
            move  0                       to xzoom-field-rel(Idx).    
            move  100                     to xzoom-field-length(idx).
            move  240                     to xzoom-field-offset(idx).
-           move  20                      to xzoom-field-column(idx).
+           move  12                      to xzoom-field-column(idx).
            move "Durata"                 to xzoom-field-name(idx).    
            set  xzoom-ft-alpha(idx)      to true. 
       
@@ -969,7 +969,7 @@
            move  0                       to xzoom-field-rel(Idx).    
            move  100                     to xzoom-field-length(idx).
            move  340                     to xzoom-field-offset(idx).
-           move  20                      to xzoom-field-column(idx).
+           move  12                      to xzoom-field-column(idx).
            move "Effort"                 to xzoom-field-name(idx).    
            set  xzoom-ft-alpha(idx)      to true. 
 

@@ -15,7 +15,8 @@
            copy "wodmap.sl".     
            copy "tmp-grp-exe.sl".
            copy "tmp-wod-exe.sl".
-           copy "tmp-exe.sl".
+           copy "tmp-exe.sl".     
+           copy "zoom-wodbook.sl".
       *
        SELECT FBLOCK
            ASSIGN       TO DISK "FBLOCK"
@@ -40,6 +41,7 @@
            copy "tmp-grp-exe.fd". 
            copy "tmp-wod-exe.fd".
            copy "tmp-exe.fd".
+           copy "zoom-wodbook.fd".
       *                               
        FD  FBLOCK
            LABEL RECORD IS STANDARD.
@@ -67,6 +69,8 @@
        77  path-tmp-exe          pic x.
        77  status-tmp-wod-exe    pic xx.
        77  path-tmp-wod-exe      pic x.
+       77  status-zoom-wodbook   pic xx.
+       77  path-zoom-wodbook     pic x.
        77  stato-io              pic xx.  
 
        78  titolo            value "Generazione files".

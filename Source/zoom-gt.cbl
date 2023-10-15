@@ -861,9 +861,9 @@
            move  0                       to xzoom-row.
            move  0                       to xzoom-cln.
            move  10                      to xzoom-lw.
-           move  82                      to xzoom-sw. 
+           move  122                     to xzoom-sw. 
            move ext-file                 to xzoom-file-name(1).
-           move  6                       to xzoom-fields.
+           move  9                       to xzoom-fields.
 
       * CAMPO 1
            add 1 to idx
@@ -871,7 +871,7 @@
            move  0                       to xzoom-field-rel(Idx).    
            move  18                      to xzoom-field-length(idx).
            move  0                       to xzoom-field-offset(idx).
-           move  8                       to xzoom-field-column(idx).
+           move  5                       to xzoom-field-column(idx).
            move "Codice"                 to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 
       
@@ -881,7 +881,7 @@
            move  0                       to xzoom-field-rel(Idx).    
            move  100                     to xzoom-field-length(idx).
            move  18                      to xzoom-field-offset(idx).
-           move  22                      to xzoom-field-column(idx).
+           move  20                      to xzoom-field-column(idx).
            move "Descrizione"            to xzoom-field-name(idx).  
            set  xzoom-ft-alpha(idx)      to true. 
       
@@ -919,7 +919,7 @@
            move  0                       to xzoom-field-rel(Idx).    
            move  3                       to xzoom-field-length(idx).
            move  134                     to xzoom-field-offset(idx).
-           move  8                       to xzoom-field-column(idx).
+           move  5                       to xzoom-field-column(idx).
            move "Giorni"                 to xzoom-field-name(idx).  
            set xzoom-al-right(idx)       to true.
            set xzoom-field-unsigned(idx) to true.
@@ -934,7 +934,7 @@
            move  0                       to xzoom-field-rel(Idx).    
            move  3                       to xzoom-field-length(idx).
            move  137                     to xzoom-field-offset(idx).
-           move  8                       to xzoom-field-column(idx).
+           move  5                       to xzoom-field-column(idx).
            move "Esercizi"               to xzoom-field-name(idx).  
            set xzoom-al-right(idx)       to true.
            set xzoom-field-unsigned(idx) to true.
@@ -942,6 +942,36 @@
            move 3                        to xzoom-field-digits(idx).
            move 0                        to xzoom-field-dec(idx).
            move "##0"                    to xzoom-field-fmt(idx).
+      
+      * CAMPO 7
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  100                     to xzoom-field-length(idx).
+           move  140                     to xzoom-field-offset(idx).
+           move  20                      to xzoom-field-column(idx).
+           move "Mappatura"              to xzoom-field-name(idx).    
+           set  xzoom-ft-alpha(idx)      to true. 
+      
+      * CAMPO 8
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  100                     to xzoom-field-length(idx).
+           move  240                     to xzoom-field-offset(idx).
+           move  20                      to xzoom-field-column(idx).
+           move "Durata"                 to xzoom-field-name(idx).    
+           set  xzoom-ft-alpha(idx)      to true. 
+      
+      * CAMPO 9
+           add 1 to idx.
+           move  1                       to xzoom-field-file(Idx).
+           move  0                       to xzoom-field-rel(Idx).    
+           move  100                     to xzoom-field-length(idx).
+           move  340                     to xzoom-field-offset(idx).
+           move  20                      to xzoom-field-column(idx).
+           move "Effort"                 to xzoom-field-name(idx).    
+           set  xzoom-ft-alpha(idx)      to true. 
 
            move  -1                      to xzoom-delimiter-offset.
            move  5                       to xzoom-delimiter-length.
@@ -1177,7 +1207,7 @@
            set xzoom-ft-display(idx)     to true.
            move 3                        to xzoom-field-digits(idx).
            move 0                        to xzoom-field-dec(idx).
-           move "##0"                    to xzoom-field-fmt(idx).
+           move "##0"                    to xzoom-field-fmt(idx).   
 
            move  -1                      to xzoom-delimiter-offset.
            move  5                       to xzoom-delimiter-length.

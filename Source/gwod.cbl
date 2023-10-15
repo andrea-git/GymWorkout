@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        domenica 15 ottobre 2023 01:50:01.
+       DATE-WRITTEN.        domenica 15 ottobre 2023 02:26:14.
        REMARKS.
       *{TOTEM}END
 
@@ -561,7 +561,7 @@
        77 TMP-DataSet1-tmp-hit-BUF     PIC X(6).
        77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(207).
        77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
-       77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(140).
+       77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(440).
        77 TMP-DataSet1-rwodbook-BUF     PIC X(2156).
        77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
       * VARIABLES FOR RECORD LENGTH.
@@ -9274,6 +9274,14 @@
                 move mcg-desc to lab-mcg-buf
                 display lab-mcg
 
+           when 78-ID-cb-eff
+                inquire cb-eff, value in cb-eff-buf
+                evaluate cb-eff-buf                          
+                when "Light wod effort"  move 1 to como-effort
+                when "Medium wod effort" move 2 to como-effort
+                when "Heavy wod effort"  move 3 to como-effort
+                end-evaluate
+
            when 78-ID-ef-dur
                 inquire ef-dur, value in dur-code
                 if dur-code = 0
@@ -11104,20 +11112,20 @@
                  accept como-data from century-date
                  initialize tod-rec replacing numeric data by zeroes
                                          alphanumeric data by spaces
-                 move effort-wod     to tod-wom-effort      
                  move como-code      to tod-code
                  inquire ef-desc, value in ef-desc-buf
                  move ef-desc-buf    to tod-desc
                  move como-data      to tod-data-creazione
                  move wom-code       to tod-wom-code wom-code
-                 read wodmap
+                 read wodmap                                     
+                 move wom-effort     to tod-wom-effort      
                  move primo-giorno   to tod-day-ini
                  move tod-code to lab-code-buf
                  move tod-desc to lab-desc-buf
                  display lab-desc lab-code
                  move tot-exe        to tod-tot-exe
                  move tex-day        to tod-gg
-                 move wom-dur-code   to dur-code
+                 move wom-dur-code   to dur-code tod-dur-code
 
                  perform varying idx from 1 by 1 
                            until idx > 20
@@ -13331,7 +13339,7 @@
        pb-ok-f-LinkTo.
       * <TOTEM:PARA. pb-ok-f-LinkTo>
            perform varying control-id from 78-ID-ef-des by 1
-                     until control-id > 78-ID-ef-mcg
+                     until control-id > 78-ID-ef-dur
               perform CONTROLLO-FILTRO
               if errori
                  exit perform
@@ -13391,12 +13399,24 @@
                 move como-data-from to tod-data-creazione
                 start twodbook key >= tod-k-creazione
                       invalid set errori to true
-                end-start
+                end-start                           
            when 5
                 move 0 to tod-code
-                move ef-map-buf to tod-code
+                move ef-map-buf to wom-code tod-wom-code
+                start twodbook key >= tod-k-wom
+                      invalid set errori to true
+                end-start
+           when 11
+                move 0 to tod-code
+                move ef-dur-buf to tod-code
                 move wom-code   to tod-wom-code
                 start twodbook key >= tod-k-wom
+                      invalid set errori to true
+                end-start
+           when 12
+                move 0 to tod-code
+                move ef-dur-buf to dur-code tod-dur-code
+                start twodbook key >= tod-k-dur
                       invalid set errori to true
                 end-start
       *****     when 6
@@ -13473,6 +13493,20 @@
                       else
                          set record-ok to true
                       end-if
+                 when 11  |Effort
+                      if como-effort not = tod-wom-effort and
+                         como-effort not = "Tutti"
+                         exit perform
+                      else
+                         set record-ok to true
+                      end-if
+                 when 12  |Durata
+                      if dur-code not = tod-dur-code and
+                         dur-code not = spaces
+                         exit perform
+                      else
+                         set record-ok to true
+                      end-if
       *****           when 6  |Esercizio  
       *****                if wod-exe-code = ef-exe-buf or ef-exe-buf = spaces
       *****                   set record-ok to true
@@ -13519,6 +13553,18 @@
                     move tod-day-ini        to zwod-ini      
                     move tod-gg             to zwod-gg       
                     move tod-tot-exe        to zwod-exe      
+                    move tod-wom-code       to wom-code
+                    read wodmap             
+                    move wom-desc           to zwod-wom-desc 
+                    move tod-dur-code       to dur-code
+                    read duration             
+                    move dur-desc           to zwod-dur-desc 
+                    evaluate tod-wom-effort                  
+                    when 1 move "Light wod effort"  to zwod-effort
+                    when 2 move "Medium wod effort" to zwod-effort
+                    when 3 move "Heavy wod effort"  to zwod-effort
+                    end-evaluate
+                    
                     write zwod-rec invalid rewrite zwod-rec end-write
                  end-if
               end-perform

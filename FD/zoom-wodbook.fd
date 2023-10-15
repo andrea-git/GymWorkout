@@ -9,3 +9,6 @@
                10 zwod-ini         PIC  9(8).
                10 zwod-gg          PIC  999.
                10 zwod-exe         PIC  999.
+               10 zwod-wom-desc    PIC  x(100).
+               10 zwod-dur-desc    PIC  x(100).
+               10 zwod-effort      PIC  x(100).

@@ -2,7 +2,6 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-Adesk-andre=169.254.95.20
 
 
 [WORKSPACE_CONTENT]
@@ -78,6 +77,9 @@ RELATIVE_PATH=CPF\tduration.cpf
 
 [PROGRAM_CONTENT-GymWorkout:PROGRAM15]
 RELATIVE_PATH=CPF\gwodmap.cpf
+
+[PROGRAM_CONTENT-GymWorkout:PROGRAM16]
+RELATIVE_PATH=CPF\modwod.cpf
 
 [DATALAYOUT_CONTENT-GymWorkout:DATALAYOUT1]
 RELATIVE_PATH=FD\exercises.clf
@@ -893,526 +895,531 @@ FOLDER_NAME=Resource
 OWNER_PATH=Source\gwod.cbl
 
 [FILE_CONTENT-GymWorkout:FILE144]
+RELATIVE_PATH=Resource\mod.bmp
+FOLDER_NAME=Resource
+OWNER_PATH=Source\gwod.cbl
+
+[FILE_CONTENT-GymWorkout:FILE145]
 RELATIVE_PATH=FD\STAMPA.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\STAMPA.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE145]
+[FILE_CONTENT-GymWorkout:FILE146]
 RELATIVE_PATH=FD\STAMPA.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\STAMPA.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE146]
+[FILE_CONTENT-GymWorkout:FILE147]
 RELATIVE_PATH=FD\clienti.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\clienti.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE147]
+[FILE_CONTENT-GymWorkout:FILE148]
 RELATIVE_PATH=FD\clienti.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\clienti.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE148]
+[FILE_CONTENT-GymWorkout:FILE149]
 RELATIVE_PATH=FD\articoli.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\articoli.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE149]
+[FILE_CONTENT-GymWorkout:FILE150]
 RELATIVE_PATH=FD\articoli.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\articoli.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE150]
+[FILE_CONTENT-GymWorkout:FILE151]
 RELATIVE_PATH=FD\codiva.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\codiva.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE151]
+[FILE_CONTENT-GymWorkout:FILE152]
 RELATIVE_PATH=FD\codiva.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\codiva.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE152]
+[FILE_CONTENT-GymWorkout:FILE153]
 RELATIVE_PATH=FD\tipocli.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tipocli.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE153]
+[FILE_CONTENT-GymWorkout:FILE154]
 RELATIVE_PATH=FD\tipocli.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tipocli.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE154]
+[FILE_CONTENT-GymWorkout:FILE155]
 RELATIVE_PATH=FD\param.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\param.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE155]
+[FILE_CONTENT-GymWorkout:FILE156]
 RELATIVE_PATH=FD\param.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\param.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE156]
+[FILE_CONTENT-GymWorkout:FILE157]
 RELATIVE_PATH=FD\tlistini.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tlistini.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE157]
+[FILE_CONTENT-GymWorkout:FILE158]
 RELATIVE_PATH=FD\tlistini.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tlistini.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE158]
+[FILE_CONTENT-GymWorkout:FILE159]
 RELATIVE_PATH=FD\rlistini.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\rlistini.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE159]
+[FILE_CONTENT-GymWorkout:FILE160]
 RELATIVE_PATH=FD\rlistini.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\rlistini.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE160]
+[FILE_CONTENT-GymWorkout:FILE161]
 RELATIVE_PATH=FD\lineseq.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\lineseq.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE161]
+[FILE_CONTENT-GymWorkout:FILE162]
 RELATIVE_PATH=FD\lineseq.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\lineseq.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE162]
+[FILE_CONTENT-GymWorkout:FILE163]
 RELATIVE_PATH=FD\comuni.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\comuni.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE163]
+[FILE_CONTENT-GymWorkout:FILE164]
 RELATIVE_PATH=FD\comuni.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\comuni.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE164]
+[FILE_CONTENT-GymWorkout:FILE165]
 RELATIVE_PATH=FD\pro_piva.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\pro_piva.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE165]
+[FILE_CONTENT-GymWorkout:FILE166]
 RELATIVE_PATH=FD\pro_piva.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\pro_piva.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE166]
+[FILE_CONTENT-GymWorkout:FILE167]
 RELATIVE_PATH=FD\tschede.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tschede.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE167]
+[FILE_CONTENT-GymWorkout:FILE168]
 RELATIVE_PATH=FD\tschede.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tschede.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE168]
+[FILE_CONTENT-GymWorkout:FILE169]
 RELATIVE_PATH=FD\rschede.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\rschede.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE169]
+[FILE_CONTENT-GymWorkout:FILE170]
 RELATIVE_PATH=FD\rschede.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\rschede.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE170]
+[FILE_CONTENT-GymWorkout:FILE171]
 RELATIVE_PATH=FD\tfatture.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tfatture.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE171]
+[FILE_CONTENT-GymWorkout:FILE172]
 RELATIVE_PATH=FD\tfatture.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tfatture.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE172]
+[FILE_CONTENT-GymWorkout:FILE173]
 RELATIVE_PATH=FD\rfatture.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\rfatture.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE173]
+[FILE_CONTENT-GymWorkout:FILE174]
 RELATIVE_PATH=FD\rfatture.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\rfatture.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE174]
+[FILE_CONTENT-GymWorkout:FILE175]
 RELATIVE_PATH=FD\tcorrisp.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tcorrisp.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE175]
+[FILE_CONTENT-GymWorkout:FILE176]
 RELATIVE_PATH=FD\tcorrisp.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tcorrisp.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE176]
+[FILE_CONTENT-GymWorkout:FILE177]
 RELATIVE_PATH=FD\rcorrisp.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\rcorrisp.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE177]
+[FILE_CONTENT-GymWorkout:FILE178]
 RELATIVE_PATH=FD\rcorrisp.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\rcorrisp.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE178]
+[FILE_CONTENT-GymWorkout:FILE179]
 RELATIVE_PATH=FD\tnotacr.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tnotacr.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE179]
+[FILE_CONTENT-GymWorkout:FILE180]
 RELATIVE_PATH=FD\tnotacr.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tnotacr.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE180]
+[FILE_CONTENT-GymWorkout:FILE181]
 RELATIVE_PATH=FD\rnotacr.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\rnotacr.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE181]
+[FILE_CONTENT-GymWorkout:FILE182]
 RELATIVE_PATH=FD\rnotacr.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\rnotacr.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE182]
+[FILE_CONTENT-GymWorkout:FILE183]
 RELATIVE_PATH=FD\tmp-docum.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-docum.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE183]
+[FILE_CONTENT-GymWorkout:FILE184]
 RELATIVE_PATH=FD\tmp-docum.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-docum.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE184]
+[FILE_CONTENT-GymWorkout:FILE185]
 RELATIVE_PATH=FD\appuntamenti.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\appuntamenti.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE185]
+[FILE_CONTENT-GymWorkout:FILE186]
 RELATIVE_PATH=FD\appuntamenti.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\appuntamenti.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE186]
+[FILE_CONTENT-GymWorkout:FILE187]
 RELATIVE_PATH=FD\exercices.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\exercices.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE187]
+[FILE_CONTENT-GymWorkout:FILE188]
 RELATIVE_PATH=FD\exercices.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\exercices.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE188]
+[FILE_CONTENT-GymWorkout:FILE189]
 RELATIVE_PATH=FD\groups.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\groups.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE189]
+[FILE_CONTENT-GymWorkout:FILE190]
 RELATIVE_PATH=FD\groups.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\groups.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE190]
+[FILE_CONTENT-GymWorkout:FILE191]
 RELATIVE_PATH=FD\macrogroups.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\macrogroups.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE191]
+[FILE_CONTENT-GymWorkout:FILE192]
 RELATIVE_PATH=FD\macrogroups.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\macrogroups.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE192]
+[FILE_CONTENT-GymWorkout:FILE193]
 RELATIVE_PATH=FD\wodbook.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\wodbook.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE193]
+[FILE_CONTENT-GymWorkout:FILE194]
 RELATIVE_PATH=FD\wodbook.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\wodbook.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE194]
+[FILE_CONTENT-GymWorkout:FILE195]
 RELATIVE_PATH=FD\exercises.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\exercises.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE195]
+[FILE_CONTENT-GymWorkout:FILE196]
 RELATIVE_PATH=FD\exercises.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\exercises.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE196]
+[FILE_CONTENT-GymWorkout:FILE197]
 RELATIVE_PATH=FD\intensity.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\intensity.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE197]
+[FILE_CONTENT-GymWorkout:FILE198]
 RELATIVE_PATH=FD\intensity.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\intensity.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE198]
+[FILE_CONTENT-GymWorkout:FILE199]
 RELATIVE_PATH=FD\duration.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\duration.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE199]
+[FILE_CONTENT-GymWorkout:FILE200]
 RELATIVE_PATH=FD\duration.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\duration.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE200]
+[FILE_CONTENT-GymWorkout:FILE201]
 RELATIVE_PATH=FD\tmp-exe-effort.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-exe-effort.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE201]
+[FILE_CONTENT-GymWorkout:FILE202]
 RELATIVE_PATH=FD\tmp-exe-effort.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-exe-effort.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE202]
+[FILE_CONTENT-GymWorkout:FILE203]
 RELATIVE_PATH=FD\wodmap.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\wodmap.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE203]
+[FILE_CONTENT-GymWorkout:FILE204]
 RELATIVE_PATH=FD\wodmap.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\wodmap.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE204]
+[FILE_CONTENT-GymWorkout:FILE205]
 RELATIVE_PATH=FD\tmp-wod-exe.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-wod-exe.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE205]
+[FILE_CONTENT-GymWorkout:FILE206]
 RELATIVE_PATH=FD\tmp-wod-exe.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-wod-exe.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE206]
+[FILE_CONTENT-GymWorkout:FILE207]
 RELATIVE_PATH=FD\tmp-exe.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-exe.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE207]
+[FILE_CONTENT-GymWorkout:FILE208]
 RELATIVE_PATH=FD\tmp-exe.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-exe.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE208]
+[FILE_CONTENT-GymWorkout:FILE209]
 RELATIVE_PATH=FD\int-exe.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\int-exe.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE209]
+[FILE_CONTENT-GymWorkout:FILE210]
 RELATIVE_PATH=FD\int-exe.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\int-exe.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE210]
+[FILE_CONTENT-GymWorkout:FILE211]
 RELATIVE_PATH=FD\intexe.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\intexe.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE211]
+[FILE_CONTENT-GymWorkout:FILE212]
 RELATIVE_PATH=FD\intexe.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\intexe.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE212]
+[FILE_CONTENT-GymWorkout:FILE213]
 RELATIVE_PATH=FD\tmp-exe-mcg.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-exe-mcg.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE213]
+[FILE_CONTENT-GymWorkout:FILE214]
 RELATIVE_PATH=FD\tmp-exe-mcg.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-exe-mcg.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE214]
+[FILE_CONTENT-GymWorkout:FILE215]
 RELATIVE_PATH=FD\tmp-exe-dupl.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-exe-dupl.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE215]
+[FILE_CONTENT-GymWorkout:FILE216]
 RELATIVE_PATH=FD\tmp-exe-dupl.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-exe-dupl.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE216]
+[FILE_CONTENT-GymWorkout:FILE217]
 RELATIVE_PATH=FD\zoom-exe-mcg.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\zoom-exe-mcg.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE217]
+[FILE_CONTENT-GymWorkout:FILE218]
 RELATIVE_PATH=FD\zoom-exe-mcg.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\zoom-exe-mcg.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE218]
+[FILE_CONTENT-GymWorkout:FILE219]
 RELATIVE_PATH=FD\tmp-wod.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-wod.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE219]
+[FILE_CONTENT-GymWorkout:FILE220]
 RELATIVE_PATH=FD\tmp-wod.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-wod.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE220]
+[FILE_CONTENT-GymWorkout:FILE221]
 RELATIVE_PATH=FD\tmp-hit.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-hit.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE221]
+[FILE_CONTENT-GymWorkout:FILE222]
 RELATIVE_PATH=FD\tmp-hit.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-hit.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE222]
+[FILE_CONTENT-GymWorkout:FILE223]
 RELATIVE_PATH=FD\tmp-grp-exe.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-grp-exe.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE223]
+[FILE_CONTENT-GymWorkout:FILE224]
 RELATIVE_PATH=FD\tmp-grp-exe.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\tmp-grp-exe.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE224]
+[FILE_CONTENT-GymWorkout:FILE225]
 RELATIVE_PATH=FD\tmp-superset.sl
 FOLDER_NAME=FD
 OWNER_PATH=Source\gwod.cbl
 
-[FILE_CONTENT-GymWorkout:FILE225]
+[FILE_CONTENT-GymWorkout:FILE226]
 RELATIVE_PATH=FD\tmp-superset.fd
 FOLDER_NAME=FD
 OWNER_PATH=Source\gwod.cbl
 
-[FILE_CONTENT-GymWorkout:FILE226]
+[FILE_CONTENT-GymWorkout:FILE227]
 RELATIVE_PATH=FD\zoom-wodbook.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\zoom-wodbook.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE227]
+[FILE_CONTENT-GymWorkout:FILE228]
 RELATIVE_PATH=FD\zoom-wodbook.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\zoom-wodbook.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE228]
+[FILE_CONTENT-GymWorkout:FILE229]
 RELATIVE_PATH=FD\twodbook.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\twodbook.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE229]
+[FILE_CONTENT-GymWorkout:FILE230]
 RELATIVE_PATH=FD\twodbook.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\twodbook.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE230]
+[FILE_CONTENT-GymWorkout:FILE231]
 RELATIVE_PATH=FD\rwodbook.fd
 FOLDER_NAME=FD
 OWNER_PATH=FD\rwodbook.clf
 ATTRIBUTE=0
 
-[FILE_CONTENT-GymWorkout:FILE231]
+[FILE_CONTENT-GymWorkout:FILE232]
 RELATIVE_PATH=FD\rwodbook.sl
 FOLDER_NAME=FD
 OWNER_PATH=FD\rwodbook.clf
@@ -1788,7 +1795,7 @@ DEBUGGING=1
 CODE_VERSION_NUMBER=16
 
 [FILE_COMPILE_OPTION-GymWorkout:Debug Mode:Source\gwod.cbl]
-COPY_DEPENDENCE=FD\exercises.sl;FD\groups.sl;FD\macrogroups.sl;FD\duration.sl;FD\tmp-exe-effort.sl;FD\wodbook.sl;FD\wodmap.sl;FD\tmp-wod-exe.sl;FD\tmp-exe.sl;FD\intexe.sl;FD\tmp-exe-dupl.sl;FD\zoom-exe-mcg.sl;FD\tmp-hit.sl;FD\tmp-grp-exe.sl;FD\tmp-superset.sl;FD\exercises.fd;FD\groups.fd;FD\macrogroups.fd;FD\duration.fd;FD\tmp-exe-effort.fd;FD\wodbook.fd;FD\wodmap.fd;FD\tmp-wod-exe.fd;FD\tmp-exe.fd;FD\intexe.fd;FD\tmp-exe-dupl.fd;FD\zoom-exe-mcg.fd;FD\tmp-hit.fd;FD\tmp-grp-exe.fd;FD\tmp-superset.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;Copylib\externals.def;\StudioPostura\Copylib\blockpgm.lks;Resource\genera.bmp;Resource\random.bmp;Resource\piu-meno.bmp;Resource\up-down.bmp;Resource\intens.bmp;Resource\ripristino.bmp;Resource\toolbar.bmp;Resource\bottone-ok.bmp;Resource\bottone-annulla.bmp;Copylib\ABILITA-TOOLBAR.CPY;Copylib\COLOR-CUSTOM.CPY;Copylib\status.cpy;Copylib\utydata.cpy
+COPY_DEPENDENCE=FD\exercises.sl;FD\groups.sl;FD\macrogroups.sl;FD\duration.sl;FD\tmp-exe-effort.sl;FD\wodmap.sl;FD\tmp-wod-exe.sl;FD\tmp-exe.sl;FD\intexe.sl;FD\tmp-exe-dupl.sl;FD\zoom-exe-mcg.sl;FD\tmp-hit.sl;FD\tmp-grp-exe.sl;FD\tmp-superset.sl;FD\zoom-wodbook.sl;FD\rwodbook.sl;FD\twodbook.sl;FD\exercises.fd;FD\groups.fd;FD\macrogroups.fd;FD\duration.fd;FD\tmp-exe-effort.fd;FD\wodmap.fd;FD\tmp-wod-exe.fd;FD\tmp-exe.fd;FD\intexe.fd;FD\tmp-exe-dupl.fd;FD\zoom-exe-mcg.fd;FD\tmp-hit.fd;FD\tmp-grp-exe.fd;FD\tmp-superset.fd;FD\zoom-wodbook.fd;FD\rwodbook.fd;FD\twodbook.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;Copylib\externals.def;\StudioPostura\Copylib\blockpgm.lks;Resource\genera.bmp;Resource\random.bmp;Resource\piu-meno.bmp;Resource\up-down.bmp;Resource\intens.bmp;Resource\mod.bmp;Resource\ripristino.bmp;Resource\toolbar.bmp;Resource\bottone-ok.bmp;Resource\bottone-annulla.bmp;Copylib\ABILITA-TOOLBAR.CPY;Copylib\COLOR-CUSTOM.CPY;Copylib\status.cpy;Copylib\utydata.cpy
 ADDITIONAL_OPTIONS=-x -Fxa -Di -Ga -Zd -Za -Zn -Zz -C61
 FOLLOW_PROJECT=1
 ; Standard Options

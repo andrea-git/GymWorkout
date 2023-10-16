@@ -2,7 +2,6 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -11,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1014525-369-86547580
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A10155549-185-2349013000
 
 {{@DESCRIPTION:
 
@@ -3446,6 +3445,18 @@ m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM341_WK
 
 @}}
+[FDITEM342_WK]
+m_strName=mod-BMP
+m_strRawPic=S9(9)
+m_strPic=S9(9)
+m_nUsage=5
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM342_WK
+
+@}}
 
 
 [LINKAGE_SECTION]
@@ -5487,6 +5498,49 @@ Begin Screen Form1
       Width in Cells    = TRUE
       Link To           = pb-int-LinkTo
    End
+   Begin Push-Button pb-mod
+      SCREEN-COL        = 154,20
+      SCREEN-LINE       = 8,09
+      LOCK-CONTROL      = TRUE
+      LEVEL             = 5
+      (Name)            = pb-mod
+      Bitmap            = "F:\GYMWORKOUT\RESOURCE\MOD.BMP"
+      Bitmap Frame      = TRUE
+      Bitmap Handle     = mod-bmp
+      Bitmap Number     = 1
+      Bitmap Square     = TRUE
+      Clines            = 0
+      Clines Unit       = Default
+      Column            = 154,20
+      Copy Resource     = TRUE
+      Csize             = 0
+      Csize Unit        = Default
+      Destroy Type      = Automatic
+      Enable            = FALSE
+      Exception Value   = 0
+      Flat              = FALSE
+      Font              = Default Font
+      Height in Cells   = TRUE
+      Help ID           = 0
+      ID                = 47
+      Line              = 8,09
+      Lines             = 1,17
+      Lines in Pixels   = 20
+      Lines Unit        = Default
+      No Auto Default   = FALSE
+      No Tab            = FALSE
+      Occurs            = 0
+      Self Act          = FALSE
+      Size              = 2,80
+      Size in Pixels    = 20
+      Size Unit         = Pixels
+      Style             = Other
+      Tab Order         = 43
+      Termination Value = 0
+      Title             = "Modifica serie/reps"
+      Visible           = NONE
+      Width in Cells    = TRUE
+   End
    Begin Bar Screen1-Br-1
       SCREEN-COL        = 70,20
       SCREEN-LINE       = 1,00
@@ -5511,7 +5565,7 @@ Begin Screen Form1
       Size (Lines)      = 37,04
       Size (Lines) in Pixels = 852
       Size (Lines) Unit = Default
-      Tab Order         = 43
+      Tab Order         = 44
       Visible           = NONE
       Width             = 1
       Width in Cells    = TRUE
@@ -5543,7 +5597,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 61,70
       Size Unit         = Default
-      Tab Order         = 44
+      Tab Order         = 45
       Title Picture     = X(100)
       Title Variable    = lab-desc-buf
       Transparent       = TRUE
@@ -5577,7 +5631,7 @@ Begin Screen Form1
       Occurs            = 0
       Size              = 4,00
       Size Unit         = Default
-      Tab Order         = 45
+      Tab Order         = 46
       Title Picture     = z(18)
       Title Variable    = lab-code-buf
       Transparent       = TRUE
@@ -5586,7 +5640,7 @@ Begin Screen Form1
    End
    Begin Push-Button pb-ripristino
       SCREEN-COL        = 31,20
-      SCREEN-LINE       = 12,39
+      SCREEN-LINE       = 12,35
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = pb-ripristino
@@ -5610,7 +5664,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 46
-      Line              = 12,39
+      Line              = 12,35
       Lines             = 2,39
       Lines in Pixels   = 48
       Lines Unit        = Pixels
@@ -5622,7 +5676,7 @@ Begin Screen Form1
       Size in Pixels    = 140
       Size Unit         = Pixels
       Style             = Other
-      Tab Order         = 46
+      Tab Order         = 47
       Termination Value = 0
       Title             = "Ri&pristino"
       Visible           = NONE
@@ -5641,7 +5695,7 @@ Begin Screen Form1
       Handle Variable   = Form1-Tb-1-Handle
       Help ID           = 0
       Lines             = 3,30
-      Tab Order         = 47
+      Tab Order         = 48
       Begin Push-Button TOOL-ESCI
          SCREEN-COL        = 1,00
          SCREEN-LINE       = 1,09
@@ -6012,7 +6066,7 @@ Begin Screen Form1
       End
       Begin Push-Button tool-seleziona
          SCREEN-COL        = 56,00
-         SCREEN-LINE       = 1,13
+         SCREEN-LINE       = 1,09
          LOCK-CONTROL      = FALSE
          LEVEL             = 5
          (Name)            = tool-seleziona
@@ -6034,7 +6088,7 @@ Begin Screen Form1
          Height in Cells   = TRUE
          Help ID           = 0
          ID                = 114
-         Line              = 1,13
+         Line              = 1,09
          Lines             = 1,35
          Lines Unit        = Default
          No Auto Default   = FALSE
@@ -6158,7 +6212,7 @@ Begin Screen Form1
       Handle Variable   = Form1-St-1-Handle
       PANEL-WIDTHS      = ( 130, 28 )
       PANEL-STYLE       = ( 1, 1 )
-      Tab Order         = 48
+      Tab Order         = 49
    End
 End
 
@@ -10250,6 +10304,11 @@ BEGIN-TEXT
               modify pb-elimina,  enabled true
               modify pb-su,       enabled true
               modify pb-giu,      enabled true 
+              if tod-code = 0                     
+                 modify pb-mod,      enabled false
+              else
+                 modify pb-mod,      enabled true
+              end-if
            else           
               move BitmapSaveDisabled    to BitmapNumSave   
               move BitmapPrintDisabled   to BitmapNumPrint
@@ -10258,8 +10317,9 @@ BEGIN-TEXT
               modify pb-aggiungi, enabled false
               modify pb-elimina,  enabled false
               modify pb-su,       enabled false
-              modify pb-giu,      enabled false
+              modify pb-giu,      enabled false   
               modify pb-int,      enabled false
+              modify pb-mod,      enabled false
            end-if.      
                                                
            modify tool-salva,     enabled = e-salva.
@@ -11180,7 +11240,8 @@ BEGIN-TEXT
            move 0 to tot-gruppi.
            read twodbook
                 invalid continue
-            not invalid
+            not invalid       
+                modify pb-mod, enabled true
                 perform OPEN-TMP  
                 move tod-wom-code to wom-code
                 read wodmap no lock
@@ -11297,6 +11358,9 @@ BEGIN-TEXT
            modify lab-g, color  513, font Calibri14-Occidentale.
 
            modify cb-mul,  value "Si".
+
+           modify pb-mod, enabled false.
+           move 0 to tod-code.
                                           
            modify cb-int, value "Tutto".
            modify cb-dur, value "Tutto".

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 16 ottobre 2023 17:01:07.
+       DATE-WRITTEN.        lunedì 16 ottobre 2023 18:01:08.
        REMARKS.
       *{TOTEM}END
 
@@ -533,6 +533,9 @@
        77 ef-dur-buf       PIC  zz.
        77 lab-dur-buf      PIC  x(50)
                   VALUE IS "Vuoto =Tutti".
+       77 mod-BMP          PIC  S9(9)
+                  USAGE IS COMP-4
+                  VALUE IS 0.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -1572,6 +1575,25 @@
            TITLE "Modifica serie/reps",
            .
 
+      * PUSH BUTTON
+       05
+           pb-mod, 
+           Push-Button, 
+           COL 154,20, 
+           LINE 8,09,
+           LINES 1,17 ,
+           SIZE 28 PIXELS,
+           BITMAP-HANDLE mod-bmp,
+           BITMAP-NUMBER 1,
+           FRAMED,
+           SQUARE,
+           ENABLED 0,
+           ID IS 47,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "Modifica serie/reps",
+           .
+
       * BAR
        05
            Screen1-Br-1, 
@@ -1623,7 +1645,7 @@
            pb-ripristino, 
            Push-Button, 
            COL 31,20, 
-           LINE 12,39,
+           LINE 12,35,
            LINES 55 PIXELS,
            SIZE 148 PIXELS,
            BITMAP-HANDLE RIPRISTINO-BMP,
@@ -1806,7 +1828,7 @@
            tool-seleziona, 
            Push-Button, 
            COL 56,00, 
-           LINE 1,13,
+           LINE 1,09,
            LINES 1,35 ,
            SIZE 3,10 ,
            FONT IS Calibri14BU-Occidentale,
@@ -3178,6 +3200,7 @@
            CALL "w$bitmap" USING WBITMAP-DESTROY, PIU-MENO-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, UP-DOWN-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, intens-BMP
+           CALL "w$bitmap" USING WBITMAP-DESTROY, mod-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, RIPRISTINO-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, BOTTONE-OK-BMP
@@ -3336,6 +3359,10 @@
            COPY RESOURCE "intens.BMP".
            CALL "w$bitmap" USING WBITMAP-LOAD "intens.BMP", 
                    GIVING intens-BMP.
+      * pb-mod
+           COPY RESOURCE "MOD.BMP".
+           CALL "w$bitmap" USING WBITMAP-LOAD "MOD.BMP", 
+                   GIVING mod-bmp.
       * pb-ripristino
            COPY RESOURCE "RIPRISTINO.BMP".
            CALL "w$bitmap" USING WBITMAP-LOAD "RIPRISTINO.BMP", 
@@ -8551,6 +8578,11 @@
               modify pb-elimina,  enabled true
               modify pb-su,       enabled true
               modify pb-giu,      enabled true 
+              if tod-code = 0                     
+                 modify pb-mod,      enabled false
+              else
+                 modify pb-mod,      enabled true
+              end-if
            else           
               move BitmapSaveDisabled    to BitmapNumSave   
               move BitmapPrintDisabled   to BitmapNumPrint
@@ -8559,8 +8591,9 @@
               modify pb-aggiungi, enabled false
               modify pb-elimina,  enabled false
               modify pb-su,       enabled false
-              modify pb-giu,      enabled false
+              modify pb-giu,      enabled false   
               modify pb-int,      enabled false
+              modify pb-mod,      enabled false
            end-if.      
                                                
            modify tool-salva,     enabled = e-salva.
@@ -9494,7 +9527,8 @@
            move 0 to tot-gruppi.
            read twodbook
                 invalid continue
-            not invalid
+            not invalid       
+                modify pb-mod, enabled true
                 perform OPEN-TMP  
                 move tod-wom-code to wom-code
                 read wodmap no lock
@@ -9620,6 +9654,9 @@
            modify lab-g, color  513, font Calibri14-Occidentale.
 
            modify cb-mul,  value "Si".
+
+           modify pb-mod, enabled false.
+           move 0 to tod-code.
                                           
            modify cb-int, value "Tutto".
            modify cb-dur, value "Tutto".

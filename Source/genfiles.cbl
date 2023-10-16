@@ -266,7 +266,7 @@
                  move -1 to link-status
               end-if
            end-if.
-           close rwodbook.
+           close rwodbook.       
 
            open input intexe.
            if status-intexe = "35"

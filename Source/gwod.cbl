@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 16 ottobre 2023 18:01:08.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 00:02:27.
        REMARKS.
       *{TOTEM}END
 
@@ -131,6 +131,8 @@
        77 como-series      PIC  999.
        77 como-grp-desc    PIC  x(100).
        77 nessuna-scelta   PIC  9
+                  VALUE IS 0.
+       77 s-data           PIC  9(8)
                   VALUE IS 0.
        01 filtro-tipo      PIC  9.
            88 filtro-testa VALUE IS 1. 
@@ -782,7 +784,6 @@
        LINKAGE          SECTION.
       *{TOTEM}LINKAGE
            COPY  "F:\STUDIOPOSTURA\COPYLIB\BLOCKPGM.LKS".
-       01 link-codice      PIC  9(6).
 
       *{TOTEM}END
 
@@ -1588,6 +1589,7 @@
            FRAMED,
            SQUARE,
            ENABLED 0,
+           EXCEPTION-VALUE 1015,
            ID IS 47,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -3094,7 +3096,7 @@
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
-       PROCEDURE  DIVISION USING LK-BLOCKPGM, link-codice.
+       PROCEDURE  DIVISION USING LK-BLOCKPGM.
       *{TOTEM}END
 
       *{TOTEM}DECLARATIVE
@@ -6838,6 +6840,8 @@
                  PERFORM pb-giu-LinkTo
               WHEN Key-Status = 1013
                  PERFORM pb-int-LinkTo
+              WHEN Key-Status = 1015
+                 PERFORM pb-mod-LinkTo
               WHEN Key-Status = 1014
                  PERFORM pb-ripristino-LinkTo
               WHEN Key-Status = 2
@@ -11113,30 +11117,25 @@
                        evaluate tex-day
                        when 1 move ef-gg1-buf to como-data
                               perform DATE-TO-FILE
-                              move como-data to rod-day primo-giorno
+                              move como-data  to primo-giorno
                        when 2 move ef-gg2-buf to como-data
-                              perform DATE-TO-FILE
-                              move como-data to rod-day
+                              perform DATE-TO-FILE                  
                        when 3 move ef-gg3-buf to como-data
-                              perform DATE-TO-FILE
-                              move como-data to rod-day
+                              perform DATE-TO-FILE                  
                        when 4 move ef-gg4-buf to como-data
-                              perform DATE-TO-FILE
-                              move como-data to rod-day
+                              perform DATE-TO-FILE                  
                        when 5 move ef-gg5-buf to como-data
-                              perform DATE-TO-FILE
-                              move como-data to rod-day
+                              perform DATE-TO-FILE                  
                        when 6 move ef-gg6-buf to como-data
-                              perform DATE-TO-FILE
-                              move como-data to rod-day
+                              perform DATE-TO-FILE                  
                        when 7 move ef-gg7-buf to como-data
-                              perform DATE-TO-FILE
-                              move como-data to rod-day
+                              perform DATE-TO-FILE                  
                        end-evaluate  
-                    end-if                
+                       move como-data to s-data
+                    end-if                                             
                     initialize rod-rec replacing numeric data by zeroes
                                             alphanumeric data by spaces
-                    move como-data to rod-day 
+                    move s-data               to rod-day
                     move tex-day              to rod-prg-day
                     move como-code            to rod-code
                     add 1 to s-tex-split
@@ -13762,6 +13761,14 @@
               move dur-desc to lab-dur-buf
               display lab-dur
            end-if 
+           .
+      * <TOTEM:END>
+       pb-mod-LinkTo.
+      * <TOTEM:PARA. pb-mod-LinkTo>
+           unlock twodbook all records.
+           unlock rwodbook all records.
+           call   "modwod" using lk-blockpgm, tod-code.
+           cancel "modwod" 
            .
       * <TOTEM:END>
 

@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-aNote-andre=192.168.56.1
+Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -11,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7AF171017-972-43603500
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1014525-369-86547580
 
 {{@DESCRIPTION:
 
@@ -11210,7 +11210,10 @@ BEGIN-TEXT
                 modify cb-dur, value "Tutto"
                 modify cb-gio, value "Tutto"
                 move spaces to s-cb-mg1-buf
-                perform VALORIZZA-WOD
+                perform VALORIZZA-WOD  
+                move tod-wom-code to wom-code
+                read wodmap no lock
+                modify cb-wod, value wom-desc
                 set reloadGrid to true
                 perform ABILITA-MACROGRUPPI  
                 set reloadGrid to false
@@ -11326,6 +11329,8 @@ BEGIN-TEXT
            modify lab-e, color = 513.
            modify lab-f, color = 513.
            modify lab-g, color = 513.
+
+           move "Tutti" to s-cb-wod-buf.
 
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
@@ -12665,7 +12670,7 @@ BEGIN-TEXT
            inquire cb-wod, value in wom-desc.
            read wodmap no lock.
            
-           move lab-code-buf to tod-code.
+           move lab-code-buf to tod-code como-code.
            if tod-code > 0
               delete twodbook record        
               move low-value to rod-key

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        domenica 15 ottobre 2023 20:05:02.
+       DATE-WRITTEN.        lunedì 16 ottobre 2023 17:01:07.
        REMARKS.
       *{TOTEM}END
 
@@ -9524,7 +9524,10 @@
                 modify cb-dur, value "Tutto"
                 modify cb-gio, value "Tutto"
                 move spaces to s-cb-mg1-buf
-                perform VALORIZZA-WOD
+                perform VALORIZZA-WOD  
+                move tod-wom-code to wom-code
+                read wodmap no lock
+                modify cb-wod, value wom-desc
                 set reloadGrid to true
                 perform ABILITA-MACROGRUPPI  
                 set reloadGrid to false
@@ -9649,6 +9652,8 @@
            modify lab-e, color = 513.
            modify lab-f, color = 513.
            modify lab-g, color = 513.
+
+           move "Tutti" to s-cb-wod-buf.
 
            modify gd1, reset-grid = 1.
            perform GD1-CONTENT.
@@ -11031,7 +11036,7 @@
            inquire cb-wod, value in wom-desc.
            read wodmap no lock.
            
-           move lab-code-buf to tod-code.
+           move lab-code-buf to tod-code como-code.
            if tod-code > 0
               delete twodbook record        
               move low-value to rod-key

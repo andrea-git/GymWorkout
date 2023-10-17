@@ -2,7 +2,6 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -11,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1110232-660-2827215531
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A11123418-709-869128771
 
 {{@DESCRIPTION:
 
@@ -15696,8 +15695,9 @@ BEGIN-TEXT
            end-if.
 
            close zoom-wodbook.
-
-           if tot-righe = 0
+                                
+           move 0 to tod-code.
+           if tot-righe = 0     
               display message "Nessun WOD disponibile nei filtri richiesti"
                         title titolo
                          icon 2
@@ -15710,6 +15710,7 @@ BEGIN-TEXT
            
                if stato-zoom = 0
                   move 0 to nessuna-scelta
+                  move zwod-code to tod-code
                else
                   move 1 to nessuna-scelta
                end-if                    

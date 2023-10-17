@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 12:06:20.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 15:07:29.
        REMARKS.
       *{TOTEM}END
 
@@ -698,6 +698,7 @@
        77 rwodbook-rod-k-multi-SPLITBUF  PIC X(35).
        77 rwodbook-rod-k-rp-SPLITBUF  PIC X(35).
        77 rwodbook-rod-k-ss-SPLITBUF  PIC X(35).
+       77 rwodbook-rod-k-confronto-SPLITBUF  PIC X(16).
        77 twodbook-tod-k-creazione-SPLITBUF  PIC X(27).
        77 twodbook-tod-k-wom-SPLITBUF  PIC X(22).
        77 twodbook-tod-k-desc-SPLITBUF  PIC X(119).
@@ -5915,6 +5916,15 @@
            MOVE rod-key(1:28) TO rwodbook-rod-k-ss-SPLITBUF(7:28)
            .
 
+       rwodbook-rod-k-confronto-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-confronto-SPLITBUF
+           MOVE rod-exe-code(1:5) TO 
+           rwodbook-rod-k-confronto-SPLITBUF(1:5)
+           MOVE rod-int-code(1:2) TO 
+           rwodbook-rod-k-confronto-SPLITBUF(6:2)
+           MOVE rod-day(1:8) TO rwodbook-rod-k-confronto-SPLITBUF(8:8)
+           .
+
        DataSet1-rwodbook-INITSTART.
            IF DataSet1-rwodbook-KEY-Asc
               MOVE Low-Value TO rod-key
@@ -5983,6 +5993,7 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT 
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -6017,6 +6028,7 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -6051,6 +6063,7 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -13712,8 +13725,9 @@
            end-if.
 
            close zoom-wodbook.
-
-           if tot-righe = 0
+                                
+           move 0 to tod-code.
+           if tot-righe = 0     
               display message "Nessun WOD disponibile nei filtri richies
       -    "ti"
                         title titolo
@@ -13727,6 +13741,7 @@
            
                if stato-zoom = 0
                   move 0 to nessuna-scelta
+                  move zwod-code to tod-code
                else
                   move 1 to nessuna-scelta
                end-if                    

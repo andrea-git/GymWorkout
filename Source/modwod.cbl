@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 12:50:34.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 14:58:29.
        REMARKS.
       *{TOTEM}END
 
@@ -135,6 +135,8 @@
            05 col-note         PIC  x(100).
        77 ws-narg          PIC  99
                   USAGE IS COMP-1.
+       77 e-cerca          PIC  9
+                  VALUE IS 0.
        77 s-rod-exe-code   PIC  x(5).
        77 s-rod-int-code   PIC  99.
        77 s-rod-day        PIC  9(8).
@@ -395,6 +397,26 @@
            EXCEPTION-VALUE 3,
            FLAT,
            ID IS 30,
+           SELF-ACT,
+           TITLE "Salva (F3)",
+           .
+
+      * PUSH BUTTON
+       05
+           TOOL-CERCA, 
+           Push-Button, 
+           COL 12,20, 
+           LINE 1,09,
+           LINES 64,00 ,
+           SIZE 48,00 ,
+           BITMAP-HANDLE toolbar-bmp,
+           BITMAP-NUMBER 8,
+           UNFRAMED,
+           SQUARE,
+           ENABLED 0,
+           EXCEPTION-VALUE 1000,
+           FLAT,
+           ID IS 31,
            SELF-ACT,
            TITLE "Salva (F3)",
            .
@@ -1626,15 +1648,16 @@
        Form1-PROC.
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAccept>
            if como-code not = 0    
-              set confronto to true
+              set confronto to false
               perform CARICA-WOD
-           else
+           else                                 
+              modify tool-salva, enabled false
               call   "gwod" using lk-blockpgm,
                                   como-code
               cancel "gwod"
               if como-code = 0
-                 move 27 to key-status
-              else
+                 modify tool-cerca, enabled true
+              else                    
                  set confronto to true
                  perform CARICA-WOD
                  perform CARICA-CONFRONTI
@@ -1746,6 +1769,8 @@
                  END-IF
               WHEN Key-Status = 3
                  PERFORM TOOL-SALVA-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM TOOL-CERCA-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -2240,57 +2265,7 @@
                     move rod-int-code to s-rod-int-code
                     move rod-day      to s-rod-day     
                     move store-riga to riga
-                    perform until 1 = 2
-                       read rwodbook previous at end exit perform 
-           end-read
-                       if rod-code = tod-code
-                          exit perform cycle
-                       end-if
-                       if rod-exe-code not = s-rod-exe-code or
-                          rod-int-code not = s-rod-int-code
-                          exit perform
-                       end-if            
-                       move spaces to col-data
-                       move rod-day to como-data
-                       perform DATE-TO-SCREEN
-                       initialize col-exe                 
-                       move como-data(1:2) to col-exe(1:2)
-                       move "/"            to col-exe(3:1)  
-                       move como-data(3:2) to col-exe(4:2)
-                       move "/"            to col-exe(6:1)  
-                       move como-data(5:4) to col-exe(7:4)
-                       move rod-series to col-series
-                       move rod-reps   to col-reps
-                       move rod-int-code to int-code
-                       read intexe no lock
-                       move int-rest to col-rest
-
-                       if rod-int-restpause > 0
-                          move "KG:" to rod-buf(4)
-                       end-if
-                            
-                       move rod-rep(1) to col-rep-1
-                       move rod-kg(1)  to col-kg-1
-                       move rod-buf(1) to col-buf-1            
-                       move rod-rep(2) to col-rep-2
-                       move rod-kg(2)  to col-kg-2
-                       move rod-buf(2) to col-buf-2
-                       move rod-rep(3) to col-rep-3
-                       move rod-kg(3)  to col-kg-3
-                       move rod-buf(3) to col-buf-3            
-                       move rod-rep(4) to col-rep-4
-                       move rod-kg(4)  to col-kg-4
-                       move rod-buf(4) to col-buf-4
-                       move rod-rep(5) to col-rep-5
-                       move rod-kg(5)  to col-kg-5
-                       move rod-buf(5) to col-buf-5
-                       move rod-note   to col-note
-
-                       add 1 to riga                       
-                       modify form1-gd-1, insertion-index riga, 
-                                          record-to-add rec-grid
-                       modify form1-gd-1(riga, 1), hidden-data = rod-key
-                    end-perform
+                    perform CONFRONTI-GRIGLIA
               end-start
            end-perform 
            .
@@ -2372,6 +2347,30 @@
            .
       * <TOTEM:END>
 
+       CERCA.
+      * <TOTEM:PARA. CERCA>
+           move "exercises"  to como-file.
+           call "zoom-gt" using como-file, exe-rec
+                         giving stato-zoom.
+           cancel "zoom-gt".
+           if stato-zoom = 0           
+              initialize rec-grid
+              move exe-desc-stampa to col-exe
+              modify form1-gd-1, record-to-add = rec-grid
+
+              move high-value to rod-int-code rod-day
+              move exe-code   to s-rod-exe-code rod-exe-code
+              move 0          to s-rod-int-code
+              inquire form1-gd-1, last-row in riga  
+              start rwodbook key <= rod-k-confronto
+                    invalid continue
+                not invalid
+                    perform CONFRONTI-GRIGLIA
+              end-start
+           end-if 
+           .
+      * <TOTEM:END>
+
        COLORE-RIGA.
       * <TOTEM:PARA. COLORE-RIGA>
            if riga < 2 
@@ -2379,6 +2378,67 @@
            end-if.
 
            modify form1-gd-1, cursor-color 481 
+           .
+      * <TOTEM:END>
+
+       CONFRONTI-GRIGLIA.
+      * <TOTEM:PARA. CONFRONTI-GRIGLIA>
+           perform until 1 = 2
+              read rwodbook previous at end exit perform end-read
+              if rod-code = tod-code
+                 exit perform cycle
+              end-if
+              if s-rod-int-code = 0
+                 if rod-exe-code not = s-rod-exe-code
+                    exit perform
+                 end-if            
+              else
+                 if rod-exe-code not = s-rod-exe-code or
+                    rod-int-code not = s-rod-int-code
+                    exit perform
+                 end-if            
+              end-if
+              move spaces to col-data
+              move rod-day to como-data
+              perform DATE-TO-SCREEN
+              initialize col-exe                 
+              move como-data(1:2) to col-exe(1:2)
+              move "/"            to col-exe(3:1)  
+              move como-data(3:2) to col-exe(4:2)
+              move "/"            to col-exe(6:1)  
+              move como-data(5:4) to col-exe(7:4)
+              move rod-series to col-series
+              move rod-reps   to col-reps
+              move rod-int-code to int-code
+              read intexe no lock
+              move int-rest to col-rest
+
+              if rod-int-restpause > 0
+                 move "KG:" to rod-buf(4)
+              end-if
+                   
+              move rod-rep(1) to col-rep-1
+              move rod-kg(1)  to col-kg-1
+              move rod-buf(1) to col-buf-1            
+              move rod-rep(2) to col-rep-2
+              move rod-kg(2)  to col-kg-2
+              move rod-buf(2) to col-buf-2
+              move rod-rep(3) to col-rep-3
+              move rod-kg(3)  to col-kg-3
+              move rod-buf(3) to col-buf-3            
+              move rod-rep(4) to col-rep-4
+              move rod-kg(4)  to col-kg-4
+              move rod-buf(4) to col-buf-4
+              move rod-rep(5) to col-rep-5
+              move rod-kg(5)  to col-kg-5
+              move rod-buf(5) to col-buf-5
+              move rod-note   to col-note
+
+              add 1 to riga                       
+              modify form1-gd-1, insertion-index riga, 
+                                 record-to-add rec-grid
+              modify form1-gd-1(riga, 1), hidden-data = rod-key
+           end-perform 
            .
       * <TOTEM:END>
 
@@ -2751,7 +2811,7 @@
       * <TOTEM:PARA. TOOL-SALVA-LinkTo>
            inquire tool-salva, enabled in e-salva.
            if e-salva = 1
-              perform salva
+              perform SALVA
            end-if 
            .
       * <TOTEM:END>
@@ -2846,6 +2906,14 @@
        form1-gd-1-Ev-Msg-Begin-Drag.
       * <TOTEM:PARA. form1-gd-1-Ev-Msg-Begin-Drag>
            perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+       TOOL-CERCA-LinkTo.
+      * <TOTEM:PARA. TOOL-CERCA-LinkTo>
+           inquire tool-cerca, enabled in e-cerca.
+           if e-cerca = 1
+              perform CERCA
+           end-if 
            .
       * <TOTEM:END>
 

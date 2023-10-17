@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          "menu".
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 12:07:15.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 15:47:12.
        REMARKS.
       *{TOTEM}END
 
@@ -116,10 +116,10 @@
        05
            frame-menu, 
            Frame, 
-           COL 2,00, 
-           LINE 1,24,
-           LINES 15,48 ,
-           SIZE 63,07 ,
+           COL 2,29, 
+           LINE 1,00,
+           LINES 15,64 ,
+           SIZE 59,43 ,
            ID IS 1,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -131,8 +131,8 @@
        05
            pb-clienti, 
            Push-Button, 
-           COL 3,79, 
-           LINE 2,51,
+           COL 3,72, 
+           LINE 2,15,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -148,8 +148,8 @@
        05
            pb-articoli, 
            Push-Button, 
-           COL 24,07, 
-           LINE 2,51,
+           COL 23,00, 
+           LINE 2,15,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -165,8 +165,8 @@
        05
            pb-iva, 
            Push-Button, 
-           COL 44,36, 
-           LINE 2,51,
+           COL 42,43, 
+           LINE 2,15,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -182,8 +182,8 @@
        05
            pb-catcli, 
            Push-Button, 
-           COL 3,50, 
-           LINE 7,18,
+           COL 3,72, 
+           LINE 7,00,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -199,8 +199,8 @@
        05
            pb-param, 
            Push-Button, 
-           COL 24,07, 
-           LINE 7,18,
+           COL 23,00, 
+           LINE 7,00,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -216,8 +216,8 @@
        05
            pb-schede, 
            Push-Button, 
-           COL 44,36, 
-           LINE 7,18,
+           COL 42,43, 
+           LINE 7,00,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -233,8 +233,8 @@
        05
            pb-listini, 
            Push-Button, 
-           COL 3,50, 
-           LINE 11,76,
+           COL 3,72, 
+           LINE 11,79,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -250,8 +250,8 @@
        05
            pb-prog, 
            Push-Button, 
-           COL 24,07, 
-           LINE 11,76,
+           COL 23,00, 
+           LINE 11,79,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -267,8 +267,8 @@
        05
            pb-exit, 
            Push-Button, 
-           COL 44,36, 
-           LINE 11,76,
+           COL 42,43, 
+           LINE 11,79,
            LINES 130,00 ,
            SIZE 260,00 ,
            BITMAP-HANDLE STRIP-MENU-BMP,
@@ -376,8 +376,8 @@
 
        Screen1-Create-Win.
            Display Initial GRAPHICAL WINDOW
-              LINES 16,64,
-              SIZE 65,14,
+              LINES 16,15,
+              SIZE 62,00,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,

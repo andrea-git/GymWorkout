@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 15:07:29.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 16:53:52.
        REMARKS.
       *{TOTEM}END
 
@@ -11450,7 +11450,9 @@
               call "C$JUSTIFY" using zwod-code, "R"
               inspect zwod-code replacing leading x"20" by x"30"
               move zwod-code to tod-code
-              perform CURRENT-RECORD
+              if chiamata-normale
+                 perform CURRENT-RECORD
+              end-if
            end-if 
            .
       * <TOTEM:END>

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 14:58:29.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 16:59:02.
        REMARKS.
       *{TOTEM}END
 
@@ -140,6 +140,7 @@
        77 s-rod-exe-code   PIC  x(5).
        77 s-rod-int-code   PIC  99.
        77 s-rod-day        PIC  9(8).
+       77 code-x           PIC  x(18).
        01 FILLER           PIC  9.
            88 confronto VALUE IS 1    WHEN SET TO FALSE  0. 
        77 como-code        PIC  9(18).
@@ -181,6 +182,9 @@
            88 Valid-STATUS-rwodbook VALUE IS "00" THRU "09". 
        77 STATUS-twodbook  PIC  X(2).
            88 Valid-STATUS-twodbook VALUE IS "00" THRU "09". 
+       77 lab-desc-buf     PIC  x(100).
+       77 Calibri18B-Occidentale
+                  USAGE IS HANDLE OF FONT.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -287,8 +291,8 @@
            form1-gd-1, 
            Grid, 
            COL 2,80, 
-           LINE 1,57,
-           LINES 38,00 ,
+           LINE 2,87,
+           LINES 36,61 ,
            SIZE 164,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
@@ -353,6 +357,24 @@
            TRANSPARENT,
            TITLE "CUSTOM CONTROL",
            VISIBLE v-custom,
+           .
+
+      * LABEL
+       05
+           lab-desc, 
+           Label, 
+           COL 2,80, 
+           LINE 1,22,
+           LINES 1,13 ,
+           SIZE 164,90 ,
+           COLOR IS 5,
+           FONT IS Calibri18B-Occidentale,
+           ID IS 3,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           CENTER,
+           TRANSPARENT,
+           TITLE lab-desc-buf,
            .
 
       * TOOLBAR
@@ -468,6 +490,7 @@
       * <TOTEM:END>
            DESTROY Calibri14-Occidentale
            DESTROY Calibri12-Occidentale
+           DESTROY Calibri18B-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, toolbar-bmp
       *    After-Program
            PERFORM I-O-BLOCCO
@@ -522,6 +545,18 @@
            MOVE 0 TO WFONT-CHAR-SET
            CALL "W$FONT" USING WFONT-GET-FONT, 
                      Calibri12-Occidentale, WFONT-DATA
+      * Calibri18B-Occidentale
+           INITIALIZE WFONT-DATA Calibri18B-Occidentale
+           MOVE 18 TO WFONT-SIZE
+           MOVE "Calibri" TO WFONT-NAME
+           SET WFONT-BOLD TO TRUE
+           SET WFONT-ITALIC TO FALSE
+           SET WFONT-UNDERLINE TO FALSE
+           SET WFONT-STRIKEOUT TO FALSE
+           SET WFONT-FIXED-PITCH TO FALSE
+           MOVE 0 TO WFONT-CHAR-SET
+           CALL "W$FONT" USING WFONT-GET-FONT, 
+                     Calibri18B-Occidentale, WFONT-DATA
            .
 
        INIT-BMP.
@@ -1647,7 +1682,19 @@
 
        Form1-PROC.
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAccept>
-           if como-code not = 0    
+           initialize lab-desc-buf
+           if como-code not = 0
+              move como-code to tod-code
+              read twodbook
+              move como-code to code-x
+              inspect code-x replacing leading x"30" by x"20" 
+              call "C$JUSTIFY" using code-x, "L"
+              inspect code-x   replacing trailing spaces by low-value
+              string  code-x   delimited low-value 
+                      " - "    delimited size
+                      tod-desc delimited size
+                 into lab-desc-buf
+              end-string
               set confronto to false
               perform CARICA-WOD
            else                                 
@@ -1658,11 +1705,24 @@
               if como-code = 0
                  modify tool-cerca, enabled true
               else                    
+                 move como-code to tod-code
+                 read twodbook
+                 move como-code to code-x
+                 inspect code-x replacing leading x"30" by x"20" 
+                 call "C$JUSTIFY" using code-x, "L"
+                 inspect code-x   replacing trailing spaces by low-value
+                 string  code-x   delimited low-value 
+                         " - "    delimited size
+                         tod-desc delimited size
+                    into lab-desc-buf
+                 end-string
+
                  set confronto to true
                  perform CARICA-WOD
                  perform CARICA-CONFRONTI
               end-if
            end-if.
+           display lab-desc.
 
            move 2 to riga.
            move 78-col-rep-1 to colonna.
@@ -2264,8 +2324,19 @@
                     move rod-exe-code to s-rod-exe-code
                     move rod-int-code to s-rod-int-code
                     move rod-day      to s-rod-day     
-                    move store-riga to riga
+                    move store-riga to riga  
+                    inquire form1-gd-1(store-riga), row-color colore    
+                         
+                    set trovato to false
                     perform CONFRONTI-GRIGLIA
+                    if trovato
+                       add 1 to store-riga tot-righe riga
+                       move "-" to rec-grid                   
+                       modify form1-gd-1, insertion-index riga, 
+                                          record-to-add rec-grid 
+                       modify form1-gd-1(riga), row-color = 33
+
+                    end-if
               end-start
            end-perform 
            .
@@ -2310,7 +2381,7 @@
                     move rod-exe-code to exe-code
                     read exercises invalid move "NON TROVATA" to 
            exe-desc end-read
-                    move exe-desc to col-exe
+                    move exe-desc-stampa to col-exe
                     move rod-series to col-series
                     move rod-reps   to col-reps
                     move rod-int-code to int-code
@@ -2435,9 +2506,12 @@
               move rod-note   to col-note
 
               add 1 to riga                       
+              set trovato to true
               modify form1-gd-1, insertion-index riga, 
-                                 record-to-add rec-grid
+                                 record-to-add rec-grid  
+              modify  form1-gd-1(riga), row-color colore
               modify form1-gd-1(riga, 1), hidden-data = rod-key
+              add 1 to store-riga tot-righe
            end-perform 
            .
       * <TOTEM:END>

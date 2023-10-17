@@ -9,7 +9,7 @@ QUIT_CONFIRM=0
 ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Screen1
 BEFORE_PROGRAM=menu-Ev-Before-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A11123418-315-2232611125
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A11134427-602-835322223
 
 {{@DESCRIPTION:
 
@@ -410,7 +410,7 @@ Begin Screen Screen1
    Height in Cells   = TRUE
    Help ID           = 0
    Label Offset      = 20
-   Lines             = 16,64
+   Lines             = 16,15
    Link To Thread    = TRUE
    Max Lines         = 0,00
    Max Size          = 0,00
@@ -421,7 +421,7 @@ Begin Screen Screen1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 65,14
+   Size              = 62,00
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -434,8 +434,8 @@ Begin Screen Screen1
    Wrap              = FALSE
    Event Procedure   = Screen1-Event-Proc
    Begin Frame frame-menu
-      SCREEN-COL        = 2,00
-      SCREEN-LINE       = 1,24
+      SCREEN-COL        = 2,29
+      SCREEN-LINE       = 1,00
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = frame-menu
@@ -444,7 +444,7 @@ Begin Screen Screen1
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 2,00
+      Column            = 2,29
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic
@@ -454,11 +454,11 @@ Begin Screen Screen1
       Help ID           = 0
       High Color        = 0
       ID                = 1
-      Line              = 1,24
-      Lines             = 15,48
+      Line              = 1,00
+      Lines             = 15,64
       Lines Unit        = Default
       Low Color         = 0
-      Size              = 63,07
+      Size              = 59,43
       Size Unit         = Default
       Tab Order         = 1
       Thickness         = Default
@@ -468,8 +468,8 @@ Begin Screen Screen1
       Visible           = NONE
       Width in Cells    = TRUE
       Begin Push-Button pb-clienti
-         SCREEN-COL        = 3,79
-         SCREEN-LINE       = 2,51
+         SCREEN-COL        = 3,72
+         SCREEN-LINE       = 2,15
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-clienti
@@ -480,7 +480,7 @@ Begin Screen Screen1
          Bitmap Square     = TRUE
          Clines            = 0
          Clines Unit       = Default
-         Column            = 2,79
+         Column            = 2,43
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -492,7 +492,7 @@ Begin Screen Screen1
          Height in Cells   = FALSE
          Help ID           = 0
          ID                = 3
-         Line              = 2,27
+         Line              = 2,15
          Lines             = 3,65
          Lines in Pixels   = 130
          Lines Unit        = Default
@@ -512,9 +512,9 @@ Begin Screen Screen1
          Link To           = pb-clienti-LinkTo
       End
       Begin Push-Button pb-articoli
-         SCREEN-COL        = 24,07
-         SCREEN-LINE       = 2,51
-         LOCK-CONTROL      = TRUE
+         SCREEN-COL        = 23,00
+         SCREEN-LINE       = 2,15
+         LOCK-CONTROL      = FALSE
          LEVEL             = 5
          (Name)            = pb-articoli
          Bitmap            = "..\RESOURCE\STRIP-MENU.BMP"
@@ -524,7 +524,7 @@ Begin Screen Screen1
          Bitmap Square     = TRUE
          Clines            = 0
          Clines Unit       = Default
-         Column            = 23,07
+         Column            = 21,71
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -536,7 +536,7 @@ Begin Screen Screen1
          Height in Cells   = FALSE
          Help ID           = 0
          ID                = 4
-         Line              = 2,27
+         Line              = 2,15
          Lines             = 3,65
          Lines in Pixels   = 130
          Lines Unit        = Default
@@ -556,8 +556,8 @@ Begin Screen Screen1
          Link To           = pb-articoli-LinkTo
       End
       Begin Push-Button pb-iva
-         SCREEN-COL        = 44,36
-         SCREEN-LINE       = 2,51
+         SCREEN-COL        = 42,43
+         SCREEN-LINE       = 2,15
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-iva
@@ -568,7 +568,7 @@ Begin Screen Screen1
          Bitmap Square     = TRUE
          Clines            = 0
          Clines Unit       = Default
-         Column            = 43,36
+         Column            = 41,14
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -580,7 +580,7 @@ Begin Screen Screen1
          Height in Cells   = FALSE
          Help ID           = 0
          ID                = 5
-         Line              = 2,27
+         Line              = 2,15
          Lines             = 3,65
          Lines in Pixels   = 130
          Lines Unit        = Default
@@ -600,8 +600,8 @@ Begin Screen Screen1
          Link To           = pb-iva-LinkTo
       End
       Begin Push-Button pb-catcli
-         SCREEN-COL        = 3,50
-         SCREEN-LINE       = 7,18
+         SCREEN-COL        = 3,72
+         SCREEN-LINE       = 7,00
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-catcli
@@ -612,7 +612,7 @@ Begin Screen Screen1
          Bitmap Square     = TRUE
          Clines            = 0
          Clines Unit       = Default
-         Column            = 2,50
+         Column            = 2,43
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -624,7 +624,7 @@ Begin Screen Screen1
          Height in Cells   = FALSE
          Help ID           = 0
          ID                = 6
-         Line              = 6,94
+         Line              = 7,00
          Lines             = 3,65
          Lines in Pixels   = 130
          Lines Unit        = Default
@@ -644,9 +644,9 @@ Begin Screen Screen1
          Link To           = pb-catcli-LinkTo
       End
       Begin Push-Button pb-param
-         SCREEN-COL        = 24,07
-         SCREEN-LINE       = 7,18
-         LOCK-CONTROL      = TRUE
+         SCREEN-COL        = 23,00
+         SCREEN-LINE       = 7,00
+         LOCK-CONTROL      = FALSE
          LEVEL             = 5
          (Name)            = pb-param
          Bitmap            = "..\RESOURCE\STRIP-MENU.BMP"
@@ -656,7 +656,7 @@ Begin Screen Screen1
          Bitmap Square     = TRUE
          Clines            = 0
          Clines Unit       = Default
-         Column            = 23,07
+         Column            = 21,71
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -668,7 +668,7 @@ Begin Screen Screen1
          Height in Cells   = FALSE
          Help ID           = 0
          ID                = 7
-         Line              = 6,94
+         Line              = 7,00
          Lines             = 3,65
          Lines in Pixels   = 130
          Lines Unit        = Default
@@ -688,8 +688,8 @@ Begin Screen Screen1
          Link To           = pb-param-LinkTo
       End
       Begin Push-Button pb-schede
-         SCREEN-COL        = 44,36
-         SCREEN-LINE       = 7,18
+         SCREEN-COL        = 42,43
+         SCREEN-LINE       = 7,00
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-schede
@@ -700,7 +700,7 @@ Begin Screen Screen1
          Bitmap Square     = TRUE
          Clines            = 0
          Clines Unit       = Default
-         Column            = 43,36
+         Column            = 41,14
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -712,7 +712,7 @@ Begin Screen Screen1
          Height in Cells   = FALSE
          Help ID           = 0
          ID                = 9
-         Line              = 6,94
+         Line              = 7,00
          Lines             = 3,65
          Lines in Pixels   = 130
          Lines Unit        = Default
@@ -732,8 +732,8 @@ Begin Screen Screen1
          Link To           = pb-schede-LinkTo
       End
       Begin Push-Button pb-listini
-         SCREEN-COL        = 3,50
-         SCREEN-LINE       = 11,76
+         SCREEN-COL        = 3,72
+         SCREEN-LINE       = 11,79
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-listini
@@ -744,7 +744,7 @@ Begin Screen Screen1
          Bitmap Square     = TRUE
          Clines            = 0
          Clines Unit       = Default
-         Column            = 2,50
+         Column            = 2,43
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -756,7 +756,7 @@ Begin Screen Screen1
          Height in Cells   = FALSE
          Help ID           = 0
          ID                = 8
-         Line              = 11,52
+         Line              = 11,79
          Lines             = 3,65
          Lines in Pixels   = 130
          Lines Unit        = Default
@@ -776,9 +776,9 @@ Begin Screen Screen1
          Link To           = pb-listini-LinkTo
       End
       Begin Push-Button pb-prog
-         SCREEN-COL        = 24,07
-         SCREEN-LINE       = 11,76
-         LOCK-CONTROL      = TRUE
+         SCREEN-COL        = 23,00
+         SCREEN-LINE       = 11,79
+         LOCK-CONTROL      = FALSE
          LEVEL             = 5
          (Name)            = pb-prog
          Bitmap            = "..\RESOURCE\STRIP-MENU.BMP"
@@ -788,7 +788,7 @@ Begin Screen Screen1
          Bitmap Square     = TRUE
          Clines            = 0
          Clines Unit       = Default
-         Column            = 23,07
+         Column            = 21,71
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -800,7 +800,7 @@ Begin Screen Screen1
          Height in Cells   = FALSE
          Help ID           = 0
          ID                = 10
-         Line              = 11,52
+         Line              = 11,79
          Lines             = 3,65
          Lines in Pixels   = 130
          Lines Unit        = Default
@@ -820,8 +820,8 @@ Begin Screen Screen1
          Link To           = pb-prog-LinkTo
       End
       Begin Push-Button pb-exit
-         SCREEN-COL        = 44,36
-         SCREEN-LINE       = 11,76
+         SCREEN-COL        = 42,43
+         SCREEN-LINE       = 11,79
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = pb-exit
@@ -832,7 +832,7 @@ Begin Screen Screen1
          Bitmap Square     = TRUE
          Clines            = 0
          Clines Unit       = Default
-         Column            = 43,36
+         Column            = 41,14
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -844,7 +844,7 @@ Begin Screen Screen1
          Height in Cells   = FALSE
          Help ID           = 0
          ID                = 13
-         Line              = 11,52
+         Line              = 11,79
          Lines             = 3,65
          Lines in Pixels   = 130
          Lines Unit        = Default

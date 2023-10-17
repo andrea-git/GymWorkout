@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 16:59:02.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 17:02:40.
        REMARKS.
       *{TOTEM}END
 
@@ -2436,7 +2436,15 @@
               start rwodbook key <= rod-k-confronto
                     invalid continue
                 not invalid
-                    perform CONFRONTI-GRIGLIA
+                    perform CONFRONTI-GRIGLIA  
+                    if trovato
+                       inquire form1-gd-1, last-row in tot-righe
+                       add 1 to tot-righe 
+                       move "-" to rec-grid                   
+                       modify form1-gd-1, insertion-index tot-righe, 
+                                          record-to-add rec-grid 
+                       modify form1-gd-1(tot-righe), row-color = 33
+                    end-if
               end-start
            end-if 
            .

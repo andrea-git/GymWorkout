@@ -2,7 +2,6 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [PROGRAM_CONTENT]
-DIRTY_AFTER_GEN=1
 QUIT_CONFIRM=0
 ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
@@ -1988,7 +1987,15 @@ BEGIN-TEXT
               start rwodbook key <= rod-k-confronto
                     invalid continue
                 not invalid
-                    perform CONFRONTI-GRIGLIA
+                    perform CONFRONTI-GRIGLIA  
+                    if trovato
+                       inquire form1-gd-1, last-row in tot-righe
+                       add 1 to tot-righe 
+                       move "-" to rec-grid                   
+                       modify form1-gd-1, insertion-index tot-righe, 
+                                          record-to-add rec-grid 
+                       modify form1-gd-1(tot-righe), row-color = 33
+                    end-if
               end-start
            end-if.
 END-TEXT

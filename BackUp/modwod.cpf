@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1181254-97-521631174
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A11104546-283-2121512287
 
 {{@DESCRIPTION:
 
@@ -368,8 +368,8 @@ m_bFixed=1
 @}}
 [FDITEM36_WK]
 m_strName=col-data
-m_strRawPic=99/99/9999
-m_strPic=99/99/9999
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -577,9 +577,10 @@ m_bFixed=1
 
 @}}
 [FDITEM57_WK]
-m_strName=como-titolo
-m_strRawPic=x(50)
-m_strPic=x(50)
+m_strName=ws-narg
+m_strRawPic=99
+m_strPic=99
+m_nUsage=2
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -587,9 +588,9 @@ m_bFixed=1
 
 @}}
 [FDITEM58_WK]
-m_strName=colore
-m_strRawPic=999
-m_strPic=999
+m_strName=s-rod-exe-code
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -597,9 +598,9 @@ m_bFixed=1
 
 @}}
 [FDITEM59_WK]
-m_strName=como-giorno
-m_strRawPic=9(8)
-m_strPic=9(8)
+m_strName=s-rod-int-code
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -607,8 +608,9 @@ m_bFixed=1
 
 @}}
 [FDITEM60_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
+m_strName=s-rod-day
+m_strRawPic=9(8)
+m_strPic=9(8)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -626,7 +628,7 @@ m_bFixed=1
 
 @}}
 [FDITEM62_WK]
-m_strName=ricarica
+m_strName=confronto
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -636,6 +638,75 @@ m_strFalse=0
 
 @}}
 [FDITEM63_WK]
+m_strName=como-code
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM63_WK
+
+@}}
+[FDITEM64_WK]
+m_strName=como-titolo
+m_strRawPic=x(50)
+m_strPic=x(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM64_WK
+
+@}}
+[FDITEM65_WK]
+m_strName=colore
+m_strRawPic=999
+m_strPic=999
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM65_WK
+
+@}}
+[FDITEM66_WK]
+m_strName=como-giorno
+m_strRawPic=9(8)
+m_strPic=9(8)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM66_WK
+
+@}}
+[FDITEM67_WK]
+m_strName=Screen1-Handle
+m_nUsage=24
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM67_WK
+
+@}}
+[FDITEM68_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM68_WK
+
+@}}
+[FDITEM69_WK]
+m_strName=ricarica
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue=1
+m_strFalse=0
+{{@DataItem_m_strDescriptionFDITEM69_WK
+
+@}}
+[FDITEM70_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -644,47 +715,47 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM63_WK
+{{@DataItem_m_strDescriptionFDITEM70_WK
 
 @}}
-[FDITEM64_WK]
+[FDITEM71_WK]
 m_strName=Default-Font
 m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM64_WK
+{{@DataItem_m_strDescriptionFDITEM71_WK
 
 @}}
-[FDITEM65_WK]
+[FDITEM72_WK]
 m_strName=STATUS-exercises
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM65_WK
+{{@DataItem_m_strDescriptionFDITEM72_WK
 
 @}}
-[FDITEM66_WK]
+[FDITEM73_WK]
 m_strName=Valid-STATUS-exercises
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM66_WK
+{{@DataItem_m_strDescriptionFDITEM73_WK
 
 @}}
-[FDITEM67_WK]
+[FDITEM74_WK]
 m_strName=Calibri14-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM67_WK
+{{@DataItem_m_strDescriptionFDITEM74_WK
 
 @}}
-[FDITEM68_WK]
+[FDITEM75_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -693,78 +764,11 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM68_WK
-
-@}}
-[FDITEM69_WK]
-m_strName=STATUS-groups
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM69_WK
-
-@}}
-[FDITEM70_WK]
-m_strName=Valid-STATUS-groups
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM70_WK
-
-@}}
-[FDITEM71_WK]
-m_strName=STATUS-intexe
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM71_WK
-
-@}}
-[FDITEM72_WK]
-m_strName=Valid-STATUS-intexe
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM72_WK
-
-@}}
-[FDITEM73_WK]
-m_strName=STATUS-macrogroups
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM73_WK
-
-@}}
-[FDITEM74_WK]
-m_strName=Valid-STATUS-macrogroups
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM74_WK
-
-@}}
-[FDITEM75_WK]
-m_strName=path-tmp-exe-mcg
-m_strRawPic=X(256)
-m_strPic=X(256)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM75_WK
 
 @}}
 [FDITEM76_WK]
-m_strName=STATUS-tmp-exe-mcg
+m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -774,7 +778,7 @@ m_bFixed=1
 
 @}}
 [FDITEM77_WK]
-m_strName=Valid-STATUS-tmp-exe-mcg
+m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -783,10 +787,9 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM78_WK]
-m_strName=AUTO-ID
-m_strRawPic=9(6)
-m_strPic=9(6)
-m_strDefaultValue=32
+m_strName=STATUS-intexe
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -794,19 +797,18 @@ m_bFixed=1
 
 @}}
 [FDITEM79_WK]
-m_strName=E-SELEZIONA
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=1
-m_nItemLevel=77
+m_strName=Valid-STATUS-intexe
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM79_WK
 
 @}}
 [FDITEM80_WK]
-m_strName=Calibri12-Occidentale
-m_nUsage=26
+m_strName=STATUS-macrogroups
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -814,26 +816,26 @@ m_bFixed=1
 
 @}}
 [FDITEM81_WK]
-m_strName=STATUS-rwodbook
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM81_WK
-
-@}}
-[FDITEM82_WK]
-m_strName=Valid-STATUS-rwodbook
+m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM81_WK
+
+@}}
+[FDITEM82_WK]
+m_strName=path-tmp-exe-mcg
+m_strRawPic=X(256)
+m_strPic=X(256)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM82_WK
 
 @}}
 [FDITEM83_WK]
-m_strName=STATUS-twodbook
+m_strName=STATUS-tmp-exe-mcg
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -843,12 +845,81 @@ m_bFixed=1
 
 @}}
 [FDITEM84_WK]
-m_strName=Valid-STATUS-twodbook
+m_strName=Valid-STATUS-tmp-exe-mcg
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM84_WK
+
+@}}
+[FDITEM85_WK]
+m_strName=AUTO-ID
+m_strRawPic=9(6)
+m_strPic=9(6)
+m_strDefaultValue=32
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM85_WK
+
+@}}
+[FDITEM86_WK]
+m_strName=E-SELEZIONA
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM86_WK
+
+@}}
+[FDITEM87_WK]
+m_strName=Calibri12-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM87_WK
+
+@}}
+[FDITEM88_WK]
+m_strName=STATUS-rwodbook
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM88_WK
+
+@}}
+[FDITEM89_WK]
+m_strName=Valid-STATUS-rwodbook
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM89_WK
+
+@}}
+[FDITEM90_WK]
+m_strName=STATUS-twodbook
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM90_WK
+
+@}}
+[FDITEM91_WK]
+m_strName=Valid-STATUS-twodbook
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM91_WK
 
 @}}
 
@@ -1118,7 +1189,7 @@ Begin Screen Form1
       Column            = 2,80
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-data, READONLY = 0 )
-      Columns' Setting  = ( PIC = "99/99/9999", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( PIC = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 2, Name = col-exe, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(50)", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
@@ -1475,71 +1546,21 @@ BEGIN-DATA
    TEXTMODE          = 0
    ENTRYPOINT        = BeforeAccept
 BEGIN-TEXT
-           move lnk-code to tod-code.
-           read twodbook.           
-           move low-value to rod-rec.           
-           move lnk-code  to rod-code.
-           move 1 to riga.
-           move 0 to como-giorno.
-           start rwodbook key >= rod-key 
-                 invalid continue
-             not invalid
-                 perform until 1 = 2
-                    read rwodbook next at end exit perform end-read
-                    if rod-code not = tod-code
-                       exit perform
-                    end-if
-                    if como-giorno = 0
-                       move rod-day to como-giorno
-                    end-if
-                    if rod-day not = como-giorno
-                       move rod-day to como-giorno
-                       if colore = 0 
-                          move 304 to colore
-                       else
-                          move   0 to colore
-                       end-if
-                    end-if
-                    move rod-day to como-data
-                    perform DATE-TO-SCREEN
-                    move como-data to col-data
-                    initialize col-exe
-                    move rod-exe-code to exe-code
-                    read exercises invalid move "NON TROVATA" to exe-desc end-read
-                    move exe-desc to col-exe
-                    move rod-series to col-series
-                    move rod-reps   to col-reps
-                    move rod-int-code to int-code
-                    read intexe no lock
-                    move int-rest to col-rest
-
-                    if rod-int-restpause > 0
-                       move "KG:" to rod-buf(4)
-                    end-if
-                            
-                    move rod-rep(1) to col-rep-1
-                    move rod-kg(1)  to col-kg-1
-                    move rod-buf(1) to col-buf-1            
-                    move rod-rep(2) to col-rep-2
-                    move rod-kg(2)  to col-kg-2
-                    move rod-buf(2) to col-buf-2
-                    move rod-rep(3) to col-rep-3
-                    move rod-kg(3)  to col-kg-3
-                    move rod-buf(3) to col-buf-3            
-                    move rod-rep(4) to col-rep-4
-                    move rod-kg(4)  to col-kg-4
-                    move rod-buf(4) to col-buf-4
-                    move rod-rep(5) to col-rep-5
-                    move rod-kg(5)  to col-kg-5
-                    move rod-buf(5) to col-buf-5
-                    move rod-note   to col-note
-
-                    add 1 to riga                              
-                    modify form1-gd-1, record-to-add = rec-grid
-                    modify form1-gd-1(riga), row-color = colore
-                    modify form1-gd-1(riga, 1), hidden-data = rod-key
-                 end-perform
-           end-start.
+           if como-code not = 0    
+              set confronto to true
+              perform CARICA-WOD
+           else
+              call   "gwod" using lk-blockpgm,
+                                  como-code
+              cancel "gwod"
+              if como-code = 0
+                 move 27 to key-status
+              else
+                 set confronto to true
+                 perform CARICA-WOD
+                 perform CARICA-CONFRONTI
+              end-if
+           end-if.
 
            move 2 to riga.
            move 78-col-rep-1 to colonna.
@@ -1689,6 +1710,153 @@ BEGIN-TEXT
       *                  title titolo
       *     end-if 
 
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = CARICA-CONFRONTI
+BEGIN-TEXT
+           inquire form1-gd-1, last-row in tot-righe.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire form1-gd-1(store-riga, 1), hidden-data rod-key
+              read rwodbook
+              start rwodbook key <= rod-k-confronto
+                    invalid continue
+                not invalid
+                    read rwodbook previous
+                    move rod-exe-code to s-rod-exe-code
+                    move rod-int-code to s-rod-int-code
+                    move rod-day      to s-rod-day     
+                    move store-riga to riga
+                    perform until 1 = 2
+                       read rwodbook previous at end exit perform end-read
+                       if rod-code = tod-code
+                          exit perform cycle
+                       end-if
+                       if rod-exe-code not = s-rod-exe-code or
+                          rod-int-code not = s-rod-int-code
+                          exit perform
+                       end-if            
+                       move spaces to col-data
+                       move rod-day to como-data
+                       perform DATE-TO-SCREEN
+                       initialize col-exe                 
+                       move como-data(1:2) to col-exe(1:2)
+                       move "/"            to col-exe(3:1)  
+                       move como-data(3:2) to col-exe(4:2)
+                       move "/"            to col-exe(6:1)  
+                       move como-data(5:4) to col-exe(7:4)
+                       move rod-series to col-series
+                       move rod-reps   to col-reps
+                       move rod-int-code to int-code
+                       read intexe no lock
+                       move int-rest to col-rest
+
+                       if rod-int-restpause > 0
+                          move "KG:" to rod-buf(4)
+                       end-if
+                            
+                       move rod-rep(1) to col-rep-1
+                       move rod-kg(1)  to col-kg-1
+                       move rod-buf(1) to col-buf-1            
+                       move rod-rep(2) to col-rep-2
+                       move rod-kg(2)  to col-kg-2
+                       move rod-buf(2) to col-buf-2
+                       move rod-rep(3) to col-rep-3
+                       move rod-kg(3)  to col-kg-3
+                       move rod-buf(3) to col-buf-3            
+                       move rod-rep(4) to col-rep-4
+                       move rod-kg(4)  to col-kg-4
+                       move rod-buf(4) to col-buf-4
+                       move rod-rep(5) to col-rep-5
+                       move rod-kg(5)  to col-kg-5
+                       move rod-buf(5) to col-buf-5
+                       move rod-note   to col-note
+
+                       add 1 to riga                       
+                       modify form1-gd-1, insertion-index riga, 
+                                          record-to-add rec-grid
+                       modify form1-gd-1(riga, 1), hidden-data = rod-key
+                    end-perform
+              end-start
+           end-perform.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = CARICA-WOD
+BEGIN-TEXT
+           move como-code to tod-code.
+           read twodbook.           
+           move low-value to rod-rec.           
+           move como-code to rod-code.
+           move 1 to riga.
+           move 0 to como-giorno.
+           start rwodbook key >= rod-key 
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read rwodbook next at end exit perform end-read
+                    if rod-code not = tod-code
+                       exit perform
+                    end-if
+                    if como-giorno = 0
+                       move rod-day to como-giorno
+                    end-if
+                    if rod-day not = como-giorno
+                       move rod-day to como-giorno
+                       if colore = 0 
+                          move 304 to colore
+                       else
+                          move   0 to colore
+                       end-if
+                    end-if
+                    move rod-day to como-data
+                    perform DATE-TO-SCREEN 
+                    initialize col-exe                 
+                    move como-data(1:2) to col-data(1:2)
+                    move "/"            to col-data(3:1)  
+                    move como-data(3:2) to col-data(4:2)
+                    move "/"            to col-data(6:1)  
+                    move como-data(5:4) to col-data(7:4)
+                    initialize col-exe
+                    move rod-exe-code to exe-code
+                    read exercises invalid move "NON TROVATA" to exe-desc end-read
+                    move exe-desc to col-exe
+                    move rod-series to col-series
+                    move rod-reps   to col-reps
+                    move rod-int-code to int-code
+                    read intexe no lock
+                    move int-rest to col-rest
+
+                    if rod-int-restpause > 0
+                       move "KG:" to rod-buf(4)
+                    end-if
+                            
+                    move rod-rep(1) to col-rep-1
+                    move rod-kg(1)  to col-kg-1
+                    move rod-buf(1) to col-buf-1            
+                    move rod-rep(2) to col-rep-2
+                    move rod-kg(2)  to col-kg-2
+                    move rod-buf(2) to col-buf-2
+                    move rod-rep(3) to col-rep-3
+                    move rod-kg(3)  to col-kg-3
+                    move rod-buf(3) to col-buf-3            
+                    move rod-rep(4) to col-rep-4
+                    move rod-kg(4)  to col-kg-4
+                    move rod-buf(4) to col-buf-4
+                    move rod-rep(5) to col-rep-5
+                    move rod-kg(5)  to col-kg-5
+                    move rod-buf(5) to col-buf-5
+                    move rod-note   to col-note
+
+                    add 1 to riga                              
+                    modify form1-gd-1, record-to-add = rec-grid
+                    modify form1-gd-1(riga), row-color = colore
+                    modify form1-gd-1(riga, 1), hidden-data = rod-key
+                 end-perform
+           end-start.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2087,7 +2255,13 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = PAS004P-Ev-Before-Program
 BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Form1-blockpgm-1 **>>
+      *<<** Customized_Default, SP-G, Form1-blockpgm-1 **>>   
+           call "C$NARG" using ws-narg.
+           if ws-narg < 2
+              move 0 to como-code
+           else
+              move lnk-code to como-code
+           end-if.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2124,19 +2298,23 @@ BEGIN-TEXT
       *     perform VALORE-RIGA.
 
       
-           evaluate colonna 
-           when 78-col-data 
-           when 78-col-exe 
-           when 78-col-series 
-           when 78-col-rest 
-           when 78-col-rest
-                set event-action to event-action-fail
-           when 78-col-buf-4
-                inquire form1-gd-1(riga, colonna), cell-data in col-buf-4
-                if col-buf-4 = "KG:"                 
+           if confronto
+              set event-action to event-action-fail
+           else
+              evaluate colonna 
+              when 78-col-data 
+              when 78-col-exe 
+              when 78-col-series 
+              when 78-col-rest 
+              when 78-col-rest
                    set event-action to event-action-fail
-                end-if
-           end-evaluate.
+              when 78-col-buf-4
+                   inquire form1-gd-1(riga, colonna), cell-data in col-buf-4
+                   if col-buf-4 = "KG:"                 
+                      set event-action to event-action-fail
+                   end-if
+              end-evaluate 
+           end-if.
 END-TEXT
 END-DATA
 BEGIN-DATA

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          "menu".
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 21 settembre 2023 12:15:24.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 12:07:15.
        REMARKS.
       *{TOTEM}END
 
@@ -248,6 +248,23 @@
 
       * PUSH BUTTON
        05
+           pb-prog, 
+           Push-Button, 
+           COL 24,07, 
+           LINE 11,76,
+           LINES 130,00 ,
+           SIZE 260,00 ,
+           BITMAP-HANDLE STRIP-MENU-BMP,
+           BITMAP-NUMBER 8,
+           FRAMED,
+           SQUARE,
+           EXCEPTION-VALUE 1000,
+           ID IS 10,
+           TITLE "&Progressi allenamenti",
+           .
+
+      * PUSH BUTTON
+       05
            pb-exit, 
            Push-Button, 
            COL 44,36, 
@@ -429,6 +446,8 @@
                  PERFORM pb-schede-LinkTo
               WHEN Key-Status = 7
                  PERFORM pb-listini-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM pb-prog-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -633,6 +652,12 @@
        pb-schede-LinkTo.
       * <TOTEM:PARA. pb-schede-LinkTo>
            move "gwodmap" to NomeProgramma.
+           perform CALL-PROGRAM 
+           .
+      * <TOTEM:END>
+       pb-prog-LinkTo.
+      * <TOTEM:PARA. pb-prog-LinkTo>
+           move "modwod" to NomeProgramma.
            perform CALL-PROGRAM 
            .
       * <TOTEM:END>

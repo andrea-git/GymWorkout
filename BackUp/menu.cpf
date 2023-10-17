@@ -6,7 +6,7 @@ QUIT_CONFIRM=0
 ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Screen1
 BEFORE_PROGRAM=menu-Ev-Before-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7915101319-202-961513289
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1195648-281-117643471
 
 {{@DESCRIPTION:
 
@@ -772,6 +772,50 @@ Begin Screen Screen1
          Width in Cells    = FALSE
          Link To           = pb-listini-LinkTo
       End
+      Begin Push-Button pb-prog
+         SCREEN-COL        = 24,07
+         SCREEN-LINE       = 11,76
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = pb-prog
+         Bitmap            = "..\RESOURCE\STRIP-MENU.BMP"
+         Bitmap Frame      = TRUE
+         Bitmap Handle     = STRIP-MENU-BMP
+         Bitmap Number     = 8
+         Bitmap Square     = TRUE
+         Clines            = 0
+         Clines Unit       = Default
+         Column            = 23,07
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = NONE
+         Exception Value   = 1000
+         Flat              = FALSE
+         Font              = Default Font
+         Height in Cells   = FALSE
+         Help ID           = 0
+         ID                = 10
+         Line              = 11,52
+         Lines             = 3,65
+         Lines in Pixels   = 130
+         Lines Unit        = Default
+         No Auto Default   = FALSE
+         No Tab            = FALSE
+         Occurs            = 0
+         Self Act          = FALSE
+         Size              = 18,14
+         Size in Pixels    = 260
+         Size Unit         = Default
+         Style             = Other
+         Tab Order         = 8
+         Termination Value = 0
+         Title             = "&Progressi allenamenti"
+         Visible           = NONE
+         Width in Cells    = FALSE
+         Link To           = pb-prog-LinkTo
+      End
       Begin Push-Button pb-exit
          SCREEN-COL        = 44,36
          SCREEN-LINE       = 11,76
@@ -809,7 +853,7 @@ Begin Screen Screen1
          Size in Pixels    = 260
          Size Unit         = Default
          Style             = Escape Button
-         Tab Order         = 8
+         Tab Order         = 9
          Termination Value = 0
          Title             = "&Uscita (Esc)"
          Visible           = NONE
@@ -939,6 +983,14 @@ BEGIN-DATA
    PARAGRAPH         = pb-schede-LinkTo
 BEGIN-TEXT
            move "gwodmap" to NomeProgramma.
+           perform CALL-PROGRAM.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = pb-prog-LinkTo
+BEGIN-TEXT
+           move "modwod" to NomeProgramma.
            perform CALL-PROGRAM.
 END-TEXT
 END-DATA

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 11:19:17.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 12:50:34.
        REMARKS.
       *{TOTEM}END
 
@@ -112,7 +112,7 @@
        78 78-col-buf-5 VALUE IS 20. 
        78 78-col-note VALUE IS 21. 
        01 rec-grid.
-           05 col-data         PIC  99/99/9999.
+           05 col-data         PIC  x(10).
            05 col-exe          PIC  x(50).
            05 col-series       PIC  z9.
            05 col-reps         PIC  X(20).
@@ -133,6 +133,14 @@
            05 col-kg-5         PIC  x(3).
            05 col-buf-5        PIC  x(3).
            05 col-note         PIC  x(100).
+       77 ws-narg          PIC  99
+                  USAGE IS COMP-1.
+       77 s-rod-exe-code   PIC  x(5).
+       77 s-rod-int-code   PIC  99.
+       77 s-rod-day        PIC  9(8).
+       01 FILLER           PIC  9.
+           88 confronto VALUE IS 1    WHEN SET TO FALSE  0. 
+       77 como-code        PIC  9(18).
        77 como-titolo      PIC  x(50).
        77 colore           PIC  999.
        77 como-giorno      PIC  9(8).
@@ -220,6 +228,7 @@
        77 rwodbook-rod-k-multi-SPLITBUF  PIC X(35).
        77 rwodbook-rod-k-rp-SPLITBUF  PIC X(35).
        77 rwodbook-rod-k-ss-SPLITBUF  PIC X(35).
+       77 rwodbook-rod-k-confronto-SPLITBUF  PIC X(16).
        77 twodbook-tod-k-creazione-SPLITBUF  PIC X(27).
        77 twodbook-tod-k-wom-SPLITBUF  PIC X(22).
        77 twodbook-tod-k-desc-SPLITBUF  PIC X(119).
@@ -829,6 +838,15 @@
            MOVE rod-key(1:28) TO rwodbook-rod-k-ss-SPLITBUF(7:28)
            .
 
+       rwodbook-rod-k-confronto-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-confronto-SPLITBUF
+           MOVE rod-exe-code(1:5) TO 
+           rwodbook-rod-k-confronto-SPLITBUF(1:5)
+           MOVE rod-int-code(1:2) TO 
+           rwodbook-rod-k-confronto-SPLITBUF(6:2)
+           MOVE rod-day(1:8) TO rwodbook-rod-k-confronto-SPLITBUF(8:8)
+           .
+
        DataSet1-rwodbook-INITSTART.
            IF DataSet1-rwodbook-KEY-Asc
               MOVE Low-Value TO rod-key
@@ -897,6 +915,7 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT 
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -931,6 +950,7 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -965,6 +985,7 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -1604,72 +1625,21 @@
 
        Form1-PROC.
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAccept>
-           move lnk-code to tod-code.
-           read twodbook.           
-           move low-value to rod-rec.           
-           move lnk-code  to rod-code.
-           move 1 to riga.
-           move 0 to como-giorno.
-           start rwodbook key >= rod-key 
-                 invalid continue
-             not invalid
-                 perform until 1 = 2
-                    read rwodbook next at end exit perform end-read
-                    if rod-code not = tod-code
-                       exit perform
-                    end-if
-                    if como-giorno = 0
-                       move rod-day to como-giorno
-                    end-if
-                    if rod-day not = como-giorno
-                       move rod-day to como-giorno
-                       if colore = 0 
-                          move 304 to colore
-                       else
-                          move   0 to colore
-                       end-if
-                    end-if
-                    move rod-day to como-data
-                    perform DATE-TO-SCREEN
-                    move como-data to col-data
-                    initialize col-exe
-                    move rod-exe-code to exe-code
-                    read exercises invalid move "NON TROVATA" to 
-           exe-desc end-read
-                    move exe-desc to col-exe
-                    move rod-series to col-series
-                    move rod-reps   to col-reps
-                    move rod-int-code to int-code
-                    read intexe no lock
-                    move int-rest to col-rest
-
-                    if rod-int-restpause > 0
-                       move "KG:" to rod-buf(4)
-                    end-if
-                            
-                    move rod-rep(1) to col-rep-1
-                    move rod-kg(1)  to col-kg-1
-                    move rod-buf(1) to col-buf-1            
-                    move rod-rep(2) to col-rep-2
-                    move rod-kg(2)  to col-kg-2
-                    move rod-buf(2) to col-buf-2
-                    move rod-rep(3) to col-rep-3
-                    move rod-kg(3)  to col-kg-3
-                    move rod-buf(3) to col-buf-3            
-                    move rod-rep(4) to col-rep-4
-                    move rod-kg(4)  to col-kg-4
-                    move rod-buf(4) to col-buf-4
-                    move rod-rep(5) to col-rep-5
-                    move rod-kg(5)  to col-kg-5
-                    move rod-buf(5) to col-buf-5
-                    move rod-note   to col-note
-
-                    add 1 to riga                              
-                    modify form1-gd-1, record-to-add = rec-grid
-                    modify form1-gd-1(riga), row-color = colore
-                    modify form1-gd-1(riga, 1), hidden-data = rod-key
-                 end-perform
-           end-start.
+           if como-code not = 0    
+              set confronto to true
+              perform CARICA-WOD
+           else
+              call   "gwod" using lk-blockpgm,
+                                  como-code
+              cancel "gwod"
+              if como-code = 0
+                 move 27 to key-status
+              else
+                 set confronto to true
+                 perform CARICA-WOD
+                 perform CARICA-CONFRONTI
+              end-if
+           end-if.
 
            move 2 to riga.
            move 78-col-rep-1 to colonna.
@@ -2255,6 +2225,153 @@
            .
       * <TOTEM:END>
 
+       CARICA-CONFRONTI.
+      * <TOTEM:PARA. CARICA-CONFRONTI>
+           inquire form1-gd-1, last-row in tot-righe.
+           perform varying store-riga from 2 by 1 
+                     until store-riga > tot-righe
+              inquire form1-gd-1(store-riga, 1), hidden-data rod-key
+              read rwodbook
+              start rwodbook key <= rod-k-confronto
+                    invalid continue
+                not invalid
+                    read rwodbook previous
+                    move rod-exe-code to s-rod-exe-code
+                    move rod-int-code to s-rod-int-code
+                    move rod-day      to s-rod-day     
+                    move store-riga to riga
+                    perform until 1 = 2
+                       read rwodbook previous at end exit perform 
+           end-read
+                       if rod-code = tod-code
+                          exit perform cycle
+                       end-if
+                       if rod-exe-code not = s-rod-exe-code or
+                          rod-int-code not = s-rod-int-code
+                          exit perform
+                       end-if            
+                       move spaces to col-data
+                       move rod-day to como-data
+                       perform DATE-TO-SCREEN
+                       initialize col-exe                 
+                       move como-data(1:2) to col-exe(1:2)
+                       move "/"            to col-exe(3:1)  
+                       move como-data(3:2) to col-exe(4:2)
+                       move "/"            to col-exe(6:1)  
+                       move como-data(5:4) to col-exe(7:4)
+                       move rod-series to col-series
+                       move rod-reps   to col-reps
+                       move rod-int-code to int-code
+                       read intexe no lock
+                       move int-rest to col-rest
+
+                       if rod-int-restpause > 0
+                          move "KG:" to rod-buf(4)
+                       end-if
+                            
+                       move rod-rep(1) to col-rep-1
+                       move rod-kg(1)  to col-kg-1
+                       move rod-buf(1) to col-buf-1            
+                       move rod-rep(2) to col-rep-2
+                       move rod-kg(2)  to col-kg-2
+                       move rod-buf(2) to col-buf-2
+                       move rod-rep(3) to col-rep-3
+                       move rod-kg(3)  to col-kg-3
+                       move rod-buf(3) to col-buf-3            
+                       move rod-rep(4) to col-rep-4
+                       move rod-kg(4)  to col-kg-4
+                       move rod-buf(4) to col-buf-4
+                       move rod-rep(5) to col-rep-5
+                       move rod-kg(5)  to col-kg-5
+                       move rod-buf(5) to col-buf-5
+                       move rod-note   to col-note
+
+                       add 1 to riga                       
+                       modify form1-gd-1, insertion-index riga, 
+                                          record-to-add rec-grid
+                       modify form1-gd-1(riga, 1), hidden-data = rod-key
+                    end-perform
+              end-start
+           end-perform 
+           .
+      * <TOTEM:END>
+
+       CARICA-WOD.
+      * <TOTEM:PARA. CARICA-WOD>
+           move como-code to tod-code.
+           read twodbook.           
+           move low-value to rod-rec.           
+           move como-code to rod-code.
+           move 1 to riga.
+           move 0 to como-giorno.
+           start rwodbook key >= rod-key 
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read rwodbook next at end exit perform end-read
+                    if rod-code not = tod-code
+                       exit perform
+                    end-if
+                    if como-giorno = 0
+                       move rod-day to como-giorno
+                    end-if
+                    if rod-day not = como-giorno
+                       move rod-day to como-giorno
+                       if colore = 0 
+                          move 304 to colore
+                       else
+                          move   0 to colore
+                       end-if
+                    end-if
+                    move rod-day to como-data
+                    perform DATE-TO-SCREEN 
+                    initialize col-exe                 
+                    move como-data(1:2) to col-data(1:2)
+                    move "/"            to col-data(3:1)  
+                    move como-data(3:2) to col-data(4:2)
+                    move "/"            to col-data(6:1)  
+                    move como-data(5:4) to col-data(7:4)
+                    initialize col-exe
+                    move rod-exe-code to exe-code
+                    read exercises invalid move "NON TROVATA" to 
+           exe-desc end-read
+                    move exe-desc to col-exe
+                    move rod-series to col-series
+                    move rod-reps   to col-reps
+                    move rod-int-code to int-code
+                    read intexe no lock
+                    move int-rest to col-rest
+
+                    if rod-int-restpause > 0
+                       move "KG:" to rod-buf(4)
+                    end-if
+                            
+                    move rod-rep(1) to col-rep-1
+                    move rod-kg(1)  to col-kg-1
+                    move rod-buf(1) to col-buf-1            
+                    move rod-rep(2) to col-rep-2
+                    move rod-kg(2)  to col-kg-2
+                    move rod-buf(2) to col-buf-2
+                    move rod-rep(3) to col-rep-3
+                    move rod-kg(3)  to col-kg-3
+                    move rod-buf(3) to col-buf-3            
+                    move rod-rep(4) to col-rep-4
+                    move rod-kg(4)  to col-kg-4
+                    move rod-buf(4) to col-buf-4
+                    move rod-rep(5) to col-rep-5
+                    move rod-kg(5)  to col-kg-5
+                    move rod-buf(5) to col-buf-5
+                    move rod-note   to col-note
+
+                    add 1 to riga                              
+                    modify form1-gd-1, record-to-add = rec-grid
+                    modify form1-gd-1(riga), row-color = colore
+                    modify form1-gd-1(riga, 1), hidden-data = rod-key
+                 end-perform
+           end-start 
+           .
+      * <TOTEM:END>
+
        COLORE-RIGA.
       * <TOTEM:PARA. COLORE-RIGA>
            if riga < 2 
@@ -2647,7 +2764,13 @@
       * <TOTEM:END>
        PAS004P-Ev-Before-Program.
       * <TOTEM:PARA. PAS004P-Ev-Before-Program>
-           move LK-BL-PROG-ID    TO COMO-PROG-ID 
+           move LK-BL-PROG-ID    TO COMO-PROG-ID.
+           call "C$NARG" using ws-narg.
+           if ws-narg < 2
+              move 0 to como-code
+           else
+              move lnk-code to como-code
+           end-if 
            .
       * <TOTEM:END>
        form1-gd-1-Ev-Msg-Finish-Entry.
@@ -2680,20 +2803,24 @@
       *     perform VALORE-RIGA.
 
       
-           evaluate colonna 
-           when 78-col-data 
-           when 78-col-exe 
-           when 78-col-series 
-           when 78-col-rest 
-           when 78-col-rest
-                set event-action to event-action-fail
-           when 78-col-buf-4
-                inquire form1-gd-1(riga, colonna), cell-data in 
-           col-buf-4
-                if col-buf-4 = "KG:"                 
+           if confronto
+              set event-action to event-action-fail
+           else
+              evaluate colonna 
+              when 78-col-data 
+              when 78-col-exe 
+              when 78-col-series 
+              when 78-col-rest 
+              when 78-col-rest
                    set event-action to event-action-fail
-                end-if
-           end-evaluate 
+              when 78-col-buf-4
+                   inquire form1-gd-1(riga, colonna), cell-data in 
+           col-buf-4
+                   if col-buf-4 = "KG:"                 
+                      set event-action to event-action-fail
+                   end-if
+              end-evaluate 
+           end-if 
            .
       * <TOTEM:END>
        form1-gd-1-Ev-Msg-End-Drag.

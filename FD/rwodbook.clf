@@ -2,10 +2,11 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7A119206-751-116631038
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7A1195659-946-278554179
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -331,3 +332,14 @@ m_strName=rod-ss
 m_strName=rod-mcg-code
 [SLKEYATOM2_SLINDEX6_]
 m_strName=rod-key
+[SLINDEX7_]
+m_strName=rod-k-confronto
+{{@Key_m_strDescriptionSLINDEX7_
+
+@}}
+[SLKEYATOM0_SLINDEX7_]
+m_strName=rod-exe-code
+[SLKEYATOM1_SLINDEX7_]
+m_strName=rod-int-code
+[SLKEYATOM2_SLINDEX7_]
+m_strName=rod-day

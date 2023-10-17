@@ -9,7 +9,7 @@
     <xfd:file-organization>Indexed</xfd:file-organization>
     <xfd:maximum-record-size>2346</xfd:maximum-record-size>
     <xfd:minimum-record-size>2346</xfd:minimum-record-size>
-    <xfd:number-of-keys>8</xfd:number-of-keys>
+    <xfd:number-of-keys>9</xfd:number-of-keys>
     <xfd:sign-compatibility>0</xfd:sign-compatibility>
     <xfd:maximum-numeric-digits>18</xfd:maximum-numeric-digits>
     <xfd:period-character>,</xfd:period-character>
@@ -126,6 +126,30 @@
              xfd:key-column-name="ROD-DAY"/>
         <xfd:key-column
              xfd:key-column-name="ROD-SPLIT"/>
+      </xfd:key-columns>
+    </xfd:key>
+    <xfd:key
+         xfd:segment-count="3"
+         xfd:duplicates-allowed="true">
+      <xfd:segments>
+        <xfd:segment
+             xfd:segment-size="5"
+             xfd:segment-offset="34"/>
+        <xfd:segment
+             xfd:segment-size="2"
+             xfd:segment-offset="39"/>
+        <xfd:segment
+             xfd:segment-size="8"
+             xfd:segment-offset="18"/>
+      </xfd:segments>
+      <xfd:key-columns
+           xfd:key-column-count="3">
+        <xfd:key-column
+             xfd:key-column-name="ROD-EXE-CODE"/>
+        <xfd:key-column
+             xfd:key-column-name="ROD-INT-CODE"/>
+        <xfd:key-column
+             xfd:key-column-name="ROD-DAY"/>
       </xfd:key-columns>
     </xfd:key>
     <xfd:key

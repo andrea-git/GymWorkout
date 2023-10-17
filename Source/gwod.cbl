@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 11:10:43.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 12:06:20.
        REMARKS.
       *{TOTEM}END
 
@@ -117,6 +117,9 @@
                   VALUE IS 1.
        77 Small-Font
                   USAGE IS HANDLE OF FONT SMALL-FONT.
+       01 FILLER           PIC  9.
+           88 chiamata-normale VALUE IS 1. 
+           88 chiamata-lookup VALUE IS 2. 
        77 Form1-St-1-Handle
                   USAGE IS HANDLE OF STATUS-BAR.
        77 form1-Handle
@@ -136,6 +139,8 @@
                   VALUE IS 0.
        77 el-dati-wod      PIC  x(200)
                   OCCURS 999 TIMES.
+       77 ws-narg          PIC  99
+                  USAGE IS COMP-1.
        01 filtro-tipo      PIC  9.
            88 filtro-testa VALUE IS 1. 
            88 filtro-righe VALUE IS 2. 
@@ -540,6 +545,8 @@
        77 mod-BMP          PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
+       77 v-form1          PIC  9
+                  VALUE IS 0.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -786,6 +793,7 @@
        LINKAGE          SECTION.
       *{TOTEM}LINKAGE
            COPY  "F:\STUDIOPOSTURA\COPYLIB\BLOCKPGM.LKS".
+       01 lnk-code         PIC  9(18).
 
       *{TOTEM}END
 
@@ -3098,7 +3106,7 @@
       *{TOTEM}END
 
       *{TOTEM}LINKPARA
-       PROCEDURE  DIVISION USING LK-BLOCKPGM.
+       PROCEDURE  DIVISION USING LK-BLOCKPGM, lnk-code.
       *{TOTEM}END
 
       *{TOTEM}DECLARATIVE
@@ -6675,6 +6683,7 @@
               AUTO-MINIMIZE,
               WITH SYSTEM MENU,
               USER-GRAY,
+           VISIBLE v-form1,
               USER-WHITE,
               No WRAP,
               EVENT PROCEDURE Screen1-Event-Proc,
@@ -6708,6 +6717,11 @@
 
        Form1-PROC.
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAccept>
+           if chiamata-lookup
+              perform SELEZIONA
+              move tod-code to lnk-code
+              move 27 to key-status
+           end-if.
            perform INIT.
            perform ABILITA-TOOLBAR.
            perform ABILITAZIONI.
@@ -11723,6 +11737,15 @@
        ginqui-Ev-Before-Program.
       * <TOTEM:PARA. ginqui-Ev-Before-Program>
            move LK-BL-PROG-ID    TO COMO-PROG-ID.
+           call "C$NARG" using ws-narg.
+           if ws-narg = 1
+              set chiamata-normale to true
+              move 1 to v-form1
+           else
+              set chiamata-lookup  to true
+              move 0 to v-form1
+           end-if.
+
            accept como-data from century-date.
            accept como-ora  from time.
                  

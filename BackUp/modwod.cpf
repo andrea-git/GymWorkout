@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A10221010-812-1353623811
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1181254-97-521631174
 
 {{@DESCRIPTION:
 
@@ -215,7 +215,7 @@ m_bFixed=1
 
 @}}
 [FDITEM19_WK]
-m_strName=78-col-rep1
+m_strName=78-col-rep-1
 m_strDefaultValue=6
 m_nItemLevel=78
 m_nSync=-1
@@ -224,7 +224,7 @@ m_bFixed=1
 
 @}}
 [FDITEM20_WK]
-m_strName=78-col-kg1
+m_strName=78-col-kg-1
 m_strDefaultValue=7
 m_nItemLevel=78
 m_nSync=-1
@@ -233,7 +233,7 @@ m_bFixed=1
 
 @}}
 [FDITEM21_WK]
-m_strName=78-col-buf1
+m_strName=78-col-buf-1
 m_strDefaultValue=8
 m_nItemLevel=78
 m_nSync=-1
@@ -242,7 +242,7 @@ m_bFixed=1
 
 @}}
 [FDITEM22_WK]
-m_strName=78-col-rep2
+m_strName=78-col-rep-2
 m_strDefaultValue=9
 m_nItemLevel=78
 m_nSync=-1
@@ -251,7 +251,7 @@ m_bFixed=1
 
 @}}
 [FDITEM23_WK]
-m_strName=78-col-kg2
+m_strName=78-col-kg-2
 m_strDefaultValue=10
 m_nItemLevel=78
 m_nSync=-1
@@ -260,7 +260,7 @@ m_bFixed=1
 
 @}}
 [FDITEM24_WK]
-m_strName=78-col-buf2
+m_strName=78-col-buf-2
 m_strDefaultValue=11
 m_nItemLevel=78
 m_nSync=-1
@@ -269,7 +269,7 @@ m_bFixed=1
 
 @}}
 [FDITEM25_WK]
-m_strName=78-col-rep3
+m_strName=78-col-rep-3
 m_strDefaultValue=12
 m_nItemLevel=78
 m_nSync=-1
@@ -278,7 +278,7 @@ m_bFixed=1
 
 @}}
 [FDITEM26_WK]
-m_strName=78-col-kg3
+m_strName=78-col-kg-3
 m_strDefaultValue=13
 m_nItemLevel=78
 m_nSync=-1
@@ -287,7 +287,7 @@ m_bFixed=1
 
 @}}
 [FDITEM27_WK]
-m_strName=78-col-buf3
+m_strName=78-col-buf-3
 m_strDefaultValue=14
 m_nItemLevel=78
 m_nSync=-1
@@ -296,7 +296,7 @@ m_bFixed=1
 
 @}}
 [FDITEM28_WK]
-m_strName=78-col-rep4
+m_strName=78-col-rep-4
 m_strDefaultValue=15
 m_nItemLevel=78
 m_nSync=-1
@@ -305,7 +305,7 @@ m_bFixed=1
 
 @}}
 [FDITEM29_WK]
-m_strName=78-col-kg4
+m_strName=78-col-kg-4
 m_strDefaultValue=16
 m_nItemLevel=78
 m_nSync=-1
@@ -314,7 +314,7 @@ m_bFixed=1
 
 @}}
 [FDITEM30_WK]
-m_strName=78-col-buf4
+m_strName=78-col-buf-4
 m_strDefaultValue=17
 m_nItemLevel=78
 m_nSync=-1
@@ -323,7 +323,7 @@ m_bFixed=1
 
 @}}
 [FDITEM31_WK]
-m_strName=78-col-rep5
+m_strName=78-col-rep-5
 m_strDefaultValue=18
 m_nItemLevel=78
 m_nSync=-1
@@ -332,7 +332,7 @@ m_bFixed=1
 
 @}}
 [FDITEM32_WK]
-m_strName=78-col-kg5
+m_strName=78-col-kg-5
 m_strDefaultValue=19
 m_nItemLevel=78
 m_nSync=-1
@@ -341,7 +341,7 @@ m_bFixed=1
 
 @}}
 [FDITEM33_WK]
-m_strName=78-col-buf5
+m_strName=78-col-buf-5
 m_strDefaultValue=20
 m_nItemLevel=78
 m_nSync=-1
@@ -418,8 +418,8 @@ m_bFixed=1
 @}}
 [FDITEM41_WK]
 m_strName=col-rep-1
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -428,8 +428,8 @@ m_bFixed=1
 @}}
 [FDITEM42_WK]
 m_strName=col-kg-1
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -438,8 +438,8 @@ m_bFixed=1
 @}}
 [FDITEM43_WK]
 m_strName=col-buf-1
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -448,8 +448,8 @@ m_bFixed=1
 @}}
 [FDITEM44_WK]
 m_strName=col-rep-2
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -458,8 +458,8 @@ m_bFixed=1
 @}}
 [FDITEM45_WK]
 m_strName=col-kg-2
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -468,8 +468,8 @@ m_bFixed=1
 @}}
 [FDITEM46_WK]
 m_strName=col-buf-2
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -478,8 +478,8 @@ m_bFixed=1
 @}}
 [FDITEM47_WK]
 m_strName=col-rep-3
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -488,8 +488,8 @@ m_bFixed=1
 @}}
 [FDITEM48_WK]
 m_strName=col-kg-3
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -498,8 +498,8 @@ m_bFixed=1
 @}}
 [FDITEM49_WK]
 m_strName=col-buf-3
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -508,8 +508,8 @@ m_bFixed=1
 @}}
 [FDITEM50_WK]
 m_strName=col-rep-4
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -518,8 +518,8 @@ m_bFixed=1
 @}}
 [FDITEM51_WK]
 m_strName=col-kg-4
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -528,8 +528,8 @@ m_bFixed=1
 @}}
 [FDITEM52_WK]
 m_strName=col-buf-4
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -538,8 +538,8 @@ m_bFixed=1
 @}}
 [FDITEM53_WK]
 m_strName=col-rep-5
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -548,8 +548,8 @@ m_bFixed=1
 @}}
 [FDITEM54_WK]
 m_strName=col-kg-5
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -558,8 +558,8 @@ m_bFixed=1
 @}}
 [FDITEM55_WK]
 m_strName=col-buf-5
-m_strRawPic=zz9
-m_strPic=zz9
+m_strRawPic=x(3)
+m_strPic=x(3)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -1097,21 +1097,21 @@ Begin Screen Form1
       Cells' Setting    = ( X = 3, Y = 1, Data = "S" )
       Cells' Setting    = ( X = 4, Y = 1, Data = "REPS" )
       Cells' Setting    = ( X = 5, Y = 1, Data = "R """ )
-      Cells' Setting    = ( X = 6, Y = 1, Data = "REP" )
-      Cells' Setting    = ( X = 7, Y = 1, Data = "KG" )
-      Cells' Setting    = ( X = 8, Y = 1, Data = "BUF" )
-      Cells' Setting    = ( X = 9, Y = 1, Data = "REP" )
-      Cells' Setting    = ( X = 10, Y = 1, Data = "KG" )
-      Cells' Setting    = ( X = 11, Y = 1, Data = "BUF" )
-      Cells' Setting    = ( X = 12, Y = 1, Data = "REP" )
-      Cells' Setting    = ( X = 13, Y = 1, Data = "KG" )
-      Cells' Setting    = ( X = 14, Y = 1, Data = "BUF" )
-      Cells' Setting    = ( X = 15, Y = 1, Data = "REP" )
-      Cells' Setting    = ( X = 16, Y = 1, Data = "KG" )
-      Cells' Setting    = ( X = 17, Y = 1, Data = "BUF" )
-      Cells' Setting    = ( X = 18, Y = 1, Data = "REP" )
-      Cells' Setting    = ( X = 19, Y = 1, Data = "KG" )
-      Cells' Setting    = ( X = 20, Y = 1, Data = "BUF" )
+      Cells' Setting    = ( X = 6, Y = 1, Data = "REP1" )
+      Cells' Setting    = ( X = 7, Y = 1, Data = "KG1" )
+      Cells' Setting    = ( X = 8, Y = 1, Data = "BUF1" )
+      Cells' Setting    = ( X = 9, Y = 1, Data = "REP2" )
+      Cells' Setting    = ( X = 10, Y = 1, Data = "KG2" )
+      Cells' Setting    = ( X = 11, Y = 1, Data = "BUF2" )
+      Cells' Setting    = ( X = 12, Y = 1, Data = "REP3" )
+      Cells' Setting    = ( X = 13, Y = 1, Data = "KG3" )
+      Cells' Setting    = ( X = 14, Y = 1, Data = "BUF3" )
+      Cells' Setting    = ( X = 15, Y = 1, Data = "REP4" )
+      Cells' Setting    = ( X = 16, Y = 1, Data = "KG4" )
+      Cells' Setting    = ( X = 17, Y = 1, Data = "BUF4" )
+      Cells' Setting    = ( X = 18, Y = 1, Data = "REP5" )
+      Cells' Setting    = ( X = 19, Y = 1, Data = "KG5" )
+      Cells' Setting    = ( X = 20, Y = 1, Data = "BUF5" )
       Cells' Setting    = ( X = 21, Y = 1, Data = "NOTE" )
       Centered Headings = FALSE
       Color             = 0
@@ -1119,67 +1119,67 @@ Begin Screen Form1
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-data, READONLY = 0 )
       Columns' Setting  = ( PIC = "99/99/9999", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 2, Name = col-exe, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(50)", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 20, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 20, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 3, Name = col-series, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "X(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 4, Name = col-reps, READONLY = 0 )
       Columns' Setting  = ( PIC = "X(20)", TYPE = "X(20)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 15, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 5, Name = col-rest, READONLY = 0 )
       Columns' Setting  = ( PIC = "zz9", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 6, Name = col-rep-1, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 7, Name = col-kg-1, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 8, Name = col-buf-1, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 9, Name = col-rep-2, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 10, Name = col-kg-2, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 11, Name = col-buf-2, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 12, Name = col-rep-3, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 13, Name = col-kg-3, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 14, Name = col-buf-3, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 15, Name = col-rep-4, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 16, Name = col-kg-4, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 17, Name = col-buf-4, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 18, Name = col-rep-5, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 19, Name = col-kg-5, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 20, Name = col-buf-5, READONLY = 0 )
-      Columns' Setting  = ( PIC = "zz9", TYPE = "z(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 21, Name = col-note, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 50, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 40, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 2
       Cursor X          = 0
@@ -1512,6 +1512,28 @@ BEGIN-TEXT
                     move rod-int-code to int-code
                     read intexe no lock
                     move int-rest to col-rest
+
+                    if rod-int-restpause > 0
+                       move "KG:" to rod-buf(4)
+                    end-if
+                            
+                    move rod-rep(1) to col-rep-1
+                    move rod-kg(1)  to col-kg-1
+                    move rod-buf(1) to col-buf-1            
+                    move rod-rep(2) to col-rep-2
+                    move rod-kg(2)  to col-kg-2
+                    move rod-buf(2) to col-buf-2
+                    move rod-rep(3) to col-rep-3
+                    move rod-kg(3)  to col-kg-3
+                    move rod-buf(3) to col-buf-3            
+                    move rod-rep(4) to col-rep-4
+                    move rod-kg(4)  to col-kg-4
+                    move rod-buf(4) to col-buf-4
+                    move rod-rep(5) to col-rep-5
+                    move rod-kg(5)  to col-kg-5
+                    move rod-buf(5) to col-buf-5
+                    move rod-note   to col-note
+
                     add 1 to riga                              
                     modify form1-gd-1, record-to-add = rec-grid
                     modify form1-gd-1(riga), row-color = colore
@@ -1520,7 +1542,7 @@ BEGIN-TEXT
            end-start.
 
            move 2 to riga.
-           move 78-col-rep1 to colonna.
+           move 78-col-rep-1 to colonna.
            modify form1-gd-1, cursor-y = 2, cursor-x colonna.
            perform SPOSTAMENTO.
 
@@ -1956,36 +1978,45 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = SALVA
 BEGIN-TEXT
-      *     inquire ef-note, value in ef-note-buf.
-      *     if siSalvato and ef-note-buf not = old-exe-note and mod = 1
-      *        set NoSalvato to true
-      *     end-if.
-      *
-      *     if sisalvato or mod = 0 exit paragraph end-if.
-      *
-      *     inquire form1-gd-1, cursor-x in colonna, 
-      *                         cursor-y in riga.
-      *
-      *     perform varying colonna from 78-col-code by 1
-      *               until colonna > 78-col-disable
-      *        perform CONTROLLO
-      *        if errori exit perform end-if
-      *     end-perform.
-      *
-      *     if tutto-ok                                                                  
-      *        move ef-note-buf to exe-note hid-note
-      *        modify form1-gd-1(riga, 1), hidden-data hiddenData
-      *        write exe-rec
-      *              invalid rewrite exe-rec
-      *        end-write
-      *
-      *        set sisalvato to true
-      *        set vecchio   to true
-      *     else
-      *        perform ABILITAZIONI
-      *     end-if 
-      *     .
-
+           inquire form1-gd-1, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire form1-gd-1(riga, 1), hidden-data rod-key
+              read rwodbook
+              inquire form1-gd-1(riga, 78-col-rep-1), cell-data in col-rep-1
+              inquire form1-gd-1(riga, 78-col-kg-1 ), cell-data in col-kg-1 
+              inquire form1-gd-1(riga, 78-col-buf-1), cell-data in col-buf-1
+              inquire form1-gd-1(riga, 78-col-rep-2), cell-data in col-rep-2
+              inquire form1-gd-1(riga, 78-col-kg-2 ), cell-data in col-kg-2 
+              inquire form1-gd-1(riga, 78-col-buf-2), cell-data in col-buf-2
+              inquire form1-gd-1(riga, 78-col-rep-3), cell-data in col-rep-3
+              inquire form1-gd-1(riga, 78-col-kg-3 ), cell-data in col-kg-3 
+              inquire form1-gd-1(riga, 78-col-buf-3), cell-data in col-buf-3
+              inquire form1-gd-1(riga, 78-col-rep-4), cell-data in col-rep-4
+              inquire form1-gd-1(riga, 78-col-kg-4 ), cell-data in col-kg-4 
+              inquire form1-gd-1(riga, 78-col-buf-4), cell-data in col-buf-4
+              inquire form1-gd-1(riga, 78-col-rep-5), cell-data in col-rep-5
+              inquire form1-gd-1(riga, 78-col-kg-5 ), cell-data in col-kg-5 
+              inquire form1-gd-1(riga, 78-col-buf-5), cell-data in col-buf-5
+              inquire form1-gd-1(riga, 78-col-note ), cell-data in col-note 
+              move col-rep-1 to rod-rep(1)
+              move col-kg-1  to rod-kg(1)
+              move col-buf-1 to rod-buf(1)
+              move col-rep-2 to rod-rep(2)
+              move col-kg-2  to rod-kg(2) 
+              move col-buf-2 to rod-buf(2)
+              move col-rep-3 to rod-rep(3)
+              move col-kg-3  to rod-kg(3) 
+              move col-buf-3 to rod-buf(3)
+              move col-rep-4 to rod-rep(4)
+              move col-kg-4  to rod-kg(4) 
+              move col-buf-4 to rod-buf(4)
+              move col-rep-5 to rod-rep(5)
+              move col-kg-5  to rod-kg(5) 
+              move col-buf-5 to rod-buf(5)
+              move col-note  to rod-note
+              rewrite rod-rec
+           end-perform.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2093,10 +2124,19 @@ BEGIN-TEXT
       *     perform VALORE-RIGA.
 
       
-           if colonna = 78-col-data or 78-col-exe or 78-col-series or
-                        78-col-rest or 78-col-rest
-              set event-action to event-action-fail
-           end-if.
+           evaluate colonna 
+           when 78-col-data 
+           when 78-col-exe 
+           when 78-col-series 
+           when 78-col-rest 
+           when 78-col-rest
+                set event-action to event-action-fail
+           when 78-col-buf-4
+                inquire form1-gd-1(riga, colonna), cell-data in col-buf-4
+                if col-buf-4 = "KG:"                 
+                   set event-action to event-action-fail
+                end-if
+           end-evaluate.
 END-TEXT
 END-DATA
 BEGIN-DATA

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 00:02:27.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 11:10:43.
        REMARKS.
       *{TOTEM}END
 
@@ -134,6 +134,8 @@
                   VALUE IS 0.
        77 s-data           PIC  9(8)
                   VALUE IS 0.
+       77 el-dati-wod      PIC  x(200)
+                  OCCURS 999 TIMES.
        01 filtro-tipo      PIC  9.
            88 filtro-testa VALUE IS 1. 
            88 filtro-righe VALUE IS 2. 
@@ -569,7 +571,7 @@
        77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(207).
        77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
        77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(440).
-       77 TMP-DataSet1-rwodbook-BUF     PIC X(2156).
+       77 TMP-DataSet1-rwodbook-BUF     PIC X(2346).
        77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
@@ -10647,7 +10649,7 @@
        LOOKUP-EXE.
       * <TOTEM:PARA. LOOKUP-EXE>
            read exercises no lock
-           move exe-int-code to int-code
+           move tex-int-code to int-code
            read intexe
            move int-effort to s-int-effort
            read groups no lock invalid move spaces to grp-mcg-code 
@@ -10679,16 +10681,13 @@
                      cell-data = col-grp-code
               modify gd1(riga, 78-col-grp-desc), 
                      cell-data = col-grp-desc
-                                        
-              inquire gd1(riga, 78-col-day), 
-                     hidden-data = hiddenData
+                                               
               move hid-tex-key to tex-key
               read tmp-exe 
                    invalid continue
                not invalid
                    move exe-code     to tex-exe-code
                    move exe-desc     to tex-exe-desc
-                   move exe-int-code to tex-int-code
                    move exe-isMulti  to tex-exe-isMulti
                    rewrite tex-rec
               end-read
@@ -11076,6 +11075,13 @@
       * <TOTEM:PARA. SALVATAGGIO>
            inquire cb-wod, value in wom-desc.
            read wodmap no lock.
+
+           perform varying idx1 from 1 by 1 
+                     until idx1 = 999
+              move spaces to el-dati-wod(idx1)
+           end-perform.
+
+           move 0 to idx1.
            
            move lab-code-buf to tod-code como-code.
            if tod-code > 0
@@ -11090,6 +11096,8 @@
                        if rod-code not = tod-code
                           exit perform
                        end-if 
+                       add 1 to idx1
+                       move rod-dati-modwod to el-dati-wod(idx1)
                        delete rwodbook record
                     end-perform
               end-start
@@ -11108,7 +11116,7 @@
            start tmp-exe key >= tex-key
                  invalid continue
              not invalid
-                 move 0 to como-giorno
+                 move 0 to como-giorno idx1
                  perform until 1 = 2
                     read tmp-exe next at end exit perform end-read
                     if tex-day not = como-giorno
@@ -11150,7 +11158,9 @@
                     move tex-int-restpause    to rod-int-restpause   
                     move tex-ss               to rod-ss    
                     add  1                    to tot-exe            
-                    move tex-desc-univoca     to rod-desc-univoca
+                    move tex-desc-univoca     to rod-desc-univoca 
+                    add 1 to idx1
+                    move el-dati-wod(idx1) to rod-dati-modwod
                     write rod-rec       
 
                     move rod-day to como-data
@@ -11447,7 +11457,12 @@
            when 78-col-series
            when 78-col-reps     modify pb-int, enabled true
            end-evaluate.
-           perform STATUS-HELP 
+           perform STATUS-HELP.
+                       
+           inquire gd1(event-data-2, 78-col-day), hidden-data 
+           hiddenData.
+           move hid-tex-key to tex-key.
+           read tmp-exe 
            .
       * <TOTEM:END>
 

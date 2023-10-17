@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 00:14:54.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 11:19:17.
        REMARKS.
       *{TOTEM}END
 
@@ -95,21 +95,21 @@
        78 78-col-series VALUE IS 3. 
        78 78-col-reps VALUE IS 4. 
        78 78-col-rest VALUE IS 5. 
-       78 78-col-rep1 VALUE IS 6. 
-       78 78-col-kg1 VALUE IS 7. 
-       78 78-col-buf1 VALUE IS 8. 
-       78 78-col-rep2 VALUE IS 9. 
-       78 78-col-kg2 VALUE IS 10. 
-       78 78-col-buf2 VALUE IS 11. 
-       78 78-col-rep3 VALUE IS 12. 
-       78 78-col-kg3 VALUE IS 13. 
-       78 78-col-buf3 VALUE IS 14. 
-       78 78-col-rep4 VALUE IS 15. 
-       78 78-col-kg4 VALUE IS 16. 
-       78 78-col-buf4 VALUE IS 17. 
-       78 78-col-rep5 VALUE IS 18. 
-       78 78-col-kg5 VALUE IS 19. 
-       78 78-col-buf5 VALUE IS 20. 
+       78 78-col-rep-1 VALUE IS 6. 
+       78 78-col-kg-1 VALUE IS 7. 
+       78 78-col-buf-1 VALUE IS 8. 
+       78 78-col-rep-2 VALUE IS 9. 
+       78 78-col-kg-2 VALUE IS 10. 
+       78 78-col-buf-2 VALUE IS 11. 
+       78 78-col-rep-3 VALUE IS 12. 
+       78 78-col-kg-3 VALUE IS 13. 
+       78 78-col-buf-3 VALUE IS 14. 
+       78 78-col-rep-4 VALUE IS 15. 
+       78 78-col-kg-4 VALUE IS 16. 
+       78 78-col-buf-4 VALUE IS 17. 
+       78 78-col-rep-5 VALUE IS 18. 
+       78 78-col-kg-5 VALUE IS 19. 
+       78 78-col-buf-5 VALUE IS 20. 
        78 78-col-note VALUE IS 21. 
        01 rec-grid.
            05 col-data         PIC  99/99/9999.
@@ -117,21 +117,21 @@
            05 col-series       PIC  z9.
            05 col-reps         PIC  X(20).
            05 col-rest         PIC  zz9.
-           05 col-rep-1        PIC  zz9.
-           05 col-kg-1         PIC  zz9.
-           05 col-buf-1        PIC  zz9.
-           05 col-rep-2        PIC  zz9.
-           05 col-kg-2         PIC  zz9.
-           05 col-buf-2        PIC  zz9.
-           05 col-rep-3        PIC  zz9.
-           05 col-kg-3         PIC  zz9.
-           05 col-buf-3        PIC  zz9.
-           05 col-rep-4        PIC  zz9.
-           05 col-kg-4         PIC  zz9.
-           05 col-buf-4        PIC  zz9.
-           05 col-rep-5        PIC  zz9.
-           05 col-kg-5         PIC  zz9.
-           05 col-buf-5        PIC  zz9.
+           05 col-rep-1        PIC  x(3).
+           05 col-kg-1         PIC  x(3).
+           05 col-buf-1        PIC  x(3).
+           05 col-rep-2        PIC  x(3).
+           05 col-kg-2         PIC  x(3).
+           05 col-buf-2        PIC  x(3).
+           05 col-rep-3        PIC  x(3).
+           05 col-kg-3         PIC  x(3).
+           05 col-buf-3        PIC  x(3).
+           05 col-rep-4        PIC  x(3).
+           05 col-kg-4         PIC  x(3).
+           05 col-buf-4        PIC  x(3).
+           05 col-rep-5        PIC  x(3).
+           05 col-kg-5         PIC  x(3).
+           05 col-buf-5        PIC  x(3).
            05 col-note         PIC  x(100).
        77 como-titolo      PIC  x(50).
        77 colore           PIC  999.
@@ -182,7 +182,7 @@
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
        77 Form1-MULKEY-TMPBUF   PIC X(2305).
        77 TMP-DataSet1-exercises-BUF     PIC X(1189).
-       77 TMP-DataSet1-rwodbook-BUF     PIC X(2156).
+       77 TMP-DataSet1-rwodbook-BUF     PIC X(2346).
        77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
       * VARIABLES FOR RECORD LENGTH.
@@ -283,13 +283,15 @@
            BOXED,
            DATA-COLUMNS (1, 11, 61, 63, 83, 86, 89, 92, 95, 98, 101, 
            104, 107, 110, 113, 116, 119, 122, 125, 128, 131),
-           ALIGNMENT ("C", "U", "R", "U", "R", "R", "R", "R", "R", "R", 
-           "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "U"),
+           ALIGNMENT ("C", "U", "R", "U", "R", "C", "C", "C", "C", "C", 
+           "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "U"),
            SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 
            5, 5, 5, 5, 5),
-           DATA-TYPES ("X", "U(5)", "X(100)", "X(20)", "U(5)", "z(3)", 
-           "z(3)", "z(3)", "z(3)", "z(3)", "z(3)", "z(3)", "z(3)", "z(3)
-      -    "", "z(3)", "z(3)", "z(3)", "z(3)", "z(3)", "z(3)", "X"),
+           DATA-TYPES ("X", "U(5)", "X(100)", "X(20)", "U(5)", "x(3)", 
+           "x(3)", "x(3)", "x(3)", "x(3)", "x(3)", "x(3)", "x(3)", "x(3)
+      -    "", "x(3)", "x(3)", "x(3)", "x(3)", "x(3)", "x(3)", "X"),
+           COLUMN-DIVIDERS (3, 3, 3, 3, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 
+           1, 1, 3, 1, 1, 3, 1),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
@@ -1459,49 +1461,49 @@
                 CELL-DATA = 'R "',
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 6, Y = 1,
-                CELL-DATA = "REP",
+                CELL-DATA = "REP1",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 7, Y = 1,
-                CELL-DATA = "KG",
+                CELL-DATA = "KG1",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 8, Y = 1,
-                CELL-DATA = "BUF",
+                CELL-DATA = "BUF1",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 9, Y = 1,
-                CELL-DATA = "REP",
+                CELL-DATA = "REP2",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 10, Y = 1,
-                CELL-DATA = "KG",
+                CELL-DATA = "KG2",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 11, Y = 1,
-                CELL-DATA = "BUF",
+                CELL-DATA = "BUF2",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 12, Y = 1,
-                CELL-DATA = "REP",
+                CELL-DATA = "REP3",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 13, Y = 1,
-                CELL-DATA = "KG",
+                CELL-DATA = "KG3",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 14, Y = 1,
-                CELL-DATA = "BUF",
+                CELL-DATA = "BUF3",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 15, Y = 1,
-                CELL-DATA = "REP",
+                CELL-DATA = "REP4",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 16, Y = 1,
-                CELL-DATA = "KG",
+                CELL-DATA = "KG4",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 17, Y = 1,
-                CELL-DATA = "BUF",
+                CELL-DATA = "BUF4",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 18, Y = 1,
-                CELL-DATA = "REP",
+                CELL-DATA = "REP5",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 19, Y = 1,
-                CELL-DATA = "KG",
+                CELL-DATA = "KG5",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 20, Y = 1,
-                CELL-DATA = "BUF",
+                CELL-DATA = "BUF5",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 21, Y = 1,
                 CELL-DATA = "NOTE",
@@ -1595,9 +1597,9 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 31, 35, 50, 
-           54, 58, 62, 66, 70, 74, 78, 82, 86, 90, 94, 98, 102, 106, 
-           110, 114)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 31, 35, 45, 
+           49, 54, 59, 64, 69, 74, 79, 84, 89, 94, 99, 104, 109, 114, 
+           119, 124)
            .
 
        Form1-PROC.
@@ -1640,6 +1642,28 @@
                     move rod-int-code to int-code
                     read intexe no lock
                     move int-rest to col-rest
+
+                    if rod-int-restpause > 0
+                       move "KG:" to rod-buf(4)
+                    end-if
+                            
+                    move rod-rep(1) to col-rep-1
+                    move rod-kg(1)  to col-kg-1
+                    move rod-buf(1) to col-buf-1            
+                    move rod-rep(2) to col-rep-2
+                    move rod-kg(2)  to col-kg-2
+                    move rod-buf(2) to col-buf-2
+                    move rod-rep(3) to col-rep-3
+                    move rod-kg(3)  to col-kg-3
+                    move rod-buf(3) to col-buf-3            
+                    move rod-rep(4) to col-rep-4
+                    move rod-kg(4)  to col-kg-4
+                    move rod-buf(4) to col-buf-4
+                    move rod-rep(5) to col-rep-5
+                    move rod-kg(5)  to col-kg-5
+                    move rod-buf(5) to col-buf-5
+                    move rod-note   to col-note
+
                     add 1 to riga                              
                     modify form1-gd-1, record-to-add = rec-grid
                     modify form1-gd-1(riga), row-color = colore
@@ -1648,7 +1672,7 @@
            end-start.
 
            move 2 to riga.
-           move 78-col-rep1 to colonna.
+           move 78-col-rep-1 to colonna.
            modify form1-gd-1, cursor-y = 2, cursor-x colonna.
            perform SPOSTAMENTO.
 
@@ -2504,35 +2528,61 @@
 
        SALVA.
       * <TOTEM:PARA. SALVA>
-      *     inquire ef-note, value in ef-note-buf.
-      *     if siSalvato and ef-note-buf not = old-exe-note and mod = 1
-      *        set NoSalvato to true
-      *     end-if.
-      *
-      *     if sisalvato or mod = 0 exit paragraph end-if.
-      *
-      *     inquire form1-gd-1, cursor-x in colonna, 
-      *                         cursor-y in riga.
-      *
-      *     perform varying colonna from 78-col-code by 1
-      *               until colonna > 78-col-disable
-      *        perform CONTROLLO
-      *        if errori exit perform end-if
-      *     end-perform.
-      *
-      *     if tutto-ok                                                                  
-      *        move ef-note-buf to exe-note hid-note
-      *        modify form1-gd-1(riga, 1), hidden-data hiddenData
-      *        write exe-rec
-      *              invalid rewrite exe-rec
-      *        end-write
-      *
-      *        set sisalvato to true
-      *        set vecchio   to true
-      *     else
-      *        perform ABILITAZIONI
-      *     end-if 
-      *      
+           inquire form1-gd-1, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire form1-gd-1(riga, 1), hidden-data rod-key
+              read rwodbook
+              inquire form1-gd-1(riga, 78-col-rep-1), cell-data in 
+           col-rep-1
+              inquire form1-gd-1(riga, 78-col-kg-1 ), cell-data in 
+           col-kg-1 
+              inquire form1-gd-1(riga, 78-col-buf-1), cell-data in 
+           col-buf-1
+              inquire form1-gd-1(riga, 78-col-rep-2), cell-data in 
+           col-rep-2
+              inquire form1-gd-1(riga, 78-col-kg-2 ), cell-data in 
+           col-kg-2 
+              inquire form1-gd-1(riga, 78-col-buf-2), cell-data in 
+           col-buf-2
+              inquire form1-gd-1(riga, 78-col-rep-3), cell-data in 
+           col-rep-3
+              inquire form1-gd-1(riga, 78-col-kg-3 ), cell-data in 
+           col-kg-3 
+              inquire form1-gd-1(riga, 78-col-buf-3), cell-data in 
+           col-buf-3
+              inquire form1-gd-1(riga, 78-col-rep-4), cell-data in 
+           col-rep-4
+              inquire form1-gd-1(riga, 78-col-kg-4 ), cell-data in 
+           col-kg-4 
+              inquire form1-gd-1(riga, 78-col-buf-4), cell-data in 
+           col-buf-4
+              inquire form1-gd-1(riga, 78-col-rep-5), cell-data in 
+           col-rep-5
+              inquire form1-gd-1(riga, 78-col-kg-5 ), cell-data in 
+           col-kg-5 
+              inquire form1-gd-1(riga, 78-col-buf-5), cell-data in 
+           col-buf-5
+              inquire form1-gd-1(riga, 78-col-note ), cell-data in 
+           col-note 
+              move col-rep-1 to rod-rep(1)
+              move col-kg-1  to rod-kg(1)
+              move col-buf-1 to rod-buf(1)
+              move col-rep-2 to rod-rep(2)
+              move col-kg-2  to rod-kg(2) 
+              move col-buf-2 to rod-buf(2)
+              move col-rep-3 to rod-rep(3)
+              move col-kg-3  to rod-kg(3) 
+              move col-buf-3 to rod-buf(3)
+              move col-rep-4 to rod-rep(4)
+              move col-kg-4  to rod-kg(4) 
+              move col-buf-4 to rod-buf(4)
+              move col-rep-5 to rod-rep(5)
+              move col-kg-5  to rod-kg(5) 
+              move col-buf-5 to rod-buf(5)
+              move col-note  to rod-note
+              rewrite rod-rec
+           end-perform 
            .
       * <TOTEM:END>
 
@@ -2630,10 +2680,20 @@
       *     perform VALORE-RIGA.
 
       
-           if colonna = 78-col-data or 78-col-exe or 78-col-series or
-                        78-col-rest or 78-col-rest
-              set event-action to event-action-fail
-           end-if 
+           evaluate colonna 
+           when 78-col-data 
+           when 78-col-exe 
+           when 78-col-series 
+           when 78-col-rest 
+           when 78-col-rest
+                set event-action to event-action-fail
+           when 78-col-buf-4
+                inquire form1-gd-1(riga, colonna), cell-data in 
+           col-buf-4
+                if col-buf-4 = "KG:"                 
+                   set event-action to event-action-fail
+                end-if
+           end-evaluate 
            .
       * <TOTEM:END>
        form1-gd-1-Ev-Msg-End-Drag.

@@ -11367,7 +11367,7 @@ BEGIN-TEXT
                       invalid continue
                   not invalid
                       perform until 1 = 2
-                         read rwodbook next at end exit perform end-read
+                         read rwodbook next no lock at end exit perform end-read
                          if rod-code not = tod-code
                             exit perform
                          end-if             
@@ -15553,9 +15553,9 @@ BEGIN-TEXT
            if tutto-ok          
               perform until 1 = 2
                  if filtro-testa 
-                    read twodbook next at end exit perform end-read
+                    read twodbook next no lock at end exit perform end-read
                  else                                              
-                    read rwodbook next at end exit perform end-read
+                    read rwodbook next no lock at end exit perform end-read
                  end-if
                  set record-ok to false
                  evaluate tipo-filtro

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 16:53:52.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 18:03:33.
        REMARKS.
       *{TOTEM}END
 
@@ -9609,7 +9609,8 @@
                       invalid continue
                   not invalid
                       perform until 1 = 2
-                         read rwodbook next at end exit perform end-read
+                         read rwodbook next no lock at end exit perform 
+           end-read
                          if rod-code not = tod-code
                             exit perform
                          end-if             
@@ -13580,9 +13581,11 @@
            if tutto-ok          
               perform until 1 = 2
                  if filtro-testa 
-                    read twodbook next at end exit perform end-read
+                    read twodbook next no lock at end exit perform 
+           end-read
                  else                                              
-                    read rwodbook next at end exit perform end-read
+                    read rwodbook next no lock at end exit perform 
+           end-read
                  end-if
                  set record-ok to false
                  evaluate tipo-filtro

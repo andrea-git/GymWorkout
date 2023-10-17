@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 17:02:40.
+       DATE-WRITTEN.        martedì 17 ottobre 2023 17:43:29.
        REMARKS.
       *{TOTEM}END
 
@@ -77,7 +77,7 @@
        77 E-CANCELLA       PIC  9
                   VALUE IS 1.
        77 E-SALVA          PIC  9
-                  VALUE IS 1.
+                  VALUE IS 0.
        77 E-ANTEPRIMA      PIC  9
                   VALUE IS 0.
        77 E-MODIFICA       PIC  9
@@ -407,7 +407,7 @@
        05
            TOOL-SALVA, 
            Push-Button, 
-           COL 6,60, 
+           COL 11,60, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -427,7 +427,7 @@
        05
            TOOL-CERCA, 
            Push-Button, 
-           COL 12,20, 
+           COL 17,20, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -439,6 +439,26 @@
            EXCEPTION-VALUE 1000,
            FLAT,
            ID IS 31,
+           SELF-ACT,
+           TITLE "Salva (F3)",
+           .
+
+      * PUSH BUTTON
+       05
+           TOOL-NUOVO, 
+           Push-Button, 
+           COL 6,20, 
+           LINE 1,09,
+           LINES 64,00 ,
+           SIZE 48,00 ,
+           BITMAP-HANDLE toolbar-bmp,
+           BITMAP-NUMBER 2,
+           UNFRAMED,
+           SQUARE,
+           ENABLED E-SALVA,
+           EXCEPTION-VALUE 2,
+           FLAT,
+           ID IS 30,
            SELF-ACT,
            TITLE "Salva (F3)",
            .
@@ -1682,52 +1702,7 @@
 
        Form1-PROC.
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAccept>
-           initialize lab-desc-buf
-           if como-code not = 0
-              move como-code to tod-code
-              read twodbook
-              move como-code to code-x
-              inspect code-x replacing leading x"30" by x"20" 
-              call "C$JUSTIFY" using code-x, "L"
-              inspect code-x   replacing trailing spaces by low-value
-              string  code-x   delimited low-value 
-                      " - "    delimited size
-                      tod-desc delimited size
-                 into lab-desc-buf
-              end-string
-              set confronto to false
-              perform CARICA-WOD
-           else                                 
-              modify tool-salva, enabled false
-              call   "gwod" using lk-blockpgm,
-                                  como-code
-              cancel "gwod"
-              if como-code = 0
-                 modify tool-cerca, enabled true
-              else                    
-                 move como-code to tod-code
-                 read twodbook
-                 move como-code to code-x
-                 inspect code-x replacing leading x"30" by x"20" 
-                 call "C$JUSTIFY" using code-x, "L"
-                 inspect code-x   replacing trailing spaces by low-value
-                 string  code-x   delimited low-value 
-                         " - "    delimited size
-                         tod-desc delimited size
-                    into lab-desc-buf
-                 end-string
-
-                 set confronto to true
-                 perform CARICA-WOD
-                 perform CARICA-CONFRONTI
-              end-if
-           end-if.
-           display lab-desc.
-
-           move 2 to riga.
-           move 78-col-rep-1 to colonna.
-           modify form1-gd-1, cursor-y = 2, cursor-x colonna.
-           perform SPOSTAMENTO.
+           perform IMPOSTA-PROGRAMMA.
 
       *     set vecchio to true.
       *     perform ABILITA-TOOLBAR.
@@ -1831,6 +1806,8 @@
                  PERFORM TOOL-SALVA-LinkTo
               WHEN Key-Status = 1000
                  PERFORM TOOL-CERCA-LinkTo
+              WHEN Key-Status = 2
+                 PERFORM TOOL-NUOVO-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -2524,6 +2501,60 @@
            .
       * <TOTEM:END>
 
+       IMPOSTA-PROGRAMMA.
+      * <TOTEM:PARA. IMPOSTA-PROGRAMMA>
+           initialize lab-desc-buf
+           if como-code not = 0
+              move como-code to tod-code
+              read twodbook
+              move como-code to code-x
+              inspect code-x replacing leading x"30" by x"20" 
+              call "C$JUSTIFY" using code-x, "L"
+              inspect code-x   replacing trailing spaces by low-value
+              string  code-x   delimited low-value 
+                      " - "    delimited size
+                      tod-desc delimited size
+                 into lab-desc-buf
+              end-string
+              set confronto to false
+              perform CARICA-WOD
+              modify tool-nuovo, enabled false  
+              modify tool-salva, enabled true
+           else                               
+              modify tool-nuovo, enabled true  
+              modify tool-salva, enabled false
+              call   "gwod" using lk-blockpgm,
+                                  como-code
+              cancel "gwod"
+              if como-code = 0
+                 modify tool-cerca, enabled true
+              else                    
+                 move como-code to tod-code
+                 read twodbook
+                 move como-code to code-x
+                 inspect code-x replacing leading x"30" by x"20" 
+                 call "C$JUSTIFY" using code-x, "L"
+                 inspect code-x   replacing trailing spaces by low-value
+                 string  code-x   delimited low-value 
+                         " - "    delimited size
+                         tod-desc delimited size
+                    into lab-desc-buf
+                 end-string
+
+                 set confronto to true
+                 perform CARICA-WOD
+                 perform CARICA-CONFRONTI
+              end-if
+           end-if.
+           display lab-desc.
+
+           move 2 to riga.
+           move 78-col-rep-1 to colonna.
+           modify form1-gd-1, cursor-y = 2, cursor-x colonna.
+           perform SPOSTAMENTO 
+           .
+      * <TOTEM:END>
+
        CONTROLLO.
       * <TOTEM:PARA. CONTROLLO>
       *     set tutto-ok to true.
@@ -2709,38 +2740,12 @@
 
        NUOVO.
       * <TOTEM:PARA. NUOVO>
-      *     set tutto-ok to true.
-      *
-      *     if nuovo
-      *        perform VALORE-RIGA
-      *        if exe-code not = spaces
-      *           perform SALVA
-      *        else
-      *           set errori to true
-      *        end-if
-      *     end-if.
-      *
-      *     if tutto-ok
-      *        set nuovo to true
-      *        inquire form1-gd-1,  last-row in tot-righe
-      *        modify  form1-gd-1,  insert-rows = 1
-      *        modify  form1-gd-1,  cursor-x    = 1 
-      *                             cursor-y    = tot-righe + 1
-      *        move 1 to mod
-      *        modify  tool-modifica,   value = mod
-      *
-      *        add 1 to tot-righe giving riga
-      *
-      *        perform ABILITAZIONI
-      *
-      *        move spaces to ef-note-buf
-      *        display ef-note
-      *
-      *        initialize old-exe-rec replacing numeric data by zeroes
-      *                                    alphanumeric data by spaces
-      *        add 1 to tot-righe giving event-data-2
-      *        perform COLORE-RIGA
-      *     end-if 
+           move 0 to como-code.
+           move spaces to lab-desc-buf.
+           display lab-desc.
+           modify form1-gd-1, reset-grid = 1.
+           perform FORM1-GD-1-CONTENT.
+           perform IMPOSTA-PROGRAMMA 
            .
       * <TOTEM:END>
 
@@ -2995,6 +3000,14 @@
            inquire tool-cerca, enabled in e-cerca.
            if e-cerca = 1
               perform CERCA
+           end-if 
+           .
+      * <TOTEM:END>
+       TOOL-NUOVO-LinkTo.
+      * <TOTEM:PARA. TOOL-NUOVO-LinkTo>
+           inquire tool-nuovo, enabled in e-nuovo.
+           if e-nuovo = 1
+              perform NUOVO
            end-if 
            .
       * <TOTEM:END>

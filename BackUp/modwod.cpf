@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A11134435-334-3269018772
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1293154-395-3270512999
 
 {{@DESCRIPTION:
 
@@ -629,9 +629,9 @@ m_bFixed=1
 
 @}}
 [FDITEM62_WK]
-m_strName=code-x
-m_strRawPic=x(18)
-m_strPic=x(18)
+m_strName=como-day
+m_strRawPic=9(8)
+m_strPic=9(8)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -639,39 +639,39 @@ m_bFixed=1
 
 @}}
 [FDITEM63_WK]
-m_strName=FILLER
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=1
+m_strName=code-x
+m_strRawPic=x(18)
+m_strPic=x(18)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM63_WK
 
 @}}
 [FDITEM64_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM64_WK
+
+@}}
+[FDITEM65_WK]
 m_strName=confronto
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM64_WK
-
-@}}
-[FDITEM65_WK]
-m_strName=como-code
-m_strRawPic=9(18)
-m_strPic=9(18)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM65_WK
 
 @}}
 [FDITEM66_WK]
-m_strName=como-titolo
-m_strRawPic=x(50)
-m_strPic=x(50)
+m_strName=como-code
+m_strRawPic=9(18)
+m_strPic=9(18)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -679,9 +679,9 @@ m_bFixed=1
 
 @}}
 [FDITEM67_WK]
-m_strName=colore
-m_strRawPic=999
-m_strPic=999
+m_strName=como-titolo
+m_strRawPic=x(50)
+m_strPic=x(50)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -689,9 +689,9 @@ m_bFixed=1
 
 @}}
 [FDITEM68_WK]
-m_strName=como-giorno
-m_strRawPic=9(8)
-m_strPic=9(8)
+m_strName=colore
+m_strRawPic=999
+m_strPic=999
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -699,8 +699,9 @@ m_bFixed=1
 
 @}}
 [FDITEM69_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
+m_strName=como-giorno
+m_strRawPic=9(8)
+m_strPic=9(8)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -708,26 +709,45 @@ m_bFixed=1
 
 @}}
 [FDITEM70_WK]
-m_strName=FILLER
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=1
+m_strName=link-stampante
+m_strRawPic=x(200)
+m_strPic=x(200)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM70_WK
 
 @}}
 [FDITEM71_WK]
+m_strName=Screen1-Handle
+m_nUsage=24
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM71_WK
+
+@}}
+[FDITEM72_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM72_WK
+
+@}}
+[FDITEM73_WK]
 m_strName=ricarica
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM71_WK
+{{@DataItem_m_strDescriptionFDITEM73_WK
 
 @}}
-[FDITEM72_WK]
+[FDITEM74_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -736,40 +756,22 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM72_WK
+{{@DataItem_m_strDescriptionFDITEM74_WK
 
 @}}
-[FDITEM73_WK]
+[FDITEM75_WK]
 m_strName=Default-Font
 m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM73_WK
-
-@}}
-[FDITEM74_WK]
-m_strName=STATUS-exercises
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM74_WK
-
-@}}
-[FDITEM75_WK]
-m_strName=Valid-STATUS-exercises
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM75_WK
 
 @}}
 [FDITEM76_WK]
-m_strName=Calibri14-Occidentale
-m_nUsage=26
+m_strName=STATUS-exercises
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -777,6 +779,24 @@ m_bFixed=1
 
 @}}
 [FDITEM77_WK]
+m_strName=Valid-STATUS-exercises
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM77_WK
+
+@}}
+[FDITEM78_WK]
+m_strName=Calibri14-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM78_WK
+
+@}}
+[FDITEM79_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -785,30 +805,11 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM77_WK
-
-@}}
-[FDITEM78_WK]
-m_strName=STATUS-groups
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM78_WK
-
-@}}
-[FDITEM79_WK]
-m_strName=Valid-STATUS-groups
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM79_WK
 
 @}}
 [FDITEM80_WK]
-m_strName=STATUS-intexe
+m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -818,7 +819,7 @@ m_bFixed=1
 
 @}}
 [FDITEM81_WK]
-m_strName=Valid-STATUS-intexe
+m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -827,7 +828,7 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM82_WK]
-m_strName=STATUS-macrogroups
+m_strName=STATUS-intexe
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -837,7 +838,7 @@ m_bFixed=1
 
 @}}
 [FDITEM83_WK]
-m_strName=Valid-STATUS-macrogroups
+m_strName=Valid-STATUS-intexe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -846,9 +847,9 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM84_WK]
-m_strName=path-tmp-exe-mcg
-m_strRawPic=X(256)
-m_strPic=X(256)
+m_strName=STATUS-macrogroups
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -856,29 +857,28 @@ m_bFixed=1
 
 @}}
 [FDITEM85_WK]
-m_strName=STATUS-tmp-exe-mcg
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM85_WK
-
-@}}
-[FDITEM86_WK]
-m_strName=Valid-STATUS-tmp-exe-mcg
+m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM85_WK
+
+@}}
+[FDITEM86_WK]
+m_strName=path-tmp-exe-mcg
+m_strRawPic=X(256)
+m_strPic=X(256)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM86_WK
 
 @}}
 [FDITEM87_WK]
-m_strName=AUTO-ID
-m_strRawPic=9(6)
-m_strPic=9(6)
-m_strDefaultValue=32
+m_strName=STATUS-tmp-exe-mcg
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -886,19 +886,19 @@ m_bFixed=1
 
 @}}
 [FDITEM88_WK]
-m_strName=E-SELEZIONA
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=1
-m_nItemLevel=77
+m_strName=Valid-STATUS-tmp-exe-mcg
+m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
+m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM88_WK
 
 @}}
 [FDITEM89_WK]
-m_strName=Calibri12-Occidentale
-m_nUsage=26
+m_strName=AUTO-ID
+m_strRawPic=9(6)
+m_strPic=9(6)
+m_strDefaultValue=32
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -906,9 +906,10 @@ m_bFixed=1
 
 @}}
 [FDITEM90_WK]
-m_strName=STATUS-rwodbook
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=E-SELEZIONA
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=1
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -916,16 +917,16 @@ m_bFixed=1
 
 @}}
 [FDITEM91_WK]
-m_strName=Valid-STATUS-rwodbook
-m_nItemLevel=88
+m_strName=Calibri12-Occidentale
+m_nUsage=26
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM91_WK
 
 @}}
 [FDITEM92_WK]
-m_strName=STATUS-twodbook
+m_strName=STATUS-rwodbook
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -935,7 +936,7 @@ m_bFixed=1
 
 @}}
 [FDITEM93_WK]
-m_strName=Valid-STATUS-twodbook
+m_strName=Valid-STATUS-rwodbook
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
@@ -944,9 +945,9 @@ m_strTrue="00" THRU "09"
 
 @}}
 [FDITEM94_WK]
-m_strName=lab-desc-buf
-m_strRawPic=x(100)
-m_strPic=x(100)
+m_strName=STATUS-twodbook
+m_strRawPic=X(2)
+m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -954,12 +955,60 @@ m_bFixed=1
 
 @}}
 [FDITEM95_WK]
+m_strName=Valid-STATUS-twodbook
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM95_WK
+
+@}}
+[FDITEM96_WK]
+m_strName=lab-desc-buf
+m_strRawPic=x(100)
+m_strPic=x(100)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM96_WK
+
+@}}
+[FDITEM97_WK]
 m_strName=Calibri18B-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM95_WK
+{{@DataItem_m_strDescriptionFDITEM97_WK
+
+@}}
+[FDITEM98_WK]
+m_strName=path-tmp-exe
+m_strRawPic=X(256)
+m_strPic=X(256)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM98_WK
+
+@}}
+[FDITEM99_WK]
+m_strName=STATUS-tmp-exe
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM99_WK
+
+@}}
+[FDITEM100_WK]
+m_strName=Valid-STATUS-tmp-exe
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM100_WK
 
 @}}
 
@@ -1633,7 +1682,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 30
+         ID                = 32
          Line              = 1,09
          Lines             = 2,59
          Lines in Pixels   = 64
@@ -1652,6 +1701,98 @@ Begin Screen Form1
          Visible           = NONE
          Width in Cells    = FALSE
          Link To           = TOOL-NUOVO-LinkTo
+      End
+      Begin Push-Button TOOL-ANTEPRIMA
+         SCREEN-COL        = 22,80
+         SCREEN-LINE       = 1,09
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = TOOL-ANTEPRIMA
+         Bitmap            = "..\RESOURCE\toolbar.bmp"
+         Bitmap Frame      = FALSE
+         Bitmap Handle     = toolbar-bmp
+         Bitmap Number     = 6
+         Bitmap Square     = TRUE
+         Ccol              = 0
+         Cline             = 0
+         Clines            = 0
+         Clines Unit       = Default
+         Column            = 22,80
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = TRUE
+         Exception Value   = 1001
+         Flat              = TRUE
+         Font              = Default Font
+         Height in Cells   = FALSE
+         Help ID           = 0
+         ID                = 34
+         Line              = 1,09
+         Lines             = 2,59
+         Lines in Pixels   = 64
+         Lines Unit        = Default
+         No Auto Default   = FALSE
+         No Tab            = FALSE
+         Occurs            = 0
+         Self Act          = TRUE
+         Size              = 4,60
+         Size in Pixels    = 48
+         Size Unit         = Default
+         Style             = Other
+         Tab Order         = 5
+         Termination Value = 0
+         Title             = "Stampa"
+         Visible           = NONE
+         Width in Cells    = FALSE
+         Link To           = TOOL-ANTEPRIMA-LinkTo
+      End
+      Begin Push-Button TOOL-STAMPA
+         SCREEN-COL        = 28,40
+         SCREEN-LINE       = 1,09
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = TOOL-STAMPA
+         Bitmap            = "..\RESOURCE\toolbar.bmp"
+         Bitmap Frame      = FALSE
+         Bitmap Handle     = toolbar-bmp
+         Bitmap Number     = 7
+         Bitmap Square     = TRUE
+         Ccol              = 0
+         Cline             = 0
+         Clines            = 0
+         Clines Unit       = Default
+         Column            = 28,40
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = TRUE
+         Exception Value   = 1002
+         Flat              = TRUE
+         Font              = Default Font
+         Height in Cells   = FALSE
+         Help ID           = 0
+         ID                = 35
+         Line              = 1,09
+         Lines             = 2,59
+         Lines in Pixels   = 64
+         Lines Unit        = Default
+         No Auto Default   = FALSE
+         No Tab            = FALSE
+         Occurs            = 0
+         Self Act          = TRUE
+         Size              = 4,60
+         Size in Pixels    = 48
+         Size Unit         = Default
+         Style             = Other
+         Tab Order         = 6
+         Termination Value = 0
+         Title             = "Stampa"
+         Visible           = NONE
+         Width in Cells    = FALSE
+         Link To           = TOOL-STAMPA-LinkTo
       End
    End
 End
@@ -1676,26 +1817,10 @@ BEGIN-DATA
    NODESTYLE         = 13
    PARAGRAPH         = Other Working
 BEGIN-TEXT
-       01 old-exe-rec.
-           05 old-exe-key.
-               10 old-exe-code         PIC  x(5).
-           05 old-exe-data.
-               10 old-exe-desc         PIC  x(100).
-               10 old-exe-grp-code     PIC  x(5).
-               10 old-exe-int-code     PIC  99.
-               10 old-exe-isMulti      PIC  9.
-                   88 old-exe-isMulti-no VALUE IS 0. 
-                   88 old-exe-isMulti-yes VALUE IS 1. 
-               10 old-exe-setting      PIC  9(4).
-               10 old-exe-restpause    PIC  9.
-               10 old-exe-disab        PIC  9.
-               10 old-exe-desc-stampa  PIC  x(20).
-               10 old-exe-note         PIC  x(278).
-               10 old-exe-filler       PIC  x(700).
-               10 old-exe-filler-n1    PIC  9(18).
-               10 old-exe-filler-n2    PIC  9(18).
-               10 old-exe-filler-n3    PIC  9(18).
-               10 old-exe-filler-n4    PIC  9(18).
+       01                 pic 9.
+           88 s-excell    value 1.
+           88 s-stampa    value 2.
+           88 s-anteprima value 3.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1825,6 +1950,14 @@ BEGIN-TEXT
       *<<** Customized_Default, SP-G, CST-BLOCKPGM **>>
 
       *<<** Customized_Default, SP-G, Form1-blockpgm-1 **>>
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = ANTEPRIMA
+BEGIN-TEXT
+           set s-anteprima to true.
+           perform STAMPA-ANTEPRIMA.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2074,7 +2207,7 @@ BEGIN-TEXT
               modify form1-gd-1, insertion-index riga, 
                                  record-to-add rec-grid  
               modify  form1-gd-1(riga), row-color colore
-              modify form1-gd-1(riga, 1), hidden-data = rod-key
+              modify form1-gd-1(riga, 1), hidden-data = spaces
               add 1 to store-riga tot-righe
            end-perform.
 END-TEXT
@@ -2437,21 +2570,120 @@ END-TEXT
 END-DATA
 BEGIN-DATA
    BASETYPE          = 3
-   PARAGRAPH         = VALORE-RIGA
+   PARAGRAPH         = STAMPA
 BEGIN-TEXT
-      *     inquire form1-gd-1(riga, 78-col-code),      hidden-data hiddenData.
-      *
-      *     inquire form1-gd-1(riga, 78-col-code),        cell-data exe-code.
-      *     inquire form1-gd-1(riga, 78-col-desc),        cell-data exe-desc.  
-      *     inquire form1-gd-1(riga, 78-col-desc-stampa), cell-data exe-desc-stampa
-      *     inquire form1-gd-1(riga, 78-col-grp-code),    cell-data exe-grp-code.
-      *     inquire form1-gd-1(riga, 78-col-int-code),    cell-data exe-int-code.
-      *     inquire form1-gd-1(riga, 78-col-ismulti),     cell-data exe-isMulti.
-      *     inquire form1-gd-1(riga, 78-col-setting),     cell-data exe-setting.
-      *     inquire form1-gd-1(riga, 78-col-restpause),   cell-data exe-isRestpause. 
-      *     inquire form1-gd-1(riga, 78-col-disable),     cell-data exe-isDisable. 
-      *
-      *     move ef-note-buf to exe-note.
+           set s-stampa to true.
+           perform STAMPA-ANTEPRIMA.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = STAMPA-ANTEPRIMA
+BEGIN-TEXT
+           inquire form1-gd-1, last-row in tot-righe.
+           if tot-righe >= 2
+
+              accept como-data from century-date
+              accept como-ora  from time
+                    
+              accept  path-tmp-exe from environment "PATH_ST"
+              inspect path-tmp-exe replacing trailing spaces by low-value
+              string  path-tmp-exe delimited low-value
+                      "tmp-exe_"   delimited size
+                      como-data    delimited size
+                      "_"          delimited size
+                      como-ora     delimited size
+                 into path-tmp-exe
+              end-string
+              inspect path-tmp-exe replacing trailing low-value by spaces
+              open output tmp-exe
+              close       tmp-exe
+              open i-o    tmp-exe
+
+              if s-anteprima
+                 accept link-stampante from environment "STAMPANTE_ANTEPRIMA"
+              else
+                 move spaces to link-stampante
+              end-if
+
+              move 0 to como-day
+
+              perform varying riga from 2 by 1 
+                        until riga > tot-righe
+                 inquire form1-gd-1(riga, 1), hidden-data rod-key
+                 read rwodbook no lock
+                      invalid |Sono su una riga di confronto
+                      inquire form1-gd-1(riga, 2), cell-data in como-data
+                      if como-data = 0 |Riga divisoria
+                         exit perform cycle
+                      end-if
+                      perform DATE-TO-FILE
+                      move como-data to tex-date
+                      inquire form1-gd-1(riga, 78-col-rep-1), 
+                              cell-data in rod-rep(1)
+                      inquire form1-gd-1(riga, 78-col-kg-1), 
+                              cell-data in rod-kg(1)
+                      inquire form1-gd-1(riga, 78-col-buf-1), 
+                              cell-data in rod-buf(1)
+                      inquire form1-gd-1(riga, 78-col-rep-2), 
+                              cell-data in rod-rep(2)
+                      inquire form1-gd-1(riga, 78-col-kg-2), 
+                              cell-data in rod-kg(2) 
+                      inquire form1-gd-1(riga, 78-col-buf-2), 
+                              cell-data in rod-buf(2)
+                      inquire form1-gd-1(riga, 78-col-rep-3), 
+                              cell-data in rod-rep(3)
+                      inquire form1-gd-1(riga, 78-col-kg-3), 
+                              cell-data in rod-kg(3)
+                      inquire form1-gd-1(riga, 78-col-buf-3), 
+                              cell-data in rod-buf(3)
+                      inquire form1-gd-1(riga, 78-col-rep-4), 
+                              cell-data in rod-rep(4)
+                      inquire form1-gd-1(riga, 78-col-kg-4), 
+                              cell-data in rod-kg(4)
+                      inquire form1-gd-1(riga, 78-col-buf-4), 
+                              cell-data in rod-buf(4)
+                      inquire form1-gd-1(riga, 78-col-rep-5), 
+                              cell-data in rod-rep(5)
+                      inquire form1-gd-1(riga, 78-col-kg-5), 
+                              cell-data in rod-kg(5)
+                      inquire form1-gd-1(riga, 78-col-buf-5), 
+                              cell-data in rod-buf(5)
+                  not invalid
+                      move rod-prg-day to tex-day
+                      move 0           to tex-date    
+                      move rod-exe-code     to tex-exe-code exe-code
+                      read exercises end-read
+                 end-read
+                 if como-day = 0
+                    move tex-day to como-day
+                 end-if
+                 if como-day not = tex-day
+                    move tex-day to como-day
+                    move 0 to tex-split
+                 end-if
+                 add 1 to tex-split
+                 move rod-desc-univoca  to tex-desc-univoca
+                 move rod-mcg-code      to tex-mcg-code
+                 move exe-desc          to tex-exe-desc
+                 move space             to tex-nome-dupl
+                 move rod-int-code      to tex-int-code
+                 move rod-exe-isMulti   to tex-exe-isMulti
+                 move rod-reps          to tex-reps
+                 move rod-series        to tex-series
+                 move rod-int-restpause to tex-int-restpause
+                 move rod-ss            to tex-ss
+                 move rod-dati-modwod   to tex-rod-dati-modwod
+                 write tex-rec
+              end-perform
+
+              close tmp-exe
+
+              call   "st-wod" using path-tmp-exe, link-stampante
+              cancel "st-wod"    
+
+              delete file tmp-exe
+           end-if.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2469,6 +2701,25 @@ BEGIN-TEXT
       *     end-if.
       *
 
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = VALORE-RIGA
+BEGIN-TEXT
+      *     inquire form1-gd-1(riga, 78-col-code),      hidden-data hiddenData.
+      *
+      *     inquire form1-gd-1(riga, 78-col-code),        cell-data exe-code.
+      *     inquire form1-gd-1(riga, 78-col-desc),        cell-data exe-desc.  
+      *     inquire form1-gd-1(riga, 78-col-desc-stampa), cell-data exe-desc-stampa
+      *     inquire form1-gd-1(riga, 78-col-grp-code),    cell-data exe-grp-code.
+      *     inquire form1-gd-1(riga, 78-col-int-code),    cell-data exe-int-code.
+      *     inquire form1-gd-1(riga, 78-col-ismulti),     cell-data exe-isMulti.
+      *     inquire form1-gd-1(riga, 78-col-setting),     cell-data exe-setting.
+      *     inquire form1-gd-1(riga, 78-col-restpause),   cell-data exe-isRestpause. 
+      *     inquire form1-gd-1(riga, 78-col-disable),     cell-data exe-isDisable. 
+      *
+      *     move ef-note-buf to exe-note.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2516,12 +2767,6 @@ BEGIN-TEXT
            if errori 
               set event-action to event-action-fail 
               perform VALORE-RIGA
-           end-if.
-
-           if exe-rec not = old-exe-rec
-              set NoSalvato to true                            
-           else 
-              set SiSalvato to true
            end-if.
 END-TEXT
 END-DATA
@@ -2593,10 +2838,10 @@ BEGIN-DATA
    BASETYPE          = 2
    PARAGRAPH         = TOOL-CERCA-LinkTo
 BEGIN-TEXT
-           inquire tool-cerca, enabled in e-cerca.
-           if e-cerca = 1
-              perform CERCA
-           end-if.
+           INQUIRE TOOL-CERCA, ENABLED IN E-CERCA.
+           IF E-CERCA = 1
+              PERFORM CERCA
+           END-IF.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2607,6 +2852,26 @@ BEGIN-TEXT
            if e-nuovo = 1
               perform NUOVO
            end-if.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = TOOL-ANTEPRIMA-LinkTo
+BEGIN-TEXT
+           INQUIRE TOOL-ANTEPRIMA, ENABLED IN E-ANTEPRIMA.
+           IF E-ANTEPRIMA = 1
+              PERFORM ANTEPRIMA
+           END-IF.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = TOOL-STAMPA-LinkTo
+BEGIN-TEXT
+           INQUIRE TOOL-STAMPA, ENABLED IN E-STAMPA.
+           IF E-STAMPA = 1
+              PERFORM STAMPA
+           END-IF.
 END-TEXT
 END-DATA
 
@@ -2690,8 +2955,8 @@ PROP_DOCU_RULER_EBL=0
 PROP_DOCU_GRID_EBL=0
 PROP_DOCU_GRID=20
 PROP_DOCU_ALIGN=0
-REL_SYM_SIZE=28
-REL_SYM_INFO_L=4
+REL_SYM_SIZE=34
+REL_SYM_INFO_L=5
 REL_SYM_INFO_X0=2301
 REL_SYM_INFO_Y0=1196181958
 REL_SYM_INFO_X1=2301
@@ -2700,6 +2965,8 @@ REL_SYM_INFO_X2=2301
 REL_SYM_INFO_Y2=1965790691
 REL_SYM_INFO_X3=2301
 REL_SYM_INFO_Y3=1408537145
+REL_SYM_INFO_X4=2301
+REL_SYM_INFO_Y4=1967167874
 
 [DRAW_BASESYMBOL_2301_1196181958]
 OBJ_NAME=2301
@@ -2893,6 +3160,54 @@ PROP_TRACK_COLOR=12632256
 REL_SYM_SIZE=4
 REL_SYM_INFO_L=0
 
+[DRAW_BASESYMBOL_2301_1967167874]
+OBJ_NAME=2301
+OBJ_ID=1967167874
+KIND=1
+{{@LABEL_2301_1967167874
+tmp-exe
+@}}
+WK_STEP=0
+BK_POINT=0
+CENTER_X=0
+CENTER_Y=0
+LEFT=899
+TOP=1082
+RIGHT=1299
+BOTTOM=1304
+PROP_OBJ_TYPE=
+PROP_OBJ_TYPE2=
+PROP_FILL_PT=0
+PROP_FILL_FG=0
+PROP_FILL_BG=16777215
+PROP_FONT_HEIGHT=-35
+PROP_FONT_WIDTH=0
+PROP_FONT_ESCAPE=0
+PROP_FONT_ORIENT=0
+PROP_FONT_WEIGHT=400
+PROP_FONT_ITALIC=0
+PROP_FONT_UDLINE=0
+PROP_FONT_SKOUT=0
+PROP_FONT_CHARSET=0
+PROP_FONT_OUTPREC=3
+PROP_FONT_CLIPPREC=2
+PROP_FONT_QUALITY=1
+PROP_FONT_PCH_FAM=18
+PROP_FONT_FACE_NAME=Times New Roman
+PROP_FONT_CR=0
+PROP_LINE_PT=0
+PROP_LINE_WG=1
+PROP_LINE_CR=0
+PROP_SHAD_PT=0
+PROP_SHAD_FG=12632256
+PROP_SHAD_BG=12632256
+PROP_SHAD_EBL=0
+PROP_SHAD_POS=4
+PROP_SHAD_POINT=0
+PROP_TRACK_COLOR=12632256
+REL_SYM_SIZE=4
+REL_SYM_INFO_L=0
+
 [DMD_DOCUMENT_0_2113416747]
 OBJ_NAME=0
 OBJ_ID=2113416747
@@ -3023,6 +3338,37 @@ DSN_INFO_END_VALUE=
 DSN_INFO_PRIMARY=0
 DSN_INFO_OPEN=1
 DSN_INFO_CLOSE=1
+DSN_INFO_EXCLUSIVE=0
+DSN_INFO_IS_LOGICAL=0
+DSN_INFO_LOGICAL_FDNAME=
+DSN_INFO_ORIGINAL_FDNAME=
+DSN_INFO_REPLACEBY_FILESTATUS=
+DSN_INFO_REPLACEBY_RELATIVEKEY=
+DSN_INFO_REPLACEBY_FDDATA=
+DSN_INFO_REPLACEBY_SLDATA=
+
+[DMD_FILE_0_1967167874]
+OBJ_NAME=0
+OBJ_ID=1967167874
+REL_M_OBJ_ID=0
+ENTITY=tmp-exe
+LINK=0
+LINK_NAME=
+DSN_SIZE=39
+FD_SIZE=0
+SL_SIZE=0
+DSN_INFO_OPEN_MODE=1
+DSN_INFO_LOCK_OPTION=0
+DSN_INFO_KEY_IS=tex-key
+DSN_INFO_DATA_ORDER=0
+DSN_INFO_START_VALUE=
+DSN_INFO_END_VALUE=
+{{@DSN_INFO_CONDITION_1967167874
+
+@}}
+DSN_INFO_PRIMARY=0
+DSN_INFO_OPEN=0
+DSN_INFO_CLOSE=0
 DSN_INFO_EXCLUSIVE=0
 DSN_INFO_IS_LOGICAL=0
 DSN_INFO_LOGICAL_FDNAME=

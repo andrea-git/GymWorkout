@@ -16,3 +16,12 @@
                10 tex-series       PIC  99.
                10 tex-int-restpause            PIC  9.
                10 tex-ss           PIC  9.
+               10 tex-date         PIC  9(8).
+      *(( XFD NAME = rod-desc-univoca_1 ))
+               10 tex-rod-dati-modwod.
+                   15 tex-rod-rep-kg-buf
+                              OCCURS 10 TIMES.
+                       20 tex-rod-rep      PIC  x(3).
+                       20 tex-rod-kg       PIC  x(3).
+                       20 tex-rod-buf      PIC  x(3).
+                   15 tex-rod-note     PIC  x(100).

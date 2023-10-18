@@ -66,8 +66,14 @@
            05 r-exe-desc         pic x(20).
            05 r-series           pic xx.        
            05 r-reps             pic x(10).
-           05 r-rest             pic xxx.
-           05 r-kg               pic x(3).
+           05 r-rest             pic xxx.  
+
+           05 r-dati-modwod.
+              10 r-rep-kg-buf    occurs 5.
+                 20 r-rod-rep    PIC  x(3).
+                 20 r-rod-kg     PIC  x(3).
+                 20 r-rod-buf    PIC  x(3).
+              10 r-rod-note      pic x(100).
 
        01  riga-note.
            05 r-note             pic x(110).
@@ -84,6 +90,7 @@
            88 record-ok          value 1 false 0.
                     
       * VARIABILI   
+       77  pgmChiamante          pic x(15).
        77  como-ss               pic 99.  
        77  como-prg              pic 99 value 0.
        77  sw-gray               pic s9.                  
@@ -230,19 +237,8 @@
                        read intexe
 
                        initialize r-exe-desc
-                       if tex-ss = 0        
-                          add 1 to como-prg
-                          move como-prg to prg-xx
-                          inspect prg-xx 
-                                  replacing leading x"30" by x"20"
-                          call "C$JUSTIFY" using prg-xx, "L"
-                          string prg-xx delimited space                              
-                                 "-"    delimited size
-                                 exe-desc-stampa 
-                            into r-exe-desc
-                          end-string
-                       else
-                          if como-ss not = tex-ss
+                       if tex-date = 0
+                          if tex-ss = 0        
                              add 1 to como-prg
                              move como-prg to prg-xx
                              inspect prg-xx 
@@ -253,30 +249,58 @@
                                     exe-desc-stampa 
                                into r-exe-desc
                              end-string
-                             move tex-ss to como-ss
-                          else                   
-                             string "+ "  delimited size
-                                    exe-desc-stampa 
-                               into r-exe-desc
-                             end-string
-                          end-if
-                       end-if
-                       move tex-reps to r-reps
+                          else
+                             if como-ss not = tex-ss
+                                add 1 to como-prg
+                                move como-prg to prg-xx
+                                inspect prg-xx 
+                                        replacing leading x"30" by x"20"
+                                call "C$JUSTIFY" using prg-xx, "L"
+                                string prg-xx delimited space                              
+                                       "-"    delimited size
+                                       exe-desc-stampa 
+                                  into r-exe-desc
+                                end-string
+                                move tex-ss to como-ss
+                             else                   
+                                string "+ "  delimited size
+                                       exe-desc-stampa 
+                                  into r-exe-desc
+                                end-string
+                             end-if
+                          end-if       
+                          move tex-reps   to r-reps
 
-                       move tex-series to r-series
-                       inspect r-series replacing leading x"30" by x"20"
-                       call "C$JUSTIFY" using r-series, "L"
-
-                       move int-rest to r-rest
-                       inspect r-rest replacing leading x"30" by x"20"
-                       call "C$JUSTIFY" using r-rest, "L"
+                          move tex-series to r-series
+                          inspect r-series 
+                                  replacing leading x"30" by x"20"
+                          call "C$JUSTIFY" using r-series, "L"
+           
+                          move int-rest to r-rest
+                          inspect r-rest 
+                                  replacing leading x"30" by x"20"
+                          call "C$JUSTIFY" using r-rest, "L"
+                       else                                  
+                          string tex-date(7:2) delimited size
+                                 "/"           delimited size
+                                 tex-date(5:2) delimited size
+                                 "/"           delimited size
+                                 tex-date(3:3) delimited size
+                            into r-reps
+                          end-string
+                          move spaces to r-series r-rest r-exe-desc
+                       end-if          
 
                        perform STAMPA-FRAME-RIGA
+                                                                    
+                       move tex-rod-rep-kg-buf(1) to r-rep-kg-buf(1)
+                       move tex-rod-rep-kg-buf(2) to r-rep-kg-buf(2)
+                       move tex-rod-rep-kg-buf(3) to r-rep-kg-buf(3)
+                       move tex-rod-rep-kg-buf(4) to r-rep-kg-buf(4)
+                       move tex-rod-rep-kg-buf(5) to r-rep-kg-buf(5)
 
-                       if tex-int-restpause = 0
-                          move spaces to r-kg
-                       else
-                          move "KG:"  to r-kg
+                       if tex-int-restpause > 0
+                          move "KG:"  to r-rod-buf(4)
                        end-if
                        move ArialNarrow11 to spl-hfont     
                        move r-riga        to spl-riga-stampa
@@ -285,7 +309,12 @@
 
                        move ArialNarrow7 to spl-hfont     
                        subtract 78-passo from spl-riga
-                       move exe-note        to r-note         
+                       call "C$CALLEDBY" using pgmChiamante
+                       if pgmChiamante = "modwod"
+                          move tex-rod-note to r-note
+                       else
+                          move exe-note     to r-note         
+                       end-if
                        move riga-note       to spl-riga-stampa
                        move 2,5             to spl-tipo-colonna
                        perform SCRIVI  

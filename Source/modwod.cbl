@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 17:43:29.
+       DATE-WRITTEN.        mercoledì 18 ottobre 2023 13:44:03.
        REMARKS.
       *{TOTEM}END
 
@@ -31,6 +31,7 @@
            COPY "rwodbook.sl".
            COPY "twodbook.sl".
            COPY "intexe.sl".
+           COPY "tmp-exe.sl".
       *{TOTEM}END
        DATA                 DIVISION.
        FILE                 SECTION.
@@ -39,6 +40,7 @@
            COPY "rwodbook.fd".
            COPY "twodbook.fd".
            COPY "intexe.fd".
+           COPY "tmp-exe.fd".
       *{TOTEM}END
 
        WORKING-STORAGE      SECTION.
@@ -140,6 +142,7 @@
        77 s-rod-exe-code   PIC  x(5).
        77 s-rod-int-code   PIC  99.
        77 s-rod-day        PIC  9(8).
+       77 como-day         PIC  9(8).
        77 code-x           PIC  x(18).
        01 FILLER           PIC  9.
            88 confronto VALUE IS 1    WHEN SET TO FALSE  0. 
@@ -147,6 +150,7 @@
        77 como-titolo      PIC  x(50).
        77 colore           PIC  999.
        77 como-giorno      PIC  9(8).
+       77 link-stampante   PIC  x(200).
        77 Screen1-Handle
                   USAGE IS HANDLE OF WINDOW.
        01 FILLER           PIC  9.
@@ -185,6 +189,9 @@
        77 lab-desc-buf     PIC  x(100).
        77 Calibri18B-Occidentale
                   USAGE IS HANDLE OF FONT.
+       77 path-tmp-exe     PIC  X(256).
+       77 STATUS-tmp-exe   PIC  X(2).
+           88 Valid-STATUS-tmp-exe VALUE IS "00" THRU "09". 
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -199,6 +206,7 @@
        77 TMP-DataSet1-rwodbook-BUF     PIC X(2346).
        77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(529).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -224,6 +232,11 @@
        77 DataSet1-intexe-KEY-ORDER  PIC X VALUE "A".
           88 DataSet1-intexe-KEY-Asc  VALUE "A".
           88 DataSet1-intexe-KEY-Desc VALUE "D".
+       77 DataSet1-tmp-exe-LOCK-FLAG   PIC X VALUE SPACE.
+           88 DataSet1-tmp-exe-LOCK  VALUE "Y".
+       77 DataSet1-tmp-exe-KEY-ORDER  PIC X VALUE "A".
+          88 DataSet1-tmp-exe-KEY-Asc  VALUE "A".
+          88 DataSet1-tmp-exe-KEY-Desc VALUE "D".
 
        77 exercises-exe-k-desc-SPLITBUF  PIC X(101).
        77 exercises-exe-k-group-SPLITBUF  PIC X(11).
@@ -243,27 +256,15 @@
        77 twodbook-tod-k-dur-SPLITBUF  PIC X(21).
        77 intexe-int-k-desc-SPLITBUF  PIC X(101).
        77 intexe-int-k-effort-SPLITBUF  PIC X(3).
+       77 tmp-exe-tex-k-dupl-SPLITBUF  PIC X(102).
+       77 tmp-exe-tex-k-mcg-SPLITBUF  PIC X(10).
+       77 tmp-exe-tex-k-day-exe-SPLITBUF  PIC X(102).
+       77 tmp-exe-tex-k-exe-SPLITBUF  PIC X(101).
 
-       01 old-exe-rec.
-           05 old-exe-key.
-               10 old-exe-code         PIC  x(5).
-           05 old-exe-data.
-               10 old-exe-desc         PIC  x(100).
-               10 old-exe-grp-code     PIC  x(5).
-               10 old-exe-int-code     PIC  99.
-               10 old-exe-isMulti      PIC  9.
-                   88 old-exe-isMulti-no VALUE IS 0. 
-                   88 old-exe-isMulti-yes VALUE IS 1. 
-               10 old-exe-setting      PIC  9(4).
-               10 old-exe-restpause    PIC  9.
-               10 old-exe-disab        PIC  9.
-               10 old-exe-desc-stampa  PIC  x(20).
-               10 old-exe-note         PIC  x(278).
-               10 old-exe-filler       PIC  x(700).
-               10 old-exe-filler-n1    PIC  9(18).
-               10 old-exe-filler-n2    PIC  9(18).
-               10 old-exe-filler-n3    PIC  9(18).
-               10 old-exe-filler-n4    PIC  9(18).
+       01                 pic 9.
+           88 s-excell    value 1.
+           88 s-stampa    value 2.
+           88 s-anteprima value 3.
       *{TOTEM}END
 
       *{TOTEM}ID-LOGICI
@@ -458,9 +459,49 @@
            ENABLED E-SALVA,
            EXCEPTION-VALUE 2,
            FLAT,
-           ID IS 30,
+           ID IS 32,
            SELF-ACT,
            TITLE "Salva (F3)",
+           .
+
+      * PUSH BUTTON
+       05
+           TOOL-ANTEPRIMA, 
+           Push-Button, 
+           COL 22,80, 
+           LINE 1,09,
+           LINES 64,00 ,
+           SIZE 48,00 ,
+           BITMAP-HANDLE toolbar-bmp,
+           BITMAP-NUMBER 6,
+           UNFRAMED,
+           SQUARE,
+           ENABLED 1,
+           EXCEPTION-VALUE 1001,
+           FLAT,
+           ID IS 34,
+           SELF-ACT,
+           TITLE "Stampa",
+           .
+
+      * PUSH BUTTON
+       05
+           TOOL-STAMPA, 
+           Push-Button, 
+           COL 28,40, 
+           LINE 1,09,
+           LINES 64,00 ,
+           SIZE 48,00 ,
+           BITMAP-HANDLE toolbar-bmp,
+           BITMAP-NUMBER 7,
+           UNFRAMED,
+           SQUARE,
+           ENABLED 1,
+           EXCEPTION-VALUE 1002,
+           FLAT,
+           ID IS 35,
+           SELF-ACT,
+           TITLE "Stampa",
            .
 
       *{TOTEM}END
@@ -569,6 +610,7 @@
            INITIALIZE WFONT-DATA Calibri18B-Occidentale
            MOVE 18 TO WFONT-SIZE
            MOVE "Calibri" TO WFONT-NAME
+           SET WFCHARSET-DONT-CARE TO TRUE
            SET WFONT-BOLD TO TRUE
            SET WFONT-ITALIC TO FALSE
            SET WFONT-UNDERLINE TO FALSE
@@ -598,6 +640,8 @@
            PERFORM OPEN-rwodbook
            PERFORM OPEN-twodbook
            PERFORM OPEN-intexe
+      *    tmp-exe OPEN MODE IS FALSE
+      *    PERFORM OPEN-tmp-exe
       *    After Open
            .
 
@@ -663,12 +707,26 @@
       * <TOTEM:END>
            .
 
+       OPEN-tmp-exe.
+      * <TOTEM:EPT. INIT:modwod, FD:tmp-exe, BeforeOpen>
+      * <TOTEM:END>
+           OPEN  OUTPUT tmp-exe
+           IF NOT Valid-STATUS-tmp-exe
+              PERFORM  Form1-EXTENDED-FILE-STATUS
+              GO TO EXIT-STOP-ROUTINE
+           END-IF
+      * <TOTEM:EPT. INIT:modwod, FD:tmp-exe, AfterOpen>
+      * <TOTEM:END>
+           .
+
        CLOSE-FILE-RTN.
       *    Before Close
            PERFORM CLOSE-exercises
            PERFORM CLOSE-rwodbook
            PERFORM CLOSE-twodbook
            PERFORM CLOSE-intexe
+      *    tmp-exe CLOSE MODE IS FALSE
+      *    PERFORM CLOSE-tmp-exe
       *    After Close
            .
 
@@ -694,6 +752,11 @@
       * <TOTEM:EPT. INIT:modwod, FD:intexe, BeforeClose>
       * <TOTEM:END>
            CLOSE intexe
+           .
+
+       CLOSE-tmp-exe.
+      * <TOTEM:EPT. INIT:modwod, FD:tmp-exe, BeforeClose>
+      * <TOTEM:END>
            .
 
        exercises-exe-k-desc-MERGE-SPLITBUF.
@@ -1532,11 +1595,151 @@
       * <TOTEM:END>
            .
 
+       tmp-exe-tex-k-dupl-MERGE-SPLITBUF.
+           INITIALIZE tmp-exe-tex-k-dupl-SPLITBUF
+           MOVE tex-day(1:1) TO tmp-exe-tex-k-dupl-SPLITBUF(1:1)
+           MOVE tex-nome-dupl(1:100) TO 
+           tmp-exe-tex-k-dupl-SPLITBUF(2:100)
+           .
+
+       tmp-exe-tex-k-mcg-MERGE-SPLITBUF.
+           INITIALIZE tmp-exe-tex-k-mcg-SPLITBUF
+           MOVE tex-mcg-code(1:5) TO tmp-exe-tex-k-mcg-SPLITBUF(1:5)
+           MOVE tex-key(1:4) TO tmp-exe-tex-k-mcg-SPLITBUF(6:4)
+           .
+
+       tmp-exe-tex-k-day-exe-MERGE-SPLITBUF.
+           INITIALIZE tmp-exe-tex-k-day-exe-SPLITBUF
+           MOVE tex-day(1:1) TO tmp-exe-tex-k-day-exe-SPLITBUF(1:1)
+           MOVE tex-desc-univoca(1:100) TO 
+           tmp-exe-tex-k-day-exe-SPLITBUF(2:100)
+           .
+
+       tmp-exe-tex-k-exe-MERGE-SPLITBUF.
+           INITIALIZE tmp-exe-tex-k-exe-SPLITBUF
+           MOVE tex-desc-univoca(1:100) TO 
+           tmp-exe-tex-k-exe-SPLITBUF(1:100)
+           .
+
+       DataSet1-tmp-exe-INITSTART.
+           IF DataSet1-tmp-exe-KEY-Asc
+              MOVE Low-Value TO tex-key
+           ELSE
+              MOVE High-Value TO tex-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-INITEND.
+           IF DataSet1-tmp-exe-KEY-Asc
+              MOVE High-Value TO tex-key
+           ELSE
+              MOVE Low-Value TO tex-key
+           END-IF
+           .
+
+      * tmp-exe
+       DataSet1-tmp-exe-START.
+           IF DataSet1-tmp-exe-KEY-Asc
+              START tmp-exe KEY >= tex-key
+           ELSE
+              START tmp-exe KEY <= tex-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-START-NOTGREATER.
+           IF DataSet1-tmp-exe-KEY-Asc
+              START tmp-exe KEY <= tex-key
+           ELSE
+              START tmp-exe KEY >= tex-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-START-GREATER.
+           IF DataSet1-tmp-exe-KEY-Asc
+              START tmp-exe KEY > tex-key
+           ELSE
+              START tmp-exe KEY < tex-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-START-LESS.
+           IF DataSet1-tmp-exe-KEY-Asc
+              START tmp-exe KEY < tex-key
+           ELSE
+              START tmp-exe KEY > tex-key
+           END-IF
+           .
+
+       DataSet1-tmp-exe-Read.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeReadRecord>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterReadRecord>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-Read-Next.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeReadNext>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterReadNext>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-Read-Prev.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeReadPrev>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterRead>
+      * <TOTEM:END>
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterReadPrev>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-Rec-Write.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeWrite>
+      * <TOTEM:END>
+           WRITE tex-rec OF tmp-exe.
+           MOVE STATUS-tmp-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-exe" TO TOTEM-ERR-FILE
+           MOVE "WRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterWrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-Rec-Rewrite.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeRewrite>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-exe" TO TOTEM-ERR-FILE
+           MOVE "REWRITE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterRewrite>
+      * <TOTEM:END>
+           .
+
+       DataSet1-tmp-exe-Rec-Delete.
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, BeforeDelete>
+      * <TOTEM:END>
+           MOVE STATUS-tmp-exe TO TOTEM-ERR-STAT
+           MOVE "tmp-exe" TO TOTEM-ERR-FILE
+           MOVE "DELETE" TO TOTEM-ERR-MODE
+      * <TOTEM:EPT. FD:DataSet1, FD:tmp-exe, AfterDelete>
+      * <TOTEM:END>
+           .
+
        DataSet1-INIT-RECORD.
            INITIALIZE exe-rec OF exercises
            INITIALIZE rod-rec OF rwodbook
            INITIALIZE tod-rec OF twodbook
            INITIALIZE int-rec OF intexe
+           INITIALIZE tex-rec OF tmp-exe
            .
 
 
@@ -1634,6 +1837,14 @@
       * FD's Initialize Paragraph
        DataSet1-intexe-INITREC.
            INITIALIZE int-rec OF intexe
+               REPLACING NUMERIC       DATA BY ZEROS
+                         ALPHANUMERIC  DATA BY SPACES
+                         ALPHABETIC    DATA BY SPACES
+           .
+
+      * FD's Initialize Paragraph
+       DataSet1-tmp-exe-INITREC.
+           INITIALIZE tex-rec OF tmp-exe
                REPLACING NUMERIC       DATA BY ZEROS
                          ALPHANUMERIC  DATA BY SPACES
                          ALPHABETIC    DATA BY SPACES
@@ -1808,6 +2019,10 @@
                  PERFORM TOOL-CERCA-LinkTo
               WHEN Key-Status = 2
                  PERFORM TOOL-NUOVO-LinkTo
+              WHEN Key-Status = 1001
+                 PERFORM TOOL-ANTEPRIMA-LinkTo
+              WHEN Key-Status = 1002
+                 PERFORM TOOL-STAMPA-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -2255,6 +2470,13 @@
            .
 
       * USER DEFINE PARAGRAPH
+       ANTEPRIMA.
+      * <TOTEM:PARA. ANTEPRIMA>
+           set s-anteprima to true.
+           perform STAMPA-ANTEPRIMA 
+           .
+      * <TOTEM:END>
+
        CANCELLA.
       * <TOTEM:PARA. CANCELLA>
       ** <TOTEM:PARA. CANCELLA>
@@ -2495,7 +2717,7 @@
               modify form1-gd-1, insertion-index riga, 
                                  record-to-add rec-grid  
               modify  form1-gd-1(riga), row-color colore
-              modify form1-gd-1(riga, 1), hidden-data = rod-key
+              modify form1-gd-1(riga, 1), hidden-data = spaces
               add 1 to store-riga tot-righe
            end-perform 
            .
@@ -2860,21 +3082,123 @@
            .
       * <TOTEM:END>
 
-       VALORE-RIGA.
-      * <TOTEM:PARA. VALORE-RIGA>
-      *     inquire form1-gd-1(riga, 78-col-code),      hidden-data hiddenData.
-      *
-      *     inquire form1-gd-1(riga, 78-col-code),        cell-data exe-code.
-      *     inquire form1-gd-1(riga, 78-col-desc),        cell-data exe-desc.  
-      *     inquire form1-gd-1(riga, 78-col-desc-stampa), cell-data exe-desc-stampa
-      *     inquire form1-gd-1(riga, 78-col-grp-code),    cell-data exe-grp-code.
-      *     inquire form1-gd-1(riga, 78-col-int-code),    cell-data exe-int-code.
-      *     inquire form1-gd-1(riga, 78-col-ismulti),     cell-data exe-isMulti.
-      *     inquire form1-gd-1(riga, 78-col-setting),     cell-data exe-setting.
-      *     inquire form1-gd-1(riga, 78-col-restpause),   cell-data exe-isRestpause. 
-      *     inquire form1-gd-1(riga, 78-col-disable),     cell-data exe-isDisable. 
-      *
-      *     move ef-note-buf to exe-note 
+       STAMPA.
+      * <TOTEM:PARA. STAMPA>
+           set s-stampa to true.
+           perform STAMPA-ANTEPRIMA 
+           .
+      * <TOTEM:END>
+
+       STAMPA-ANTEPRIMA.
+      * <TOTEM:PARA. STAMPA-ANTEPRIMA>
+           inquire form1-gd-1, last-row in tot-righe.
+           if tot-righe >= 2
+
+              accept como-data from century-date
+              accept como-ora  from time
+                    
+              accept  path-tmp-exe from environment "PATH_ST"
+              inspect path-tmp-exe replacing trailing spaces by 
+           low-value
+              string  path-tmp-exe delimited low-value
+                      "tmp-exe_"   delimited size
+                      como-data    delimited size
+                      "_"          delimited size
+                      como-ora     delimited size
+                 into path-tmp-exe
+              end-string
+              inspect path-tmp-exe replacing trailing low-value by 
+           spaces
+              open output tmp-exe
+              close       tmp-exe
+              open i-o    tmp-exe
+
+              if s-anteprima
+                 accept link-stampante from environment "STAMPANTE_ANTEP
+      -    "RIMA"
+              else
+                 move spaces to link-stampante
+              end-if
+
+              move 0 to como-day
+
+              perform varying riga from 2 by 1 
+                        until riga > tot-righe
+                 inquire form1-gd-1(riga, 1), hidden-data rod-key
+                 read rwodbook no lock
+                      invalid |Sono su una riga di confronto
+                      inquire form1-gd-1(riga, 2), cell-data in 
+           como-data
+                      if como-data = 0 |Riga divisoria
+                         exit perform cycle
+                      end-if
+                      perform DATE-TO-FILE
+                      move como-data to tex-date
+                      inquire form1-gd-1(riga, 78-col-rep-1), 
+                              cell-data in rod-rep(1)
+                      inquire form1-gd-1(riga, 78-col-kg-1), 
+                              cell-data in rod-kg(1)
+                      inquire form1-gd-1(riga, 78-col-buf-1), 
+                              cell-data in rod-buf(1)
+                      inquire form1-gd-1(riga, 78-col-rep-2), 
+                              cell-data in rod-rep(2)
+                      inquire form1-gd-1(riga, 78-col-kg-2), 
+                              cell-data in rod-kg(2) 
+                      inquire form1-gd-1(riga, 78-col-buf-2), 
+                              cell-data in rod-buf(2)
+                      inquire form1-gd-1(riga, 78-col-rep-3), 
+                              cell-data in rod-rep(3)
+                      inquire form1-gd-1(riga, 78-col-kg-3), 
+                              cell-data in rod-kg(3)
+                      inquire form1-gd-1(riga, 78-col-buf-3), 
+                              cell-data in rod-buf(3)
+                      inquire form1-gd-1(riga, 78-col-rep-4), 
+                              cell-data in rod-rep(4)
+                      inquire form1-gd-1(riga, 78-col-kg-4), 
+                              cell-data in rod-kg(4)
+                      inquire form1-gd-1(riga, 78-col-buf-4), 
+                              cell-data in rod-buf(4)
+                      inquire form1-gd-1(riga, 78-col-rep-5), 
+                              cell-data in rod-rep(5)
+                      inquire form1-gd-1(riga, 78-col-kg-5), 
+                              cell-data in rod-kg(5)
+                      inquire form1-gd-1(riga, 78-col-buf-5), 
+                              cell-data in rod-buf(5)
+                  not invalid
+                      move rod-prg-day to tex-day
+                      move 0           to tex-date    
+                      move rod-exe-code     to tex-exe-code exe-code
+                      read exercises end-read
+                 end-read
+                 if como-day = 0
+                    move tex-day to como-day
+                 end-if
+                 if como-day not = tex-day
+                    move tex-day to como-day
+                    move 0 to tex-split
+                 end-if
+                 add 1 to tex-split
+                 move rod-desc-univoca  to tex-desc-univoca
+                 move rod-mcg-code      to tex-mcg-code
+                 move exe-desc          to tex-exe-desc
+                 move space             to tex-nome-dupl
+                 move rod-int-code      to tex-int-code
+                 move rod-exe-isMulti   to tex-exe-isMulti
+                 move rod-reps          to tex-reps
+                 move rod-series        to tex-series
+                 move rod-int-restpause to tex-int-restpause
+                 move rod-ss            to tex-ss
+                 move rod-dati-modwod   to tex-rod-dati-modwod
+                 write tex-rec
+              end-perform
+
+              close tmp-exe
+
+              call   "st-wod" using path-tmp-exe, link-stampante
+              cancel "st-wod"    
+
+              delete file tmp-exe
+           end-if 
            .
       * <TOTEM:END>
 
@@ -2890,6 +3214,24 @@
       *                                    alphanumeric data by spaces
       *     end-if.
       *
+           .
+      * <TOTEM:END>
+
+       VALORE-RIGA.
+      * <TOTEM:PARA. VALORE-RIGA>
+      *     inquire form1-gd-1(riga, 78-col-code),      hidden-data hiddenData.
+      *
+      *     inquire form1-gd-1(riga, 78-col-code),        cell-data exe-code.
+      *     inquire form1-gd-1(riga, 78-col-desc),        cell-data exe-desc.  
+      *     inquire form1-gd-1(riga, 78-col-desc-stampa), cell-data exe-desc-stampa
+      *     inquire form1-gd-1(riga, 78-col-grp-code),    cell-data exe-grp-code.
+      *     inquire form1-gd-1(riga, 78-col-int-code),    cell-data exe-int-code.
+      *     inquire form1-gd-1(riga, 78-col-ismulti),     cell-data exe-isMulti.
+      *     inquire form1-gd-1(riga, 78-col-setting),     cell-data exe-setting.
+      *     inquire form1-gd-1(riga, 78-col-restpause),   cell-data exe-isRestpause. 
+      *     inquire form1-gd-1(riga, 78-col-disable),     cell-data exe-isDisable. 
+      *
+      *     move ef-note-buf to exe-note 
            .
       * <TOTEM:END>
 
@@ -2933,12 +3275,6 @@
            if errori 
               set event-action to event-action-fail 
               perform VALORE-RIGA
-           end-if.
-
-           if exe-rec not = old-exe-rec
-              set NoSalvato to true                            
-           else 
-              set SiSalvato to true
            end-if 
            .
       * <TOTEM:END>
@@ -2997,10 +3333,10 @@
       * <TOTEM:END>
        TOOL-CERCA-LinkTo.
       * <TOTEM:PARA. TOOL-CERCA-LinkTo>
-           inquire tool-cerca, enabled in e-cerca.
-           if e-cerca = 1
-              perform CERCA
-           end-if 
+           INQUIRE TOOL-CERCA, ENABLED IN E-CERCA.
+           IF E-CERCA = 1
+              PERFORM CERCA
+           END-IF 
            .
       * <TOTEM:END>
        TOOL-NUOVO-LinkTo.
@@ -3009,6 +3345,22 @@
            if e-nuovo = 1
               perform NUOVO
            end-if 
+           .
+      * <TOTEM:END>
+       TOOL-ANTEPRIMA-LinkTo.
+      * <TOTEM:PARA. TOOL-ANTEPRIMA-LinkTo>
+           INQUIRE TOOL-ANTEPRIMA, ENABLED IN E-ANTEPRIMA.
+           IF E-ANTEPRIMA = 1
+              PERFORM ANTEPRIMA
+           END-IF 
+           .
+      * <TOTEM:END>
+       TOOL-STAMPA-LinkTo.
+      * <TOTEM:PARA. TOOL-STAMPA-LinkTo>
+           INQUIRE TOOL-STAMPA, ENABLED IN E-STAMPA.
+           IF E-STAMPA = 1
+              PERFORM STAMPA
+           END-IF 
            .
       * <TOTEM:END>
 

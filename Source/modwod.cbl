@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 18 ottobre 2023 13:44:03.
+       DATE-WRITTEN.        mercoledì 18 ottobre 2023 19:51:20.
        REMARKS.
       *{TOTEM}END
 
@@ -137,8 +137,14 @@
            05 col-note         PIC  x(100).
        77 ws-narg          PIC  99
                   USAGE IS COMP-1.
+       77 max-liv          PIC  999.
+       77 tot-liv          PIC  999.
+       77 s-liv            PIC  999.
        77 e-cerca          PIC  9
                   VALUE IS 0.
+       01 FILLER           PIC  9
+                  VALUE IS 0.
+           88 prima-volta VALUE IS 1    WHEN SET TO FALSE  0. 
        77 s-rod-exe-code   PIC  x(5).
        77 s-rod-int-code   PIC  99.
        77 s-rod-day        PIC  9(8).
@@ -192,6 +198,7 @@
        77 path-tmp-exe     PIC  X(256).
        77 STATUS-tmp-exe   PIC  X(2).
            88 Valid-STATUS-tmp-exe VALUE IS "00" THRU "09". 
+       77 ef-liv-buf       PIC  zz9.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -367,15 +374,51 @@
            COL 2,80, 
            LINE 1,22,
            LINES 1,13 ,
-           SIZE 164,90 ,
+           SIZE 100,00 ,
            COLOR IS 5,
            FONT IS Calibri18B-Occidentale,
            ID IS 3,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
-           CENTER,
+           LEFT,
            TRANSPARENT,
            TITLE lab-desc-buf,
+           .
+
+      * ENTRY FIELD
+       05
+           ef-liv, 
+           Entry-Field, 
+           COL 162,80, 
+           LINE 1,22,
+           LINES 1,30 ,
+           SIZE 4,90 ,
+           BOXED,
+           COLOR IS 513,
+           ID IS 4,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NUMERIC,
+           AUTO-SPIN,
+           VALUE ef-liv-buf,
+           AFTER PROCEDURE Form1-Ef-1-AfterProcedure, 
+           BEFORE PROCEDURE Form1-Ef-1-BeforeProcedure, 
+           EVENT PROCEDURE ef-liv-Event-Proc,
+           .
+
+      * LABEL
+       05
+           lab-liv, 
+           Label, 
+           COL 138,00, 
+           LINE 1,22,
+           LINES 1,30 ,
+           SIZE 24,00 ,
+           ID IS 5,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TRANSPARENT,
+           TITLE "Livello di profondità confronto",
            .
 
       * TOOLBAR
@@ -2469,6 +2512,18 @@
            END-EVALUATE
            .
 
+       ef-liv-Event-Proc.
+           EVALUATE Event-Type ALSO Event-Control-Id ALSO
+                                    Event-Window-Handle
+           WHEN Msg-Spin-Down ALSO 4 ALSO
+                    Form1-Handle 
+              PERFORM ef-liv-Ev-Msg-Spin-Down
+           WHEN Msg-Spin-Up ALSO 4 ALSO
+                    Form1-Handle 
+              PERFORM ef-liv-Ev-Msg-Spin-Up
+           END-EVALUATE
+           .
+
       * USER DEFINE PARAGRAPH
        ANTEPRIMA.
       * <TOTEM:PARA. ANTEPRIMA>
@@ -2528,6 +2583,11 @@
                          
                     set trovato to false
                     perform CONFRONTI-GRIGLIA
+                    if prima-volta
+                       if tot-liv > max-liv
+                          move tot-liv to max-liv
+                       end-if
+                    end-if
                     if trovato
                        add 1 to store-riga tot-righe riga
                        move "-" to rec-grid                   
@@ -2627,24 +2687,14 @@
               initialize rec-grid
               move exe-desc-stampa to col-exe
               modify form1-gd-1, record-to-add = rec-grid
-
-              move high-value to rod-int-code rod-day
-              move exe-code   to s-rod-exe-code rod-exe-code
-              move 0          to s-rod-int-code
-              inquire form1-gd-1, last-row in riga  
-              start rwodbook key <= rod-k-confronto
-                    invalid continue
-                not invalid
-                    perform CONFRONTI-GRIGLIA  
-                    if trovato
-                       inquire form1-gd-1, last-row in tot-righe
-                       add 1 to tot-righe 
-                       move "-" to rec-grid                   
-                       modify form1-gd-1, insertion-index tot-righe, 
-                                          record-to-add rec-grid 
-                       modify form1-gd-1(tot-righe), row-color = 33
-                    end-if
-              end-start
+              inquire form1-gd-1, last-row in tot-righe
+              modify form1-gd-1(tot-righe, 78-col-data), hidden-data 
+           exe-code
+              inquire ef-liv value in s-liv
+              if s-liv = 0
+                 move 999 to s-liv
+              end-if
+              perform CONFRONTI-DA-LOOKUP
            end-if 
            .
       * <TOTEM:END>
@@ -2661,6 +2711,9 @@
 
        CONFRONTI-GRIGLIA.
       * <TOTEM:PARA. CONFRONTI-GRIGLIA>
+           if s-liv = 0 and not prima-volta exit paragraph end-if.
+
+           move 0 to tot-liv.
            perform until 1 = 2
               read rwodbook previous at end exit perform end-read
               if rod-code = tod-code
@@ -2712,13 +2765,16 @@
               move rod-buf(5) to col-buf-5
               move rod-note   to col-note
 
-              add 1 to riga                       
+              add 1 to riga tot-liv                       
               set trovato to true
               modify form1-gd-1, insertion-index riga, 
                                  record-to-add rec-grid  
               modify  form1-gd-1(riga), row-color colore
               modify form1-gd-1(riga, 1), hidden-data = spaces
               add 1 to store-riga tot-righe
+              if tot-liv = s-liv and not prima-volta
+                 exit perform
+              end-if
            end-perform 
            .
       * <TOTEM:END>
@@ -2742,15 +2798,20 @@
               perform CARICA-WOD
               modify tool-nuovo, enabled false  
               modify tool-salva, enabled true
-           else                               
+           else             
               modify tool-nuovo, enabled true  
               modify tool-salva, enabled false
               call   "gwod" using lk-blockpgm,
                                   como-code
               cancel "gwod"
               if como-code = 0
+                 set confronto to false
                  modify tool-cerca, enabled true
-              else                    
+                 move 999 to max-liv     
+                 move 0   to ef-liv-buf
+                 modify ef-liv, value ef-liv-buf
+              else                     
+                 set confronto to true
                  move como-code to tod-code
                  read twodbook
                  move como-code to code-x
@@ -2763,9 +2824,16 @@
                     into lab-desc-buf
                  end-string
 
-                 set confronto to true
+                 set confronto to true  
+                 move 999 to s-liv
+                 move 0   to max-liv
+                 set prima-volta to true
                  perform CARICA-WOD
-                 perform CARICA-CONFRONTI
+                 perform CARICA-CONFRONTI  
+                 set prima-volta to false
+                 move max-liv to ef-liv-buf
+                 modify ef-liv, value ef-liv-buf
+
               end-if
            end-if.
            display lab-desc.
@@ -2900,11 +2968,6 @@
        INTESTAZIONE.
       * <TOTEM:PARA. INTESTAZIONE>
            perform FORM1-GD-1-CONTENT 
-           .
-      * <TOTEM:END>
-
-       LOAD-RECORD.
-      * <TOTEM:PARA. LOAD-RECORD>
            .
       * <TOTEM:END>
 
@@ -3235,6 +3298,28 @@
            .
       * <TOTEM:END>
 
+       CONFRONTI-DA-LOOKUP.
+      * <TOTEM:PARA. CONFRONTI-DA-LOOKUP>
+           move high-value to rod-int-code rod-day
+           move exe-code   to s-rod-exe-code rod-exe-code
+           move 0          to s-rod-int-code
+           inquire form1-gd-1, last-row in riga  
+           start rwodbook key <= rod-k-confronto
+                 invalid continue
+             not invalid
+                 perform CONFRONTI-GRIGLIA  
+                 if trovato
+                    inquire form1-gd-1, last-row in tot-righe
+                    add 1 to tot-righe 
+                    move "-" to rec-grid                   
+                    modify form1-gd-1, insertion-index tot-righe, 
+                                       record-to-add rec-grid 
+                    modify form1-gd-1(tot-righe), row-color = 33
+                 end-if
+           end-start 
+           .
+      * <TOTEM:END>
+
       * EVENT PARAGRAPH
        TOOL-SALVA-LinkTo.
       * <TOTEM:PARA. TOOL-SALVA-LinkTo>
@@ -3361,6 +3446,66 @@
            IF E-STAMPA = 1
               PERFORM STAMPA
            END-IF 
+           .
+      * <TOTEM:END>
+       Form1-Ef-1-BeforeProcedure.
+      * <TOTEM:PARA. Form1-Ef-1-BeforeProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-NU
+           inquire ef-liv, value in ef-liv-buf.
+           move ef-liv-buf to s-liv 
+           .
+      * <TOTEM:END>
+       Form1-Ef-1-AfterProcedure.
+      * <TOTEM:PARA. Form1-Ef-1-AfterProcedure>
+           MODIFY CONTROL-HANDLE COLOR = COLORE-OR
+           inquire ef-liv, value in tot-liv.
+           if tot-liv > max-liv
+              move max-liv to ef-liv-buf
+              display ef-liv
+           else
+              if tot-liv not = s-liv
+                 move tot-liv to s-liv
+                 if confronto
+                    modify form1-gd-1, reset-grid = 1
+                    perform FORM1-GD-1-CONTENT
+                    perform CARICA-WOD
+                    perform CARICA-CONFRONTI
+                 else
+                    inquire form1-gd-1, last-row in tot-righe
+                    perform varying riga from 2 by 1 
+                              until riga > tot-righe
+                       inquire form1-gd-1(riga, 78-col-data), 
+                               hidden-data exe-code
+                       read exercises no lock
+                            invalid
+                            modify form1-gd-1, record-to-delete = riga
+                            subtract 1 from riga tot-righe
+                       end-read
+                    end-perform
+                    inquire form1-gd-1, last-row in tot-righe
+                    perform varying riga from 2 by 1 
+                              until riga > tot-righe
+                       perform CONFRONTI-DA-LOOKUP
+                    end-perform
+                 end-if
+              end-if
+           end-if 
+           .
+      * <TOTEM:END>
+       ef-liv-Ev-Msg-Spin-Up.
+      * <TOTEM:PARA. ef-liv-Ev-Msg-Spin-Up>
+           inquire ef-liv, value in tot-liv.
+           if tot-liv = max-liv
+              set event-action to event-action-fail
+           end-if 
+           .
+      * <TOTEM:END>
+       ef-liv-Ev-Msg-Spin-Down.
+      * <TOTEM:PARA. ef-liv-Ev-Msg-Spin-Down>
+           inquire ef-liv, value in tot-liv.
+           if tot-liv = 0
+              set event-action to event-action-fail
+           end-if 
            .
       * <TOTEM:END>
 

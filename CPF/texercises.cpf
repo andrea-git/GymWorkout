@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A11134434-375-1517912767
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1383134-360-1200930646
 
 {{@DESCRIPTION:
 
@@ -3479,7 +3479,7 @@ Begin Screen Form1
          Link To           = TOOL-CERCA-LinkTo
       End
       Begin Push-Button TOOL-SELEZIONA
-         SCREEN-COL        = 33,40
+         SCREEN-COL        = 33,10
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -3493,7 +3493,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 33,40
+         Column            = 33,10
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default

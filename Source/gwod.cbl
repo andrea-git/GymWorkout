@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 17 ottobre 2023 18:03:33.
+       DATE-WRITTEN.        giovedì 19 ottobre 2023 14:41:55.
        REMARKS.
       *{TOTEM}END
 
@@ -570,7 +570,7 @@
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(331).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(529).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(190).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
@@ -1592,7 +1592,7 @@
            pb-mod, 
            Push-Button, 
            COL 154,20, 
-           LINE 8,09,
+           LINE 8,04,
            LINES 1,17 ,
            SIZE 28 PIXELS,
            BITMAP-HANDLE mod-bmp,
@@ -1705,7 +1705,7 @@
        05
            TOOL-NUOVO, 
            Push-Button, 
-           COL 6,30, 
+           COL 6,20, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1726,7 +1726,7 @@
        05
            TOOL-SALVA, 
            Push-Button, 
-           COL 11,60, 
+           COL 11,40, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1747,7 +1747,7 @@
        05
            TOOL-ANTEPRIMA, 
            Push-Button, 
-           COL 28,10, 
+           COL 27,00, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1767,7 +1767,7 @@
        05
            TOOL-STAMPA, 
            Push-Button, 
-           COL 33,40, 
+           COL 32,20, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1787,7 +1787,7 @@
        05
            TOOL-CERCA, 
            Push-Button, 
-           COL 22,90, 
+           COL 21,80, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1856,7 +1856,7 @@
        05
            TOOL-SELEZIONAa, 
            Push-Button, 
-           COL 39,30, 
+           COL 37,50, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -1877,7 +1877,7 @@
        05
            TOOL-CANCELLA, 
            Push-Button, 
-           COL 17,30, 
+           COL 16,60, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -9643,8 +9643,10 @@
              
                          move rod-int-restpause    to tex-int-restpause 
              
-                         move rod-ss               to tex-ss            
-             
+                         move rod-ss               to tex-ss
+                         move rod-dati-modwod      to 
+           tex-rod-dati-modwod
+                         move rod-note             to tex-rod-note
                          write tex-rec
                       end-perform             
                       perform RELOAD-GRID

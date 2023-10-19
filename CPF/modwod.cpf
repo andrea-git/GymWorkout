@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1217748-310-740721801
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A137465-662-2418623321
 
 {{@DESCRIPTION:
 
@@ -1718,7 +1719,7 @@ Begin Screen Form1
          Width in Cells    = FALSE
       End
       Begin Push-Button TOOL-SALVA
-         SCREEN-COL        = 11,60
+         SCREEN-COL        = 11,40
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -1732,7 +1733,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 11,60
+         Column            = 11,40
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -1765,7 +1766,7 @@ Begin Screen Form1
          Link To           = TOOL-SALVA-LinkTo
       End
       Begin Push-Button TOOL-CERCA
-         SCREEN-COL        = 17,20
+         SCREEN-COL        = 21,80
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -1779,7 +1780,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 17,20
+         Column            = 21,80
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -1858,7 +1859,7 @@ Begin Screen Form1
          Link To           = TOOL-NUOVO-LinkTo
       End
       Begin Push-Button TOOL-ANTEPRIMA
-         SCREEN-COL        = 22,80
+         SCREEN-COL        = 27,00
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -1872,7 +1873,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 22,80
+         Column            = 27,00
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -1904,7 +1905,7 @@ Begin Screen Form1
          Link To           = TOOL-ANTEPRIMA-LinkTo
       End
       Begin Push-Button TOOL-STAMPA
-         SCREEN-COL        = 28,40
+         SCREEN-COL        = 32,20
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -1918,7 +1919,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 28,40
+         Column            = 32,20
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -1948,6 +1949,52 @@ Begin Screen Form1
          Visible           = NONE
          Width in Cells    = FALSE
          Link To           = TOOL-STAMPA-LinkTo
+      End
+      Begin Push-Button TOOL-CANCELLA
+         SCREEN-COL        = 16,60
+         SCREEN-LINE       = 1,09
+         LOCK-CONTROL      = TRUE
+         LEVEL             = 5
+         (Name)            = TOOL-CANCELLA
+         Bitmap            = "..\RESOURCE\toolbar.bmp"
+         Bitmap Frame      = FALSE
+         Bitmap Handle     = toolbar-bmp
+         Bitmap Number     = 4
+         Bitmap Square     = TRUE
+         Ccol              = 0
+         Cline             = 0
+         Clines            = 0
+         Clines Unit       = Default
+         Column            = 16,60
+         Copy Resource     = TRUE
+         Csize             = 0
+         Csize Unit        = Default
+         Destroy Type      = Automatic
+         Enable            = TRUE
+         Exception Value   = 4
+         Flat              = TRUE
+         Font              = Default Font
+         Height in Cells   = FALSE
+         Help ID           = 0
+         ID                = 35
+         Line              = 1,09
+         Lines             = 2,59
+         Lines in Pixels   = 64
+         Lines Unit        = Default
+         No Auto Default   = FALSE
+         No Tab            = FALSE
+         Occurs            = 0
+         Self Act          = TRUE
+         Size              = 4,60
+         Size in Pixels    = 48
+         Size Unit         = Default
+         Style             = Other
+         Tab Order         = 7
+         Termination Value = 0
+         Title             = "Stampa"
+         Visible           = NONE
+         Width in Cells    = FALSE
+         Link To           = TOOL-CANCELLA-LinkTo
       End
    End
 End
@@ -1983,7 +2030,7 @@ BEGIN-DATA
    NODESTYLE         = 7
    PARAGRAPH         = DeletedCode
 BEGIN-TEXT
-      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>======================================================      *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
+
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2119,34 +2166,42 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = CANCELLA
 BEGIN-TEXT
-      ** <TOTEM:PARA. CANCELLA>
-      **--->modifica (isacco)
-      *     if mod = 0 exit paragraph end-if.
-      **--->fine.                 
-      *
-      *     display message box MSG-cancellare-il-record-corrente
-      *             title = titolo
-      *             type mb-yes-no
-      *             default mb-no
-      *             giving scelta.
-      *
-      *     if scelta = mb-yes
-      *
-      *        inquire form1-gd-1, cursor-y in riga
-      *        perform VALORE-RIGA
-      *
-      *        delete exercises record invalid continue end-delete
-      *
-      *        modify  form1-gd-1, record-to-delete = riga
-      *        inquire form1-gd-1, last-row in tot-righe
-      *        if riga > tot-righe move tot-righe to riga end-if
-      *        modify form1-gd-1, cursor-y = riga, cursor-x = 1
-      *        move riga to event-data-2
-      *        perform COLORE-RIGA
-      *        display message MSG-cancellazione-avvenuta-con-successo
-      *                  title titolo
-      *     end-if 
-
+           inquire form1-gd-1, cursor-y in riga.
+           if riga >= 2
+              perform varying riga from riga by -1 
+                        until riga < 2
+                 inquire form1-gd-1(riga, 78-col-data), hidden-data rod-key
+                 read rwodbook no lock
+                      invalid 
+                      inquire form1-gd-1(riga, 78-col-data), hidden-data exe-code
+                      read exercises no lock 
+                           invalid continue 
+                       not invalid exit perform
+                      end-read
+                  not invalid
+                      exit perform
+                 end-read
+              end-perform                                               
+              modify  form1-gd-1, record-to-delete = riga
+              inquire form1-gd-1, last-row in tot-righe
+              perform varying riga from riga by 1 
+                        until riga > tot-righe
+                 inquire form1-gd-1(riga, 78-col-data), hidden-data rod-key
+                 read rwodbook no lock
+                      invalid 
+                      inquire form1-gd-1(riga, 78-col-data), hidden-data exe-code
+                      read exercises no lock 
+                           invalid continue 
+                       not invalid exit perform
+                      end-read
+                  not invalid
+                      exit perform
+                 end-read               
+                 modify  form1-gd-1, record-to-delete = riga
+                 subtract 1 from riga 
+                 subtract 1 from tot-righe
+              end-perform
+           end-if.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2280,6 +2335,7 @@ BEGIN-TEXT
               if s-liv = 0
                  move 999 to s-liv
               end-if
+              move tot-righe to riga
               perform CONFRONTI-DA-LOOKUP
            end-if.
 END-TEXT
@@ -2294,6 +2350,28 @@ BEGIN-TEXT
 
            modify form1-gd-1, cursor-color 481.
 
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = CONFRONTI-DA-LOOKUP
+BEGIN-TEXT
+           move high-value to rod-int-code rod-day
+           move exe-code   to s-rod-exe-code rod-exe-code
+           move 0          to s-rod-int-code
+           start rwodbook key <= rod-k-confronto
+                 invalid continue
+             not invalid
+                 perform CONFRONTI-GRIGLIA  
+                 if trovato
+                    add 1 to riga
+                    add 1 to tot-righe 
+                    move "-" to rec-grid                   
+                    modify form1-gd-1, insertion-index riga, 
+                                       record-to-add rec-grid 
+                    modify form1-gd-1(riga), row-color = 33
+                 end-if
+           end-start.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2388,6 +2466,8 @@ BEGIN-TEXT
               perform CARICA-WOD
               modify tool-nuovo, enabled false  
               modify tool-salva, enabled true
+              modify ef-liv, visible false
+              modify lab-liv visible false
            else             
               modify tool-nuovo, enabled true  
               modify tool-salva, enabled false
@@ -2770,14 +2850,27 @@ BEGIN-TEXT
 
               perform varying riga from 2 by 1 
                         until riga > tot-righe
-                 inquire form1-gd-1(riga, 1), hidden-data rod-key
+                 inquire form1-gd-1(riga, 78-col-data), hidden-data rod-key
                  read rwodbook no lock
-                      invalid |Sono su una riga di confronto
-                      inquire form1-gd-1(riga, 2), cell-data in como-data
-                      if como-data = 0 |Riga divisoria
-                         exit perform cycle
+                      invalid |Sono su una riga di confronto                      
+                      inquire form1-gd-1(riga, 78-col-data), hidden-data in exe-code
+                      if exe-code = spaces
+                         inquire form1-gd-1(riga, 78-col-exe), cell-data in como-data
+                         if como-data = 0 |Riga divisoria
+                            exit perform cycle
+                         else
+                            perform DATE-TO-FILE
+                         end-if
+                      else
+                         move 0 to como-data
+                         move exe-code  to tex-exe-code rod-exe-code
+                         read exercises end-read   
+                         move spaces to rod-reps
+                         move 0      to rod-series 
+                                        rod-int-restpause
+                                        rod-ss
+                                        rod-int-code
                       end-if
-                      perform DATE-TO-FILE
                       move como-data to tex-date
                       inquire form1-gd-1(riga, 78-col-rep-1), 
                               cell-data in rod-rep(1)
@@ -2806,9 +2899,11 @@ BEGIN-TEXT
                       inquire form1-gd-1(riga, 78-col-rep-5), 
                               cell-data in rod-rep(5)
                       inquire form1-gd-1(riga, 78-col-kg-5), 
-                              cell-data in rod-kg(5)
+                              cell-data in rod-kg(5)  
                       inquire form1-gd-1(riga, 78-col-buf-5), 
                               cell-data in rod-buf(5)
+                      inquire form1-gd-1(riga, 78-col-note), 
+                              cell-data in rod-note
                   not invalid
                       move rod-prg-day to tex-day
                       move 0           to tex-date    
@@ -2880,29 +2975,6 @@ BEGIN-TEXT
       *     inquire form1-gd-1(riga, 78-col-disable),     cell-data exe-isDisable. 
       *
       *     move ef-note-buf to exe-note.
-END-TEXT
-END-DATA
-BEGIN-DATA
-   BASETYPE          = 3
-   PARAGRAPH         = CONFRONTI-DA-LOOKUP
-BEGIN-TEXT
-           move high-value to rod-int-code rod-day
-           move exe-code   to s-rod-exe-code rod-exe-code
-           move 0          to s-rod-int-code
-           inquire form1-gd-1, last-row in riga  
-           start rwodbook key <= rod-k-confronto
-                 invalid continue
-             not invalid
-                 perform CONFRONTI-GRIGLIA  
-                 if trovato
-                    inquire form1-gd-1, last-row in tot-righe
-                    add 1 to tot-righe 
-                    move "-" to rec-grid                   
-                    modify form1-gd-1, insertion-index tot-righe, 
-                                       record-to-add rec-grid 
-                    modify form1-gd-1(tot-righe), row-color = 33
-                 end-if
-           end-start.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -3077,28 +3149,42 @@ BEGIN-TEXT
               display ef-liv
            else
               if tot-liv not = s-liv
-                 move tot-liv to s-liv
-                 if confronto
+                 if confronto       
+                    move tot-liv to s-liv
                     modify form1-gd-1, reset-grid = 1
                     perform FORM1-GD-1-CONTENT
                     perform CARICA-WOD
                     perform CARICA-CONFRONTI
                  else
+                    if tot-liv = 0 
+                       move 999 to s-liv 
+                    else  
+                       move tot-liv to s-liv
+                    end-if
                     inquire form1-gd-1, last-row in tot-righe
                     perform varying riga from 2 by 1 
                               until riga > tot-righe
                        inquire form1-gd-1(riga, 78-col-data), 
-                               hidden-data exe-code
-                       read exercises no lock
-                            invalid
-                            modify form1-gd-1, record-to-delete = riga
-                            subtract 1 from riga tot-righe
-                       end-read
+                               hidden-data col-exe
+                       if col-exe = spaces
+                          modify form1-gd-1, record-to-delete = riga
+                          subtract 1 from riga tot-righe
+                       else
+                          move col-exe to exe-code
+                          read exercises no lock
+                               invalid continue
+                          end-read
+                       end-if
                     end-perform
                     inquire form1-gd-1, last-row in tot-righe
                     perform varying riga from 2 by 1 
                               until riga > tot-righe
-                       perform CONFRONTI-DA-LOOKUP
+                       inquire form1-gd-1(riga, 78-col-data), 
+                               hidden-data col-exe
+                       if col-exe not = spaces
+                          move col-exe to exe-code
+                          perform CONFRONTI-DA-LOOKUP
+                       end-if
                     end-perform
                  end-if
               end-if
@@ -3122,6 +3208,16 @@ BEGIN-TEXT
            inquire ef-liv, value in tot-liv.
            if tot-liv = 0
               set event-action to event-action-fail
+           end-if.
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 2
+   PARAGRAPH         = TOOL-CANCELLA-LinkTo
+BEGIN-TEXT
+           inquire tool-cancella, enabled e-cancella.
+           if e-cancella = 1
+              perform CANCELLA
            end-if.
 END-TEXT
 END-DATA

@@ -90,12 +90,9 @@
            88 record-ok          value 1 false 0.
                     
       * VARIABILI   
-       77  pgmChiamante          pic x(15).
        77  como-ss               pic 99.  
        77  como-prg              pic 99 value 0.
        77  sw-gray               pic s9.                  
-       01  tab-exe.
-         05 el-num-exe           pic 99 occurs 10 value 0.
        77  como-day              pic 99.
        77  messaggio             pic x(150) value spaces.
        77  font-size-dply        pic z(5).      
@@ -156,8 +153,7 @@
              not invalid                           
                  perform until 1 = 2
                     read tmp-exe next at end exit perform end-read
-                    add 1 to num-righe
-                    add 1 to el-num-exe(tex-day)
+                    add 1 to num-righe 
                  end-perform
            end-start.           
            if num-righe > 0
@@ -232,9 +228,17 @@
                        end-if
 
                        move tex-exe-code to exe-code
-                       read exercises
-                       move exe-int-code to int-code
-                       read intexe
+                       read exercises 
+                            invalid move "NON TROVATA" to exe-desc
+                       end-read
+                       if tex-reps = spaces
+                          move 0 to int-rest
+                       else
+                          move exe-int-code to int-code
+                          read intexe 
+                               invalid move 0 to int-rest 
+                          end-read
+                       end-if
 
                        initialize r-exe-desc
                        if tex-date = 0
@@ -275,7 +279,7 @@
                           inspect r-series 
                                   replacing leading x"30" by x"20"
                           call "C$JUSTIFY" using r-series, "L"
-           
+                          
                           move int-rest to r-rest
                           inspect r-rest 
                                   replacing leading x"30" by x"20"
@@ -309,8 +313,7 @@
 
                        move ArialNarrow7 to spl-hfont     
                        subtract 78-passo from spl-riga
-                       call "C$CALLEDBY" using pgmChiamante
-                       if pgmChiamante = "modwod"
+                       if tex-rod-note not = spaces
                           move tex-rod-note to r-note
                        else
                           move exe-note     to r-note         

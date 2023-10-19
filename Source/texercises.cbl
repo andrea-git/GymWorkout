@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 6 ottobre 2023 15:30:35.
+       DATE-WRITTEN.        giovedì 19 ottobre 2023 10:32:36.
        REMARKS.
       *{TOTEM}END
 
@@ -1135,7 +1135,7 @@
        05
            TOOL-SELEZIONA, 
            Push-Button, 
-           COL 33,40, 
+           COL 33,10, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,

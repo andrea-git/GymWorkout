@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A11134434-740-62215573
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1383347-976-1516624348
 
 {{@DESCRIPTION:
 
@@ -5572,7 +5572,7 @@ Begin Screen Form1
    End
    Begin Push-Button pb-mod
       SCREEN-COL        = 154,20
-      SCREEN-LINE       = 8,09
+      SCREEN-LINE       = 8,04
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
       (Name)            = pb-mod
@@ -5595,7 +5595,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 47
-      Line              = 8,09
+      Line              = 8,04
       Lines             = 1,17
       Lines in Pixels   = 20
       Lines Unit        = Default
@@ -5817,7 +5817,7 @@ Begin Screen Form1
          Width in Cells    = FALSE
       End
       Begin Push-Button TOOL-NUOVO
-         SCREEN-COL        = 6,30
+         SCREEN-COL        = 6,20
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -5831,7 +5831,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 6,30
+         Column            = 6,20
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -5866,7 +5866,7 @@ Begin Screen Form1
          Link To           = NUOVO-LinkTo
       End
       Begin Push-Button TOOL-SALVA
-         SCREEN-COL        = 11,60
+         SCREEN-COL        = 11,40
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -5880,7 +5880,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 11,60
+         Column            = 11,40
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -5915,7 +5915,7 @@ Begin Screen Form1
          Link To           = TOOL-SALVA-LinkTo
       End
       Begin Push-Button TOOL-ANTEPRIMA
-         SCREEN-COL        = 28,10
+         SCREEN-COL        = 27,00
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -5929,7 +5929,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 28,10
+         Column            = 27,00
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -5962,7 +5962,7 @@ Begin Screen Form1
          Link To           = ANTEPRIMA-LinkTo
       End
       Begin Push-Button TOOL-STAMPA
-         SCREEN-COL        = 33,40
+         SCREEN-COL        = 32,20
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -5976,7 +5976,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 33,40
+         Column            = 32,20
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -6009,7 +6009,7 @@ Begin Screen Form1
          Link To           = STAMPA-LinkTo
       End
       Begin Push-Button TOOL-CERCA
-         SCREEN-COL        = 22,90
+         SCREEN-COL        = 21,80
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -6023,7 +6023,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 22,90
+         Column            = 21,80
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -6178,7 +6178,7 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Push-Button TOOL-SELEZIONAa
-         SCREEN-COL        = 39,30
+         SCREEN-COL        = 37,50
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -6192,7 +6192,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 39,30
+         Column            = 37,50
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -6226,7 +6226,7 @@ Begin Screen Form1
          Link To           = TOOL-SELEZIONA-LinkTo
       End
       Begin Push-Button TOOL-CANCELLA
-         SCREEN-COL        = 17,30
+         SCREEN-COL        = 16,60
          SCREEN-LINE       = 1,09
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -6240,7 +6240,7 @@ Begin Screen Form1
          Cline             = 0
          Clines            = 0
          Clines Unit       = Default
-         Column            = 17,30
+         Column            = 16,60
          Copy Resource     = TRUE
          Csize             = 0
          Csize Unit        = Default
@@ -11391,7 +11391,9 @@ BEGIN-TEXT
                          move rod-reps             to tex-reps            
                          move rod-series           to tex-series          
                          move rod-int-restpause    to tex-int-restpause   
-                         move rod-ss               to tex-ss              
+                         move rod-ss               to tex-ss
+                         move rod-dati-modwod      to tex-rod-dati-modwod
+                         move rod-note             to tex-rod-note
                          write tex-rec
                       end-perform             
                       perform RELOAD-GRID

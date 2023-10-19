@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 18 ottobre 2023 19:51:20.
+       DATE-WRITTEN.        giovedì 19 ottobre 2023 14:40:54.
        REMARKS.
       *{TOTEM}END
 
@@ -451,7 +451,7 @@
        05
            TOOL-SALVA, 
            Push-Button, 
-           COL 11,60, 
+           COL 11,40, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -471,7 +471,7 @@
        05
            TOOL-CERCA, 
            Push-Button, 
-           COL 17,20, 
+           COL 21,80, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -511,7 +511,7 @@
        05
            TOOL-ANTEPRIMA, 
            Push-Button, 
-           COL 22,80, 
+           COL 27,00, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -531,7 +531,7 @@
        05
            TOOL-STAMPA, 
            Push-Button, 
-           COL 28,40, 
+           COL 32,20, 
            LINE 1,09,
            LINES 64,00 ,
            SIZE 48,00 ,
@@ -541,6 +541,26 @@
            SQUARE,
            ENABLED 1,
            EXCEPTION-VALUE 1002,
+           FLAT,
+           ID IS 35,
+           SELF-ACT,
+           TITLE "Stampa",
+           .
+
+      * PUSH BUTTON
+       05
+           TOOL-CANCELLA, 
+           Push-Button, 
+           COL 16,60, 
+           LINE 1,09,
+           LINES 64,00 ,
+           SIZE 48,00 ,
+           BITMAP-HANDLE toolbar-bmp,
+           BITMAP-NUMBER 4,
+           UNFRAMED,
+           SQUARE,
+           ENABLED 1,
+           EXCEPTION-VALUE 4,
            FLAT,
            ID IS 35,
            SELF-ACT,
@@ -2066,6 +2086,8 @@
                  PERFORM TOOL-ANTEPRIMA-LinkTo
               WHEN Key-Status = 1002
                  PERFORM TOOL-STAMPA-LinkTo
+              WHEN Key-Status = 4
+                 PERFORM TOOL-CANCELLA-LinkTo
            END-EVALUATE
       * avoid changing focus
            MOVE 4 TO Accept-Control
@@ -2534,33 +2556,46 @@
 
        CANCELLA.
       * <TOTEM:PARA. CANCELLA>
-      ** <TOTEM:PARA. CANCELLA>
-      **--->modifica (isacco)
-      *     if mod = 0 exit paragraph end-if.
-      **--->fine.                 
-      *
-      *     display message box MSG-cancellare-il-record-corrente
-      *             title = titolo
-      *             type mb-yes-no
-      *             default mb-no
-      *             giving scelta.
-      *
-      *     if scelta = mb-yes
-      *
-      *        inquire form1-gd-1, cursor-y in riga
-      *        perform VALORE-RIGA
-      *
-      *        delete exercises record invalid continue end-delete
-      *
-      *        modify  form1-gd-1, record-to-delete = riga
-      *        inquire form1-gd-1, last-row in tot-righe
-      *        if riga > tot-righe move tot-righe to riga end-if
-      *        modify form1-gd-1, cursor-y = riga, cursor-x = 1
-      *        move riga to event-data-2
-      *        perform COLORE-RIGA
-      *        display message MSG-cancellazione-avvenuta-con-successo
-      *                  title titolo
-      *     end-if 
+           inquire form1-gd-1, cursor-y in riga.
+           if riga >= 2
+              perform varying riga from riga by -1 
+                        until riga < 2
+                 inquire form1-gd-1(riga, 78-col-data), hidden-data 
+           rod-key
+                 read rwodbook no lock
+                      invalid 
+                      inquire form1-gd-1(riga, 78-col-data), 
+           hidden-data exe-code
+                      read exercises no lock 
+                           invalid continue 
+                       not invalid exit perform
+                      end-read
+                  not invalid
+                      exit perform
+                 end-read
+              end-perform                                               
+              modify  form1-gd-1, record-to-delete = riga
+              inquire form1-gd-1, last-row in tot-righe
+              perform varying riga from riga by 1 
+                        until riga > tot-righe
+                 inquire form1-gd-1(riga, 78-col-data), hidden-data 
+           rod-key
+                 read rwodbook no lock
+                      invalid 
+                      inquire form1-gd-1(riga, 78-col-data), 
+           hidden-data exe-code
+                      read exercises no lock 
+                           invalid continue 
+                       not invalid exit perform
+                      end-read
+                  not invalid
+                      exit perform
+                 end-read               
+                 modify  form1-gd-1, record-to-delete = riga
+                 subtract 1 from riga 
+                 subtract 1 from tot-righe
+              end-perform
+           end-if 
            .
       * <TOTEM:END>
 
@@ -2694,6 +2729,7 @@
               if s-liv = 0
                  move 999 to s-liv
               end-if
+              move tot-righe to riga
               perform CONFRONTI-DA-LOOKUP
            end-if 
            .
@@ -2706,6 +2742,27 @@
            end-if.
 
            modify form1-gd-1, cursor-color 481 
+           .
+      * <TOTEM:END>
+
+       CONFRONTI-DA-LOOKUP.
+      * <TOTEM:PARA. CONFRONTI-DA-LOOKUP>
+           move high-value to rod-int-code rod-day
+           move exe-code   to s-rod-exe-code rod-exe-code
+           move 0          to s-rod-int-code
+           start rwodbook key <= rod-k-confronto
+                 invalid continue
+             not invalid
+                 perform CONFRONTI-GRIGLIA  
+                 if trovato
+                    add 1 to riga
+                    add 1 to tot-righe 
+                    move "-" to rec-grid                   
+                    modify form1-gd-1, insertion-index riga, 
+                                       record-to-add rec-grid 
+                    modify form1-gd-1(riga), row-color = 33
+                 end-if
+           end-start 
            .
       * <TOTEM:END>
 
@@ -2798,6 +2855,8 @@
               perform CARICA-WOD
               modify tool-nuovo, enabled false  
               modify tool-salva, enabled true
+              modify ef-liv, visible false
+              modify lab-liv visible false
            else             
               modify tool-nuovo, enabled true  
               modify tool-salva, enabled false
@@ -3187,15 +3246,30 @@
 
               perform varying riga from 2 by 1 
                         until riga > tot-righe
-                 inquire form1-gd-1(riga, 1), hidden-data rod-key
+                 inquire form1-gd-1(riga, 78-col-data), hidden-data 
+           rod-key
                  read rwodbook no lock
-                      invalid |Sono su una riga di confronto
-                      inquire form1-gd-1(riga, 2), cell-data in 
-           como-data
-                      if como-data = 0 |Riga divisoria
-                         exit perform cycle
+                      invalid |Sono su una riga di confronto                      
+                      inquire form1-gd-1(riga, 78-col-data), 
+           hidden-data in exe-code
+                      if exe-code = spaces
+                         inquire form1-gd-1(riga, 78-col-exe), 
+           cell-data in como-data
+                         if como-data = 0 |Riga divisoria
+                            exit perform cycle
+                         else
+                            perform DATE-TO-FILE
+                         end-if
+                      else
+                         move 0 to como-data
+                         move exe-code  to tex-exe-code rod-exe-code
+                         read exercises end-read   
+                         move spaces to rod-reps
+                         move 0      to rod-series 
+                                        rod-int-restpause
+                                        rod-ss
+                                        rod-int-code
                       end-if
-                      perform DATE-TO-FILE
                       move como-data to tex-date
                       inquire form1-gd-1(riga, 78-col-rep-1), 
                               cell-data in rod-rep(1)
@@ -3224,9 +3298,11 @@
                       inquire form1-gd-1(riga, 78-col-rep-5), 
                               cell-data in rod-rep(5)
                       inquire form1-gd-1(riga, 78-col-kg-5), 
-                              cell-data in rod-kg(5)
+                              cell-data in rod-kg(5)  
                       inquire form1-gd-1(riga, 78-col-buf-5), 
                               cell-data in rod-buf(5)
+                      inquire form1-gd-1(riga, 78-col-note), 
+                              cell-data in rod-note
                   not invalid
                       move rod-prg-day to tex-day
                       move 0           to tex-date    
@@ -3295,28 +3371,6 @@
       *     inquire form1-gd-1(riga, 78-col-disable),     cell-data exe-isDisable. 
       *
       *     move ef-note-buf to exe-note 
-           .
-      * <TOTEM:END>
-
-       CONFRONTI-DA-LOOKUP.
-      * <TOTEM:PARA. CONFRONTI-DA-LOOKUP>
-           move high-value to rod-int-code rod-day
-           move exe-code   to s-rod-exe-code rod-exe-code
-           move 0          to s-rod-int-code
-           inquire form1-gd-1, last-row in riga  
-           start rwodbook key <= rod-k-confronto
-                 invalid continue
-             not invalid
-                 perform CONFRONTI-GRIGLIA  
-                 if trovato
-                    inquire form1-gd-1, last-row in tot-righe
-                    add 1 to tot-righe 
-                    move "-" to rec-grid                   
-                    modify form1-gd-1, insertion-index tot-righe, 
-                                       record-to-add rec-grid 
-                    modify form1-gd-1(tot-righe), row-color = 33
-                 end-if
-           end-start 
            .
       * <TOTEM:END>
 
@@ -3464,28 +3518,42 @@
               display ef-liv
            else
               if tot-liv not = s-liv
-                 move tot-liv to s-liv
-                 if confronto
+                 if confronto       
+                    move tot-liv to s-liv
                     modify form1-gd-1, reset-grid = 1
                     perform FORM1-GD-1-CONTENT
                     perform CARICA-WOD
                     perform CARICA-CONFRONTI
                  else
+                    if tot-liv = 0 
+                       move 999 to s-liv 
+                    else  
+                       move tot-liv to s-liv
+                    end-if
                     inquire form1-gd-1, last-row in tot-righe
                     perform varying riga from 2 by 1 
                               until riga > tot-righe
                        inquire form1-gd-1(riga, 78-col-data), 
-                               hidden-data exe-code
-                       read exercises no lock
-                            invalid
-                            modify form1-gd-1, record-to-delete = riga
-                            subtract 1 from riga tot-righe
-                       end-read
+                               hidden-data col-exe
+                       if col-exe = spaces
+                          modify form1-gd-1, record-to-delete = riga
+                          subtract 1 from riga tot-righe
+                       else
+                          move col-exe to exe-code
+                          read exercises no lock
+                               invalid continue
+                          end-read
+                       end-if
                     end-perform
                     inquire form1-gd-1, last-row in tot-righe
                     perform varying riga from 2 by 1 
                               until riga > tot-righe
-                       perform CONFRONTI-DA-LOOKUP
+                       inquire form1-gd-1(riga, 78-col-data), 
+                               hidden-data col-exe
+                       if col-exe not = spaces
+                          move col-exe to exe-code
+                          perform CONFRONTI-DA-LOOKUP
+                       end-if
                     end-perform
                  end-if
               end-if
@@ -3505,6 +3573,14 @@
            inquire ef-liv, value in tot-liv.
            if tot-liv = 0
               set event-action to event-action-fail
+           end-if 
+           .
+      * <TOTEM:END>
+       TOOL-CANCELLA-LinkTo.
+      * <TOTEM:PARA. TOOL-CANCELLA-LinkTo>
+           inquire tool-cancella, enabled e-cancella.
+           if e-cancella = 1
+              perform CANCELLA
            end-if 
            .
       * <TOTEM:END>

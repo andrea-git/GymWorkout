@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        sabato 21 ottobre 2023 17:00:26.
+       DATE-WRITTEN.        domenica 22 ottobre 2023 01:35:47.
        REMARKS.
       *{TOTEM}END
 
@@ -5559,7 +5559,8 @@
                  modify gd1(store-riga), row-font = 
            Calibri12-Occidentale
               end-if
-           end-perform.
+           end-perform.                       
+           inquire gd2, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd2(store-riga, 1), cell-data in col-split
@@ -5571,6 +5572,7 @@
            Calibri12-Occidentale
               end-if
            end-perform.
+           inquire gd3, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd3(store-riga, 1), cell-data in col-split
@@ -5582,6 +5584,7 @@
            Calibri12-Occidentale
               end-if
            end-perform.
+           inquire gd4, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd4(store-riga, 1), cell-data in col-split
@@ -5593,6 +5596,7 @@
            Calibri12-Occidentale
               end-if
            end-perform.
+           inquire gd5, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd5(store-riga, 1), cell-data in col-split
@@ -5604,6 +5608,7 @@
            Calibri12-Occidentale
               end-if
            end-perform.
+           inquire gd6, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd6(store-riga, 1), cell-data in col-split
@@ -5615,6 +5620,7 @@
            Calibri12-Occidentale
               end-if
            end-perform.
+           inquire gd7, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd7(store-riga, 1), cell-data in col-split

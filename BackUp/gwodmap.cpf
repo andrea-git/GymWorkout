@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A15145133-367-406531694
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1523352-251-314334348
 
 {{@DESCRIPTION:
 
@@ -6348,7 +6348,8 @@ BEGIN-TEXT
               else                                                    
                  modify gd1(store-riga), row-font = Calibri12-Occidentale
               end-if
-           end-perform.
+           end-perform.                       
+           inquire gd2, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd2(store-riga, 1), cell-data in col-split
@@ -6358,6 +6359,7 @@ BEGIN-TEXT
                  modify gd2(store-riga), row-font = Calibri12-Occidentale
               end-if
            end-perform.
+           inquire gd3, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd3(store-riga, 1), cell-data in col-split
@@ -6367,6 +6369,7 @@ BEGIN-TEXT
                  modify gd3(store-riga), row-font = Calibri12-Occidentale
               end-if
            end-perform.
+           inquire gd4, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd4(store-riga, 1), cell-data in col-split
@@ -6376,6 +6379,7 @@ BEGIN-TEXT
                  modify gd4(store-riga), row-font = Calibri12-Occidentale
               end-if
            end-perform.
+           inquire gd5, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd5(store-riga, 1), cell-data in col-split
@@ -6385,6 +6389,7 @@ BEGIN-TEXT
                  modify gd5(store-riga), row-font = Calibri12-Occidentale
               end-if
            end-perform.
+           inquire gd6, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd6(store-riga, 1), cell-data in col-split
@@ -6394,6 +6399,7 @@ BEGIN-TEXT
                  modify gd6(store-riga), row-font = Calibri12-Occidentale
               end-if
            end-perform.
+           inquire gd7, last-row in tot-righe.
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire gd7(store-riga, 1), cell-data in col-split

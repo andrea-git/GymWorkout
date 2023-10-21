@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1383134-360-1200930646
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A15232135-364-2990732482
 
 {{@DESCRIPTION:
 
@@ -628,8 +628,8 @@ m_bFixed=1
 @}}
 [FDITEM61_WK]
 m_strName=col-intensity
-m_strRawPic=z9
-m_strPic=z9
+m_strRawPic=zz
+m_strPic=zz
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -3947,16 +3947,26 @@ BEGIN-TEXT
                 end-read                                      
                 modify form1-gd-1(riga, 78-col-grp-desc), cell-data grp-desc
                 modify form1-gd-1(riga, 78-col-mcg-desc), cell-data mcg-desc  
+
            when 78-col-int-code
                 move exe-int-code to int-code
-                read intexe no lock 
-                     invalid 
-                     move spaces to int-desc 
-                     set errori to true
-                     display message "Intensità non valida"
-                           title = tit-err
-                           icon mb-warning-icon
-                end-read                                      
+                if int-code = 0 and exe-isMulti = 1
+                   move spaces to int-desc
+                else
+                   read intexe no lock 
+                        invalid 
+                        move spaces to int-desc 
+                        set errori to true
+                        display message "Intensità non valida"
+                                  title tit-err
+                                   icon mb-warning-icon
+                    not invalid
+                        if exe-isMulti = 1                                  
+                           move 0 to exe-isMulti                            
+                           modify form1-gd-1(riga, 78-col-isMulti), cell-data 0
+                        end-if
+                   end-read                                      
+                end-if
                 modify form1-gd-1(riga, 78-col-int-desc), cell-data int-desc  
 
            when 78-col-isMulti
@@ -3965,6 +3975,13 @@ BEGIN-TEXT
                    display message "Valori consentiti 1/0"
                            title = tit-err
                            icon mb-warning-icon
+                else
+                   if exe-isMulti = 1
+                      move spaces to col-intensity
+                      move spaces to col-int-desc
+                      modify form1-gd-1(riga, 78-col-int-code), cell-data col-intensity
+                      modify form1-gd-1(riga, 78-col-int-desc), cell-data col-int-desc
+                   end-if
                 end-if
 
            when 78-col-setting

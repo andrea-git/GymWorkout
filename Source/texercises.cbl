@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 19 ottobre 2023 10:32:36.
+       DATE-WRITTEN.        domenica 22 ottobre 2023 01:32:02.
        REMARKS.
       *{TOTEM}END
 
@@ -142,7 +142,7 @@
            05 col-group        PIC  x(5).
            05 col-grp-desc     PIC  x(100).
            05 col-mcg-desc     PIC  x(100).
-           05 col-intensity    PIC  z9.
+           05 col-intensity    PIC  zz.
            05 col-int-desc     PIC  x(100).
            05 col-isMulti      PIC  9.
            05 col-setting      PIC  z.zz9.
@@ -3308,16 +3308,29 @@
            grp-desc
                 modify form1-gd-1(riga, 78-col-mcg-desc), cell-data 
            mcg-desc  
+
            when 78-col-int-code
                 move exe-int-code to int-code
-                read intexe no lock 
-                     invalid 
-                     move spaces to int-desc 
-                     set errori to true
-                     display message "Intensità non valida"
-                           title = tit-err
-                           icon mb-warning-icon
-                end-read                                      
+                if int-code = 0 and exe-isMulti = 1
+                   move spaces to int-desc
+                else
+                   read intexe no lock 
+                        invalid 
+                        move spaces to int-desc 
+                        set errori to true
+                        display message "Intensità non valida"
+                                  title tit-err
+                                   icon mb-warning-icon
+                    not invalid
+                        if exe-isMulti = 1                              
+               
+                           move 0 to exe-isMulti                        
+               
+                           modify form1-gd-1(riga, 78-col-isMulti), 
+           cell-data 0
+                        end-if
+                   end-read                                      
+                end-if
                 modify form1-gd-1(riga, 78-col-int-desc), cell-data 
            int-desc  
 
@@ -3327,6 +3340,15 @@
                    display message "Valori consentiti 1/0"
                            title = tit-err
                            icon mb-warning-icon
+                else
+                   if exe-isMulti = 1
+                      move spaces to col-intensity
+                      move spaces to col-int-desc
+                      modify form1-gd-1(riga, 78-col-int-code), 
+           cell-data col-intensity
+                      modify form1-gd-1(riga, 78-col-int-desc), 
+           cell-data col-int-desc
+                   end-if
                 end-if
 
            when 78-col-setting

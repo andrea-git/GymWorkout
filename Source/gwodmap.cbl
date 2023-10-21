@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        sabato 21 ottobre 2023 13:35:37.
+       DATE-WRITTEN.        sabato 21 ottobre 2023 16:49:16.
        REMARKS.
       *{TOTEM}END
 
@@ -106,6 +106,9 @@
        77 resto            PIC  999.
        77 idx-gruppo       PIC  999.
        77 como-value       PIC  x(20).
+       77 s-split          PIC  x.
+       01 FILLER           PIC  9.
+           88 cambioGruppo VALUE IS 1    WHEN SET TO FALSE  0. 
        77 tot-primari-buf  PIC  99.
        77 grid-day         PIC  9.
        77 como-desc        PIC  x(200).
@@ -130,7 +133,7 @@
            05 col-int-code     PIC  zz.
            05 col-int-desc     PIC  x(100).
            05 col-ss           PIC  99.
-           05 col-ss           PIC  99.
+           05 col-isMulti      PIC  9.
        01 save-key.
            05 save-code        PIC  999.
        01 save-key-1.
@@ -902,10 +905,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 4, 104),
-           ALIGNMENT ("C", "C", "U", "R"),
-           SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
+           DATA-COLUMNS (1, 2, 4, 104, 106),
+           ALIGNMENT ("C", "C", "U", "R", "C"),
+           SEPARATION (5, 5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)", "9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -935,10 +938,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 4, 104),
-           ALIGNMENT ("C", "C", "U", "R"),
-           SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
+           DATA-COLUMNS (1, 2, 4, 104, 106),
+           ALIGNMENT ("C", "C", "U", "R", "C"),
+           SEPARATION (5, 5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)", "9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -968,10 +971,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 4, 104),
-           ALIGNMENT ("C", "C", "U", "R"),
-           SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
+           DATA-COLUMNS (1, 2, 4, 104, 106),
+           ALIGNMENT ("C", "C", "U", "R", "C"),
+           SEPARATION (5, 5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)", "9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -1001,10 +1004,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 4, 104),
-           ALIGNMENT ("C", "C", "U", "R"),
-           SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
+           DATA-COLUMNS (1, 2, 4, 104, 106),
+           ALIGNMENT ("C", "C", "U", "R", "C"),
+           SEPARATION (5, 5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)", "9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -1034,10 +1037,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 4, 104),
-           ALIGNMENT ("C", "C", "U", "R"),
-           SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
+           DATA-COLUMNS (1, 2, 4, 104, 106),
+           ALIGNMENT ("C", "C", "U", "R", "C"),
+           SEPARATION (5, 5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)", "9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -1067,10 +1070,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 4, 104),
-           ALIGNMENT ("C", "C", "U", "R"),
-           SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
+           DATA-COLUMNS (1, 2, 4, 104, 106),
+           ALIGNMENT ("C", "C", "U", "R", "C"),
+           SEPARATION (5, 5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)", "9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -1100,10 +1103,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 4, 104),
-           ALIGNMENT ("C", "C", "U", "R"),
-           SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
+           DATA-COLUMNS (1, 2, 4, 104, 106),
+           ALIGNMENT ("C", "C", "U", "R", "C"),
+           SEPARATION (5, 5, 5, 5, 5),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)", "9"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -2878,13 +2881,16 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd1, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Eff",
       * CELLS' SETTING
               MODIFY gd1, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
       * CELLS' SETTING
               MODIFY gd1, X = 4, Y = 1,
                 CELL-DATA = "SS",
+      * CELLS' SETTING
+              MODIFY gd1, X = 5, Y = 1,
+                CELL-DATA = "M",
            .
 
       * GRID
@@ -2894,13 +2900,16 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd2, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Eff",
       * CELLS' SETTING
               MODIFY gd2, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
       * CELLS' SETTING
               MODIFY gd2, X = 4, Y = 1,
                 CELL-DATA = "SS",
+      * CELLS' SETTING
+              MODIFY gd2, X = 5, Y = 1,
+                CELL-DATA = "M",
            .
 
       * GRID
@@ -2910,13 +2919,16 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd3, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Eff",
       * CELLS' SETTING
               MODIFY gd3, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
       * CELLS' SETTING
               MODIFY gd3, X = 4, Y = 1,
                 CELL-DATA = "SS",
+      * CELLS' SETTING
+              MODIFY gd3, X = 5, Y = 1,
+                CELL-DATA = "M",
            .
 
       * GRID
@@ -2926,13 +2938,16 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd4, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Eff",
       * CELLS' SETTING
               MODIFY gd4, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
       * CELLS' SETTING
               MODIFY gd4, X = 4, Y = 1,
                 CELL-DATA = "SS",
+      * CELLS' SETTING
+              MODIFY gd4, X = 5, Y = 1,
+                CELL-DATA = "M",
            .
 
       * GRID
@@ -2942,13 +2957,16 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd5, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Eff",
       * CELLS' SETTING
               MODIFY gd5, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
       * CELLS' SETTING
               MODIFY gd5, X = 4, Y = 1,
                 CELL-DATA = "SS",
+      * CELLS' SETTING
+              MODIFY gd5, X = 5, Y = 1,
+                CELL-DATA = "M",
            .
 
       * GRID
@@ -2958,13 +2976,16 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd6, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Eff",
       * CELLS' SETTING
               MODIFY gd6, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
       * CELLS' SETTING
               MODIFY gd6, X = 4, Y = 1,
                 CELL-DATA = "SS",
+      * CELLS' SETTING
+              MODIFY gd6, X = 5, Y = 1,
+                CELL-DATA = "M",
            .
 
       * GRID
@@ -2974,13 +2995,16 @@
                 CELL-DATA = "Split",
       * CELLS' SETTING
               MODIFY gd7, X = 2, Y = 1,
-                CELL-DATA = "Effort",
+                CELL-DATA = "Eff",
       * CELLS' SETTING
               MODIFY gd7, X = 3, Y = 1,
                 CELL-DATA = "Descrizione",
       * CELLS' SETTING
               MODIFY gd7, X = 4, Y = 1,
                 CELL-DATA = "SS",
+      * CELLS' SETTING
+              MODIFY gd7, X = 5, Y = 1,
+                CELL-DATA = "M",
            .
 
       * FD's Initialize Paragraph
@@ -3090,13 +3114,13 @@
               HANDLE IS Form1-St-1-Handle
            DISPLAY Form1 UPON form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY gd1, DISPLAY-COLUMNS (1, 5, 10, 23)
-              MODIFY gd2, DISPLAY-COLUMNS (1, 5, 10, 23)
-              MODIFY gd3, DISPLAY-COLUMNS (1, 5, 10, 23)
-              MODIFY gd4, DISPLAY-COLUMNS (1, 5, 10, 23)
-              MODIFY gd5, DISPLAY-COLUMNS (1, 5, 10, 23)
-              MODIFY gd6, DISPLAY-COLUMNS (1, 5, 10, 23)
-              MODIFY gd7, DISPLAY-COLUMNS (1, 5, 10, 23)
+              MODIFY gd1, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
+              MODIFY gd2, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
+              MODIFY gd3, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
+              MODIFY gd4, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
+              MODIFY gd5, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
+              MODIFY gd6, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
+              MODIFY gd7, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
            .
 
        Form1-PROC.
@@ -4112,9 +4136,9 @@
                      chk-prim1-buf chk-prim2-buf chk-prim3-buf 
                      chk-prim4-buf chk-prim5-buf chk-prim6-buf 
                      chk-prim7-buf chk-prim8-buf
-           initialize lab-durata-buf lab-macro-buf
-
-           move 0 to tot-days.
+           initialize lab-durata-buf lab-macro-buf.
+           
+           move 0 to tot-days.        
            initialize tab-mcg.                
            inquire gd1, last-row in tot-righe.
            perform varying riga from 2 by 1 
@@ -4224,7 +4248,7 @@
                       move 1 to v-macro8
                  end-evaluate
               end-perform
-           end-if. 
+           end-if.                     
 
            initialize lab-days-buf.
            move tot-days to como-value wom-days.   
@@ -4316,6 +4340,17 @@
                   into lab-int-buf
                 end-string            
            end-evaluate.     
+           if cambioGruppo                 
+              move "Nessuno" to cb-mcg1-buf
+              move "Nessuno" to cb-mcg2-buf
+              move "Nessuno" to cb-mcg3-buf
+              move "Nessuno" to cb-mcg4-buf
+              move "Nessuno" to cb-mcg5-buf
+              move "Nessuno" to cb-mcg6-buf
+              move "Nessuno" to cb-mcg7-buf
+              move "Nessuno" to cb-mcg8-buf
+              set cambioGruppo to false
+           end-if.
            display form1.
 
       ***---
@@ -4334,7 +4369,7 @@
                  move 0 to idx-gruppo
                  exit perform
               end-if
-           end-perform.
+           end-perform.               
            if idx-gruppo not = 0
               move mcg-code to el-mcg(idx-gruppo)
               move 1        to el-mcg-hit(idx-gruppo)       
@@ -4367,7 +4402,7 @@
                     exit perform 
                  end-if
               end-perform
-           end-if                                                    
+           end-if                      
            .
       * <TOTEM:END>
 
@@ -5293,6 +5328,7 @@
                  modify gd1(riga, 2), cell-data col-int-code
                  modify gd1(riga, 3), cell-data col-int-desc
                  modify gd1(riga, 4), cell-data col-ss
+                 modify gd1(riga, 5), cell-data col-isMulti
               end-if                    
            end-perform.
            if errori exit paragraph end-if.
@@ -5316,7 +5352,8 @@
                  move spaces to col-int-desc              
                  modify gd2(riga, 2), cell-data col-int-code   
                  modify gd2(riga, 3), cell-data col-int-desc
-                 modify gd2(riga, 4), cell-data col-ss
+                 modify gd2(riga, 4), cell-data col-ss     
+                 modify gd2(riga, 5), cell-data col-isMulti
               end-if
            end-perform.           
            if errori exit paragraph end-if.
@@ -5341,6 +5378,7 @@
                  modify gd3(riga, 2), cell-data col-int-code
                  modify gd3(riga, 3), cell-data col-int-desc  
                  modify gd3(riga, 4), cell-data col-ss
+                 modify gd3(riga, 5), cell-data col-isMulti
               end-if                  
            end-perform.     
            if errori exit paragraph end-if.
@@ -5365,6 +5403,7 @@
                  modify gd4(riga, 2), cell-data col-int-code
                  modify gd4(riga, 3), cell-data col-int-desc
                  modify gd4(riga, 4), cell-data col-ss
+                 modify gd4(riga, 5), cell-data col-isMulti
               end-if                  
            end-perform.    
            if errori exit paragraph end-if.
@@ -5389,6 +5428,7 @@
                  modify gd5(riga, 2), cell-data col-int-code
                  modify gd5(riga, 3), cell-data col-int-desc
                  modify gd5(riga, 4), cell-data col-ss
+                 modify gd5(riga, 5), cell-data col-isMulti
               end-if                  
            end-perform.  
            if errori exit paragraph end-if.
@@ -5413,6 +5453,7 @@
                  modify gd6(riga, 2), cell-data col-int-code     
                  modify gd6(riga, 3), cell-data col-int-desc
                  modify gd6(riga, 4), cell-data col-ss
+                 modify gd6(riga, 5), cell-data col-isMulti
               end-if                  
            end-perform.  
            if errori exit paragraph end-if.
@@ -5437,6 +5478,7 @@
                  modify gd7(riga, 2), cell-data col-int-code    
                  modify gd7(riga, 3), cell-data col-int-desc
                  modify gd7(riga, 4), cell-data col-ss
+                 modify gd7(riga, 5), cell-data col-isMulti
               end-if                  
            end-perform.  
            if errori exit paragraph end-if 
@@ -5604,37 +5646,44 @@
                   inquire gd1,(event-data-2, 2), cell-data col-int-code
                   inquire gd1,(event-data-2, 3), cell-data col-int-desc
                   inquire gd1,(event-data-2, 4), cell-data col-ss
+                  inquire gd1,(event-data-2, 5), cell-data col-isMulti
            when 2 inquire gd2,(event-data-2, 1), cell-data col-split
                   inquire gd2,(event-data-2, 2), cell-data col-int-code 
             
                   inquire gd2,(event-data-2, 3), cell-data col-int-desc
                   inquire gd2,(event-data-2, 4), cell-data col-ss
+                  inquire gd2,(event-data-2, 5), cell-data col-isMulti
            when 3 inquire gd3,(event-data-2, 1), cell-data col-split
                   inquire gd3,(event-data-2, 2), cell-data col-int-code 
             
                   inquire gd3,(event-data-2, 3), cell-data col-int-desc
                   inquire gd3,(event-data-2, 4), cell-data col-ss
+                  inquire gd3,(event-data-2, 5), cell-data col-isMulti
            when 4 inquire gd4,(event-data-2, 1), cell-data col-split
                   inquire gd4,(event-data-2, 2), cell-data col-int-code 
             
                   inquire gd4,(event-data-2, 3), cell-data col-int-desc
                   inquire gd4,(event-data-2, 4), cell-data col-ss
+                  inquire gd4,(event-data-2, 5), cell-data col-isMulti
            when 5 inquire gd5,(event-data-2, 1), cell-data col-split
                   inquire gd5,(event-data-2, 2), cell-data col-int-code 
             
                   inquire gd5,(event-data-2, 3), cell-data col-int-desc
                   inquire gd5,(event-data-2, 4), cell-data col-ss
+                  inquire gd5,(event-data-2, 5), cell-data col-isMulti
            when 6 inquire gd6,(event-data-2, 1), cell-data col-split
                   inquire gd6,(event-data-2, 2), cell-data col-int-code 
             
                   inquire gd6,(event-data-2, 3), cell-data col-int-desc
                   inquire gd6,(event-data-2, 4), cell-data col-ss
+                  inquire gd6,(event-data-2, 5), cell-data col-isMulti
            when 7 inquire gd7,(event-data-2, 1), cell-data col-split
                   inquire gd7,(event-data-2, 2), cell-data col-int-code 
             
                   inquire gd7,(event-data-2, 3), cell-data col-int-desc
                   inquire gd7,(event-data-2, 4), cell-data col-ss
-           end-evaluate.
+                  inquire gd7,(event-data-2, 5), cell-data col-isMulti
+           end-evaluate.             
            evaluate event-data-1
            when 1 if col-split = spaces
                      move spaces to col-int-desc
@@ -5667,7 +5716,14 @@
                    move como-desc to col-int-desc
                 else
                    move int-desc to col-int-desc
-                end-if                       
+                end-if       
+           when 5
+                if col-isMulti not = 0 and not = 1  
+                   set errori to true
+                   display message "Valori possibili 1/0"
+                             title tit-err
+                              icon 2
+                end-if   
            end-evaluate.      
   
            if errori
@@ -5716,39 +5772,73 @@
                   modify gd1,(event-data-2, 2), cell-data col-int-code  
                   modify gd1,(event-data-2, 3), cell-data col-int-desc
                   modify gd1,(event-data-2, 4), cell-data col-ss
+                  modify gd1,(event-data-2, 5), cell-data col-isMulti
            when 2 modify gd2,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd2,(event-data-2, 2), cell-data col-int-code  
                   modify gd2,(event-data-2, 3), cell-data col-int-desc
-                  modify gd2,(event-data-2, 4), cell-data col-ss
+                  modify gd2,(event-data-2, 4), cell-data col-ss     
+                  modify gd2,(event-data-2, 5), cell-data col-isMulti
            when 3 modify gd3,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd3,(event-data-2, 2), cell-data col-int-code  
                   modify gd3,(event-data-2, 3), cell-data col-int-desc
                   modify gd3,(event-data-2, 4), cell-data col-ss
+                  modify gd3,(event-data-2, 5), cell-data col-isMulti
            when 4 modify gd4,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore  
                   modify gd4,(event-data-2, 2), cell-data col-int-code  
                   modify gd4,(event-data-2, 3), cell-data col-int-desc
                   modify gd4,(event-data-2, 4), cell-data col-ss
+                  modify gd4,(event-data-2, 5), cell-data col-isMulti
            when 5 modify gd5,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd5,(event-data-2, 2), cell-data col-int-code  
                   modify gd5,(event-data-2, 3), cell-data col-int-desc
                   modify gd5,(event-data-2, 4), cell-data col-ss
+                  modify gd5,(event-data-2, 5), cell-data col-isMulti
            when 6 modify gd6,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd6,(event-data-2, 2), cell-data col-int-code  
                   modify gd6,(event-data-2, 3), cell-data col-int-desc
                   modify gd6,(event-data-2, 4), cell-data col-ss
+                  modify gd6,(event-data-2, 5), cell-data col-isMulti
            when 7 modify gd7,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
                   modify gd7,(event-data-2, 2), cell-data col-int-code  
                   modify gd7,(event-data-2, 3), cell-data col-int-desc
                   modify gd7,(event-data-2, 4), cell-data col-ss
+                  modify gd7,(event-data-2, 5), cell-data col-isMulti
            end-evaluate.
+                                         
+           set cambioGruppo to false.
+           if s-split not = spaces and
+              s-split not = col-split 
+              perform varying idx from 1 by 1 
+                        until idx > 20
+                 if el-mcg(idx) not = spaces
+                    set cambioGruppo to true
+                    exit perform
+                 end-if
+              end-perform
+           end-if.
+           if cambioGruppo
+              display message "Si sta cambiando lo split con gruppi già 
+      -    "impostati."
+                       x"0d0a""I gruppi relativi andranno reimpsotati."
+                       x"0d0a""Confermi?"
+                        title titolo
+                         icon 2
+                       giving scelta
+                      default mb-no
+                         type mb-yes-no
+              if scelta = mb-no
+                 set errori to true
+                 set event-action to event-action-fail
+              end-if
+           end-if.
 
-           if tutto-ok
+           if tutto-ok                   
               perform WRITE-DAYS
               perform CALCOLA-VALORI
            end-if    
@@ -5814,7 +5904,9 @@
                         modify gd1(riga, 3), cell-data como-desc        
                                          
                         modify gd1(riga, 4), cell-data 
-           wom-split-el-split-ss(idx-day, idx-split)
+           wom-split-el-split-ss(idx-day, idx-split)      
+                        modify gd1(riga, 5), cell-data 
+           wom-split-el-split-isMulti(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd1(riga, 1), cell-color 176
@@ -5828,7 +5920,9 @@
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd2(riga, 3), cell-data como-desc     
                         modify gd2(riga, 4), cell-data 
-           wom-split-el-split-ss(idx-day, idx-split)
+           wom-split-el-split-ss(idx-day, idx-split)    
+                        modify gd2(riga, 5), cell-data 
+           wom-split-el-split-isMulti(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd2(riga, 1), cell-color 176
@@ -5842,7 +5936,9 @@
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd3(riga, 3), cell-data como-desc
                         modify gd3(riga, 4), cell-data 
-           wom-split-el-split-ss(idx-day, idx-split)
+           wom-split-el-split-ss(idx-day, idx-split) 
+                        modify gd3(riga, 5), cell-data 
+           wom-split-el-split-isMulti(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd3(riga, 1), cell-color 176
@@ -5856,7 +5952,9 @@
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd4(riga, 3), cell-data como-desc
                         modify gd4(riga, 4), cell-data 
-           wom-split-el-split-ss(idx-day, idx-split)
+           wom-split-el-split-ss(idx-day, idx-split) 
+                        modify gd4(riga, 5), cell-data 
+           wom-split-el-split-isMulti(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd4(riga, 1), cell-color 176
@@ -5870,7 +5968,9 @@
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd5(riga, 3), cell-data como-desc
                         modify gd5(riga, 4), cell-data 
-           wom-split-el-split-ss(idx-day, idx-split)
+           wom-split-el-split-ss(idx-day, idx-split) 
+                        modify gd5(riga, 5), cell-data 
+           wom-split-el-split-isMulti(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd5(riga, 1), cell-color 176
@@ -5884,7 +5984,9 @@
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd6(riga, 3), cell-data como-desc
                         modify gd6(riga, 4), cell-data 
-           wom-split-el-split-ss(idx-day, idx-split)
+           wom-split-el-split-ss(idx-day, idx-split) 
+                        modify gd6(riga, 5), cell-data 
+           wom-split-el-split-isMulti(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd6(riga, 1), cell-color 176
@@ -5898,7 +6000,9 @@
            wom-split-el-split-int-code(idx-day, idx-split)
                         modify gd7(riga, 3), cell-data como-desc
                         modify gd7(riga, 4), cell-data 
-           wom-split-el-split-ss(idx-day, idx-split)
+           wom-split-el-split-ss(idx-day, idx-split) 
+                        modify gd7(riga, 5), cell-data 
+           wom-split-el-split-isMulti(idx-day, idx-split)
                         if wom-split-el-split-primary(idx-day, 
            idx-split) = 1
                            modify gd7(riga, 1), cell-color 176
@@ -6413,7 +6517,7 @@
                      end-if
                   end-if
                   modify gd1, start-x = startX,
-                              x = 4,
+                              x = 5,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6427,7 +6531,7 @@
                      end-if
                   end-if
                   modify gd2, start-x = startX,
-                              x = 4,
+                              x = 5,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6441,7 +6545,7 @@
                      end-if
                   end-if
                   modify gd3, start-x = startX,
-                              x = 4,
+                              x = 5,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,                             
@@ -6455,7 +6559,7 @@
                      end-if
                   end-if
                   modify gd4, start-x = startX,
-                              x = 4,
+                              x = 5,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6469,7 +6573,7 @@
                      end-if
                   end-if
                   modify gd5, start-x = startX,
-                              x = 4,
+                              x = 5,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6483,7 +6587,7 @@
                      end-if
                   end-if
                   modify gd6, start-x = startX,
-                              x = 4,
+                              x = 5,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6497,7 +6601,7 @@
                      end-if
                   end-if
                   modify gd7, start-x = startX,
-                              x = 4,
+                              x = 5,
                         start-y = event-data-2,
                               y = event-data-2,
                    region-color = 257,
@@ -6646,6 +6750,9 @@
            idx-ok)  
                  inquire gd1(riga, 4), cell-data in col-ss
                  move col-ss     to wom-split-el-split-ss(1, idx-ok)
+                 inquire gd1(riga, 5), cell-data in col-isMulti
+                 move col-isMulti     to wom-split-el-split-isMulti(1, 
+           idx-ok)
               end-if
            end-perform.
            
@@ -6664,7 +6771,10 @@
                  move como-prim  to wom-split-el-split-primary(2, 
            idx-ok)  
                  inquire gd2(riga, 4), cell-data in col-ss
-                 move col-ss     to wom-split-el-split-ss(2, idx-ok)
+                 move col-ss     to wom-split-el-split-ss(2, idx-ok)  
+                 inquire gd2(riga, 5), cell-data in col-isMulti
+                 move col-isMulti     to wom-split-el-split-isMulti(2, 
+           idx-ok)
               end-if
            end-perform.
            
@@ -6684,6 +6794,9 @@
            idx-ok) 
                  inquire gd3(riga, 4), cell-data in col-ss
                  move col-ss     to wom-split-el-split-ss(3, idx-ok)
+                 inquire gd3(riga, 5), cell-data in col-isMulti
+                 move col-isMulti     to wom-split-el-split-isMulti(3, 
+           idx-ok)
               end-if
            end-perform.
            
@@ -6702,7 +6815,10 @@
                  move como-prim  to wom-split-el-split-primary(4, 
            idx-ok)
                  inquire gd4(riga, 4), cell-data in col-ss
-                 move col-ss     to wom-split-el-split-ss(4, idx-ok)
+                 move col-ss     to wom-split-el-split-ss(4, idx-ok) 
+                 inquire gd4(riga, 5), cell-data in col-isMulti
+                 move col-isMulti     to wom-split-el-split-isMulti(4, 
+           idx-ok)
               end-if
            end-perform.
            
@@ -6721,7 +6837,10 @@
                  move como-prim  to wom-split-el-split-primary(5, 
            idx-ok) 
                  inquire gd5(riga, 4), cell-data in col-ss
-                 move col-ss     to wom-split-el-split-ss(5, idx-ok)
+                 move col-ss     to wom-split-el-split-ss(5, idx-ok) 
+                 inquire gd5(riga, 5), cell-data in col-isMulti
+                 move col-isMulti     to wom-split-el-split-isMulti(5, 
+           idx-ok)
               end-if
            end-perform.
            
@@ -6740,7 +6859,10 @@
                  move como-prim  to wom-split-el-split-primary(6, 
            idx-ok)  
                  inquire gd6(riga, 4), cell-data in col-ss
-                 move col-ss     to wom-split-el-split-ss(6, idx-ok)
+                 move col-ss     to wom-split-el-split-ss(6, idx-ok) 
+                 inquire gd1(riga, 6), cell-data in col-isMulti
+                 move col-isMulti     to wom-split-el-split-isMulti(6, 
+           idx-ok)
               end-if
            end-perform.
            
@@ -6759,7 +6881,10 @@
                  move como-prim  to wom-split-el-split-primary(7, 
            idx-ok)  
                  inquire gd7(riga, 4), cell-data in col-ss
-                 move col-ss     to wom-split-el-split-ss(7, idx-ok)
+                 move col-ss     to wom-split-el-split-ss(7, idx-ok) 
+                 inquire gd1(riga, 7), cell-data in col-isMulti
+                 move col-isMulti     to wom-split-el-split-isMulti(7, 
+           idx-ok)
               end-if
            end-perform.   
 
@@ -6879,16 +7004,6 @@
                  exit perform
               end-if
            end-perform       
-           .
-      * <TOTEM:END>
-
-       Screen1-Cb-1-BeforeProcedure.
-      * <TOTEM:PARA. Screen1-Cb-1-BeforeProcedure>
-           .
-      * <TOTEM:END>
-
-       Screen1-Cb-1-AfterProcedure.
-      * <TOTEM:PARA. Screen1-Cb-1-AfterProcedure>
            .
       * <TOTEM:END>
 
@@ -7072,6 +7187,8 @@
               inquire gd1(event-data-2, 1), cell-data in col-split
               if col-split = space and event-data-1 > 1
                  set event-action to event-action-fail
+              else
+                 inquire gd1(event-data-2, 1), cell-data s-split
               end-if
            end-if 
            .
@@ -7083,7 +7200,9 @@
            else
               inquire gd2(event-data-2, 1), cell-data in col-split  
               if col-split = space and event-data-1 > 1
-                 set event-action to event-action-fail
+                 set event-action to event-action-fail   
+              else
+                 inquire gd2(event-data-2, 1), cell-data s-split
               end-if
            end-if 
            .
@@ -7095,7 +7214,9 @@
            else
               inquire gd3(event-data-2, 1), cell-data in col-split 
               if col-split = space and event-data-1 > 1
-                 set event-action to event-action-fail
+                 set event-action to event-action-fail  
+              else
+                 inquire gd3(event-data-2, 1), cell-data s-split
               end-if
            end-if 
            .
@@ -7107,7 +7228,9 @@
            else
               inquire gd4(event-data-2, 1), cell-data in col-split 
               if col-split = space and event-data-1 > 1
-                 set event-action to event-action-fail
+                 set event-action to event-action-fail  
+              else
+                 inquire gd4(event-data-2, 1), cell-data s-split
               end-if
            end-if 
            .
@@ -7119,7 +7242,9 @@
            else
               inquire gd5(event-data-2, 1), cell-data in col-split
               if col-split = space and event-data-1 > 1
-                 set event-action to event-action-fail
+                 set event-action to event-action-fail  
+              else
+                 inquire gd6(event-data-2, 1), cell-data s-split
               end-if
            end-if 
            .
@@ -7131,7 +7256,9 @@
            else
               inquire gd6(event-data-2, 1), cell-data in col-split 
               if col-split = space and event-data-1 > 1
-                 set event-action to event-action-fail
+                 set event-action to event-action-fail  
+              else
+                 inquire gd6(event-data-2, 1), cell-data s-split
               end-if
            end-if 
            .
@@ -7143,7 +7270,9 @@
            else
               inquire gd7(event-data-2, 1), cell-data in col-split 
               if col-split = space and event-data-1 > 1
-                 set event-action to event-action-fail
+                 set event-action to event-action-fail    
+              else
+                 inquire gd7(event-data-2, 1), cell-data s-split
               end-if
            end-if 
            .

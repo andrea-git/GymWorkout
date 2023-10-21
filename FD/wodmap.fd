@@ -20,7 +20,8 @@
                            25 wom-split-el-split-ss        PIC  99.
       *(( XFD NAME = wom-split-el-sp-p ))
                            25 wom-split-el-split-primary   PIC  9.
-                           25 FILLER           PIC  x(99).
+                           25 wom-split-el-split-isMulti   PIC  9.
+                           25 FILLER           PIC  x(98).
                            25 FILLER           PIC  9(18).
                10 wom-dur-code     PIC  99.
                10 wom-mcg-default-tab.

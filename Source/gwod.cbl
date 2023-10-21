@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 19 ottobre 2023 14:41:55.
+       DATE-WRITTEN.        sabato 21 ottobre 2023 14:21:56.
        REMARKS.
       *{TOTEM}END
 
@@ -568,7 +568,7 @@
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
-       77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
+       77 TMP-DataSet1-wodmap-BUF     PIC X(18384).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(529).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
@@ -10195,6 +10195,7 @@
                  move tot-exe to ex-remain  
                  perform varying idx-days from 1 by 1 
                            until idx-days > wom-days
+
                     perform varying idx-split from 1 by 1 
                               until idx-split > 20
                        
@@ -10222,12 +10223,9 @@
                        when other exit perform
                        end-evaluate
 
-                       move wom-split-el-split-int-code(idx-days, 
-           idx-split)
-                         to int-code
-                       read intexe no lock
-                       if int-effort not = 4
-                          exit perform
+                       if wom-split-el-split-isMulti(idx-days, 
+           idx-split) = 0
+                          exit perform cycle
                        end-if
 
                        if el-mcg-code(idx-gruppi) = mcg-code
@@ -10255,8 +10253,7 @@
                                 end-if
                                 exit perform
                              end-if
-                          end-perform
-                          exit perform
+                          end-perform       
                        end-if
                     end-perform
                  end-perform          

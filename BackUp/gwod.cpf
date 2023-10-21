@@ -11935,6 +11935,7 @@ BEGIN-TEXT
                  move tot-exe to ex-remain  
                  perform varying idx-days from 1 by 1 
                            until idx-days > wom-days
+
                     perform varying idx-split from 1 by 1 
                               until idx-split > 20
                        
@@ -11953,11 +11954,8 @@ BEGIN-TEXT
                        when other exit perform
                        end-evaluate
 
-                       move wom-split-el-split-int-code(idx-days, idx-split)
-                         to int-code
-                       read intexe no lock
-                       if int-effort not = 4
-                          exit perform
+                       if wom-split-el-split-isMulti(idx-days, idx-split) = 0
+                          exit perform cycle
                        end-if
 
                        if el-mcg-code(idx-gruppi) = mcg-code
@@ -11982,8 +11980,7 @@ BEGIN-TEXT
                                 end-if
                                 exit perform
                              end-if
-                          end-perform
-                          exit perform
+                          end-perform       
                        end-if
                     end-perform
                  end-perform          

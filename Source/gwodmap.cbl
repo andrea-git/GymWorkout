@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        sabato 21 ottobre 2023 16:49:16.
+       DATE-WRITTEN.        sabato 21 ottobre 2023 17:00:26.
        REMARKS.
       *{TOTEM}END
 
@@ -900,10 +900,10 @@
        05
            gd1, 
            Grid, 
-           COL 3,50, 
+           COL 2,90, 
            LINE 14,05,
            LINES 13,96 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            3-D,
            DATA-COLUMNS (1, 2, 4, 104, 106),
            ALIGNMENT ("C", "C", "U", "R", "C"),
@@ -922,7 +922,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 25,
+           VIRTUAL-WIDTH 26,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd1-BeforeProcedure, 
@@ -933,10 +933,10 @@
        05
            gd2, 
            Grid, 
-           COL 27,60, 
+           COL 27,00, 
            LINE 14,05,
            LINES 13,96 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            3-D,
            DATA-COLUMNS (1, 2, 4, 104, 106),
            ALIGNMENT ("C", "C", "U", "R", "C"),
@@ -955,7 +955,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 25,
+           VIRTUAL-WIDTH 26,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd2-BeforeProcedure, 
@@ -966,10 +966,10 @@
        05
            gd3, 
            Grid, 
-           COL 51,70, 
+           COL 51,20, 
            LINE 14,05,
            LINES 13,96 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            3-D,
            DATA-COLUMNS (1, 2, 4, 104, 106),
            ALIGNMENT ("C", "C", "U", "R", "C"),
@@ -988,7 +988,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 25,
+           VIRTUAL-WIDTH 26,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd3-BeforeProcedure, 
@@ -999,10 +999,10 @@
        05
            gd4, 
            Grid, 
-           COL 75,70, 
+           COL 75,30, 
            LINE 14,05,
            LINES 13,96 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            3-D,
            DATA-COLUMNS (1, 2, 4, 104, 106),
            ALIGNMENT ("C", "C", "U", "R", "C"),
@@ -1021,7 +1021,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 25,
+           VIRTUAL-WIDTH 26,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd4-BeforeProcedure, 
@@ -1032,10 +1032,10 @@
        05
            gd5, 
            Grid, 
-           COL 100,10, 
+           COL 99,80, 
            LINE 14,05,
            LINES 13,96 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            3-D,
            DATA-COLUMNS (1, 2, 4, 104, 106),
            ALIGNMENT ("C", "C", "U", "R", "C"),
@@ -1054,7 +1054,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 25,
+           VIRTUAL-WIDTH 26,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd5-BeforeProcedure, 
@@ -1065,10 +1065,10 @@
        05
            gd6, 
            Grid, 
-           COL 124,30, 
+           COL 124,10, 
            LINE 14,00,
            LINES 13,96 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            3-D,
            DATA-COLUMNS (1, 2, 4, 104, 106),
            ALIGNMENT ("C", "C", "U", "R", "C"),
@@ -1087,7 +1087,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 25,
+           VIRTUAL-WIDTH 26,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd6-BeforeProcedure, 
@@ -1098,10 +1098,10 @@
        05
            gd7, 
            Grid, 
-           COL 148,40, 
+           COL 148,30, 
            LINE 14,05,
            LINES 13,96 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            3-D,
            DATA-COLUMNS (1, 2, 4, 104, 106),
            ALIGNMENT ("C", "C", "U", "R", "C"),
@@ -1120,7 +1120,7 @@
            WIDTH-IN-CELLS,
            NUM-ROWS 20,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 25,
+           VIRTUAL-WIDTH 26,
            VPADDING 50,
            VSCROLL,
            BEFORE PROCEDURE gd7-BeforeProcedure, 
@@ -1131,10 +1131,10 @@
        05
            Screen1-La-2aab, 
            Label, 
-           COL 148,40, 
+           COL 148,30, 
            LINE 12,52,
            LINES 1,30 ,
-           SIZE 23,30 ,
+           SIZE 23,10 ,
            ID IS 23,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1147,10 +1147,10 @@
        05
            Screen1-La-2aaba, 
            Label, 
-           COL 3,50, 
+           COL 2,90, 
            LINE 12,44,
            LINES 1,30 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            ID IS 24,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1163,10 +1163,10 @@
        05
            Screen1-La-2aabb, 
            Label, 
-           COL 27,60, 
-           LINE 12,52,
+           COL 27,00, 
+           LINE 12,48,
            LINES 1,30 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            ID IS 25,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1179,10 +1179,10 @@
        05
            Screen1-La-2aabba, 
            Label, 
-           COL 75,70, 
+           COL 75,30, 
            LINE 12,52,
            LINES 1,30 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            ID IS 26,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1195,10 +1195,10 @@
        05
            Screen1-La-2aabaa, 
            Label, 
-           COL 51,70, 
+           COL 51,20, 
            LINE 12,48,
            LINES 1,30 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            ID IS 27,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1211,10 +1211,10 @@
        05
            Screen1-La-2aabbb, 
            Label, 
-           COL 124,30, 
+           COL 124,10, 
            LINE 12,52,
            LINES 1,30 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            ID IS 28,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1227,10 +1227,10 @@
        05
            Screen1-La-2aabab, 
            Label, 
-           COL 100,10, 
+           COL 99,80, 
            LINE 12,52,
            LINES 1,30 ,
-           SIZE 22,30 ,
+           SIZE 23,10 ,
            ID IS 29,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -3114,13 +3114,13 @@
               HANDLE IS Form1-St-1-Handle
            DISPLAY Form1 UPON form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY gd1, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
-              MODIFY gd2, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
-              MODIFY gd3, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
-              MODIFY gd4, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
-              MODIFY gd5, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
-              MODIFY gd6, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
-              MODIFY gd7, DISPLAY-COLUMNS (1, 5, 9, 22, 24)
+              MODIFY gd1, DISPLAY-COLUMNS (1, 5, 8, 21, 24)
+              MODIFY gd2, DISPLAY-COLUMNS (1, 5, 8, 21, 24)
+              MODIFY gd3, DISPLAY-COLUMNS (1, 5, 8, 21, 24)
+              MODIFY gd4, DISPLAY-COLUMNS (1, 5, 8, 21, 24)
+              MODIFY gd5, DISPLAY-COLUMNS (1, 5, 8, 21, 24)
+              MODIFY gd6, DISPLAY-COLUMNS (1, 5, 8, 21, 24)
+              MODIFY gd7, DISPLAY-COLUMNS (1, 5, 8, 21, 24)
            .
 
        Form1-PROC.
@@ -5813,14 +5813,17 @@
                                          
            set cambioGruppo to false.
            if s-split not = spaces and
-              s-split not = col-split 
-              perform varying idx from 1 by 1 
-                        until idx > 20
-                 if el-mcg(idx) not = spaces
-                    set cambioGruppo to true
-                    exit perform
-                 end-if
-              end-perform
+              s-split not = col-split          
+              if cb-mcg1-buf not = "Nessuno" or
+                 cb-mcg2-buf not = "Nessuno" or
+                 cb-mcg3-buf not = "Nessuno" or
+                 cb-mcg4-buf not = "Nessuno" or
+                 cb-mcg5-buf not = "Nessuno" or
+                 cb-mcg6-buf not = "Nessuno" or
+                 cb-mcg7-buf not = "Nessuno" or
+                 cb-mcg8-buf not = "Nessuno"
+                 set cambioGruppo to true
+              end-if
            end-if.
            if cambioGruppo
               display message "Si sta cambiando lo split con gruppi già 

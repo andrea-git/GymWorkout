@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1511356-445-1719632085
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A15145133-367-406531694
 
 {{@DESCRIPTION:
 
@@ -2624,7 +2624,7 @@ Begin Screen Form1
       Visible           = NONE
       Width in Cells    = TRUE
       Begin Grid gd1
-         SCREEN-COL        = 3,50
+         SCREEN-COL        = 2,90
          SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -2639,23 +2639,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 5, Y = 1, Data = "M" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 2,60
+         Column            = 2,00
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
          Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 5, Name = col-isMulti, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2687,12 +2687,12 @@ Begin Screen Form1
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 1
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 25
+         Virtual Width     = 26
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -2708,7 +2708,7 @@ Begin Screen Form1
          Before Procedure  = gd1-BeforeProcedure
       End
       Begin Grid gd2
-         SCREEN-COL        = 27,60
+         SCREEN-COL        = 27,00
          SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -2723,23 +2723,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 5, Y = 1, Data = "M" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 26,70
+         Column            = 26,10
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
          Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 5, Name = col-isMulti, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2771,12 +2771,12 @@ Begin Screen Form1
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 2
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 25
+         Virtual Width     = 26
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -2792,7 +2792,7 @@ Begin Screen Form1
          Before Procedure  = gd2-BeforeProcedure
       End
       Begin Grid gd3
-         SCREEN-COL        = 51,70
+         SCREEN-COL        = 51,20
          SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -2807,23 +2807,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 5, Y = 1, Data = "M" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 50,80
+         Column            = 50,30
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
          Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 5, Name = col-isMulti, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2855,12 +2855,12 @@ Begin Screen Form1
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 3
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 25
+         Virtual Width     = 26
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -2876,7 +2876,7 @@ Begin Screen Form1
          Before Procedure  = gd3-BeforeProcedure
       End
       Begin Grid gd4
-         SCREEN-COL        = 75,70
+         SCREEN-COL        = 75,30
          SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -2891,23 +2891,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 5, Y = 1, Data = "M" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 74,80
+         Column            = 74,40
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
          Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 5, Name = col-isMulti, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2939,12 +2939,12 @@ Begin Screen Form1
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 4
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 25
+         Virtual Width     = 26
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -2960,7 +2960,7 @@ Begin Screen Form1
          Before Procedure  = gd4-BeforeProcedure
       End
       Begin Grid gd5
-         SCREEN-COL        = 100,10
+         SCREEN-COL        = 99,80
          SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -2975,23 +2975,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 5, Y = 1, Data = "M" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 99,20
+         Column            = 98,90
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
          Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 5, Name = col-isMulti, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -3023,12 +3023,12 @@ Begin Screen Form1
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 5
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 25
+         Virtual Width     = 26
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -3044,7 +3044,7 @@ Begin Screen Form1
          Before Procedure  = gd5-BeforeProcedure
       End
       Begin Grid gd6
-         SCREEN-COL        = 124,30
+         SCREEN-COL        = 124,10
          SCREEN-LINE       = 14,00
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -3059,23 +3059,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 5, Y = 1, Data = "M" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 123,40
+         Column            = 123,20
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
          Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 5, Name = col-isMulti, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -3107,12 +3107,12 @@ Begin Screen Form1
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 6
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 25
+         Virtual Width     = 26
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -3128,7 +3128,7 @@ Begin Screen Form1
          Before Procedure  = gd6-BeforeProcedure
       End
       Begin Grid gd7
-         SCREEN-COL        = 148,40
+         SCREEN-COL        = 148,30
          SCREEN-LINE       = 14,05
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -3143,23 +3143,23 @@ Begin Screen Form1
          Cells' Setting    = ( X = 5, Y = 1, Data = "M" )
          Centered Headings = FALSE
          Color             = 0
-         Column            = 147,50
+         Column            = 147,40
          Column Headings   = TRUE
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
          Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 5, Name = col-isMulti, READONLY = 0 )
          Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-         Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -3191,12 +3191,12 @@ Begin Screen Form1
          Paged             = FALSE
          Row Dividers      = 1
          Row Headings      = FALSE
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 7
          Tiled Headings    = TRUE
          Use Tab           = FALSE
-         Virtual Width     = 25
+         Virtual Width     = 26
          Visible           = NONE
          Vpadding          = 50
          Vscroll           = TRUE
@@ -3212,7 +3212,7 @@ Begin Screen Form1
          Before Procedure  = gd7-BeforeProcedure
       End
       Begin Label Screen1-La-2aab
-         SCREEN-COL        = 148,40
+         SCREEN-COL        = 148,30
          SCREEN-LINE       = 12,52
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -3220,7 +3220,7 @@ Begin Screen Form1
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 147,50
+         Column            = 147,40
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3236,7 +3236,7 @@ Begin Screen Form1
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 23,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 8
          Title             = "Giorno 7"
@@ -3245,7 +3245,7 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aaba
-         SCREEN-COL        = 3,50
+         SCREEN-COL        = 2,90
          SCREEN-LINE       = 12,44
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -3253,7 +3253,7 @@ Begin Screen Form1
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 2,60
+         Column            = 2,00
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3269,7 +3269,7 @@ Begin Screen Form1
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 9
          Title             = "Giorno 1"
@@ -3278,15 +3278,15 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aabb
-         SCREEN-COL        = 27,60
-         SCREEN-LINE       = 12,52
+         SCREEN-COL        = 27,00
+         SCREEN-LINE       = 12,48
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
          (Name)            = Screen1-La-2aabb
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 26,70
+         Column            = 26,10
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3297,12 +3297,12 @@ Begin Screen Form1
          ID                = 25
          Justification     = Center
          Label Offset      = 20
-         Line              = 2,30
+         Line              = 2,26
          Lines             = 1,30
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 10
          Title             = "Giorno 2"
@@ -3311,7 +3311,7 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aabba
-         SCREEN-COL        = 75,70
+         SCREEN-COL        = 75,30
          SCREEN-LINE       = 12,52
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -3319,7 +3319,7 @@ Begin Screen Form1
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 74,80
+         Column            = 74,40
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3335,7 +3335,7 @@ Begin Screen Form1
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 11
          Title             = "Giorno 4"
@@ -3344,7 +3344,7 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aabaa
-         SCREEN-COL        = 51,70
+         SCREEN-COL        = 51,20
          SCREEN-LINE       = 12,48
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -3352,7 +3352,7 @@ Begin Screen Form1
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 50,80
+         Column            = 50,30
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3368,7 +3368,7 @@ Begin Screen Form1
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 12
          Title             = "Giorno 3"
@@ -3377,7 +3377,7 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aabbb
-         SCREEN-COL        = 124,30
+         SCREEN-COL        = 124,10
          SCREEN-LINE       = 12,52
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -3385,7 +3385,7 @@ Begin Screen Form1
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 123,40
+         Column            = 123,20
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3401,7 +3401,7 @@ Begin Screen Form1
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 13
          Title             = "Giorno 6"
@@ -3410,7 +3410,7 @@ Begin Screen Form1
          Width in Cells    = TRUE
       End
       Begin Label Screen1-La-2aabab
-         SCREEN-COL        = 100,10
+         SCREEN-COL        = 99,80
          SCREEN-LINE       = 12,52
          LOCK-CONTROL      = TRUE
          LEVEL             = 5
@@ -3418,7 +3418,7 @@ Begin Screen Form1
          Clines            = 0
          Clines Unit       = Default
          Color             = 0
-         Column            = 99,20
+         Column            = 98,90
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
@@ -3434,7 +3434,7 @@ Begin Screen Form1
          Lines Unit        = Default
          No Key Letter     = FALSE
          Occurs            = 0
-         Size              = 22,30
+         Size              = 23,10
          Size Unit         = Default
          Tab Order         = 14
          Title             = "Giorno 5"
@@ -6587,14 +6587,17 @@ BEGIN-TEXT
                                          
            set cambioGruppo to false.
            if s-split not = spaces and
-              s-split not = col-split 
-              perform varying idx from 1 by 1 
-                        until idx > 20
-                 if el-mcg(idx) not = spaces
-                    set cambioGruppo to true
-                    exit perform
-                 end-if
-              end-perform
+              s-split not = col-split          
+              if cb-mcg1-buf not = "Nessuno" or
+                 cb-mcg2-buf not = "Nessuno" or
+                 cb-mcg3-buf not = "Nessuno" or
+                 cb-mcg4-buf not = "Nessuno" or
+                 cb-mcg5-buf not = "Nessuno" or
+                 cb-mcg6-buf not = "Nessuno" or
+                 cb-mcg7-buf not = "Nessuno" or
+                 cb-mcg8-buf not = "Nessuno"
+                 set cambioGruppo to true
+              end-if
            end-if.
            if cambioGruppo
               display message "Si sta cambiando lo split con gruppi già impostati."

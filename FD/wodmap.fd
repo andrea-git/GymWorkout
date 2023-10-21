@@ -15,9 +15,9 @@
       *(( XFD NAME = wom-split-el-sp-si ))
                            25 wom-split-el-split-sigla     PIC  x.
       *(( XFD NAME = wom-split-el-sp-ic ))
-                           25 wom-split-el-split-int-code  PIC  9.
+                           25 wom-split-el-split-int-code  PIC  99.
       *(( XFD NAME = wom-split-el-sp-ss ))
-                           25 wom-split-el-split-ss        PIC  9.
+                           25 wom-split-el-split-ss        PIC  99.
       *(( XFD NAME = wom-split-el-sp-p ))
                            25 wom-split-el-split-primary   PIC  9.
                            25 FILLER           PIC  x(99).

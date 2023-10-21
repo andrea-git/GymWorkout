@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-Adesk-andre=169.254.95.20
+aNote-andre=192.168.56.1
 
 
 [PROGRAM_CONTENT]
@@ -11,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A138319-866-291503325
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1511356-445-1719632085
 
 {{@DESCRIPTION:
 
@@ -484,9 +484,9 @@ m_bFixed=1
 
 @}}
 [FDITEM45_WK]
-m_strName=col-effort
-m_strRawPic=z
-m_strPic=z
+m_strName=col-int-code
+m_strRawPic=zz
+m_strPic=zz
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -514,75 +514,74 @@ m_bFixed=1
 
 @}}
 [FDITEM48_WK]
-m_strName=save-key
-m_nItemLevel=1
+m_strName=col-ss
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM48_WK
 
 @}}
 [FDITEM49_WK]
-m_strName=save-code
-m_strRawPic=999
-m_strPic=999
-m_nItemLevel=5
+m_strName=save-key
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM49_WK
 
 @}}
 [FDITEM50_WK]
-m_strName=save-key-1
-m_nItemLevel=1
+m_strName=save-code
+m_strRawPic=999
+m_strPic=999
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM50_WK
 
 @}}
 [FDITEM51_WK]
-m_strName=save-ragsoc-1
-m_strRawPic=x(50)
-m_strPic=x(50)
-m_nItemLevel=5
+m_strName=save-key-1
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM51_WK
 
 @}}
 [FDITEM52_WK]
-m_strName=STATUS-wodmap
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
+m_strName=save-ragsoc-1
+m_strRawPic=x(50)
+m_strPic=x(50)
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM52_WK
 
 @}}
 [FDITEM53_WK]
+m_strName=STATUS-wodmap
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM53_WK
+
+@}}
+[FDITEM54_WK]
 m_strName=Valid-STATUS-wodmap
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM53_WK
-
-@}}
-[FDITEM54_WK]
-m_strName=como-volta-e
-m_strRawPic=x(5)
-m_strPic=x(5)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM54_WK
 
 @}}
 [FDITEM55_WK]
-m_strName=AUTO-ID
-m_strRawPic=9(6)
-m_strPic=9(6)
-m_strDefaultValue=0
+m_strName=como-volta-e
+m_strRawPic=x(5)
+m_strPic=x(5)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -590,8 +589,10 @@ m_bFixed=1
 
 @}}
 [FDITEM56_WK]
-m_strName=Calibri14-Occidentale
-m_nUsage=26
+m_strName=AUTO-ID
+m_strRawPic=9(6)
+m_strPic=9(6)
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -599,6 +600,15 @@ m_bFixed=1
 
 @}}
 [FDITEM57_WK]
+m_strName=Calibri14-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM57_WK
+
+@}}
+[FDITEM58_WK]
 m_strName=Screen1-Bt-1-Handle
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -607,19 +617,19 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM57_WK
+{{@DataItem_m_strDescriptionFDITEM58_WK
 
 @}}
-[FDITEM58_WK]
+[FDITEM59_WK]
 m_strName=Calibri14B-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM58_WK
+{{@DataItem_m_strDescriptionFDITEM59_WK
 
 @}}
-[FDITEM59_WK]
+[FDITEM60_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -628,23 +638,13 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM59_WK
-
-@}}
-[FDITEM60_WK]
-m_strName=wom-note
-m_strRawPic=x(200)
-m_strPic=x(200)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM60_WK
 
 @}}
 [FDITEM61_WK]
-m_strName=STATUS-duration
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=wom-note
+m_strRawPic=x(200)
+m_strPic=x(200)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -652,26 +652,26 @@ m_bFixed=1
 
 @}}
 [FDITEM62_WK]
+m_strName=STATUS-duration
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM62_WK
+
+@}}
+[FDITEM63_WK]
 m_strName=Valid-STATUS-duration
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM62_WK
-
-@}}
-[FDITEM63_WK]
-m_strName=lab-durata-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM63_WK
 
 @}}
 [FDITEM64_WK]
-m_strName=lab-int-buf
+m_strName=lab-durata-buf
 m_strRawPic=X(100)
 m_strPic=X(100)
 m_nItemLevel=77
@@ -681,9 +681,9 @@ m_bFixed=1
 
 @}}
 [FDITEM65_WK]
-m_strName=STATUS-intensity
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=lab-int-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -691,28 +691,28 @@ m_bFixed=1
 
 @}}
 [FDITEM66_WK]
+m_strName=STATUS-intensity
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM66_WK
+
+@}}
+[FDITEM67_WK]
 m_strName=Valid-STATUS-intensity
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM66_WK
-
-@}}
-[FDITEM67_WK]
-m_strName=lab-stimata-buf
-m_strRawPic=X(20)
-m_strPic=X(20)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM67_WK
 
 @}}
 [FDITEM68_WK]
-m_strName=STATUS-intexe
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=lab-stimata-buf
+m_strRawPic=X(20)
+m_strPic=X(20)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -720,54 +720,54 @@ m_bFixed=1
 
 @}}
 [FDITEM69_WK]
+m_strName=STATUS-intexe
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM69_WK
+
+@}}
+[FDITEM70_WK]
 m_strName=Valid-STATUS-intexe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM69_WK
-
-@}}
-[FDITEM70_WK]
-m_strName=Calibri10-Occidentale
-m_nUsage=26
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM70_WK
 
 @}}
 [FDITEM71_WK]
-m_strName=hiddenData
-m_nItemLevel=1
+m_strName=Calibri10-Occidentale
+m_nUsage=26
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM71_WK
 
 @}}
 [FDITEM72_WK]
-m_strName=hid-primary
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=3
+m_strName=hiddenData
+m_nItemLevel=1
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM72_WK
 
 @}}
 [FDITEM73_WK]
-m_strName=Calibri12-Occidentale
-m_nUsage=26
-m_nItemLevel=77
+m_strName=hid-primary
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=3
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM73_WK
 
 @}}
 [FDITEM74_WK]
-m_strName=lab-macro-buf
-m_strRawPic=X(200)
-m_strPic=X(200)
+m_strName=Calibri12-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -775,9 +775,9 @@ m_bFixed=1
 
 @}}
 [FDITEM75_WK]
-m_strName=lab-days-buf
-m_strRawPic=X(100)
-m_strPic=X(100)
+m_strName=lab-macro-buf
+m_strRawPic=X(200)
+m_strPic=X(200)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -785,10 +785,9 @@ m_bFixed=1
 
 @}}
 [FDITEM76_WK]
-m_strName=chk-prim1-buf
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
+m_strName=lab-days-buf
+m_strRawPic=X(100)
+m_strPic=X(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -796,9 +795,10 @@ m_bFixed=1
 
 @}}
 [FDITEM77_WK]
-m_strName=lab-macro1-buf
-m_strRawPic=X(20)
-m_strPic=X(20)
+m_strName=chk-prim1-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -806,10 +806,9 @@ m_bFixed=1
 
 @}}
 [FDITEM78_WK]
-m_strName=v-macro1
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
+m_strName=lab-macro1-buf
+m_strRawPic=X(20)
+m_strPic=X(20)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -817,7 +816,7 @@ m_bFixed=1
 
 @}}
 [FDITEM79_WK]
-m_strName=v-macro2
+m_strName=v-macro1
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -828,7 +827,7 @@ m_bFixed=1
 
 @}}
 [FDITEM80_WK]
-m_strName=v-macro6
+m_strName=v-macro2
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -839,7 +838,7 @@ m_bFixed=1
 
 @}}
 [FDITEM81_WK]
-m_strName=v-macro5
+m_strName=v-macro6
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -850,7 +849,7 @@ m_bFixed=1
 
 @}}
 [FDITEM82_WK]
-m_strName=v-macro4
+m_strName=v-macro5
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -861,7 +860,7 @@ m_bFixed=1
 
 @}}
 [FDITEM83_WK]
-m_strName=v-macro3
+m_strName=v-macro4
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -872,7 +871,7 @@ m_bFixed=1
 
 @}}
 [FDITEM84_WK]
-m_strName=v-macro7
+m_strName=v-macro3
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -883,7 +882,7 @@ m_bFixed=1
 
 @}}
 [FDITEM85_WK]
-m_strName=v-macro8
+m_strName=v-macro7
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -894,7 +893,7 @@ m_bFixed=1
 
 @}}
 [FDITEM86_WK]
-m_strName=chk-prim7-buf
+m_strName=v-macro8
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -905,9 +904,10 @@ m_bFixed=1
 
 @}}
 [FDITEM87_WK]
-m_strName=lab-macro7-buf
-m_strRawPic=X(20)
-m_strPic=X(20)
+m_strName=chk-prim7-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -915,10 +915,9 @@ m_bFixed=1
 
 @}}
 [FDITEM88_WK]
-m_strName=chk-prim6-buf
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
+m_strName=lab-macro7-buf
+m_strRawPic=X(20)
+m_strPic=X(20)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -926,7 +925,7 @@ m_bFixed=1
 
 @}}
 [FDITEM89_WK]
-m_strName=chk-prim5-buf
+m_strName=chk-prim6-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -937,7 +936,7 @@ m_bFixed=1
 
 @}}
 [FDITEM90_WK]
-m_strName=chk-prim4-buf
+m_strName=chk-prim5-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -948,7 +947,7 @@ m_bFixed=1
 
 @}}
 [FDITEM91_WK]
-m_strName=chk-prim3-buf
+m_strName=chk-prim4-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -959,7 +958,7 @@ m_bFixed=1
 
 @}}
 [FDITEM92_WK]
-m_strName=chk-prim2-buf
+m_strName=chk-prim3-buf
 m_strRawPic=9
 m_strPic=9
 m_strDefaultValue=0
@@ -970,9 +969,10 @@ m_bFixed=1
 
 @}}
 [FDITEM93_WK]
-m_strName=lab-macro2-buf
-m_strRawPic=X(20)
-m_strPic=X(20)
+m_strName=chk-prim2-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -980,7 +980,7 @@ m_bFixed=1
 
 @}}
 [FDITEM94_WK]
-m_strName=lab-macro3-buf
+m_strName=lab-macro2-buf
 m_strRawPic=X(20)
 m_strPic=X(20)
 m_nItemLevel=77
@@ -990,7 +990,7 @@ m_bFixed=1
 
 @}}
 [FDITEM95_WK]
-m_strName=lab-macro4-buf
+m_strName=lab-macro3-buf
 m_strRawPic=X(20)
 m_strPic=X(20)
 m_nItemLevel=77
@@ -1000,7 +1000,7 @@ m_bFixed=1
 
 @}}
 [FDITEM96_WK]
-m_strName=lab-macro5-buf
+m_strName=lab-macro4-buf
 m_strRawPic=X(20)
 m_strPic=X(20)
 m_nItemLevel=77
@@ -1010,7 +1010,7 @@ m_bFixed=1
 
 @}}
 [FDITEM97_WK]
-m_strName=lab-macro6-buf
+m_strName=lab-macro5-buf
 m_strRawPic=X(20)
 m_strPic=X(20)
 m_nItemLevel=77
@@ -1020,7 +1020,7 @@ m_bFixed=1
 
 @}}
 [FDITEM98_WK]
-m_strName=lab-macro8-buf
+m_strName=lab-macro6-buf
 m_strRawPic=X(20)
 m_strPic=X(20)
 m_nItemLevel=77
@@ -1030,9 +1030,9 @@ m_bFixed=1
 
 @}}
 [FDITEM99_WK]
-m_strName=STATUS-macrogroups
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=lab-macro8-buf
+m_strRawPic=X(20)
+m_strPic=X(20)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1040,26 +1040,26 @@ m_bFixed=1
 
 @}}
 [FDITEM100_WK]
+m_strName=STATUS-macrogroups
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM100_WK
+
+@}}
+[FDITEM101_WK]
 m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM100_WK
-
-@}}
-[FDITEM101_WK]
-m_strName=cb-mcg1-buf
-m_strRawPic=X(50)
-m_strPic=X(50)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM101_WK
 
 @}}
 [FDITEM102_WK]
-m_strName=cb-mcg2-buf
+m_strName=cb-mcg1-buf
 m_strRawPic=X(50)
 m_strPic=X(50)
 m_nItemLevel=77
@@ -1069,7 +1069,7 @@ m_bFixed=1
 
 @}}
 [FDITEM103_WK]
-m_strName=cb-mcg3-buf
+m_strName=cb-mcg2-buf
 m_strRawPic=X(50)
 m_strPic=X(50)
 m_nItemLevel=77
@@ -1079,7 +1079,7 @@ m_bFixed=1
 
 @}}
 [FDITEM104_WK]
-m_strName=cb-mcg4-buf
+m_strName=cb-mcg3-buf
 m_strRawPic=X(50)
 m_strPic=X(50)
 m_nItemLevel=77
@@ -1089,7 +1089,7 @@ m_bFixed=1
 
 @}}
 [FDITEM105_WK]
-m_strName=cb-mcg5-buf
+m_strName=cb-mcg4-buf
 m_strRawPic=X(50)
 m_strPic=X(50)
 m_nItemLevel=77
@@ -1099,7 +1099,7 @@ m_bFixed=1
 
 @}}
 [FDITEM106_WK]
-m_strName=cb-mcg6-buf
+m_strName=cb-mcg5-buf
 m_strRawPic=X(50)
 m_strPic=X(50)
 m_nItemLevel=77
@@ -1109,7 +1109,7 @@ m_bFixed=1
 
 @}}
 [FDITEM107_WK]
-m_strName=cb-mcg7-buf
+m_strName=cb-mcg6-buf
 m_strRawPic=X(50)
 m_strPic=X(50)
 m_nItemLevel=77
@@ -1119,10 +1119,9 @@ m_bFixed=1
 
 @}}
 [FDITEM108_WK]
-m_strName=chk-prim8-buf
-m_strRawPic=9
-m_strPic=9
-m_strDefaultValue=0
+m_strName=cb-mcg7-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1130,9 +1129,10 @@ m_bFixed=1
 
 @}}
 [FDITEM109_WK]
-m_strName=cb-mcg8-buf
-m_strRawPic=X(50)
-m_strPic=X(50)
+m_strName=chk-prim8-buf
+m_strRawPic=9
+m_strPic=9
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1140,12 +1140,22 @@ m_bFixed=1
 
 @}}
 [FDITEM110_WK]
+m_strName=cb-mcg8-buf
+m_strRawPic=X(50)
+m_strPic=X(50)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM110_WK
+
+@}}
+[FDITEM111_WK]
 m_strName=Calibri12BU-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM110_WK
+{{@DataItem_m_strDescriptionFDITEM111_WK
 
 @}}
 
@@ -2604,8 +2614,8 @@ Begin Screen Form1
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
-         Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-         Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+         Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
+         Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
@@ -2684,15 +2694,15 @@ Begin Screen Form1
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
-         Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-         Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+         Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
+         Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2764,15 +2774,15 @@ Begin Screen Form1
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
-         Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-         Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+         Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
+         Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2844,15 +2854,15 @@ Begin Screen Form1
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
-         Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-         Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+         Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
+         Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -2924,15 +2934,15 @@ Begin Screen Form1
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
-         Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-         Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+         Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
+         Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -3004,15 +3014,15 @@ Begin Screen Form1
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
-         Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-         Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+         Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
+         Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
          Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 4, Name = col-ss, READONLY = 0 )
          Columns' Setting  = ( PIC = "99", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-         Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
+         Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 1 )
          Cursor Color      = 0
          Cursor Frame Width = 3
          Cursor X          = 0
@@ -3084,8 +3094,8 @@ Begin Screen Form1
          Columns' Setting  = ( X = 1, Name = col-split, READONLY = 0 )
          Columns' Setting  = ( PIC = "x", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 1 )
-         Columns' Setting  = ( X = 2, Name = col-effort, READONLY = 0 )
-         Columns' Setting  = ( PIC = "9", TYPE = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+         Columns' Setting  = ( X = 2, Name = col-int-code, READONLY = 0 )
+         Columns' Setting  = ( PIC = "zz", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
          Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
          Columns' Setting  = ( X = 3, Name = col-int-desc, READONLY = 0 )
          Columns' Setting  = ( PIC = "x(100)", TYPE = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
@@ -4535,8 +4545,8 @@ BEGIN-TEXT
                        20 old-wom-split-el-days-split
                                   OCCURS 20 TIMES.  
                            25 old-wom-split-el-split-sigla     PIC  x.
-                           25 old-wom-split-el-split-int-code  PIC  9.
-                           25 old-wom-split-el-split-ss        PIC  9.
+                           25 old-wom-split-el-split-int-code  PIC  99.
+                           25 old-wom-split-el-split-ss        PIC  99.
                            25 old-wom-split-el-split-primary   PIC  9.
                            25 FILLER           PIC  x(99).
                            25 FILLER           PIC  9(18).
@@ -5182,35 +5192,35 @@ BEGIN-TEXT
                      inquire gd7, cursor-y in riga
                 end-evaluate
 
-                move col-effort to int-code
+                move col-int-code to int-code
                 move "intexe"   to Como-File
                 call   "zoom-gt" using como-file, int-rec
                                 giving stato-zoom
                 cancel "zoom-gt"
                 if stato-zoom = 0
-                   move int-code to col-effort
+                   move int-code to col-int-code
                    move int-desc to col-int-desc
                    evaluate control-id
                    when 78-ID-gd1                                        
-                        modify gd1(riga, 2), cell-data col-effort
+                        modify gd1(riga, 2), cell-data col-int-code
                         modify gd1(riga, 3), cell-data col-int-desc
                    when 78-ID-gd2                                          
-                        modify gd2(riga, 2), cell-data col-effort
+                        modify gd2(riga, 2), cell-data col-int-code
                         modify gd2(riga, 3), cell-data col-int-desc
                    when 78-ID-gd3                                          
-                        modify gd3(riga, 2), cell-data col-effort
+                        modify gd3(riga, 2), cell-data col-int-code
                         modify gd3(riga, 3), cell-data col-int-desc
                    when 78-ID-gd4                                          
-                        modify gd4(riga, 2), cell-data col-effort
+                        modify gd4(riga, 2), cell-data col-int-code
                         modify gd4(riga, 3), cell-data col-int-desc
                    when 78-ID-gd5                                          
-                        modify gd5(riga, 2), cell-data col-effort
+                        modify gd5(riga, 2), cell-data col-int-code
                         modify gd5(riga, 3), cell-data col-int-desc
                    when 78-ID-gd6                                          
-                        modify gd6(riga, 2), cell-data col-effort
+                        modify gd6(riga, 2), cell-data col-int-code
                         modify gd6(riga, 3), cell-data col-int-desc
                    when 78-ID-gd7                
-                        modify gd7(riga, 2), cell-data col-effort
+                        modify gd7(riga, 2), cell-data col-int-code
                         modify gd7(riga, 3), cell-data col-int-desc
                    end-evaluate
                 end-if
@@ -6029,8 +6039,8 @@ BEGIN-TEXT
                      until riga > tot-righe                           
               inquire gd1(riga, 1), cell-data in col-split
               if col-split not = space
-                 inquire gd1(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd1(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 1"
@@ -6038,9 +6048,9 @@ BEGIN-TEXT
                     exit perform
                  end-if
               else
-                 move 0 to col-effort 
+                 move 0 to col-int-code 
                  move spaces to col-int-desc              
-                 modify gd1(riga, 2), cell-data col-effort
+                 modify gd1(riga, 2), cell-data col-int-code
                  modify gd1(riga, 3), cell-data col-int-desc
                  modify gd1(riga, 4), cell-data col-ss
               end-if                    
@@ -6053,8 +6063,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd2(riga, 1), cell-data in col-split
               if col-split not = space
-                 inquire gd2(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd2(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 2"
@@ -6062,9 +6072,9 @@ BEGIN-TEXT
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd2(riga, 2), cell-data col-effort   
+                 modify gd2(riga, 2), cell-data col-int-code   
                  modify gd2(riga, 3), cell-data col-int-desc
                  modify gd2(riga, 4), cell-data col-ss
               end-if
@@ -6077,8 +6087,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd3(riga, 1), cell-data in col-split
               if col-split not = space             
-                 inquire gd3(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd3(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 3"
@@ -6086,9 +6096,9 @@ BEGIN-TEXT
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd3(riga, 2), cell-data col-effort
+                 modify gd3(riga, 2), cell-data col-int-code
                  modify gd3(riga, 3), cell-data col-int-desc  
                  modify gd3(riga, 4), cell-data col-ss
               end-if                  
@@ -6101,8 +6111,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd4(riga, 1), cell-data in col-split
               if col-split not = space             
-                 inquire gd4(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd4(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 4"
@@ -6110,9 +6120,9 @@ BEGIN-TEXT
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd4(riga, 2), cell-data col-effort
+                 modify gd4(riga, 2), cell-data col-int-code
                  modify gd4(riga, 3), cell-data col-int-desc
                  modify gd4(riga, 4), cell-data col-ss
               end-if                  
@@ -6125,8 +6135,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd5(riga, 1), cell-data in col-split
               if col-split not = space             
-                 inquire gd5(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd5(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 5"
@@ -6134,9 +6144,9 @@ BEGIN-TEXT
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd5(riga, 2), cell-data col-effort
+                 modify gd5(riga, 2), cell-data col-int-code
                  modify gd5(riga, 3), cell-data col-int-desc
                  modify gd5(riga, 4), cell-data col-ss
               end-if                  
@@ -6149,8 +6159,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd6(riga, 1), cell-data in col-split
               if col-split not = space             
-                 inquire gd6(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd6(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 6"
@@ -6158,9 +6168,9 @@ BEGIN-TEXT
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd6(riga, 2), cell-data col-effort     
+                 modify gd6(riga, 2), cell-data col-int-code     
                  modify gd6(riga, 3), cell-data col-int-desc
                  modify gd6(riga, 4), cell-data col-ss
               end-if                  
@@ -6173,8 +6183,8 @@ BEGIN-TEXT
                      until riga > tot-righe
               inquire gd7(riga, 1), cell-data in col-split
               if col-split not = space             
-                 inquire gd7(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd7(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 7"
@@ -6182,9 +6192,9 @@ BEGIN-TEXT
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd7(riga, 2), cell-data col-effort    
+                 modify gd7(riga, 2), cell-data col-int-code    
                  modify gd7(riga, 3), cell-data col-int-desc
                  modify gd7(riga, 4), cell-data col-ss
               end-if                  
@@ -6341,41 +6351,41 @@ BEGIN-TEXT
            initialize col-int-desc.
            evaluate grid-day
            when 1 inquire gd1,(event-data-2, 1), cell-data col-split
-                  inquire gd1,(event-data-2, 2), cell-data col-effort
+                  inquire gd1,(event-data-2, 2), cell-data col-int-code
                   inquire gd1,(event-data-2, 3), cell-data col-int-desc
                   inquire gd1,(event-data-2, 4), cell-data col-ss
            when 2 inquire gd2,(event-data-2, 1), cell-data col-split
-                  inquire gd2,(event-data-2, 2), cell-data col-effort  
+                  inquire gd2,(event-data-2, 2), cell-data col-int-code  
                   inquire gd2,(event-data-2, 3), cell-data col-int-desc
                   inquire gd2,(event-data-2, 4), cell-data col-ss
            when 3 inquire gd3,(event-data-2, 1), cell-data col-split
-                  inquire gd3,(event-data-2, 2), cell-data col-effort  
+                  inquire gd3,(event-data-2, 2), cell-data col-int-code  
                   inquire gd3,(event-data-2, 3), cell-data col-int-desc
                   inquire gd3,(event-data-2, 4), cell-data col-ss
            when 4 inquire gd4,(event-data-2, 1), cell-data col-split
-                  inquire gd4,(event-data-2, 2), cell-data col-effort  
+                  inquire gd4,(event-data-2, 2), cell-data col-int-code  
                   inquire gd4,(event-data-2, 3), cell-data col-int-desc
                   inquire gd4,(event-data-2, 4), cell-data col-ss
            when 5 inquire gd5,(event-data-2, 1), cell-data col-split
-                  inquire gd5,(event-data-2, 2), cell-data col-effort  
+                  inquire gd5,(event-data-2, 2), cell-data col-int-code  
                   inquire gd5,(event-data-2, 3), cell-data col-int-desc
                   inquire gd5,(event-data-2, 4), cell-data col-ss
            when 6 inquire gd6,(event-data-2, 1), cell-data col-split
-                  inquire gd6,(event-data-2, 2), cell-data col-effort  
+                  inquire gd6,(event-data-2, 2), cell-data col-int-code  
                   inquire gd6,(event-data-2, 3), cell-data col-int-desc
                   inquire gd6,(event-data-2, 4), cell-data col-ss
            when 7 inquire gd7,(event-data-2, 1), cell-data col-split
-                  inquire gd7,(event-data-2, 2), cell-data col-effort  
+                  inquire gd7,(event-data-2, 2), cell-data col-int-code  
                   inquire gd7,(event-data-2, 3), cell-data col-int-desc
                   inquire gd7,(event-data-2, 4), cell-data col-ss
            end-evaluate.
            evaluate event-data-1
            when 1 if col-split = spaces
                      move spaces to col-int-desc
-                     move 0      to col-effort
+                     move 0      to col-int-code
                   end-if
            when 2
-                move col-effort to int-code
+                move col-int-code to int-code
                 read intexe no lock
                      invalid 
                      set errori to true
@@ -6445,37 +6455,37 @@ BEGIN-TEXT
            evaluate grid-day
            when 1 modify gd1,(event-data-2, 1), cell-data col-split,
                                                 cell-color colore
-                  modify gd1,(event-data-2, 2), cell-data col-effort  
+                  modify gd1,(event-data-2, 2), cell-data col-int-code  
                   modify gd1,(event-data-2, 3), cell-data col-int-desc
                   modify gd1,(event-data-2, 4), cell-data col-ss
            when 2 modify gd2,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
-                  modify gd2,(event-data-2, 2), cell-data col-effort  
+                  modify gd2,(event-data-2, 2), cell-data col-int-code  
                   modify gd2,(event-data-2, 3), cell-data col-int-desc
                   modify gd2,(event-data-2, 4), cell-data col-ss
            when 3 modify gd3,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
-                  modify gd3,(event-data-2, 2), cell-data col-effort  
+                  modify gd3,(event-data-2, 2), cell-data col-int-code  
                   modify gd3,(event-data-2, 3), cell-data col-int-desc
                   modify gd3,(event-data-2, 4), cell-data col-ss
            when 4 modify gd4,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore  
-                  modify gd4,(event-data-2, 2), cell-data col-effort  
+                  modify gd4,(event-data-2, 2), cell-data col-int-code  
                   modify gd4,(event-data-2, 3), cell-data col-int-desc
                   modify gd4,(event-data-2, 4), cell-data col-ss
            when 5 modify gd5,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
-                  modify gd5,(event-data-2, 2), cell-data col-effort  
+                  modify gd5,(event-data-2, 2), cell-data col-int-code  
                   modify gd5,(event-data-2, 3), cell-data col-int-desc
                   modify gd5,(event-data-2, 4), cell-data col-ss
            when 6 modify gd6,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
-                  modify gd6,(event-data-2, 2), cell-data col-effort  
+                  modify gd6,(event-data-2, 2), cell-data col-int-code  
                   modify gd6,(event-data-2, 3), cell-data col-int-desc
                   modify gd6,(event-data-2, 4), cell-data col-ss
            when 7 modify gd7,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
-                  modify gd7,(event-data-2, 2), cell-data col-effort  
+                  modify gd7,(event-data-2, 2), cell-data col-int-code  
                   modify gd7,(event-data-2, 3), cell-data col-int-desc
                   modify gd7,(event-data-2, 4), cell-data col-ss
            end-evaluate.
@@ -7341,9 +7351,9 @@ BEGIN-TEXT
               if col-split not = space
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(1, idx-ok)
-                 inquire gd1(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(1, idx-ok)
-                 move col-effort to wom-split-el-split-int-code(1, idx-ok)
+                 inquire gd1(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(1, idx-ok)
+                 move col-int-code to wom-split-el-split-int-code(1, idx-ok)
                  perform VALORIZZA-PRIMARY
                  move como-prim  to wom-split-el-split-primary(1, idx-ok)  
                  inquire gd1(riga, 4), cell-data in col-ss
@@ -7359,8 +7369,8 @@ BEGIN-TEXT
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(2, idx-ok)  
-                 inquire gd2(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(2, idx-ok)
+                 inquire gd2(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(2, idx-ok)
                  perform VALORIZZA-PRIMARY 
                  move como-prim  to wom-split-el-split-primary(2, idx-ok)  
                  inquire gd2(riga, 4), cell-data in col-ss
@@ -7376,8 +7386,8 @@ BEGIN-TEXT
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(3, idx-ok)  
-                 inquire gd3(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(3, idx-ok) 
+                 inquire gd3(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(3, idx-ok) 
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(3, idx-ok) 
                  inquire gd3(riga, 4), cell-data in col-ss
@@ -7393,8 +7403,8 @@ BEGIN-TEXT
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(4, idx-ok)
-                 inquire gd4(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(4, idx-ok)
+                 inquire gd4(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(4, idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(4, idx-ok)
                  inquire gd4(riga, 4), cell-data in col-ss
@@ -7410,8 +7420,8 @@ BEGIN-TEXT
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(5, idx-ok) 
-                 inquire gd5(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(5, idx-ok)
+                 inquire gd5(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(5, idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(5, idx-ok) 
                  inquire gd5(riga, 4), cell-data in col-ss
@@ -7427,8 +7437,8 @@ BEGIN-TEXT
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(6, idx-ok) 
-                 inquire gd6(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(6, idx-ok)
+                 inquire gd6(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(6, idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(6, idx-ok)  
                  inquire gd6(riga, 4), cell-data in col-ss
@@ -7444,8 +7454,8 @@ BEGIN-TEXT
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(7, idx-ok)  
-                 inquire gd7(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(7, idx-ok)
+                 inquire gd7(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(7, idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(7, idx-ok)  
                  inquire gd7(riga, 4), cell-data in col-ss

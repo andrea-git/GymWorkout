@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 9 ottobre 2023 19:22:35.
+       DATE-WRITTEN.        sabato 21 ottobre 2023 13:35:37.
        REMARKS.
       *{TOTEM}END
 
@@ -127,8 +127,9 @@
        77 tot-durata       PIC  9(5).
        01 gd-rec.
            05 col-split        PIC  x.
-           05 col-effort       PIC  z.
+           05 col-int-code     PIC  zz.
            05 col-int-desc     PIC  x(100).
+           05 col-ss           PIC  99.
            05 col-ss           PIC  99.
        01 save-key.
            05 save-code        PIC  999.
@@ -235,13 +236,13 @@
 
        77 TMP-Form1-KEY1-ORDER  PIC X VALUE "A".
        77 TMP-Form1-KEY2-ORDER  PIC X VALUE "A".
-       77 TMP-Form1-wodmap-RESTOREBUF  PIC X(18104).
+       77 TMP-Form1-wodmap-RESTOREBUF  PIC X(18384).
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
-       77 Form1-MULKEY-TMPBUF   PIC X(18104).
+       77 Form1-MULKEY-TMPBUF   PIC X(18384).
        77 Form1-KEYISTMP2   PIC X(100).
       * Form1 : PKEY & AKEY'S TEMP BUFFER
        77 Form1-PKEYTMP   PIC X(3).
-       77 TMP-DataSet1-wodmap-BUF     PIC X(18104).
+       77 TMP-DataSet1-wodmap-BUF     PIC X(18384).
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-macrogroups-BUF     PIC X(1177).
@@ -298,8 +299,8 @@
                        20 old-wom-split-el-days-split
                                   OCCURS 20 TIMES.  
                            25 old-wom-split-el-split-sigla     PIC  x.
-                           25 old-wom-split-el-split-int-code  PIC  9.
-                           25 old-wom-split-el-split-ss        PIC  9.
+                           25 old-wom-split-el-split-int-code  PIC  99.
+                           25 old-wom-split-el-split-ss        PIC  99.
                            25 old-wom-split-el-split-primary   PIC  9.
                            25 FILLER           PIC  x(99).
                            25 FILLER           PIC  9(18).
@@ -901,10 +902,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3, 103),
+           DATA-COLUMNS (1, 2, 4, 104),
            ALIGNMENT ("C", "C", "U", "R"),
            SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -934,10 +935,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3, 103),
+           DATA-COLUMNS (1, 2, 4, 104),
            ALIGNMENT ("C", "C", "U", "R"),
            SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -967,10 +968,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3, 103),
+           DATA-COLUMNS (1, 2, 4, 104),
            ALIGNMENT ("C", "C", "U", "R"),
            SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -1000,10 +1001,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3, 103),
+           DATA-COLUMNS (1, 2, 4, 104),
            ALIGNMENT ("C", "C", "U", "R"),
            SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -1033,10 +1034,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3, 103),
+           DATA-COLUMNS (1, 2, 4, 104),
            ALIGNMENT ("C", "C", "U", "R"),
            SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -1066,10 +1067,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3, 103),
+           DATA-COLUMNS (1, 2, 4, 104),
            ALIGNMENT ("C", "C", "U", "R"),
            SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -1099,10 +1100,10 @@
            LINES 13,96 ,
            SIZE 22,30 ,
            3-D,
-           DATA-COLUMNS (1, 2, 3, 103),
+           DATA-COLUMNS (1, 2, 4, 104),
            ALIGNMENT ("C", "C", "U", "R"),
            SEPARATION (5, 5, 5, 5),
-           DATA-TYPES ("U(1)", "9", "x(100)", "9(2)"),
+           DATA-TYPES ("U(1)", "9(2)", "x(100)", "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 3,
@@ -4432,41 +4433,41 @@
                      inquire gd7, cursor-y in riga
                 end-evaluate
 
-                move col-effort to int-code
+                move col-int-code to int-code
                 move "intexe"   to Como-File
                 call   "zoom-gt" using como-file, int-rec
                                 giving stato-zoom
                 cancel "zoom-gt"
                 if stato-zoom = 0
-                   move int-code to col-effort
+                   move int-code to col-int-code
                    move int-desc to col-int-desc
                    evaluate control-id
                    when 78-ID-gd1                                       
             
-                        modify gd1(riga, 2), cell-data col-effort
+                        modify gd1(riga, 2), cell-data col-int-code
                         modify gd1(riga, 3), cell-data col-int-desc
                    when 78-ID-gd2                                       
               
-                        modify gd2(riga, 2), cell-data col-effort
+                        modify gd2(riga, 2), cell-data col-int-code
                         modify gd2(riga, 3), cell-data col-int-desc
                    when 78-ID-gd3                                       
               
-                        modify gd3(riga, 2), cell-data col-effort
+                        modify gd3(riga, 2), cell-data col-int-code
                         modify gd3(riga, 3), cell-data col-int-desc
                    when 78-ID-gd4                                       
               
-                        modify gd4(riga, 2), cell-data col-effort
+                        modify gd4(riga, 2), cell-data col-int-code
                         modify gd4(riga, 3), cell-data col-int-desc
                    when 78-ID-gd5                                       
               
-                        modify gd5(riga, 2), cell-data col-effort
+                        modify gd5(riga, 2), cell-data col-int-code
                         modify gd5(riga, 3), cell-data col-int-desc
                    when 78-ID-gd6                                       
               
-                        modify gd6(riga, 2), cell-data col-effort
+                        modify gd6(riga, 2), cell-data col-int-code
                         modify gd6(riga, 3), cell-data col-int-desc
                    when 78-ID-gd7                
-                        modify gd7(riga, 2), cell-data col-effort
+                        modify gd7(riga, 2), cell-data col-int-code
                         modify gd7(riga, 3), cell-data col-int-desc
                    end-evaluate
                 end-if
@@ -5278,8 +5279,8 @@
                      until riga > tot-righe                           
               inquire gd1(riga, 1), cell-data in col-split
               if col-split not = space
-                 inquire gd1(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd1(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 1"
@@ -5287,9 +5288,9 @@
                     exit perform
                  end-if
               else
-                 move 0 to col-effort 
+                 move 0 to col-int-code 
                  move spaces to col-int-desc              
-                 modify gd1(riga, 2), cell-data col-effort
+                 modify gd1(riga, 2), cell-data col-int-code
                  modify gd1(riga, 3), cell-data col-int-desc
                  modify gd1(riga, 4), cell-data col-ss
               end-if                    
@@ -5302,8 +5303,8 @@
                      until riga > tot-righe
               inquire gd2(riga, 1), cell-data in col-split
               if col-split not = space
-                 inquire gd2(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd2(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 2"
@@ -5311,9 +5312,9 @@
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd2(riga, 2), cell-data col-effort   
+                 modify gd2(riga, 2), cell-data col-int-code   
                  modify gd2(riga, 3), cell-data col-int-desc
                  modify gd2(riga, 4), cell-data col-ss
               end-if
@@ -5326,8 +5327,8 @@
                      until riga > tot-righe
               inquire gd3(riga, 1), cell-data in col-split
               if col-split not = space             
-                 inquire gd3(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd3(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 3"
@@ -5335,9 +5336,9 @@
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd3(riga, 2), cell-data col-effort
+                 modify gd3(riga, 2), cell-data col-int-code
                  modify gd3(riga, 3), cell-data col-int-desc  
                  modify gd3(riga, 4), cell-data col-ss
               end-if                  
@@ -5350,8 +5351,8 @@
                      until riga > tot-righe
               inquire gd4(riga, 1), cell-data in col-split
               if col-split not = space             
-                 inquire gd4(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd4(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 4"
@@ -5359,9 +5360,9 @@
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd4(riga, 2), cell-data col-effort
+                 modify gd4(riga, 2), cell-data col-int-code
                  modify gd4(riga, 3), cell-data col-int-desc
                  modify gd4(riga, 4), cell-data col-ss
               end-if                  
@@ -5374,8 +5375,8 @@
                      until riga > tot-righe
               inquire gd5(riga, 1), cell-data in col-split
               if col-split not = space             
-                 inquire gd5(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd5(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 5"
@@ -5383,9 +5384,9 @@
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd5(riga, 2), cell-data col-effort
+                 modify gd5(riga, 2), cell-data col-int-code
                  modify gd5(riga, 3), cell-data col-int-desc
                  modify gd5(riga, 4), cell-data col-ss
               end-if                  
@@ -5398,8 +5399,8 @@
                      until riga > tot-righe
               inquire gd6(riga, 1), cell-data in col-split
               if col-split not = space             
-                 inquire gd6(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd6(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 6"
@@ -5407,9 +5408,9 @@
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd6(riga, 2), cell-data col-effort     
+                 modify gd6(riga, 2), cell-data col-int-code     
                  modify gd6(riga, 3), cell-data col-int-desc
                  modify gd6(riga, 4), cell-data col-ss
               end-if                  
@@ -5422,8 +5423,8 @@
                      until riga > tot-righe
               inquire gd7(riga, 1), cell-data in col-split
               if col-split not = space             
-                 inquire gd7(riga, 2), cell-data in col-effort
-                 if col-effort = spaces
+                 inquire gd7(riga, 2), cell-data in col-int-code
+                 if col-int-code = spaces
                     subtract 1 from riga
                     set errori to true
                     display message "Valorizzare effort per il giorno 7"
@@ -5431,9 +5432,9 @@
                     exit perform
                  end-if
               else
-                 move 0 to col-effort
+                 move 0 to col-int-code
                  move spaces to col-int-desc              
-                 modify gd7(riga, 2), cell-data col-effort    
+                 modify gd7(riga, 2), cell-data col-int-code    
                  modify gd7(riga, 3), cell-data col-int-desc
                  modify gd7(riga, 4), cell-data col-ss
               end-if                  
@@ -5600,41 +5601,47 @@
            initialize col-int-desc.
            evaluate grid-day
            when 1 inquire gd1,(event-data-2, 1), cell-data col-split
-                  inquire gd1,(event-data-2, 2), cell-data col-effort
+                  inquire gd1,(event-data-2, 2), cell-data col-int-code
                   inquire gd1,(event-data-2, 3), cell-data col-int-desc
                   inquire gd1,(event-data-2, 4), cell-data col-ss
            when 2 inquire gd2,(event-data-2, 1), cell-data col-split
-                  inquire gd2,(event-data-2, 2), cell-data col-effort  
+                  inquire gd2,(event-data-2, 2), cell-data col-int-code 
+            
                   inquire gd2,(event-data-2, 3), cell-data col-int-desc
                   inquire gd2,(event-data-2, 4), cell-data col-ss
            when 3 inquire gd3,(event-data-2, 1), cell-data col-split
-                  inquire gd3,(event-data-2, 2), cell-data col-effort  
+                  inquire gd3,(event-data-2, 2), cell-data col-int-code 
+            
                   inquire gd3,(event-data-2, 3), cell-data col-int-desc
                   inquire gd3,(event-data-2, 4), cell-data col-ss
            when 4 inquire gd4,(event-data-2, 1), cell-data col-split
-                  inquire gd4,(event-data-2, 2), cell-data col-effort  
+                  inquire gd4,(event-data-2, 2), cell-data col-int-code 
+            
                   inquire gd4,(event-data-2, 3), cell-data col-int-desc
                   inquire gd4,(event-data-2, 4), cell-data col-ss
            when 5 inquire gd5,(event-data-2, 1), cell-data col-split
-                  inquire gd5,(event-data-2, 2), cell-data col-effort  
+                  inquire gd5,(event-data-2, 2), cell-data col-int-code 
+            
                   inquire gd5,(event-data-2, 3), cell-data col-int-desc
                   inquire gd5,(event-data-2, 4), cell-data col-ss
            when 6 inquire gd6,(event-data-2, 1), cell-data col-split
-                  inquire gd6,(event-data-2, 2), cell-data col-effort  
+                  inquire gd6,(event-data-2, 2), cell-data col-int-code 
+            
                   inquire gd6,(event-data-2, 3), cell-data col-int-desc
                   inquire gd6,(event-data-2, 4), cell-data col-ss
            when 7 inquire gd7,(event-data-2, 1), cell-data col-split
-                  inquire gd7,(event-data-2, 2), cell-data col-effort  
+                  inquire gd7,(event-data-2, 2), cell-data col-int-code 
+            
                   inquire gd7,(event-data-2, 3), cell-data col-int-desc
                   inquire gd7,(event-data-2, 4), cell-data col-ss
            end-evaluate.
            evaluate event-data-1
            when 1 if col-split = spaces
                      move spaces to col-int-desc
-                     move 0      to col-effort
+                     move 0      to col-int-code
                   end-if
            when 2
-                move col-effort to int-code
+                move col-int-code to int-code
                 read intexe no lock
                      invalid 
                      set errori to true
@@ -5706,37 +5713,37 @@
            evaluate grid-day
            when 1 modify gd1,(event-data-2, 1), cell-data col-split,
                                                 cell-color colore
-                  modify gd1,(event-data-2, 2), cell-data col-effort  
+                  modify gd1,(event-data-2, 2), cell-data col-int-code  
                   modify gd1,(event-data-2, 3), cell-data col-int-desc
                   modify gd1,(event-data-2, 4), cell-data col-ss
            when 2 modify gd2,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
-                  modify gd2,(event-data-2, 2), cell-data col-effort  
+                  modify gd2,(event-data-2, 2), cell-data col-int-code  
                   modify gd2,(event-data-2, 3), cell-data col-int-desc
                   modify gd2,(event-data-2, 4), cell-data col-ss
            when 3 modify gd3,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
-                  modify gd3,(event-data-2, 2), cell-data col-effort  
+                  modify gd3,(event-data-2, 2), cell-data col-int-code  
                   modify gd3,(event-data-2, 3), cell-data col-int-desc
                   modify gd3,(event-data-2, 4), cell-data col-ss
            when 4 modify gd4,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore  
-                  modify gd4,(event-data-2, 2), cell-data col-effort  
+                  modify gd4,(event-data-2, 2), cell-data col-int-code  
                   modify gd4,(event-data-2, 3), cell-data col-int-desc
                   modify gd4,(event-data-2, 4), cell-data col-ss
            when 5 modify gd5,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
-                  modify gd5,(event-data-2, 2), cell-data col-effort  
+                  modify gd5,(event-data-2, 2), cell-data col-int-code  
                   modify gd5,(event-data-2, 3), cell-data col-int-desc
                   modify gd5,(event-data-2, 4), cell-data col-ss
            when 6 modify gd6,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
-                  modify gd6,(event-data-2, 2), cell-data col-effort  
+                  modify gd6,(event-data-2, 2), cell-data col-int-code  
                   modify gd6,(event-data-2, 3), cell-data col-int-desc
                   modify gd6,(event-data-2, 4), cell-data col-ss
            when 7 modify gd7,(event-data-2, 1), cell-data col-split 
                                                 cell-color colore
-                  modify gd7,(event-data-2, 2), cell-data col-effort  
+                  modify gd7,(event-data-2, 2), cell-data col-int-code  
                   modify gd7,(event-data-2, 3), cell-data col-int-desc
                   modify gd7,(event-data-2, 4), cell-data col-ss
            end-evaluate.
@@ -6629,10 +6636,10 @@
               if col-split not = space
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(1, idx-ok)
-                 inquire gd1(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(1, 
+                 inquire gd1(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(1, 
            idx-ok)
-                 move col-effort to wom-split-el-split-int-code(1, 
+                 move col-int-code to wom-split-el-split-int-code(1, 
            idx-ok)
                  perform VALORIZZA-PRIMARY
                  move como-prim  to wom-split-el-split-primary(1, 
@@ -6650,8 +6657,8 @@
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(2, idx-ok)  
-                 inquire gd2(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(2, 
+                 inquire gd2(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(2, 
            idx-ok)
                  perform VALORIZZA-PRIMARY 
                  move como-prim  to wom-split-el-split-primary(2, 
@@ -6669,8 +6676,8 @@
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(3, idx-ok)  
-                 inquire gd3(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(3, 
+                 inquire gd3(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(3, 
            idx-ok) 
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(3, 
@@ -6688,8 +6695,8 @@
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(4, idx-ok)
-                 inquire gd4(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(4, 
+                 inquire gd4(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(4, 
            idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(4, 
@@ -6707,8 +6714,8 @@
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(5, idx-ok) 
-                 inquire gd5(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(5, 
+                 inquire gd5(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(5, 
            idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(5, 
@@ -6726,8 +6733,8 @@
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(6, idx-ok) 
-                 inquire gd6(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(6, 
+                 inquire gd6(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(6, 
            idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(6, 
@@ -6745,8 +6752,8 @@
               if col-split not = space             
                  add 1 to idx-ok
                  move col-split to wom-split-el-split-sigla(7, idx-ok)  
-                 inquire gd7(riga, 2), cell-data in col-effort
-                 move col-effort to wom-split-el-split-int-code(7, 
+                 inquire gd7(riga, 2), cell-data in col-int-code
+                 move col-int-code to wom-split-el-split-int-code(7, 
            idx-ok)
                  perform VALORIZZA-PRIMARY                      
                  move como-prim  to wom-split-el-split-primary(7, 

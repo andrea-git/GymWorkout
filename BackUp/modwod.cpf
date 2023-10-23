@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A137465-662-2418623321
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A17144428-755-275914728
 
 {{@DESCRIPTION:
 
@@ -54,7 +54,7 @@ m_bFixed=1
 @}}
 [FDITEM3_WK]
 m_strName=titolo
-m_strDefaultValue="Gestione esercizi"
+m_strDefaultValue="Progressi e confronti"
 m_nItemLevel=78
 m_nSync=-1
 m_bFixed=1
@@ -1972,7 +1972,7 @@ Begin Screen Form1
          Font              = Default Font
          Height in Cells   = FALSE
          Help ID           = 0
-         ID                = 35
+         ID                = 36
          Line              = 1,09
          Lines             = 2,59
          Lines in Pixels   = 64

@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1383347-976-1516624348
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A17152151-446-2741331830
 
 {{@DESCRIPTION:
 
@@ -11319,7 +11319,7 @@ BEGIN-DATA
    PARAGRAPH         = CURRENT-RECORD
 BEGIN-TEXT
            move 0 to tot-gruppi.
-           read twodbook
+           read twodbook no lock
                 invalid continue
             not invalid       
                 modify pb-mod, enabled true
@@ -11602,7 +11602,7 @@ BEGIN-TEXT
                                    alphanumeric data by spaces.                               
            perform LOAD-EXERCISES-ALLOWED-BY-EFFORT. 
            perform LOAD-EXERCISES-MULTIJOINT.
-           perform LOAD-EXERCISES.                   
+           perform LOAD-EXERCISES.     
            perform REMOVE-DUPLICATES.
            move "Carico la griglia" to lab-attesa-buf.
            display lab-attesa.

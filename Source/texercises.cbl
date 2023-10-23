@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        domenica 22 ottobre 2023 01:32:02.
+       DATE-WRITTEN.        lunedì 23 ottobre 2023 16:59:03.
        REMARKS.
       *{TOTEM}END
 
@@ -3724,7 +3724,7 @@
            move exe-isRestpause to col-restpause
            move exe-isDisable   to col-disab
            move exe-desc-stampa to col-des-stampa.
-
+                                         
            inquire chk-mcg1, value in chk-mcg1-buf, title in como-titolo
            if chk-mcg1-buf = 0 and mcg-desc = como-titolo
               exit paragraph 
@@ -3971,7 +3971,7 @@
            inquire chk-int9,  visible in v-int9.
            inquire chk-int10, visible in v-int10.
            inquire chk-int11, visible in v-int11.
-
+                                             
            if v-mcg1 = 1 and chk-mcg1-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
@@ -4183,7 +4183,6 @@
                      perform SETTA-FLAG-RP
                   end-if
            end-evaluate.
-
 
       ***---
        SETTA-FLAG-RP.

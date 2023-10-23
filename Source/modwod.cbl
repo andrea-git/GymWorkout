@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 19 ottobre 2023 14:40:54.
+       DATE-WRITTEN.        lunedì 23 ottobre 2023 16:44:42.
        REMARKS.
       *{TOTEM}END
 
@@ -71,7 +71,7 @@
                   VALUE IS 0.
        77 Form1-Tb-1-Handle
                   USAGE IS HANDLE OF WINDOW.
-       78 titolo VALUE IS "Gestione esercizi". 
+       78 titolo VALUE IS "Progressi e confronti". 
        77 E-ESCI           PIC  9
                   VALUE IS 1.
        77 E-NUOVO          PIC  9
@@ -562,7 +562,7 @@
            ENABLED 1,
            EXCEPTION-VALUE 4,
            FLAT,
-           ID IS 35,
+           ID IS 36,
            SELF-ACT,
            TITLE "Stampa",
            .

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        sabato 21 ottobre 2023 14:21:56.
+       DATE-WRITTEN.        lunedì 23 ottobre 2023 17:47:56.
        REMARKS.
       *{TOTEM}END
 
@@ -9558,7 +9558,7 @@
        CURRENT-RECORD.
       * <TOTEM:PARA. CURRENT-RECORD>
            move 0 to tot-gruppi.
-           read twodbook
+           read twodbook no lock
                 invalid continue
             not invalid       
                 modify pb-mod, enabled true
@@ -9849,7 +9849,7 @@
                                  
            perform LOAD-EXERCISES-ALLOWED-BY-EFFORT. 
            perform LOAD-EXERCISES-MULTIJOINT.
-           perform LOAD-EXERCISES.                   
+           perform LOAD-EXERCISES.     
            perform REMOVE-DUPLICATES.
            move "Carico la griglia" to lab-attesa-buf.
            display lab-attesa.

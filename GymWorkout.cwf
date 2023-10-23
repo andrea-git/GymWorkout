@@ -1518,7 +1518,7 @@ DEBUGGING=1
 CODE_VERSION_NUMBER=16
 
 [FILE_COMPILE_OPTION-GymWorkout:Debug Mode:Source\modwod.cbl]
-COPY_DEPENDENCE=FD\exercises.sl;FD\rwodbook.sl;FD\twodbook.sl;FD\intexe.sl;FD\exercises.fd;FD\rwodbook.fd;FD\twodbook.fd;FD\intexe.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;\StudioPostura\Copylib\blockpgm.lks;Resource\toolbar.bmp;Copylib\utydata.cpy
+COPY_DEPENDENCE=FD\exercises.sl;FD\rwodbook.sl;FD\twodbook.sl;FD\intexe.sl;FD\tmp-exe.sl;FD\exercises.fd;FD\rwodbook.fd;FD\twodbook.fd;FD\intexe.fd;FD\tmp-exe.fd;c:\Acucorp\Acucbl610\AcuGT\sample\def\acugui.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\acucobol.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\fonts.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\crtvars.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\showmsg.def;C:\Totem61\Sample\TOTEM.def;Copylib\comune.def;Copylib\messaggi.def;Copylib\custom.def;c:\Acucorp\Acucbl610\AcuGT\sample\def\controls.def;Copylib\UTYDATA.DEF;\StudioPostura\Copylib\blockpgm.lks;Resource\toolbar.bmp;Copylib\utydata.cpy
 ADDITIONAL_OPTIONS=-x -Fxa -Di -Ga -Zd -Za -Zn -Zz -C61
 FOLLOW_PROJECT=1
 ; Standard Options

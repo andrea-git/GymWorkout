@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A17144428-755-275914728
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1811924-737-2570017924
 
 {{@DESCRIPTION:
 
@@ -2208,7 +2208,7 @@ BEGIN-TEXT
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire form1-gd-1(store-riga, 1), hidden-data rod-key
-              read rwodbook
+              read rwodbook 
               start rwodbook key <= rod-k-confronto
                     invalid continue
                 not invalid
@@ -2445,6 +2445,7 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = IMPOSTA-PROGRAMMA
 BEGIN-TEXT
+           modify tool-cerca, enabled false.
            initialize lab-desc-buf
            if como-code not = 0
               move como-code to tod-code

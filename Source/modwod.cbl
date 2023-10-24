@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 23 ottobre 2023 16:44:42.
+       DATE-WRITTEN.        martedì 24 ottobre 2023 13:25:30.
        REMARKS.
       *{TOTEM}END
 
@@ -2605,7 +2605,7 @@
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire form1-gd-1(store-riga, 1), hidden-data rod-key
-              read rwodbook
+              read rwodbook 
               start rwodbook key <= rod-k-confronto
                     invalid continue
                 not invalid
@@ -2838,6 +2838,7 @@
 
        IMPOSTA-PROGRAMMA.
       * <TOTEM:PARA. IMPOSTA-PROGRAMMA>
+           modify tool-cerca, enabled false.
            initialize lab-desc-buf
            if como-code not = 0
               move como-code to tod-code

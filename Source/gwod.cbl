@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 23 ottobre 2023 17:47:56.
+       DATE-WRITTEN.        martedì 24 ottobre 2023 14:47:15.
        REMARKS.
       *{TOTEM}END
 
@@ -117,6 +117,9 @@
                   VALUE IS 1.
        77 Small-Font
                   USAGE IS HANDLE OF FONT SMALL-FONT.
+       77 tot-used         PIC  999.
+       01 FILLER           PIC  9.
+           88 tutti-usati VALUE IS 1    WHEN SET TO FALSE  0. 
        01 FILLER           PIC  9.
            88 chiamata-normale VALUE IS 1. 
            88 chiamata-lookup VALUE IS 2. 
@@ -569,7 +572,7 @@
        77 TMP-DataSet1-duration-BUF     PIC X(1163).
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18384).
-       77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(116).
+       77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(137).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(529).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(190).
@@ -679,6 +682,7 @@
        77 duration-dur-k-desc-SPLITBUF  PIC X(101).
        77 duration-dur-k-exercises-SPLITBUF  PIC X(3).
        77 wodmap-wom-k-desc-SPLITBUF  PIC X(101).
+       77 tmp-wod-exe-twe-k-desc-stampa-SPLITBUF  PIC X(21).
        77 tmp-exe-tex-k-dupl-SPLITBUF  PIC X(102).
        77 tmp-exe-tex-k-mcg-SPLITBUF  PIC X(10).
        77 tmp-exe-tex-k-day-exe-SPLITBUF  PIC X(102).
@@ -4722,6 +4726,12 @@
            MOVE "DELETE" TO TOTEM-ERR-MODE
       * <TOTEM:EPT. FD:DataSet1, FD:wodmap, AfterDelete>
       * <TOTEM:END>
+           .
+
+       tmp-wod-exe-twe-k-desc-stampa-MERGE-SPLITBUF.
+           INITIALIZE tmp-wod-exe-twe-k-desc-stampa-SPLITBUF
+           MOVE twe-exe-desc-stampa(1:20) TO 
+           tmp-wod-exe-twe-k-desc-stampa-SPLITBUF(1:20)
            .
 
        DataSet1-tmp-wod-exe-INITSTART.
@@ -9814,13 +9824,6 @@
            perform CREA-OCCURS-GRUPPI.
                                          
            move 0 to int-effort.
-           inquire cb-int, value in cb-int-buf.
-           evaluate cb-int-buf
-           when "Light wod effort" move 1  to effort-wod
-           when "Light wod effort" move 2  to effort-wod
-           when "Light wod effort" move 3  to effort-wod
-           when other              move 99 to effort-wod
-           end-evaluate.
             
            inquire cb-wod, value in wom-desc.
            read wodmap key wom-k-desc.
@@ -10136,23 +10139,21 @@
                     if exe-isMulti = 1 and cb-mul-buf = "No"
                        exit perform cycle
                     end-if
-                    if int-effort <= effort-wod or 
-                       exe-isMulti = 1 and cb-mul-buf = "Si"
-                       perform varying idx-gruppi from 1 by 1 
-                                 until idx-gruppi > tot-gruppi
+                    perform varying idx-gruppi from 1 by 1 
+                              until idx-gruppi > tot-gruppi
 
-                          if el-mcg-code(idx-gruppi) = grp-mcg-code
-                             move exe-code      to twe-exe-code
-                             move exe-desc      to twe-exe-desc
-                             move grp-mcg-code  to twe-mcg-code
-                             move int-effort    to twe-effort
-                             move exe-isMulti   to twe-exe-isMulti
-                             move exe-int-code  to twe-int-code
-                             move exe-isRestpause to twe-exe-isRestpause
-                             write twe-rec 
-                          end-if
-                       end-perform
-                    end-if
+                       if el-mcg-code(idx-gruppi) = grp-mcg-code
+                          move exe-code      to twe-exe-code
+                          move exe-desc      to twe-exe-desc
+                          move grp-mcg-code  to twe-mcg-code
+                          move int-effort    to twe-effort
+                          move exe-isMulti   to twe-exe-isMulti
+                          move exe-int-code  to twe-int-code
+                          move exe-isRestpause to twe-exe-isRestpause
+                          move exe-desc-stampa to twe-exe-desc-stampa
+                          write twe-rec 
+                       end-if
+                    end-perform
                  end-perform
            end-start.           
        
@@ -10240,7 +10241,10 @@
                                 move el-exe-code(idx) to tex-exe-code
                                 move el-exe-desc(idx) to tex-exe-desc
                                 perform DES-UNIVOCA
-                                move int-code         to tex-int-code
+
+                                move 
+           wom-split-el-split-int-code(idx-days, idx-split)
+                                                      to tex-int-code
                                 move 1                to tex-exe-isMulti
                                 move 0                to 
            tex-int-restpause
@@ -10305,11 +10309,13 @@
            end-perform.
 
       ***---
-       ADD-RANDOM-EXERCISE.
+       ADD-RANDOM-EXERCISE.  
+           set tutti-usati to false.
            set twe-exe-isMulti-no to true.
            read intexe no lock.
            move int-effort to twe-effort .
-           move 0 to tot-exe.
+           move 0 to tot-exe tot-used.
+           move low-value to twe-exe-code.
            start tmp-wod-exe key >= twe-key
                  invalid continue
              not invalid
@@ -10320,6 +10326,47 @@
                        twe-exe-isMulti-yes          or
                        twe-effort    not = int-effort
                        exit perform
+                    end-if
+           
+                    if twe-exe-isRestpause = 0 and
+                       int-restpause > 0         
+                       exit perform cycle
+                    end-if             
+                                      
+                    add 1 to tot-exe    
+
+                    if twe-isUsed = 1
+                       add 1 to tot-used
+                    else
+                       exit perform
+                    end-if
+
+                 end-perform
+           end-start.    
+           if tot-exe = tot-used
+              set tutti-usati to true
+           end-if.
+
+           move mcg-code to twe-mcg-code.
+           set twe-exe-isMulti-no to true.
+           read intexe no lock.
+           move int-effort to twe-effort .
+           move 0 to tot-exe.            
+           move low-value to twe-exe-code.
+           start tmp-wod-exe key >= twe-key
+                 invalid continue
+             not invalid
+                 perform until 1 = 2
+                    read tmp-wod-exe next at end exit perform end-read
+                                              
+                    if twe-mcg-code  not = mcg-code or
+                       twe-exe-isMulti-yes          or
+                       twe-effort    not = int-effort
+                       exit perform
+                    end-if
+                    
+                    if twe-isUsed = 1 and not tutti-usati
+                       exit perform cycle
                     end-if
            
                     if twe-exe-isRestpause = 0 and
@@ -10361,6 +10408,23 @@
                     if ex-remain > 0
                        subtract 1 from ex-remain
                     end-if   
+
+                    move exe-desc-stampa to twe-exe-desc-stampa
+                    start tmp-wod-exe key >= twe-k-desc-stampa
+                          invalid continue
+                      not invalid
+                          perform until 1 = 2
+                             read tmp-wod-exe next at end exit perform 
+           end-read
+                             if twe-exe-desc-stampa not = 
+           exe-desc-stampa
+                                exit perform
+                             end-if                              
+                             move 1 to twe-isUsed
+                             rewrite twe-rec
+                          end-perform
+                    end-start
+
                     exit perform
                  end-if
               end-perform
@@ -11619,9 +11683,7 @@
               move 0 to como-giorni
            else
               move cb-gio-buf to como-giorni convert
-           end-if.
-                                        
-           move 0 to effort-wod.
+           end-if.             
 
            evaluate cb-int-buf     
            when "Light wod effort"  move 1 to effort-wod

@@ -12,3 +12,5 @@
                10 twe-int-code     PIC  99.
                10 twe-exe-desc     PIC  x(100).
                10 twe-exe-isRestpause          PIC  9.
+               10 twe-exe-desc-stampa          PIC  x(20).
+               10 twe-isUsed       PIC  9.

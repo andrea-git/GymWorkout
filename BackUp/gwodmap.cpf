@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1523352-251-314334348
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1A104027-615-318636381
 
 {{@DESCRIPTION:
 
@@ -4037,7 +4037,7 @@ Begin Screen Form1
          Bitmap            = "..\resource\toolbar.bmp"
          Bitmap Frame      = TRUE
          Bitmap Handle     = toolbar-bmp
-         Bitmap Number     = 6
+         Bitmap Number     = 17
          Bitmap Square     = TRUE
          Ccol              = 0
          Cline             = 0
@@ -4048,7 +4048,7 @@ Begin Screen Form1
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
-         Enable            = TRUE
+         Enable            = FALSE
          Exception Value   = 6
          Flat              = TRUE
          Font              = Calibri/14/C0/@Occidentale
@@ -4138,7 +4138,7 @@ Begin Screen Form1
          Bitmap            = "..\resource\toolbar.bmp"
          Bitmap Frame      = TRUE
          Bitmap Handle     = toolbar-bmp
-         Bitmap Number     = 7
+         Bitmap Number     = 18
          Bitmap Square     = TRUE
          Ccol              = 0
          Cline             = 0
@@ -4149,7 +4149,7 @@ Begin Screen Form1
          Csize             = 0
          Csize Unit        = Default
          Destroy Type      = Automatic
-         Enable            = TRUE
+         Enable            = FALSE
          Exception Value   = 7
          Flat              = TRUE
          Font              = Calibri/14/C0/@Occidentale

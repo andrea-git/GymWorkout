@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        domenica 22 ottobre 2023 01:35:47.
+       DATE-WRITTEN.        giovedì 26 ottobre 2023 12:41:33.
        REMARKS.
       *{TOTEM}END
 
@@ -1511,10 +1511,10 @@
            LINES 64,00 ,
            SIZE 48,00 ,
            BITMAP-HANDLE toolbar-bmp,
-           BITMAP-NUMBER 6,
+           BITMAP-NUMBER 17,
            FRAMED,
            SQUARE,
-           ENABLED 1,
+           ENABLED 0,
            EXCEPTION-VALUE 6,
            FLAT,
            FONT IS Calibri14-Occidentale,
@@ -1556,10 +1556,10 @@
            LINES 64,00 ,
            SIZE 48,00 ,
            BITMAP-HANDLE toolbar-bmp,
-           BITMAP-NUMBER 7,
+           BITMAP-NUMBER 18,
            FRAMED,
            SQUARE,
-           ENABLED 1,
+           ENABLED 0,
            EXCEPTION-VALUE 7,
            FLAT,
            FONT IS Calibri14-Occidentale,

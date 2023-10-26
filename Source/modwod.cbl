@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 24 ottobre 2023 13:25:30.
+       DATE-WRITTEN.        giovedì 26 ottobre 2023 15:20:42.
        REMARKS.
       *{TOTEM}END
 
@@ -119,21 +119,21 @@
            05 col-series       PIC  z9.
            05 col-reps         PIC  X(20).
            05 col-rest         PIC  zz9.
-           05 col-rep-1        PIC  x(3).
-           05 col-kg-1         PIC  x(3).
-           05 col-buf-1        PIC  x(3).
-           05 col-rep-2        PIC  x(3).
-           05 col-kg-2         PIC  x(3).
-           05 col-buf-2        PIC  x(3).
-           05 col-rep-3        PIC  x(3).
-           05 col-kg-3         PIC  x(3).
-           05 col-buf-3        PIC  x(3).
-           05 col-rep-4        PIC  x(3).
-           05 col-kg-4         PIC  x(3).
-           05 col-buf-4        PIC  x(3).
-           05 col-rep-5        PIC  x(3).
-           05 col-kg-5         PIC  x(3).
-           05 col-buf-5        PIC  x(3).
+           05 col-rep-1        PIC  x(10).
+           05 col-kg-1         PIC  x(10).
+           05 col-buf-1        PIC  x(10).
+           05 col-rep-2        PIC  x(10).
+           05 col-kg-2         PIC  x(10).
+           05 col-buf-2        PIC  x(10).
+           05 col-rep-3        PIC  x(10).
+           05 col-kg-3         PIC  x(10).
+           05 col-buf-3        PIC  x(10).
+           05 col-rep-4        PIC  x(10).
+           05 col-kg-4         PIC  x(10).
+           05 col-buf-4        PIC  x(10).
+           05 col-rep-5        PIC  x(10).
+           05 col-kg-5         PIC  x(10).
+           05 col-buf-5        PIC  x(10).
            05 col-note         PIC  x(100).
        77 ws-narg          PIC  99
                   USAGE IS COMP-1.
@@ -210,7 +210,7 @@
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
        77 Form1-MULKEY-TMPBUF   PIC X(2305).
        77 TMP-DataSet1-exercises-BUF     PIC X(1189).
-       77 TMP-DataSet1-rwodbook-BUF     PIC X(2346).
+       77 TMP-DataSet1-rwodbook-BUF     PIC X(2556).
        77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-BUF     PIC X(529).
@@ -298,21 +298,22 @@
        05
            form1-gd-1, 
            Grid, 
-           COL 2,80, 
+           COL 2,00, 
            LINE 2,87,
            LINES 36,61 ,
-           SIZE 164,90 ,
+           SIZE 172,30 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           DATA-COLUMNS (1, 11, 61, 63, 83, 86, 89, 92, 95, 98, 101, 
-           104, 107, 110, 113, 116, 119, 122, 125, 128, 131),
+           DATA-COLUMNS (1, 11, 61, 63, 83, 86, 96, 106, 116, 126, 136, 
+           146, 156, 166, 176, 186, 196, 206, 216, 226, 236),
            ALIGNMENT ("C", "U", "R", "U", "R", "C", "C", "C", "C", "C", 
            "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "U"),
            SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 
            5, 5, 5, 5, 5),
-           DATA-TYPES ("X", "U(5)", "X(100)", "X(20)", "U(5)", "x(3)", 
-           "x(3)", "x(3)", "x(3)", "x(3)", "x(3)", "x(3)", "x(3)", "x(3)
-      -    "", "x(3)", "x(3)", "x(3)", "x(3)", "x(3)", "x(3)", "X"),
+           DATA-TYPES ("X", "U(5)", "X(100)", "X(20)", "U(5)", "x(10)", 
+           "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)"
+           , "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10
+      -    ")", "X"),
            COLUMN-DIVIDERS (3, 3, 3, 3, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 
            1, 1, 3, 1, 1, 3, 1),
            NUM-COL-HEADINGS 1,
@@ -322,14 +323,13 @@
            FONT IS Calibri14-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
-           HSCROLL,
            ID IS 78-ID-form1-gd-1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            RECORD-DATA rec-grid,
            TILED-HEADINGS,
            USE-TAB,
-           VIRTUAL-WIDTH 163,
+           VIRTUAL-WIDTH 170,
            VPADDING 1,
            VSCROLL,
            EVENT PROCEDURE Form1-Gd-1-Event-Proc,
@@ -389,7 +389,7 @@
        05
            ef-liv, 
            Entry-Field, 
-           COL 162,80, 
+           COL 169,40, 
            LINE 1,22,
            LINES 1,30 ,
            SIZE 4,90 ,
@@ -410,7 +410,7 @@
        05
            lab-liv, 
            Label, 
-           COL 138,00, 
+           COL 144,00, 
            LINE 1,22,
            LINES 1,30 ,
            SIZE 24,00 ,
@@ -1941,7 +1941,7 @@
               SCREEN LINE 1,
               SCREEN COLUMN 0,
               LINES 39,17,
-              SIZE 168,60,
+              SIZE 174,30,
               COLOR 131329,
               CONTROL FONT Calibri14-Occidentale,
               LINK TO THREAD,
@@ -1969,9 +1969,9 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 31, 35, 45, 
-           49, 54, 59, 64, 69, 74, 79, 84, 89, 94, 99, 104, 109, 114, 
-           119, 124)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 31, 34, 42, 
+           45, 51, 57, 63, 69, 75, 81, 87, 93, 99, 105, 111, 117, 123, 
+           129, 135)
            .
 
        Form1-PROC.

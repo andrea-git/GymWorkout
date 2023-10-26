@@ -20,8 +20,8 @@
                10 rod-dati-modwod.
                    15 rod-rep-kg-buf
                               OCCURS 10 TIMES.
-                       20 rod-rep          PIC  x(3).
-                       20 rod-kg           PIC  x(3).
-                       20 rod-buf          PIC  x(3).
+                       20 rod-rep          PIC  x(10).
+                       20 rod-kg           PIC  x(10).
+                       20 rod-buf          PIC  x(10).
                    15 rod-note         PIC  x(100).
                10 FILLER           PIC  x(2000).

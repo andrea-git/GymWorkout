@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1811924-737-2570017924
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1A13524-176-692720759
 
 {{@DESCRIPTION:
 
@@ -421,8 +421,8 @@ m_bFixed=1
 @}}
 [FDITEM41_WK]
 m_strName=col-rep-1
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -431,8 +431,8 @@ m_bFixed=1
 @}}
 [FDITEM42_WK]
 m_strName=col-kg-1
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -441,8 +441,8 @@ m_bFixed=1
 @}}
 [FDITEM43_WK]
 m_strName=col-buf-1
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -451,8 +451,8 @@ m_bFixed=1
 @}}
 [FDITEM44_WK]
 m_strName=col-rep-2
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -461,8 +461,8 @@ m_bFixed=1
 @}}
 [FDITEM45_WK]
 m_strName=col-kg-2
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -471,8 +471,8 @@ m_bFixed=1
 @}}
 [FDITEM46_WK]
 m_strName=col-buf-2
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -481,8 +481,8 @@ m_bFixed=1
 @}}
 [FDITEM47_WK]
 m_strName=col-rep-3
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -491,8 +491,8 @@ m_bFixed=1
 @}}
 [FDITEM48_WK]
 m_strName=col-kg-3
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -501,8 +501,8 @@ m_bFixed=1
 @}}
 [FDITEM49_WK]
 m_strName=col-buf-3
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -511,8 +511,8 @@ m_bFixed=1
 @}}
 [FDITEM50_WK]
 m_strName=col-rep-4
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -521,8 +521,8 @@ m_bFixed=1
 @}}
 [FDITEM51_WK]
 m_strName=col-kg-4
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -531,8 +531,8 @@ m_bFixed=1
 @}}
 [FDITEM52_WK]
 m_strName=col-buf-4
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -541,8 +541,8 @@ m_bFixed=1
 @}}
 [FDITEM53_WK]
 m_strName=col-rep-5
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -551,8 +551,8 @@ m_bFixed=1
 @}}
 [FDITEM54_WK]
 m_strName=col-kg-5
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -561,8 +561,8 @@ m_bFixed=1
 @}}
 [FDITEM55_WK]
 m_strName=col-buf-5
-m_strRawPic=x(3)
-m_strPic=x(3)
+m_strRawPic=x(10)
+m_strPic=x(10)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -1258,7 +1258,7 @@ GRAPHICAL-SCREEN
 Begin Screen Form1
    PREFIX            = Form1
    IMPORTED-SCREEN   = FALSE
-   LOCK-CONTROL      = TRUE
+   LOCK-CONTROL      = FALSE
    LEVEL             = 1
    (Name)            = Form1
    Absolute Column   = 0
@@ -1295,7 +1295,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 168,60
+   Size              = 174,30
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -1308,7 +1308,7 @@ Begin Screen Form1
    Wrap              = FALSE
    Event Procedure   = Form1-Event-Proc
    Begin Grid form1-gd-1
-      SCREEN-COL        = 2,80
+      SCREEN-COL        = 2,00
       SCREEN-LINE       = 2,87
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1339,7 +1339,7 @@ Begin Screen Form1
       Cells' Setting    = ( X = 21, Y = 1, Data = "NOTE" )
       Centered Headings = FALSE
       Color             = 0
-      Column            = 2,80
+      Column            = 2,00
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-data, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
@@ -1349,61 +1349,61 @@ Begin Screen Form1
       Columns' Setting  = ( DISP = 20, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 3, Name = col-series, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "X(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 4, Name = col-reps, READONLY = 0 )
       Columns' Setting  = ( PIC = "X(20)", TYPE = "X(20)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( DISP = 8, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 5, Name = col-rest, READONLY = 0 )
       Columns' Setting  = ( PIC = "zz9", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 6, Name = col-rep-1, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 7, Name = col-kg-1, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 8, Name = col-buf-1, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 9, Name = col-rep-2, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 10, Name = col-kg-2, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 11, Name = col-buf-2, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 12, Name = col-rep-3, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 13, Name = col-kg-3, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 14, Name = col-buf-3, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 15, Name = col-rep-4, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 16, Name = col-kg-4, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 17, Name = col-buf-4, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 18, Name = col-rep-5, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 19, Name = col-kg-5, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 20, Name = col-buf-5, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(3)", TYPE = "x(3)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 21, Name = col-note, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 40, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 36, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 2
       Cursor X          = 0
@@ -1420,7 +1420,7 @@ Begin Screen Form1
       Heading Font      = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      Hscroll           = TRUE
+      Hscroll           = FALSE
       ID                = 1
       ID Variable       = AUTO-ID
       Last Row          = 0
@@ -1436,12 +1436,12 @@ Begin Screen Form1
       Record Data       = rec-grid
       Row Dividers      = 1
       Row Headings      = FALSE
-      Size              = 164,90
+      Size              = 172,30
       Size Unit         = Default
       Tab Order         = 1
       Tiled Headings    = TRUE
       Use Tab           = TRUE
-      Virtual Width     = 163
+      Virtual Width     = 170
       Visible           = NONE
       Vpadding          = 1
       Vscroll           = TRUE
@@ -1568,7 +1568,7 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Entry-Field ef-liv
-      SCREEN-COL        = 162,80
+      SCREEN-COL        = 169,40
       SCREEN-LINE       = 1,22
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1580,7 +1580,7 @@ Begin Screen Form1
       Clines            = 0
       Clines Unit       = Default
       Color             = 513
-      Column            = 162,80
+      Column            = 169,40
       Csize             = 0
       Csize Unit        = Default
       Cursor            = 0
@@ -1626,15 +1626,15 @@ Begin Screen Form1
       After Procedure   = Form1-Ef-1-AfterProcedure
    End
    Begin Label lab-liv
-      SCREEN-COL        = 138,00
+      SCREEN-COL        = 144,00
       SCREEN-LINE       = 1,22
-      LOCK-CONTROL      = TRUE
+      LOCK-CONTROL      = FALSE
       LEVEL             = 5
       (Name)            = lab-liv
       Clines            = 0
       Clines Unit       = Default
       Color             = 0
-      Column            = 138,00
+      Column            = 144,00
       Csize             = 0
       Csize Unit        = Default
       Destroy Type      = Automatic

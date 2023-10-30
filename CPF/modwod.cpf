@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.95.20
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1A13524-176-692720759
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1E10109-677-4711405
 
 {{@DESCRIPTION:
 
@@ -1346,7 +1347,7 @@ Begin Screen Form1
       Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 2, Name = col-exe, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(50)", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 20, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( DISP = 19, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 3, Name = col-series, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "X(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 3 )
@@ -1355,7 +1356,7 @@ Begin Screen Form1
       Columns' Setting  = ( DISP = 8, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 5, Name = col-rest, READONLY = 0 )
       Columns' Setting  = ( PIC = "zz9", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 3, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 6, Name = col-rep-1, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(10)", TYPE = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
@@ -2211,7 +2212,7 @@ BEGIN-TEXT
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire form1-gd-1(store-riga, 1), hidden-data rod-key
-              read rwodbook 
+              read rwodbook                                         
               start rwodbook key <= rod-k-confronto
                     invalid continue
                 not invalid
@@ -2221,7 +2222,6 @@ BEGIN-TEXT
                     move rod-day      to s-rod-day     
                     move store-riga to riga  
                     inquire form1-gd-1(store-riga), row-color colore                  
-                    set trovato to false
                     perform CONFRONTI-GRIGLIA
                     if prima-volta
                        if tot-liv > max-liv
@@ -3144,49 +3144,48 @@ BEGIN-DATA
 BEGIN-TEXT
       *<<** Customized_Default, SP-G, Form1-Custom1-1 **>>
            inquire ef-liv, value in tot-liv.
-           if tot-liv > max-liv
-              move max-liv to ef-liv-buf
-              display ef-liv
-           else
-              if tot-liv not = s-liv
-                 if confronto       
+           if tot-liv not = s-liv       
+              if tot-liv > max-liv
+                 move max-liv to ef-liv-buf
+                 display ef-liv
+              end-if
+              if confronto       
+                 move tot-liv to s-liv
+                 modify form1-gd-1, reset-grid = 1
+                 perform FORM1-GD-1-CONTENT
+                 perform CARICA-WOD
+                 perform CARICA-CONFRONTI
+              else
+                 if tot-liv = 0 
+                    move 999 to s-liv 
+                 else  
                     move tot-liv to s-liv
-                    modify form1-gd-1, reset-grid = 1
-                    perform FORM1-GD-1-CONTENT
-                    perform CARICA-WOD
-                    perform CARICA-CONFRONTI
-                 else
-                    if tot-liv = 0 
-                       move 999 to s-liv 
-                    else  
-                       move tot-liv to s-liv
-                    end-if
-                    inquire form1-gd-1, last-row in tot-righe
-                    perform varying riga from 2 by 1 
-                              until riga > tot-righe
-                       inquire form1-gd-1(riga, 78-col-data), 
-                               hidden-data col-exe
-                       if col-exe = spaces
-                          modify form1-gd-1, record-to-delete = riga
-                          subtract 1 from riga tot-righe
-                       else
-                          move col-exe to exe-code
-                          read exercises no lock
-                               invalid continue
-                          end-read
-                       end-if
-                    end-perform
-                    inquire form1-gd-1, last-row in tot-righe
-                    perform varying riga from 2 by 1 
-                              until riga > tot-righe
-                       inquire form1-gd-1(riga, 78-col-data), 
-                               hidden-data col-exe
-                       if col-exe not = spaces
-                          move col-exe to exe-code
-                          perform CONFRONTI-DA-LOOKUP
-                       end-if
-                    end-perform
                  end-if
+                 inquire form1-gd-1, last-row in tot-righe
+                 perform varying riga from 2 by 1 
+                           until riga > tot-righe
+                    inquire form1-gd-1(riga, 78-col-data), 
+                            hidden-data col-exe
+                    if col-exe = spaces
+                       modify form1-gd-1, record-to-delete = riga
+                       subtract 1 from riga tot-righe
+                    else
+                       move col-exe to exe-code
+                       read exercises no lock
+                            invalid continue
+                       end-read
+                    end-if
+                 end-perform
+                 inquire form1-gd-1, last-row in tot-righe
+                 perform varying riga from 2 by 1 
+                           until riga > tot-righe
+                    inquire form1-gd-1(riga, 78-col-data), 
+                            hidden-data col-exe
+                    if col-exe not = spaces
+                       move col-exe to exe-code
+                       perform CONFRONTI-DA-LOOKUP
+                    end-if
+                 end-perform
               end-if
            end-if.
 END-TEXT

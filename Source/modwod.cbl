@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 26 ottobre 2023 15:20:42.
+       DATE-WRITTEN.        lunedì 30 ottobre 2023 11:34:33.
        REMARKS.
       *{TOTEM}END
 
@@ -1969,7 +1969,7 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 31, 34, 42, 
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 30, 33, 41, 
            45, 51, 57, 63, 69, 75, 81, 87, 93, 99, 105, 111, 117, 123, 
            129, 135)
            .
@@ -2605,7 +2605,7 @@
            perform varying store-riga from 2 by 1 
                      until store-riga > tot-righe
               inquire form1-gd-1(store-riga, 1), hidden-data rod-key
-              read rwodbook 
+              read rwodbook                                         
               start rwodbook key <= rod-k-confronto
                     invalid continue
                 not invalid
@@ -2616,7 +2616,6 @@
                     move store-riga to riga  
                     inquire form1-gd-1(store-riga), row-color colore    
                          
-                    set trovato to false
                     perform CONFRONTI-GRIGLIA
                     if prima-volta
                        if tot-liv > max-liv
@@ -3514,49 +3513,48 @@
       * <TOTEM:PARA. Form1-Ef-1-AfterProcedure>
            MODIFY CONTROL-HANDLE COLOR = COLORE-OR
            inquire ef-liv, value in tot-liv.
-           if tot-liv > max-liv
-              move max-liv to ef-liv-buf
-              display ef-liv
-           else
-              if tot-liv not = s-liv
-                 if confronto       
+           if tot-liv not = s-liv       
+              if tot-liv > max-liv
+                 move max-liv to ef-liv-buf
+                 display ef-liv
+              end-if
+              if confronto       
+                 move tot-liv to s-liv
+                 modify form1-gd-1, reset-grid = 1
+                 perform FORM1-GD-1-CONTENT
+                 perform CARICA-WOD
+                 perform CARICA-CONFRONTI
+              else
+                 if tot-liv = 0 
+                    move 999 to s-liv 
+                 else  
                     move tot-liv to s-liv
-                    modify form1-gd-1, reset-grid = 1
-                    perform FORM1-GD-1-CONTENT
-                    perform CARICA-WOD
-                    perform CARICA-CONFRONTI
-                 else
-                    if tot-liv = 0 
-                       move 999 to s-liv 
-                    else  
-                       move tot-liv to s-liv
-                    end-if
-                    inquire form1-gd-1, last-row in tot-righe
-                    perform varying riga from 2 by 1 
-                              until riga > tot-righe
-                       inquire form1-gd-1(riga, 78-col-data), 
-                               hidden-data col-exe
-                       if col-exe = spaces
-                          modify form1-gd-1, record-to-delete = riga
-                          subtract 1 from riga tot-righe
-                       else
-                          move col-exe to exe-code
-                          read exercises no lock
-                               invalid continue
-                          end-read
-                       end-if
-                    end-perform
-                    inquire form1-gd-1, last-row in tot-righe
-                    perform varying riga from 2 by 1 
-                              until riga > tot-righe
-                       inquire form1-gd-1(riga, 78-col-data), 
-                               hidden-data col-exe
-                       if col-exe not = spaces
-                          move col-exe to exe-code
-                          perform CONFRONTI-DA-LOOKUP
-                       end-if
-                    end-perform
                  end-if
+                 inquire form1-gd-1, last-row in tot-righe
+                 perform varying riga from 2 by 1 
+                           until riga > tot-righe
+                    inquire form1-gd-1(riga, 78-col-data), 
+                            hidden-data col-exe
+                    if col-exe = spaces
+                       modify form1-gd-1, record-to-delete = riga
+                       subtract 1 from riga tot-righe
+                    else
+                       move col-exe to exe-code
+                       read exercises no lock
+                            invalid continue
+                       end-read
+                    end-if
+                 end-perform
+                 inquire form1-gd-1, last-row in tot-righe
+                 perform varying riga from 2 by 1 
+                           until riga > tot-righe
+                    inquire form1-gd-1(riga, 78-col-data), 
+                            hidden-data col-exe
+                    if col-exe not = spaces
+                       move col-exe to exe-code
+                       perform CONFRONTI-DA-LOOKUP
+                    end-if
+                 end-perform
               end-if
            end-if 
            .

@@ -214,6 +214,7 @@
                        if num-righe > 78-max-righe
                           perform SALTO-PAGINA
                           perform INTESTAZIONE
+                          add 1 to num-righe
                        end-if
                        move 78-pen-light to spl-pen-width
                        if como-day = 0

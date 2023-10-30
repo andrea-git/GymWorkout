@@ -70,9 +70,9 @@
 
            05 r-dati-modwod.
               10 r-rep-kg-buf    occurs 5.
-                 20 r-rod-rep    PIC  x(3).
-                 20 r-rod-kg     PIC  x(3).
-                 20 r-rod-buf    PIC  x(3).
+                 20 r-rod-rep    PIC  x(10).
+                 20 r-rod-kg     PIC  x(10).
+                 20 r-rod-buf    PIC  x(10).
               10 r-rod-note      pic x(100).
 
        01  riga-note.

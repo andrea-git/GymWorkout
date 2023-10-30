@@ -585,11 +585,16 @@
            when 2                                   
                 call "WIN$PRINTER"  using winprint-set-data-columns,
                                            21, 23, 33, 36,
-                                           39, 42, 45,    
-                                           48, 51, 54,
-                                           57, 60, 63,
-                                           66, 69, 72,
-                                           75, 78, 81
+      *                                     39, 42, 45,    
+      *                                     48, 51, 54,
+      *                                     57, 60, 63,
+      *                                     66, 69, 72,
+      *                                     75, 78, 81
+                                           46,  56,  66,
+                                           76,  86,  96,
+                                          106, 116, 126,
+                                          136, 146, 156,
+                                          166, 176, 186,
                                     giving return-code
                 move 0,6               to winprint-col-start
                 move wprtalign-left  to winprint-col-alignment
@@ -619,22 +624,20 @@
                 move 5,6               to winprint-col-start 
 
                 |REP                                         
-                add  78-space          to winprint-col-start 
-                move 0,1               to winprint-col-indent
+                add  78-space          to winprint-col-start  
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code
                 |KG
-                add  78-space          to winprint-col-start 
-                move 0,15              to winprint-col-indent
+                add  78-space          to winprint-col-start  
+                subtract 0,1 from winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code
                 |BUF
                 add  78-space          to winprint-col-start 
-                move 0,1               to winprint-col-indent
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
@@ -642,21 +645,41 @@
 
                 |REP                                         
                 add  78-space          to winprint-col-start 
-                move 0,1               to winprint-col-indent
+                add 0,1 to winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code
                 |KG
-                add  78-space          to winprint-col-start 
-                move 0,15              to winprint-col-indent
+                add  78-space          to winprint-col-start  
+                subtract 0,1 from winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code
                 |BUF
                 add  78-space          to winprint-col-start 
-                move 0,1               to winprint-col-indent
+                move wprtalign-left    to winprint-col-alignment
+                call "WIN$PRINTER"  using winprint-set-page-column,
+                                          winprint-column
+                                   giving return-code
+
+                |REP                                         
+                add  78-space          to winprint-col-start  
+                add 0,1 to winprint-col-start 
+                move wprtalign-left    to winprint-col-alignment
+                call "WIN$PRINTER"  using winprint-set-page-column,
+                                          winprint-column
+                                   giving return-code
+                |KG
+                add  78-space          to winprint-col-start  
+                subtract 0,1 from winprint-col-start 
+                move wprtalign-left    to winprint-col-alignment
+                call "WIN$PRINTER"  using winprint-set-page-column,
+                                          winprint-column
+                                   giving return-code
+                |BUF
+                add  78-space          to winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
@@ -664,65 +687,41 @@
 
                 |REP                                         
                 add  78-space          to winprint-col-start 
-                move 0,1               to winprint-col-indent
+                add 0,1 to winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code
                 |KG
-                add  78-space          to winprint-col-start 
-                move 0,15              to winprint-col-indent
+                add  78-space          to winprint-col-start  
+                subtract 0,1 from winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code
                 |BUF
                 add  78-space          to winprint-col-start 
-                move 0,1               to winprint-col-indent
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code
 
                 |REP                                         
-                add  78-space          to winprint-col-start 
-                move 0,1               to winprint-col-indent
+                add  78-space          to winprint-col-start  
+                add 0,1 to winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code
                 |KG
-                add  78-space          to winprint-col-start 
-                move 0,15              to winprint-col-indent
-                move wprtalign-left    to winprint-col-alignment
-                call "WIN$PRINTER"  using winprint-set-page-column,
-                                          winprint-column
-                                   giving return-code
-                |BUF
-                add  78-space          to winprint-col-start 
-                move 0,1               to winprint-col-indent
-                move wprtalign-left    to winprint-col-alignment
-                call "WIN$PRINTER"  using winprint-set-page-column,
-                                          winprint-column
-                                   giving return-code
-
-                |REP                                         
-                add  78-space          to winprint-col-start 
-                move 0,1               to winprint-col-indent
-                move wprtalign-left    to winprint-col-alignment
-                call "WIN$PRINTER"  using winprint-set-page-column,
-                                          winprint-column
-                                   giving return-code
-                |KG
-                add  78-space          to winprint-col-start 
-                move 0,15              to winprint-col-indent
+                add  78-space          to winprint-col-start    
+                subtract 0,1 from winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code 
                 |BUF
                 add  78-space          to winprint-col-start 
-                move 0,1               to winprint-col-indent
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column

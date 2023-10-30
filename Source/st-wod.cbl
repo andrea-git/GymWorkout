@@ -416,7 +416,29 @@
               if resto = 3 or 6 or 9 or 12 or 15
                  move 78-pen-heavy to spl-pen-width
               end-if
-              add 0,95 to spl-colonna spl-colonna-fine
+              evaluate resto
+              when  1
+              when  4
+              when  7
+              when 10
+              when 13                                      
+                   add 0,82 to spl-colonna spl-colonna-fine
+
+              when  2
+              when  5
+              when  8
+              when 11
+              when 14
+                   add 1,6 to spl-colonna spl-colonna-fine
+
+              when  3     
+              when  6
+              when  9
+              when 12
+              when 15
+                   add 0,8 to spl-colonna spl-colonna-fine
+
+              end-evaluate
               perform STAMPA-LINEA-VERTICALE
            end-perform.                         
            move 78-pen-light to spl-pen-width.

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 30 ottobre 2023 11:34:33.
+       DATE-WRITTEN.        lunedì 30 ottobre 2023 17:39:06.
        REMARKS.
       *{TOTEM}END
 
@@ -213,7 +213,7 @@
        77 TMP-DataSet1-rwodbook-BUF     PIC X(2556).
        77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(529).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(739).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -1970,8 +1970,8 @@
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
               MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 30, 33, 41, 
-           45, 51, 57, 63, 69, 75, 81, 87, 93, 99, 105, 111, 117, 123, 
-           129, 135)
+           45, 50, 57, 62, 67, 74, 79, 84, 91, 96, 101, 108, 113, 118, 
+           125, 130)
            .
 
        Form1-PROC.

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 30 ottobre 2023 17:39:06.
+       DATE-WRITTEN.        martedì 31 ottobre 2023 14:50:23.
        REMARKS.
       *{TOTEM}END
 
@@ -3317,7 +3317,6 @@
                     move 0 to tex-split
                  end-if
                  add 1 to tex-split
-                 move rod-desc-univoca  to tex-desc-univoca
                  move rod-mcg-code      to tex-mcg-code
                  move exe-desc          to tex-exe-desc
                  move space             to tex-nome-dupl

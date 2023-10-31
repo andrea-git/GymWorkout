@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1E11370-532-3186815804
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1F134646-108-258711085
 
 {{@DESCRIPTION:
 
@@ -2917,7 +2917,6 @@ BEGIN-TEXT
                     move 0 to tex-split
                  end-if
                  add 1 to tex-split
-                 move rod-desc-univoca  to tex-desc-univoca
                  move rod-mcg-code      to tex-mcg-code
                  move exe-desc          to tex-exe-desc
                  move space             to tex-nome-dupl

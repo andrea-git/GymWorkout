@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1885732-345-2191314608
+PROGRAM_UNIQUE_CODE=TOTEM-7E7A1F135316-785-2411417505
 
 {{@DESCRIPTION:
 
@@ -11414,7 +11414,6 @@ BEGIN-TEXT
                          read exercises no lock
                               invalid move "NON TROVATA" to exe-desc
                          end-read                              
-                         move rod-desc-univoca     to tex-desc-univoca
                          move exe-desc             to tex-exe-desc        
                          move rod-int-code         to tex-int-code        
                          move rod-exe-isMulti      to tex-exe-isMulti     
@@ -12964,14 +12963,14 @@ BEGIN-TEXT
       *              move tex-split            to wod-split
                     move tex-mcg-code         to rod-mcg-code        
                     move tex-exe-code         to rod-exe-code        
-                    move tex-int-code         to rod-int-code        
+                    move tex-int-code         to rod-int-code int-code
+                    read intexe no lock invalid move 0 to int-restpause end-read
                     move tex-exe-isMulti      to rod-exe-isMulti     
                     move tex-reps             to rod-reps            
                     move tex-series           to rod-series          
-                    move tex-int-restpause    to rod-int-restpause   
+                    move int-restpause        to rod-int-restpause   
                     move tex-ss               to rod-ss    
                     add  1                    to tot-exe            
-                    move tex-desc-univoca     to rod-desc-univoca 
                     add 1 to idx1
                     move el-dati-wod(idx1) to rod-dati-modwod
                     write rod-rec       

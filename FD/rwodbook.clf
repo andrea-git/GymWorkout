@@ -5,7 +5,7 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7A1E11370-504-2753514574
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7A1F13460-585-2396125719
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -162,7 +162,7 @@ m_bFixed=1
 
 @}}
 [FDITEM15_]
-m_strName=rod-desc-univoca
+m_strName=FILLER
 m_strRawPic=x(100)
 m_strPic=x(100)
 m_nItemLevel=10

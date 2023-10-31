@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 24 ottobre 2023 14:47:15.
+       DATE-WRITTEN.        martedì 31 ottobre 2023 14:54:14.
        REMARKS.
       *{TOTEM}END
 
@@ -573,7 +573,7 @@
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18384).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(137).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(529).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(739).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(190).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
@@ -581,7 +581,7 @@
        77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(207).
        77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
        77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(440).
-       77 TMP-DataSet1-rwodbook-BUF     PIC X(2346).
+       77 TMP-DataSet1-rwodbook-BUF     PIC X(2556).
        77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
@@ -9640,7 +9640,6 @@
                          read exercises no lock
                               invalid move "NON TROVATA" to exe-desc
                          end-read                              
-                         move rod-desc-univoca     to tex-desc-univoca
                          move exe-desc             to tex-exe-desc      
              
                          move rod-int-code         to tex-int-code      
@@ -11242,14 +11241,15 @@
       *              move tex-split            to wod-split
                     move tex-mcg-code         to rod-mcg-code        
                     move tex-exe-code         to rod-exe-code        
-                    move tex-int-code         to rod-int-code        
+                    move tex-int-code         to rod-int-code int-code
+                    read intexe no lock invalid move 0 to int-restpause 
+           end-read
                     move tex-exe-isMulti      to rod-exe-isMulti     
                     move tex-reps             to rod-reps            
                     move tex-series           to rod-series          
-                    move tex-int-restpause    to rod-int-restpause   
+                    move int-restpause        to rod-int-restpause   
                     move tex-ss               to rod-ss    
                     add  1                    to tot-exe            
-                    move tex-desc-univoca     to rod-desc-univoca 
                     add 1 to idx1
                     move el-dati-wod(idx1) to rod-dati-modwod
                     write rod-rec       

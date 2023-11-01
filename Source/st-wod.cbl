@@ -75,6 +75,8 @@
                  20 r-rod-buf    PIC  x(10).
               10 r-rod-note      pic x(100).
 
+       77  r-reps-only           pic x(20).
+
        01  riga-note.
            05 r-note             pic x(110).
 
@@ -99,12 +101,14 @@
        77  WFONT-STATUS          pic s9(5)  value zero.
                                  
        77  ArialNarrow11         handle of font.                    
-       77  ArialNarrow8          handle of font.           
+       77  ArialNarrow8          handle of font.                    
+       77  ArialNarrow9          handle of font.           
        77  ArialNarrow7          handle of font.           
        77  ArialNarrow11B        handle of font.
 
        77  como-data             pic 9(8).
        77  como-ora              pic 9(8).
+       77  len                   pic 99.
 
        77  num-righe             pic 9(3).
        77  pagina                pic 9(3) value 0.
@@ -273,8 +277,21 @@
                                   into r-exe-desc
                                 end-string
                              end-if
-                          end-if       
-                          move tex-reps   to r-reps
+                          end-if  
+                          move 0 to len                       
+                          inspect tex-reps replacing 
+                                  trailing spaces by low-value
+                          inspect tex-reps tallying len 
+                                  for characters before low-value
+                          inspect tex-reps replacing 
+                                  trailing low-value by spaces
+                          if len > 11
+                             move tex-reps to r-reps-only
+                             move spaces   to r-reps
+                          else
+                             move tex-reps to r-reps     
+                             move spaces   to r-reps-only
+                          end-if
 
                           move tex-series to r-series
                           inspect r-series 
@@ -312,6 +329,13 @@
                        move r-riga        to spl-riga-stampa
                        move 2             to spl-tipo-colonna
                        perform SCRIVI  
+                       if r-reps-only not = spaces
+                          subtract 78-passo from spl-riga
+                          move 2,1 to spl-tipo-colonna
+                          move r-reps-only to spl-riga-stampa
+                          move ArialNarrow9 to spl-hfont     
+                          perform SCRIVI
+                       end-if
 
                        move ArialNarrow7 to spl-hfont     
                        subtract 78-passo from spl-riga
@@ -344,7 +368,7 @@
            move 78-margine-basso  to spl-riga-fine.
 
            move 0,5   to spl-colonna
-           move 28,7  to spl-colonna-fine
+           move 29,3  to spl-colonna-fine
 
            set  spl-oggetto       to true
            set  spl-rettangolo    to true
@@ -378,7 +402,7 @@
        STAMPA-QUADRATO-GRAY.                                  
            compute spl-riga-fine = 78-passo + spl-riga.
            move 0,55  to spl-colonna.
-           move 28,65 to spl-colonna-fine.
+           move 29,25 to spl-colonna-fine.
 
            move 78-pen-light to spl-pen-width.
 
@@ -403,11 +427,11 @@
            perform STAMPA-LINEA-VERTICALE.
                        
            move 78-pen-heavy to spl-pen-width.
-           move 5,8 to spl-colonna spl-colonna-fine.
+           move 6,3 to spl-colonna spl-colonna-fine.
            perform STAMPA-LINEA-VERTICALE.
                        
            move 78-pen-heavy to spl-pen-width.
-           move 6,5 to spl-colonna spl-colonna-fine.
+           move 7,0 to spl-colonna spl-colonna-fine.
            perform STAMPA-LINEA-VERTICALE.
                        
            move 0 to resto.                            
@@ -456,7 +480,7 @@
       ***---
        STAMPA-LINEA-ORIZZONTALE.
            move 0,5   to spl-colonna.
-           move 28,7  to spl-colonna-fine.
+           move 29,3  to spl-colonna-fine.
            move spl-riga to spl-riga-fine.
            set  spl-oggetto        to true.
            set  spl-linea          to true.
@@ -474,7 +498,7 @@
            initialize spl-riga-stampa.
            move 0 to spl-tipo-colonna.
                       
-           move 27,3 to spl-colonna
+           move 27,8 to spl-colonna
            move pagina     to pagina-z.
            move tot-pagine to tot-pagine-z.
            initialize spl-riga-stampa.
@@ -536,6 +560,29 @@
            move 0                    to wfont-char-set.
            set  wfdevice-win-printer to true. |E' un carattere per la stampante
            call "W$FONT" using wfont-get-font, ArialNarrow8, 
+                               wfont-data
+                        giving wfont-status.
+      
+      * ISACCO (QUESTI TEST CONTROLLANO L'ESISTENZA DEL FONT)
+           if wfont-status not = 1
+              set errori to true
+              perform MESSAGGIO-ERR-FONT
+              exit paragraph
+           end-if.
+  
+      * Arial Narrow 9
+           initialize wfont-data ArialNarrow9.
+           move 9 to wfont-size.
+           move "Arial Narrow"            to wfont-name.
+           set  wfcharset-dont-care  to true.
+           set  wfont-bold           to false.
+           set  wfont-italic         to false.
+           set  wfont-underline      to false.
+           set  wfont-strikeout      to false.
+           set  wfont-fixed-pitch    to false.
+           move 0                    to wfont-char-set.
+           set  wfdevice-win-printer to true. |E' un carattere per la stampante
+           call "W$FONT" using wfont-get-font, ArialNarrow9, 
                                wfont-data
                         giving wfont-status.
       
@@ -623,6 +670,7 @@
                                  
            destroy ArialNarrow11.
            destroy ArialNarrow8.
+           destroy ArialNarrow9.
            destroy ArialNarrow7.
            destroy ArialNarrow11B.
 

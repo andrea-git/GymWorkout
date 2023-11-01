@@ -197,7 +197,7 @@
       <xfd:key-columns
            xfd:key-column-count="5">
         <xfd:key-column
-             xfd:key-column-name="ROD-INT-RESTPAUSE"/>
+             xfd:key-column-name="ROD-INT-CEDIMENTO"/>
         <xfd:key-column
              xfd:key-column-name="WOD-MCG-CODE-1"/>
         <xfd:key-column
@@ -384,7 +384,7 @@
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
-         xfd:field-name="ROD-INT-RESTPAUSE"/>
+         xfd:field-name="ROD-INT-CEDIMENTO"/>
     <xfd:field
          xfd:field-offset="65"
          xfd:field-bytes="1"

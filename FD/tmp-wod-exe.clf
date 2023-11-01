@@ -5,7 +5,7 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7B1134714-231-1964113779
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7B1173223-624-11597614
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -127,7 +127,7 @@ m_nSize=20
 
 @}}
 [FDITEM11_]
-m_strName=twe-exe-isRestpause
+m_strName=twe-exe-isCedimento
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=10

@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7B1133959-36-2553915407
+PROGRAM_UNIQUE_CODE=TOTEM-7E7B1173224-460-53696624
 
 {{@DESCRIPTION:
 
@@ -6478,9 +6478,9 @@ BEGIN-TEXT
                                 icon 2
                      move spaces to int-desc
                 end-read
-                if int-restpause > 0  
+                if int-cedimento > 0  
                    initialize como-desc
-                   move int-restpause to como-value
+                   move int-cedimento to como-value
                    perform FORMAT-VALUE
                    inspect int-desc replacing trailing spaces by low-value
                    string  int-desc   delimited low-value
@@ -6654,9 +6654,9 @@ BEGIN-TEXT
                  move wom-split-el-split-int-code(idx-day, idx-split)
                    to int-code
                  read intexe no lock invalid move spaces to int-desc end-read
-                 if int-restpause > 0
+                 if int-cedimento > 0
                     initialize como-desc
-                    move int-restpause to como-value
+                    move int-cedimento to como-value
                     perform FORMAT-VALUE
                     inspect int-desc replacing trailing spaces by low-value
                     string  int-desc   delimited low-value

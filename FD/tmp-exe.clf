@@ -2,11 +2,10 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-aNote-andre=192.168.56.1
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7B1134714-373-847810697
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7B1171032-123-153692274
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -152,7 +151,7 @@ m_bFixed=1
 
 @}}
 [FDITEM14_]
-m_strName=tex-int-restpause
+m_strName=tex-int-cedimento
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=10

@@ -11,7 +11,7 @@
            ALTERNATE RECORD KEY IS tem-k-disab = tem-exe-isDisable, 
            tem-key
            WITH DUPLICATES 
-           ALTERNATE RECORD KEY IS tem-k-rp = tem-exe-isRestPause, 
+           ALTERNATE RECORD KEY IS tem-k-rp = tem-exe-isCedimento, 
            tem-key
            WITH DUPLICATES 
            ALTERNATE RECORD KEY IS tem-k-int = tem-int-code, 

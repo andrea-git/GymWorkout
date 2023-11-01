@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 1 novembre 2023 16:23:59.
+       DATE-WRITTEN.        mercoledì 1 novembre 2023 18:56:33.
        REMARKS.
       *{TOTEM}END
 
@@ -161,6 +161,8 @@
                   USAGE IS HANDLE OF WINDOW.
        01 FILLER           PIC  9.
            88 ricarica VALUE IS 1    WHEN SET TO FALSE  0. 
+       77 inSS PIC  99
+                  VALUE IS 0.
        77 esegui-73x21-bmp PIC  S9(9)
                   USAGE IS COMP-4
                   VALUE IS 0.
@@ -252,7 +254,7 @@
        77 rwodbook-rod-k-mcg-SPLITBUF  PIC X(34).
        77 rwodbook-rod-k-exe-SPLITBUF  PIC X(34).
        77 rwodbook-rod-k-multi-SPLITBUF  PIC X(35).
-       77 rwodbook-rod-k-rp-SPLITBUF  PIC X(35).
+       77 rwodbook-rod-k-cedimento-SPLITBUF  PIC X(35).
        77 rwodbook-rod-k-ss-SPLITBUF  PIC X(35).
        77 rwodbook-rod-k-confronto-SPLITBUF  PIC X(16).
        77 twodbook-tod-k-creazione-SPLITBUF  PIC X(27).
@@ -1026,12 +1028,13 @@
            MOVE rod-key(1:28) TO rwodbook-rod-k-multi-SPLITBUF(7:28)
            .
 
-       rwodbook-rod-k-rp-MERGE-SPLITBUF.
-           INITIALIZE rwodbook-rod-k-rp-SPLITBUF
-           MOVE rod-int-restpause(1:1) TO 
-           rwodbook-rod-k-rp-SPLITBUF(1:1)
-           MOVE rod-mcg-code(1:5) TO rwodbook-rod-k-rp-SPLITBUF(2:5)
-           MOVE rod-key(1:28) TO rwodbook-rod-k-rp-SPLITBUF(7:28)
+       rwodbook-rod-k-cedimento-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-cedimento-SPLITBUF
+           MOVE rod-int-cedimento(1:1) TO 
+           rwodbook-rod-k-cedimento-SPLITBUF(1:1)
+           MOVE rod-mcg-code(1:5) TO 
+           rwodbook-rod-k-cedimento-SPLITBUF(2:5)
+           MOVE rod-key(1:28) TO rwodbook-rod-k-cedimento-SPLITBUF(7:28)
            .
 
        rwodbook-rod-k-ss-MERGE-SPLITBUF.
@@ -1116,7 +1119,7 @@
            PERFORM rwodbook-rod-k-mcg-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-exe-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
-           PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-cedimento-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT 
@@ -1151,7 +1154,7 @@
            PERFORM rwodbook-rod-k-mcg-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-exe-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
-           PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-cedimento-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
@@ -1186,7 +1189,7 @@
            PERFORM rwodbook-rod-k-mcg-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-exe-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
-           PERFORM rwodbook-rod-k-rp-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-cedimento-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
@@ -1978,77 +1981,6 @@
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAccept>
            perform IMPOSTA-PROGRAMMA.
 
-      *     set vecchio to true.
-      *     perform ABILITA-TOOLBAR.
-      *
-      *     move 0 to riga.
-      *     move low-value to mcg-rec.
-      *     start macrogroups key >= mcg-k-desc
-      *           invalid continue
-      *       not invalid
-      *           perform until 1 = 2
-      *              add 1 to riga
-      *              read macrogroups next at end exit perform end-read
-      *              evaluate riga                           
-      *              when 1  modify chk-mcg1,  title = mcg-desc, visible = 1, value 1
-      *              when 2  modify chk-mcg2,  title = mcg-desc, visible = 1, value 1
-      *              when 3  modify chk-mcg3,  title = mcg-desc, visible = 1, value 1
-      *              when 4  modify chk-mcg4,  title = mcg-desc, visible = 1, value 1
-      *              when 5  modify chk-mcg5,  title = mcg-desc, visible = 1, value 1
-      *              when 6  modify chk-mcg6,  title = mcg-desc, visible = 1, value 1
-      *              when 7  modify chk-mcg7,  title = mcg-desc, visible = 1, value 1
-      *              when 8  modify chk-mcg8,  title = mcg-desc, visible = 1, value 1
-      *              when 9  modify chk-mcg9,  title = mcg-desc, visible = 1, value 1
-      *              when 10 modify chk-mcg10, title = mcg-desc, visible = 1, value 1
-      *              when 11 modify chk-mcg11, title = mcg-desc, visible = 1, value 1
-      *              end-evaluate
-      *           end-perform
-      *     end-start.
-      *
-      *     move 0 to riga.
-      *     move low-value to int-rec.
-      *     start intexe key >= int-k-desc
-      *           invalid continue
-      *       not invalid
-      *           perform until 1 = 2
-      *              add 1 to riga
-      *              read intexe next at end exit perform end-read
-      *              evaluate riga                           
-      *              when 1  modify chk-int1,  title = int-desc, visible = 1, value 1
-      *              when 2  modify chk-int2,  title = int-desc, visible = 1, value 1
-      *              when 3  modify chk-int3,  title = int-desc, visible = 1, value 1
-      *              when 4  modify chk-int4,  title = int-desc, visible = 1, value 1
-      *              when 5  modify chk-int5,  title = int-desc, visible = 1, value 1
-      *              when 6  modify chk-int6,  title = int-desc, visible = 1, value 1
-      *              when 7  modify chk-int7,  title = int-desc, visible = 1, value 1
-      *              when 8  modify chk-int8,  title = int-desc, visible = 1, value 1
-      *              when 9  modify chk-int9,  title = int-desc, visible = 1, value 1
-      *              when 10 modify chk-int10, title = int-desc, visible = 1, value 1
-      *              when 11 modify chk-int11, title = int-desc, visible = 1, value 1
-      *              end-evaluate
-      *              move int-restpause to el-int-rp(riga)
-      *           end-perform
-      *     end-start.
-      *
-      *     move 1 to chk-mcgall-buf chk-intall-buf.
-      *     display chk-mcgall chk-intall.
-      *
-      *     perform INTESTAZIONE.
-      *     set ord-mcg-asc to true.
-      *     perform LOAD-RECORD.
-      *
-      *     move 2  to event-data-2.
-      *     perform SPOSTAMENTO. 
-      *
-      *     inquire form1-gd-1(2, 1), hidden-data hiddenData.
-      *     move hid-note to ef-note-buf.
-      *     display ef-note.
-      *
-      *     perform INIT.
-      *
-      *     |specifico dei pgm. con grid-control
-      *     perform ABILITAZIONI.
-
            .
       * <TOTEM:END>
            PERFORM UNTIL Exit-Pushed
@@ -2646,6 +2578,7 @@
            start rwodbook key >= rod-key 
                  invalid continue
              not invalid
+                 move 0 to inSS
                  perform until 1 = 2
                     read rwodbook next at end exit perform end-read
                     if rod-code not = tod-code
@@ -2662,14 +2595,29 @@
                           move   0 to colore
                        end-if
                     end-if
-                    move rod-day to como-data
-                    perform DATE-TO-SCREEN 
-                    initialize col-exe                 
-                    move como-data(1:2) to col-data(1:2)
-                    move "/"            to col-data(3:1)  
-                    move como-data(3:2) to col-data(4:2)
-                    move "/"            to col-data(6:1)  
-                    move como-data(5:4) to col-data(7:4)
+                    if rod-ss > 0 and inSS > 0 and
+                       rod-ss = inSS
+                       move "+" to col-data
+                    else
+                       if rod-ss > 0
+                          if inSS = 0
+                             move rod-ss to inSS
+                          end-if    
+                          if rod-ss not = inSS
+                             move rod-SS to inSS
+                          end-if
+                       else
+                          move 0 to inSS
+                       end-if
+                       move rod-day to como-data
+                       perform DATE-TO-SCREEN 
+                       initialize col-exe                 
+                       move como-data(1:2) to col-data(1:2)
+                       move "/"            to col-data(3:1)  
+                       move como-data(3:2) to col-data(4:2)
+                       move "/"            to col-data(6:1)  
+                       move como-data(5:4) to col-data(7:4)
+                    end-if
                     initialize col-exe
                     move rod-exe-code to exe-code
                     read exercises invalid move "NON TROVATA" to 
@@ -2681,7 +2629,7 @@
                     read intexe no lock
                     move int-rest to col-rest
 
-                    if rod-int-restpause > 0
+                    if rod-int-cedimento > 0
                        move "KG:" to rod-buf(4)
                     end-if
                             
@@ -2800,7 +2748,7 @@
               read intexe no lock
               move int-rest to col-rest
 
-              if rod-int-restpause > 0
+              if rod-int-cedimento > 0
                  move "KG:" to rod-buf(4)
               end-if
                    
@@ -2867,7 +2815,7 @@
                  set confronto to false
                  modify tool-cerca, enabled true
                  move 999 to max-liv     
-                 move 0   to ef-liv-buf
+                 move 0   to ef-liv-buf tod-code
                  modify ef-liv, value ef-liv-buf
               else                     
                  set confronto to true
@@ -2906,114 +2854,6 @@
 
        CONTROLLO.
       * <TOTEM:PARA. CONTROLLO>
-      *     set tutto-ok to true.
-      *     if mod = 0 exit paragraph end-if.
-      *
-      *     inquire form1-gd-1, cursor-y in riga.
-      *
-      *     perform VALORE-RIGA.
-      *
-      *     evaluate colonna
-      *     when 78-col-code
-      *          if nuovo
-      *             if exe-code = zero or spaces 
-      *                set errori to true
-      *                display message box MSG-Codice-obbligatorio
-      *                        title = tit-err
-      *                        icon mb-warning-icon
-      *             else  
-      *                read exercises
-      *                     not invalid
-      *                         set errori to true
-      *                         display message MGS-codice-gia-inserito|"Codice già inserito!"
-      *                                 title = tit-err
-      *                                 icon mb-warning-icon
-      *                end-read
-      *             end-if
-      *          end-if     
-      *     when 78-col-desc
-      *          if exe-desc = spaces
-      *             set errori to true   
-      *             display message box MSG-Descrizione-mancante|"Descrizione mancante"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          else
-      *             if exe-desc-stampa = spaces 
-      *                move exe-desc to exe-desc-stampa
-      *                modify form1-gd-1(riga, 78-col-desc-stampa), cell-data = exe-desc-stampa
-      *             end-if
-      *          end-if    
-      *     when 78-col-desc-stampa
-      *          if exe-desc-stampa = spaces 
-      *             move exe-desc to exe-desc-stampa
-      *             modify form1-gd-1(riga, 78-col-desc-stampa), cell-data = exe-desc-stampa
-      *          end-if
-      *     when 78-col-grp-code
-      *          move exe-grp-code to grp-code
-      *          read groups no lock 
-      *               invalid 
-      *               move spaces to grp-desc mcg-desc
-      *               set errori to true
-      *               display message "Gruppo non valido"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *           not invalid
-      *               move grp-mcg-code to mcg-code
-      *               read macrogroups no lock invalid move spaces to mcg-desc end-read
-      *          end-read                                      
-      *          modify form1-gd-1(riga, 78-col-grp-desc), cell-data grp-desc
-      *          modify form1-gd-1(riga, 78-col-mcg-desc), cell-data mcg-desc  
-      *     when 78-col-int-code
-      *          move exe-int-code to int-code
-      *          read intexe no lock 
-      *               invalid 
-      *               move spaces to int-desc 
-      *               set errori to true
-      *               display message "Intensità non valida"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          end-read                                      
-      *          modify form1-gd-1(riga, 78-col-int-desc), cell-data int-desc  
-      *
-      *     when 78-col-isMulti
-      *          if not (exe-isMulti = 0 or 1)
-      *             set errori to true
-      *             display message "Valori consentiti 1/0"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          end-if
-      *
-      *     when 78-col-setting
-      *          if exe-setting = 0
-      *             set errori to true
-      *             display message "Valore obbligatorio"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          end-if    
-      *
-      *     when 78-col-restpause
-      *          if not (exe-isRestpause = 0 or 1)
-      *             set errori to true
-      *             display message "Valori consentiti 1/0"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          end-if
-      *
-      *     when 78-col-disable
-      *          if not (exe-isDisable = 0 or 1)
-      *             set errori to true
-      *             display message "Valori consentiti 1/0"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          end-if
-      *
-      *     end-evaluate.
-      *
-      *     if errori
-      *        modify form1-gd-1, cursor-y = riga, cursor-x = colonna
-      *        move riga    to event-data-2
-      *        move colonna to event-data-1
-      *     end-if 
            .
       * <TOTEM:END>
 
@@ -3266,7 +3106,7 @@
                          read exercises end-read   
                          move spaces to rod-reps
                          move 0      to rod-series 
-                                        rod-int-restpause
+                                        rod-int-cedimento
                                         rod-ss
                                         rod-int-code
                       end-if
@@ -3324,7 +3164,7 @@
                  move rod-exe-isMulti   to tex-exe-isMulti
                  move rod-reps          to tex-reps
                  move rod-series        to tex-series
-                 move rod-int-restpause to tex-int-restpause
+                 move rod-int-cedimento to tex-int-cedimento
                  move rod-ss            to tex-ss
                  move rod-dati-modwod   to tex-rod-dati-modwod
                  write tex-rec
@@ -3357,19 +3197,6 @@
 
        VALORE-RIGA.
       * <TOTEM:PARA. VALORE-RIGA>
-      *     inquire form1-gd-1(riga, 78-col-code),      hidden-data hiddenData.
-      *
-      *     inquire form1-gd-1(riga, 78-col-code),        cell-data exe-code.
-      *     inquire form1-gd-1(riga, 78-col-desc),        cell-data exe-desc.  
-      *     inquire form1-gd-1(riga, 78-col-desc-stampa), cell-data exe-desc-stampa
-      *     inquire form1-gd-1(riga, 78-col-grp-code),    cell-data exe-grp-code.
-      *     inquire form1-gd-1(riga, 78-col-int-code),    cell-data exe-int-code.
-      *     inquire form1-gd-1(riga, 78-col-ismulti),     cell-data exe-isMulti.
-      *     inquire form1-gd-1(riga, 78-col-setting),     cell-data exe-setting.
-      *     inquire form1-gd-1(riga, 78-col-restpause),   cell-data exe-isRestpause. 
-      *     inquire form1-gd-1(riga, 78-col-disable),     cell-data exe-isDisable. 
-      *
-      *     move ef-note-buf to exe-note 
            .
       * <TOTEM:END>
 
@@ -3424,7 +3251,7 @@
       *     perform VALORE-RIGA.
 
       
-           if confronto
+           if confronto or tod-code = 0
               set event-action to event-action-fail
            else
               evaluate colonna 

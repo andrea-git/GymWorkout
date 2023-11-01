@@ -11,7 +11,7 @@
                    15 int-range-from   PIC  99.
                    15 int-range-to     PIC  99.
                10 int-effort       PIC  99.
-               10 int-restpause    PIC  9.
+               10 int-cedimento    PIC  9.
                10 int-isTime       PIC  9.
                10 int-isSqueeze    PIC  9.
                10 int-isFisse      PIC  9.

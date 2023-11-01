@@ -197,7 +197,7 @@
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
-         xfd:field-name="INT-RESTPAUSE"/>
+         xfd:field-name="INT-CEDIMENTO"/>
     <xfd:field
          xfd:field-offset="117"
          xfd:field-bytes="1"

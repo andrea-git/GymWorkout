@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tintexe.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 1 novembre 2023 15:55:43.
+       DATE-WRITTEN.        mercoledì 1 novembre 2023 18:35:44.
        REMARKS.
       *{TOTEM}END
 
@@ -96,7 +96,7 @@
            05 col-range-from   PIC  z9.
            05 col-range-to     PIC  z9.
            05 col-effort       PIC  z9.
-           05 col-restpause    PIC  9.
+           05 col-cedimento    PIC  9.
            05 col-isTime       PIC  9.
            05 col-isSqueeze    PIC  9.
            05 col-isFisse      PIC  9.
@@ -170,7 +170,8 @@
                10 old-int-serie2         PIC  99.
                10 old-int-serie3         PIC  99.
                10 old-int-serie4         PIC  99.
-               10 old-int-serie5         PIC  99.
+               10 old-int-serie5         PIC  99. 
+               10 old-int-dropset        PIC  9.
       *{TOTEM}END
 
       *{TOTEM}ID-LOGICI
@@ -211,10 +212,10 @@
        05
            form1-gd-1, 
            Grid, 
-           COL 2,10, 
+           COL 1,90, 
            LINE 1,74,
            LINES 22,70 ,
-           SIZE 133,90 ,
+           SIZE 140,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
            DATA-COLUMNS (1, 3, 53, 56, 58, 61, 63, 65, 67, 68, 69, 70, 
@@ -232,14 +233,13 @@
            DIVIDER-COLOR 1,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
-           HSCROLL,
            ID IS 1,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            RECORD-DATA rec-grid,
            TILED-HEADINGS,
            USE-TAB,
-           VIRTUAL-WIDTH 132,
+           VIRTUAL-WIDTH 139,
            VPADDING 10,
            VSCROLL,
            EVENT PROCEDURE Form1-Gd-1-Event-Proc,
@@ -792,7 +792,7 @@
                 CELL-DATA = "Effort",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 9, Y = 1,
-                CELL-DATA = "R/P",
+                CELL-DATA = "Cedimento",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 10, Y = 1,
                 CELL-DATA = "A tempo",
@@ -855,7 +855,7 @@
               SCREEN LINE 1,
               SCREEN COLUMN 0,
               LINES 24,13,
-              SIZE 136,10,
+              SIZE 142,80,
               COLOR 131329,
               CONTROL FONT Calibri14-Occidentale,
               LINK TO THREAD,
@@ -883,8 +883,8 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 8, 28, 35, 42, 49, 
-           56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 8, 33, 40, 47, 54, 
+           61, 68, 75, 85, 92, 99, 106, 113, 120, 127, 134)
            .
 
        Form1-PROC.
@@ -1751,7 +1751,7 @@
                           move int-range-to     to col-range-to     
                           move int-effort       to col-effort           
                 
-                          move int-restpause    to col-restpause
+                          move int-cedimento    to col-cedimento
                           move int-isTime       to col-isTime   
                           move int-isSqueeze    to col-isSqueeze
                           move int-isFisse      to col-isFisse
@@ -1777,7 +1777,7 @@
                           modify form1-gd-1(riga,  8), cell-data 
            col-effort
                           modify form1-gd-1(riga,  9), cell-data 
-           col-restpause
+           col-cedimento
                           modify form1-gd-1(riga, 10), cell-data 
            col-isTime
                           modify form1-gd-1(riga, 11), cell-data 
@@ -1996,7 +1996,7 @@
            inquire form1-gd-1(riga,  6), cell-data int-range-from.
            inquire form1-gd-1(riga,  7), cell-data int-range-to.  
            inquire form1-gd-1(riga,  8), cell-data int-effort.    
-           inquire form1-gd-1(riga,  9), cell-data int-restpause.
+           inquire form1-gd-1(riga,  9), cell-data int-cedimento.
            inquire form1-gd-1(riga, 10), cell-data int-isTime.   
            inquire form1-gd-1(riga, 11), cell-data int-isSqueeze.
            inquire form1-gd-1(riga, 12), cell-data int-isFisse.

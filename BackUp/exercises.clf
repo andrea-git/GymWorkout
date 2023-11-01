@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7919114148-574-103022614
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7B1171032-108-434123215
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -98,7 +98,7 @@ m_bFixed=1
 
 @}}
 [FDITEM9_]
-m_strName=exe-isRestPause
+m_strName=exe-isCedimento
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=10

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 23 ottobre 2023 16:59:03.
+       DATE-WRITTEN.        mercoledì 1 novembre 2023 18:44:18.
        REMARKS.
       *{TOTEM}END
 
@@ -109,7 +109,7 @@
        77 E-STAMPA         PIC  9
                   VALUE IS 0.
        01 tab-int-rp.
-           05 el-int-rp        PIC  9
+           05 el-int-ced       PIC  9
                       OCCURS 99 TIMES.
        77 E-CERCA          PIC  9
                   VALUE IS 1.
@@ -133,7 +133,7 @@
        78 78-col-int-desc VALUE IS 8. 
        78 78-col-ismulti VALUE IS 9. 
        78 78-col-setting VALUE IS 10. 
-       78 78-col-restpause VALUE IS 11. 
+       78 78-col-cedimento VALUE IS 11. 
        78 78-col-disable VALUE IS 12. 
        01 rec-grid.
            05 col-codice       PIC  x(5).
@@ -146,7 +146,7 @@
            05 col-int-desc     PIC  x(100).
            05 col-isMulti      PIC  9.
            05 col-setting      PIC  z.zz9.
-           05 col-restpause    PIC  9.
+           05 col-cedimento    PIC  9.
            05 col-disab        PIC  9.
        77 v-mcg1           PIC  9.
        77 v-mcg2           PIC  9.
@@ -2154,7 +2154,7 @@
 
        tmp-exe-mcg-tem-k-rp-MERGE-SPLITBUF.
            INITIALIZE tmp-exe-mcg-tem-k-rp-SPLITBUF
-           MOVE tem-exe-isRestPause(1:1) TO 
+           MOVE tem-exe-isCedimento(1:1) TO 
            tmp-exe-mcg-tem-k-rp-SPLITBUF(1:1)
            MOVE tem-key(1:17) TO tmp-exe-mcg-tem-k-rp-SPLITBUF(2:17)
            .
@@ -2506,7 +2506,7 @@
                     when 11 modify chk-int11, title = int-desc, visible 
            = 1, value 1
                     end-evaluate
-                    move int-restpause to el-int-rp(riga)
+                    move int-cedimento to el-int-ced(riga)
                  end-perform
            end-start.
 
@@ -3359,8 +3359,8 @@
                            icon mb-warning-icon
                 end-if    
 
-           when 78-col-restpause
-                if not (exe-isRestpause = 0 or 1)
+           when 78-col-cedimento
+                if not (exe-isCedimento = 0 or 1)
                    set errori to true
                    display message "Valori consentiti 1/0"
                            title = tit-err
@@ -3583,7 +3583,7 @@
                 end-start
            when ord-rp-asc
                 move low-value to tem-rec
-                modify form1-gd-1(1, 78-col-restpause), cell-data = "R/P
+                modify form1-gd-1(1, 78-col-cedimento), cell-data = "R/P
       -    " <<"
                 start tmp-exe-mcg key is >= tem-k-rp
                       invalid continue
@@ -3601,7 +3601,7 @@
                 end-start
            when ord-rp-disc                       
                 move high-value to tem-rec
-                modify form1-gd-1(1, 78-col-restpause), cell-data = "R/P
+                modify form1-gd-1(1, 78-col-cedimento), cell-data = "R/P
       -    " >>"
                 start tmp-exe-mcg key is <= tem-k-rp
                       invalid continue
@@ -3721,7 +3721,7 @@
            move int-desc        to col-int-desc
            move exe-isMulti     to col-isMulti
            move exe-setting     to col-setting
-           move exe-isRestpause to col-restpause
+           move exe-isCedimento to col-cedimento
            move exe-isDisable   to col-disab
            move exe-desc-stampa to col-des-stampa.
                                          
@@ -3784,7 +3784,7 @@
 
            inquire chk-int1, value in chk-int1-buf, title in como-titolo
            if chk-int1-buf = 0 and int-desc = como-titolo
-              if exe-isRestpause > 0
+              if exe-isCedimento > 0
                  perform RP-VALIDO
                  if not trovato
                     exit paragraph
@@ -3796,7 +3796,7 @@
 
            inquire chk-int2, value in chk-int2-buf, title in como-titolo
            if chk-int2-buf = 0 and int-desc = como-titolo
-              if exe-isRestpause > 0
+              if exe-isCedimento > 0
                  perform RP-VALIDO
                  if not trovato
                     exit paragraph
@@ -3808,7 +3808,7 @@
 
            inquire chk-int3, value in chk-int3-buf, title in como-titolo
            if chk-int3-buf = 0 and int-desc = como-titolo
-              if exe-isRestpause > 0
+              if exe-isCedimento > 0
                  perform RP-VALIDO
                  if not trovato
                     exit paragraph
@@ -3820,7 +3820,7 @@
 
            inquire chk-int4, value in chk-int4-buf, title in como-titolo
            if chk-int4-buf = 0 and int-desc = como-titolo
-              if exe-isRestpause > 0
+              if exe-isCedimento > 0
                  perform RP-VALIDO
                  if not trovato
                     exit paragraph
@@ -3832,7 +3832,7 @@
 
            inquire chk-int5, value in chk-int5-buf, title in como-titolo
            if chk-int5-buf = 0 and int-desc = como-titolo
-              if exe-isRestpause > 0
+              if exe-isCedimento > 0
                  perform RP-VALIDO
                  if not trovato
                     exit paragraph
@@ -3844,7 +3844,7 @@
 
            inquire chk-int6, value in chk-int6-buf, title in como-titolo
            if chk-int6-buf = 0 and int-desc = como-titolo
-              if exe-isRestpause > 0
+              if exe-isCedimento > 0
                  perform RP-VALIDO 
                  if not trovato
                     exit paragraph
@@ -3856,7 +3856,7 @@
 
            inquire chk-int7, value in chk-int7-buf, title in como-titolo
            if chk-int7-buf = 0 and int-desc = como-titolo
-              if exe-isRestpause > 0
+              if exe-isCedimento > 0
                  perform RP-VALIDO 
                  if not trovato
                     exit paragraph
@@ -3868,7 +3868,7 @@
 
            inquire chk-int8, value in chk-int8-buf, title in como-titolo
            if chk-int8-buf = 0 and int-desc = como-titolo
-              if exe-isRestpause > 0
+              if exe-isCedimento > 0
                  perform RP-VALIDO
                  if not trovato
                     exit paragraph
@@ -3880,7 +3880,7 @@
 
            inquire chk-int9, value in chk-int9-buf, title in como-titolo
            if chk-int9-buf = 0 and int-desc = como-titolo
-              if exe-isRestpause > 0
+              if exe-isCedimento > 0
                  perform RP-VALIDO
                  if not trovato
                     exit paragraph
@@ -3893,7 +3893,7 @@
            inquire chk-int10, value in chk-int10-buf, title in 
            como-titolo
            if chk-int10-buf = 0 and int-desc = como-titolo
-              if exe-isRestpause > 0
+              if exe-isCedimento > 0
                  perform RP-VALIDO
                  if not trovato
                     exit paragraph
@@ -3906,7 +3906,7 @@
            inquire chk-int11, value in chk-int11-buf, title in 
            como-titolo
            if chk-int11-buf = 0 and int-desc = como-titolo
-              if exe-isRestpause > 0
+              if exe-isCedimento > 0
                  perform RP-VALIDO
                  if not trovato
                     exit paragraph
@@ -3943,8 +3943,8 @@
            col-isMulti.
            modify form1-gd-1(riga, 78-col-setting),     cell-data 
            col-setting.
-           modify form1-gd-1(riga, 78-col-restpause),   cell-data 
-           col-restpause.
+           modify form1-gd-1(riga, 78-col-cedimento),   cell-data 
+           col-cedimento.
            modify form1-gd-1(riga, 78-col-disable),     cell-data 
            col-disab.
                                                
@@ -4129,7 +4129,7 @@
 
            perform varying idx from 1 by 1 
                      until idx > 99
-              if el-int-rp(idx) = 0
+              if el-int-ced(idx) = 0
                  exit perform cycle
               end-if
               perform TROVA-FLAG-RP
@@ -4186,7 +4186,7 @@
 
       ***---
        SETTA-FLAG-RP.
-           evaluate el-int-rp(idx)
+           evaluate el-int-ced(idx)
            when 0 continue            
            when 1  set rp1-true  to true
            when 2  set rp3-true  to true
@@ -4204,7 +4204,7 @@
       ***---       
        RP-VALIDO.
            set trovato to false.
-           if exe-isRestpause = 1 and
+           if exe-isCedimento = 1 and
               rp1-true  or rp2-true  or rp3-true or rp4-true or 
               rp5-true  or rp6-true  or rp7-true or rp8-true or
               rp9-true  or rp10-true or rp11-true
@@ -4244,7 +4244,7 @@
                     move exe-int-code to tem-int-code
                     move exe-grp-code to grp-code         
                     move exe-isDisable    to tem-exe-isDisable
-                    move exe-isRestPause  to tem-exe-isRestPause
+                    move exe-isCedimento  to tem-exe-isCedimento
                     move exe-isMulti      to tem-exe-isMulti
                     move exe-desc         to tem-exe-desc
                     read groups no lock
@@ -4503,8 +4503,8 @@
            exe-isMulti.
            inquire form1-gd-1(riga, 78-col-setting),     cell-data 
            exe-setting.
-           inquire form1-gd-1(riga, 78-col-restpause),   cell-data 
-           exe-isRestpause. 
+           inquire form1-gd-1(riga, 78-col-cedimento),   cell-data 
+           exe-isCedimento. 
            inquire form1-gd-1(riga, 78-col-disable),     cell-data 
            exe-isDisable. 
 
@@ -4694,7 +4694,7 @@
                 end-if                  
                 perform LOAD-RECORD       
 
-           when 78-col-restpause
+           when 78-col-cedimento
                 if ord-rp-asc
                    set ord-rp-disc to true
                 else                        
@@ -4718,7 +4718,7 @@
                 end-if                  
                 perform LOAD-RECORD     
 
-           when 78-col-restPause
+           when 78-col-cedimento
                 if ord-multi-asc
                    set ord-multi-disc to true
                 else                        

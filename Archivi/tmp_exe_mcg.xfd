@@ -139,7 +139,7 @@
       <xfd:key-columns
            xfd:key-column-count="5">
         <xfd:key-column
-             xfd:key-column-name="TEM-EXE-ISRESTPAUSE"/>
+             xfd:key-column-name="TEM-EXE-ISCEDIMENTO"/>
         <xfd:key-column
              xfd:key-column-name="TEM-MCG-CODE"/>
         <xfd:key-column
@@ -258,7 +258,7 @@
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
-         xfd:field-name="TEM-EXE-ISRESTPAUSE"/>
+         xfd:field-name="TEM-EXE-ISCEDIMENTO"/>
     <xfd:field
          xfd:field-offset="20"
          xfd:field-bytes="100"

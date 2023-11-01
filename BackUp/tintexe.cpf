@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7B1134714-666-204219222
+PROGRAM_UNIQUE_CODE=TOTEM-7E7B1172621-270-311814333
 
 {{@DESCRIPTION:
 
@@ -270,7 +270,7 @@ m_bFixed=1
 
 @}}
 [FDITEM24_WK]
-m_strName=col-restpause
+m_strName=col-cedimento
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=5
@@ -697,7 +697,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 136,10
+   Size              = 142,80
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -746,7 +746,7 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Grid form1-gd-1
-      SCREEN-COL        = 2,10
+      SCREEN-COL        = 1,90
       SCREEN-LINE       = 1,74
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -762,7 +762,7 @@ Begin Screen Form1
       Cells' Setting    = ( X = 6, Y = 1, Data = "Min rep" )
       Cells' Setting    = ( X = 7, Y = 1, Data = "Max rep" )
       Cells' Setting    = ( X = 8, Y = 1, Data = "Effort" )
-      Cells' Setting    = ( X = 9, Y = 1, Data = "R/P" )
+      Cells' Setting    = ( X = 9, Y = 1, Data = "Cedimento" )
       Cells' Setting    = ( X = 10, Y = 1, Data = "A tempo" )
       Cells' Setting    = ( X = 11, Y = 1, Data = "Squeeze" )
       Cells' Setting    = ( X = 12, Y = 1, Data = "Fisse" )
@@ -773,14 +773,14 @@ Begin Screen Form1
       Cells' Setting    = ( X = 17, Y = 1, Data = "Serie5" )
       Centered Headings = FALSE
       Color             = 0
-      Column            = 2,10
+      Column            = 1,90
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-codice, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 2, Name = col-des, READONLY = 0 )
       Columns' Setting  = ( PIC = "X(50)", TYPE = "X(50)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 20, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 25, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 3, Name = col-rest, READONLY = 0 )
       Columns' Setting  = ( PIC = "zz9", TYPE = "zz9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
@@ -799,9 +799,9 @@ Begin Screen Form1
       Columns' Setting  = ( X = 8, Name = col-effort, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
-      Columns' Setting  = ( X = 9, Name = col-restpause, READONLY = 0 )
+      Columns' Setting  = ( X = 9, Name = col-cedimento, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 10, Name = col-isTime, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
@@ -841,7 +841,7 @@ Begin Screen Form1
       Heading Font      = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      Hscroll           = TRUE
+      Hscroll           = FALSE
       ID                = 1
       Last Row          = 0
       Line              = 1,74
@@ -856,12 +856,12 @@ Begin Screen Form1
       Record Data       = rec-grid
       Row Dividers      = 1
       Row Headings      = FALSE
-      Size              = 133,90
+      Size              = 140,90
       Size Unit         = Default
       Tab Order         = 2
       Tiled Headings    = TRUE
       Use Tab           = TRUE
-      Virtual Width     = 132
+      Virtual Width     = 139
       Visible           = NONE
       Vpadding          = 10
       Vscroll           = TRUE
@@ -1220,7 +1220,8 @@ BEGIN-TEXT
                10 old-int-serie2         PIC  99.
                10 old-int-serie3         PIC  99.
                10 old-int-serie4         PIC  99.
-               10 old-int-serie5         PIC  99.
+               10 old-int-serie5         PIC  99. 
+               10 old-int-dropset        PIC  9.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1707,7 +1708,7 @@ BEGIN-TEXT
                           move int-range-from   to col-range-from
                           move int-range-to     to col-range-to     
                           move int-effort       to col-effort                
-                          move int-restpause    to col-restpause
+                          move int-cedimento    to col-cedimento
                           move int-isTime       to col-isTime   
                           move int-isSqueeze    to col-isSqueeze
                           move int-isFisse      to col-isFisse
@@ -1724,7 +1725,7 @@ BEGIN-TEXT
                           modify form1-gd-1(riga,  6), cell-data col-range-from
                           modify form1-gd-1(riga,  7), cell-data col-range-to
                           modify form1-gd-1(riga,  8), cell-data col-effort
-                          modify form1-gd-1(riga,  9), cell-data col-restpause
+                          modify form1-gd-1(riga,  9), cell-data col-cedimento
                           modify form1-gd-1(riga, 10), cell-data col-isTime
                           modify form1-gd-1(riga, 11), cell-data col-isSqueeze
                           modify form1-gd-1(riga, 12), cell-data col-isFisse
@@ -1946,7 +1947,7 @@ BEGIN-TEXT
            inquire form1-gd-1(riga,  6), cell-data int-range-from.
            inquire form1-gd-1(riga,  7), cell-data int-range-to.  
            inquire form1-gd-1(riga,  8), cell-data int-effort.    
-           inquire form1-gd-1(riga,  9), cell-data int-restpause.
+           inquire form1-gd-1(riga,  9), cell-data int-cedimento.
            inquire form1-gd-1(riga, 10), cell-data int-isTime.   
            inquire form1-gd-1(riga, 11), cell-data int-isSqueeze.
            inquire form1-gd-1(riga, 12), cell-data int-isFisse.

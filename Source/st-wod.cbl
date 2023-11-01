@@ -305,7 +305,7 @@
                        move tex-rod-rep-kg-buf(4) to r-rep-kg-buf(4)
                        move tex-rod-rep-kg-buf(5) to r-rep-kg-buf(5)
 
-                       if tex-int-restpause > 0
+                       if tex-int-cedimento > 0
                           move "KG:"  to r-rod-buf(4)
                        end-if
                        move ArialNarrow11 to spl-hfont     

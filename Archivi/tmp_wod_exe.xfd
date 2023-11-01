@@ -159,7 +159,7 @@
          xfd:field-user-flags="0"
          xfd:field-condition="0"
          xfd:field-level="10"
-         xfd:field-name="TWE-EXE-ISRESTPAUSE"/>
+         xfd:field-name="TWE-EXE-ISCEDIMENTO"/>
     <xfd:field
          xfd:field-offset="116"
          xfd:field-bytes="20"

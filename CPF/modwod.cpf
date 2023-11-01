@@ -2,7 +2,6 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
-aNote-andre=192.168.56.1
 
 
 [PROGRAM_CONTENT]
@@ -11,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7B1134714-798-2892612823
+PROGRAM_UNIQUE_CODE=TOTEM-7E7B1171032-170-2030620542
 
 {{@DESCRIPTION:
 
@@ -803,10 +802,9 @@ m_strFalse=0
 
 @}}
 [FDITEM79_WK]
-m_strName=esegui-73x21-bmp
-m_strRawPic=S9(9)
-m_strPic=S9(9)
-m_nUsage=5
+m_strName=inSS
+m_strRawPic=99
+m_strPic=99
 m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
@@ -815,8 +813,11 @@ m_bFixed=1
 
 @}}
 [FDITEM80_WK]
-m_strName=Default-Font
-m_nUsage=38
+m_strName=esegui-73x21-bmp
+m_strRawPic=S9(9)
+m_strPic=S9(9)
+m_nUsage=5
+m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -824,9 +825,8 @@ m_bFixed=1
 
 @}}
 [FDITEM81_WK]
-m_strName=STATUS-exercises
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=Default-Font
+m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -834,24 +834,34 @@ m_bFixed=1
 
 @}}
 [FDITEM82_WK]
+m_strName=STATUS-exercises
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM82_WK
+
+@}}
+[FDITEM83_WK]
 m_strName=Valid-STATUS-exercises
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM82_WK
+{{@DataItem_m_strDescriptionFDITEM83_WK
 
 @}}
-[FDITEM83_WK]
+[FDITEM84_WK]
 m_strName=Calibri14-Occidentale
 m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM83_WK
+{{@DataItem_m_strDescriptionFDITEM84_WK
 
 @}}
-[FDITEM84_WK]
+[FDITEM85_WK]
 m_strName=LOGO-PICCOLO-BMP
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -860,80 +870,70 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM84_WK
+{{@DataItem_m_strDescriptionFDITEM85_WK
 
 @}}
-[FDITEM85_WK]
+[FDITEM86_WK]
 m_strName=STATUS-groups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM85_WK
+{{@DataItem_m_strDescriptionFDITEM86_WK
 
 @}}
-[FDITEM86_WK]
+[FDITEM87_WK]
 m_strName=Valid-STATUS-groups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM86_WK
+{{@DataItem_m_strDescriptionFDITEM87_WK
 
 @}}
-[FDITEM87_WK]
+[FDITEM88_WK]
 m_strName=STATUS-intexe
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM87_WK
+{{@DataItem_m_strDescriptionFDITEM88_WK
 
 @}}
-[FDITEM88_WK]
+[FDITEM89_WK]
 m_strName=Valid-STATUS-intexe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM88_WK
+{{@DataItem_m_strDescriptionFDITEM89_WK
 
 @}}
-[FDITEM89_WK]
+[FDITEM90_WK]
 m_strName=STATUS-macrogroups
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM89_WK
+{{@DataItem_m_strDescriptionFDITEM90_WK
 
 @}}
-[FDITEM90_WK]
+[FDITEM91_WK]
 m_strName=Valid-STATUS-macrogroups
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM90_WK
-
-@}}
-[FDITEM91_WK]
-m_strName=path-tmp-exe-mcg
-m_strRawPic=X(256)
-m_strPic=X(256)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM91_WK
 
 @}}
 [FDITEM92_WK]
-m_strName=STATUS-tmp-exe-mcg
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=path-tmp-exe-mcg
+m_strRawPic=X(256)
+m_strPic=X(256)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -941,15 +941,25 @@ m_bFixed=1
 
 @}}
 [FDITEM93_WK]
+m_strName=STATUS-tmp-exe-mcg
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM93_WK
+
+@}}
+[FDITEM94_WK]
 m_strName=Valid-STATUS-tmp-exe-mcg
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM93_WK
+{{@DataItem_m_strDescriptionFDITEM94_WK
 
 @}}
-[FDITEM94_WK]
+[FDITEM95_WK]
 m_strName=AUTO-ID
 m_strRawPic=9(6)
 m_strPic=9(6)
@@ -957,10 +967,10 @@ m_strDefaultValue=32
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM94_WK
+{{@DataItem_m_strDescriptionFDITEM95_WK
 
 @}}
-[FDITEM95_WK]
+[FDITEM96_WK]
 m_strName=E-SELEZIONA
 m_strRawPic=9
 m_strPic=9
@@ -968,22 +978,12 @@ m_strDefaultValue=1
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM95_WK
-
-@}}
-[FDITEM96_WK]
-m_strName=Calibri12-Occidentale
-m_nUsage=26
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM96_WK
 
 @}}
 [FDITEM97_WK]
-m_strName=STATUS-rwodbook
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=Calibri12-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -991,46 +991,47 @@ m_bFixed=1
 
 @}}
 [FDITEM98_WK]
+m_strName=STATUS-rwodbook
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM98_WK
+
+@}}
+[FDITEM99_WK]
 m_strName=Valid-STATUS-rwodbook
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM98_WK
+{{@DataItem_m_strDescriptionFDITEM99_WK
 
 @}}
-[FDITEM99_WK]
+[FDITEM100_WK]
 m_strName=STATUS-twodbook
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM99_WK
+{{@DataItem_m_strDescriptionFDITEM100_WK
 
 @}}
-[FDITEM100_WK]
+[FDITEM101_WK]
 m_strName=Valid-STATUS-twodbook
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM100_WK
-
-@}}
-[FDITEM101_WK]
-m_strName=lab-desc-buf
-m_strRawPic=x(100)
-m_strPic=x(100)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM101_WK
 
 @}}
 [FDITEM102_WK]
-m_strName=Calibri18B-Occidentale
-m_nUsage=26
+m_strName=lab-desc-buf
+m_strRawPic=x(100)
+m_strPic=x(100)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1038,9 +1039,8 @@ m_bFixed=1
 
 @}}
 [FDITEM103_WK]
-m_strName=path-tmp-exe
-m_strRawPic=X(256)
-m_strPic=X(256)
+m_strName=Calibri18B-Occidentale
+m_nUsage=26
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1048,9 +1048,9 @@ m_bFixed=1
 
 @}}
 [FDITEM104_WK]
-m_strName=STATUS-tmp-exe
-m_strRawPic=X(2)
-m_strPic=X(2)
+m_strName=path-tmp-exe
+m_strRawPic=X(256)
+m_strPic=X(256)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1058,22 +1058,32 @@ m_bFixed=1
 
 @}}
 [FDITEM105_WK]
+m_strName=STATUS-tmp-exe
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM105_WK
+
+@}}
+[FDITEM106_WK]
 m_strName=Valid-STATUS-tmp-exe
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM105_WK
+{{@DataItem_m_strDescriptionFDITEM106_WK
 
 @}}
-[FDITEM106_WK]
+[FDITEM107_WK]
 m_strName=ef-liv-buf
 m_strRawPic=zz9
 m_strPic=zz9
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM106_WK
+{{@DataItem_m_strDescriptionFDITEM107_WK
 
 @}}
 
@@ -2041,78 +2051,7 @@ BEGIN-DATA
    TEXTMODE          = 0
    ENTRYPOINT        = BeforeAccept
 BEGIN-TEXT
-           perform IMPOSTA-PROGRAMMA.
-
-      *     set vecchio to true.
-      *     perform ABILITA-TOOLBAR.
-      *
-      *     move 0 to riga.
-      *     move low-value to mcg-rec.
-      *     start macrogroups key >= mcg-k-desc
-      *           invalid continue
-      *       not invalid
-      *           perform until 1 = 2
-      *              add 1 to riga
-      *              read macrogroups next at end exit perform end-read
-      *              evaluate riga                           
-      *              when 1  modify chk-mcg1,  title = mcg-desc, visible = 1, value 1
-      *              when 2  modify chk-mcg2,  title = mcg-desc, visible = 1, value 1
-      *              when 3  modify chk-mcg3,  title = mcg-desc, visible = 1, value 1
-      *              when 4  modify chk-mcg4,  title = mcg-desc, visible = 1, value 1
-      *              when 5  modify chk-mcg5,  title = mcg-desc, visible = 1, value 1
-      *              when 6  modify chk-mcg6,  title = mcg-desc, visible = 1, value 1
-      *              when 7  modify chk-mcg7,  title = mcg-desc, visible = 1, value 1
-      *              when 8  modify chk-mcg8,  title = mcg-desc, visible = 1, value 1
-      *              when 9  modify chk-mcg9,  title = mcg-desc, visible = 1, value 1
-      *              when 10 modify chk-mcg10, title = mcg-desc, visible = 1, value 1
-      *              when 11 modify chk-mcg11, title = mcg-desc, visible = 1, value 1
-      *              end-evaluate
-      *           end-perform
-      *     end-start.
-      *
-      *     move 0 to riga.
-      *     move low-value to int-rec.
-      *     start intexe key >= int-k-desc
-      *           invalid continue
-      *       not invalid
-      *           perform until 1 = 2
-      *              add 1 to riga
-      *              read intexe next at end exit perform end-read
-      *              evaluate riga                           
-      *              when 1  modify chk-int1,  title = int-desc, visible = 1, value 1
-      *              when 2  modify chk-int2,  title = int-desc, visible = 1, value 1
-      *              when 3  modify chk-int3,  title = int-desc, visible = 1, value 1
-      *              when 4  modify chk-int4,  title = int-desc, visible = 1, value 1
-      *              when 5  modify chk-int5,  title = int-desc, visible = 1, value 1
-      *              when 6  modify chk-int6,  title = int-desc, visible = 1, value 1
-      *              when 7  modify chk-int7,  title = int-desc, visible = 1, value 1
-      *              when 8  modify chk-int8,  title = int-desc, visible = 1, value 1
-      *              when 9  modify chk-int9,  title = int-desc, visible = 1, value 1
-      *              when 10 modify chk-int10, title = int-desc, visible = 1, value 1
-      *              when 11 modify chk-int11, title = int-desc, visible = 1, value 1
-      *              end-evaluate
-      *              move int-restpause to el-int-rp(riga)
-      *           end-perform
-      *     end-start.
-      *
-      *     move 1 to chk-mcgall-buf chk-intall-buf.
-      *     display chk-mcgall chk-intall.
-      *
-      *     perform INTESTAZIONE.
-      *     set ord-mcg-asc to true.
-      *     perform LOAD-RECORD.
-      *
-      *     move 2  to event-data-2.
-      *     perform SPOSTAMENTO. 
-      *
-      *     inquire form1-gd-1(2, 1), hidden-data hiddenData.
-      *     move hid-note to ef-note-buf.
-      *     display ef-note.
-      *
-      *     perform INIT.
-      *
-      *     |specifico dei pgm. con grid-control
-      *     perform ABILITAZIONI.           
+           perform IMPOSTA-PROGRAMMA.       
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2253,6 +2192,7 @@ BEGIN-TEXT
            start rwodbook key >= rod-key 
                  invalid continue
              not invalid
+                 move 0 to inSS
                  perform until 1 = 2
                     read rwodbook next at end exit perform end-read
                     if rod-code not = tod-code
@@ -2269,14 +2209,29 @@ BEGIN-TEXT
                           move   0 to colore
                        end-if
                     end-if
-                    move rod-day to como-data
-                    perform DATE-TO-SCREEN 
-                    initialize col-exe                 
-                    move como-data(1:2) to col-data(1:2)
-                    move "/"            to col-data(3:1)  
-                    move como-data(3:2) to col-data(4:2)
-                    move "/"            to col-data(6:1)  
-                    move como-data(5:4) to col-data(7:4)
+                    if rod-ss > 0 and inSS > 0 and
+                       rod-ss = inSS
+                       move "+" to col-data
+                    else
+                       if rod-ss > 0
+                          if inSS = 0
+                             move rod-ss to inSS
+                          end-if    
+                          if rod-ss not = inSS
+                             move rod-SS to inSS
+                          end-if
+                       else
+                          move 0 to inSS
+                       end-if
+                       move rod-day to como-data
+                       perform DATE-TO-SCREEN 
+                       initialize col-exe                 
+                       move como-data(1:2) to col-data(1:2)
+                       move "/"            to col-data(3:1)  
+                       move como-data(3:2) to col-data(4:2)
+                       move "/"            to col-data(6:1)  
+                       move como-data(5:4) to col-data(7:4)
+                    end-if
                     initialize col-exe
                     move rod-exe-code to exe-code
                     read exercises invalid move "NON TROVATA" to exe-desc end-read
@@ -2287,7 +2242,7 @@ BEGIN-TEXT
                     read intexe no lock
                     move int-rest to col-rest
 
-                    if rod-int-restpause > 0
+                    if rod-int-cedimento > 0
                        move "KG:" to rod-buf(4)
                     end-if
                             
@@ -2410,7 +2365,7 @@ BEGIN-TEXT
               read intexe no lock
               move int-rest to col-rest
 
-              if rod-int-restpause > 0
+              if rod-int-cedimento > 0
                  move "KG:" to rod-buf(4)
               end-if
                    
@@ -2478,7 +2433,7 @@ BEGIN-TEXT
                  set confronto to false
                  modify tool-cerca, enabled true
                  move 999 to max-liv     
-                 move 0   to ef-liv-buf
+                 move 0   to ef-liv-buf tod-code
                  modify ef-liv, value ef-liv-buf
               else                     
                  set confronto to true
@@ -2519,114 +2474,7 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = CONTROLLO
 BEGIN-TEXT
-      *     set tutto-ok to true.
-      *     if mod = 0 exit paragraph end-if.
-      *
-      *     inquire form1-gd-1, cursor-y in riga.
-      *
-      *     perform VALORE-RIGA.
-      *
-      *     evaluate colonna
-      *     when 78-col-code
-      *          if nuovo
-      *             if exe-code = zero or spaces 
-      *                set errori to true
-      *                display message box MSG-Codice-obbligatorio
-      *                        title = tit-err
-      *                        icon mb-warning-icon
-      *             else  
-      *                read exercises
-      *                     not invalid
-      *                         set errori to true
-      *                         display message MGS-codice-gia-inserito|"Codice già inserito!"
-      *                                 title = tit-err
-      *                                 icon mb-warning-icon
-      *                end-read
-      *             end-if
-      *          end-if     
-      *     when 78-col-desc
-      *          if exe-desc = spaces
-      *             set errori to true   
-      *             display message box MSG-Descrizione-mancante|"Descrizione mancante"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          else
-      *             if exe-desc-stampa = spaces 
-      *                move exe-desc to exe-desc-stampa
-      *                modify form1-gd-1(riga, 78-col-desc-stampa), cell-data = exe-desc-stampa
-      *             end-if
-      *          end-if    
-      *     when 78-col-desc-stampa
-      *          if exe-desc-stampa = spaces 
-      *             move exe-desc to exe-desc-stampa
-      *             modify form1-gd-1(riga, 78-col-desc-stampa), cell-data = exe-desc-stampa
-      *          end-if
-      *     when 78-col-grp-code
-      *          move exe-grp-code to grp-code
-      *          read groups no lock 
-      *               invalid 
-      *               move spaces to grp-desc mcg-desc
-      *               set errori to true
-      *               display message "Gruppo non valido"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *           not invalid
-      *               move grp-mcg-code to mcg-code
-      *               read macrogroups no lock invalid move spaces to mcg-desc end-read
-      *          end-read                                      
-      *          modify form1-gd-1(riga, 78-col-grp-desc), cell-data grp-desc
-      *          modify form1-gd-1(riga, 78-col-mcg-desc), cell-data mcg-desc  
-      *     when 78-col-int-code
-      *          move exe-int-code to int-code
-      *          read intexe no lock 
-      *               invalid 
-      *               move spaces to int-desc 
-      *               set errori to true
-      *               display message "Intensità non valida"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          end-read                                      
-      *          modify form1-gd-1(riga, 78-col-int-desc), cell-data int-desc  
-      *
-      *     when 78-col-isMulti
-      *          if not (exe-isMulti = 0 or 1)
-      *             set errori to true
-      *             display message "Valori consentiti 1/0"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          end-if
-      *
-      *     when 78-col-setting
-      *          if exe-setting = 0
-      *             set errori to true
-      *             display message "Valore obbligatorio"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          end-if    
-      *
-      *     when 78-col-restpause
-      *          if not (exe-isRestpause = 0 or 1)
-      *             set errori to true
-      *             display message "Valori consentiti 1/0"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          end-if
-      *
-      *     when 78-col-disable
-      *          if not (exe-isDisable = 0 or 1)
-      *             set errori to true
-      *             display message "Valori consentiti 1/0"
-      *                     title = tit-err
-      *                     icon mb-warning-icon
-      *          end-if
-      *
-      *     end-evaluate.
-      *
-      *     if errori
-      *        modify form1-gd-1, cursor-y = riga, cursor-x = colonna
-      *        move riga    to event-data-2
-      *        move colonna to event-data-1
-      *     end-if.
+
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2867,7 +2715,7 @@ BEGIN-TEXT
                          read exercises end-read   
                          move spaces to rod-reps
                          move 0      to rod-series 
-                                        rod-int-restpause
+                                        rod-int-cedimento
                                         rod-ss
                                         rod-int-code
                       end-if
@@ -2925,7 +2773,7 @@ BEGIN-TEXT
                  move rod-exe-isMulti   to tex-exe-isMulti
                  move rod-reps          to tex-reps
                  move rod-series        to tex-series
-                 move rod-int-restpause to tex-int-restpause
+                 move rod-int-cedimento to tex-int-cedimento
                  move rod-ss            to tex-ss
                  move rod-dati-modwod   to tex-rod-dati-modwod
                  write tex-rec
@@ -2961,19 +2809,7 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = VALORE-RIGA
 BEGIN-TEXT
-      *     inquire form1-gd-1(riga, 78-col-code),      hidden-data hiddenData.
-      *
-      *     inquire form1-gd-1(riga, 78-col-code),        cell-data exe-code.
-      *     inquire form1-gd-1(riga, 78-col-desc),        cell-data exe-desc.  
-      *     inquire form1-gd-1(riga, 78-col-desc-stampa), cell-data exe-desc-stampa
-      *     inquire form1-gd-1(riga, 78-col-grp-code),    cell-data exe-grp-code.
-      *     inquire form1-gd-1(riga, 78-col-int-code),    cell-data exe-int-code.
-      *     inquire form1-gd-1(riga, 78-col-ismulti),     cell-data exe-isMulti.
-      *     inquire form1-gd-1(riga, 78-col-setting),     cell-data exe-setting.
-      *     inquire form1-gd-1(riga, 78-col-restpause),   cell-data exe-isRestpause. 
-      *     inquire form1-gd-1(riga, 78-col-disable),     cell-data exe-isDisable. 
-      *
-      *     move ef-note-buf to exe-note.
+
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -3034,7 +2870,7 @@ BEGIN-TEXT
       *     perform VALORE-RIGA.
 
       
-           if confronto
+           if confronto or tod-code = 0
               set event-action to event-action-fail
            else
               evaluate colonna 

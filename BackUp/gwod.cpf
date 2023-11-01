@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7B1134714-499-2564511711
+PROGRAM_UNIQUE_CODE=TOTEM-7E7B1173223-844-1502928438
 
 {{@DESCRIPTION:
 
@@ -1313,7 +1313,7 @@ m_bFixed=1
 
 @}}
 [FDITEM128_WK]
-m_strName=el-exe-isRestpause
+m_strName=el-exe-isCedimento
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=10
@@ -2591,7 +2591,7 @@ m_bFixed=1
 
 @}}
 [FDITEM258_WK]
-m_strName=hid-restpause
+m_strName=hid-cedimento
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=5
@@ -11509,7 +11509,7 @@ BEGIN-TEXT
                          move rod-exe-isMulti      to tex-exe-isMulti     
                          move rod-reps             to tex-reps            
                          move rod-series           to tex-series          
-                         move rod-int-restpause    to tex-int-restpause   
+                         move rod-int-cedimento    to tex-int-cedimento   
                          move rod-ss               to tex-ss
                          move rod-dati-modwod      to tex-rod-dati-modwod
                          move rod-note             to tex-rod-note
@@ -11833,7 +11833,7 @@ BEGIN-TEXT
                     move col-series to tex-series
                     rewrite tex-rec
 
-                    move int-restpause to hid-restpause
+                    move int-cedimento to hid-cedimento
                     move col-day       to hid-tex-day
                     move tex-split     to hid-tex-split
                     move grp-mcg-code  to hid-mcg-code
@@ -11998,7 +11998,7 @@ BEGIN-TEXT
                           move int-effort    to twe-effort
                           move exe-isMulti   to twe-exe-isMulti
                           move exe-int-code  to twe-int-code
-                          move exe-isRestpause to twe-exe-isRestpause
+                          move exe-isCedimento to twe-exe-isCedimento
                           move exe-desc-stampa to twe-exe-desc-stampa
                           write twe-rec 
                        end-if
@@ -12084,7 +12084,7 @@ BEGIN-TEXT
                                 move wom-split-el-split-int-code(idx-days, idx-split)
                                                       to tex-int-code
                                 move 1                to tex-exe-isMulti
-                                move 0                to tex-int-restpause
+                                move 0                to tex-int-cedimento
                                 write tex-rec                                
                                 move 1                to el-exe-used(idx)                                
                                 if ex-remain > 0
@@ -12156,8 +12156,8 @@ BEGIN-TEXT
                        exit perform
                     end-if
            
-                    if twe-exe-isRestpause = 0 and
-                       int-restpause > 0         
+                    if twe-exe-isCedimento = 0 and
+                       int-cedimento > 0         
                        exit perform cycle
                     end-if             
                                       
@@ -12197,8 +12197,8 @@ BEGIN-TEXT
                        exit perform cycle
                     end-if
            
-                    if twe-exe-isRestpause = 0 and
-                       int-restpause > 0         
+                    if twe-exe-isCedimento = 0 and
+                       int-cedimento > 0         
                        exit perform cycle
                     end-if             
                        
@@ -12207,7 +12207,7 @@ BEGIN-TEXT
                     move twe-exe-desc      to el-exe-desc(tot-exe)
                     move twe-effort        to el-exe-effort(tot-exe)
                     move 0                 to el-exe-used(tot-exe)
-                    move twe-exe-isRestpause to el-exe-isRestpause(tot-exe)
+                    move twe-exe-isCedimento to el-exe-isCedimento(tot-exe)
                  end-perform
            end-start.    
 
@@ -12228,7 +12228,7 @@ BEGIN-TEXT
                     perform DES-UNIVOCA
                     move int-code         to tex-int-code
                     move 0                to tex-exe-isMulti
-                    move int-restpause    to tex-int-restpause
+                    move int-cedimento    to tex-int-cedimento
                     write tex-rec invalid rewrite tex-rec end-write
                     
                     move 1                to el-exe-used(idx)
@@ -12359,8 +12359,8 @@ BEGIN-TEXT
                                         end-if      
                                         move twe-exe-code to exe-code
                                         read exercises
-                                        if int-restpause > 0 and
-                                           exe-isRestpause = 0
+                                        if int-cedimento > 0 and
+                                           exe-isCedimento = 0
                                            exit perform cycle
                                         end-if
                                         |Lo cerco nello stesso giorno
@@ -12452,13 +12452,13 @@ BEGIN-TEXT
               move int-series to col-series
                                     
               initialize col-reps
-              if int-restpause > 0  
-                 move int-restpause to como-range-from                  
+              if int-cedimento > 0  
+                 move int-cedimento to como-range-from                  
                  perform EDIT-SERIES
                  inspect int-desc replacing trailing spaces by low-value            
                  string int-desc       delimited low-value
                         " ("           delimited size
-                        int-restpause  delimited low-value
+                        int-cedimento  delimited low-value
                         ")"            delimited size
                    into col-reps
                  end-string
@@ -12619,7 +12619,7 @@ BEGIN-TEXT
               read exercises
               move exe-int-code to int-code
               read intexe 
-              move int-restpause to hid-restpause
+              move int-cedimento to hid-cedimento
 
               move zem-exe-desc to col-exe-desc
               move zem-grp-desc to col-grp-desc
@@ -13102,11 +13102,11 @@ BEGIN-TEXT
                     move tex-mcg-code         to rod-mcg-code        
                     move tex-exe-code         to rod-exe-code        
                     move tex-int-code         to rod-int-code int-code
-                    read intexe no lock invalid move 0 to int-restpause end-read
+                    read intexe no lock invalid move 0 to int-cedimento end-read
                     move tex-exe-isMulti      to rod-exe-isMulti     
                     move tex-reps             to rod-reps            
                     move tex-series           to rod-series          
-                    move int-restpause        to rod-int-restpause   
+                    move int-cedimento        to rod-int-cedimento   
                     move tex-ss               to rod-ss    
                     add  1                    to tot-exe            
                     add 1 to idx1
@@ -14880,7 +14880,7 @@ BEGIN-TEXT
                  move int-code      to tex-int-code
                  move col-reps      to tex-reps
                  move col-series    to tex-series
-                 move int-restpause to tex-int-restpause
+                 move int-cedimento to tex-int-cedimento
                  rewrite tex-rec          
                  perform RELOAD-GRID
               end-if 
@@ -15742,8 +15742,8 @@ BEGIN-TEXT
            when 8                               
                 set filtro-righe to true 
                 move ef-rep-buf to rod-mcg-code
-                move 1 to rod-int-restpause
-                start rwodbook key >= rod-k-rp
+                move 1 to rod-int-cedimento
+                start rwodbook key >= rod-k-cedimento
                       invalid set errori to true
                 end-start        
                 move 78-ID-rb-rep to control-id
@@ -15859,7 +15859,7 @@ BEGIN-TEXT
                       end-if
                  when 8  |RP                                       
                       if rod-mcg-code = ef-rep-buf or ef-rep-buf = spaces
-                         if rod-int-restpause > 0
+                         if rod-int-cedimento > 0
                             set record-ok to true
                          end-if
                       end-if

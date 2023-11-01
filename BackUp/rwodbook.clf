@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7B1134714-310-2332832722
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7B1171032-92-120262890
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -139,7 +139,7 @@ m_bFixed=1
 
 @}}
 [FDITEM13_]
-m_strName=rod-int-restpause
+m_strName=rod-int-cedimento
 m_strRawPic=9
 m_strPic=9
 m_nItemLevel=10
@@ -307,12 +307,12 @@ m_strName=rod-mcg-code
 [SLKEYATOM2_SLINDEX4_]
 m_strName=rod-key
 [SLINDEX5_]
-m_strName=rod-k-rp
+m_strName=rod-k-cedimento
 {{@Key_m_strDescriptionSLINDEX5_
 
 @}}
 [SLKEYATOM0_SLINDEX5_]
-m_strName=rod-int-restpause
+m_strName=rod-int-cedimento
 [SLKEYATOM1_SLINDEX5_]
 m_strName=rod-mcg-code
 [SLKEYATOM2_SLINDEX5_]

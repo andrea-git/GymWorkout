@@ -10,5 +10,5 @@
            05 tem-data.
                10 tem-exe-isDisable            PIC  9.
                10 tem-exe-isMulti  PIC  9.
-               10 tem-exe-isRestPause          PIC  9.
+               10 tem-exe-isCedimento          PIC  9.
                10 tem-exe-desc     PIC  x(100).

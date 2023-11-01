@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 1 novembre 2023 14:41:03.
+       DATE-WRITTEN.        mercoledì 1 novembre 2023 18:45:06.
        REMARKS.
       *{TOTEM}END
 
@@ -5705,9 +5705,9 @@
                                 icon 2
                      move spaces to int-desc
                 end-read
-                if int-restpause > 0  
+                if int-cedimento > 0  
                    initialize como-desc
-                   move int-restpause to como-value
+                   move int-cedimento to como-value
                    perform FORMAT-VALUE
                    inspect int-desc replacing trailing spaces by 
            low-value
@@ -5885,9 +5885,9 @@
                    to int-code
                  read intexe no lock invalid move spaces to int-desc 
            end-read
-                 if int-restpause > 0
+                 if int-cedimento > 0
                     initialize como-desc
-                    move int-restpause to como-value
+                    move int-cedimento to como-value
                     perform FORMAT-VALUE
                     inspect int-desc replacing trailing spaces by 
            low-value

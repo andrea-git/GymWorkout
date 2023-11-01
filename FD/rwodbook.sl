@@ -16,7 +16,7 @@
            ALTERNATE RECORD KEY IS rod-k-multi = rod-exe-isMulti, 
            rod-mcg-code, rod-key
            WITH DUPLICATES 
-           ALTERNATE RECORD KEY IS rod-k-rp = rod-int-restpause, 
+           ALTERNATE RECORD KEY IS rod-k-cedimento = rod-int-cedimento, 
            rod-mcg-code, rod-key
            WITH DUPLICATES 
            ALTERNATE RECORD KEY IS rod-k-ss = rod-ss, rod-mcg-code, 

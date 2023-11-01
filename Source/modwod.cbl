@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 1 novembre 2023 16:02:49.
+       DATE-WRITTEN.        mercoledì 1 novembre 2023 16:23:59.
        REMARKS.
       *{TOTEM}END
 
@@ -298,10 +298,10 @@
        05
            form1-gd-1, 
            Grid, 
-           COL 2,40, 
+           COL 1,40, 
            LINE 2,87,
            LINES 36,61 ,
-           SIZE 171,90 ,
+           SIZE 172,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
            DATA-COLUMNS (1, 11, 61, 63, 83, 86, 96, 106, 116, 126, 136, 
@@ -323,14 +323,13 @@
            FONT IS Calibri14-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
-           HSCROLL,
            ID IS 78-ID-form1-gd-1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            RECORD-DATA rec-grid,
            TILED-HEADINGS,
            USE-TAB,
-           VIRTUAL-WIDTH 170,
+           VIRTUAL-WIDTH 171,
            VPADDING 1,
            VSCROLL,
            EVENT PROCEDURE Form1-Gd-1-Event-Proc,
@@ -1970,9 +1969,9 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 29, 31, 42, 
-           46, 51, 58, 63, 68, 75, 80, 85, 92, 97, 102, 109, 114, 119, 
-           126, 131)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 29, 31, 43, 
+           47, 52, 59, 64, 69, 76, 81, 86, 93, 98, 103, 110, 115, 120, 
+           127, 132)
            .
 
        Form1-PROC.

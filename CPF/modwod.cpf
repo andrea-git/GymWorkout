@@ -1309,7 +1309,7 @@ Begin Screen Form1
    Wrap              = FALSE
    Event Procedure   = Form1-Event-Proc
    Begin Grid form1-gd-1
-      SCREEN-COL        = 2,40
+      SCREEN-COL        = 1,40
       SCREEN-LINE       = 2,87
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -1340,7 +1340,7 @@ Begin Screen Form1
       Cells' Setting    = ( X = 21, Y = 1, Data = "NOTE" )
       Centered Headings = FALSE
       Color             = 0
-      Column            = 2,40
+      Column            = 1,40
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-data, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
@@ -1353,7 +1353,7 @@ Begin Screen Form1
       Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 4, Name = col-reps, READONLY = 0 )
       Columns' Setting  = ( PIC = "X(20)", TYPE = "X(20)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 11, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( DISP = 12, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 5, Name = col-rest, READONLY = 0 )
       Columns' Setting  = ( PIC = "zz9", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 3 )
@@ -1421,7 +1421,7 @@ Begin Screen Form1
       Heading Font      = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      Hscroll           = TRUE
+      Hscroll           = FALSE
       ID                = 1
       ID Variable       = AUTO-ID
       Last Row          = 0
@@ -1437,12 +1437,12 @@ Begin Screen Form1
       Record Data       = rec-grid
       Row Dividers      = 1
       Row Headings      = FALSE
-      Size              = 171,90
+      Size              = 172,90
       Size Unit         = Default
       Tab Order         = 1
       Tiled Headings    = TRUE
       Use Tab           = TRUE
-      Virtual Width     = 170
+      Virtual Width     = 171
       Visible           = NONE
       Vpadding          = 1
       Vscroll           = TRUE

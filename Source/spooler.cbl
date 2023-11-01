@@ -585,17 +585,17 @@
                                    giving return-code
            when 2                                   
                 call "WIN$PRINTER"  using winprint-set-data-columns,
-                                           21, 23, 33, 36,
+                                           21, 23, 43, 46,
       *                                     39, 42, 45,    
       *                                     48, 51, 54,
       *                                     57, 60, 63,
       *                                     66, 69, 72,
       *                                     75, 78, 81
-                                           46,  56,  66,
-                                           76,  86,  96,
-                                          106, 116, 126,
-                                          136, 146, 156,
-                                          166, 176, 186,
+                                           56,  66,  76,
+                                           86,  96, 106,
+                                          116, 126, 136,
+                                          146, 156, 166,
+                                          176, 186, 196,
                                     giving return-code
 
                 move 0,6               to winprint-col-start

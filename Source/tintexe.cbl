@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          tintexe.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 2 ottobre 2023 15:12:58.
+       DATE-WRITTEN.        mercoledì 1 novembre 2023 15:55:43.
        REMARKS.
       *{TOTEM}END
 
@@ -99,6 +99,12 @@
            05 col-restpause    PIC  9.
            05 col-isTime       PIC  9.
            05 col-isSqueeze    PIC  9.
+           05 col-isFisse      PIC  9.
+           05 col-serie1       PIC  z9.
+           05 col-serie2       PIC  z9.
+           05 col-serie3       PIC  z9.
+           05 col-serie4       PIC  z9.
+           05 col-serie5       PIC  z9.
        77 Screen1-Handle
                   USAGE IS HANDLE OF WINDOW.
        01 FILLER           PIC  9.
@@ -155,15 +161,16 @@
                10 old-int-range.
                    15 old-int-range-from   PIC  99.
                    15 old-int-range-to     PIC  99.
-               10 old-int-effort       PIC  99.
-               10 old-int-restpause    PIC  9.
-               10 old-int-isTime       PIC  9.
-               10 old-int-isSqueeze    PIC  9.
-               10 old-int-filler       PIC  x(997).
-               10 old-int-filler-n1    PIC  9(18).
-               10 old-int-filler-n2    PIC  9(18).
-               10 old-int-filler-n3    PIC  9(18).
-               10 old-int-filler-n4    PIC  9(18).
+               10 old-int-effort         PIC  99.
+               10 old-int-restpause      PIC  9.
+               10 old-int-isTime         PIC  9.
+               10 old-int-isSqueeze      PIC  9. 
+               10 old-int-isPiramidale   PIC  9.
+               10 old-int-serie1         PIC  99.
+               10 old-int-serie2         PIC  99.
+               10 old-int-serie3         PIC  99.
+               10 old-int-serie4         PIC  99.
+               10 old-int-serie5         PIC  99.
       *{TOTEM}END
 
       *{TOTEM}ID-LOGICI
@@ -204,31 +211,35 @@
        05
            form1-gd-1, 
            Grid, 
-           COL 2,20, 
+           COL 2,10, 
            LINE 1,74,
            LINES 22,70 ,
-           SIZE 121,90 ,
+           SIZE 133,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           DATA-COLUMNS (1, 3, 53, 56, 58, 61, 63, 65, 67, 68, 69),
+           DATA-COLUMNS (1, 3, 53, 56, 58, 61, 63, 65, 67, 68, 69, 70, 
+           71, 73, 75, 77, 79),
            ALIGNMENT ("R", "U", "R", "R", "R", "R", "R", "R", "C", "C", 
-           "C"),
-           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+           "C", "C", "C", "C", "C", "C", "C"),
+           SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 
+           5),
            DATA-TYPES ("z9", "X(50)", "zz9", "z9", "zz9", "z9", "z9", "z
-      -    "9", "U(1)", "X", "X"),
+      -    "9", "U(1)", "X", "X", "9(1)", "9(2)", "9(2)", "9(2)", "9(2)"
+           , "9(2)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
            DIVIDER-COLOR 1,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 1,
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            RECORD-DATA rec-grid,
            TILED-HEADINGS,
            USE-TAB,
-           VIRTUAL-WIDTH 120,
+           VIRTUAL-WIDTH 132,
            VPADDING 10,
            VSCROLL,
            EVENT PROCEDURE Form1-Gd-1-Event-Proc,
@@ -781,13 +792,31 @@
                 CELL-DATA = "Effort",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 9, Y = 1,
-                CELL-DATA = "Rest/pause",
+                CELL-DATA = "R/P",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 10, Y = 1,
                 CELL-DATA = "A tempo",
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 11, Y = 1,
                 CELL-DATA = "Squeeze",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 12, Y = 1,
+                CELL-DATA = "Fisse",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 13, Y = 1,
+                CELL-DATA = "Serie1",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 14, Y = 1,
+                CELL-DATA = "Serie2",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 15, Y = 1,
+                CELL-DATA = "Serie3",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 16, Y = 1,
+                CELL-DATA = "Serie4",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 17, Y = 1,
+                CELL-DATA = "Serie5",
            .
 
       * FD's Initialize Paragraph
@@ -826,7 +855,7 @@
               SCREEN LINE 1,
               SCREEN COLUMN 0,
               LINES 24,13,
-              SIZE 124,40,
+              SIZE 136,10,
               COLOR 131329,
               CONTROL FONT Calibri14-Occidentale,
               LINK TO THREAD,
@@ -854,8 +883,8 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 31, 41, 51, 
-           61, 71, 81, 91, 101, 111)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 8, 28, 35, 42, 49, 
+           56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126)
            .
 
        Form1-PROC.
@@ -1459,7 +1488,7 @@
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x = 11,
+           modify form1-gd-1, start-x = 1, x = 17,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,
@@ -1515,6 +1544,40 @@
                    display message "Valore obbligatorio"
                            title = tit-err
                            icon mb-warning-icon
+                else
+                   evaluate int-series
+                   when 1
+                        move 0 to col-serie2 col-serie3 col-serie4 
+           col-serie5
+                        modify form1-gd-1(riga, 14), cell-data = 
+           col-serie2
+                        modify form1-gd-1(riga, 15), cell-data = 
+           col-serie3
+                        modify form1-gd-1(riga, 16), cell-data = 
+           col-serie4
+                        modify form1-gd-1(riga, 17), cell-data = 
+           col-serie5
+                   when 2                                               
+              
+                        move 0 to col-serie3 col-serie4 col-serie5
+                        modify form1-gd-1(riga, 15), cell-data = 
+           col-serie3
+                        modify form1-gd-1(riga, 16), cell-data = 
+           col-serie4
+                        modify form1-gd-1(riga, 17), cell-data = 
+           col-serie5
+                   when 3
+                        move 0 to col-serie4 col-serie5
+                        modify form1-gd-1(riga, 16), cell-data = 
+           col-serie4
+                        modify form1-gd-1(riga, 17), cell-data = 
+           col-serie5
+                   when 4                                               
+               
+                        move 0 to col-serie5
+                        modify form1-gd-1(riga, 17), cell-data = 
+           col-serie5
+                   end-evaluate
                 end-if   
            when 5
                 if int-time = 0
@@ -1524,7 +1587,7 @@
                            icon mb-warning-icon
                 end-if
            when 6
-                if int-isTime = 0
+                if int-isTime = 0 and int-isFisse = 0
                    if int-range-from = 0
                       set errori to true   
                       display message "Valore obbligatorio"
@@ -1533,7 +1596,7 @@
                    end-if
                 end-if
            when 7
-                if int-isTime = 0
+                if int-isTime = 0 and int-isFisse = 0
                    if int-range-to = 0
                       set errori to true   
                       display message "Valore obbligatorio"
@@ -1568,7 +1631,7 @@
            col-range-from
                       modify form1-gd-1(riga, 7), cell-data col-range-to
                    end-if
-                end-if   
+                end-if          
            when 11
                 if int-isSqueeze not = 0 and not = 1
                    set errori to true   
@@ -1576,6 +1639,73 @@
                            title = tit-err
                            icon mb-warning-icon
                 end-if  
+           when 12
+                if int-isFisse not = 0 and not = 1
+                   set errori to true   
+                   display message "Valori consentiti 1/0"
+                           title = tit-err
+                           icon mb-warning-icon
+                else
+                   if int-isFisse = 0      
+                      move 0 to col-serie1 col-serie2 col-serie3
+                                col-serie4 col-serie5
+                      modify form1-gd-1(riga, 13), cell-data col-serie1
+                      modify form1-gd-1(riga, 14), cell-data col-serie2
+                      modify form1-gd-1(riga, 15), cell-data col-serie3
+                      modify form1-gd-1(riga, 16), cell-data col-serie4
+                      modify form1-gd-1(riga, 17), cell-data col-serie5
+                   else
+                      move 0 to col-range-from col-range-to
+                      modify form1-gd-1(riga, 6), cell-data 
+           col-range-from
+                      modify form1-gd-1(riga, 7), cell-data col-range-to
+                   end-if
+                end-if 
+           when 13
+                if int-isFisse = 1 
+                   if int-serie1 = 0 and int-series >= 1
+                      set errori to true   
+                      display message "Valore obbligatorio"
+                              title = tit-err
+                              icon mb-warning-icon
+                   end-if  
+                end-if 
+           when 14
+                if int-isFisse = 1 
+                   if int-serie2 = 0 and int-series >= 2
+                      set errori to true   
+                      display message "Valore obbligatorio"
+                              title = tit-err
+                              icon mb-warning-icon
+                   end-if  
+                end-if                                  
+           when 15
+                if int-isFisse = 1 
+                   if int-serie3 = 0 and int-series >= 3
+                      set errori to true   
+                      display message "Valore obbligatorio"
+                              title = tit-err
+                              icon mb-warning-icon
+                   end-if  
+                end-if                                  
+           when 16
+                if int-isFisse = 1 
+                   if int-serie4 = 0 and int-series >= 4
+                      set errori to true   
+                      display message "Valore obbligatorio"
+                              title = tit-err
+                              icon mb-warning-icon
+                   end-if  
+                end-if                                  
+           when 17
+                if int-isFisse = 1 
+                   if int-serie5 = 0 and int-series >= 5
+                      set errori to true   
+                      display message "Valore obbligatorio"
+                              title = tit-err
+                              icon mb-warning-icon
+                   end-if  
+                end-if 
 
            end-evaluate.
 
@@ -1612,40 +1742,58 @@
                      read intexe next
                           at end exit perform
                       not at end
-                          move int-code       to col-codice
-                          move int-desc       to col-des  
-                          move int-rest       to col-rest
-                          move int-series     to col-series 
-                          move int-time       to col-duration
-                          move int-range-from to col-range-from
-                          move int-range-to   to col-range-to     
-                          move int-effort     to col-effort             
-              
-                          move int-restpause  to col-restpause
-                          move int-isTime     to col-isTime
-                          move int-isSqueeze  to col-isSqueeze
-                          modify form1-gd-1(riga, 1), cell-data 
+                          move int-code         to col-codice
+                          move int-desc         to col-des  
+                          move int-rest         to col-rest
+                          move int-series       to col-series 
+                          move int-time         to col-duration
+                          move int-range-from   to col-range-from
+                          move int-range-to     to col-range-to     
+                          move int-effort       to col-effort           
+                
+                          move int-restpause    to col-restpause
+                          move int-isTime       to col-isTime   
+                          move int-isSqueeze    to col-isSqueeze
+                          move int-isFisse      to col-isFisse
+                          move int-serie1       to col-serie1
+                          move int-serie2       to col-serie2
+                          move int-serie3       to col-serie3
+                          move int-serie4       to col-serie4
+                          move int-serie5       to col-serie5
+                          modify form1-gd-1(riga,  1), cell-data 
            col-codice
-                          modify form1-gd-1(riga, 2), cell-data col-des 
-            
-                          modify form1-gd-1(riga, 3), cell-data 
+                          modify form1-gd-1(riga,  2), cell-data 
+           col-des  
+                          modify form1-gd-1(riga,  3), cell-data 
            col-rest  
-                          modify form1-gd-1(riga, 4), cell-data 
+                          modify form1-gd-1(riga,  4), cell-data 
            col-series  
-                          modify form1-gd-1(riga, 5), cell-data 
+                          modify form1-gd-1(riga,  5), cell-data 
            col-duration  
-                          modify form1-gd-1(riga, 6), cell-data 
+                          modify form1-gd-1(riga,  6), cell-data 
            col-range-from
-                          modify form1-gd-1(riga, 7), cell-data 
+                          modify form1-gd-1(riga,  7), cell-data 
            col-range-to
-                          modify form1-gd-1(riga, 8), cell-data 
+                          modify form1-gd-1(riga,  8), cell-data 
            col-effort
-                          modify form1-gd-1(riga, 9), cell-data 
+                          modify form1-gd-1(riga,  9), cell-data 
            col-restpause
                           modify form1-gd-1(riga, 10), cell-data 
            col-isTime
                           modify form1-gd-1(riga, 11), cell-data 
            col-isSqueeze
+                          modify form1-gd-1(riga, 12), cell-data 
+           col-isFisse
+                          modify form1-gd-1(riga, 13), cell-data 
+           col-serie1
+                          modify form1-gd-1(riga, 14), cell-data 
+           col-serie2
+                          modify form1-gd-1(riga, 15), cell-data 
+           col-serie3
+                          modify form1-gd-1(riga, 16), cell-data 
+           col-serie4
+                          modify form1-gd-1(riga, 17), cell-data 
+           col-serie5
                      end-read                                           
                   end-perform
            end-start.
@@ -1776,7 +1924,7 @@
                                cursor-y in riga.
 
            perform varying colonna from 1 by 1
-                     until colonna > 10
+                     until colonna > 17
               perform CONTROLLO
               if errori exit perform end-if
            end-perform.
@@ -1840,16 +1988,23 @@
 
        VALORE-RIGA.
       * <TOTEM:PARA. VALORE-RIGA>
-           inquire form1-gd-1(riga, 1), cell-data int-code.  
-           inquire form1-gd-1(riga, 2), cell-data int-desc.  
-           inquire form1-gd-1(riga, 3), cell-data int-rest.  
-           inquire form1-gd-1(riga, 4), cell-data int-series.  
-           inquire form1-gd-1(riga, 5), cell-data int-time.
-           inquire form1-gd-1(riga, 6), cell-data int-range-from.
-           inquire form1-gd-1(riga, 7), cell-data int-range-to.  
-           inquire form1-gd-1(riga, 8), cell-data int-effort.    
-           inquire form1-gd-1(riga, 9), cell-data int-restpause.
-           inquire form1-gd-1(riga, 10), cell-data int-isTime 
+           inquire form1-gd-1(riga,  1), cell-data int-code.  
+           inquire form1-gd-1(riga,  2), cell-data int-desc.  
+           inquire form1-gd-1(riga,  3), cell-data int-rest.  
+           inquire form1-gd-1(riga,  4), cell-data int-series.  
+           inquire form1-gd-1(riga,  5), cell-data int-time.
+           inquire form1-gd-1(riga,  6), cell-data int-range-from.
+           inquire form1-gd-1(riga,  7), cell-data int-range-to.  
+           inquire form1-gd-1(riga,  8), cell-data int-effort.    
+           inquire form1-gd-1(riga,  9), cell-data int-restpause.
+           inquire form1-gd-1(riga, 10), cell-data int-isTime.   
+           inquire form1-gd-1(riga, 11), cell-data int-isSqueeze.
+           inquire form1-gd-1(riga, 12), cell-data int-isFisse.
+           inquire form1-gd-1(riga, 13), cell-data int-serie1.
+           inquire form1-gd-1(riga, 14), cell-data int-serie2.
+           inquire form1-gd-1(riga, 15), cell-data int-serie3.
+           inquire form1-gd-1(riga, 16), cell-data int-serie4.
+           inquire form1-gd-1(riga, 17), cell-data int-serie5 
            .
       * <TOTEM:END>
 
@@ -1954,10 +2109,50 @@
                  if int-code = zero or spaces
                     set event-action to event-action-fail
                     modify form1-gd-1, cursor-y = riga, cursor-x = 1
-                 else
-                    if ( colonna = 6 or 7 ) and int-isTime = 1
-                       set event-action to event-action-fail
-                    end-if
+                 else           
+                    evaluate colonna
+                    when 6
+                    when 7 
+                         if int-isTime = 1 or int-isFisse = 1
+                            set event-action to event-action-fail
+                         end-if
+                    when 13     
+                         if int-isFisse = 0
+                            set event-action to event-action-fail
+                         end-if
+                    when 14     
+                         if int-isFisse = 0
+                            set event-action to event-action-fail
+                         else
+                            if int-series < 2                    
+                               set event-action to event-action-fail
+                            end-if
+                         end-if
+                    when 15     
+                         if int-isFisse = 0
+                            set event-action to event-action-fail
+                         else
+                            if int-series < 3                    
+                               set event-action to event-action-fail
+                            end-if
+                         end-if
+                    when 16     
+                         if int-isFisse = 0
+                            set event-action to event-action-fail
+                         else
+                            if int-series < 4                    
+                               set event-action to event-action-fail
+                            end-if
+                         end-if
+                    when 17
+                         if int-isFisse = 0
+                            set event-action to event-action-fail
+                         else
+                            if int-series < 5                    
+                               set event-action to event-action-fail
+                            end-if
+                         end-if
+                    end-evaluate
                  end-if   
               end-if
            end-if 

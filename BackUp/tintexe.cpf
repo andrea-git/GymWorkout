@@ -2,13 +2,12 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [PROGRAM_CONTENT]
-DIRTY_AFTER_GEN=1
 QUIT_CONFIRM=0
 ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A2125938-491-203824371
+PROGRAM_UNIQUE_CODE=TOTEM-7E7B1134714-666-204219222
 
 {{@DESCRIPTION:
 
@@ -301,35 +300,95 @@ m_bFixed=1
 
 @}}
 [FDITEM27_WK]
-m_strName=Screen1-Handle
-m_nUsage=24
-m_nItemLevel=77
+m_strName=col-isFisse
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM27_WK
 
 @}}
 [FDITEM28_WK]
-m_strName=FILLER
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=1
+m_strName=col-serie1
+m_strRawPic=z9
+m_strPic=z9
+m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM28_WK
 
 @}}
 [FDITEM29_WK]
+m_strName=col-serie2
+m_strRawPic=z9
+m_strPic=z9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM29_WK
+
+@}}
+[FDITEM30_WK]
+m_strName=col-serie3
+m_strRawPic=z9
+m_strPic=z9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM30_WK
+
+@}}
+[FDITEM31_WK]
+m_strName=col-serie4
+m_strRawPic=z9
+m_strPic=z9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM31_WK
+
+@}}
+[FDITEM32_WK]
+m_strName=col-serie5
+m_strRawPic=z9
+m_strPic=z9
+m_nItemLevel=5
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM32_WK
+
+@}}
+[FDITEM33_WK]
+m_strName=Screen1-Handle
+m_nUsage=24
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM33_WK
+
+@}}
+[FDITEM34_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM34_WK
+
+@}}
+[FDITEM35_WK]
 m_strName=ricarica
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM29_WK
+{{@DataItem_m_strDescriptionFDITEM35_WK
 
 @}}
-[FDITEM30_WK]
+[FDITEM36_WK]
 m_strName=esegui-73x21-bmp
 m_strRawPic=S9(9)
 m_strPic=S9(9)
@@ -338,79 +397,20 @@ m_strDefaultValue=0
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM30_WK
+{{@DataItem_m_strDescriptionFDITEM36_WK
 
 @}}
-[FDITEM31_WK]
+[FDITEM37_WK]
 m_strName=Default-Font
 m_nUsage=38
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM31_WK
-
-@}}
-[FDITEM32_WK]
-m_strName=STATUS-intensity
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM32_WK
-
-@}}
-[FDITEM33_WK]
-m_strName=Valid-STATUS-intensity
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
-{{@DataItem_m_strDescriptionFDITEM33_WK
-
-@}}
-[FDITEM34_WK]
-m_strName=Calibri14-Occidentale
-m_nUsage=26
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM34_WK
-
-@}}
-[FDITEM35_WK]
-m_strName=LOGO_PICCOLO-BMP
-m_strRawPic=S9(9)
-m_strPic=S9(9)
-m_nUsage=5
-m_strDefaultValue=0
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM35_WK
-
-@}}
-[FDITEM36_WK]
-m_strName=STATUS-macrointensity
-m_strRawPic=X(2)
-m_strPic=X(2)
-m_nItemLevel=77
-m_nSync=-1
-m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM36_WK
-
-@}}
-[FDITEM37_WK]
-m_strName=Valid-STATUS-macrointensity
-m_nItemLevel=88
-m_nSync=-1
-m_bFixed=1
-m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM37_WK
 
 @}}
 [FDITEM38_WK]
-m_strName=STATUS-intexe
+m_strName=STATUS-intensity
 m_strRawPic=X(2)
 m_strPic=X(2)
 m_nItemLevel=77
@@ -420,12 +420,71 @@ m_bFixed=1
 
 @}}
 [FDITEM39_WK]
-m_strName=Valid-STATUS-intexe
+m_strName=Valid-STATUS-intensity
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue="00" THRU "09"
 {{@DataItem_m_strDescriptionFDITEM39_WK
+
+@}}
+[FDITEM40_WK]
+m_strName=Calibri14-Occidentale
+m_nUsage=26
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM40_WK
+
+@}}
+[FDITEM41_WK]
+m_strName=LOGO_PICCOLO-BMP
+m_strRawPic=S9(9)
+m_strPic=S9(9)
+m_nUsage=5
+m_strDefaultValue=0
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM41_WK
+
+@}}
+[FDITEM42_WK]
+m_strName=STATUS-macrointensity
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM42_WK
+
+@}}
+[FDITEM43_WK]
+m_strName=Valid-STATUS-macrointensity
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM43_WK
+
+@}}
+[FDITEM44_WK]
+m_strName=STATUS-intexe
+m_strRawPic=X(2)
+m_strPic=X(2)
+m_nItemLevel=77
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM44_WK
+
+@}}
+[FDITEM45_WK]
+m_strName=Valid-STATUS-intexe
+m_nItemLevel=88
+m_nSync=-1
+m_bFixed=1
+m_strTrue="00" THRU "09"
+{{@DataItem_m_strDescriptionFDITEM45_WK
 
 @}}
 
@@ -638,7 +697,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 124,40
+   Size              = 136,10
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -687,7 +746,7 @@ Begin Screen Form1
       Width in Cells    = TRUE
    End
    Begin Grid form1-gd-1
-      SCREEN-COL        = 2,20
+      SCREEN-COL        = 2,10
       SCREEN-LINE       = 1,74
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -703,46 +762,70 @@ Begin Screen Form1
       Cells' Setting    = ( X = 6, Y = 1, Data = "Min rep" )
       Cells' Setting    = ( X = 7, Y = 1, Data = "Max rep" )
       Cells' Setting    = ( X = 8, Y = 1, Data = "Effort" )
-      Cells' Setting    = ( X = 9, Y = 1, Data = "Rest/pause" )
+      Cells' Setting    = ( X = 9, Y = 1, Data = "R/P" )
       Cells' Setting    = ( X = 10, Y = 1, Data = "A tempo" )
       Cells' Setting    = ( X = 11, Y = 1, Data = "Squeeze" )
+      Cells' Setting    = ( X = 12, Y = 1, Data = "Fisse" )
+      Cells' Setting    = ( X = 13, Y = 1, Data = "Serie1" )
+      Cells' Setting    = ( X = 14, Y = 1, Data = "Serie2" )
+      Cells' Setting    = ( X = 15, Y = 1, Data = "Serie3" )
+      Cells' Setting    = ( X = 16, Y = 1, Data = "Serie4" )
+      Cells' Setting    = ( X = 17, Y = 1, Data = "Serie5" )
       Centered Headings = FALSE
       Color             = 0
-      Column            = 2,20
+      Column            = 2,10
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-codice, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 2, Name = col-des, READONLY = 0 )
       Columns' Setting  = ( PIC = "X(50)", TYPE = "X(50)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
       Columns' Setting  = ( DISP = 20, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 3, Name = col-rest, READONLY = 0 )
       Columns' Setting  = ( PIC = "zz9", TYPE = "zz9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 4, Name = col-series, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 5, Name = col-duration, READONLY = 0 )
       Columns' Setting  = ( PIC = "zz9", TYPE = "zz9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 6, Name = col-range-from, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 7, Name = col-range-to, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 8, Name = col-effort, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "z9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 9, Name = col-restpause, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", TYPE = "U(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 10, Name = col-isTime, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 11, Name = col-isSqueeze, READONLY = 0 )
       Columns' Setting  = ( PIC = "9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 12, Name = col-isFisse, READONLY = 0 )
+      Columns' Setting  = ( PIC = "9", TYPE = "9(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 13, Name = col-serie1, READONLY = 0 )
+      Columns' Setting  = ( PIC = "z9", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 14, Name = col-serie2, READONLY = 0 )
+      Columns' Setting  = ( PIC = "z9", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 15, Name = col-serie3, READONLY = 0 )
+      Columns' Setting  = ( PIC = "z9", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 16, Name = col-serie4, READONLY = 0 )
+      Columns' Setting  = ( PIC = "z9", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( X = 17, Name = col-serie5, READONLY = 0 )
+      Columns' Setting  = ( PIC = "z9", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 7, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 2
       Cursor X          = 0
@@ -758,7 +841,7 @@ Begin Screen Form1
       Heading Font      = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      Hscroll           = FALSE
+      Hscroll           = TRUE
       ID                = 1
       Last Row          = 0
       Line              = 1,74
@@ -766,19 +849,19 @@ Begin Screen Form1
       Lines Unit        = Default
       No Tab            = FALSE
       Num Col Headings  = 1
-      Num Columns       = 11
+      Num Columns       = 17
       Num Rows          = 0
       Occurs            = 0
       Paged             = FALSE
       Record Data       = rec-grid
       Row Dividers      = 1
       Row Headings      = FALSE
-      Size              = 121,90
+      Size              = 133,90
       Size Unit         = Default
       Tab Order         = 2
       Tiled Headings    = TRUE
       Use Tab           = TRUE
-      Virtual Width     = 120
+      Virtual Width     = 132
       Visible           = NONE
       Vpadding          = 10
       Vscroll           = TRUE
@@ -1128,15 +1211,16 @@ BEGIN-TEXT
                10 old-int-range.
                    15 old-int-range-from   PIC  99.
                    15 old-int-range-to     PIC  99.
-               10 old-int-effort       PIC  99.
-               10 old-int-restpause    PIC  9.
-               10 old-int-isTime       PIC  9.
-               10 old-int-isSqueeze    PIC  9.
-               10 old-int-filler       PIC  x(997).
-               10 old-int-filler-n1    PIC  9(18).
-               10 old-int-filler-n2    PIC  9(18).
-               10 old-int-filler-n3    PIC  9(18).
-               10 old-int-filler-n4    PIC  9(18).
+               10 old-int-effort         PIC  99.
+               10 old-int-restpause      PIC  9.
+               10 old-int-isTime         PIC  9.
+               10 old-int-isSqueeze      PIC  9. 
+               10 old-int-isPiramidale   PIC  9.
+               10 old-int-serie1         PIC  99.
+               10 old-int-serie2         PIC  99.
+               10 old-int-serie3         PIC  99.
+               10 old-int-serie4         PIC  99.
+               10 old-int-serie5         PIC  99.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1371,7 +1455,7 @@ BEGIN-TEXT
               move 2 to riga 
            end-if.
 
-           modify form1-gd-1, start-x = 1, x = 11,
+           modify form1-gd-1, start-x = 1, x = 17,
                                   start-y = riga,
                                         y = riga,
                                   region-color 257,
@@ -1429,6 +1513,27 @@ BEGIN-TEXT
                    display message "Valore obbligatorio"
                            title = tit-err
                            icon mb-warning-icon
+                else
+                   evaluate int-series
+                   when 1
+                        move 0 to col-serie2 col-serie3 col-serie4 col-serie5
+                        modify form1-gd-1(riga, 14), cell-data = col-serie2
+                        modify form1-gd-1(riga, 15), cell-data = col-serie3
+                        modify form1-gd-1(riga, 16), cell-data = col-serie4
+                        modify form1-gd-1(riga, 17), cell-data = col-serie5
+                   when 2                                                  
+                        move 0 to col-serie3 col-serie4 col-serie5
+                        modify form1-gd-1(riga, 15), cell-data = col-serie3
+                        modify form1-gd-1(riga, 16), cell-data = col-serie4
+                        modify form1-gd-1(riga, 17), cell-data = col-serie5
+                   when 3
+                        move 0 to col-serie4 col-serie5
+                        modify form1-gd-1(riga, 16), cell-data = col-serie4
+                        modify form1-gd-1(riga, 17), cell-data = col-serie5
+                   when 4                                                   
+                        move 0 to col-serie5
+                        modify form1-gd-1(riga, 17), cell-data = col-serie5
+                   end-evaluate
                 end-if   
            when 5
                 if int-time = 0
@@ -1438,7 +1543,7 @@ BEGIN-TEXT
                            icon mb-warning-icon
                 end-if
            when 6
-                if int-isTime = 0
+                if int-isTime = 0 and int-isFisse = 0
                    if int-range-from = 0
                       set errori to true   
                       display message "Valore obbligatorio"
@@ -1447,7 +1552,7 @@ BEGIN-TEXT
                    end-if
                 end-if
            when 7
-                if int-isTime = 0
+                if int-isTime = 0 and int-isFisse = 0
                    if int-range-to = 0
                       set errori to true   
                       display message "Valore obbligatorio"
@@ -1481,7 +1586,7 @@ BEGIN-TEXT
                       modify form1-gd-1(riga, 6), cell-data col-range-from
                       modify form1-gd-1(riga, 7), cell-data col-range-to
                    end-if
-                end-if   
+                end-if          
            when 11
                 if int-isSqueeze not = 0 and not = 1
                    set errori to true   
@@ -1489,6 +1594,72 @@ BEGIN-TEXT
                            title = tit-err
                            icon mb-warning-icon
                 end-if  
+           when 12
+                if int-isFisse not = 0 and not = 1
+                   set errori to true   
+                   display message "Valori consentiti 1/0"
+                           title = tit-err
+                           icon mb-warning-icon
+                else
+                   if int-isFisse = 0      
+                      move 0 to col-serie1 col-serie2 col-serie3
+                                col-serie4 col-serie5
+                      modify form1-gd-1(riga, 13), cell-data col-serie1
+                      modify form1-gd-1(riga, 14), cell-data col-serie2
+                      modify form1-gd-1(riga, 15), cell-data col-serie3
+                      modify form1-gd-1(riga, 16), cell-data col-serie4
+                      modify form1-gd-1(riga, 17), cell-data col-serie5
+                   else
+                      move 0 to col-range-from col-range-to
+                      modify form1-gd-1(riga, 6), cell-data col-range-from
+                      modify form1-gd-1(riga, 7), cell-data col-range-to
+                   end-if
+                end-if 
+           when 13
+                if int-isFisse = 1 
+                   if int-serie1 = 0 and int-series >= 1
+                      set errori to true   
+                      display message "Valore obbligatorio"
+                              title = tit-err
+                              icon mb-warning-icon
+                   end-if  
+                end-if 
+           when 14
+                if int-isFisse = 1 
+                   if int-serie2 = 0 and int-series >= 2
+                      set errori to true   
+                      display message "Valore obbligatorio"
+                              title = tit-err
+                              icon mb-warning-icon
+                   end-if  
+                end-if                                  
+           when 15
+                if int-isFisse = 1 
+                   if int-serie3 = 0 and int-series >= 3
+                      set errori to true   
+                      display message "Valore obbligatorio"
+                              title = tit-err
+                              icon mb-warning-icon
+                   end-if  
+                end-if                                  
+           when 16
+                if int-isFisse = 1 
+                   if int-serie4 = 0 and int-series >= 4
+                      set errori to true   
+                      display message "Valore obbligatorio"
+                              title = tit-err
+                              icon mb-warning-icon
+                   end-if  
+                end-if                                  
+           when 17
+                if int-isFisse = 1 
+                   if int-serie5 = 0 and int-series >= 5
+                      set errori to true   
+                      display message "Valore obbligatorio"
+                              title = tit-err
+                              icon mb-warning-icon
+                   end-if  
+                end-if 
 
            end-evaluate.
 
@@ -1528,28 +1699,40 @@ BEGIN-TEXT
                      read intexe next
                           at end exit perform
                       not at end
-                          move int-code       to col-codice
-                          move int-desc       to col-des  
-                          move int-rest       to col-rest
-                          move int-series     to col-series 
-                          move int-time       to col-duration
-                          move int-range-from to col-range-from
-                          move int-range-to   to col-range-to     
-                          move int-effort     to col-effort                
-                          move int-restpause  to col-restpause
-                          move int-isTime     to col-isTime
-                          move int-isSqueeze  to col-isSqueeze
-                          modify form1-gd-1(riga, 1), cell-data col-codice
-                          modify form1-gd-1(riga, 2), cell-data col-des  
-                          modify form1-gd-1(riga, 3), cell-data col-rest  
-                          modify form1-gd-1(riga, 4), cell-data col-series  
-                          modify form1-gd-1(riga, 5), cell-data col-duration  
-                          modify form1-gd-1(riga, 6), cell-data col-range-from
-                          modify form1-gd-1(riga, 7), cell-data col-range-to
-                          modify form1-gd-1(riga, 8), cell-data col-effort
-                          modify form1-gd-1(riga, 9), cell-data col-restpause
+                          move int-code         to col-codice
+                          move int-desc         to col-des  
+                          move int-rest         to col-rest
+                          move int-series       to col-series 
+                          move int-time         to col-duration
+                          move int-range-from   to col-range-from
+                          move int-range-to     to col-range-to     
+                          move int-effort       to col-effort                
+                          move int-restpause    to col-restpause
+                          move int-isTime       to col-isTime   
+                          move int-isSqueeze    to col-isSqueeze
+                          move int-isFisse      to col-isFisse
+                          move int-serie1       to col-serie1
+                          move int-serie2       to col-serie2
+                          move int-serie3       to col-serie3
+                          move int-serie4       to col-serie4
+                          move int-serie5       to col-serie5
+                          modify form1-gd-1(riga,  1), cell-data col-codice
+                          modify form1-gd-1(riga,  2), cell-data col-des  
+                          modify form1-gd-1(riga,  3), cell-data col-rest  
+                          modify form1-gd-1(riga,  4), cell-data col-series  
+                          modify form1-gd-1(riga,  5), cell-data col-duration  
+                          modify form1-gd-1(riga,  6), cell-data col-range-from
+                          modify form1-gd-1(riga,  7), cell-data col-range-to
+                          modify form1-gd-1(riga,  8), cell-data col-effort
+                          modify form1-gd-1(riga,  9), cell-data col-restpause
                           modify form1-gd-1(riga, 10), cell-data col-isTime
                           modify form1-gd-1(riga, 11), cell-data col-isSqueeze
+                          modify form1-gd-1(riga, 12), cell-data col-isFisse
+                          modify form1-gd-1(riga, 13), cell-data col-serie1
+                          modify form1-gd-1(riga, 14), cell-data col-serie2
+                          modify form1-gd-1(riga, 15), cell-data col-serie3
+                          modify form1-gd-1(riga, 16), cell-data col-serie4
+                          modify form1-gd-1(riga, 17), cell-data col-serie5
                      end-read                                           
                   end-perform
            end-start.
@@ -1686,7 +1869,7 @@ BEGIN-TEXT
                                cursor-y in riga.
 
            perform varying colonna from 1 by 1
-                     until colonna > 10
+                     until colonna > 17
               perform CONTROLLO
               if errori exit perform end-if
            end-perform.
@@ -1755,16 +1938,23 @@ BEGIN-DATA
    BASETYPE          = 3
    PARAGRAPH         = VALORE-RIGA
 BEGIN-TEXT
-           inquire form1-gd-1(riga, 1), cell-data int-code.  
-           inquire form1-gd-1(riga, 2), cell-data int-desc.  
-           inquire form1-gd-1(riga, 3), cell-data int-rest.  
-           inquire form1-gd-1(riga, 4), cell-data int-series.  
-           inquire form1-gd-1(riga, 5), cell-data int-time.
-           inquire form1-gd-1(riga, 6), cell-data int-range-from.
-           inquire form1-gd-1(riga, 7), cell-data int-range-to.  
-           inquire form1-gd-1(riga, 8), cell-data int-effort.    
-           inquire form1-gd-1(riga, 9), cell-data int-restpause.
-           inquire form1-gd-1(riga, 10), cell-data int-isTime.
+           inquire form1-gd-1(riga,  1), cell-data int-code.  
+           inquire form1-gd-1(riga,  2), cell-data int-desc.  
+           inquire form1-gd-1(riga,  3), cell-data int-rest.  
+           inquire form1-gd-1(riga,  4), cell-data int-series.  
+           inquire form1-gd-1(riga,  5), cell-data int-time.
+           inquire form1-gd-1(riga,  6), cell-data int-range-from.
+           inquire form1-gd-1(riga,  7), cell-data int-range-to.  
+           inquire form1-gd-1(riga,  8), cell-data int-effort.    
+           inquire form1-gd-1(riga,  9), cell-data int-restpause.
+           inquire form1-gd-1(riga, 10), cell-data int-isTime.   
+           inquire form1-gd-1(riga, 11), cell-data int-isSqueeze.
+           inquire form1-gd-1(riga, 12), cell-data int-isFisse.
+           inquire form1-gd-1(riga, 13), cell-data int-serie1.
+           inquire form1-gd-1(riga, 14), cell-data int-serie2.
+           inquire form1-gd-1(riga, 15), cell-data int-serie3.
+           inquire form1-gd-1(riga, 16), cell-data int-serie4.
+           inquire form1-gd-1(riga, 17), cell-data int-serie5.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -1888,10 +2078,50 @@ BEGIN-TEXT
                  if int-code = zero or spaces
                     set event-action to event-action-fail
                     modify form1-gd-1, cursor-y = riga, cursor-x = 1
-                 else
-                    if ( colonna = 6 or 7 ) and int-isTime = 1
-                       set event-action to event-action-fail
-                    end-if
+                 else           
+                    evaluate colonna
+                    when 6
+                    when 7 
+                         if int-isTime = 1 or int-isFisse = 1
+                            set event-action to event-action-fail
+                         end-if
+                    when 13     
+                         if int-isFisse = 0
+                            set event-action to event-action-fail
+                         end-if
+                    when 14     
+                         if int-isFisse = 0
+                            set event-action to event-action-fail
+                         else
+                            if int-series < 2                    
+                               set event-action to event-action-fail
+                            end-if
+                         end-if
+                    when 15     
+                         if int-isFisse = 0
+                            set event-action to event-action-fail
+                         else
+                            if int-series < 3                    
+                               set event-action to event-action-fail
+                            end-if
+                         end-if
+                    when 16     
+                         if int-isFisse = 0
+                            set event-action to event-action-fail
+                         else
+                            if int-series < 4                    
+                               set event-action to event-action-fail
+                            end-if
+                         end-if
+                    when 17
+                         if int-isFisse = 0
+                            set event-action to event-action-fail
+                         else
+                            if int-series < 5                    
+                               set event-action to event-action-fail
+                            end-if
+                         end-if
+                    end-evaluate
                  end-if   
               end-if
            end-if.

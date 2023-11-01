@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwodmap.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 26 ottobre 2023 12:41:33.
+       DATE-WRITTEN.        mercoledì 1 novembre 2023 14:41:03.
        REMARKS.
       *{TOTEM}END
 
@@ -5693,7 +5693,7 @@
            evaluate event-data-1
            when 1 if col-split = spaces
                      move spaces to col-int-desc
-                     move 0      to col-int-code
+                     move 0      to col-int-code col-ss col-isMulti
                   end-if
            when 2
                 move col-int-code to int-code

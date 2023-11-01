@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7A2125938-128-126888666
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7B1133958-925-325633035
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -156,9 +156,9 @@ m_bFixed=1
 
 @}}
 [FDITEM15_]
-m_strName=int-filler
-m_strRawPic=x(997)
-m_strPic=x(997)
+m_strName=int-isFisse
+m_strRawPic=9
+m_strPic=9
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -166,9 +166,9 @@ m_bFixed=1
 
 @}}
 [FDITEM16_]
-m_strName=int-filler-n1
-m_strRawPic=9(18)
-m_strPic=9(18)
+m_strName=int-serie1
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -176,9 +176,9 @@ m_bFixed=1
 
 @}}
 [FDITEM17_]
-m_strName=int-filler-n2
-m_strRawPic=9(18)
-m_strPic=9(18)
+m_strName=int-serie2
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -186,9 +186,9 @@ m_bFixed=1
 
 @}}
 [FDITEM18_]
-m_strName=int-filler-n3
-m_strRawPic=9(18)
-m_strPic=9(18)
+m_strName=int-serie3
+m_strRawPic=99
+m_strPic=99
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
@@ -196,13 +196,73 @@ m_bFixed=1
 
 @}}
 [FDITEM19_]
+m_strName=int-serie4
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM19_
+
+@}}
+[FDITEM20_]
+m_strName=int-serie5
+m_strRawPic=99
+m_strPic=99
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM20_
+
+@}}
+[FDITEM21_]
+m_strName=int-filler
+m_strRawPic=x(986)
+m_strPic=x(986)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM21_
+
+@}}
+[FDITEM22_]
+m_strName=int-filler-n1
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM22_
+
+@}}
+[FDITEM23_]
+m_strName=int-filler-n2
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM23_
+
+@}}
+[FDITEM24_]
+m_strName=int-filler-n3
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM24_
+
+@}}
+[FDITEM25_]
 m_strName=int-filler-n4
 m_strRawPic=9(18)
 m_strPic=9(18)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM19_
+{{@DataItem_m_strDescriptionFDITEM25_
 
 @}}
 [CStoAcucobolSL_]

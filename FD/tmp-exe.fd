@@ -12,7 +12,7 @@
                10 tex-nome-dupl    PIC  x(100).
                10 tex-int-code     PIC  99.
                10 tex-exe-isMulti  PIC  9.
-               10 tex-reps         PIC  x(10).
+               10 tex-reps         PIC  x(20).
                10 tex-series       PIC  99.
                10 tex-int-restpause            PIC  9.
                10 tex-ss           PIC  9.

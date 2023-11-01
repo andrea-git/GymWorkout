@@ -14,7 +14,13 @@
                10 int-restpause    PIC  9.
                10 int-isTime       PIC  9.
                10 int-isSqueeze    PIC  9.
-               10 int-filler       PIC  x(997).
+               10 int-isFisse      PIC  9.
+               10 int-serie1       PIC  99.
+               10 int-serie2       PIC  99.
+               10 int-serie3       PIC  99.
+               10 int-serie4       PIC  99.
+               10 int-serie5       PIC  99.
+               10 int-filler       PIC  x(986).
                10 int-filler-n1    PIC  9(18).
                10 int-filler-n2    PIC  9(18).
                10 int-filler-n3    PIC  9(18).

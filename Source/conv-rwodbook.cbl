@@ -59,16 +59,16 @@
                10 old-rod-series       PIC  99.
                10 old-rod-int-restpause            PIC  9.
                10 old-rod-ss           PIC  9.
-               10 old-rod-desc-univoca PIC  x(100).
+               10 FILLER           PIC  x(100).
                10 old-rod-dati-modwod.
                    15 old-rod-rep-kg-buf
                               OCCURS 10 TIMES.
-                       20 old-rod-rep          PIC  x(3).
-                       20 old-rod-kg           PIC  x(3).
-                       20 old-rod-buf          PIC  x(3).
+                       20 old-rod-rep          PIC  x(10).
+                       20 old-rod-kg           PIC  x(10).
+                       20 old-rod-buf          PIC  x(10).
                    15 old-rod-note         PIC  x(100).
-               10 FILLER           PIC  x(2000).
-       
+               10 FILLER           PIC  x(2000).       
+
        WORKING-STORAGE SECTION.
        77  status-rwodbook         pic xx.
        77  idx  pic 99.
@@ -82,7 +82,7 @@
            move low-value to old-rod-key.
            start old-rwodbook key >= old-rod-key
            perform until 1 = 2
-              read old-rwodbook next at end exit perform end-read
+              read old-rwodbook next at end exit perform end-read 
               move old-rod-key           to rod-key
               move old-rod-prg-day       to rod-prg-day      
               move old-rod-mcg-code      to rod-mcg-code     
@@ -93,14 +93,7 @@
               move old-rod-series        to rod-series       
               move old-rod-int-restpause to rod-int-restpause
               move old-rod-ss            to rod-ss           
-              move old-rod-desc-univoca  to rod-desc-univoca 
-              perform varying idx from 1 by 1 
-                        until idx > 10
-                 move old-rod-rep(idx)   to rod-rep(idx)
-                 move old-rod-kg(idx)    to rod-kg(idx) 
-                 move old-rod-buf(idx)   to rod-buf(idx)
-              end-perform
-              move old-rod-note          to rod-note
+              move old-rod-dati-modwod   to rod-dati-modwod  
               write rod-rec
            end-perform
            close       rwodbook old-rwodbook.

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 31 ottobre 2023 14:50:23.
+       DATE-WRITTEN.        mercoledì 1 novembre 2023 16:02:49.
        REMARKS.
       *{TOTEM}END
 
@@ -210,10 +210,10 @@
        77 TMP-Form1-KEYIS  PIC 9(3) VALUE 1.
        77 Form1-MULKEY-TMPBUF   PIC X(2305).
        77 TMP-DataSet1-exercises-BUF     PIC X(1189).
-       77 TMP-DataSet1-rwodbook-BUF     PIC X(2556).
+       77 TMP-DataSet1-rwodbook-BUF     PIC X(2566).
        77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(739).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(749).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
        77  TotemFdSlRecordLength        PIC 9(5) COMP-4.
@@ -298,10 +298,10 @@
        05
            form1-gd-1, 
            Grid, 
-           COL 2,00, 
+           COL 2,40, 
            LINE 2,87,
            LINES 36,61 ,
-           SIZE 172,30 ,
+           SIZE 171,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
            DATA-COLUMNS (1, 11, 61, 63, 83, 86, 96, 106, 116, 126, 136, 
@@ -323,6 +323,7 @@
            FONT IS Calibri14-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 78-ID-form1-gd-1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
@@ -1969,9 +1970,9 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 30, 33, 41, 
-           45, 50, 57, 62, 67, 74, 79, 84, 91, 96, 101, 108, 113, 118, 
-           125, 130)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 29, 31, 42, 
+           46, 51, 58, 63, 68, 75, 80, 85, 92, 97, 102, 109, 114, 119, 
+           126, 131)
            .
 
        Form1-PROC.

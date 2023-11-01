@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+aNote-andre=192.168.56.1
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7A1F134646-7-38316258
+PROGRAM_UNIQUE_CODE=TOTEM-7E7B1133959-36-2553915407
 
 {{@DESCRIPTION:
 
@@ -6469,7 +6470,7 @@ BEGIN-TEXT
            evaluate event-data-1
            when 1 if col-split = spaces
                      move spaces to col-int-desc
-                     move 0      to col-int-code
+                     move 0      to col-int-code col-ss col-isMulti
                   end-if
            when 2
                 move col-int-code to int-code

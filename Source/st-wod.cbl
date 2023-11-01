@@ -65,7 +65,7 @@
        01  r-riga.                         
            05 r-exe-desc         pic x(20).
            05 r-series           pic xx.        
-           05 r-reps             pic x(10).
+           05 r-reps             pic x(20).
            05 r-rest             pic xxx.  
 
            05 r-dati-modwod.
@@ -285,12 +285,13 @@
                           inspect r-rest 
                                   replacing leading x"30" by x"20"
                           call "C$JUSTIFY" using r-rest, "L"
-                       else                                  
+                       else                        
+                          initialize r-reps 
                           string tex-date(7:2) delimited size
                                  "/"           delimited size
                                  tex-date(5:2) delimited size
                                  "/"           delimited size
-                                 tex-date(3:3) delimited size
+                                 tex-date(3:2) delimited size
                             into r-reps
                           end-string
                           move spaces to r-series r-rest r-exe-desc

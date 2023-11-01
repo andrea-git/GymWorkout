@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 31 ottobre 2023 14:54:14.
+       DATE-WRITTEN.        mercoledì 1 novembre 2023 16:07:55.
        REMARKS.
       *{TOTEM}END
 
@@ -118,6 +118,15 @@
        77 Small-Font
                   USAGE IS HANDLE OF FONT SMALL-FONT.
        77 tot-used         PIC  999.
+       77 como-serie1      PIC  xx.
+       77 como-serie2      PIC  xx.
+       77 como-serie3      PIC  xx.
+       77 como-serie4      PIC  xx.
+       77 como-serie5      PIC  xx.
+       77 como-sep1        PIC  x.
+       77 como-sep2        PIC  x.
+       77 como-sep3        PIC  x.
+       77 como-sep4        PIC  x.
        01 FILLER           PIC  9.
            88 tutti-usati VALUE IS 1    WHEN SET TO FALSE  0. 
        01 FILLER           PIC  9.
@@ -573,7 +582,7 @@
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18384).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(137).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(739).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(749).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(190).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
@@ -581,7 +590,7 @@
        77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(207).
        77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
        77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(440).
-       77 TMP-DataSet1-rwodbook-BUF     PIC X(2556).
+       77 TMP-DataSet1-rwodbook-BUF     PIC X(2566).
        77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.
@@ -10640,13 +10649,10 @@
                                     
               initialize col-reps
               if int-restpause > 0  
-                 move int-restpause to como-range-from
-                 inspect como-range-from 
-                         replacing leading x"30" by x"20"
-                 inspect int-desc replacing trailing spaces by low-value
-                 call "C$JUSTIFY" using como-range-from, "L"
-                 inspect como-range-from replacing trailing spaces by 
-           low-value
+                 move int-restpause to como-range-from                  
+                 perform EDIT-SERIES
+                 inspect int-desc replacing trailing spaces by 
+           low-value            
                  string int-desc       delimited low-value
                         " ("           delimited size
                         int-restpause  delimited low-value
@@ -10654,10 +10660,62 @@
                    into col-reps
                  end-string
               else
-                 perform IMPOSTA-SERIES-RANGE
+                 if int-range-from = 0 and int-range-from = 0
+                    initialize como-serie1 como-serie2 como-serie3
+                               como-serie4 como-serie5
+                               como-sep1 como-sep2 como-sep3 
+                               como-sep4 
+                    if int-serie2 > 0
+                       move "-" to como-sep1
+                    end-if
+                    if int-serie3 > 0
+                       move "-" to como-sep2
+                    end-if
+                    if int-serie4 > 0
+                       move "-" to como-sep3
+                    end-if
+                    if int-serie5 > 0
+                       move "-" to como-sep4
+                    end-if
+                    move int-serie1 to como-range-from
+                    perform EDIT-SERIES
+                    move como-range-from to como-serie1
+                    move int-serie2 to como-range-from
+                    perform EDIT-SERIES
+                    move como-range-from to como-serie2
+                    move int-serie3 to como-range-from
+                    perform EDIT-SERIES
+                    move como-range-from to como-serie3
+                    move int-serie4 to como-range-from
+                    perform EDIT-SERIES
+                    move como-range-from to como-serie4
+                    move int-serie5 to como-range-from
+                    perform EDIT-SERIES
+                    move como-range-from to como-serie5
+                    string como-serie1 delimited low-value
+                           como-sep1   delimited size
+                           como-serie2 delimited low-value
+                           como-sep2   delimited size
+                           como-serie3 delimited low-value
+                           como-sep3   delimited size
+                           como-serie4 delimited low-value
+                           como-sep4   delimited size
+                           como-serie5 delimited low-value
+                      into col-reps
+                    end-string
+                 else
+                    perform IMPOSTA-SERIES-RANGE
+                 end-if
               end-if
       *****     end-if.
            .
+
+      ***---
+       EDIT-SERIES.
+           inspect como-range-from replacing leading x"30" by x"20".
+           call "C$JUSTIFY" using como-range-from, "L".
+           inspect como-range-from replacing trailing spaces by 
+           low-value.
                        
       ***---
        IMPOSTA-SERIES-RANGE.

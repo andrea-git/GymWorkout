@@ -367,8 +367,8 @@
            move 0,2      to spl-riga.   
            move 78-margine-basso  to spl-riga-fine.
 
-           move 0,5   to spl-colonna
-           move 29,3  to spl-colonna-fine
+           move 0,1   to spl-colonna
+           move 28,8  to spl-colonna-fine
 
            set  spl-oggetto       to true
            set  spl-rettangolo    to true
@@ -401,8 +401,8 @@
       ***---     
        STAMPA-QUADRATO-GRAY.                                  
            compute spl-riga-fine = 78-passo + spl-riga.
-           move 0,55  to spl-colonna.
-           move 29,25 to spl-colonna-fine.
+           move 0,15  to spl-colonna.
+           move 28,75 to spl-colonna-fine.
 
            move 78-pen-light to spl-pen-width.
 
@@ -419,19 +419,19 @@
        LINEE-VERTICALI.
            add 78-passo to spl-riga giving spl-riga-fine.
            move 78-pen-heavy to spl-pen-width.
-           move 3,9 to spl-colonna spl-colonna-fine.
+           move 3,6 to spl-colonna spl-colonna-fine.
            perform STAMPA-LINEA-VERTICALE.
                        
            move 78-pen-heavy to spl-pen-width.
-           move 4,4 to spl-colonna spl-colonna-fine.
+           move 4,1 to spl-colonna spl-colonna-fine.
            perform STAMPA-LINEA-VERTICALE.
                        
            move 78-pen-heavy to spl-pen-width.
-           move 6,3 to spl-colonna spl-colonna-fine.
+           move 6,0 to spl-colonna spl-colonna-fine.
            perform STAMPA-LINEA-VERTICALE.
                        
            move 78-pen-heavy to spl-pen-width.
-           move 7,0 to spl-colonna spl-colonna-fine.
+           move 6,7 to spl-colonna spl-colonna-fine.
            perform STAMPA-LINEA-VERTICALE.
                        
            move 0 to resto.                            
@@ -479,8 +479,8 @@
 
       ***---
        STAMPA-LINEA-ORIZZONTALE.
-           move 0,5   to spl-colonna.
-           move 29,3  to spl-colonna-fine.
+           move 0,1   to spl-colonna.
+           move 28,8  to spl-colonna-fine.
            move spl-riga to spl-riga-fine.
            set  spl-oggetto        to true.
            set  spl-linea          to true.
@@ -498,7 +498,7 @@
            initialize spl-riga-stampa.
            move 0 to spl-tipo-colonna.
                       
-           move 27,8 to spl-colonna
+           move 27,4 to spl-colonna
            move pagina     to pagina-z.
            move tot-pagine to tot-pagine-z.
            initialize spl-riga-stampa.

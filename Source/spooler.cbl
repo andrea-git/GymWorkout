@@ -44,32 +44,33 @@
        01  nr-crt         pic 9(3).
        01  cont           pic 9(5).
        01  ind            pic 9(5).
-                                  
-       78  78-col-s       value 4.
-       78  78-col-reps    value 4,5. 
-       78  78-col-r       value 5,9.
+                                     
+       78  78-col-exe     value 0,2. 
+       78  78-col-s       value 3,7.
+       78  78-col-reps    value 4,2. 
+       78  78-col-r       value 6,1.
 
-       78  78-col-rep1    value 6,58.
-       78  78-col-kg1     value 7,40.
-       78  78-col-buf1    value 9,00.  
+       78  78-col-rep1    value 6,78.
+       78  78-col-kg1     value 7,60.
+       78  78-col-buf1    value 9,20.  
 
-       78  78-col-rep2    value 9,80.
-       78  78-col-kg2     value 10,62.
-       78  78-col-buf2    value 12,20.     
+       78  78-col-rep2    value 10,0.
+       78  78-col-kg2     value 10,82.
+       78  78-col-buf2    value 12,40.     
 
-       78  78-col-rep3    value 13,02. |0.8
-       78  78-col-kg3     value 13,84. |0.82
-       78  78-col-buf3    value 15,40. |1.6
+       78  78-col-rep3    value 13,23. |0.8
+       78  78-col-kg3     value 14,14. |0.82
+       78  78-col-buf3    value 15,60. |1.6
 
-       78  78-col-rep4    value 16,24. |0.8
-       78  78-col-kg4     value 17,06. |0.82
-       78  78-col-buf4    value 18,65. |1.6
+       78  78-col-rep4    value 16,44. |0.8
+       78  78-col-kg4     value 17,26. |0.82
+       78  78-col-buf4    value 18,85. |1.6
 
-       78  78-col-rep5    value 19,46. |0.8
-       78  78-col-kg5     value 20,28. |0.82
-       78  78-col-buf5    value 21,85. |1.6
+       78  78-col-rep5    value 19,66. |0.8
+       78  78-col-kg5     value 20,48. |0.82
+       78  78-col-buf5    value 22,05. |1.6
 
-       78  78-col-note    value 22,7.
+       78  78-col-note    value 22,85.
            
        01  como-area      pic x(1000).
 
@@ -463,8 +464,8 @@
                                          53, 55, 58, 62
                                     giving return-code
                 |EXERCISE
-                move 0,6               to winprint-col-start
-                move wprtalign-left  to winprint-col-alignment
+                move 78-col-exe       to winprint-col-start
+                move wprtalign-left   to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code  
@@ -598,8 +599,8 @@
                                           176, 186, 196,
                                     giving return-code
 
-                move 0,6               to winprint-col-start
-                move wprtalign-left  to winprint-col-alignment
+                move 78-col-exe        to winprint-col-start
+                move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code 
@@ -724,6 +725,16 @@
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code 
+           when 2,1
+                call "WIN$PRINTER"  using winprint-set-data-columns,
+                                           21
+                                    giving return-code
+                move 78-col-reps       to winprint-col-start
+                subtract 0,05 from winprint-col-start
+                move wprtalign-left    to winprint-col-alignment
+                call "WIN$PRINTER"  using winprint-set-page-column,
+                                          winprint-column
+                                   giving return-code
            when 2,5
                 call "WIN$PRINTER"  using winprint-set-data-columns,
                                            111

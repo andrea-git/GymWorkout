@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 1 novembre 2023 18:56:33.
+       DATE-WRITTEN.        giovedì 2 novembre 2023 21:57:20.
        REMARKS.
       *{TOTEM}END
 
@@ -147,6 +147,7 @@
            88 prima-volta VALUE IS 1    WHEN SET TO FALSE  0. 
        77 s-rod-exe-code   PIC  x(5).
        77 s-rod-int-code   PIC  99.
+       77 pgmChiamante     PIC  x(20).
        77 s-rod-day        PIC  9(8).
        77 como-day         PIC  9(8).
        77 code-x           PIC  x(18).
@@ -2554,7 +2555,7 @@
                           move tot-liv to max-liv
                        end-if
                     end-if
-                    if trovato
+                    if trovato and tot-liv > 0
                        add 1 to store-riga tot-righe riga
                        move "-" to rec-grid                   
                        modify form1-gd-1, insertion-index riga, 
@@ -2570,7 +2571,7 @@
        CARICA-WOD.
       * <TOTEM:PARA. CARICA-WOD>
            move como-code to tod-code.
-           read twodbook.           
+           read twodbook no lock.           
            move low-value to rod-rec.           
            move como-code to rod-code.
            move 1 to riga.
@@ -2798,16 +2799,23 @@
                       " - "    delimited size
                       tod-desc delimited size
                  into lab-desc-buf
-              end-string
-              set confronto to false
-              perform CARICA-WOD
+              end-string                
+              set confronto to true  
+              move 999 to s-liv
+              move 0   to max-liv
+              set prima-volta to true
+              perform CARICA-WOD    
+              perform CARICA-CONFRONTI     
+              set prima-volta to false
+
+              move max-liv to ef-liv-buf
+              modify ef-liv, value ef-liv-buf
+
               modify tool-nuovo, enabled false  
               modify tool-salva, enabled true
-              modify ef-liv, visible false
-              modify lab-liv visible false
            else             
-              modify tool-nuovo, enabled true  
-              modify tool-salva, enabled false
+              modify tool-nuovo,    enabled true  
+              modify tool-salva,    enabled false
               call   "gwod" using lk-blockpgm,
                                   como-code
               cancel "gwod"
@@ -2980,7 +2988,7 @@
            perform varying riga from 2 by 1 
                      until riga > tot-righe
               inquire form1-gd-1(riga, 1), hidden-data rod-key
-              read rwodbook
+              read rwodbook invalid exit perform cycle end-read
               inquire form1-gd-1(riga, 78-col-rep-1), cell-data in 
            col-rep-1
               inquire form1-gd-1(riga, 78-col-kg-1 ), cell-data in 
@@ -3250,24 +3258,35 @@
                          
       *     perform VALORE-RIGA.
 
-      
-           if confronto or tod-code = 0
+           call "C$CALLEDBY" using pgmChiamante.
+           if pgmChiamante not = "gwod"
               set event-action to event-action-fail
-           else
-              evaluate colonna 
-              when 78-col-data 
-              when 78-col-exe 
-              when 78-col-series 
-              when 78-col-rest 
-              when 78-col-rest
-                   set event-action to event-action-fail
-              when 78-col-buf-4
-                   inquire form1-gd-1(riga, colonna), cell-data in 
-           col-buf-4
-                   if col-buf-4 = "KG:"                 
+           else                                                  
+              inquire form1-gd-1(riga, 78-col-data), hidden-data in 
+           rod-key
+              read rwodbook no lock 
+                   invalid set event-action to event-action-fail
+               not invalid
+                   if col-data = spaces
                       set event-action to event-action-fail
+                   else
+                      evaluate colonna                                  
+            
+                      when 78-col-data 
+                      when 78-col-exe 
+                      when 78-col-series 
+                      when 78-col-rest 
+                      when 78-col-rest
+                           set event-action to event-action-fail
+                      when 78-col-buf-4
+                           inquire form1-gd-1(riga, colonna), cell-data 
+           in col-buf-4
+                           if col-buf-4 = "KG:"                 
+                              set event-action to event-action-fail
+                           end-if
+                      end-evaluate 
                    end-if
-              end-evaluate 
+              end-read    
            end-if 
            .
       * <TOTEM:END>

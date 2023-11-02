@@ -59,7 +59,7 @@
        78  78-col-buf2    value 12,40.     
 
        78  78-col-rep3    value 13,23. |0.8
-       78  78-col-kg3     value 14,14. |0.82
+       78  78-col-kg3     value 14,04. |0.82
        78  78-col-buf3    value 15,60. |1.6
 
        78  78-col-rep4    value 16,44. |0.8
@@ -626,7 +626,6 @@
                              
                 |REP                                         
                 move 78-col-rep1       to winprint-col-start  
-                add 0,05               to winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
@@ -639,7 +638,7 @@
                                    giving return-code
                 |BUF                                         
                 move 78-col-buf1       to winprint-col-start 
-                add 0,1                to winprint-col-start 
+                subtract 0,03 from        winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
@@ -647,27 +646,25 @@
 
                 |REP                                                                      
                 move 78-col-rep2       to winprint-col-start 
-                add 0,05               to winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code
                 |KG
-                move 78-col-kg2       to winprint-col-start 
+                move 78-col-kg2       to winprint-col-start  
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code
                 |BUF
                 move 78-col-buf2       to winprint-col-start 
-                add  0,1               to winprint-col-start 
+                subtract 0,03 from        winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code          
                 |REP                                                                      
                 move 78-col-rep3       to winprint-col-start 
-                add 0,05               to winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
@@ -680,14 +677,12 @@
                                    giving return-code
                 |BUF
                 move 78-col-buf3       to winprint-col-start 
-                add  0,1               to winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code          
                 |REP                                                                      
                 move 78-col-rep4       to winprint-col-start 
-                add 0,05               to winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
@@ -700,14 +695,13 @@
                                    giving return-code
                 |BUF
                 move 78-col-buf4       to winprint-col-start 
-                add  0,1               to winprint-col-start 
+                subtract 0,03 from        winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
                                    giving return-code                
                 |REP                                                                      
                 move 78-col-rep5       to winprint-col-start 
-                add 0,05               to winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column
@@ -720,7 +714,7 @@
                                    giving return-code
                 |BUF
                 move 78-col-buf5       to winprint-col-start 
-                add  0,1               to winprint-col-start 
+                subtract 0,03 from        winprint-col-start 
                 move wprtalign-left    to winprint-col-alignment
                 call "WIN$PRINTER"  using winprint-set-page-column,
                                           winprint-column

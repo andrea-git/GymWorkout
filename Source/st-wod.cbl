@@ -100,7 +100,7 @@
        77  font-size-dply        pic z(5).      
        77  WFONT-STATUS          pic s9(5)  value zero.
                                  
-       77  ArialNarrow11         handle of font.                    
+       77  ArialNarrow10         handle of font.                    
        77  ArialNarrow8          handle of font.                    
        77  ArialNarrow9          handle of font.           
        77  ArialNarrow7          handle of font.           
@@ -325,7 +325,7 @@
                        if tex-int-cedimento > 0
                           move "KG:"  to r-rod-buf(4)
                        end-if
-                       move ArialNarrow11 to spl-hfont     
+                       move ArialNarrow10 to spl-hfont     
                        move r-riga        to spl-riga-stampa
                        move 2             to spl-tipo-colonna
                        perform SCRIVI  
@@ -386,7 +386,7 @@
            move r-intesta to spl-riga-stampa.
            move 1         to spl-tipo-colonna.
            perform SCRIVI.    
-           move ArialNarrow11 to spl-hfont
+           move ArialNarrow10 to spl-hfont
 
            move 0 to num-righe.  
            move 0,7 to spl-riga.
@@ -498,7 +498,7 @@
            initialize spl-riga-stampa.
            move 0 to spl-tipo-colonna.
                       
-           move 27,4 to spl-colonna
+           move 27,3 to spl-colonna
            move pagina     to pagina-z.
            move tot-pagine to tot-pagine-z.
            initialize spl-riga-stampa.
@@ -593,9 +593,9 @@
               exit paragraph
            end-if. 
 
-      * Arial Narrow 11
-           initialize wfont-data ArialNarrow11.
-           move 11 to wfont-size.
+      * Arial Narrow 10
+           initialize wfont-data ArialNarrow10.
+           move 10 to wfont-size.
            move "Arial Narrow"            to wfont-name.
            set  wfcharset-dont-care  to true.
            set  wfont-bold           to false.
@@ -605,7 +605,7 @@
            set  wfont-fixed-pitch    to false.
            move 0                    to wfont-char-set.
            set  wfdevice-win-printer to true. |E' un carattere per la stampante
-           call "W$FONT" using wfont-get-font, ArialNarrow11, 
+           call "W$FONT" using wfont-get-font, ArialNarrow10, 
                                wfont-data
                         giving wfont-status.
       
@@ -668,7 +668,7 @@
        EXIT-PGM.
            set environment "PRINTER" to "-P SPOOLER-DIRECT".
                                  
-           destroy ArialNarrow11.
+           destroy ArialNarrow10.
            destroy ArialNarrow8.
            destroy ArialNarrow9.
            destroy ArialNarrow7.

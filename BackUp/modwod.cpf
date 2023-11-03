@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7B2204034-704-2809826710
+PROGRAM_UNIQUE_CODE=TOTEM-7E7B3121045-171-2339119792
 
 {{@DESCRIPTION:
 
@@ -2251,6 +2251,8 @@ BEGIN-TEXT
 
                     if rod-int-cedimento > 0
                        move "KG:" to rod-buf(4)
+                    else
+                       move spaces to rod-buf(4)
                     end-if
                             
                     move rod-rep(1) to col-rep-1

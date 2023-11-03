@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 2 novembre 2023 21:57:20.
+       DATE-WRITTEN.        venerdì 3 novembre 2023 14:39:46.
        REMARKS.
       *{TOTEM}END
 
@@ -2632,6 +2632,8 @@
 
                     if rod-int-cedimento > 0
                        move "KG:" to rod-buf(4)
+                    else
+                       move spaces to rod-buf(4)
                     end-if
                             
                     move rod-rep(1) to col-rep-1

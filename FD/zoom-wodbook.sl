@@ -9,4 +9,6 @@
            ALTERNATE RECORD KEY IS key02 = zwod-creation, zwod-desc
            WITH DUPLICATES 
            ALTERNATE RECORD KEY IS key03 = zwod-ini, zwod-desc
+           WITH DUPLICATES 
+           ALTERNATE RECORD KEY IS ksort = zwod-sort, zwod-desc
            WITH DUPLICATES .

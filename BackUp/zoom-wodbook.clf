@@ -2,7 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E7AE234549-961-1743526891
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E7B322491-321-238233688
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -127,6 +127,16 @@ m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM11_
 
 @}}
+[FDITEM12_]
+m_strName=zwod-sort
+m_strRawPic=9(18)
+m_strPic=9(18)
+m_nItemLevel=10
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM12_
+
+@}}
 [CStoAcucobolSL_]
 m_nType=1
 m_strAssignToName=path-zoom-wodbook
@@ -172,4 +182,13 @@ m_strName=key03
 [SLKEYATOM0_SLINDEX2_]
 m_strName=zwod-ini
 [SLKEYATOM1_SLINDEX2_]
+m_strName=zwod-desc
+[SLINDEX3_]
+m_strName=ksort
+{{@Key_m_strDescriptionSLINDEX3_
+
+@}}
+[SLKEYATOM0_SLINDEX3_]
+m_strName=zwod-sort
+[SLKEYATOM1_SLINDEX3_]
 m_strName=zwod-desc

@@ -855,7 +855,7 @@
        PREPARA-ZOOM-WODBOOK.  
            initialize xzoom-linkage xzoom-ext-info(1).
       
-           move  1   to xzoom-file-key.
+           move  4   to xzoom-file-key.
       *
            move  0                       to idx.
            move  0                       to xzoom-row.
@@ -863,7 +863,7 @@
            move  10                      to xzoom-lw.
            move  130                     to xzoom-sw. 
            move ext-file                 to xzoom-file-name(1).
-           move  9                       to xzoom-fields.
+           move  10                      to xzoom-fields.
 
       * CAMPO 1
            add 1 to idx

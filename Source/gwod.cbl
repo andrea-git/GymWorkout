@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 1 novembre 2023 18:47:39.
+       DATE-WRITTEN.        sabato 4 novembre 2023 00:17:50.
        REMARKS.
       *{TOTEM}END
 
@@ -127,6 +127,7 @@
        77 como-sep2        PIC  x.
        77 como-sep3        PIC  x.
        77 como-sep4        PIC  x.
+       77 s-data-creazione PIC  9(8).
        01 FILLER           PIC  9.
            88 tutti-usati VALUE IS 1    WHEN SET TO FALSE  0. 
        01 FILLER           PIC  9.
@@ -589,7 +590,7 @@
        77 TMP-DataSet1-tmp-hit-BUF     PIC X(6).
        77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(207).
        77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
-       77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(440).
+       77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(458).
        77 TMP-DataSet1-rwodbook-BUF     PIC X(2566).
        77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
       * VARIABLES FOR RECORD LENGTH.
@@ -704,6 +705,7 @@
        77 zoom-wodbook-key01-SPLITBUF  PIC X(119).
        77 zoom-wodbook-key02-SPLITBUF  PIC X(109).
        77 zoom-wodbook-key03-SPLITBUF  PIC X(109).
+       77 zoom-wodbook-ksort-SPLITBUF  PIC X(119).
        77 rwodbook-rod-k-day-SPLITBUF  PIC X(29).
        77 rwodbook-rod-k-prg-SPLITBUF  PIC X(30).
        77 rwodbook-rod-k-mcg-SPLITBUF  PIC X(34).
@@ -5772,6 +5774,12 @@
            INITIALIZE zoom-wodbook-key03-SPLITBUF
            MOVE zwod-ini(1:8) TO zoom-wodbook-key03-SPLITBUF(1:8)
            MOVE zwod-desc(1:100) TO zoom-wodbook-key03-SPLITBUF(9:100)
+           .
+
+       zoom-wodbook-ksort-MERGE-SPLITBUF.
+           INITIALIZE zoom-wodbook-ksort-SPLITBUF
+           MOVE zwod-sort(1:18) TO zoom-wodbook-ksort-SPLITBUF(1:18)
+           MOVE zwod-desc(1:100) TO zoom-wodbook-ksort-SPLITBUF(19:100)
            .
 
        DataSet1-zoom-wodbook-INITSTART.
@@ -11233,8 +11241,10 @@
            move 0 to idx1.
            
            move lab-code-buf to tod-code como-code.
+           move 0 to s-data-creazione.
            if tod-code > 0
               delete twodbook record        
+              move tod-data-creazione to s-data-creazione
               move low-value to rod-key
               move tod-code  to rod-code
               start rwodbook key >= rod-key
@@ -11328,7 +11338,11 @@
                  move como-code      to tod-code
                  inquire ef-desc, value in ef-desc-buf
                  move ef-desc-buf    to tod-desc
-                 move como-data      to tod-data-creazione
+                 if s-data-creazione = 0                            
+                    move como-data        to tod-data-creazione
+                 else
+                    move s-data-creazione to tod-data-creazione
+                 end-if
                  move wom-code       to tod-wom-code wom-code
                  read wodmap                                     
                  move wom-effort     to tod-wom-effort      
@@ -13842,8 +13856,7 @@
                     when 1 move "Light wod effort"  to zwod-effort
                     when 2 move "Medium wod effort" to zwod-effort
                     when 3 move "Heavy wod effort"  to zwod-effort
-                    end-evaluate
-                    
+                    end-evaluate                          
                     write zwod-rec invalid rewrite zwod-rec end-write
                  end-if
               end-perform
@@ -13858,7 +13871,23 @@
                         title titolo
                          icon 2
            else
+               open i-o zoom-wodbook
+               move 0 to tod-code rod-code
+               move high-value to zwod-rec
+               start zoom-wodbook key <= key03
+                     invalid continue
+                 not invalid
+                     perform until 1 = 2
+                        read zoom-wodbook previous at end exit perform 
+           end-read
+                        add 1 to tod-code
+                        move tod-code to zwod-sort
+                        rewrite zwod-rec
+                     end-perform
+               end-start
+               close      zoom-wodbook
                move path-zoom-wodbook to ext-file
+               initialize zwod-rec
                move "zoom-wodbook"    to Como-File
                call   "zoom-gt"   using como-file, zwod-rec
                                  giving stato-zoom

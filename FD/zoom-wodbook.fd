@@ -12,3 +12,4 @@
                10 zwod-wom-desc    PIC  x(100).
                10 zwod-dur-desc    PIC  x(100).
                10 zwod-effort      PIC  x(100).
+               10 zwod-sort        PIC  9(18).

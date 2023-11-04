@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        sabato 4 novembre 2023 00:17:50.
+       DATE-WRITTEN.        sabato 4 novembre 2023 22:55:13.
        REMARKS.
       *{TOTEM}END
 
@@ -129,6 +129,9 @@
        77 como-sep4        PIC  x.
        77 s-data-creazione PIC  9(8).
        01 FILLER           PIC  9.
+       01 FILLER           PIC  9
+                  VALUE IS 0.
+           88 copia-da VALUE IS 1    WHEN SET TO FALSE  0. 
            88 tutti-usati VALUE IS 1    WHEN SET TO FALSE  0. 
        01 FILLER           PIC  9.
            88 chiamata-normale VALUE IS 1. 
@@ -559,6 +562,9 @@
                   USAGE IS COMP-4
                   VALUE IS 0.
        77 v-form1          PIC  9
+                  VALUE IS 0.
+       77 copia-da-bmp     PIC  S9(9)
+                  USAGE IS COMP-4
                   VALUE IS 0.
 
       ***********************************************************
@@ -1211,6 +1217,26 @@
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TITLE "&GENERA",
+           .
+
+      * PUSH BUTTON
+       05
+           PB-COPIA-DA, 
+           Push-Button, 
+           COL 31,20, 
+           LINE 23,35,
+           LINES 55 PIXELS,
+           SIZE 148 PIXELS,
+           BITMAP-HANDLE COPIA-DA-BMP,
+           BITMAP-NUMBER 1,
+           FRAMED,
+           SQUARE,
+           EXCEPTION-VALUE 1016,
+           FONT IS Small-Font,
+           ID IS 48,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           TITLE "&Copia altro wod",
            .
 
       * PUSH BUTTON
@@ -3224,6 +3250,7 @@
            DESTROY Calibri16B-Occidentale
            DESTROY Calibri16-Occidentale
            CALL "w$bitmap" USING WBITMAP-DESTROY, genera-bmp
+           CALL "w$bitmap" USING WBITMAP-DESTROY, COPIA-DA-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, random-bmp
            CALL "w$bitmap" USING WBITMAP-DESTROY, PIU-MENO-BMP
            CALL "w$bitmap" USING WBITMAP-DESTROY, UP-DOWN-BMP
@@ -3371,6 +3398,10 @@
            COPY RESOURCE "genera.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "genera.bmp", 
                    GIVING genera-bmp.
+      * PB-COPIA-DA
+           COPY RESOURCE "COPIA-DA.BMP".
+           CALL "w$bitmap" USING WBITMAP-LOAD "COPIA-DA.BMP", 
+                   GIVING COPIA-DA-BMP.
       * pb-random
            COPY RESOURCE "random.bmp".
            CALL "w$bitmap" USING WBITMAP-LOAD "random.bmp", 
@@ -6885,6 +6916,8 @@
                  PERFORM pb-mcg7-LinkTo
               WHEN Key-Status = 1000
                  PERFORM pb-genera-LinkTo
+              WHEN Key-Status = 1016
+                 PERFORM PB-COPIA-DA-LinkTo
               WHEN Key-Status = 1002
                  PERFORM pb-random-LinkTo
               WHEN Key-Status = 1012
@@ -9626,20 +9659,25 @@
                 set reloadGrid to true
                 perform ABILITA-MACROGRUPPI  
                 set reloadGrid to false
+                move tod-code to como-code
+                if copia-da
+                   move spaces to tod-desc 
+                   move 0      to tod-code
+                end-if
                 move tod-desc to lab-desc-buf
                 display lab-desc
                 move tod-code to lab-code-buf s-tod-code
                 display lab-code
 
                 move low-value to rod-key
-                move tod-code  to rod-code
+                move como-code  to rod-code
                 start rwodbook key >= rod-key
                       invalid continue
                   not invalid
                       perform until 1 = 2
                          read rwodbook next no lock at end exit perform 
            end-read
-                         if rod-code not = tod-code
+                         if rod-code not = como-code
                             exit perform
                          end-if             
                          move rod-day to como-data
@@ -9694,7 +9732,11 @@
            move cb-gio-buf to s-cb-gio-buf.
            move cb-wod-buf to s-cb-wod-buf.
 
-           move 1 to e-cancella.
+           if copia-da                                
+              move 0 to e-cancella
+           else
+              move 1 to e-cancella
+           end-if.
            modify tool-cancella, enabled e-cancella 
            .
       * <TOTEM:END>
@@ -10291,6 +10333,11 @@
                      until idx-days > wom-days    
               perform varying idx-split from 1 by 1 
                         until idx-split > 20 
+
+                 if wom-split-el-split-sigla(idx-days, idx-split) = 
+           spaces
+                    exit perform
+                 end-if
                                            
                  move idx-days  to tex-day
                  move idx-split to tex-split
@@ -13976,6 +14023,13 @@
            unlock rwodbook all records.
            call   "modwod" using lk-blockpgm, tod-code.
            cancel "modwod" 
+           .
+      * <TOTEM:END>
+       PB-COPIA-DA-LinkTo.
+      * <TOTEM:PARA. PB-COPIA-DA-LinkTo>
+           set copia-da to true.
+           perform SELEZIONA.
+           set copia-da to false 
            .
       * <TOTEM:END>
 

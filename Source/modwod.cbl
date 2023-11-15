@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 3 novembre 2023 14:39:46.
+       DATE-WRITTEN.        domenica 5 novembre 2023 10:42:45.
        REMARKS.
       *{TOTEM}END
 

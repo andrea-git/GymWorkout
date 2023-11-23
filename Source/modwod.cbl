@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        domenica 5 novembre 2023 10:42:45.
+       DATE-WRITTEN.        giovedì 23 novembre 2023 11:28:56.
        REMARKS.
       *{TOTEM}END
 
@@ -113,6 +113,7 @@
        78 78-col-kg-5 VALUE IS 19. 
        78 78-col-buf-5 VALUE IS 20. 
        78 78-col-note VALUE IS 21. 
+       78 78-col-tonn VALUE IS 22. 
        01 rec-grid.
            05 col-data         PIC  x(10).
            05 col-exe          PIC  x(50).
@@ -135,9 +136,15 @@
            05 col-kg-5         PIC  x(10).
            05 col-buf-5        PIC  x(10).
            05 col-note         PIC  x(100).
+           05 col-tonn         PIC  zz.zz9.
        77 ws-narg          PIC  99
                   USAGE IS COMP-1.
        77 max-liv          PIC  999.
+       77 tonnellaggio     PIC  9(6).
+       77 como-rep         PIC  9(10).
+       77 como-kg          PIC  9(10).
+       77 como-buf         PIC  9(10).
+       77 kg-rp            PIC  9(10).
        77 tot-liv          PIC  999.
        77 s-liv            PIC  999.
        77 e-cerca          PIC  9
@@ -202,6 +209,10 @@
        77 STATUS-tmp-exe   PIC  X(2).
            88 Valid-STATUS-tmp-exe VALUE IS "00" THRU "09". 
        77 ef-liv-buf       PIC  zz9.
+       77 rep-x            PIC  x(10).
+       77 kg-x PIC  x(10).
+       77 buf-x            PIC  x(10).
+       77 kg-rp-x          PIC  x(10).
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -308,17 +319,17 @@
            ADJUSTABLE-COLUMNS,
            BOXED,
            DATA-COLUMNS (1, 11, 61, 63, 83, 86, 96, 106, 116, 126, 136, 
-           146, 156, 166, 176, 186, 196, 206, 216, 226, 236),
+           146, 156, 166, 176, 186, 196, 206, 216, 226, 236, 336),
            ALIGNMENT ("C", "U", "R", "U", "R", "C", "C", "C", "C", "C", 
-           "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "U"),
+           "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "U", "R"),
            SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 
-           5, 5, 5, 5, 5),
+           5, 5, 5, 5, 5, 5),
            DATA-TYPES ("X", "U(5)", "X(100)", "X(20)", "U(5)", "x(10)", 
            "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)"
            , "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10
-      -    ")", "X"),
+      -    ")", "X", "zzz.zz9"),
            COLUMN-DIVIDERS (3, 3, 3, 3, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 
-           1, 1, 3, 1, 1, 3, 1),
+           1, 1, 3, 1, 1, 3, 3, 1),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
@@ -1875,6 +1886,9 @@
       * CELLS' SETTING
               MODIFY form1-gd-1, X = 21, Y = 1,
                 CELL-DATA = "NOTE",
+      * CELLS' SETTING
+              MODIFY form1-gd-1, X = 22, Y = 1,
+                CELL-DATA = "TONN",
            .
 
       * FD's Initialize Paragraph
@@ -1973,9 +1987,9 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 29, 31, 43, 
-           47, 52, 59, 64, 69, 76, 81, 86, 93, 98, 103, 110, 115, 120, 
-           127, 132)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 29, 31, 40, 
+           44, 49, 56, 61, 66, 73, 78, 83, 90, 95, 100, 107, 112, 117, 
+           124, 129, 166)
            .
 
        Form1-PROC.
@@ -2568,6 +2582,76 @@
            .
       * <TOTEM:END>
 
+       CALCOLA-TONNELLAGGIO.
+      * <TOTEM:PARA. CALCOLA-TONNELLAGGIO>
+           move 0 to tonnellaggio.     
+           move col-rep-1 to rep-x.
+           move col-kg-1  to kg-x.
+           move col-buf-1 to buf-x.
+           move col-rep-5 to kg-rp-x.
+           perform TONN.
+           move col-rep-2 to rep-x.
+           move col-kg-2  to kg-x.
+           move col-buf-2 to buf-x.
+           move col-kg-5 to kg-rp-x.
+           perform TONN.
+           move col-rep-3 to rep-x.
+           move col-kg-3  to kg-x.
+           move col-buf-3 to buf-x.
+           move col-buf-5 to kg-rp-x.
+           perform TONN.
+           if rod-int-cedimento = 0
+              move col-rep-4 to rep-x
+              move col-kg-4  to kg-x
+              move col-buf-4 to buf-x
+              perform TONN
+              move col-rep-5 to rep-x
+              move col-kg-5  to kg-x
+              move col-buf-5 to buf-x
+              perform TONN
+           end-if.
+
+      ***---
+       TONN.
+           call "C$JUSTIFY" using rep-x, "R".
+           inspect rep-x replacing leading x"20" by x"30".
+           call "C$JUSTIFY" using kg-x, "R".
+           inspect kg-x replacing leading x"20" by x"30".
+           call "C$JUSTIFY" using buf-x, "R".
+           inspect buf-x replacing leading x"20" by x"30".
+           call "C$JUSTIFY" using kg-rp-x, "R".
+           inspect kg-rp-x replacing leading x"20" by x"30".
+           if rep-x is not numeric
+              move 0 to como-rep
+           else
+              move rep-x to como-rep
+           end-if.
+           if kg-x is not numeric
+              move 0 to como-kg
+           else
+              move kg-x to como-kg
+           end-if.
+           if buf-x is not numeric
+              move 0 to como-buf
+           else
+              move buf-x to como-buf
+           end-if.    
+           if kg-rp-x is not numeric
+              move 0 to kg-rp
+           else
+              move kg-rp-x to kg-rp
+           end-if. 
+
+           if rod-int-cedimento > 0 
+              compute tonnellaggio = tonnellaggio +
+                   (( como-rep + como-kg + como-buf ) * kg-rp )
+           else
+              compute tonnellaggio = 
+                      tonnellaggio + ( como-rep * como-kg )
+           end-if 
+           .
+      * <TOTEM:END>
+
        CARICA-WOD.
       * <TOTEM:PARA. CARICA-WOD>
            move como-code to tod-code.
@@ -2651,12 +2735,35 @@
                     move rod-rep(5) to col-rep-5
                     move rod-kg(5)  to col-kg-5
                     move rod-buf(5) to col-buf-5
-                    move rod-note   to col-note
+                    move rod-note   to col-note  
 
                     add 1 to riga                              
                     modify form1-gd-1, record-to-add = rec-grid
                     modify form1-gd-1(riga), row-color = colore
                     modify form1-gd-1(riga, 1), hidden-data = rod-key
+                                                     
+                    perform CALCOLA-TONNELLAGGIO      
+                    move tonnellaggio to col-tonn
+                    modify form1-gd-1(riga, 78-col-tonn), cell-data 
+           col-tonn
+      *                    move 
+      *              como-rep-1
+      *              como-kg-1
+      *              como-buf-1
+      *              como-rep-2
+      *              como-kg-2
+      *              como-buf-2
+      *              como-rep-3
+      *              como-kg-3
+      *              como-buf-3
+      *              como-rep-4
+      *              como-kg-4
+      *              como-buf-4
+      *              como-rep-5
+      *              como-kg-5
+      *              como-buf-5
+      *              compute tonnellaggio =
+
                  end-perform
            end-start 
            .
@@ -2779,6 +2886,9 @@
               modify  form1-gd-1(riga), row-color colore
               modify form1-gd-1(riga, 1), hidden-data = spaces
               add 1 to store-riga tot-righe
+              perform CALCOLA-TONNELLAGGIO
+              move tonnellaggio to col-tonn
+              modify form1-gd-1(riga, 78-col-tonn), cell-data col-tonn
               if tot-liv = s-liv and not prima-volta
                  exit perform
               end-if
@@ -3250,6 +3360,43 @@
            if errori 
               set event-action to event-action-fail 
               perform VALORE-RIGA
+           else                                                         
+            
+              inquire form1-gd-1(riga, 78-col-rep-1), cell-data 
+           col-rep-1
+              inquire form1-gd-1(riga, 78-col-kg-1),  cell-data col-kg-1
+              inquire form1-gd-1(riga, 78-col-buf-1), cell-data 
+           col-buf-1
+              inquire form1-gd-1(riga, 78-col-rep-2), cell-data 
+           col-rep-2
+              inquire form1-gd-1(riga, 78-col-kg-2),  cell-data col-kg-2
+              inquire form1-gd-1(riga, 78-col-buf-2), cell-data 
+           col-buf-2
+              inquire form1-gd-1(riga, 78-col-rep-3), cell-data 
+           col-rep-3
+              inquire form1-gd-1(riga, 78-col-kg-3),  cell-data col-kg-3
+              inquire form1-gd-1(riga, 78-col-buf-3), cell-data 
+           col-buf-3
+              inquire form1-gd-1(riga, 78-col-rep-4), cell-data 
+           col-rep-4
+              inquire form1-gd-1(riga, 78-col-kg-4),  cell-data col-kg-4
+              inquire form1-gd-1(riga, 78-col-buf-4), cell-data 
+           col-buf-4
+              inquire form1-gd-1(riga, 78-col-rep-5), cell-data 
+           col-rep-5
+              inquire form1-gd-1(riga, 78-col-kg-5),  cell-data col-kg-5
+              inquire form1-gd-1(riga, 78-col-buf-5), cell-data 
+           col-buf-5
+              
+              inquire form1-gd-1(riga, 1), hidden-data rod-key
+              read rwodbook 
+                   invalid continue
+               not invalid 
+                   perform CALCOLA-TONNELLAGGIO     
+                   move tonnellaggio to col-tonn
+                   modify form1-gd-1(riga, 78-col-tonn), cell-data 
+           col-tonn
+              end-read
            end-if 
            .
       * <TOTEM:END>

@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E7B17121321-544-742622078
+PROGRAM_UNIQUE_CODE=TOTEM-7E7CD134130-286-517931891
 
 {{@DESCRIPTION:
 
@@ -1726,6 +1726,7 @@ Begin Screen Form1
       Height in Cells   = TRUE
       Help ID           = 0
       ID                = 4
+      ID Variable       = AUTO-ID
       Justification     = Unaligned
       Line              = 1,22
       Lines             = 1,30
@@ -2438,8 +2439,6 @@ BEGIN-TEXT
 
                     if rod-int-cedimento > 0
                        move "KG:" to rod-buf(4)
-                    else
-                       move spaces to rod-buf(4)
                     end-if
                             
                     move rod-rep(1) to col-rep-1
@@ -2604,8 +2603,16 @@ BEGIN-TEXT
               move rod-buf(5) to col-buf-5
               move rod-note   to col-note
 
-              add 1 to riga tot-liv                       
-              set trovato to true
+              add 1 to tot-liv   
+              set trovato to true                    
+              
+              if prima-volta
+                 if tot-liv > 2
+                    exit perform cycle
+                 end-if
+              end-if            
+              add 1 to riga
+                                      
               modify form1-gd-1, insertion-index riga, 
                                  record-to-add rec-grid  
               modify  form1-gd-1(riga), row-color colore
@@ -2614,7 +2621,7 @@ BEGIN-TEXT
               perform CALCOLA-TONNELLAGGIO
               move tonnellaggio to col-tonn
               modify form1-gd-1(riga, 78-col-tonn), cell-data col-tonn
-              if tot-liv = s-liv and not prima-volta
+              if tot-liv = s-liv
                  exit perform
               end-if
            end-perform.
@@ -2645,9 +2652,13 @@ BEGIN-TEXT
               perform CARICA-WOD    
               perform CARICA-CONFRONTI     
               set prima-volta to false
-
+                    
               move max-liv to ef-liv-buf
-              modify ef-liv, value ef-liv-buf
+              if max-liv > 2
+                 move 2 to ef-liv-buf
+              end-if
+              display ef-liv
+              perform POSIZIONA-GIORNO-LIBERO
 
               modify tool-nuovo, enabled false  
               modify tool-salva, enabled true
@@ -2688,12 +2699,13 @@ BEGIN-TEXT
                  modify ef-liv, value ef-liv-buf
 
               end-if
+              move 2 to riga
+              move 78-col-rep-1 to colonna
+              modify form1-gd-1, cursor-y = 2, cursor-x colonna
+           
            end-if.
            display lab-desc.
 
-           move 2 to riga.
-           move 78-col-rep-1 to colonna.
-           modify form1-gd-1, cursor-y = 2, cursor-x colonna.
            perform SPOSTAMENTO.
 
 END-TEXT
@@ -2790,6 +2802,29 @@ BEGIN-DATA
    PARAGRAPH         = PARAGRAFO-COPY
 BEGIN-TEXT
            copy "utydata.cpy".
+END-TEXT
+END-DATA
+BEGIN-DATA
+   BASETYPE          = 3
+   PARAGRAPH         = POSIZIONA-GIORNO-LIBERO
+BEGIN-TEXT
+           inquire form1-gd-1, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire form1-gd-1(riga, 78-col-data), 
+                      cell-data in col-data
+              if col-data not = spaces and not = "-"
+                 inquire form1-gd-1(riga, 78-col-rep-1), 
+                         cell-data in col-rep-1
+                 if col-rep-1 = spaces
+                    exit perform
+                 end-if
+              end-if
+           end-perform.
+           move 1 to control-id.
+           move 4 to accept-control.
+           modify form1-gd-1, cursor-y riga, 
+                              cursor-x = 78-col-rep-1.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -3251,7 +3286,9 @@ BEGIN-TEXT
                  modify form1-gd-1, reset-grid = 1
                  perform FORM1-GD-1-CONTENT
                  perform CARICA-WOD
-                 perform CARICA-CONFRONTI
+                 perform CARICA-CONFRONTI 
+                 perform POSIZIONA-GIORNO-LIBERO
+
               else
                  if tot-liv = 0 
                     move 999 to s-liv 

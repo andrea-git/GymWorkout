@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 23 novembre 2023 11:28:56.
+       DATE-WRITTEN.        mercoledì 13 dicembre 2023 15:07:56.
        REMARKS.
       *{TOTEM}END
 
@@ -291,6 +291,7 @@
       *{TOTEM}ID-LOGICI
       ***** Elenco ID Logici *****
        78  78-ID-form1-gd-1 VALUE 5001.
+       78  78-ID-ef-liv VALUE 5002.
       ***** Fine ID Logici *****
       *{TOTEM}END
 
@@ -409,7 +410,7 @@
            SIZE 4,90 ,
            BOXED,
            COLOR IS 513,
-           ID IS 4,
+           ID IS 78-ID-ef-liv,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            NUMERIC,
@@ -2484,10 +2485,10 @@
        ef-liv-Event-Proc.
            EVALUATE Event-Type ALSO Event-Control-Id ALSO
                                     Event-Window-Handle
-           WHEN Msg-Spin-Down ALSO 4 ALSO
+           WHEN Msg-Spin-Down ALSO 5002 ALSO
                     Form1-Handle 
               PERFORM ef-liv-Ev-Msg-Spin-Down
-           WHEN Msg-Spin-Up ALSO 4 ALSO
+           WHEN Msg-Spin-Up ALSO 5002 ALSO
                     Form1-Handle 
               PERFORM ef-liv-Ev-Msg-Spin-Up
            END-EVALUATE
@@ -2716,8 +2717,6 @@
 
                     if rod-int-cedimento > 0
                        move "KG:" to rod-buf(4)
-                    else
-                       move spaces to rod-buf(4)
                     end-if
                             
                     move rod-rep(1) to col-rep-1
@@ -2879,8 +2878,16 @@
               move rod-buf(5) to col-buf-5
               move rod-note   to col-note
 
-              add 1 to riga tot-liv                       
-              set trovato to true
+              add 1 to tot-liv   
+              set trovato to true                    
+              
+              if prima-volta
+                 if tot-liv > 2
+                    exit perform cycle
+                 end-if
+              end-if            
+              add 1 to riga
+                                      
               modify form1-gd-1, insertion-index riga, 
                                  record-to-add rec-grid  
               modify  form1-gd-1(riga), row-color colore
@@ -2889,7 +2896,7 @@
               perform CALCOLA-TONNELLAGGIO
               move tonnellaggio to col-tonn
               modify form1-gd-1(riga, 78-col-tonn), cell-data col-tonn
-              if tot-liv = s-liv and not prima-volta
+              if tot-liv = s-liv
                  exit perform
               end-if
            end-perform 
@@ -2919,9 +2926,13 @@
               perform CARICA-WOD    
               perform CARICA-CONFRONTI     
               set prima-volta to false
-
+                    
               move max-liv to ef-liv-buf
-              modify ef-liv, value ef-liv-buf
+              if max-liv > 2
+                 move 2 to ef-liv-buf
+              end-if
+              display ef-liv
+              perform POSIZIONA-GIORNO-LIBERO
 
               modify tool-nuovo, enabled false  
               modify tool-salva, enabled true
@@ -2962,12 +2973,13 @@
                  modify ef-liv, value ef-liv-buf
 
               end-if
+              move 2 to riga
+              move 78-col-rep-1 to colonna
+              modify form1-gd-1, cursor-y = 2, cursor-x colonna
+           
            end-if.
            display lab-desc.
 
-           move 2 to riga.
-           move 78-col-rep-1 to colonna.
-           modify form1-gd-1, cursor-y = 2, cursor-x colonna.
            perform SPOSTAMENTO 
            .
       * <TOTEM:END>
@@ -3056,6 +3068,28 @@
        PARAGRAFO-COPY.
       * <TOTEM:PARA. PARAGRAFO-COPY>
            copy "utydata.cpy" 
+           .
+      * <TOTEM:END>
+
+       POSIZIONA-GIORNO-LIBERO.
+      * <TOTEM:PARA. POSIZIONA-GIORNO-LIBERO>
+           inquire form1-gd-1, last-row in tot-righe.
+           perform varying riga from 2 by 1 
+                     until riga > tot-righe
+              inquire form1-gd-1(riga, 78-col-data), 
+                      cell-data in col-data
+              if col-data not = spaces and not = "-"
+                 inquire form1-gd-1(riga, 78-col-rep-1), 
+                         cell-data in col-rep-1
+                 if col-rep-1 = spaces
+                    exit perform
+                 end-if
+              end-if
+           end-perform.
+           move 1 to control-id.
+           move 4 to accept-control.
+           modify form1-gd-1, cursor-y riga, 
+                              cursor-x = 78-col-rep-1 
            .
       * <TOTEM:END>
 
@@ -3517,7 +3551,9 @@
                  modify form1-gd-1, reset-grid = 1
                  perform FORM1-GD-1-CONTENT
                  perform CARICA-WOD
-                 perform CARICA-CONFRONTI
+                 perform CARICA-CONFRONTI 
+                 perform POSIZIONA-GIORNO-LIBERO
+
               else
                  if tot-liv = 0 
                     move 999 to s-liv 

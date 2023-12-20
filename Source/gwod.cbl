@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        sabato 4 novembre 2023 22:55:13.
+       DATE-WRITTEN.        lunedì 18 dicembre 2023 11:20:53.
        REMARKS.
       *{TOTEM}END
 
@@ -128,6 +128,8 @@
        77 como-sep3        PIC  x.
        77 como-sep4        PIC  x.
        77 s-data-creazione PIC  9(8).
+       77 tot-tot-series   PIC  999.
+       77 tot-tot-volume   PIC  999.
        01 FILLER           PIC  9.
        01 FILLER           PIC  9
                   VALUE IS 0.
@@ -594,7 +596,7 @@
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(190).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
        77 TMP-DataSet1-tmp-hit-BUF     PIC X(6).
-       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(207).
+       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(211).
        77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
        77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(458).
        77 TMP-DataSet1-rwodbook-BUF     PIC X(2566).
@@ -9517,6 +9519,8 @@
 
            move el-mcg-code(idx) to mcg-code.
                        
+           move 0 to tot-tot-series tot-tot-volume.
+
            move low-value to tex-rec.
            move mcg-code  to tex-mcg-code.
            start tmp-exe key >= tex-k-mcg
@@ -9532,7 +9536,11 @@
                     move tex-exe-code to exe-code
                     read exercises
                     move exe-grp-code to grp-code
-                    read groups                                   
+                    read groups 
+                    move tex-int-code to int-code
+                    read intexe no lock                  
+                    move int-range-from to tge-range-from
+                    move int-range-to   to tge-range-to
 
                     move tex-day    to tge-day
                     move grp-desc   to tge-grp-desc 
@@ -9542,7 +9550,17 @@
                     call "C$JUSTIFY" using tge-series, "L"
                     move tex-reps   to tge-reps  
                     move 0 to tge-prg
-                    write tge-rec 
+                    write tge-rec     
+                    add tex-series   to tot-tot-series
+                    if int-cedimento > 0  
+                       compute tot-tot-volume = 
+                               tot-tot-volume +
+                             ( tex-series * 10 ) |Altrimenti arriva 99
+                    else
+                       compute tot-tot-volume = 
+                               tot-tot-volume +
+                             ( tex-series * tge-range-from )
+                    end-if
                  end-perform
            end-start.         
                     
@@ -9555,6 +9573,7 @@
                  perform until 1 = 2
                     read tmp-grp-exe next 
                       at end perform RIGA-TOT
+                             perform RIGA-TOT-TOT
                              exit perform
                     end-read                 
                     if como-nome = spaces
@@ -9581,7 +9600,7 @@
                     call "C$JUSTIFY" using tge-series; "R"
                     inspect tge-series replacing leading x"20" by x"30"
                     move tge-series  to como-series
-                    add como-series  to tot-series
+                    add como-series  to tot-series 
                  end-perform
            end-start.        
                                             
@@ -9593,7 +9612,7 @@
                              giving stato-zoom
            cancel "zoom-gt".
                               
-           delete file tmp-grp-exe.
+           delete file tmp-grp-exe.  
 
       ***---
        RIGA-TOT.                 
@@ -9612,6 +9631,23 @@
            move tot-series to tge-series.                          
            inspect tge-series replacing leading x"30" by x"20".
            call "C$JUSTIFY" using tge-series, "L".
+           write tge-rec.
+
+      ***---
+       RIGA-TOT-TOT.                 
+           add 1 to store-riga.      
+           initialize tge-rec replacing numeric data by zeroes
+                                   alphanumeric data by spaces.
+           move store-riga to tge-prg.
+      *     move "TOTALE"   to tge-grp-desc.
+           move spaces     to tge-day.
+           move "TOTALE " to tge-exe-desc.
+           move tot-tot-series to tge-series.                          
+           inspect tge-series replacing leading x"30" by x"20".
+           call "C$JUSTIFY" using tge-series, "L".
+           move tot-tot-volume to tge-reps.
+           inspect tge-reps replacing leading x"30" by x"20".
+           call "C$JUSTIFY" using tge-reps, "L".
            write tge-rec 
            .
       * <TOTEM:END>

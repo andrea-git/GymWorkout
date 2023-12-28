@@ -10,3 +10,6 @@
                10 tge-reps         PIC  x(10).
       *(( XFD NAME = tge-prg_1 ))
                10 tge-prg          PIC  9(3).
+               10 tge-range.
+                   15 tge-range-from   PIC  99.
+                   15 tge-range-to     PIC  99.

@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 13 dicembre 2023 15:07:56.
+       DATE-WRITTEN.        giovedì 11 gennaio 2024 12:39:06.
        REMARKS.
       *{TOTEM}END
 
@@ -208,10 +208,13 @@
        77 path-tmp-exe     PIC  X(256).
        77 STATUS-tmp-exe   PIC  X(2).
            88 Valid-STATUS-tmp-exe VALUE IS "00" THRU "09". 
+       77 blocco           PIC  9.
        77 ef-liv-buf       PIC  zz9.
        77 rep-x            PIC  x(10).
        77 kg-x PIC  x(10).
        77 buf-x            PIC  x(10).
+       01 FILLER           PIC  9.
+           88 trovato-confronto VALUE IS 1    WHEN SET TO FALSE  0. 
        77 kg-rp-x          PIC  x(10).
 
       ***********************************************************
@@ -2558,13 +2561,33 @@
                     invalid continue
                 not invalid
                     read rwodbook previous
-                    move rod-exe-code to s-rod-exe-code
+                    move rod-exe-code to s-rod-exe-code   
                     move rod-int-code to s-rod-int-code
                     move rod-day      to s-rod-day     
                     move store-riga to riga  
                     inquire form1-gd-1(store-riga), row-color colore    
                          
-                    perform CONFRONTI-GRIGLIA
+                    perform CONFRONTI-GRIGLIA    
+              
+                    if not trovato-confronto               
+                       inquire form1-gd-1(store-riga, 1), hidden-data 
+           rod-key
+                       read rwodbook            
+                       move high-value to rod-int-code
+                       start rwodbook key <= rod-k-confronto
+                             invalid continue
+                         not invalid            
+                             read rwodbook previous       
+                             move rod-exe-code to s-rod-exe-code   
+                             move 0            to s-rod-int-code
+                             move rod-day      to s-rod-day     
+                             move store-riga to riga  
+                             inquire form1-gd-1(store-riga), row-color 
+           colore                  
+                             perform CONFRONTI-GRIGLIA               
+                       end-start
+                    end-if
+
                     if prima-volta
                        if tot-liv > max-liv
                           move tot-liv to max-liv
@@ -2576,7 +2599,6 @@
                        modify form1-gd-1, insertion-index riga, 
                                           record-to-add rec-grid 
                        modify form1-gd-1(riga), row-color = 33
-
                     end-if
               end-start
            end-perform 
@@ -2824,6 +2846,7 @@
 
        CONFRONTI-GRIGLIA.
       * <TOTEM:PARA. CONFRONTI-GRIGLIA>
+           set trovato-confronto to false.
            if s-liv = 0 and not prima-volta exit paragraph end-if.
 
            move 0 to tot-liv.
@@ -2879,7 +2902,8 @@
               move rod-note   to col-note
 
               add 1 to tot-liv   
-              set trovato to true                    
+              set trovato to true    
+              set trovato-confronto to true
               
               if prima-volta
                  if tot-liv > 2
@@ -2923,8 +2947,8 @@
               move 999 to s-liv
               move 0   to max-liv
               set prima-volta to true
-              perform CARICA-WOD    
-              perform CARICA-CONFRONTI     
+              perform CARICA-WOD       
+              perform CARICA-CONFRONTI
               set prima-volta to false
                     
               move max-liv to ef-liv-buf
@@ -3453,21 +3477,62 @@
                    if col-data = spaces
                       set event-action to event-action-fail
                    else
+                      inquire form1-gd-1(riga, 78-col-series), 
+           cell-data in col-series
+                      move col-series to rod-series
+                      
                       evaluate colonna                                  
             
-                      when 78-col-data 
-                      when 78-col-exe 
-                      when 78-col-series 
-                      when 78-col-rest 
-                      when 78-col-rest
-                           set event-action to event-action-fail
+                      when 78-col-rep-1
+                      when 78-col-kg-1
+                      when 78-col-buf-1
+                           move 1 to blocco                             
+            
+                      when 78-col-rep-2
+                      when 78-col-kg-2
+                      when 78-col-buf-2
+                           move 2 to blocco                             
+            
+                      when 78-col-rep-3
+                      when 78-col-kg-3
+                      when 78-col-buf-3
+                           move 3 to blocco                             
+            
+                      when 78-col-rep-4
+                      when 78-col-kg-4
                       when 78-col-buf-4
-                           inquire form1-gd-1(riga, colonna), cell-data 
-           in col-buf-4
-                           if col-buf-4 = "KG:"                 
-                              set event-action to event-action-fail
+                           move 4 to blocco                             
+            
+                      when 78-col-rep-5
+                      when 78-col-kg-5
+                      when 78-col-buf-5                 
+                           inquire form1-gd-1(riga, 78-col-buf-4), 
+           cell-data in col-buf-4
+                           if col-buf-4 = "KG:"      
+                              move 0 to blocco
+                           else
+                              move 5 to blocco
                            end-if
-                      end-evaluate 
+                      end-evaluate
+
+                      if blocco > rod-series
+                         set event-action to event-action-fail
+                      else
+                         evaluate colonna                               
+               
+                         when 78-col-data 
+                         when 78-col-exe 
+                         when 78-col-series 
+                         when 78-col-rest 
+                              set event-action to event-action-fail
+                         when 78-col-buf-4
+                              inquire form1-gd-1(riga, colonna), 
+           cell-data in col-buf-4
+                              if col-buf-4 = "KG:"                 
+                                 set event-action to event-action-fail
+                              end-if
+                         end-evaluate 
+                      end-if
                    end-if
               end-read    
            end-if 

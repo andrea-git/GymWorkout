@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E7B4215413-908-317884621
+PROGRAM_UNIQUE_CODE=TOTEM-7E81B115315-202-2543510839
 
 {{@DESCRIPTION:
 
@@ -13957,7 +13957,10 @@ BEGIN-TEXT
 
            close       tmp-exe-dupl.
            delete file tmp-exe-dupl.                               
-           
+
+           if nessuna-scelta = 1 
+              move 0 to lnk-code
+           end-if.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -16101,7 +16104,7 @@ BEGIN-TEXT
                   move 0 to nessuna-scelta
                   move zwod-code to tod-code
                else
-                  move 1 to nessuna-scelta
+                  move 1 to nessuna-scelta  
                end-if                    
                move 27 to key-status
            end-if.

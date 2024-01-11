@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 18 dicembre 2023 11:20:53.
+       DATE-WRITTEN.        giovedì 11 gennaio 2024 12:55:32.
        REMARKS.
       *{TOTEM}END
 
@@ -596,7 +596,7 @@
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(190).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
        77 TMP-DataSet1-tmp-hit-BUF     PIC X(6).
-       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(211).
+       77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(207).
        77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
        77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(458).
        77 TMP-DataSet1-rwodbook-BUF     PIC X(2566).
@@ -12087,8 +12087,11 @@
            delete file tmp-wod-exe.
 
            close       tmp-exe-dupl.
-           delete file tmp-exe-dupl                                
-           
+           delete file tmp-exe-dupl.                               
+
+           if nessuna-scelta = 1 
+              move 0 to lnk-code
+           end-if 
            .
       * <TOTEM:END>
        gd1-Ev-Msg-Begin-Drag.
@@ -13980,7 +13983,7 @@
                   move 0 to nessuna-scelta
                   move zwod-code to tod-code
                else
-                  move 1 to nessuna-scelta
+                  move 1 to nessuna-scelta  
                end-if                    
                move 27 to key-status
            end-if.

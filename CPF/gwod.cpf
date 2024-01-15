@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E81B115315-202-2543510839
+PROGRAM_UNIQUE_CODE=TOTEM-7E81F105225-329-316131381
 
 {{@DESCRIPTION:
 
@@ -12800,7 +12800,8 @@ BEGIN-TEXT
                    move exe-isMulti  to tex-exe-isMulti
                    rewrite tex-rec
               end-read
-           end-if.    
+           end-if. 
+           delete file zoom-exe-mcg.
 
       ***---
        CREA-ZOOM-EXE-MCG.          
@@ -13956,7 +13957,7 @@ BEGIN-TEXT
            delete file tmp-exe-effort.
 
            close       tmp-wod-exe.
-           delete file tmp-wod-exe.
+           delete file tmp-wod-exe.   
 
            close       tmp-exe-dupl.
            delete file tmp-exe-dupl.                               

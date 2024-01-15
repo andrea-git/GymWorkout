@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 11 gennaio 2024 12:55:32.
+       DATE-WRITTEN.        lunedì 15 gennaio 2024 11:55:19.
        REMARKS.
       *{TOTEM}END
 
@@ -10931,7 +10931,8 @@
                    move exe-isMulti  to tex-exe-isMulti
                    rewrite tex-rec
               end-read
-           end-if.    
+           end-if. 
+           delete file zoom-exe-mcg.
 
       ***---
        CREA-ZOOM-EXE-MCG.          
@@ -12084,7 +12085,7 @@
            delete file tmp-exe-effort.
 
            close       tmp-wod-exe.
-           delete file tmp-wod-exe.
+           delete file tmp-wod-exe.   
 
            close       tmp-exe-dupl.
            delete file tmp-exe-dupl.                               

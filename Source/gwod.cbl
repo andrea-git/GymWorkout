@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 15 gennaio 2024 11:55:19.
+       DATE-WRITTEN.        lunedì 29 gennaio 2024 11:25:09.
        REMARKS.
       *{TOTEM}END
 
@@ -12090,7 +12090,7 @@
            close       tmp-exe-dupl.
            delete file tmp-exe-dupl.                               
 
-           if nessuna-scelta = 1 
+           if nessuna-scelta = 1 and chiamata-lookup
               move 0 to lnk-code
            end-if 
            .

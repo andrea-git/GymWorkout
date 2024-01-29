@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E81F105225-329-316131381
+PROGRAM_UNIQUE_CODE=TOTEM-7E811D102452-160-29283394
 
 {{@DESCRIPTION:
 
@@ -13962,7 +13962,7 @@ BEGIN-TEXT
            close       tmp-exe-dupl.
            delete file tmp-exe-dupl.                               
 
-           if nessuna-scelta = 1 
+           if nessuna-scelta = 1 and chiamata-lookup
               move 0 to lnk-code
            end-if.
 END-TEXT

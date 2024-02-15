@@ -10,7 +10,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E82913854-176-3189814713
+PROGRAM_UNIQUE_CODE=TOTEM-7E82F131441-2-1353725219
 
 {{@DESCRIPTION:
 
@@ -3245,7 +3245,9 @@ BEGIN-TEXT
                               move 0 to blocco
                            else
                               move 5 to blocco
-                           end-if
+                           end-if                                        
+                      when 78-col-note
+                           move 0 to blocco
                       end-evaluate
 
                       if blocco > rod-series

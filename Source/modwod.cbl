@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 11 gennaio 2024 12:39:06.
+       DATE-WRITTEN.        giovedì 15 febbraio 2024 14:18:35.
        REMARKS.
       *{TOTEM}END
 
@@ -3512,7 +3512,10 @@
                               move 0 to blocco
                            else
                               move 5 to blocco
-                           end-if
+                           end-if                                       
+            
+                      when 78-col-note
+                           move 0 to blocco
                       end-evaluate
 
                       if blocco > rod-series

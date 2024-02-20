@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+Adesk-andre=169.254.227.129
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E82F131436-743-1879024852
+PROGRAM_UNIQUE_CODE=TOTEM-7E821411403-355-2464217489
 
 {{@DESCRIPTION:
 
@@ -13264,6 +13265,7 @@ BEGIN-TEXT
                     move tex-exe-code         to rod-exe-code        
                     move tex-int-code         to rod-int-code int-code
                     read intexe no lock invalid move 0 to int-cedimento end-read
+                    move int-effort           to rod-int-effort
                     move tex-exe-isMulti      to rod-exe-isMulti     
                     move tex-reps             to rod-reps            
                     move tex-series           to rod-series          

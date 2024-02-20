@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 29 gennaio 2024 11:25:09.
+       DATE-WRITTEN.        martedì 20 febbraio 2024 13:36:47.
        REMARKS.
       *{TOTEM}END
 
@@ -721,7 +721,8 @@
        77 rwodbook-rod-k-multi-SPLITBUF  PIC X(35).
        77 rwodbook-rod-k-cedimento-SPLITBUF  PIC X(35).
        77 rwodbook-rod-k-ss-SPLITBUF  PIC X(35).
-       77 rwodbook-rod-k-confronto-SPLITBUF  PIC X(16).
+       77 rwodbook-rod-k-confronto-code-SPLITBUF  PIC X(16).
+       77 rwodbook-rod-k-confronto-eff-SPLITBUF  PIC X(16).
        77 twodbook-tod-k-creazione-SPLITBUF  PIC X(27).
        77 twodbook-tod-k-wom-SPLITBUF  PIC X(22).
        77 twodbook-tod-k-desc-SPLITBUF  PIC X(119).
@@ -5977,13 +5978,24 @@
            MOVE rod-key(1:28) TO rwodbook-rod-k-ss-SPLITBUF(7:28)
            .
 
-       rwodbook-rod-k-confronto-MERGE-SPLITBUF.
-           INITIALIZE rwodbook-rod-k-confronto-SPLITBUF
+       rwodbook-rod-k-confronto-code-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-confronto-code-SPLITBUF
            MOVE rod-exe-code(1:5) TO 
-           rwodbook-rod-k-confronto-SPLITBUF(1:5)
+           rwodbook-rod-k-confronto-code-SPLITBUF(1:5)
            MOVE rod-int-code(1:2) TO 
-           rwodbook-rod-k-confronto-SPLITBUF(6:2)
-           MOVE rod-day(1:8) TO rwodbook-rod-k-confronto-SPLITBUF(8:8)
+           rwodbook-rod-k-confronto-code-SPLITBUF(6:2)
+           MOVE rod-day(1:8) TO 
+           rwodbook-rod-k-confronto-code-SPLITBUF(8:8)
+           .
+
+       rwodbook-rod-k-confronto-eff-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-confronto-eff-SPLITBUF
+           MOVE rod-exe-code(1:5) TO 
+           rwodbook-rod-k-confronto-eff-SPLITBUF(1:5)
+           MOVE rod-int-effort(1:2) TO 
+           rwodbook-rod-k-confronto-eff-SPLITBUF(6:2)
+           MOVE rod-day(1:8) TO 
+           rwodbook-rod-k-confronto-eff-SPLITBUF(8:8)
            .
 
        DataSet1-rwodbook-INITSTART.
@@ -6054,7 +6066,8 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-cedimento-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
-           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-code-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-eff-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT 
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -6089,7 +6102,8 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-cedimento-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
-           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-code-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-eff-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -6124,7 +6138,8 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-cedimento-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
-           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-code-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-eff-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -11397,6 +11412,7 @@
                     move tex-int-code         to rod-int-code int-code
                     read intexe no lock invalid move 0 to int-cedimento 
            end-read
+                    move int-effort           to rod-int-effort
                     move tex-exe-isMulti      to rod-exe-isMulti     
                     move tex-reps             to rod-reps            
                     move tex-series           to rod-series          

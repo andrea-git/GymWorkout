@@ -16,7 +16,8 @@
                10 rod-series       PIC  99.
                10 rod-int-cedimento            PIC  9.
                10 rod-ss           PIC  9.
-               10 FILLER           PIC  x(100).
+               10 rod-int-effort   PIC  99.
+               10 FILLER           PIC  x(98).
       *(( XFD NAME = rod-desc-univoca_1 ))
                10 rod-dati-modwod.
                    15 rod-rep-kg-buf

@@ -22,6 +22,9 @@
            ALTERNATE RECORD KEY IS rod-k-ss = rod-ss, rod-mcg-code, 
            rod-key
            WITH DUPLICATES 
-           ALTERNATE RECORD KEY IS rod-k-confronto = rod-exe-code, 
+           ALTERNATE RECORD KEY IS rod-k-confronto-code = rod-exe-code, 
            rod-int-code, rod-day
+           WITH DUPLICATES 
+           ALTERNATE RECORD KEY IS rod-k-confronto-eff = rod-exe-code, 
+           rod-int-effort, rod-day
            WITH DUPLICATES .

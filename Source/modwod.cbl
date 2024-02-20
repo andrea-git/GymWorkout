@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        giovedì 15 febbraio 2024 14:18:35.
+       DATE-WRITTEN.        martedì 20 febbraio 2024 13:02:06.
        REMARKS.
       *{TOTEM}END
 
@@ -152,6 +152,7 @@
        01 FILLER           PIC  9
                   VALUE IS 0.
            88 prima-volta VALUE IS 1    WHEN SET TO FALSE  0. 
+       77 s-rod-int-effort PIC  99.
        77 s-rod-exe-code   PIC  x(5).
        77 s-rod-int-code   PIC  99.
        77 pgmChiamante     PIC  x(20).
@@ -271,7 +272,8 @@
        77 rwodbook-rod-k-multi-SPLITBUF  PIC X(35).
        77 rwodbook-rod-k-cedimento-SPLITBUF  PIC X(35).
        77 rwodbook-rod-k-ss-SPLITBUF  PIC X(35).
-       77 rwodbook-rod-k-confronto-SPLITBUF  PIC X(16).
+       77 rwodbook-rod-k-confronto-code-SPLITBUF  PIC X(16).
+       77 rwodbook-rod-k-confronto-eff-SPLITBUF  PIC X(16).
        77 twodbook-tod-k-creazione-SPLITBUF  PIC X(27).
        77 twodbook-tod-k-wom-SPLITBUF  PIC X(22).
        77 twodbook-tod-k-desc-SPLITBUF  PIC X(119).
@@ -1060,13 +1062,24 @@
            MOVE rod-key(1:28) TO rwodbook-rod-k-ss-SPLITBUF(7:28)
            .
 
-       rwodbook-rod-k-confronto-MERGE-SPLITBUF.
-           INITIALIZE rwodbook-rod-k-confronto-SPLITBUF
+       rwodbook-rod-k-confronto-code-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-confronto-code-SPLITBUF
            MOVE rod-exe-code(1:5) TO 
-           rwodbook-rod-k-confronto-SPLITBUF(1:5)
+           rwodbook-rod-k-confronto-code-SPLITBUF(1:5)
            MOVE rod-int-code(1:2) TO 
-           rwodbook-rod-k-confronto-SPLITBUF(6:2)
-           MOVE rod-day(1:8) TO rwodbook-rod-k-confronto-SPLITBUF(8:8)
+           rwodbook-rod-k-confronto-code-SPLITBUF(6:2)
+           MOVE rod-day(1:8) TO 
+           rwodbook-rod-k-confronto-code-SPLITBUF(8:8)
+           .
+
+       rwodbook-rod-k-confronto-eff-MERGE-SPLITBUF.
+           INITIALIZE rwodbook-rod-k-confronto-eff-SPLITBUF
+           MOVE rod-exe-code(1:5) TO 
+           rwodbook-rod-k-confronto-eff-SPLITBUF(1:5)
+           MOVE rod-int-effort(1:2) TO 
+           rwodbook-rod-k-confronto-eff-SPLITBUF(6:2)
+           MOVE rod-day(1:8) TO 
+           rwodbook-rod-k-confronto-eff-SPLITBUF(8:8)
            .
 
        DataSet1-rwodbook-INITSTART.
@@ -1137,7 +1150,8 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-cedimento-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
-           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-code-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-eff-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT 
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ" TO TOTEM-ERR-MODE
@@ -1172,7 +1186,8 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-cedimento-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
-           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-code-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-eff-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ NEXT" TO TOTEM-ERR-MODE
@@ -1207,7 +1222,8 @@
            PERFORM rwodbook-rod-k-multi-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-cedimento-MERGE-SPLITBUF
            PERFORM rwodbook-rod-k-ss-MERGE-SPLITBUF
-           PERFORM rwodbook-rod-k-confronto-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-code-MERGE-SPLITBUF
+           PERFORM rwodbook-rod-k-confronto-eff-MERGE-SPLITBUF
            MOVE STATUS-rwodbook TO TOTEM-ERR-STAT
            MOVE "rwodbook" TO TOTEM-ERR-FILE
            MOVE "READ PREVIOUS" TO TOTEM-ERR-MODE
@@ -2557,24 +2573,44 @@
                      until store-riga > tot-righe
               inquire form1-gd-1(store-riga, 1), hidden-data rod-key
               read rwodbook                                         
-              start rwodbook key <= rod-k-confronto
+              move rod-int-effort to s-rod-int-effort             
+              start rwodbook key <= rod-k-confronto-eff
                     invalid continue
                 not invalid
-                    read rwodbook previous
-                    move rod-exe-code to s-rod-exe-code   
-                    move rod-int-code to s-rod-int-code
-                    move rod-day      to s-rod-day     
+                    read rwodbook previous       
+                    move rod-exe-code   to s-rod-exe-code   
+                    move rod-int-code   to s-rod-int-code
+                    move rod-day        to s-rod-day     
                     move store-riga to riga  
                     inquire form1-gd-1(store-riga), row-color colore    
                          
                     perform CONFRONTI-GRIGLIA    
+                    move 0 to s-rod-int-effort
               
-                    if not trovato-confronto               
+      *              if not trovato-confronto  
+      *                 inquire form1-gd-1(store-riga, 1), hidden-data rod-key
+      *                 read rwodbook            
+      *                 move high-value to rod-int-code
+      *                 start rwodbook key <= rod-k-confronto-eff
+      *                       invalid continue
+      *                   not invalid            
+      *                       read rwodbook previous       
+      *                       move rod-exe-code to s-rod-exe-code   
+      *                       move 0            to s-rod-int-code
+      *                       move rod-day      to s-rod-day     
+      *                       move store-riga to riga  
+      *                       inquire form1-gd-1(store-riga), row-color colore                  
+      *                       perform CONFRONTI-GRIGLIA               
+      *                 end-start
+      *              end-if    
+              
+                    if not trovato-confronto     
+                       move 0 to s-rod-int-effort          
                        inquire form1-gd-1(store-riga, 1), hidden-data 
            rod-key
                        read rwodbook            
                        move high-value to rod-int-code
-                       start rwodbook key <= rod-k-confronto
+                       start rwodbook key <= rod-k-confronto-code
                              invalid continue
                          not invalid            
                              read rwodbook previous       
@@ -2828,7 +2864,7 @@
            move high-value to rod-int-code rod-day
            move exe-code   to s-rod-exe-code rod-exe-code
            move 0          to s-rod-int-code
-           start rwodbook key <= rod-k-confronto
+           start rwodbook key <= rod-k-confronto-code
                  invalid continue
              not invalid
                  perform CONFRONTI-GRIGLIA  
@@ -2854,16 +2890,23 @@
               read rwodbook previous at end exit perform end-read
               if rod-code = tod-code
                  exit perform cycle
-              end-if
-              if s-rod-int-code = 0
-                 if rod-exe-code not = s-rod-exe-code
+              end-if 
+              if s-rod-int-effort > 0     
+                 if rod-exe-code not = s-rod-exe-code and
+                    rod-int-effort < s-rod-int-effort
                     exit perform
                  end-if            
               else
-                 if rod-exe-code not = s-rod-exe-code or
-                    rod-int-code not = s-rod-int-code
-                    exit perform
-                 end-if            
+                 if s-rod-int-code = 0
+                    if rod-exe-code not = s-rod-exe-code
+                       exit perform
+                    end-if            
+                 else
+                    if rod-exe-code not = s-rod-exe-code or
+                       rod-int-code not = s-rod-int-code
+                       exit perform
+                    end-if            
+                 end-if
               end-if
               move spaces to col-data
               move rod-day to como-data

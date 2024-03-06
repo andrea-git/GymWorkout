@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E821411249-851-141126185
+PROGRAM_UNIQUE_CODE=TOTEM-7E83613033-607-1749917511
 
 {{@DESCRIPTION:
 
@@ -2628,23 +2628,20 @@ BEGIN-TEXT
 
            move 0 to tot-liv.
            perform until 1 = 2
-              read rwodbook previous at end exit perform end-read
+              read rwodbook previous at end exit perform end-read                   
+              if rod-exe-code not = s-rod-exe-code
+                 exit perform
+              end-if
               if rod-code = tod-code
                  exit perform cycle
               end-if 
-              if s-rod-int-effort > 0     
-                 if rod-exe-code not = s-rod-exe-code and
-                    rod-int-effort < s-rod-int-effort
+              if s-rod-int-effort > 0                    
+                 if rod-int-effort < s-rod-int-effort
                     exit perform
                  end-if            
               else
-                 if s-rod-int-code = 0
-                    if rod-exe-code not = s-rod-exe-code
-                       exit perform
-                    end-if            
-                 else
-                    if rod-exe-code not = s-rod-exe-code or
-                       rod-int-code not = s-rod-int-code
+                 if s-rod-int-code > 0
+                    if rod-int-code not = s-rod-int-code
                        exit perform
                     end-if            
                  end-if

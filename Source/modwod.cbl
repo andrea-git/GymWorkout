@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 20 febbraio 2024 13:02:06.
+       DATE-WRITTEN.        mercoledì 6 marzo 2024 14:41:24.
        REMARKS.
       *{TOTEM}END
 
@@ -2887,23 +2887,21 @@
 
            move 0 to tot-liv.
            perform until 1 = 2
-              read rwodbook previous at end exit perform end-read
+              read rwodbook previous at end exit perform end-read       
+                       
+              if rod-exe-code not = s-rod-exe-code
+                 exit perform
+              end-if
               if rod-code = tod-code
                  exit perform cycle
               end-if 
-              if s-rod-int-effort > 0     
-                 if rod-exe-code not = s-rod-exe-code and
-                    rod-int-effort < s-rod-int-effort
+              if s-rod-int-effort > 0                    
+                 if rod-int-effort < s-rod-int-effort
                     exit perform
                  end-if            
               else
-                 if s-rod-int-code = 0
-                    if rod-exe-code not = s-rod-exe-code
-                       exit perform
-                    end-if            
-                 else
-                    if rod-exe-code not = s-rod-exe-code or
-                       rod-int-code not = s-rod-int-code
+                 if s-rod-int-code > 0
+                    if rod-int-code not = s-rod-int-code
                        exit perform
                     end-if            
                  end-if

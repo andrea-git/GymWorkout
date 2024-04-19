@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 6 marzo 2024 14:41:24.
+       DATE-WRITTEN.        venerdì 19 aprile 2024 12:44:27.
        REMARKS.
       *{TOTEM}END
 
@@ -2884,7 +2884,6 @@
       * <TOTEM:PARA. CONFRONTI-GRIGLIA>
            set trovato-confronto to false.
            if s-liv = 0 and not prima-volta exit paragraph end-if.
-
            move 0 to tot-liv.
            perform until 1 = 2
               read rwodbook previous at end exit perform end-read       
@@ -2892,7 +2891,7 @@
               if rod-exe-code not = s-rod-exe-code
                  exit perform
               end-if
-              if rod-code = tod-code
+              if rod-code = tod-code and rod-day = s-rod-day
                  exit perform cycle
               end-if 
               if s-rod-int-effort > 0                    

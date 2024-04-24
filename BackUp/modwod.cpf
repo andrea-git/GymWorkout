@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E83613033-607-1749917511
+PROGRAM_UNIQUE_CODE=TOTEM-7E8413104235-341-46252160
 
 {{@DESCRIPTION:
 
@@ -2625,14 +2625,13 @@ BEGIN-DATA
 BEGIN-TEXT
            set trovato-confronto to false.
            if s-liv = 0 and not prima-volta exit paragraph end-if.
-
            move 0 to tot-liv.
            perform until 1 = 2
               read rwodbook previous at end exit perform end-read                   
               if rod-exe-code not = s-rod-exe-code
                  exit perform
               end-if
-              if rod-code = tod-code
+              if rod-code = tod-code and rod-day = s-rod-day
                  exit perform cycle
               end-if 
               if s-rod-int-effort > 0                    

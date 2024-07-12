@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 19 aprile 2024 12:44:27.
+       DATE-WRITTEN.        venerdì 12 luglio 2024 23:57:57.
        REMARKS.
       *{TOTEM}END
 
@@ -136,7 +136,7 @@
            05 col-kg-5         PIC  x(10).
            05 col-buf-5        PIC  x(10).
            05 col-note         PIC  x(100).
-           05 col-tonn         PIC  zz.zz9.
+           05 col-tonn         PIC  zzz.zz9.
        77 ws-narg          PIC  99
                   USAGE IS COMP-1.
        77 max-liv          PIC  999.
@@ -212,6 +212,7 @@
        77 blocco           PIC  9.
        77 ef-liv-buf       PIC  zz9.
        77 rep-x            PIC  x(10).
+       77 como-split       PIC  xx.
        77 kg-x PIC  x(10).
        77 buf-x            PIC  x(10).
        01 FILLER           PIC  9.
@@ -2007,7 +2008,7 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 29, 31, 40, 
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 26, 28, 40, 
            44, 49, 56, 61, 66, 73, 78, 83, 90, 95, 100, 107, 112, 117, 
            124, 129, 166)
            .
@@ -2894,6 +2895,23 @@
               if rod-code = tod-code and rod-day = s-rod-day
                  exit perform cycle
               end-if 
+                                     
+              move 0 to como-data
+              perform varying idx from 1 by 1 
+                        until idx > 10                                  
+                                   
+                 if rod-rep(idx) not = spaces or
+                    rod-kg(idx)  not = spaces or
+                  ( rod-buf(idx) not = spaces and 
+                    rod-buf(idx) not = "KG:" )
+                    move 1 to como-data
+                    exit perform
+                 end-if
+              end-perform
+              if como-data = 0
+                 exit perform cycle
+              end-if
+
               if s-rod-int-effort > 0                    
                  if rod-int-effort < s-rod-int-effort
                     exit perform
@@ -2904,16 +2922,25 @@
                        exit perform
                     end-if            
                  end-if
-              end-if
+              end-if            
               move spaces to col-data
               move rod-day to como-data
               perform DATE-TO-SCREEN
+              move rod-split to como-split
+              inspect como-split replacing leading x"30" by x"20"
+              call "C$JUSTIFY" using como-split, "L"
+              inspect como-split replacing trailing spaces by low-value
               initialize col-exe                 
-              move como-data(1:2) to col-exe(1:2)
-              move "/"            to col-exe(3:1)  
-              move como-data(3:2) to col-exe(4:2)
-              move "/"            to col-exe(6:1)  
-              move como-data(5:4) to col-exe(7:4)
+              string como-data(1:2) delimited size
+                     "/"            delimited size 
+                     como-data(3:2) delimited size
+                     "/"            delimited size 
+                     como-data(5:4) delimited size
+                     " - "          delimited size
+                     como-split     delimited low-value
+                into col-exe
+               end-string
+
               move rod-series to col-series
               move rod-reps   to col-reps
               move rod-int-code to int-code

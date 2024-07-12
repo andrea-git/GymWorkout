@@ -2,6 +2,7 @@
 ; WARNING: DO NOT MODIFY THIS FILE!
 
 [MONITOR_FILE]
+aNote-andre=192.168.56.1
 
 
 [PROGRAM_CONTENT]
@@ -10,7 +11,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E8413104235-341-46252160
+PROGRAM_UNIQUE_CODE=TOTEM-7E87C21395-329-3009029844
 
 {{@DESCRIPTION:
 
@@ -590,8 +591,8 @@ m_bFixed=1
 @}}
 [FDITEM58_WK]
 m_strName=col-tonn
-m_strRawPic=zz.zz9
-m_strPic=zz.zz9
+m_strRawPic=zzz.zz9
+m_strPic=zzz.zz9
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -1196,9 +1197,9 @@ m_bFixed=1
 
 @}}
 [FDITEM119_WK]
-m_strName=kg-x
-m_strRawPic=x(10)
-m_strPic=x(10)
+m_strName=como-split
+m_strRawPic=xx
+m_strPic=xx
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
@@ -1206,7 +1207,7 @@ m_bFixed=1
 
 @}}
 [FDITEM120_WK]
-m_strName=buf-x
+m_strName=kg-x
 m_strRawPic=x(10)
 m_strPic=x(10)
 m_nItemLevel=77
@@ -1216,33 +1217,43 @@ m_bFixed=1
 
 @}}
 [FDITEM121_WK]
-m_strName=FILLER
-m_strRawPic=9
-m_strPic=9
-m_nItemLevel=1
+m_strName=buf-x
+m_strRawPic=x(10)
+m_strPic=x(10)
+m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
 {{@DataItem_m_strDescriptionFDITEM121_WK
 
 @}}
 [FDITEM122_WK]
+m_strName=FILLER
+m_strRawPic=9
+m_strPic=9
+m_nItemLevel=1
+m_nSync=-1
+m_bFixed=1
+{{@DataItem_m_strDescriptionFDITEM122_WK
+
+@}}
+[FDITEM123_WK]
 m_strName=trovato-confronto
 m_nItemLevel=88
 m_nSync=-1
 m_bFixed=1
 m_strTrue=1
 m_strFalse=0
-{{@DataItem_m_strDescriptionFDITEM122_WK
+{{@DataItem_m_strDescriptionFDITEM123_WK
 
 @}}
-[FDITEM123_WK]
+[FDITEM124_WK]
 m_strName=kg-rp-x
 m_strRawPic=x(10)
 m_strPic=x(10)
 m_nItemLevel=77
 m_nSync=-1
 m_bFixed=1
-{{@DataItem_m_strDescriptionFDITEM123_WK
+{{@DataItem_m_strDescriptionFDITEM124_WK
 
 @}}
 
@@ -1517,13 +1528,13 @@ Begin Screen Form1
       Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 2, Name = col-exe, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(50)", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 18, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( DISP = 15, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 3, Name = col-series, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "X(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 4, Name = col-reps, READONLY = 0 )
       Columns' Setting  = ( PIC = "X(20)", TYPE = "X(20)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 9, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( DISP = 12, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 5, Name = col-rest, READONLY = 0 )
       Columns' Setting  = ( PIC = "zz9", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 3 )
@@ -2637,6 +2648,22 @@ BEGIN-TEXT
               if rod-code = tod-code and rod-day = s-rod-day
                  exit perform cycle
               end-if 
+                                     
+              move 0 to como-data
+              perform varying idx from 1 by 1 
+                        until idx > 10                                                          
+                 if rod-rep(idx) not = spaces or
+                    rod-kg(idx)  not = spaces or
+                  ( rod-buf(idx) not = spaces and 
+                    rod-buf(idx) not = "KG:" )
+                    move 1 to como-data
+                    exit perform
+                 end-if
+              end-perform
+              if como-data = 0
+                 exit perform cycle
+              end-if
+
               if s-rod-int-effort > 0                    
                  if rod-int-effort < s-rod-int-effort
                     exit perform
@@ -2647,16 +2674,25 @@ BEGIN-TEXT
                        exit perform
                     end-if            
                  end-if
-              end-if
+              end-if            
               move spaces to col-data
               move rod-day to como-data
               perform DATE-TO-SCREEN
+              move rod-split to como-split
+              inspect como-split replacing leading x"30" by x"20"
+              call "C$JUSTIFY" using como-split, "L"
+              inspect como-split replacing trailing spaces by low-value
               initialize col-exe                 
-              move como-data(1:2) to col-exe(1:2)
-              move "/"            to col-exe(3:1)  
-              move como-data(3:2) to col-exe(4:2)
-              move "/"            to col-exe(6:1)  
-              move como-data(5:4) to col-exe(7:4)
+              string como-data(1:2) delimited size
+                     "/"            delimited size 
+                     como-data(3:2) delimited size
+                     "/"            delimited size 
+                     como-data(5:4) delimited size
+                     " - "          delimited size
+                     como-split     delimited low-value
+                into col-exe
+               end-string
+
               move rod-series to col-series
               move rod-reps   to col-reps
               move rod-int-code to int-code

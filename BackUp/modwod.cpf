@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E87C21395-329-3009029844
+PROGRAM_UNIQUE_CODE=TOTEM-7E871D19566-941-2473720347
 
 {{@DESCRIPTION:
 
@@ -407,8 +407,8 @@ m_bFixed=1
 @}}
 [FDITEM40_WK]
 m_strName=col-reps
-m_strRawPic=X(20)
-m_strPic=X(20)
+m_strRawPic=X(40)
+m_strPic=X(40)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -587,8 +587,8 @@ m_bFixed=1
 @}}
 [FDITEM58_WK]
 m_strName=col-tonn
-m_strRawPic=zzz.zz9
-m_strPic=zzz.zz9
+m_strRawPic=9(6)
+m_strPic=9(6)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -1524,13 +1524,13 @@ Begin Screen Form1
       Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 2, Name = col-exe, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(50)", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 15, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( DISP = 14, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 3, Name = col-series, READONLY = 0 )
       Columns' Setting  = ( PIC = "z9", TYPE = "X(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 2, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 4, Name = col-reps, READONLY = 0 )
-      Columns' Setting  = ( PIC = "X(20)", TYPE = "X(20)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 12, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( PIC = "X(40)", TYPE = "X(40)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
+      Columns' Setting  = ( DISP = 18, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 5, Name = col-rest, READONLY = 0 )
       Columns' Setting  = ( PIC = "zz9", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 4, SEPA = 5, DIVI = 3 )
@@ -1581,10 +1581,10 @@ Begin Screen Form1
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 21, Name = col-note, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 37, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( DISP = 33, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 22, Name = col-tonn, READONLY = 0 )
       Columns' Setting  = ( PIC = "9(6)", TYPE = "zzz.zz9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
-      Columns' Setting  = ( DISP = 6, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Cursor Color      = 0
       Cursor Frame Width = 2
       Cursor X          = 0
@@ -2222,7 +2222,8 @@ BEGIN-DATA
    TEXTMODE          = 0
    ENTRYPOINT        = BeforeAccept
 BEGIN-TEXT
-           perform IMPOSTA-PROGRAMMA.       
+           perform IMPOSTA-PROGRAMMA.    
+           perform FORM1-GD-1-CONTENT.
 END-TEXT
 END-DATA
 BEGIN-DATA
@@ -2516,11 +2517,16 @@ BEGIN-TEXT
                     read exercises invalid move "NON TROVATA" to exe-desc end-read
                     move exe-desc-stampa to col-exe
                     move rod-series to col-series
-                    move rod-reps   to col-reps
+
                     move rod-int-code to int-code
                     read intexe no lock
                     move int-rest to col-rest
 
+                    if rod-reps = "Max"
+                       move int-desc to col-reps
+                    else
+                       move rod-reps to col-reps
+                    end-if     
                     if rod-int-cedimento > 0
                        move "KG:" to rod-buf(4)
                     end-if
@@ -2690,10 +2696,15 @@ BEGIN-TEXT
                end-string
 
               move rod-series to col-series
-              move rod-reps   to col-reps
               move rod-int-code to int-code
               read intexe no lock
-              move int-rest to col-rest
+              move int-rest to col-rest     
+              
+              if rod-reps = "Max"
+                 move int-desc to col-reps
+              else
+                 move rod-reps to col-reps
+              end-if     
 
               if rod-int-cedimento > 0
                  move "KG:" to rod-buf(4)

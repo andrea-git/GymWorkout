@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        venerdì 12 luglio 2024 23:57:57.
+       DATE-WRITTEN.        lunedì 29 luglio 2024 22:24:05.
        REMARKS.
       *{TOTEM}END
 
@@ -118,7 +118,7 @@
            05 col-data         PIC  x(10).
            05 col-exe          PIC  x(50).
            05 col-series       PIC  z9.
-           05 col-reps         PIC  X(20).
+           05 col-reps         PIC  X(40).
            05 col-rest         PIC  zz9.
            05 col-rep-1        PIC  x(10).
            05 col-kg-1         PIC  x(10).
@@ -136,7 +136,7 @@
            05 col-kg-5         PIC  x(10).
            05 col-buf-5        PIC  x(10).
            05 col-note         PIC  x(100).
-           05 col-tonn         PIC  zzz.zz9.
+           05 col-tonn         PIC  9(6).
        77 ws-narg          PIC  99
                   USAGE IS COMP-1.
        77 max-liv          PIC  999.
@@ -325,13 +325,13 @@
            SIZE 172,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           DATA-COLUMNS (1, 11, 61, 63, 83, 86, 96, 106, 116, 126, 136, 
-           146, 156, 166, 176, 186, 196, 206, 216, 226, 236, 336),
+           DATA-COLUMNS (1, 11, 61, 63, 103, 106, 116, 126, 136, 146, 
+           156, 166, 176, 186, 196, 206, 216, 226, 236, 246, 256, 356),
            ALIGNMENT ("C", "U", "R", "U", "R", "C", "C", "C", "C", "C", 
            "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "U", "R"),
            SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 
            5, 5, 5, 5, 5, 5),
-           DATA-TYPES ("X", "U(5)", "X(100)", "X(20)", "U(5)", "x(10)", 
+           DATA-TYPES ("X", "U(5)", "X(100)", "X(40)", "U(5)", "x(10)", 
            "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)"
            , "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10
       -    ")", "X", "zzz.zz9"),
@@ -2008,14 +2008,15 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 26, 28, 40, 
-           44, 49, 56, 61, 66, 73, 78, 83, 90, 95, 100, 107, 112, 117, 
-           124, 129, 166)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 25, 27, 45, 
+           49, 54, 61, 66, 71, 78, 83, 88, 95, 100, 105, 112, 117, 122, 
+           129, 134, 167)
            .
 
        Form1-PROC.
       * <TOTEM:EPT. FORM:Form1, FORM:Form1, BeforeAccept>
-           perform IMPOSTA-PROGRAMMA.
+           perform IMPOSTA-PROGRAMMA.    
+           perform FORM1-GD-1-CONTENT.
 
            .
       * <TOTEM:END>
@@ -2769,11 +2770,16 @@
            exe-desc end-read
                     move exe-desc-stampa to col-exe
                     move rod-series to col-series
-                    move rod-reps   to col-reps
+
                     move rod-int-code to int-code
                     read intexe no lock
                     move int-rest to col-rest
 
+                    if rod-reps = "Max"
+                       move int-desc to col-reps
+                    else
+                       move rod-reps to col-reps
+                    end-if     
                     if rod-int-cedimento > 0
                        move "KG:" to rod-buf(4)
                     end-if
@@ -2942,10 +2948,15 @@
                end-string
 
               move rod-series to col-series
-              move rod-reps   to col-reps
               move rod-int-code to int-code
               read intexe no lock
-              move int-rest to col-rest
+              move int-rest to col-rest     
+              
+              if rod-reps = "Max"
+                 move int-desc to col-reps
+              else
+                 move rod-reps to col-reps
+              end-if     
 
               if rod-int-cedimento > 0
                  move "KG:" to rod-buf(4)

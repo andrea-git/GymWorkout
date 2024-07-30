@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=ginqui-Ev-Before-Program
 AFTER_PROGRAM=ginqui-Ev-After-Program
-PROGRAM_UNIQUE_CODE=TOTEM-7E821411403-355-2464217489
+PROGRAM_UNIQUE_CODE=TOTEM-7E871E81447-423-469723519
 
 {{@DESCRIPTION:
 
@@ -1894,8 +1894,8 @@ m_bFixed=1
 @}}
 [FDITEM185_WK]
 m_strName=col-reps
-m_strRawPic=x(20)
-m_strPic=x(20)
+m_strRawPic=x(40)
+m_strPic=x(40)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -3931,7 +3931,7 @@ Begin Screen Form1
    Operation Mode    = Interactive Mode
    Resizable         = FALSE
    Scroll            = FALSE
-   Size              = 156,80
+   Size              = 162,70
    System Menu       = TRUE
    Title Bar         = TRUE
    Title Variable    = titolo
@@ -4942,8 +4942,8 @@ Begin Screen Form1
       Columns' Setting  = ( PIC = "z9", TYPE = "9(2)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 8, Name = col-reps, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(20)", TYPE = "x(20)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 13, SEPA = 5, DIVI = 1 )
+      Columns' Setting  = ( PIC = "x(40)", TYPE = "x(40)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
+      Columns' Setting  = ( DISP = 20, SEPA = 5, DIVI = 1 )
       Columns' Setting  = ( X = 9, Name = col-ss, READONLY = 0 )
       Columns' Setting  = ( PIC = "z(1)", TYPE = "9(1)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
       Columns' Setting  = ( DISP = 8, SEPA = 5, DIVI = 1 )
@@ -4963,7 +4963,7 @@ Begin Screen Form1
       Heading Font      = Default Font
       Height in Cells   = TRUE
       Help ID           = 0
-      Hscroll           = FALSE
+      Hscroll           = TRUE
       ID                = 26
       ID Variable       = AUTO-ID
       Last Row          = 0
@@ -4978,12 +4978,12 @@ Begin Screen Form1
       Paged             = FALSE
       Row Dividers      = 1
       Row Headings      = FALSE
-      Size              = 82,00
+      Size              = 87,90
       Size Unit         = Default
       Tab Order         = 23
       Tiled Headings    = TRUE
       Use Tab           = FALSE
-      Virtual Width     = 98
+      Virtual Width     = 105
       Visible           = NONE
       Vpadding          = 5
       Vscroll           = TRUE
@@ -5579,7 +5579,7 @@ Begin Screen Form1
       Msg-Begin-Entry   = gd-schema-Ev-Msg-Begin-Entry
    End
    Begin Push-Button pb-aggiungi
-      SCREEN-COL        = 154,20
+      SCREEN-COL        = 160,20
       SCREEN-LINE       = 1,70
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -5591,7 +5591,7 @@ Begin Screen Form1
       Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Column            = 154,20
+      Column            = 160,20
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -5623,7 +5623,7 @@ Begin Screen Form1
       Link To           = pb-aggiungi-LinkTo
    End
    Begin Push-Button pb-elimina
-      SCREEN-COL        = 154,20
+      SCREEN-COL        = 160,20
       SCREEN-LINE       = 2,96
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -5635,7 +5635,7 @@ Begin Screen Form1
       Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Column            = 154,20
+      Column            = 160,20
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -5667,7 +5667,7 @@ Begin Screen Form1
       Link To           = pb-elimina-LinkTo
    End
    Begin Push-Button pb-su
-      SCREEN-COL        = 154,20
+      SCREEN-COL        = 160,20
       SCREEN-LINE       = 4,26
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -5679,7 +5679,7 @@ Begin Screen Form1
       Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Column            = 154,20
+      Column            = 160,20
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -5711,7 +5711,7 @@ Begin Screen Form1
       Link To           = pb-su-LinkTo
    End
    Begin Push-Button pb-giu
-      SCREEN-COL        = 154,20
+      SCREEN-COL        = 160,20
       SCREEN-LINE       = 5,52
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -5723,7 +5723,7 @@ Begin Screen Form1
       Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Column            = 154,20
+      Column            = 160,20
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -5755,7 +5755,7 @@ Begin Screen Form1
       Link To           = pb-giu-LinkTo
    End
    Begin Push-Button pb-int
-      SCREEN-COL        = 154,20
+      SCREEN-COL        = 160,20
       SCREEN-LINE       = 6,78
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -5767,7 +5767,7 @@ Begin Screen Form1
       Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Column            = 154,20
+      Column            = 160,20
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -5799,7 +5799,7 @@ Begin Screen Form1
       Link To           = pb-int-LinkTo
    End
    Begin Push-Button pb-mod
-      SCREEN-COL        = 154,20
+      SCREEN-COL        = 160,20
       SCREEN-LINE       = 8,04
       LOCK-CONTROL      = TRUE
       LEVEL             = 5
@@ -5811,7 +5811,7 @@ Begin Screen Form1
       Bitmap Square     = TRUE
       Clines            = 0
       Clines Unit       = Default
-      Column            = 154,20
+      Column            = 160,20
       Copy Resource     = TRUE
       Csize             = 0
       Csize Unit        = Default
@@ -11957,7 +11957,11 @@ BEGIN-TEXT
                        move tex-int-code to int-code
                        read intexe
                        move tex-series to col-series
-                       move tex-reps   to col-reps
+                       if tex-reps = "Max"
+                          move int-desc   to col-reps
+                       else
+                          move tex-reps   to col-reps
+                       end-if
                     else                      
                        move wom-split-el-split-ss(tex-day, tex-split)
                          to tex-ss col-ss
@@ -12677,7 +12681,7 @@ BEGIN-TEXT
       ***---
        IMPOSTA-SERIES-RANGE.
            if int-range-from = 99 and int-range-to = 99
-              move "Max" to col-reps
+              move int-desc to col-reps
            else
               if int-isTime = 1
                  move int-time to como-hit

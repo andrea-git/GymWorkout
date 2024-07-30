@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 20 febbraio 2024 13:36:47.
+       DATE-WRITTEN.        martedì 30 luglio 2024 10:18:34.
        REMARKS.
       *{TOTEM}END
 
@@ -314,7 +314,7 @@
            05 col-exe-code     PIC  x(5).
            05 col-exe-desc     PIC  x(100).
            05 col-series       PIC  99.
-           05 col-reps         PIC  x(20).
+           05 col-reps         PIC  x(40).
            05 col-ss           PIC  z.
        77 Calibri14-Occidentale
                   USAGE IS HANDLE OF FONT.
@@ -1270,13 +1270,13 @@
            COL 71,50, 
            LINE 1,70,
            LINES 34,87 ,
-           SIZE 82,00 ,
+           SIZE 87,90 ,
            BOXED,
-           DATA-COLUMNS (1, 2, 4, 9, 109, 114, 214, 216, 236),
+           DATA-COLUMNS (1, 2, 4, 9, 109, 114, 214, 216, 256),
            ALIGNMENT ("C", "R", "U", "L", "U", "L", "U", "U", "C"),
            SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5),
            DATA-TYPES ("91)", "z9", "X(5)", "X(100)", "X(5)", "X(100)", 
-           "9(2)", "x(20)", "9(1)"),
+           "9(2)", "x(40)", "9(1)"),
            NUM-COL-HEADINGS 1,
            COLUMN-HEADINGS,
            CURSOR-FRAME-WIDTH 2,
@@ -1284,11 +1284,12 @@
            FONT IS Calibri12-Occidentale,
            HEADING-COLOR 257,
            HEADING-DIVIDER-COLOR 1,
+           HSCROLL,
            ID IS 78-ID-gd1,                
            HEIGHT-IN-CELLS,
            WIDTH-IN-CELLS,
            TILED-HEADINGS,
-           VIRTUAL-WIDTH 98,
+           VIRTUAL-WIDTH 105,
            VPADDING 5,
            VSCROLL,
            EVENT PROCEDURE Screen1-Gd-1-Event-Proc,
@@ -1540,7 +1541,7 @@
        05
            pb-aggiungi, 
            Push-Button, 
-           COL 154,20, 
+           COL 160,20, 
            LINE 1,70,
            LINES 1,17 ,
            SIZE 28 PIXELS,
@@ -1559,7 +1560,7 @@
        05
            pb-elimina, 
            Push-Button, 
-           COL 154,20, 
+           COL 160,20, 
            LINE 2,96,
            LINES 1,17 ,
            SIZE 28 PIXELS,
@@ -1578,7 +1579,7 @@
        05
            pb-su, 
            Push-Button, 
-           COL 154,20, 
+           COL 160,20, 
            LINE 4,26,
            LINES 1,17 ,
            SIZE 28 PIXELS,
@@ -1597,7 +1598,7 @@
        05
            pb-giu, 
            Push-Button, 
-           COL 154,20, 
+           COL 160,20, 
            LINE 5,52,
            LINES 1,17 ,
            SIZE 28 PIXELS,
@@ -1616,7 +1617,7 @@
        05
            pb-int, 
            Push-Button, 
-           COL 154,20, 
+           COL 160,20, 
            LINE 6,78,
            LINES 1,17 ,
            SIZE 28 PIXELS,
@@ -1635,7 +1636,7 @@
        05
            pb-mod, 
            Push-Button, 
-           COL 154,20, 
+           COL 160,20, 
            LINE 8,04,
            LINES 1,17 ,
            SIZE 28 PIXELS,
@@ -6758,7 +6759,7 @@
               SCREEN LINE 2,
               SCREEN COLUMN 2,
               LINES 38,39,
-              SIZE 156,80,
+              SIZE 162,70,
               HEIGHT-IN-CELLS,
               WIDTH-IN-CELLS,
               COLOR 131329,
@@ -6799,7 +6800,7 @@
            DISPLAY Form1 UPON form1-Handle
       * DISPLAY-COLUMNS settings
               MODIFY gd1, DISPLAY-COLUMNS (1, 6, 9, 16, 36, 43, 73, 78, 
-           91)
+           98)
               MODIFY gd-schema, DISPLAY-COLUMNS (1, 6, 13, 20, 27, 34, 
            41, 48, 55, 62, 69, 76)
            .
@@ -10057,7 +10058,11 @@
                        move tex-int-code to int-code
                        read intexe
                        move tex-series to col-series
-                       move tex-reps   to col-reps
+                       if tex-reps = "Max"
+                          move int-desc   to col-reps
+                       else
+                          move tex-reps   to col-reps
+                       end-if
                     else                      
                        move wom-split-el-split-ss(tex-day, tex-split)
                          to tex-ss col-ss
@@ -10827,7 +10832,7 @@
       ***---
        IMPOSTA-SERIES-RANGE.
            if int-range-from = 99 and int-range-to = 99
-              move "Max" to col-reps
+              move int-desc to col-reps
            else
               if int-isTime = 1
                  move int-time to como-hit

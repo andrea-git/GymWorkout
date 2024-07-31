@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        lunedì 29 luglio 2024 22:24:05.
+       DATE-WRITTEN.        mercoledì 31 luglio 2024 13:35:10.
        REMARKS.
       *{TOTEM}END
 
@@ -2631,7 +2631,7 @@
                           move tot-liv to max-liv
                        end-if
                     end-if
-                    if trovato and tot-liv > 0
+                    if s-liv > 0
                        add 1 to store-riga tot-righe riga
                        move "-" to rec-grid                   
                        modify form1-gd-1, insertion-index riga, 

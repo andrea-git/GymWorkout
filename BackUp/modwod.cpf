@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E871D19566-941-2473720347
+PROGRAM_UNIQUE_CODE=TOTEM-7E871F112249-921-507925199
 
 {{@DESCRIPTION:
 
@@ -2377,7 +2377,7 @@ BEGIN-TEXT
                           move tot-liv to max-liv
                        end-if
                     end-if
-                    if trovato and tot-liv > 0
+                    if s-liv > 0
                        add 1 to store-riga tot-righe riga
                        move "-" to rec-grid                   
                        modify form1-gd-1, insertion-index riga, 

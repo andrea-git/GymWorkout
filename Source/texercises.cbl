@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          texercises.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 1 novembre 2023 18:44:18.
+       DATE-WRITTEN.        domenica 18 agosto 2024 18:17:00.
        REMARKS.
       *{TOTEM}END
 
@@ -159,6 +159,17 @@
        77 v-mcg9           PIC  9.
        77 v-mcg10          PIC  9.
        77 v-mcg11          PIC  9.
+       77 v-mcg12          PIC  9.
+       77 v-mcg13          PIC  9.
+       77 v-mcg14          PIC  9.
+       77 v-mcg15          PIC  9.
+       77 v-mcg16          PIC  9.
+       77 v-mcg17          PIC  9.
+       77 v-mcg18          PIC  9.
+       77 v-mcg19          PIC  9.
+       77 v-mcg20          PIC  9.
+       77 v-mcg21          PIC  9.
+       77 v-mcg22          PIC  9.
        77 v-int1           PIC  9.
        77 v-int2           PIC  9.
        77 v-int3           PIC  9.
@@ -170,6 +181,28 @@
        77 v-int9           PIC  9.
        77 v-int10          PIC  9.
        77 v-int11          PIC  9.
+       77 v-int12          PIC  9.
+       77 v-int13          PIC  9.
+       77 v-int14          PIC  9.
+       77 v-int15          PIC  9.
+       77 v-int16          PIC  9.
+       77 v-int17          PIC  9.
+       77 v-int18          PIC  9.
+       77 v-int19          PIC  9.
+       77 v-int20          PIC  9.
+       77 v-int21          PIC  9.
+       77 v-int22          PIC  9.
+       77 v-int23          PIC  9.
+       77 v-int24          PIC  9.
+       77 v-int25          PIC  9.
+       77 v-int26          PIC  9.
+       77 v-int27          PIC  9.
+       77 v-int28          PIC  9.
+       77 v-int29          PIC  9.
+       77 v-int30          PIC  9.
+       77 v-int31          PIC  9.
+       77 v-int32          PIC  9.
+       77 v-int33          PIC  9.
        77 como-titolo      PIC  x(50).
        77 Screen1-Handle
                   USAGE IS HANDLE OF WINDOW.
@@ -267,6 +300,72 @@
                   VALUE IS 1.
        77 Calibri12-Occidentale
                   USAGE IS HANDLE OF FONT.
+       77 chk-mcg15-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-mcg14-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-mcg13-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-mcg12-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-mcg16-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-mcg17-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-mcg18-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-mcg19-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-mcg20-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-mcg21-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-mcg22-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int22-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int21-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int20-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int19-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int18-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int17-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int16-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int15-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int14-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int13-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int12-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int33-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int32-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int31-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int30-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int29-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int28-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int27-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int26-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int25-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int24-buf    PIC  9
+                  VALUE IS 0.
+       77 chk-int23-buf    PIC  9
+                  VALUE IS 0.
 
       ***********************************************************
       *   Code Gen's Buffer                                     *
@@ -403,8 +502,8 @@
            form1-gd-1, 
            Grid, 
            COL 1,40, 
-           LINE 4,00,
-           LINES 34,00 ,
+           LINE 5,74,
+           LINES 33,00 ,
            SIZE 172,00 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
@@ -438,7 +537,7 @@
            ef-note, 
            Entry-Field, 
            COL 8,40, 
-           LINE 38,30,
+           LINE 39,17,
            LINES 1,35 ,
            SIZE 165,00 ,
            BOXED,
@@ -456,8 +555,8 @@
            chk-mcgall, 
            Check-Box, 
            COL 2,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 15,00 ,
            EXCEPTION-VALUE 1001
            FLAT,
@@ -477,8 +576,8 @@
            chk-mcg1, 
            Check-Box, 
            COL 18,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -498,8 +597,8 @@
            chk-mcg2, 
            Check-Box, 
            COL 32,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -519,8 +618,8 @@
            chk-mcg3, 
            Check-Box, 
            COL 46,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -540,8 +639,8 @@
            chk-mcg4, 
            Check-Box, 
            COL 60,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -561,8 +660,8 @@
            chk-mcg5, 
            Check-Box, 
            COL 74,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -582,8 +681,8 @@
            chk-mcg6, 
            Check-Box, 
            COL 88,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -603,8 +702,8 @@
            chk-mcg7, 
            Check-Box, 
            COL 102,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -624,8 +723,8 @@
            chk-mcg8, 
            Check-Box, 
            COL 116,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -645,8 +744,8 @@
            chk-mcg9, 
            Check-Box, 
            COL 130,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -666,8 +765,8 @@
            chk-mcg10, 
            Check-Box, 
            COL 144,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -687,8 +786,8 @@
            chk-mcg11, 
            Check-Box, 
            COL 158,30, 
-           LINE 1,30,
-           LINES 1,13 ,
+           LINE 1,22,
+           LINES 0,70 ,
            SIZE 12,90 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -708,8 +807,8 @@
            chk-intall, 
            Check-Box, 
            COL 2,30, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 15,00 ,
            EXCEPTION-VALUE 1002
            FLAT,
@@ -729,8 +828,8 @@
            chk-int1, 
            Check-Box, 
            COL 18,30, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -750,8 +849,8 @@
            chk-int2, 
            Check-Box, 
            COL 32,30, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -771,8 +870,8 @@
            chk-int3, 
            Check-Box, 
            COL 46,30, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -792,8 +891,8 @@
            chk-int4, 
            Check-Box, 
            COL 60,30, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -813,8 +912,8 @@
            chk-int5, 
            Check-Box, 
            COL 74,30, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -834,8 +933,8 @@
            chk-int6, 
            Check-Box, 
            COL 88,30, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -855,8 +954,8 @@
            chk-int7, 
            Check-Box, 
            COL 102,30, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -876,8 +975,8 @@
            chk-int8, 
            Check-Box, 
            COL 116,30, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -897,8 +996,8 @@
            chk-int9, 
            Check-Box, 
            COL 130,30, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -918,8 +1017,8 @@
            chk-int10, 
            Check-Box, 
            COL 144,30, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -939,8 +1038,8 @@
            chk-int11, 
            Check-Box, 
            COL 158,20, 
-           LINE 2,61,
-           LINES 1,13 ,
+           LINE 3,22,
+           LINES 0,70 ,
            SIZE 13,00 ,
            EXCEPTION-VALUE 1000
            FLAT,
@@ -950,7 +1049,7 @@
            WIDTH-IN-CELLS,
            NOTIFY,
            TITLE "Check Box",
-           VALUE chk-int10-buf,
+           VALUE chk-int11-buf,
            VISIBLE 0,
            AFTER PROCEDURE chk-int10-AfterProcedure,
            BEFORE PROCEDURE chk-int10-BeforeProcedure, 
@@ -960,7 +1059,7 @@
            Form1-La-1, 
            Label, 
            COL 1,90, 
-           LINE 38,30,
+           LINE 39,17,
            LINES 1,22 ,
            SIZE 5,00 ,
            ID IS 31,
@@ -975,8 +1074,8 @@
            Form1-blockpgm-1, 
            Label, 
            COL 134,50, 
-           LINE 1,70,
-           LINES 1,00 ,
+           LINE 2,35,
+           LINES 0,70 ,
            SIZE 1,00 ,
            FONT IS Calibri12-Occidentale,
            ID IS AUTO-ID,
@@ -1002,6 +1101,712 @@
            VISIBLE v-custom,
            .
 
+      * BAR
+       05
+           Form1-Br-1, 
+           Bar,
+           COL 1,00, 
+           LINE 3,04,
+           SIZE 172,90 ,
+           ID IS 36,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           WIDTH 1,
+           .
+
+      * CHECK BOX
+       05
+           chk-int12, 
+           Check-Box, 
+           COL 18,30, 
+           LINE 4,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 16,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int12-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int1-AfterProcedure,
+           BEFORE PROCEDURE chk-int1-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int13, 
+           Check-Box, 
+           COL 32,30, 
+           LINE 4,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 17,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int13-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int2-AfterProcedure,
+           BEFORE PROCEDURE chk-int2-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int14, 
+           Check-Box, 
+           COL 46,30, 
+           LINE 4,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 18,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int14-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int3-AfterProcedure,
+           BEFORE PROCEDURE chk-int3-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int15, 
+           Check-Box, 
+           COL 60,30, 
+           LINE 4,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 19,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int15-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int4-AfterProcedure,
+           BEFORE PROCEDURE chk-int4-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int16, 
+           Check-Box, 
+           COL 74,30, 
+           LINE 4,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 20,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int16-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int5-AfterProcedure,
+           BEFORE PROCEDURE chk-int5-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int17, 
+           Check-Box, 
+           COL 88,30, 
+           LINE 4,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 21,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int17-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int6-AfterProcedure,
+           BEFORE PROCEDURE chk-int6-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int18, 
+           Check-Box, 
+           COL 102,30, 
+           LINE 4,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 22,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int18-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int7-AfterProcedure,
+           BEFORE PROCEDURE chk-int7-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int19, 
+           Check-Box, 
+           COL 116,30, 
+           LINE 4,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 23,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int19-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int8-AfterProcedure,
+           BEFORE PROCEDURE chk-int8-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int20, 
+           Check-Box, 
+           COL 130,30, 
+           LINE 4,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 24,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int20-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int9-AfterProcedure,
+           BEFORE PROCEDURE chk-int9-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int21, 
+           Check-Box, 
+           COL 144,30, 
+           LINE 4,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 25,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int21-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int10-AfterProcedure,
+           BEFORE PROCEDURE chk-int10-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int22, 
+           Check-Box, 
+           COL 158,20, 
+           LINE 4,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 26,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int22-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int10-AfterProcedure,
+           BEFORE PROCEDURE chk-int10-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int23, 
+           Check-Box, 
+           COL 18,30, 
+           LINE 4,96,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 16,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int23-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int1-AfterProcedure,
+           BEFORE PROCEDURE chk-int1-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int24, 
+           Check-Box, 
+           COL 32,30, 
+           LINE 4,96,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 17,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int24-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int2-AfterProcedure,
+           BEFORE PROCEDURE chk-int2-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int25, 
+           Check-Box, 
+           COL 46,30, 
+           LINE 4,96,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 18,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int25-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int3-AfterProcedure,
+           BEFORE PROCEDURE chk-int3-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int26, 
+           Check-Box, 
+           COL 60,30, 
+           LINE 4,96,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 19,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int26-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int4-AfterProcedure,
+           BEFORE PROCEDURE chk-int4-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int27, 
+           Check-Box, 
+           COL 74,30, 
+           LINE 4,96,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 20,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int27-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int5-AfterProcedure,
+           BEFORE PROCEDURE chk-int5-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int28, 
+           Check-Box, 
+           COL 88,30, 
+           LINE 4,96,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 21,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int28-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int6-AfterProcedure,
+           BEFORE PROCEDURE chk-int6-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int29, 
+           Check-Box, 
+           COL 102,30, 
+           LINE 4,96,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 22,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int29-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int7-AfterProcedure,
+           BEFORE PROCEDURE chk-int7-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int30, 
+           Check-Box, 
+           COL 116,30, 
+           LINE 4,96,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 23,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int30-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int8-AfterProcedure,
+           BEFORE PROCEDURE chk-int8-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int31, 
+           Check-Box, 
+           COL 130,30, 
+           LINE 4,96,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 24,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int31-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int9-AfterProcedure,
+           BEFORE PROCEDURE chk-int9-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int32, 
+           Check-Box, 
+           COL 144,30, 
+           LINE 4,96,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 25,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int32-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int10-AfterProcedure,
+           BEFORE PROCEDURE chk-int10-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-int33, 
+           Check-Box, 
+           COL 158,20, 
+           LINE 4,96,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 26,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-int33-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-int10-AfterProcedure,
+           BEFORE PROCEDURE chk-int10-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg22, 
+           Check-Box, 
+           COL 158,30, 
+           LINE 2,09,
+           LINES 0,70 ,
+           SIZE 12,90 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 27,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg22-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg10-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg10-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg21, 
+           Check-Box, 
+           COL 144,30, 
+           LINE 2,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 14,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg21-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg10-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg10-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg20, 
+           Check-Box, 
+           COL 130,30, 
+           LINE 2,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 11,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg20-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg9-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg9-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg19, 
+           Check-Box, 
+           COL 116,30, 
+           LINE 2,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 10,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg19-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg8-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg8-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg18, 
+           Check-Box, 
+           COL 102,30, 
+           LINE 2,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 9,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg18-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg7-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg7-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg17, 
+           Check-Box, 
+           COL 88,30, 
+           LINE 2,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 8,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg17-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg6-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg6-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg16, 
+           Check-Box, 
+           COL 74,30, 
+           LINE 2,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 7,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg16-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg5-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg5-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg15, 
+           Check-Box, 
+           COL 60,30, 
+           LINE 2,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 6,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg15-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg4-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg4-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg14, 
+           Check-Box, 
+           COL 46,30, 
+           LINE 2,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 13,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg14-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg3-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg3-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg13, 
+           Check-Box, 
+           COL 32,30, 
+           LINE 2,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 5,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg13-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg2-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg2-BeforeProcedure, 
+           .
+      * CHECK BOX
+       05
+           chk-mcg12, 
+           Check-Box, 
+           COL 18,30, 
+           LINE 2,09,
+           LINES 0,70 ,
+           SIZE 13,00 ,
+           EXCEPTION-VALUE 1000
+           FLAT,
+           FONT IS Calibri12-Occidentale,
+           ID IS 4,
+           HEIGHT-IN-CELLS,
+           WIDTH-IN-CELLS,
+           NOTIFY,
+           TITLE "Check Box",
+           VALUE chk-mcg12-buf,
+           VISIBLE 0,
+           AFTER PROCEDURE chk-mcg1-AfterProcedure,
+           BEFORE PROCEDURE chk-mcg1-BeforeProcedure, 
+           .
       * TOOLBAR
        01
            Form1-Tb-1,
@@ -2401,8 +3206,8 @@
            Display Independent GRAPHICAL WINDOW
               SCREEN LINE 1,
               SCREEN COLUMN 0,
-              LINES 39,17,
-              SIZE 172,90,
+              LINES 39,83,
+              SIZE 173,40,
               COLOR 131329,
               CONTROL FONT Calibri14-Occidentale,
               LINK TO THREAD,
@@ -2470,6 +3275,28 @@
            = 1, value 1
                     when 11 modify chk-mcg11, title = mcg-desc, visible 
            = 1, value 1
+                    when 12 modify chk-mcg12, title = mcg-desc, visible 
+           = 1, value 1
+                    when 13 modify chk-mcg13, title = mcg-desc, visible 
+           = 1, value 1
+                    when 14 modify chk-mcg14, title = mcg-desc, visible 
+           = 1, value 1
+                    when 15 modify chk-mcg15, title = mcg-desc, visible 
+           = 1, value 1
+                    when 16 modify chk-mcg16, title = mcg-desc, visible 
+           = 1, value 1
+                    when 17 modify chk-mcg17, title = mcg-desc, visible 
+           = 1, value 1
+                    when 18 modify chk-mcg18, title = mcg-desc, visible 
+           = 1, value 1
+                    when 19 modify chk-mcg19, title = mcg-desc, visible 
+           = 1, value 1
+                    when 20 modify chk-mcg20, title = mcg-desc, visible 
+           = 1, value 1
+                    when 21 modify chk-mcg21, title = mcg-desc, visible 
+           = 1, value 1
+                    when 22 modify chk-mcg22, title = mcg-desc, visible 
+           = 1, value 1
                     end-evaluate
                  end-perform
            end-start.
@@ -2482,7 +3309,8 @@
                  perform until 1 = 2
                     add 1 to riga
                     read intexe next at end exit perform end-read
-                    evaluate riga                           
+                    evaluate riga                                       
+                       
                     when 1  modify chk-int1,  title = int-desc, visible 
            = 1, value 1
                     when 2  modify chk-int2,  title = int-desc, visible 
@@ -2504,6 +3332,50 @@
                     when 10 modify chk-int10, title = int-desc, visible 
            = 1, value 1
                     when 11 modify chk-int11, title = int-desc, visible 
+           = 1, value 1
+                    when 12 modify chk-int12, title = int-desc, visible 
+           = 1, value 1
+                    when 13 modify chk-int13, title = int-desc, visible 
+           = 1, value 1
+                    when 14 modify chk-int14, title = int-desc, visible 
+           = 1, value 1
+                    when 15 modify chk-int15, title = int-desc, visible 
+           = 1, value 1
+                    when 16 modify chk-int16, title = int-desc, visible 
+           = 1, value 1
+                    when 17 modify chk-int17, title = int-desc, visible 
+           = 1, value 1
+                    when 18 modify chk-int18, title = int-desc, visible 
+           = 1, value 1
+                    when 19 modify chk-int19, title = int-desc, visible 
+           = 1, value 1
+                    when 20 modify chk-int20, title = int-desc, visible 
+           = 1, value 1
+                    when 21 modify chk-int21, title = int-desc, visible 
+           = 1, value 1
+                    when 22 modify chk-int22, title = int-desc, visible 
+           = 1, value 1
+                    when 23 modify chk-int23, title = int-desc, visible 
+           = 1, value 1
+                    when 24 modify chk-int24, title = int-desc, visible 
+           = 1, value 1
+                    when 25 modify chk-int25, title = int-desc, visible 
+           = 1, value 1
+                    when 26 modify chk-int26, title = int-desc, visible 
+           = 1, value 1
+                    when 27 modify chk-int27, title = int-desc, visible 
+           = 1, value 1
+                    when 28 modify chk-int28, title = int-desc, visible 
+           = 1, value 1
+                    when 29 modify chk-int29, title = int-desc, visible 
+           = 1, value 1
+                    when 30 modify chk-int30, title = int-desc, visible 
+           = 1, value 1
+                    when 31 modify chk-int31, title = int-desc, visible 
+           = 1, value 1
+                    when 32 modify chk-int32, title = int-desc, visible 
+           = 1, value 1
+                    when 33 modify chk-int33, title = int-desc, visible 
            = 1, value 1
                     end-evaluate
                     move int-cedimento to el-int-ced(riga)
@@ -2597,6 +3469,72 @@
                  PERFORM Form1-Cb-1-LinkTo
               WHEN Key-Status = 1002
                  PERFORM chk-intall-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
+              WHEN Key-Status = 1000
+                 PERFORM Form1-Cb-1-LinkTo
               WHEN Key-Status = 1000
                  PERFORM Form1-Cb-1-LinkTo
               WHEN Key-Status = 1000
@@ -3780,7 +4718,77 @@
            como-titolo
            if chk-mcg11-buf = 0   and mcg-desc = como-titolo
               exit paragraph 
-           end-if.     
+           end-if.   
+  
+
+           
+
+           inquire chk-mcg12, value in chk-mcg12-buf, title in 
+           como-titolo
+           if chk-mcg12-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg13, value in chk-mcg13-buf, title in 
+           como-titolo
+           if chk-mcg13-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg14, value in chk-mcg14-buf, title in 
+           como-titolo
+           if chk-mcg14-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg15, value in chk-mcg15-buf, title in 
+           como-titolo
+           if chk-mcg15-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg16, value in chk-mcg16-buf, title in 
+           como-titolo
+           if chk-mcg16-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg17, value in chk-mcg17-buf, title in 
+           como-titolo
+           if chk-mcg17-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg18, value in chk-mcg18-buf, title in 
+           como-titolo
+           if chk-mcg18-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg19, value in chk-mcg19-buf, title in 
+           como-titolo
+           if chk-mcg19-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg20, value in chk-mcg20-buf, title in 
+           como-titolo
+           if chk-mcg20-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg21, value in chk-mcg21-buf, title in 
+           como-titolo
+           if chk-mcg21-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
+           inquire chk-mcg22, value in chk-mcg22-buf, title in 
+           como-titolo
+           if chk-mcg22-buf = 0   and mcg-desc = como-titolo
+              exit paragraph 
+           end-if.   
+
 
            inquire chk-int1, value in chk-int1-buf, title in como-titolo
            if chk-int1-buf = 0 and int-desc = como-titolo
@@ -3916,6 +4924,151 @@
               end-if
            end-if.
 
+           
+
+           inquire chk-int12, value in chk-int12-buf, title in 
+           como-titolo
+           if chk-int12-buf = 0 and int-desc = como-titolo
+              if exe-isCedimento > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
+
+           inquire chk-int13, value in chk-int13-buf, title in 
+           como-titolo
+           if chk-int13-buf = 0 and int-desc = como-titolo
+              if exe-isCedimento > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
+
+           inquire chk-int14, value in chk-int14-buf, title in 
+           como-titolo
+           if chk-int14-buf = 0 and int-desc = como-titolo
+              if exe-isCedimento > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
+
+           inquire chk-int15, value in chk-int15-buf, title in 
+           como-titolo
+           if chk-int15-buf = 0 and int-desc = como-titolo
+              if exe-isCedimento > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
+
+           inquire chk-int16, value in chk-int16-buf, title in 
+           como-titolo
+           if chk-int16-buf = 0 and int-desc = como-titolo
+              if exe-isCedimento > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
+
+           inquire chk-int17, value in chk-int17-buf, title in 
+           como-titolo
+           if chk-int17-buf = 0 and int-desc = como-titolo
+              if exe-isCedimento > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
+
+           inquire chk-int18, value in chk-int18-buf, title in 
+           como-titolo
+           if chk-int18-buf = 0 and int-desc = como-titolo
+              if exe-isCedimento > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
+
+           inquire chk-int19, value in chk-int19-buf, title in 
+           como-titolo
+           if chk-int19-buf = 0 and int-desc = como-titolo
+              if exe-isCedimento > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
+
+           inquire chk-int20, value in chk-int20-buf, title in 
+           como-titolo
+           if chk-int20-buf = 0 and int-desc = como-titolo
+              if exe-isCedimento > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
+
+           inquire chk-int21, value in chk-int21-buf, title in 
+           como-titolo
+           if chk-int21-buf = 0 and int-desc = como-titolo
+              if exe-isCedimento > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
+
+           inquire chk-int22 value in chk-int22-buf, title in 
+           como-titolo
+           if chk-int22-buf = 0 and int-desc = como-titolo
+              if exe-isCedimento > 0
+                 perform RP-VALIDO
+                 if not trovato
+                    exit paragraph
+                 end-if
+              else
+                 exit paragraph 
+              end-if
+           end-if.
+
            add 1 to riga.
 
            move exe-note to hid-note.
@@ -3959,6 +5112,17 @@
            inquire chk-mcg9,  visible in v-mcg9.
            inquire chk-mcg10, visible in v-mcg10.
            inquire chk-mcg11, visible in v-mcg11.
+           inquire chk-mcg12, visible in v-mcg12.
+           inquire chk-mcg13, visible in v-mcg13.
+           inquire chk-mcg14, visible in v-mcg14.
+           inquire chk-mcg15, visible in v-mcg15.
+           inquire chk-mcg16, visible in v-mcg16.
+           inquire chk-mcg17, visible in v-mcg17.
+           inquire chk-mcg18, visible in v-mcg18.
+           inquire chk-mcg19, visible in v-mcg19.
+           inquire chk-mcg20, visible in v-mcg20.
+           inquire chk-mcg21, visible in v-mcg21.
+           inquire chk-mcg22, visible in v-mcg22.
 
            inquire chk-int1,  visible in v-int1.
            inquire chk-int2,  visible in v-int2.
@@ -3971,6 +5135,28 @@
            inquire chk-int9,  visible in v-int9.
            inquire chk-int10, visible in v-int10.
            inquire chk-int11, visible in v-int11.
+           inquire chk-int12, visible in v-int12.
+           inquire chk-int13, visible in v-int13.
+           inquire chk-int14, visible in v-int14.
+           inquire chk-int15, visible in v-int15.
+           inquire chk-int16, visible in v-int16.
+           inquire chk-int17, visible in v-int17.
+           inquire chk-int18, visible in v-int18.
+           inquire chk-int19, visible in v-int19.
+           inquire chk-int20, visible in v-int20.
+           inquire chk-int21, visible in v-int21.
+           inquire chk-int22, visible in v-int22.
+           inquire chk-int23, visible in v-int23.
+           inquire chk-int24, visible in v-int24.
+           inquire chk-int25, visible in v-int25.
+           inquire chk-int26, visible in v-int26.
+           inquire chk-int27, visible in v-int27.
+           inquire chk-int28, visible in v-int28.
+           inquire chk-int29, visible in v-int29.
+           inquire chk-int30, visible in v-int30.
+           inquire chk-int31, visible in v-int31.
+           inquire chk-int32, visible in v-int32.
+           inquire chk-int33, visible in v-int33.
                                              
            if v-mcg1 = 1 and chk-mcg1-buf = 0 
               move 0 to chk-mcgall-buf
@@ -4011,11 +5197,56 @@
            if v-mcg10 = 1 and chk-mcg10-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
-           end-if.
+           end-if.          
            if v-mcg11 = 1 and chk-mcg11-buf = 0 
               move 0 to chk-mcgall-buf
               display chk-mcgall
+           end-if.                
+           if v-mcg12 = 1 and chk-mcg12-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
            end-if.
+           if v-mcg13 = 1 and chk-mcg13-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if.
+           if v-mcg14 = 1 and chk-mcg14-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if.
+           if v-mcg15 = 1 and chk-mcg15-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if.
+           if v-mcg16 = 1 and chk-mcg16-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if.
+           if v-mcg17 = 1 and chk-mcg17-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if.
+           if v-mcg18 = 1 and chk-mcg18-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if.
+           if v-mcg19 = 1 and chk-mcg19-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if.
+           if v-mcg20 = 1 and chk-mcg20-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if.
+           if v-mcg21 = 1 and chk-mcg21-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if.
+           if v-mcg22 = 1 and chk-mcg22-buf = 0 
+              move 0 to chk-mcgall-buf
+              display chk-mcgall
+           end-if.
+
 
            if v-int1 = 1 and chk-int1-buf = 0 
               move 0 to chk-intall-buf
@@ -4056,8 +5287,96 @@
            if v-int10 = 1 and chk-int10-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
-           end-if.
+           end-if.   
            if v-int11 = 1 and chk-int11-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.
+           if v-int12 = 1 and chk-int12-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.    
+           if v-int13 = 1 and chk-int13-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.                     
+           if v-int14 = 1 and chk-int14-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.   
+           if v-int15 = 1 and chk-int15-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.                     
+           if v-int16 = 1 and chk-int16-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.   
+           if v-int17 = 1 and chk-int17-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.                     
+           if v-int18 = 1 and chk-int18-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.   
+           if v-int19 = 1 and chk-int19-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall       
+           end-if.                     
+           if v-int20 = 1 and chk-int20-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.
+           if v-int21 = 1 and chk-int21-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.   
+           if v-int22 = 1 and chk-int22-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.                     
+           if v-int23 = 1 and chk-int23-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.   
+           if v-int24 = 1 and chk-int24-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.                     
+           if v-int25 = 1 and chk-int25-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.   
+           if v-int26 = 1 and chk-int26-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.                     
+           if v-int27 = 1 and chk-int27-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.   
+           if v-int28 = 1 and chk-int28-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.                     
+           if v-int29 = 1 and chk-int29-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.   
+           if v-int30 = 1 and chk-int30-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.                    
+           if v-int31 = 1 and chk-int31-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.                 
+           if v-int32 = 1 and chk-int32-buf = 0 
+              move 0 to chk-intall-buf
+              display chk-intall
+           end-if.                                      
+           if v-int33 = 1 and chk-int33-buf = 0 
               move 0 to chk-intall-buf
               display chk-intall
            end-if.
@@ -4082,7 +5401,30 @@
            and 
               ( ( v-mcg10 = 1 and chk-mcg10-buf = 1 ) or v-mcg10 = 0 ) 
            and 
-              ( ( v-mcg11 = 1 and chk-mcg11-buf = 1 ) or v-mcg11 = 0 )  
+              ( ( v-mcg11 = 1 and chk-mcg11-buf = 1 ) or v-mcg11 = 0 ) 
+           and 
+              ( ( v-mcg12 = 1 and chk-mcg12-buf = 1 ) or v-mcg12 = 0 ) 
+           and 
+              ( ( v-mcg13 = 1 and chk-mcg13-buf = 1 ) or v-mcg13 = 0 ) 
+           and 
+              ( ( v-mcg14 = 1 and chk-mcg14-buf = 1 ) or v-mcg14 = 0 ) 
+           and 
+              ( ( v-mcg15 = 1 and chk-mcg15-buf = 1 ) or v-mcg15 = 0 ) 
+           and 
+              ( ( v-mcg16 = 1 and chk-mcg16-buf = 1 ) or v-mcg16 = 0 ) 
+           and 
+              ( ( v-mcg17 = 1 and chk-mcg17-buf = 1 ) or v-mcg17 = 0 ) 
+           and 
+              ( ( v-mcg18 = 1 and chk-mcg18-buf = 1 ) or v-mcg18 = 0 ) 
+           and 
+              ( ( v-mcg19 = 1 and chk-mcg19-buf = 1 ) or v-mcg19 = 0 ) 
+           and 
+              ( ( v-mcg20 = 1 and chk-mcg20-buf = 1 ) or v-mcg20 = 0 ) 
+           and 
+              ( ( v-mcg21 = 1 and chk-mcg21-buf = 1 ) or v-mcg21 = 0 ) 
+           and 
+              ( ( v-mcg22 = 1 and chk-mcg22-buf = 1 ) or v-mcg22 = 0 )  
+            
               move 1 to chk-mcgall-buf
               display chk-mcgall
            end-if.
@@ -4108,6 +5450,50 @@
               ( ( v-int10 = 1 and chk-int10-buf = 1 ) or v-int10 = 0 ) 
            and 
               ( ( v-int11 = 1 and chk-int11-buf = 1 ) or v-int11 = 0 ) 
+           and 
+              ( ( v-int12 = 1 and chk-int12-buf = 1 ) or v-int12 = 0 ) 
+           and 
+              ( ( v-int13 = 1 and chk-int13-buf = 1 ) or v-int13 = 0 ) 
+           and 
+              ( ( v-int14 = 1 and chk-int14-buf = 1 ) or v-int14 = 0 ) 
+           and 
+              ( ( v-int15 = 1 and chk-int15-buf = 1 ) or v-int15 = 0 ) 
+           and 
+              ( ( v-int16 = 1 and chk-int16-buf = 1 ) or v-int16 = 0 ) 
+           and 
+              ( ( v-int17 = 1 and chk-int17-buf = 1 ) or v-int17 = 0 ) 
+           and 
+              ( ( v-int18 = 1 and chk-int18-buf = 1 ) or v-int18 = 0 ) 
+           and 
+              ( ( v-int19 = 1 and chk-int19-buf = 1 ) or v-int19 = 0 ) 
+           and 
+              ( ( v-int20 = 1 and chk-int20-buf = 1 ) or v-int20 = 0 ) 
+           and 
+              ( ( v-int21 = 1 and chk-int21-buf = 1 ) or v-int21 = 0 ) 
+           and 
+              ( ( v-int22 = 1 and chk-int22-buf = 1 ) or v-int22 = 0 ) 
+           and 
+              ( ( v-int23 = 1 and chk-int23-buf = 1 ) or v-int23 = 0 ) 
+           and 
+              ( ( v-int24 = 1 and chk-int24-buf = 1 ) or v-int24 = 0 ) 
+           and 
+              ( ( v-int25 = 1 and chk-int25-buf = 1 ) or v-int25 = 0 ) 
+           and 
+              ( ( v-int26 = 1 and chk-int26-buf = 1 ) or v-int26 = 0 ) 
+           and 
+              ( ( v-int27 = 1 and chk-int27-buf = 1 ) or v-int27 = 0 ) 
+           and 
+              ( ( v-int28 = 1 and chk-int28-buf = 1 ) or v-int28 = 0 ) 
+           and 
+              ( ( v-int29 = 1 and chk-int29-buf = 1 ) or v-int29 = 0 ) 
+           and 
+              ( ( v-int30 = 1 and chk-int30-buf = 1 ) or v-int30 = 0 ) 
+           and 
+              ( ( v-int31 = 1 and chk-int31-buf = 1 ) or v-int31 = 0 ) 
+           and 
+              ( ( v-int32 = 1 and chk-int32-buf = 1 ) or v-int32 = 0 ) 
+           and 
+              ( ( v-int33 = 1 and chk-int33-buf = 1 ) or v-int33 = 0 ) 
               move 1 to chk-intall-buf
               display chk-intall
            end-if.
@@ -4178,8 +5564,96 @@
                   if chk-int10-buf = 1
                      perform SETTA-FLAG-RP
                   end-if
-           when 10 inquire chk-int11, value in chk-int11-buf
+           when 11 inquire chk-int11, value in chk-int11-buf
                   if chk-int11-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 12 inquire chk-int12, value in chk-int12-buf
+                  if chk-int12-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 13 inquire chk-int13, value in chk-int13-buf
+                  if chk-int13-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 14 inquire chk-int14, value in chk-int14-buf
+                  if chk-int14-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 15 inquire chk-int15, value in chk-int15-buf
+                  if chk-int15-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 16 inquire chk-int16, value in chk-int16-buf
+                  if chk-int16-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 17 inquire chk-int17, value in chk-int17-buf
+                  if chk-int17-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 18 inquire chk-int18, value in chk-int18-buf
+                  if chk-int18-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 19 inquire chk-int19, value in chk-int19-buf
+                  if chk-int19-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 20 inquire chk-int20, value in chk-int20-buf
+                  if chk-int20-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if
+           when 21 inquire chk-int21, value in chk-int21-buf
+                  if chk-int21-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 22 inquire chk-int22, value in chk-int22-buf
+                  if chk-int22-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 23 inquire chk-int23, value in chk-int23-buf
+                  if chk-int23-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 24 inquire chk-int24, value in chk-int24-buf
+                  if chk-int24-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 25 inquire chk-int25, value in chk-int25-buf
+                  if chk-int25-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 26 inquire chk-int26, value in chk-int26-buf
+                  if chk-int26-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 27 inquire chk-int27, value in chk-int27-buf
+                  if chk-int27-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 28 inquire chk-int28, value in chk-int28-buf
+                  if chk-int28-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 29 inquire chk-int29, value in chk-int29-buf
+                  if chk-int29-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if      
+           when 30 inquire chk-int30, value in chk-int30-buf
+                  if chk-int30-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if 
+           when 31 inquire chk-int31, value in chk-int31-buf
+                  if chk-int31-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if 
+           when 32 inquire chk-int32, value in chk-int32-buf
+                  if chk-int32-buf = 1
+                     perform SETTA-FLAG-RP
+                  end-if 
+           when 33 inquire chk-int33, value in chk-int33-buf
+                  if chk-int33-buf = 1
                      perform SETTA-FLAG-RP
                   end-if
            end-evaluate.
@@ -4760,8 +6234,19 @@
            inquire chk-mcg7,  visible in v-mcg7.
            inquire chk-mcg8,  visible in v-mcg8.
            inquire chk-mcg9,  visible in v-mcg9.
-           inquire chk-mcg10, visible in v-mcg10.
+           inquire chk-mcg10, visible in v-mcg10. 
            inquire chk-mcg11, visible in v-mcg11.
+           inquire chk-mcg12, visible in v-mcg12.
+           inquire chk-mcg13, visible in v-mcg13.
+           inquire chk-mcg14, visible in v-mcg14.
+           inquire chk-mcg15, visible in v-mcg15.
+           inquire chk-mcg16, visible in v-mcg16.
+           inquire chk-mcg17, visible in v-mcg17.
+           inquire chk-mcg18, visible in v-mcg18.
+           inquire chk-mcg19, visible in v-mcg19.
+           inquire chk-mcg20, visible in v-mcg20.
+           inquire chk-mcg21, visible in v-mcg21.
+           inquire chk-mcg22, visible in v-mcg22.
 
            if chk-mcgall-buf = 0
               if v-mcg1 = 1
@@ -4803,10 +6288,54 @@
               if v-mcg10 = 1
                  move 0 to chk-mcg10-buf
                  modify chk-mcg10, value chk-mcg10-buf
-              end-if
+              end-if        
               if v-mcg11 = 1
                  move 0 to chk-mcg11-buf
                  modify chk-mcg11, value chk-mcg11-buf
+              end-if
+              if v-mcg12 = 1
+                 move 0 to chk-mcg12-buf
+                 modify chk-mcg12, value chk-mcg12-buf
+              end-if
+              if v-mcg13 = 1
+                 move 0 to chk-mcg13-buf
+                 modify chk-mcg13, value chk-mcg13-buf
+              end-if
+              if v-mcg14 = 1
+                 move 0 to chk-mcg14-buf
+                 modify chk-mcg14, value chk-mcg14-buf
+              end-if
+              if v-mcg15 = 1
+                 move 0 to chk-mcg15-buf
+                 modify chk-mcg15, value chk-mcg15-buf
+              end-if
+              if v-mcg16 = 1
+                 move 0 to chk-mcg16-buf
+                 modify chk-mcg16, value chk-mcg16-buf
+              end-if
+              if v-mcg17 = 1
+                 move 0 to chk-mcg17-buf
+                 modify chk-mcg17, value chk-mcg17-buf
+              end-if
+              if v-mcg18 = 1
+                 move 0 to chk-mcg18-buf
+                 modify chk-mcg18, value chk-mcg18-buf
+              end-if
+              if v-mcg19 = 1
+                 move 0 to chk-mcg19-buf
+                 modify chk-mcg19, value chk-mcg19-buf
+              end-if
+              if v-mcg20 = 1
+                 move 0 to chk-mcg20-buf
+                 modify chk-mcg20, value chk-mcg20-buf
+              end-if
+              if v-mcg21 = 1
+                 move 0 to chk-mcg21-buf
+                 modify chk-mcg21, value chk-mcg21-buf
+              end-if
+              if v-mcg22 = 1
+                 move 0 to chk-mcg22-buf
+                 modify chk-mcg22, value chk-mcg22-buf
               end-if
            else
               if v-mcg1 = 1
@@ -4848,10 +6377,54 @@
               if v-mcg10 = 1
                  move 1 to chk-mcg10-buf
                  modify chk-mcg10, value chk-mcg10-buf
+              end-if   
+              if v-mcg12 = 1
+                 move 1 to chk-mcg12-buf
+                 modify chk-mcg12, value chk-mcg12-buf
+              end-if
+              if v-mcg13 = 1
+                 move 1 to chk-mcg13-buf
+                 modify chk-mcg13, value chk-mcg13-buf
+              end-if
+              if v-mcg14 = 1
+                 move 1 to chk-mcg14-buf
+                 modify chk-mcg14, value chk-mcg14-buf
+              end-if
+              if v-mcg15 = 1
+                 move 1 to chk-mcg15-buf
+                 modify chk-mcg15, value chk-mcg15-buf
               end-if
               if v-mcg11 = 1
                  move 1 to chk-mcg11-buf
                  modify chk-mcg11, value chk-mcg11-buf
+              end-if
+              if v-mcg16 = 1
+                 move 1 to chk-mcg16-buf
+                 modify chk-mcg16, value chk-mcg16-buf
+              end-if
+              if v-mcg17 = 1
+                 move 1 to chk-mcg17-buf
+                 modify chk-mcg17, value chk-mcg17-buf
+              end-if
+              if v-mcg18 = 1
+                 move 1 to chk-mcg18-buf
+                 modify chk-mcg18, value chk-mcg18-buf
+              end-if
+              if v-mcg19 = 1
+                 move 1 to chk-mcg19-buf
+                 modify chk-mcg19, value chk-mcg19-buf
+              end-if
+              if v-mcg20 = 1
+                 move 1 to chk-mcg20-buf
+                 modify chk-mcg20, value chk-mcg20-buf
+              end-if
+              if v-mcg21 = 1
+                 move 1 to chk-mcg21-buf
+                 modify chk-mcg21, value chk-mcg21-buf
+              end-if
+              if v-mcg22 = 1
+                 move 1 to chk-mcg22-buf
+                 modify chk-mcg22, value chk-mcg22-buf
               end-if
            end-if.
            perform LOAD-RECORD 
@@ -4870,6 +6443,28 @@
            inquire chk-int9,  visible in v-int9.
            inquire chk-int10, visible in v-int10.
            inquire chk-int11, visible in v-int11.
+           inquire chk-int12, visible in v-int12.
+           inquire chk-int13, visible in v-int13.
+           inquire chk-int14, visible in v-int14.
+           inquire chk-int15, visible in v-int15.
+           inquire chk-int16, visible in v-int16.
+           inquire chk-int17, visible in v-int17.
+           inquire chk-int18, visible in v-int18.
+           inquire chk-int19, visible in v-int19.
+           inquire chk-int20, visible in v-int20.
+           inquire chk-int21, visible in v-int21.
+           inquire chk-int22, visible in v-int22.
+           inquire chk-int23, visible in v-int23.
+           inquire chk-int24, visible in v-int24.
+           inquire chk-int25, visible in v-int25.
+           inquire chk-int26, visible in v-int26.
+           inquire chk-int27, visible in v-int27.
+           inquire chk-int28, visible in v-int28.
+           inquire chk-int29, visible in v-int29.
+           inquire chk-int30, visible in v-int30.
+           inquire chk-int31, visible in v-int31.
+           inquire chk-int32, visible in v-int32.
+           inquire chk-int33, visible in v-int33.
 
            if chk-intall-buf = 0
               if v-int1 = 1
@@ -4915,6 +6510,94 @@
               if v-int11 = 1
                  move 0 to chk-int11-buf
                  modify chk-int11, value chk-int11-buf
+              end-if    
+              if v-int12 = 1
+                 move 0 to chk-int12-buf
+                 modify chk-int12, value chk-int12-buf
+              end-if    
+              if v-int13 = 1
+                 move 0 to chk-int13-buf
+                 modify chk-int13, value chk-int13-buf
+              end-if    
+              if v-int14 = 1
+                 move 0 to chk-int14-buf
+                 modify chk-int14, value chk-int14-buf
+              end-if    
+              if v-int15 = 1
+                 move 0 to chk-int15-buf
+                 modify chk-int15, value chk-int15-buf
+              end-if    
+              if v-int16 = 1
+                 move 0 to chk-int16-buf
+                 modify chk-int16, value chk-int16-buf
+              end-if    
+              if v-int17 = 1
+                 move 0 to chk-int17-buf
+                 modify chk-int17, value chk-int17-buf
+              end-if    
+              if v-int18 = 1
+                 move 0 to chk-int18-buf
+                 modify chk-int18, value chk-int18-buf
+              end-if    
+              if v-int19 = 1
+                 move 0 to chk-int19-buf
+                 modify chk-int19, value chk-int19-buf
+              end-if                              
+              if v-int20 = 1
+                 move 0 to chk-int20-buf
+                 modify chk-int20, value chk-int20-buf
+              end-if                              
+              if v-int21 = 1
+                 move 0 to chk-int21-buf
+                 modify chk-int21, value chk-int21-buf
+              end-if                              
+              if v-int22 = 1
+                 move 0 to chk-int22-buf
+                 modify chk-int22, value chk-int22-buf
+              end-if
+              if v-int23 = 1
+                 move 0 to chk-int23-buf
+                 modify chk-int23, value chk-int23-buf
+              end-if
+              if v-int24 = 1
+                 move 0 to chk-int24-buf
+                 modify chk-int24, value chk-int24-buf
+              end-if
+              if v-int25 = 1
+                 move 0 to chk-int25-buf
+                 modify chk-int25, value chk-int25-buf
+              end-if
+              if v-int26 = 1
+                 move 0 to chk-int26-buf
+                 modify chk-int26, value chk-int26-buf
+              end-if
+              if v-int27 = 1
+                 move 0 to chk-int27-buf
+                 modify chk-int27, value chk-int27-buf
+              end-if
+              if v-int28 = 1
+                 move 0 to chk-int28-buf          
+                 modify chk-int28, value chk-int28-buf
+              end-if
+              if v-int29 = 1
+                 move 0 to chk-int29-buf
+                 modify chk-int29, value chk-int29-buf
+              end-if
+              if v-int30 = 1
+                 move 0 to chk-int30-buf
+                 modify chk-int30, value chk-int30-buf
+              end-if    
+              if v-int31 = 1
+                 move 0 to chk-int31-buf
+                 modify chk-int31, value chk-int31-buf
+              end-if
+              if v-int32 = 1
+                 move 0 to chk-int32-buf
+                 modify chk-int32, value chk-int32-buf
+              end-if
+              if v-int33 = 1
+                 move 0 to chk-int33-buf
+                 modify chk-int33, value chk-int33-buf
               end-if
            else
               if v-int1 = 1
@@ -4960,6 +6643,94 @@
               if v-int11 = 1
                  move 1 to chk-int11-buf
                  modify chk-int11, value chk-int11-buf
+              end-if             
+              if v-int12 = 1
+                 move 1 to chk-int12-buf
+                 modify chk-int12, value chk-int12-buf
+              end-if    
+              if v-int13 = 1
+                 move 1 to chk-int13-buf
+                 modify chk-int13, value chk-int13-buf
+              end-if    
+              if v-int14 = 1
+                 move 1 to chk-int14-buf
+                 modify chk-int14, value chk-int14-buf
+              end-if    
+              if v-int15 = 1
+                 move 1 to chk-int15-buf
+                 modify chk-int15, value chk-int15-buf
+              end-if    
+              if v-int16 = 1
+                 move 1 to chk-int16-buf
+                 modify chk-int16, value chk-int16-buf
+              end-if    
+              if v-int17 = 1
+                 move 1 to chk-int17-buf
+                 modify chk-int17, value chk-int17-buf
+              end-if    
+              if v-int18 = 1
+                 move 1 to chk-int18-buf
+                 modify chk-int18, value chk-int18-buf
+              end-if    
+              if v-int19 = 1
+                 move 1 to chk-int19-buf
+                 modify chk-int19, value chk-int19-buf
+              end-if                              
+              if v-int20 = 1
+                 move 1 to chk-int20-buf
+                 modify chk-int20, value chk-int20-buf
+              end-if                              
+              if v-int21 = 1
+                 move 1 to chk-int21-buf
+                 modify chk-int21, value chk-int21-buf
+              end-if                              
+              if v-int22 = 1
+                 move 1 to chk-int22-buf
+                 modify chk-int22, value chk-int22-buf
+              end-if
+              if v-int23 = 1
+                 move 1 to chk-int23-buf
+                 modify chk-int23, value chk-int23-buf
+              end-if
+              if v-int24 = 1
+                 move 1 to chk-int24-buf
+                 modify chk-int24, value chk-int24-buf
+              end-if
+              if v-int25 = 1
+                 move 1 to chk-int25-buf
+                 modify chk-int25, value chk-int25-buf
+              end-if
+              if v-int26 = 1
+                 move 1 to chk-int26-buf
+                 modify chk-int26, value chk-int26-buf
+              end-if
+              if v-int27 = 1
+                 move 1 to chk-int27-buf
+                 modify chk-int27, value chk-int27-buf
+              end-if
+              if v-int28 = 1
+                 move 1 to chk-int28-buf          
+                 modify chk-int28, value chk-int28-buf
+              end-if
+              if v-int29 = 1
+                 move 1 to chk-int29-buf
+                 modify chk-int29, value chk-int29-buf
+              end-if
+              if v-int30 = 1
+                 move 1 to chk-int30-buf
+                 modify chk-int30, value chk-int30-buf
+              end-if    
+              if v-int31 = 1
+                 move 1 to chk-int31-buf
+                 modify chk-int31, value chk-int31-buf
+              end-if
+              if v-int32 = 1
+                 move 1 to chk-int32-buf
+                 modify chk-int32, value chk-int32-buf
+              end-if
+              if v-int33 = 1
+                 move 1 to chk-int33-buf
+                 modify chk-int33, value chk-int33-buf
               end-if
            end-if.
 

@@ -7,7 +7,7 @@ ANSI_FORMAT=1
 MAIN_SCREEN_NAME=Form1
 BEFORE_PROGRAM=PAS004P-Ev-Before-Program
 AFTER_PROGRAM=I-O-BLOCCO
-PROGRAM_UNIQUE_CODE=TOTEM-7E871F112249-921-507925199
+PROGRAM_UNIQUE_CODE=TOTEM-7E8A1121656-65-135765876
 
 {{@DESCRIPTION:
 
@@ -377,8 +377,8 @@ m_bFixed=1
 @}}
 [FDITEM37_WK]
 m_strName=col-data
-m_strRawPic=x(10)
-m_strPic=x(10)
+m_strRawPic=x(16)
+m_strPic=x(16)
 m_nItemLevel=5
 m_nSync=-1
 m_bFixed=1
@@ -1520,8 +1520,8 @@ Begin Screen Form1
       Column            = 1,40
       Column Headings   = TRUE
       Columns' Setting  = ( X = 1, Name = col-data, READONLY = 0 )
-      Columns' Setting  = ( PIC = "x(10)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
-      Columns' Setting  = ( DISP = 10, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( PIC = "x(16)", TYPE = "x(16)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "C" )
+      Columns' Setting  = ( DISP = 11, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 2, Name = col-exe, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(50)", TYPE = "U(5)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
       Columns' Setting  = ( DISP = 14, SEPA = 5, DIVI = 3 )
@@ -1581,7 +1581,7 @@ Begin Screen Form1
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 21, Name = col-note, READONLY = 0 )
       Columns' Setting  = ( PIC = "x(100)", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "U" )
-      Columns' Setting  = ( DISP = 33, SEPA = 5, DIVI = 3 )
+      Columns' Setting  = ( DISP = 32, SEPA = 5, DIVI = 3 )
       Columns' Setting  = ( X = 22, Name = col-tonn, READONLY = 0 )
       Columns' Setting  = ( PIC = "9(6)", TYPE = "zzz.zz9", EDITEDSTYLE = "F", FMT = "X(08)", ALIGN = "R" )
       Columns' Setting  = ( DISP = 5, SEPA = 5, DIVI = 1 )
@@ -2505,12 +2505,19 @@ BEGIN-TEXT
                        end-if
                        move rod-day to como-data
                        perform DATE-TO-SCREEN 
-                       initialize col-exe                 
-                       move como-data(1:2) to col-data(1:2)
-                       move "/"            to col-data(3:1)  
-                       move como-data(3:2) to col-data(4:2)
-                       move "/"            to col-data(6:1)  
-                       move como-data(5:4) to col-data(7:4)
+                       move rod-split to como-split
+                       inspect como-split replacing leading x"30" by x"20"
+                       call "C$JUSTIFY" using como-split, "L"
+                       initialize col-data                 
+                       string como-data(1:2) delimited size
+                              "/"            delimited size  
+                              como-data(3:2) delimited size
+                              "/"            delimited size  
+                              como-data(5:4) delimited size
+                              "-"            delimited size
+                              como-split     delimited size
+                         into col-data
+                       end-string
                     end-if
                     initialize col-exe
                     move rod-exe-code to exe-code

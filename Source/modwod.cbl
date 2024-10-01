@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          modwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        mercoledì 31 luglio 2024 13:35:10.
+       DATE-WRITTEN.        martedì 1 ottobre 2024 14:36:19.
        REMARKS.
       *{TOTEM}END
 
@@ -115,7 +115,7 @@
        78 78-col-note VALUE IS 21. 
        78 78-col-tonn VALUE IS 22. 
        01 rec-grid.
-           05 col-data         PIC  x(10).
+           05 col-data         PIC  x(16).
            05 col-exe          PIC  x(50).
            05 col-series       PIC  z9.
            05 col-reps         PIC  X(40).
@@ -325,16 +325,16 @@
            SIZE 172,90 ,
            ADJUSTABLE-COLUMNS,
            BOXED,
-           DATA-COLUMNS (1, 11, 61, 63, 103, 106, 116, 126, 136, 146, 
-           156, 166, 176, 186, 196, 206, 216, 226, 236, 246, 256, 356),
+           DATA-COLUMNS (1, 17, 67, 69, 109, 112, 122, 132, 142, 152, 
+           162, 172, 182, 192, 202, 212, 222, 232, 242, 252, 262, 362),
            ALIGNMENT ("C", "U", "R", "U", "R", "C", "C", "C", "C", "C", 
            "C", "C", "C", "C", "C", "C", "C", "C", "C", "C", "U", "R"),
            SEPARATION (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 
            5, 5, 5, 5, 5, 5),
-           DATA-TYPES ("X", "U(5)", "X(100)", "X(40)", "U(5)", "x(10)", 
-           "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)"
-           , "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10
-      -    ")", "X", "zzz.zz9"),
+           DATA-TYPES ("x(16)", "U(5)", "X(100)", "X(40)", "U(5)", "x(10
+      -    ")", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x
+      -    "(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)", "x(10)"
+           , "x(10)", "X", "zzz.zz9"),
            COLUMN-DIVIDERS (3, 3, 3, 3, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 
            1, 1, 3, 1, 1, 3, 3, 1),
            NUM-COL-HEADINGS 1,
@@ -2008,9 +2008,9 @@
       * Status-bar
            DISPLAY Form1 UPON Form1-Handle
       * DISPLAY-COLUMNS settings
-              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 11, 25, 27, 45, 
-           49, 54, 61, 66, 71, 78, 83, 88, 95, 100, 105, 112, 117, 122, 
-           129, 134, 167)
+              MODIFY form1-gd-1, DISPLAY-COLUMNS (1, 12, 26, 28, 46, 
+           50, 55, 62, 67, 72, 79, 84, 89, 96, 101, 106, 113, 118, 123, 
+           130, 135, 167)
            .
 
        Form1-PROC.
@@ -2757,12 +2757,20 @@
                        end-if
                        move rod-day to como-data
                        perform DATE-TO-SCREEN 
-                       initialize col-exe                 
-                       move como-data(1:2) to col-data(1:2)
-                       move "/"            to col-data(3:1)  
-                       move como-data(3:2) to col-data(4:2)
-                       move "/"            to col-data(6:1)  
-                       move como-data(5:4) to col-data(7:4)
+                       move rod-split to como-split
+                       inspect como-split replacing leading x"30" by x"2
+      -    "0"
+                       call "C$JUSTIFY" using como-split, "L"
+                       initialize col-data                 
+                       string como-data(1:2) delimited size
+                              "/"            delimited size  
+                              como-data(3:2) delimited size
+                              "/"            delimited size  
+                              como-data(5:4) delimited size
+                              "-"            delimited size
+                              como-split     delimited size
+                         into col-data
+                       end-string
                     end-if
                     initialize col-exe
                     move rod-exe-code to exe-code

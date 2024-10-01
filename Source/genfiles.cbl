@@ -260,21 +260,6 @@
            close twodbook.           
 
            open i-o rwodbook.
-           move low-value to rod-key
-           MOVE 20 TO ROD-CODE
-           start rwodbook key >= rod-key
-           open input intexe
-           perform until 1 = 2
-              read rwodbook next at end exit perform end-read
-              move rod-int-code to int-code
-              read intexe no lock invalid move 0 to int-effort end-read
-              move int-Effort to rod-int-effort
-              rewrite rod-rec
-           end-perform
-           close intexe rwodbook
-
-
-
            if status-rwodbook = "35"
               open output rwodbook
               if status-rwodbook not = "00"

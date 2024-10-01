@@ -12,7 +12,7 @@
                10 rod-exe-code     PIC  x(5).
                10 rod-int-code     PIC  99.
                10 rod-exe-isMulti  PIC  9.
-               10 rod-reps         PIC  x(20).
+               10 rod-reps         PIC  x(50).
                10 rod-series       PIC  99.
                10 rod-int-cedimento            PIC  9.
                10 rod-ss           PIC  9.

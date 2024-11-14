@@ -7,7 +7,7 @@
       *{TOTEM}PRGID
        PROGRAM-ID.          gwod.
        AUTHOR.              andre.
-       DATE-WRITTEN.        martedì 30 luglio 2024 10:18:34.
+       DATE-WRITTEN.        giovedì 14 novembre 2024 16:03:52.
        REMARKS.
       *{TOTEM}END
 
@@ -591,7 +591,7 @@
        77 TMP-DataSet1-tmp-exe-effort-BUF     PIC X(112).
        77 TMP-DataSet1-wodmap-BUF     PIC X(18384).
        77 TMP-DataSet1-tmp-wod-exe-BUF     PIC X(137).
-       77 TMP-DataSet1-tmp-exe-BUF     PIC X(749).
+       77 TMP-DataSet1-tmp-exe-BUF     PIC X(779).
        77 TMP-DataSet1-intexe-BUF     PIC X(1188).
        77 TMP-DataSet1-tmp-exe-dupl-BUF     PIC X(190).
        77 TMP-DataSet1-zoom-exe-mcg-BUF     PIC X(312).
@@ -599,7 +599,7 @@
        77 TMP-DataSet1-tmp-grp-exe-BUF     PIC X(207).
        77 TMP-DataSet1-tmp-superset-BUF     PIC X(44).
        77 TMP-DataSet1-zoom-wodbook-BUF     PIC X(458).
-       77 TMP-DataSet1-rwodbook-BUF     PIC X(2566).
+       77 TMP-DataSet1-rwodbook-BUF     PIC X(2596).
        77 TMP-DataSet1-twodbook-BUF     PIC X(2305).
       * VARIABLES FOR RECORD LENGTH.
        77  TotemFdSlRecordClearOffset   PIC 9(5) COMP-4.

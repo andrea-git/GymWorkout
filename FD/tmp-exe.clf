@@ -5,7 +5,7 @@
 
 
 [DATALAYOUT_CONTENT]
-DATALAYOUT_UNIQUE_CODE=TOTEM-7E8A1121656-40-1932518626
+DATALAYOUT_UNIQUE_CODE=TOTEM-7E8BE15543-590-150983453
 [DSNENTITY_]
 [CStoAcucobolFileDefinition_]
 m_nType=1
@@ -132,8 +132,8 @@ m_bFixed=1
 @}}
 [FDITEM12_]
 m_strName=tex-reps
-m_strRawPic=x(20)
-m_strPic=x(20)
+m_strRawPic=x(50)
+m_strPic=x(50)
 m_nItemLevel=10
 m_nSync=-1
 m_bFixed=1
